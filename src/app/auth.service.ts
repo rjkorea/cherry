@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { environment } from '../environments/environment';
 
@@ -12,7 +11,7 @@ export class AuthService {
   private loginUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/auth/login';
   private isLoggedIn = false;
 
-  constructor(private http: Http, private router: Router) {
+  constructor(private http: Http) {
     this.isLoggedIn = !!localStorage.getItem('csk');
   }
 
