@@ -263,7 +263,7 @@
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                   <thead>
                     <tr>
-                      <th>No</th>
+                      <th>ID</th>
                       <th>Name</th>
                       <th>Birthday</th>
                       <th>Mobile Number</th>
@@ -273,185 +273,24 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>박보영</td>
-                      <td>20110505</td>
-                      <td>+821010040000</td>
-                      <td>토/일</td>
+                    <tr *ngFor="let data of invitations">
+                      <td>{{data._id}}</td>
+                      <td>{{data.name}}</td>
+                      <td>{{data.birthday}}</td>
+                      <td>{{data.mobile_number}}</td>
+                      <td>{{data.type}}</td>
                       <td>
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" class="js-switch" checked="checked">
+                          <!--
+                            <input *ngIf="data.entered" type="checkbox" class="js-switch" checked="checked">
+                            <input *ngIf="!data.entered" type="checkbox" class="js-switch">
+                          -->
+                            <ui-switch [(ngModel)]="data.entered" (change)="onChange($event)" size="small"></ui-switch>
                           </label>
                         </div>
                       </td>
-                      <td>2016-12-31</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>비와이</td>
-                      <td>19810921</td>
-                      <td>+821012345678</td>
-                      <td>일</td>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="js-switch">
-                          </label>
-                        </div>
-                      </td>
-                      <td>2017-01-01</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>박신혜</td>
-                      <td>19820721</td>
-                      <td>+821000001111</td>
-                      <td>토/일</td>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="js-switch" checked="checked">
-                          </label>
-                        </div>
-                      </td>
-                      <td>2016-12-31</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>박보검</td>
-                      <td>20120504</td>
-                      <td>+821011112222</td>
-                      <td>토</td>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="js-switch">
-                          </label>
-                        </div>
-                      </td>
-                      <td>2017-01-01</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>설리</td>
-                      <td>20110505</td>
-                      <td>+821010040000</td>
-                      <td>토/일</td>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="js-switch" checked="checked">
-                          </label>
-                        </div>
-                      </td>
-                      <td>2016-12-31</td>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td>아이린</td>
-                      <td>19810921</td>
-                      <td>+821012345678</td>
-                      <td>일</td>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="js-switch">
-                          </label>
-                        </div>
-                      </td>
-                      <td>2017-01-01</td>
-                    </tr>
-                    <tr>
-                      <td>7</td>
-                      <td>김현중</td>
-                      <td>19820721</td>
-                      <td>+821000001111</td>
-                      <td>토/일</td>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="js-switch" checked="checked">
-                          </label>
-                        </div>
-                      </td>
-                      <td>2016-12-31</td>
-                    </tr>
-                    <tr>
-                      <td>8</td>
-                      <td>지드래곤</td>
-                      <td>20120504</td>
-                      <td>+821011112222</td>
-                      <td>토</td>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="js-switch">
-                          </label>
-                        </div>
-                      </td>
-                      <td>2017-01-01</td>
-                    </tr>
-                    <tr>
-                      <td>9</td>
-                      <td>남주혁</td>
-                      <td>20110505</td>
-                      <td>+821010040000</td>
-                      <td>토/일</td>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="js-switch" checked="checked">
-                          </label>
-                        </div>
-                      </td>
-                      <td>2016-12-31</td>
-                    </tr>
-                    <tr>
-                      <td>10</td>
-                      <td>딘</td>
-                      <td>19810921</td>
-                      <td>+821012345678</td>
-                      <td>일</td>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="js-switch">
-                          </label>
-                        </div>
-                      </td>
-                      <td>2017-01-01</td>
-                    </tr>
-                    <tr>
-                      <td>11</td>
-                      <td>크러쉬</td>
-                      <td>19820721</td>
-                      <td>+821000001111</td>
-                      <td>토/일</td>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="js-switch" checked="checked">
-                          </label>
-                        </div>
-                      </td>
-                      <td>2016-12-31</td>
-                    </tr>
-                    <tr>
-                      <td>12</td>
-                      <td>태연</td>
-                      <td>20120504</td>
-                      <td>+821011112222</td>
-                      <td>토</td>
-                      <td>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" class="js-switch">
-                          </label>
-                        </div>
-                      </td>
-                      <td>2017-01-01</td>
+                      <td>{{data.updated_at*1000 | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
                     </tr>
                   </tbody>
                 </table>

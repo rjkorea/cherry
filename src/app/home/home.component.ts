@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InvitationService } from '../invitation.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   admin_name: string;
+  invitations: Array<Object>;
 
-  constructor() { }
+  constructor(private invitationService: InvitationService) { }
 
   ngOnInit() {
+    this.loadInvitations();
+  }
+
+  loadInvitations() {
     this.admin_name = localStorage.getItem('name');
+    this.invitationService.getInvitations()
+      .subscribe(
+        response => {
+          this.invitations = response['data'];
+          console.log(this.invitations);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  onChange(event) {
+    console.log(event);
   }
 
 }

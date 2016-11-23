@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { UiSwitchModule } from 'angular2-ui-switch';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -12,6 +13,7 @@ import { SignupComponent } from './signup/signup.component';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
+import { InvitationService } from './invitation.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { AuthService } from './auth.service';
     BrowserModule,
     FormsModule,
     HttpModule,
+    UiSwitchModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -35,7 +38,8 @@ import { AuthService } from './auth.service';
   ],
   providers: [
     AuthGuard,
-    AuthService
+    AuthService,
+    InvitationService
   ],
   bootstrap: [AppComponent]
 })
