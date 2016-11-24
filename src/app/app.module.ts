@@ -14,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { InvitationService } from './invitation.service';
+import { NotificationService } from './notification.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { InvitationService } from './invitation.service';
   providers: [
     AuthGuard,
     AuthService,
-    InvitationService
+    InvitationService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })
