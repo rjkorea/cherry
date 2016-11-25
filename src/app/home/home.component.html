@@ -211,8 +211,8 @@
                 </p>
 
                 <!-- add invitation modal -->
-                <button type="button" class="btn btn-dark glyphicon glyphicon-plus" data-toggle="modal" data-target=".bs-example-modal-sm"></button>
-                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                <button type="button" class="btn btn-dark glyphicon glyphicon-plus" data-toggle="modal" data-target=".bs-add-modal-sm"></button>
+                <div class="modal fade bs-add-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -221,49 +221,55 @@
                         <h4 class="modal-title" id="myModalLabel">New Invitation</h4>
                       </div>
                       <div class="modal-body">
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
+                        <form #form="ngForm" class="form-horizontal form-label-left" (ngSubmit)="addInvitation(form.value)">
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Full Name <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="full-name">Full Name <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="full-name" required="required" placeholder="홍길동" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="full-name" required="required" placeholder="츄~" class="form-control col-md-7 col-xs-12" ngModel name="name">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile-number">Mobile Number <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" data-inputmask="'mask': '99/99/9999'" type="text">
+                              <input type="text" id="mobile-number" name="mobile-number" required="required" placeholder="+821064060628" class="form-control col-md-7 col-xs-12" ngModel name="mobile_number">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mobile Number <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthday">Birthday <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="mobile-number" name="mobile-number" required="required" placeholder=" 010 1234 5678" data-inputmask="'mask': '(999)9999-9999'" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="birthday" class="form-control col-md-7 col-xs-12" required="required" placeholder="20160628" ngModel name="birthday">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="email" class="form-control col-md-7 col-xs-12" required="required" placeholder="chu@rjkorea.com" ngModel name="email">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Invitation Type</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                              <select class="select2_single form-control" tabindex="-1">
+                              <select class="form-control" tabindex="-1" ngModel name="type">
                                 <option></option>
-                                <option value="sat">토요일</option>
-                                <option value="sun">일요일</option>
-                                <option value="satsun">토/일요일</option>
+                                <option value="토요일">토요일</option>
+                                <option value="일요일">일요일</option>
+                                <option value="토/일요일">토/일요일</option>
                               </select>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Gender</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div id="gender" class="btn-group" data-toggle="buttons">
+                              <div id="gender" class="btn-group">
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
+                                  <input type="radio" name="gender" value="male" ngModel> &nbsp; Male &nbsp;
                                 </label>
-                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="gender" value="female"> Female
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="gender" value="female" ngModel> Female
                                 </label>
                               </div>
                             </div>
@@ -271,8 +277,8 @@
                           <div class="ln_solid"></div>
                           <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                              <button type="submit" class="btn btn-primary">Cancel</button>
-                              <button type="submit" class="btn btn-success">Submit</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn btn-primary">Done</button>
                             </div>
                           </div>
 
@@ -377,7 +383,7 @@
                       <td>
                         <div class="checkbox">
                           <label>
-                            <ui-switch [(ngModel)]="data.entered" (change)="onChange($event)" size="small"></ui-switch>
+                            <ui-switch [(ngModel)]="data.entered" (change)="onChange($event, data._id)" size="small"></ui-switch>
                           </label>
                         </div>
                       </td>

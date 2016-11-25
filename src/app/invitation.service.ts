@@ -9,6 +9,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class InvitationService {
   private invitationsUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/invitations';
+  private invitationUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/invitation';
 
   constructor(private http: Http) { }
 
@@ -16,6 +17,12 @@ export class InvitationService {
     // let headers = new Headers({'Cookie': 'csk=' + localStorage.getItem('csk')});
     // let options = new RequestOptions({headers: headers});
     return this.http.get(this.invitationsUrl)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public addInvitation(invitation: any): Observable<{}> {
+    return this.http.post(this.invitationUrl,JSON.stringify(invitation))
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }

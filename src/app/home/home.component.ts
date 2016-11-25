@@ -54,8 +54,22 @@ export class HomeComponent implements OnInit {
       );
   }
 
-  onChange(event) {
+  addInvitation(form: any) {
+    console.log(form);
+    this.invitationService.addInvitation(form)
+      .subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  onChange(event, oid: string) {
     console.log(event);
+    console.log(oid);
   }
 
 }
