@@ -106,64 +106,6 @@
                     </a>
                   </div>
                 </li>
-              <!--
-                <li>
-                  <a>
-                    <span class="image"><img src="assets/images/grace.jpg" alt="Profile Image" /></span>
-                    <span>
-                      <span>김그레</span>
-                      <span class="time">3 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Requests Authentication...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="image"><img src="assets/images/img.jpg" alt="Profile Image" /></span>
-                    <span>
-                      <span>정차드</span>
-                      <span class="time">11 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Requests Authentication...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="image"><img src="assets/images/img.jpg" alt="Profile Image" /></span>
-                    <span>
-                      <span>김켈리</span>
-                      <span class="time">34 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Requests Authentication...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="image"><img src="assets/images/img.jpg" alt="Profile Image" /></span>
-                    <span>
-                      <span>조케빈</span>
-                      <span class="time">57 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Requests Authentication...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <div class="text-center">
-                    <a>
-                      <strong>See All Authentication</strong>
-                      <i class="fa fa-angle-right"></i>
-                    </a>
-                  </div>
-                </li>
-              -->
               </ul>
             </li>
           </ul>
@@ -221,39 +163,39 @@
                         <h4 class="modal-title" id="myModalLabel">New Invitation</h4>
                       </div>
                       <div class="modal-body">
-                        <form #form="ngForm" class="form-horizontal form-label-left" (ngSubmit)="addInvitation(form.value)">
+                        <form [formGroup]="invitation_form" class="form-horizontal form-label-left" (ngSubmit)="addInvitation(invitation_form.value)">
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="full-name">Full Name <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="full-name" required="required" placeholder="츄~" class="form-control col-md-7 col-xs-12" ngModel name="name">
+                              <input type="text" id="full-name" required placeholder="츄~" class="form-control col-md-7 col-xs-12" name="name" [formControl]="invitation_form.controls['name']">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile-number">Mobile Number <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="mobile-number" name="mobile-number" required="required" placeholder="+821064060628" class="form-control col-md-7 col-xs-12" ngModel name="mobile_number">
+                              <input type="text" id="mobile-number" name="mobile-number" required placeholder="+821064060628" class="form-control col-md-7 col-xs-12" name="mobile_number" [formControl]="invitation_form.controls['mobile_number']">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthday">Birthday <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="birthday" class="form-control col-md-7 col-xs-12" required="required" placeholder="20160628" ngModel name="birthday">
+                              <input type="text" id="birthday" class="form-control col-md-7 col-xs-12" required placeholder="20160628" name="birthday" [formControl]="invitation_form.controls['birthday']">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="email" class="form-control col-md-7 col-xs-12" required="required" placeholder="chu@rjkorea.com" ngModel name="email">
+                              <input type="text" id="email" class="form-control col-md-7 col-xs-12" required placeholder="chu@rjkorea.com" name="email" [formControl]="invitation_form.controls['email']">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Invitation Type</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                              <select class="form-control" tabindex="-1" ngModel name="type">
+                              <select class="form-control" tabindex="-1" name="type" [formControl]="invitation_form.controls['type']">
                                 <option></option>
                                 <option value="토요일">토요일</option>
                                 <option value="일요일">일요일</option>
@@ -266,10 +208,10 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <div id="gender" class="btn-group">
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="gender" value="male" ngModel> &nbsp; Male &nbsp;
+                                  <input type="radio" name="gender" value="male" [formControl]="invitation_form.controls['gender']"> &nbsp; Male &nbsp;
                                 </label>
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="gender" value="female" ngModel> Female
+                                  <input type="radio" name="gender" value="female" [formControl]="invitation_form.controls['gender']"> Female
                                 </label>
                               </div>
                             </div>

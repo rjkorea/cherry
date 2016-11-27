@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InvitationService } from '../invitation.service';
 import { NotificationService } from '../notification.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +15,20 @@ export class HomeComponent implements OnInit {
   notifications: Array<Object>;
   notification_count: Number;
   notification_unread: Number;
+  invitation_form: FormGroup;
 
   constructor(private invitationService: InvitationService,
-              private notificationService: NotificationService
-  ) { }
+              private notificationService: NotificationService,
+              fb: FormBuilder) {
+    this.invitation_form = fb.group({
+      'name': '',
+      'mobile_number': '',
+      'birthday': '',
+      'email': '',
+      'type': '',
+      'gender': ''
+    });
+  }
 
   ngOnInit() {
     this.admin_name = localStorage.getItem('name');
