@@ -164,21 +164,21 @@
                       </div>
                       <div class="modal-body">
                         <form [formGroup]="invitation_form" class="form-horizontal form-label-left" (ngSubmit)="addInvitation(invitation_form.value)">
-                          <div class="form-group">
+                          <div class="form-group" [ngClass]="{'has-error':!invitation_form.controls['name'].valid && invitation_form.controls['name'].touched}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="full-name">Full Name <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <input type="text" id="full-name" required placeholder="츄~" class="form-control col-md-7 col-xs-12" name="name" [formControl]="invitation_form.controls['name']">
                             </div>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group" [ngClass]="{'has-error':!invitation_form.controls['mobile_number'].valid}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile-number">Mobile Number <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <input type="text" id="mobile-number" name="mobile-number" required placeholder="+821064060628" class="form-control col-md-7 col-xs-12" name="mobile_number" [formControl]="invitation_form.controls['mobile_number']">
                             </div>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group" [ngClass]="{'has-error':!invitation_form.controls['birthday'].valid}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthday">Birthday <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -192,9 +192,9 @@
                               <input type="text" id="email" class="form-control col-md-7 col-xs-12" required placeholder="chu@rjkorea.com" name="email" [formControl]="invitation_form.controls['email']">
                             </div>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group" [ngClass]="{'has-error':!invitation_form.controls['type'].valid}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Invitation Type</label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
                               <select class="form-control" tabindex="-1" name="type" [formControl]="invitation_form.controls['type']">
                                 <option></option>
                                 <option value="토요일">토요일</option>
@@ -203,7 +203,7 @@
                               </select>
                             </div>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group" [ngClass]="{'has-error':!invitation_form.controls['gender'].valid}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Gender</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <div id="gender" class="btn-group">
@@ -220,7 +220,7 @@
                           <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                              <button type="submit" class="btn btn-primary">Done</button>
+                              <button type="submit" class="btn btn-primary" [disabled]="!invitation_form.valid">Done</button>
                             </div>
                           </div>
 

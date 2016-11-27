@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InvitationService } from '../invitation.service';
 import { NotificationService } from '../notification.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -21,12 +21,12 @@ export class HomeComponent implements OnInit {
               private notificationService: NotificationService,
               fb: FormBuilder) {
     this.invitation_form = fb.group({
-      'name': '',
-      'mobile_number': '',
-      'birthday': '',
-      'email': '',
-      'type': '',
-      'gender': ''
+      'name': [null, Validators.required],
+      'mobile_number': [null, Validators.required],
+      'birthday': [null, Validators.required],
+      'email': [null, ],
+      'type': [null, Validators.required],
+      'gender': [null, Validators.required]
     });
   }
 
@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
+          this.invitation_form.reset();
         },
         error => {
           console.log(error);
