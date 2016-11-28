@@ -164,7 +164,7 @@
                       </div>
                       <div class="modal-body">
                         <form [formGroup]="invitation_form" class="form-horizontal form-label-left" (ngSubmit)="addInvitation(invitation_form.value)">
-                          <div class="form-group" [ngClass]="{'has-error':!invitation_form.controls['name'].valid && invitation_form.controls['name'].touched}">
+                          <div class="form-group" [ngClass]="{'has-error':!invitation_form.controls['name'].valid}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="full-name">Full Name <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -223,13 +223,13 @@
                               <button type="submit" class="btn btn-primary" [disabled]="!invitation_form.valid">Done</button>
                             </div>
                           </div>
-
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- modal end -->
+
                 <!-- edit invitation modal -->
                 <div class="modal fade bs-edit-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-lg">
@@ -240,49 +240,65 @@
                         <h4 class="modal-title" id="myModalLabel">Edit Invitation</h4>
                       </div>
                       <div class="modal-body">
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Full Name <span class="required">*</span>
+                        <form [formGroup]="edit_invitation_form" class="form-horizontal form-label-left" (ngSubmit)="editInvitation(edit_invitation_form.value)">
+                          <div class="form-group" [ngClass]="{'has-error':!edit_invitation_form.controls['name'].valid}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="full-name">Full Name <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="full-name" required="required" placeholder="홍길동" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="full-name" required placeholder="츄~" class="form-control col-md-7 col-xs-12" name="name" [formControl]="edit_invitation_form.controls['name']">
+                            </div>
+                          </div>
+                          <div class="form-group" [ngClass]="{'has-error':!edit_invitation_form.controls['mobile_number'].valid}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile-number">Mobile Number <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="mobile-number" name="mobile-number" required placeholder="+821064060628" class="form-control col-md-7 col-xs-12" name="mobile_number" [formControl]="edit_invitation_form.controls['mobile_number']">
+                            </div>
+                          </div>
+                          <div class="form-group" [ngClass]="{'has-error':!edit_invitation_form.controls['birthday'].valid}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthday">Birthday <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="birthday" class="form-control col-md-7 col-xs-12" required placeholder="20160628" name="birthday" [formControl]="edit_invitation_form.controls['birthday']">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" data-inputmask="'mask': '99/99/9999'" type="text">
+                              <input type="text" id="email" class="form-control col-md-7 col-xs-12" required placeholder="chu@rjkorea.com" name="email" [formControl]="edit_invitation_form.controls['email']">
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mobile Number <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="mobile-number" name="mobile-number" required="required" placeholder=" 010 1234 5678" data-inputmask="'mask': '(999)9999-9999'" class="form-control col-md-7 col-xs-12">
-                            </div>
-                          </div>
-                          <div class="form-group">
+                          <div class="form-group" [ngClass]="{'has-error':!edit_invitation_form.controls['type'].valid}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Invitation Type</label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                              <select class="select2_single form-control" tabindex="-1">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select class="form-control" tabindex="-1" name="type" [formControl]="edit_invitation_form.controls['type']">
                                 <option></option>
-                                <option value="sat">토요일</option>
-                                <option value="sun">일요일</option>
-                                <option value="satsun">토/일요일</option>
+                                <option value="토요일">토요일</option>
+                                <option value="일요일">일요일</option>
+                                <option value="토/일요일">토/일요일</option>
                               </select>
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
+                          <div class="form-group" [ngClass]="{'has-error':!edit_invitation_form.controls['gender'].valid}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Gender</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div id="gender" class="btn-group" data-toggle="buttons">
+                              <div id="gender" class="btn-group">
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
+                                  <input type="radio" name="gender" value="male" [formControl]="edit_invitation_form.controls['gender']"> &nbsp; Male &nbsp;
                                 </label>
-                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="gender" value="female"> Female
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="gender" value="female" [formControl]="edit_invitation_form.controls['gender']"> Female
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group" [ngClass]="{'has-error':!edit_invitation_form.controls['entered'].valid}">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="entered">Entrance</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div class="checkbox">
+                                <label>
+                                  <ui-switch size="small" [formControl]="edit_invitation_form.controls['entered']"></ui-switch>
                                 </label>
                               </div>
                             </div>
@@ -290,8 +306,8 @@
                           <div class="ln_solid"></div>
                           <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                              <button type="submit" class="btn btn-primary">Cancel</button>
-                              <button type="submit" class="btn btn-success">Save Change</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn btn-primary" [disabled]="!edit_invitation_form.valid">Done</button>
                             </div>
                           </div>
                         </form>
@@ -310,7 +326,8 @@
                       <th>Email</th>
                       <th>Invitation Type</th>
                       <th>Entrance</th>
-                      <th>Date</th>
+                      <th>UpdateDate</th>
+                      <th>createDate</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -330,8 +347,9 @@
                         </div>
                       </td>
                       <td>{{data.updated_at*1000 | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+                      <td>{{data.created_at*1000 | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
                       <td>
-                        <button type="button" class="fa fa-edit" data-toggle="modal" data-target=".bs-edit-modal-sm"></button>
+                        <button type="button" class="fa fa-edit" data-toggle="modal" data-target=".bs-edit-modal-sm" (click)="openEditInvitation(data)"></button>
                       </td>
                     </tr>
                   </tbody>

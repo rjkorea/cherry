@@ -16,10 +16,11 @@ export class HomeComponent implements OnInit {
   notification_count: Number;
   notification_unread: Number;
   invitation_form: FormGroup;
+  edit_invitation_form: FormGroup;
 
   constructor(private invitationService: InvitationService,
               private notificationService: NotificationService,
-              fb: FormBuilder) {
+              private fb: FormBuilder) {
     this.invitation_form = fb.group({
       'name': [null, Validators.required],
       'mobile_number': [null, Validators.required],
@@ -27,6 +28,15 @@ export class HomeComponent implements OnInit {
       'email': [null, ],
       'type': [null, Validators.required],
       'gender': [null, Validators.required]
+    });
+    this.edit_invitation_form = fb.group({
+      'name': [null, Validators.required],
+      'mobile_number': [null, Validators.required],
+      'birthday': [null, Validators.required],
+      'email': [null, ],
+      'type': [null, Validators.required],
+      'gender': [null, Validators.required],
+      'entered': [null, Validators.required]
     });
   }
 
@@ -72,6 +82,24 @@ export class HomeComponent implements OnInit {
         response => {
           console.log(response);
           this.invitation_form.reset();
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  openEditInvitation(data) {
+    console.log(data);
+    this.edit_invitation_form = this.fb.group(data);
+  }
+
+  editInvitation(form: any) {
+    console.log(form);
+    this.invitationService.updateInvitation(form)
+      .subscribe(
+        response => {
+          console.log(response);
         },
         error => {
           console.log(error);

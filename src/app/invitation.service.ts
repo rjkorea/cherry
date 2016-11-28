@@ -27,4 +27,12 @@ export class InvitationService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public updateInvitation(invitation: any): Observable<{}> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    return this.http.put(this.invitationUrl,JSON.stringify(invitation), options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }
