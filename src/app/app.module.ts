@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 import { SignupComponent } from './signup/signup.component';
+import { NotificationComponent } from './notification/notification.component';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
@@ -21,8 +22,10 @@ import { NotificationService } from './notification.service';
     AppComponent,
     LoginComponent,
     HomeComponent,
+    NotificationComponent,
     PageNotFoundComponent,
-    SignupComponent
+    SignupComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { NotificationService } from './notification.service';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
       { path: '**', component: PageNotFoundComponent }
