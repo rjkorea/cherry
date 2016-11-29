@@ -318,16 +318,15 @@
                 </div>
                 <!-- modal end -->
                 <!-- table -->
-                <table class="table table-striped table-responsive table-bordered" [mfData]="invitations" #mf="mfDataTable" [mfRowsOnPage]="5" [(mfSortBy)]="created_at" [(mfSortOrder)]="desc">
+                <table class="table table-striped table-responsive table-bordered" [mfData]="invitations" #mf="mfDataTable" [mfRowsOnPage]="5">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th>#</th>
                       <th>
                         <mfDefaultSorter by="name">Name</mfDefaultSorter>
                       </th>
                       <th>Mobile Number</th>
                       <th>Birthday</th>
-                      <th>Email</th>
                       <th>Invitation Type</th>
                       <th>Entrance</th>
                       <th>
@@ -341,11 +340,10 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let data of mf.data">
-                      <td>{{data._id}}</td>
+                      <td>#</td>
                       <td>{{data.name}}</td>
                       <td>{{data.mobile_number}}</td>
                       <td>{{data.birthday}}</td>
-                      <td>{{data.email}}</td>
                       <td>{{data.type}}</td>
                       <td>
                         <div class="checkbox">
