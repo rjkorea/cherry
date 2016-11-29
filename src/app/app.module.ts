@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { UiSwitchModule } from 'angular2-ui-switch';
+import { DataTableModule } from 'angular2-datatable';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -33,6 +34,7 @@ import { NotificationService } from './notification.service';
     ReactiveFormsModule,
     HttpModule,
     UiSwitchModule,
+    DataTableModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
