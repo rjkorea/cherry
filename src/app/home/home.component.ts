@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   admin_name: string;
+  admin_image: string;
   invitations: Array<Object>;
   invitation_count: Number;
   notifications: Array<Object>;
@@ -42,6 +43,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.admin_name = localStorage.getItem('name');
+    this.admin_image = localStorage.getItem('image');
     this.loadNotifications();
     this.loadInvitations();
   }
@@ -61,12 +63,12 @@ export class HomeComponent implements OnInit {
   }
 
   loadNotifications() {
-    this.notificationService.getNotifications(0, 4)
+    this.notificationService.getNotifications(0, 4, localStorage.getItem('_id'))
       .subscribe(
         response => {
           this.notifications = response['data'];
-          this.notification_count = this.notifications.length;
-          this.notification_unread = this.notifications.length;
+          this.notification_count = response['count'];
+          this.notification_unread = response['unread_count'];
           console.log(this.notifications);
         },
         error => {

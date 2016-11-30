@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.model.email, this.model.password)
       .subscribe(
         response => {
-          console.log(response);
           this.router.navigate(['/home']);
         },
         error => {

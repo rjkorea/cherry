@@ -15,7 +15,7 @@ export class InvitationService {
 
   public getInvitations(): Observable<{}> {
     // let headers = new Headers({'Cookie': 'csk=' + localStorage.getItem('csk')});
-    // let options = new RequestOptions({headers: headers});
+    // let options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.get(this.invitationsUrl)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));

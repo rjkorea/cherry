@@ -11,7 +11,7 @@
         <!-- menu profile quick info -->
         <div class="profile">
           <div class="profile_pic">
-            <img src="assets/images/grace.jpg" alt="..." class="img-circle profile_img">
+            <img [src]="admin_image" alt="..." class="img-circle profile_img">
           </div>
           <div class="profile_info">
             <span>Welcome,</span>
@@ -65,7 +65,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="">
               <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="assets/images/grace.jpg" alt="">{{admin_name}}
+                <img [src]="admin_image" alt="">{{admin_name}}
                 <span class=" fa fa-angle-down"></span>
               </a>
               <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -89,14 +89,17 @@
               <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                 <li *ngFor="let data of notifications">
                   <a>
-                    <span class="image"><img src="assets/images/grace.jpg" alt="Profile Image" /></span>
                     <span>
-                      <span>{{data.admin_oid}}</span>
+                      <span *ngIf="!data.read" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                      <span *ngIf="data.read" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    </span>
+                    <span>
+                      <span>{{data.message}}</span>
+                      <span class="time">{{data.created_at*1000 | date: 'yyyy-MM-dd hh:mm:ss'}}</span>
                     </span>
                     <span class="message">
-                      {{data.message}}
+                      invitation_oid: {{data.data.invitation_oid}}
                     </span>
-                    <span class="time">3 mins ago</span>
                   </a>
                 </li>
                 <li>
@@ -144,6 +147,8 @@
                     </ul>
                   </li>
                   <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                  <li><a (click)="loadInvitations()"><i class="fa fa-refresh"></i></a>
                   </li>
                 </ul>
                 <div class="clearfix"></div>

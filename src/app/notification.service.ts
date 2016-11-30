@@ -12,8 +12,8 @@ export class NotificationService {
 
   constructor(private http: Http) { }
 
-  public getNotifications(start:Number, size:Number): Observable<{}> {
-    this.notificationsUrl += '?start=' + start + '&size=' + size;
+  public getNotifications(start:Number, size:Number, _id: string): Observable<{}> {
+    this.notificationsUrl += '?start=' + start + '&size=' + size + '&_id=' + _id;
     return this.http.get(this.notificationsUrl)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
