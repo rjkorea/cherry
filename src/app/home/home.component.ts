@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadInvitations() {
-    this.invitationService.getInvitations()
+    this.invitationService.getInvitations(0, 2000)
       .subscribe(
         response => {
           this.invitations = response['data'];
@@ -83,6 +83,7 @@ export class HomeComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
+          this.loadInvitations();
           this.invitation_form.reset();
         },
         error => {
@@ -102,6 +103,7 @@ export class HomeComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
+          this.loadInvitations();
         },
         error => {
           console.log(error);

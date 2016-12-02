@@ -13,16 +13,24 @@ export class InvitationService {
 
   constructor(private http: Http) { }
 
-  public getInvitations(): Observable<{}> {
+  public getInvitations(start: Number, size: Number): Observable<{}> {
+    let url = this.invitationsUrl + '?start=' + start + '&size=' + size;
     // let headers = new Headers({'Cookie': 'csk=' + localStorage.getItem('csk')});
     // let options = new RequestOptions({headers: headers, withCredentials: true});
-    return this.http.get(this.invitationsUrl)
+    return this.http.get(url)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public getInvitation(_id: string): Observable<{}> {
+    let url = this.invitationUrl + '/' + _id;
+    return this.http.get(url)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
   public addInvitation(invitation: any): Observable<{}> {
-    return this.http.post(this.invitationUrl,JSON.stringify(invitation))
+    return this.http.post(this.invitationUrl, JSON.stringify(invitation))
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
@@ -30,7 +38,11 @@ export class InvitationService {
   public updateInvitation(invitation: any): Observable<{}> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    return this.http.put(this.invitationUrl,JSON.stringify(invitation), options)
+    let url = this.invitationUrl + '/' + invitation['_id']
+    delete invitation['_id'];
+    delete invitation['updated_at'];
+    delete invitation['created_at'];
+    return this.http.put(url, JSON.stringify(invitation), options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
