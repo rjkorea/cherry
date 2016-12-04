@@ -226,7 +226,7 @@
                           <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                              <button type="submit" class="btn btn-primary" [disabled]="!invitation_form.valid">Done</button>
+                              <button type="submit" class="btn btn-primary" data-dismiss="modal" [disabled]="!invitation_form.valid" (click)="addInvitation(invitation_form.value)">Done</button>
                             </div>
                           </div>
                         </form>
@@ -313,7 +313,7 @@
                           <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                              <button type="submit" class="btn btn-primary" [disabled]="!edit_invitation_form.valid">Done</button>
+                              <button type="submit" class="btn btn-primary" data-dismiss="modal" [disabled]="!edit_invitation_form.valid" (click)="editInvitation(edit_invitation_form.value)">Done</button>
                             </div>
                           </div>
                         </form>
