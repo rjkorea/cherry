@@ -17,6 +17,7 @@ import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { InvitationService } from './invitation.service';
 import { NotificationService } from './notification.service';
+import { DataFilterPipe } from './data-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NotificationService } from './notification.service';
     NotificationComponent,
     PageNotFoundComponent,
     SignupComponent,
-    NotificationComponent
+    NotificationComponent,
+    DataFilterPipe
   ],
   imports: [
     BrowserModule,

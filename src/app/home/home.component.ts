@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   notification_unread: Number;
   invitation_form: FormGroup;
   edit_invitation_form: FormGroup;
+  filter_query: string = '';
 
   constructor(private invitationService: InvitationService,
               private notificationService: NotificationService,
