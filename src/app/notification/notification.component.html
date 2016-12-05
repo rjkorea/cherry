@@ -28,7 +28,7 @@
             <h3>Manager</h3>
             <ul class="nav side-menu">
               <li><a href="/home"><i class="fa fa-home"></i> Home </a></li>
-              <li class="active"><a href="/notification"><i class="fa fa-bell"></i> Notification <span class="badge bg-green">{{notification_unread}}</span></a></li>
+              <li class="active"><a href="/notification"><i class="fa fa-bell"></i> Notification <span class="badge bg-green" *ngIf="notification_unread">N</span></a></li>
             </ul>
           </div>
 
@@ -84,7 +84,7 @@
             <li role="presentation" class="dropdown">
               <a (click)="loadNotifications()" href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell-o"></i>
-                <span class="badge bg-green">{{notification_unread}}</span>
+                <span class="badge bg-green" *ngIf="notification_unread">N</span>
               </a>
             </li>
           </ul>
