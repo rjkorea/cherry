@@ -155,7 +155,6 @@
               </div>
               <div class="x_content">
                 <p class="text-muted font-13 m-b-30">
-                  Now Mockup admin for T.KIT
                 </p>
 
                 <!-- add invitation modal -->
@@ -323,7 +322,11 @@
                 </div>
                 <!-- modal end -->
                 <!-- table -->
-                <table class="table table-striped table-responsive table-bordered" [mfData]="invitations" #mf="mfDataTable" [mfRowsOnPage]="5">
+                <div>
+                  <label class="control-label" for="filter">Filter by Name or Mobile Number</label>
+                  <input type="text" id="filter" required placeholder="input keyword" class="form-control col-md-7 col-xs-12" name="filter" [(ngModel)]="filter_query">
+                </div>
+                <table class="table table-striped table-responsive table-bordered" [mfData]="invitations | dataFilter: filter_query" #mf="mfDataTable" [mfRowsOnPage]="5">
                   <thead>
                     <tr>
                       <th>#</th>
