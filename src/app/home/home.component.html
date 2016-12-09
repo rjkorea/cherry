@@ -28,7 +28,7 @@
             <h3>Manager</h3>
             <ul class="nav side-menu">
               <li class="active"><a href="/home"><i class="fa fa-home"></i> Home </a></li>
-              <li><a href="/notification"><i class="fa fa-bell"></i> Notification <span class="badge bg-green">{{notification_unread}}</span></a></li>
+              <li><a href="/notification"><i class="fa fa-bell"></i> Notification <span class="badge bg-green" *ngIf="notification_unread">N</span></a></li>
             </ul>
           </div>
 
@@ -84,7 +84,7 @@
             <li role="presentation" class="dropdown">
               <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell-o"></i>
-                <span class="badge bg-green">{{notification_unread}}</span>
+                <span class="badge bg-green" *ngIf="notification_unread">N</span>
               </a>
               <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                 <li *ngFor="let data of notifications">
@@ -354,11 +354,8 @@
                       <td>{{data.birthday}}</td>
                       <td>{{data.type}}</td>
                       <td>
-                        <div class="checkbox">
-                          <label>
-                            <ui-switch [(ngModel)]="data.entered" (change)="onChange($event, data._id)" size="small"></ui-switch>
-                          </label>
-                        </div>
+                        <span *ngIf="data.entered"><strong>입장</strong></span>
+                        <span *ngIf="!data.entered">-</span>
                       </td>
                       <td>{{data.updated_at*1000 | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
                       <td>{{data.created_at*1000 | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
