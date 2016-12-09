@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { UiSwitchModule } from 'angular2-ui-switch';
 import { DataTableModule } from 'angular2-datatable';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +18,8 @@ import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { InvitationService } from './invitation.service';
 import { NotificationService } from './notification.service';
+import { WebSocketService } from './websocket.service';
+
 import { DataFilterPipe } from './data-filter.pipe';
 
 @NgModule({
@@ -37,6 +40,7 @@ import { DataFilterPipe } from './data-filter.pipe';
     HttpModule,
     UiSwitchModule,
     DataTableModule,
+    SimpleNotificationsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -54,7 +58,8 @@ import { DataFilterPipe } from './data-filter.pipe';
     AuthGuard,
     AuthService,
     InvitationService,
-    NotificationService
+    NotificationService,
+    WebSocketService
   ],
   bootstrap: [AppComponent]
 })

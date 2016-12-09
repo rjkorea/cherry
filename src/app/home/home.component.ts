@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InvitationService } from '../invitation.service';
 import { NotificationService } from '../notification.service';
+import { WebSocketService } from '../websocket.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private invitationService: InvitationService,
               private notificationService: NotificationService,
+              private websocketService: WebSocketService,
               private fb: FormBuilder) {
     this.invitation_form = fb.group({
       'name': [null, Validators.required],
