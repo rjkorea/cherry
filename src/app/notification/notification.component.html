@@ -130,7 +130,7 @@
                       </span>
                       <span>
                         <span>{{data.message}}</span>
-                        <span class="time">{{data.created_at*1000 | date: 'yyyy-MM-dd hh:mm:ss'}}</span>
+                        <span class="time">{{data.created_at+(9*60*60) | amFromUnix | amTimeAgo: true}} ago</span>
                       </span>
                       <span class="message">
                         invitation_oid: {{data.data.invitation_oid}}

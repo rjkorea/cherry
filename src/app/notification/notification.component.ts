@@ -59,6 +59,7 @@ export class NotificationComponent implements OnInit {
               maxLength: 128
             }
           );
+          this.loadNotifications();
         }
       },
       error => {
