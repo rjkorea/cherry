@@ -26,8 +26,7 @@
     "zone.js": "^0.6.23",
     "angular2-ui-switch": "~1.1.0",
     "angular2-datatable": "~0.5.2",
-    "angular2-notifications": "~0.4.47",
-    "lodash": "^4.17.2"
+    "angular2-notifications": "~0.4.47"
   },
   "devDependencies": {
     "@types/jasmine": "^2.2.30",
