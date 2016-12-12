@@ -95,7 +95,7 @@
                     </span>
                     <span>
                       <span>{{data.message}}</span>
-                      <span class="time">{{data.created_at*1000 | date: 'yyyy-MM-dd hh:mm:ss'}}</span>
+                      <span class="time">{{data.created_at+(9*60*60) | amFromUnix | amTimeAgo: true}}</span>
                     </span>
                     <span class="message">
                       invitation_oid: {{data.data.invitation_oid}}
@@ -357,8 +357,8 @@
                         <span *ngIf="data.entered"><strong>입장</strong></span>
                         <span *ngIf="!data.entered">-</span>
                       </td>
-                      <td>{{data.updated_at*1000 | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
-                      <td>{{data.created_at*1000 | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+                      <td>{{data.updated_at+(9*60*60) | amFromUnix}}</td>
+                      <td>{{data.created_at+(9*60*60) | amFromUnix}}</td>
                       <td>
                         <button type="button" class="fa fa-edit" data-toggle="modal" data-target=".bs-edit-modal-sm" (click)="openEditInvitation(data)"></button>
                       </td>
