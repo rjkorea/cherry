@@ -28,7 +28,7 @@
             <h3>Manager</h3>
             <ul class="nav side-menu">
               <li><a href="/home"><i class="fa fa-home"></i> Home </a></li>
-              <li class="active"><a href="/notification"><i class="fa fa-bell"></i> Notification <span class="badge bg-green" *ngIf="notification_unread">{{notification_unread}}</span></a></li>
+              <li class="active"><a href="/notification"><i class="fa fa-bell"></i> Notification <span class="badge bg-green" *ngIf="notification_unread">N</span></a></li>
             </ul>
           </div>
 
@@ -84,7 +84,7 @@
             <li role="presentation" class="dropdown">
               <a (click)="loadNotifications()" href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell-o"></i>
-                <span class="badge bg-green" *ngIf="notification_unread">{{notification_unread}}</span>
+                <span class="badge bg-green" *ngIf="notification_unread">N</span>
               </a>
             </li>
           </ul>
@@ -124,36 +124,22 @@
                 <ul class="list-unstyled msg_list">
                   <li *ngFor="let data of notifications">
                     <a>
-                      <span>
-                        <span *ngIf="!data.read" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                      <div data-toggle="modal" data-target=".bs-confirm-modal-sm" (click)="loadInvitation(data._id, data.data._id)">
                         <span *ngIf="data.read" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                      </span>
-                      <span>
-                        <span>{{data.message}}</span>
-                        <span class="time">{{data.created_at+(9*60*60) | amFromUnix | amTimeAgo: true}} ago</span>
-                      </span>
-                      <span class="message">
-                        invitation_oid: {{data.data.invitation_oid}}
-                      </span>
-                      <button type="button" class="glyphicon glyphicon-check" data-toggle="modal" data-target=".bs-confirm-modal-sm" (click)="loadInvitation(data._id, data.data.invitation_oid)"></button>
+                        <span class="image">
+                          <span *ngIf="data.type == 'request_auth'" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                          <span *ngIf="data.type == 'receive_message'" class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                        </span>
+                        <span>
+                          <span>{{data.data.name}}</span>
+                          <span class="time">{{(data.created_at+(9*60*60))*1000 | amTimeAgo: true}} ago</span>
+                        </span>
+                        <span class="message">
+                          {{data.data.mobile_number}}
+                        </span>
+                      </div>
                     </a>
                   </li>
-                <!--
-                  <li>
-                    <a>
-                      <span class="image">
-                        <img src="assets/images/img.jpg" alt="img" />
-                      </span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-                      </span>
-                    </a>
-                  </li>
-                -->
                 </ul>
               </div>
             </div>
