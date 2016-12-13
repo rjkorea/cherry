@@ -82,35 +82,10 @@
             </li>
 
             <li role="presentation" class="dropdown">
-              <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+              <a href="/notification" class="info-number">
                 <i class="fa fa-bell-o"></i>
                 <span class="badge bg-green" *ngIf="notification_unread">N</span>
               </a>
-              <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                <li *ngFor="let data of notifications">
-                  <a>
-                    <span>
-                      <span *ngIf="!data.read" class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                      <span *ngIf="data.read" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    </span>
-                    <span>
-                      <span>{{data.message}}</span>
-                      <span class="time">{{data.created_at+(9*60*60) | amFromUnix | amTimeAgo: true}}</span>
-                    </span>
-                    <span class="message">
-                      invitation_oid: {{data.data.invitation_oid}}
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <div class="text-center">
-                    <a href="/notification">
-                      <strong>See All Notifications</strong>
-                      <i class="fa fa-angle-right"></i>
-                    </a>
-                  </div>
-                </li>
-              </ul>
             </li>
           </ul>
         </nav>

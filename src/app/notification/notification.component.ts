@@ -49,8 +49,8 @@ export class NotificationComponent implements OnInit {
         if(localStorage.getItem('_id') == response['_id']) {
           console.log(response['_id']);
           this.simpleNotificationsService.info(
-            response['type'],
-            response['_id'],
+            response['name'],
+            response['mobile_number'],
             {
               timeOut: 5000,
               showProgressBar: true,
@@ -116,6 +116,7 @@ export class NotificationComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
+          this.loadNotifications();
         },
         error => {
           console.log(error);
