@@ -25,22 +25,36 @@ export class HomeComponent implements OnInit {
               private notificationService: NotificationService,
               private websocketService: WebSocketService,
               private fb: FormBuilder) {
-    this.invitation_form = fb.group({
-      'name': [null, Validators.required],
-      'mobile_number': [null, Validators.required],
-      'birthday': [null, Validators.required],
-      'email': [null, ],
-      'type': [null, Validators.required],
-      'gender': [null, Validators.required]
+    this.invitation_form = this.fb.group({
+      'name': ['', Validators.required],
+      'mobile_number': ['', Validators.required],
+      'birthday': ['', ],
+      'email': ['', ],
+      'type': ['', Validators.required],
+      'gender': ['', ],
+      'group': ['', ],
+      'assignee': ['', ],
+      'fee': this.fb.group({
+        'enabled': [true, ],
+        'price': [10000, ],
+        'method': ['cash', ]
+      })
     });
-    this.edit_invitation_form = fb.group({
-      'name': [null, Validators.required],
-      'mobile_number': [null, Validators.required],
-      'birthday': [null, Validators.required],
-      'email': [null, ],
-      'type': [null, Validators.required],
-      'gender': [null, Validators.required],
-      'entered': [null, Validators.required]
+    this.edit_invitation_form = this.fb.group({
+      'name': ['', Validators.required],
+      'mobile_number': ['', Validators.required],
+      'birthday': ['', ],
+      'email': ['', ],
+      'type': ['', Validators.required],
+      'gender': ['', ],
+      'entered': ['', ],
+      'group': ['', ],
+      'assignee': ['', ],
+      'fee': this.fb.group({
+        'enabled': [, ],
+        'price': [, ],
+        'method': ['', ]
+      })
     });
   }
 
@@ -97,7 +111,24 @@ export class HomeComponent implements OnInit {
 
   openEditInvitation(data) {
     console.log(data);
-    this.edit_invitation_form = this.fb.group(data);
+    this.edit_invitation_form = this.fb.group({
+      '_id': data['_id'],
+      'name': data['name'],
+      'mobile_number': data['mobile_number'],
+      'birthday': data['birthday'],
+      'email': data['email'],
+      'type': data['type'],
+      'gender': data['gender'],
+      'entered': data['entered'],
+      'group': data['group'],
+      'assignee': data['assignee'],
+      'fee': this.fb.group({
+        'enabled': data['fee']['enabled'],
+        'price': data['fee']['price'],
+        'method': data['fee']['method']
+      })
+    });
+
   }
 
   editInvitation(form: any) {
@@ -112,11 +143,6 @@ export class HomeComponent implements OnInit {
           console.log(error);
         }
       );
-  }
-
-  onChange(event, oid: string) {
-    console.log(event);
-    console.log(oid);
   }
 
 }

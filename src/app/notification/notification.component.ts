@@ -23,14 +23,21 @@ export class NotificationComponent implements OnInit {
               private websocketService: WebSocketService,
               private simpleNotificationsService: NotificationsService,
               private fb:FormBuilder) {
-                this.edit_invitation_form = fb.group({
-                  'name': [null, Validators.required],
-                  'mobile_number': [null, Validators.required],
-                  'birthday': [null, Validators.required],
-                  'email': [null, ],
-                  'type': [null, Validators.required],
-                  'gender': [null, Validators.required],
-                  'entered': [null, Validators.required]
+                this.edit_invitation_form = this.fb.group({
+                  'name': ['', Validators.required],
+                  'mobile_number': ['', Validators.required],
+                  'birthday': ['', ],
+                  'email': ['', ],
+                  'type': ['', Validators.required],
+                  'gender': ['', ],
+                  'entered': ['', ],
+                  'group': ['', ],
+                  'assignee': ['', ],
+                  'fee': this.fb.group({
+                    'enabled': [, ],
+                    'price': [, ],
+                    'method': ['', ]
+                  })
                 });
               }
 
@@ -103,6 +110,24 @@ export class NotificationComponent implements OnInit {
         response => {
           console.log(response);
           this.edit_invitation_form = this.fb.group(response['data']);
+          this.edit_invitation_form = this.fb.group({
+            '_id': response['data']['_id'],
+            'name': response['data']['name'],
+            'mobile_number': response['data']['mobile_number'],
+            'birthday': response['data']['birthday'],
+            'email': response['data']['email'],
+            'type': response['data']['type'],
+            'gender': response['data']['gender'],
+            'entered': response['data']['entered'],
+            'group': response['data']['group'],
+            'assignee': response['data']['assignee'],
+            'fee': this.fb.group({
+              'enabled': response['data']['fee']['enabled'],
+              'price': response['data']['fee']['price'],
+              'method': response['data']['fee']['method']
+            })
+          });
+
         },
         error => {
           console.log(error);
