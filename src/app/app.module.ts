@@ -22,6 +22,7 @@ import { NotificationService } from './notification.service';
 import { WebSocketService } from './websocket.service';
 
 import { DataFilterPipe } from './data-filter.pipe';
+import { EntranceComponent } from './entrance/entrance.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DataFilterPipe } from './data-filter.pipe';
     PageNotFoundComponent,
     SignupComponent,
     NotificationComponent,
-    DataFilterPipe
+    DataFilterPipe,
+    EntranceComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ import { DataFilterPipe } from './data-filter.pipe';
       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
+      { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
       { path: '**', component: PageNotFoundComponent }

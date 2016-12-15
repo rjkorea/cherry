@@ -1,0 +1,183 @@
+<div class="container body">
+  <div class="main_container">
+    <div class="col-md-3 left_col">
+      <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+          <a href="/home" class="site_title"><i class="fa fa-ticket"></i> <span>T.KIT</span></a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- menu profile quick info -->
+        <div class="profile">
+          <div class="profile_pic">
+            <img [src]="admin_image" alt="..." class="img-circle profile_img">
+          </div>
+          <div class="profile_info">
+            <span>Welcome,</span>
+            <h2>{{admin_name}}</h2>
+          </div>
+        </div>
+        <!-- /menu profile quick info -->
+
+        <br />
+
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+          <div class="menu_section">
+            <h3>Manager</h3>
+            <ul class="nav side-menu">
+              <li><a href="/home"><i class="fa fa-home"></i> Home </a></li>
+              <li class="active"><a href="/entrance"><i class="fa fa-sign-in"></i> Entrance </a></li>
+              <li><a href="/notification"><i class="fa fa-bell"></i> Notification <span class="badge bg-green" *ngIf="notification_unread">N</span></a></li>
+            </ul>
+          </div>
+
+        </div>
+        <!-- /sidebar menu -->
+
+        <!-- /menu footer buttons -->
+        <div class="sidebar-footer hidden-small">
+          <a data-toggle="tooltip" data-placement="top" title="Settings">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+          </a>
+          <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+          </a>
+          <a data-toggle="tooltip" data-placement="top" title="Lock">
+            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+          </a>
+          <a href="login" data-toggle="tooltip" data-placement="top" title="Logout">
+            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+          </a>
+        </div>
+        <!-- /menu footer buttons -->
+      </div>
+    </div>
+
+    <!-- top navigation -->
+    <div class="top_nav">
+      <div class="nav_menu">
+        <nav>
+          <div class="nav toggle">
+            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+          </div>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class="">
+              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <img [src]="admin_image" alt="">{{admin_name}}
+                <span class=" fa fa-angle-down"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-usermenu pull-right">
+                <li><a href="javascript:;"> Profile</a></li>
+                <li>
+                  <a href="javascript:;">
+                    <span class="badge bg-red pull-right">50%</span>
+                    <span>Settings</span>
+                  </a>
+                </li>
+                <li><a href="javascript:;">Help</a></li>
+                <li><a href="login"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+              </ul>
+            </li>
+
+            <li role="presentation" class="dropdown">
+              <a (click)="loadNotifications()" href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell-o"></i>
+                <span class="badge bg-green" *ngIf="notification_unread">N</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- /top navigation -->
+
+    <!-- page content -->
+    <div class="right_col" role="main">
+      <div class="">
+        <div class="page-title">
+          <div class="title_left">
+            <h3>Entrance</h3>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="x_panel">
+              <div class="x_content">
+                <div class="row">
+                  <!-- entrance card -->
+                  <div class="col-md-12 col-sm-12 col-xs-12 profile_details">
+                    <div *ngIf="is_entrance" class="well profile_view">
+                      <div class="col-sm-12">
+                        <h2 class="brief"><i class="fa fa-building"></i> {{entrance_user.group}}</h2>
+                        <div class="left col-xs-7">
+                          <h2>{{entrance_user.name}}</h2>
+                          <h2><i class="fa fa-phone"></i> {{entrance_user.mobile_number}}</h2>
+                          <h2><i class="fa fa-ticket"></i> {{entrance_user.type}}</h2>
+                          <br/>
+                          <h2><i class="fa fa-birthday-cake"></i> {{entrance_user.birthday}}</h2>
+                          <h2>
+                            <i *ngIf="entrance_user.gender=='female'" class="fa fa-female"> Female</i>
+                            <i *ngIf="entrance_user.gender=='male'" class="fa fa-male"> Male</i>
+                            <i *ngIf="entrance_user.gender==''" class="fa fa-question"></i>
+                          </h2>
+                          <h2><i class="fa fa-envelope"></i> {{entrance_user.email}}</h2>
+                          <br/>
+                          <h2><i class="glyphicon glyphicon-eye-open"></i> {{entrance_user.assignee}}</h2>
+                          <br/>
+                          <h2 *ngIf="entrance_user.fee.enabled">
+                            <i *ngIf="entrance_user.fee.method=='cash'" class="fa fa-money"></i>
+                            <i *ngIf="entrance_user.fee.method=='creditcard'" class="fa fa-credit-card"></i>
+                            <i *ngIf="entrance_user.fee.price" class="fa fa-won"> {{entrance_user.fee.price}}</i>
+                          </h2>
+                          <br/>
+                          <h1>
+                            <i *ngIf="!entrance_user.entered" class="fa fa-slack"> Waiting</i>
+                            <i *ngIf="entrance_user.entered" class="fa fa-slack"> Done</i>
+                          </h1>
+                        </div>
+                        <div class="right col-xs-5 text-center">
+                          <img src="./assets/images/user.png" alt="" class="img-circle img-responsive">
+                        </div>
+                      </div>
+                      <div class="col-xs-12 bottom text-center">
+                        <div class="col-xs-12 col-sm-6 emphasis">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 emphasis">
+                          <button type="button" class="btn btn-success btn" (click)="onEnter($event)">
+                            <i class="fa fa-sign-in"></i> Enter
+                          </button>
+                          <button type="button" class="btn btn-cancel btn" (click)="onCancel($event)">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="!is_entrance">
+                      <h1>Waiting a request.</h1>
+                    </div>
+                  </div>
+                  <!-- entrance card end -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <simple-notifications></simple-notifications>
+    <!-- /page content -->
+
+    <!-- footer content -->
+    <footer>
+      <div class="pull-right">
+        T.KIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a>
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
+  </div>
+</div>
