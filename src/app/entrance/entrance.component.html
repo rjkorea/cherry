@@ -117,28 +117,41 @@
                         <h2 class="brief"><i class="fa fa-building"></i> {{entrance_user.group}}</h2>
                         <div class="left col-xs-7">
                           <h2>{{entrance_user.name}}</h2>
-                          <h2><i class="fa fa-phone"></i> {{entrance_user.mobile_number}}</h2>
-                          <h2><i class="fa fa-ticket"></i> {{entrance_user.type}}</h2>
-                          <br/>
-                          <h2><i class="fa fa-birthday-cake"></i> {{entrance_user.birthday}}</h2>
-                          <h2>
-                            <i *ngIf="entrance_user.gender=='female'" class="fa fa-female"> Female</i>
-                            <i *ngIf="entrance_user.gender=='male'" class="fa fa-male"> Male</i>
-                            <i *ngIf="entrance_user.gender==''" class="fa fa-question"></i>
+                          <h2 class="form-group">
+                            <label class="control-label fa fa-birthday-cake" for="birthday">
+                              <input type="text" id="birthday" class="form-control" placeholder="20010303" name="birthday" [(ngModel)]="entrance_user.birthday">
+                            </label>
                           </h2>
-                          <h2><i class="fa fa-envelope"></i> {{entrance_user.email}}</h2>
+                          <h2><i class="fa fa-ticket"></i> {{entrance_user.type}}</h2>
+                          <h2><i class="fa fa-phone"></i> {{entrance_user.mobile_number}}</h2>
                           <br/>
-                          <h2><i class="glyphicon glyphicon-eye-open"></i> {{entrance_user.assignee}}</h2>
-                          <br/>
-                          <h2 *ngIf="entrance_user.fee.enabled">
-                            <i *ngIf="entrance_user.fee.method=='cash'" class="fa fa-money"></i>
-                            <i *ngIf="entrance_user.fee.method=='creditcard'" class="fa fa-credit-card"></i>
-                            <i *ngIf="entrance_user.fee.price" class="fa fa-won"> {{entrance_user.fee.price}}</i>
+                          <h2 class="form-group">
+                            <label class="control-label fa fa-envelope" for="email">
+                              <input type="text" id="email" class="form-control" placeholder="chu@rjkorea.com" name="email" [(ngModel)]="entrance_user.email">
+                            </label>
+                          </h2>
+
+                          <h2 id="gender" class="btn-group">
+                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                              <input type="radio" name="gender" value="male" [(ngModel)]="entrance_user.gender"> &nbsp; <i class="fa fa-male"></i> &nbsp;
+                            </label>
+                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                              <input type="radio" name="gender" value="female" [(ngModel)]="entrance_user.gender"> <i class="fa fa-female"></i>
+                            </label>
+                          </h2>
+
+                          <h2 *ngIf="entrance_user.fee.enabled" class="btn-group">
+                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                              <input type="radio" name="method" value="cash" [(ngModel)]="entrance_user.fee.method"> &nbsp; <i class="fa fa-money"></i> &nbsp;
+                            </label>
+                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                              <input type="radio" name="method" value="creditcard" [(ngModel)]="entrance_user.fee.method"> <i class="fa fa-credit-card"></i>
+                            </label>
                           </h2>
                           <br/>
                           <h1>
-                            <i *ngIf="!entrance_user.entered" class="fa fa-slack"> Waiting</i>
-                            <i *ngIf="entrance_user.entered" class="fa fa-slack"> Done</i>
+                            <i *ngIf="!entrance_user.entered" class="fa fa-circle-o" style="color: green;"> Waiting</i>
+                            <i *ngIf="entrance_user.entered" class="fa fa-minus-circle" style="color: red;"> Done</i>
                           </h1>
                         </div>
                         <div class="right col-xs-5 text-center">
