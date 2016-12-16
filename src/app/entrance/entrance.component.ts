@@ -74,7 +74,7 @@ export class EntranceComponent implements OnInit {
           console.log(response);
           this.simpleNotificationsService.success(
             'OK',
-            'Complete entrance',
+            this.entrance_user['name'] + ' complete entrance',
             {
               timeOut: 5000,
               showProgressBar: true,
