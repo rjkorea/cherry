@@ -119,7 +119,7 @@
                           <h2>{{entrance_user.name}}</h2>
                           <h2 class="form-group">
                             <label class="control-label fa fa-birthday-cake" for="birthday">
-                              <input type="text" id="birthday" class="form-control" placeholder="20010303" name="birthday" [(ngModel)]="entrance_user.birthday">
+                              <input type="text" id="birthday" class="form-control" name="birthday" [(ngModel)]="entrance_user.birthday">
                             </label>
                           </h2>
                           <h2><i class="fa fa-ticket"></i> {{entrance_user.type}}</h2>
@@ -127,32 +127,35 @@
                           <br/>
                           <h2 class="form-group">
                             <label class="control-label fa fa-envelope" for="email">
-                              <input type="text" id="email" class="form-control" placeholder="chu@rjkorea.com" name="email" [(ngModel)]="entrance_user.email">
+                              <input type="text" id="email" class="form-control" name="email" [(ngModel)]="entrance_user.email">
                             </label>
                           </h2>
 
                           <h2 id="gender" class="btn-group">
                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="male" [(ngModel)]="entrance_user.gender"> &nbsp; <i class="fa fa-male"></i> &nbsp;
+                              <input type="radio" name="gender" value="male" [(ngModel)]="entrance_user.gender"> &nbsp; <i class="fa fa-male fa-lg"></i> Male &nbsp;
                             </label>
                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="female" [(ngModel)]="entrance_user.gender"> <i class="fa fa-female"></i>
+                              <input type="radio" name="gender" value="female" [(ngModel)]="entrance_user.gender"> <i class="fa fa-female fa-lg"></i> Female
                             </label>
                           </h2>
 
                           <h2 *ngIf="entrance_user.fee.enabled" class="btn-group">
                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="method" value="cash" [(ngModel)]="entrance_user.fee.method"> &nbsp; <i class="fa fa-money"></i> &nbsp;
+                              <input type="radio" name="method" value="cash" [(ngModel)]="entrance_user.fee.method"> &nbsp; <i class="fa fa-money fa-lg"></i> Cash &nbsp;
                             </label>
                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="method" value="creditcard" [(ngModel)]="entrance_user.fee.method"> <i class="fa fa-credit-card"></i>
+                              <input type="radio" name="method" value="creditcard" [(ngModel)]="entrance_user.fee.method"> <i class="fa fa-credit-card fa-lg"></i> Creditcard
                             </label>
                           </h2>
                           <br/>
-                          <h1>
-                            <i *ngIf="!entrance_user.entered" class="fa fa-circle-o" style="color: green;"> Waiting</i>
-                            <i *ngIf="entrance_user.entered" class="fa fa-minus-circle" style="color: red;"> Done</i>
-                          </h1>
+                          <h2 *ngIf="!entrance_user.entered">
+                            <i class="fa fa-circle-o" style="color: green;"> Waiting</i>
+                          </h2>
+                          <h2 *ngIf="entrance_user.entered">
+                              <i class="fa fa-minus-circle" style="color: red;"> Done</i>
+                              <small>{{entrance_user.updated_at+(9*60*60) | amFromUnix}}</small>
+                          </h2>
                         </div>
                         <div class="right col-xs-5 text-center">
                           <img src="./assets/images/user.png" alt="" class="img-circle img-responsive">
@@ -170,7 +173,7 @@
                       </div>
                     </div>
                     <div *ngIf="!is_entrance">
-                      <h1>Waiting a request.</h1>
+                      <h1><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Waiting a request.</h1>
                     </div>
                   </div>
                   <!-- entrance card end -->
