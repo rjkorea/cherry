@@ -29,6 +29,7 @@
             <ul class="nav side-menu">
               <li><a href="/home"><i class="fa fa-home"></i> Home </a></li>
               <li><a href="/entrance"><i class="fa fa-sign-in"></i> Entrance </a></li>
+              <li><a href="/invitation"><i class="fa fa-ticket"></i> Invitation </a></li>
               <li class="active"><a href="/notification"><i class="fa fa-bell"></i> Notification <span class="badge bg-green" *ngIf="notification_unread">N</span></a></li>
             </ul>
           </div>
@@ -116,7 +117,7 @@
                   </li>
                   <li><a class="close-link"><i class="fa fa-close"></i></a>
                   </li>
-                  <li><a (click)="loadNotifications"><i class="fa fa-refresh"></i></a>
+                  <li><a (click)="loadNotifications()"><i class="fa fa-refresh"></i></a>
                   </li>
                 </ul>
                 <div class="clearfix"></div>

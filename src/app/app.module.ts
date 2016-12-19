@@ -23,6 +23,7 @@ import { WebSocketService } from './websocket.service';
 
 import { DataFilterPipe } from './data-filter.pipe';
 import { EntranceComponent } from './entrance/entrance.component';
+import { InvitationComponent } from './invitation/invitation.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { EntranceComponent } from './entrance/entrance.component';
     SignupComponent,
     NotificationComponent,
     DataFilterPipe,
-    EntranceComponent
+    EntranceComponent,
+    InvitationComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ import { EntranceComponent } from './entrance/entrance.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: 'invitation', component: InvitationComponent, canActivate: [AuthGuard] },
       { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
       { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
