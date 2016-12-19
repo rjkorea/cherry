@@ -3,7 +3,6 @@ import { InvitationService } from '../invitation.service';
 import { NotificationService } from '../notification.service';
 import { WebSocketService } from '../websocket.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-notification',
@@ -20,8 +19,6 @@ export class NotificationComponent implements OnInit {
 
   constructor(private invitationService: InvitationService,
               private notificationService: NotificationService,
-              private websocketService: WebSocketService,
-              private simpleNotificationsService: NotificationsService,
               private fb:FormBuilder) {
                 this.edit_invitation_form = this.fb.group({
                   'name': ['', Validators.required],
@@ -45,34 +42,6 @@ export class NotificationComponent implements OnInit {
     this.admin_name = localStorage.getItem('name');
     this.admin_image = localStorage.getItem('image');
     this.loadNotifications();
-    this.initWebSocket();
-  }
-
-  initWebSocket() {
-    this.websocketService.getInstance().subscribe(
-      response => {
-        console.log(response);
-        // check admin _id
-        if(localStorage.getItem('_id') == response['_id']) {
-          console.log(response['_id']);
-          this.simpleNotificationsService.info(
-            response['name'],
-            response['mobile_number'],
-            {
-              timeOut: 5000,
-              showProgressBar: true,
-              pauseOnHover: false,
-              clickToClose: true,
-              maxLength: 128
-            }
-          );
-          this.loadNotifications();
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    );
   }
 
   loadNotifications() {

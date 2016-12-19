@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InvitationService } from '../invitation.service';
+import { NotificationService } from '../notification.service';
 import { WebSocketService } from '../websocket.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -13,8 +14,11 @@ export class EntranceComponent implements OnInit {
   admin_image: string;
   is_entrance: boolean;
   entrance_user: Object;
+  notification_unread: Number;
+  notification_options: Object;
 
   constructor(private invitationService: InvitationService,
+              private notificationService: NotificationService,
               private websocketService: WebSocketService,
               private simpleNotificationsService: NotificationsService) {
               }
@@ -31,7 +35,15 @@ export class EntranceComponent implements OnInit {
       'email': '',
       'fee': {}
     };
+    this.notification_options = {
+      timeOut: 2000,
+      showProgressBar: true,
+      pauseOnHover: false,
+      clickToClose: true,
+      maxLength: 128
+    }
     this.initWebSocket();
+    this.loadNotifications();
   }
 
   initWebSocket() {
@@ -43,25 +55,25 @@ export class EntranceComponent implements OnInit {
           console.log(response['admin_oid']);
           this.entrance_user = response;
           this.is_entrance = true;
-          /*
-          this.simpleNotificationsService.info(
-            response['name'],
-            response['mobile_number'],
-            {
-              timeOut: 5000,
-              showProgressBar: true,
-              pauseOnHover: false,
-              clickToClose: true,
-              maxLength: 128
-            }
-          );
-          */
         }
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  loadNotifications() {
+    this.notificationService.getNotifications(0, 0, localStorage.getItem('_id'))
+      .subscribe(
+        response => {
+          this.notification_unread = response['unread_count'];
+          console.log(this.notification_unread);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
   onEnter(event) {
@@ -75,13 +87,7 @@ export class EntranceComponent implements OnInit {
           this.simpleNotificationsService.success(
             'OK',
             this.entrance_user['name'] + ' complete entrance',
-            {
-              timeOut: 5000,
-              showProgressBar: true,
-              pauseOnHover: false,
-              clickToClose: true,
-              maxLength: 128
-            }
+            this.notification_options
           );
         },
         error => {
@@ -96,13 +102,7 @@ export class EntranceComponent implements OnInit {
     this.simpleNotificationsService.error(
       'Cancel',
       'Entrance process',
-      {
-        timeOut: 5000,
-        showProgressBar: true,
-        pauseOnHover: false,
-        clickToClose: true,
-        maxLength: 128
-      }
+      this.notification_options
     );
     this.is_entrance = false;
   }
