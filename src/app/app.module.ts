@@ -3,6 +3,8 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+
+// 3rd party module
 import { UiSwitchModule } from 'angular2-ui-switch';
 import { DataTableModule } from 'angular2-datatable';
 import { SimpleNotificationsModule } from 'angular2-notifications';
@@ -14,16 +16,17 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 import { SignupComponent } from './signup/signup.component';
 import { NotificationComponent } from './notification/notification.component';
+import { EntranceComponent } from './entrance/entrance.component';
+import { InvitationComponent } from './invitation/invitation.component';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
+import { DashboardService } from './dashboard.service';
 import { InvitationService } from './invitation.service';
 import { NotificationService } from './notification.service';
 import { WebSocketService } from './websocket.service';
 
 import { DataFilterPipe } from './data-filter.pipe';
-import { EntranceComponent } from './entrance/entrance.component';
-import { InvitationComponent } from './invitation/invitation.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,7 @@ import { InvitationComponent } from './invitation/invitation.component';
     },
     AuthGuard,
     AuthService,
+    DashboardService,
     InvitationService,
     NotificationService,
     WebSocketService
