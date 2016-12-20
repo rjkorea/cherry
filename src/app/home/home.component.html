@@ -109,34 +109,24 @@
         <div class="row tile_count">
           <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-            <div class="count">2500</div>
+            <div class="count">{{total_users_count | number}}</div>
             <!-- <span class="count_bottom"><i class="green">4% </i> From last Week</span> -->
           </div>
           <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-sign-in"></i> Visitors</span>
-            <div class="count">1999</div>
+            <span class="count_top"><i class="fa fa-sign-in"></i> Total Visitors</span>
+            <div class="count">{{total_visitors_count | number}}</div>
             <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span> -->
           </div>
           <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Visits Rate</span>
-            <div class="count green">64.0<small>%</small></div>
+            <div class="count green">{{total_visitors_count/total_users_count | percent}}</div>
             <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
           </div>
           <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
             <span class="count_top">Total Revenue</span>
-            <div class="count"><small class="fa fa-krw"></small>19,990,000</div>
+            <div class="count"><small class="fa fa-krw"></small> {{total_revenue | number}}</div>
             <!-- <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span> -->
           </div>
-          <!-- <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
-            <div class="count">2,315</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-          </div>
-          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
-            <div class="count">7,325</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-          </div> -->
         </div>
         <!-- /top tiles -->
       </div>
