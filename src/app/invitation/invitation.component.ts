@@ -3,6 +3,7 @@ import { InvitationService } from '../invitation.service';
 import { NotificationService } from '../notification.service';
 import { WebSocketService } from '../websocket.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-invitation',
@@ -17,6 +18,7 @@ export class InvitationComponent implements OnInit {
   notifications: Array<Object>;
   notification_count: Number;
   notification_unread: Number;
+  notification_options: Object;
   invitation_form: FormGroup;
   edit_invitation_form: FormGroup;
   filter_query: string = '';
@@ -24,6 +26,7 @@ export class InvitationComponent implements OnInit {
   constructor(private invitationService: InvitationService,
               private notificationService: NotificationService,
               private websocketService: WebSocketService,
+              private simpleNotificationsService: NotificationsService,
               private fb: FormBuilder) {
     this.invitation_form = this.fb.group({
       'name': ['', Validators.required],
@@ -61,6 +64,13 @@ export class InvitationComponent implements OnInit {
   ngOnInit() {
     this.admin_name = localStorage.getItem('name');
     this.admin_image = localStorage.getItem('image');
+    this.notification_options = {
+      timeOut: 3000,
+      showProgressBar: true,
+      pauseOnHover: false,
+      clickToClose: true,
+      maxLength: 128
+    }
     this.loadNotifications();
     this.loadInvitations();
   }
@@ -99,11 +109,21 @@ export class InvitationComponent implements OnInit {
     this.invitationService.addInvitation(form)
       .subscribe(
         response => {
+          this.simpleNotificationsService.success(
+            'OK',
+            'Complete add invitation',
+            this.notification_options
+          );
           console.log(response);
           this.loadInvitations();
           this.invitation_form.reset();
         },
         error => {
+          this.simpleNotificationsService.error(
+            'Error',
+            error['message'],
+            this.notification_options
+          );
           console.log(error);
         }
       );
@@ -136,10 +156,20 @@ export class InvitationComponent implements OnInit {
     this.invitationService.updateInvitation(form)
       .subscribe(
         response => {
+          this.simpleNotificationsService.success(
+            'OK',
+            'Complete edit invitation',
+            this.notification_options
+          );
           console.log(response);
           this.loadInvitations();
         },
         error => {
+          this.simpleNotificationsService.error(
+            'Error',
+            error['message'],
+            this.notification_options
+          );
           console.log(error);
         }
       );
