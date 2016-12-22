@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   api: {
-    host: "localhost",
+    host: "api.tkit.me",
     port: 9100
   }
 };
