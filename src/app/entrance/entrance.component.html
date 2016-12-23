@@ -151,13 +151,13 @@
                             </label>
                           </h2>
                           <br/>
-                          <h2 *ngIf="!entrance_user.entered">
+                          <h1 *ngIf="!entrance_user.entered">
                             <i class="fa fa-circle-o" style="color: green;"> Waiting</i>
-                          </h2>
-                          <h2 *ngIf="entrance_user.entered">
+                          </h1>
+                          <h1 *ngIf="entrance_user.entered">
                               <i class="fa fa-minus-circle" style="color: red;"> Done</i>
-                              <small>{{entrance_user.updated_at+(9*60*60) | amFromUnix}}</small>
-                          </h2>
+                              {{entrance_user.updated_at+(9*60*60) | amFromUnix}}
+                          </h1>
                         </div>
                         <div class="right col-xs-5 text-center">
                           <img src="./assets/images/user.png" alt="" class="img-circle img-responsive">
