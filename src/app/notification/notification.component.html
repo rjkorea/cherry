@@ -134,7 +134,7 @@
                         </span>
                         <span>
                           <span>{{data.data.name}}</span>
-                          <span class="time">{{(data.created_at+(9*60*60))*1000 | amTimeAgo: true}} ago</span>
+                          <span class="time">{{data.created_at | amFromUnix | amTimeAgo: true}} ago</span>
                         </span>
                         <span class="message">
                           {{data.data.mobile_number}}

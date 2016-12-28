@@ -156,7 +156,7 @@
                           </h1>
                           <h1 *ngIf="entrance_user.entered">
                               <i class="fa fa-minus-circle" style="color: red;"> Done</i>
-                              {{entrance_user.updated_at+(9*60*60) | amFromUnix}}
+                              {{entrance_user.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}
                           </h1>
                         </div>
                         <div class="right col-xs-5 text-center">
