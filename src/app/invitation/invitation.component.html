@@ -422,7 +422,7 @@
                         <span *ngIf="!data.fee.enabled">-</span>
                       </td>
                       <td>{{data.group}}</td>
-                      <td>{{data.updated_at+(9*60*60) | amFromUnix}}</td>
+                      <td>{{data.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
                       <td>
                         <button type="button" class="fa fa-edit" data-toggle="modal" data-target=".bs-edit-modal-sm" (click)="openEditInvitation(data)"></button>
                       </td>
