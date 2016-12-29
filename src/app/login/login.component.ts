@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 import { AuthService } from '../auth.service';
 
@@ -10,10 +11,20 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   model: any = {};
+  notification_options: Object;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router,
+              private simpleNotificationsService: NotificationsService,
+              private authService: AuthService) { }
 
   ngOnInit() {
+    this.notification_options = {
+      timeOut: 3000,
+      showProgressBar: true,
+      pauseOnHover: false,
+      clickToClose: true,
+      maxLength: 128
+    }
     console.log('init login component');
     this.authService.logout();
   }
@@ -26,6 +37,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/home']);
         },
         error => {
+          this.simpleNotificationsService.error(
+            'Error',
+            error['message'],
+            this.notification_options
+          );
           console.log(error);
         }
       );
