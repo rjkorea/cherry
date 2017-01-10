@@ -3,7 +3,7 @@
     <div class="col-md-3 left_col">
       <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0; text-align: center; margin-top: 5px;">
-          <a href="/home" class="site_title"><img src="../../assets/images/logo.png"></a>
+          <a routerLink="/home" class="site_title"><img src="../../assets/images/logo.png"></a>
         </div>
 
         <div class="clearfix"></div>
@@ -27,10 +27,10 @@
           <div class="menu_section">
             <h3>Manager</h3>
             <ul class="nav side-menu">
-              <li class="active"><a href="/home"><i class="fa fa-home"></i> Home </a></li>
-              <li><a href="/entrance"><i class="fa fa-sign-in"></i> Entrance </a></li>
-              <li><a href="/invitation"><i class="fa fa-ticket"></i> Invitation </a></li>
-              <li><a href="/notification"><i class="fa fa-bell"></i> Notification <span class="badge bg-green" *ngIf="notification_unread">N</span></a></li>
+              <li class="active"><a routerLink="/home"><i class="fa fa-home"></i> Home </a></li>
+              <li><a routerLink="/entrance"><i class="fa fa-sign-in"></i> Entrance </a></li>
+              <li><a routerLink="/invitation"><i class="fa fa-ticket"></i> Invitation </a></li>
+              <li><a routerLink="/notification"><i class="fa fa-bell"></i> Notification <span class="badge bg-green" *ngIf="notification_unread">N</span></a></li>
             </ul>
           </div>
 
@@ -48,7 +48,7 @@
           <a data-toggle="tooltip" data-placement="top" title="Lock">
             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
           </a>
-          <a href="login" data-toggle="tooltip" data-placement="top" title="Logout">
+          <a routerLink="/login" data-toggle="tooltip" data-placement="top" title="Logout">
             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
           </a>
         </div>
@@ -79,7 +79,7 @@
                   </a>
                 </li>
                 <li><a href="javascript:;">Help</a></li>
-                <li><a href="login"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                <li><a routerLink="/login"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
               </ul>
             </li>
 
@@ -106,30 +106,29 @@
         <div class="clearfix"></div>
 
       <!-- top tiles -->
+      <!--
         <div class="row tile_count">
           <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
             <div class="count">{{total_users_count | number}}</div>
-            <!-- <span class="count_bottom"><i class="green">4% </i> From last Week</span> -->
           </div>
           <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-sign-in"></i> Total Visitors</span>
             <div class="count">{{total_visitors_count | number}}</div>
-            <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span> -->
           </div>
           <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Visits Rate</span>
             <div class="count green">{{total_visitors_count/total_users_count | percent}}</div>
-            <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
           </div>
           <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
             <span class="count_top">Total Revenue</span>
             <div class="count"><small class="fa fa-krw"></small> {{total_revenue | number}}</div>
-            <!-- <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span> -->
           </div>
         </div>
+      -->
         <!-- /top tiles -->
         <div class="row">
+          <iframe src="http://localhost:5601/app/kibana#/dashboard/The-Final-Coutdown-2017?embed=true&_g=()" height="1380" width="1080"></iframe>
         </div>
       </div>
     </div>
