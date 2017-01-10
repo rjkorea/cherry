@@ -9,6 +9,7 @@ import { UiSwitchModule } from 'angular2-ui-switch';
 import { DataTableModule } from 'angular2-datatable';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
+import { ChartModule } from 'angular2-chartjs';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -50,6 +51,7 @@ import { DataFilterPipe } from './data-filter.pipe';
     DataTableModule,
     SimpleNotificationsModule,
     MomentModule,
+    ChartModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
