@@ -3,7 +3,7 @@
         {
             name: "tkit_admin_dev",
             script: "/usr/local/bin/ng",
-            args: "serve"
+            args: "serve --host 0.0.0.0"
         },
         {
             name: "tkit_admin_live",
