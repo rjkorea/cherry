@@ -24,9 +24,9 @@ export class AuthService {
                       if(response.status==200) {
                         console.log(response);
                         console.log(this.cookieService.get('csk'));
-                        localStorage.setItem('name', response.json().data.admin.name);
-                        localStorage.setItem('_id', response.json().data.admin._id);
-                        localStorage.setItem('image', response.json().data.admin.image);
+                        localStorage.setItem('name', response.json().data.name);
+                        localStorage.setItem('_id', response.json().data._id);
+                        localStorage.setItem('image', response.json().data.image);
 
                         this.isLoggedIn = true;
                       }
