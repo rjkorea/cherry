@@ -19,7 +19,7 @@ export class NotificationService {
   }
 
   public getNotifications(start:Number, size:Number, _id: string): Observable<{}> {
-    let url = this.notificationsUrl + '?start=' + start + '&size=' + size + '&_id=' + _id;
+    let url = this.notificationsUrl + '?start=' + start + '&size=' + size;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
