@@ -8,7 +8,8 @@ import { NotificationsService } from 'angular2-notifications';
 @Component({
   selector: 'app-invitation',
   templateUrl: './invitation.component.html',
-  styleUrls: ['./invitation.component.css']
+  styleUrls: ['./invitation.component.css'],
+  providers: [NotificationsService]
 })
 export class InvitationComponent implements OnInit {
   admin_name: string;

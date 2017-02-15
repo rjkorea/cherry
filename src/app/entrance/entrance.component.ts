@@ -7,7 +7,8 @@ import { NotificationsService } from 'angular2-notifications';
 @Component({
   selector: 'app-entrance',
   templateUrl: './entrance.component.html',
-  styleUrls: ['./entrance.component.css']
+  styleUrls: ['./entrance.component.css'],
+  providers: [NotificationsService]
 })
 export class EntranceComponent implements OnInit {
   admin_name: string;
