@@ -17,23 +17,8 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "mobile": false,
-      "styles": [
-        "../vendors/bootstrap/dist/css/bootstrap.min.css",
-        "../vendors/font-awesome/css/font-awesome.min.css",
-        "../vendors/nprogress/nprogress.css",
-        "../vendors/animate.css/animate.min.css",
-        "../vendors/gentellela/css/custom.min.css",
-        "styles.css"
-      ],
-      "scripts": [
-        "../vendors/jquery/dist/jquery.min.js",
-        "../vendors/bootstrap/dist/js/bootstrap.min.js",
-        "../vendors/nprogress/nprogress.js",
-        "../vendors/jszip/dist/jszip.min.js",
-        "../vendors/pdfmake/build/pdfmake.min.js",
-        "../vendors/pdfmake/build/vfs_fonts.js",
-        "../vendors/gentellela/js/custom.min.js"
-      ],
+      "styles": [],
+      "scripts": [],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
