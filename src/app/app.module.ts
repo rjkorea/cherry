@@ -12,6 +12,7 @@ import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
 
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
@@ -33,6 +34,7 @@ import { DataFilterPipe } from './data-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
     LoginComponent,
     HomeComponent,
     NotificationComponent,
