@@ -1,39 +1,26 @@
-<div class="signup">
-  <div class="signup_wrapper">
-    <div class="form registration_form">
-      <section class="signup_content">
-        <form>
-          <h1>Create Account</h1>
-          <div>
-            <input type="text" class="form-control" placeholder="Username" required="" />
-          </div>
-          <div>
-            <input type="email" class="form-control" placeholder="Email" required="" />
-          </div>
-          <div>
-            <input type="password" class="form-control" placeholder="Password" required="" />
-          </div>
-          <div>
-            <a class="btn btn-default submit" href="home">Submit</a>
-          </div>
-
-          <div class="clearfix"></div>
-
-          <div class="separator">
-            <p class="change_link">Already a member ?
-              <a routerLink="/login"> Log in </a>
-            </p>
-
-            <div class="clearfix"></div>
-            <br />
-
-            <div>
-              <h1><i class="fa fa-ticket"></i> TKIT Admin</h1>
-              <p>©2017 All Rights Reserved. RJ Korea Entertainment. Privacy and Terms</p>
-            </div>
-          </div>
-        </form>
-      </section>
-    </div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+    <h2 class="page-header">Sign Up</h2>
+    <form (submit)="signup()">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="name" name="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" [(ngModel)]="email" name="email" class="form-control" >
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" [(ngModel)]="password" name="password" class="form-control">
+      </div>
+      <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+    <p class="lead text-center">©2017 All Rights Reserved. RJ Korea Entertainment. Privacy and Terms</p>
   </div>
 </div>

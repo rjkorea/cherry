@@ -1,38 +1,23 @@
-<div class="login">
-  <div class="login_wrapper">
-    <div class="form login_form">
-      <section class="login_content">
-        <form>
-          <h1>Login Form</h1>
-          <div>
-            <input type="email" class="form-control" name="email" [(ngModel)]="model.email" placeholder="Email" required="" />
-          </div>
-          <div>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" placeholder="Password" required="" />
-          </div>
-          <div>
-            <a class="btn btn-default submit" (click)="login()">Log in</a>
-            <a class="reset_pass" href="#">Lost your password?</a>
-          </div>
-
-          <div class="clearfix"></div>
-
-          <div class="separator">
-            <p class="change_link">New to site?
-              <a routerLink="/signup"> Create Account </a>
-            </p>
-
-            <div class="clearfix"></div>
-            <br />
-
-            <div>
-              <h1><i class="fa fa-ticket"></i> TKIT Admin</h1>
-              <p>©2017 All Rights Reserved. RJ Korea Entertainment. Privacy and Terms</p>
-            </div>
-          </div>
-        </form>
-      </section>
-    </div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+    <h2 class="page-header">Log In</h2>
+    <form (submit)="login()">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" [(ngModel)]="model.email" name="email">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" [(ngModel)]="model.password" name="password">
+      </div>
+      <input type="submit" class="btn btn-primary" value="Login">
+    </form>
   </div>
-  <simple-notifications></simple-notifications>
 </div>
+<br>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+    <p class="lead text-center">©2017 All Rights Reserved. RJ Korea Entertainment. Privacy and Terms</p>
+  </div>
+</div>
+<simple-notifications></simple-notifications>

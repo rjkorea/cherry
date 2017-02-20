@@ -34,6 +34,10 @@ export class AuthService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  loggedIn() {
+    return this.isLoggedIn;
+  }
+
   logout() {
     this.cookieService.remove('csk');
     localStorage.removeItem('name');

@@ -11,13 +11,15 @@
   </div>
   <div id="navbar" class="collapse navbar-collapse" [ngClass]="{'in': isIn}">
     <ul class="nav navbar-nav navbar-left">
-      <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">Home</a></li>
-      <li><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
-      <li><a routerLink="/invitation" routerLinkActive="active" data-toggle="collapse">Invitation</a></li>
-      <li><a routerLink="/notification" routerLinkActive="active" data-toggle="collapse">Notification</a></li>
+      <li *ngIf="authService.loggedIn()"><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">Home</a></li>
+      <li *ngIf="authService.loggedIn()"><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
+      <li *ngIf="authService.loggedIn()"><a routerLink="/invitation" routerLinkActive="active" data-toggle="collapse">Invitation</a></li>
+      <li *ngIf="authService.loggedIn()"><a routerLink="/notification" routerLinkActive="active" data-toggle="collapse">Notification</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a routerLink="/login" routerLinkActive="active" data-toggle="collapse">Login</a></li>
+      <li *ngIf="!authService.loggedIn()"><a routerLink="/login" routerLinkActive="active" data-toggle="collapse">Login</a></li>
+      <li *ngIf="!authService.loggedIn()"><a routerLink="/signup" routerLinkActive="active" data-toggle="collapse">Signup</a></li>
+      <li *ngIf="authService.loggedIn()"><a (click)="authService.logout()" href="#">Logout</a></li>
     </ul>
 
   </div><!--/.nav-collapse -->
