@@ -7,11 +7,20 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isIn = false;
+  private isIn: boolean;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.isIn = false;
+  }
+
+  getUserName() {
+    return localStorage.getItem('name');
+  }
+
+  getUserImage() {
+    return localStorage.getItem('image');
   }
 
   toggleState() {
