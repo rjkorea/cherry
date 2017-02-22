@@ -1,201 +1,77 @@
-<div class="container body">
-  <div class="main_container">
-    <div class="col-md-3 left_col">
-      <div class="left_col scroll-view">
-        <div class="navbar nav_title" style="border: 0; text-align: center; margin-top: 5px;">
-          <a routerLink="/home" class="site_title"><img src="../../assets/images/logo.png"></a>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <h3>The Final COUNTDOWN 2017 <small>by VU Ent.</small></h3>
+    <div *ngIf="is_entrance" class="well profile_view">
+      <div class="col-sm-12">
+        <h2 class="brief"><i class="fa fa-building"></i> {{entrance_user.group}}</h2>
+        <div class="left col-xs-7">
+          <h2>{{entrance_user.name}}</h2>
+          <h2 class="form-group">
+            <label class="control-label fa fa-birthday-cake" for="birthday">
+              <input type="text" id="birthday" class="form-control" name="birthday" [(ngModel)]="entrance_user.birthday">
+            </label>
+          </h2>
+          <h2><i class="fa fa-ticket"></i> {{entrance_user.type}}</h2>
+          <h2><i class="fa fa-phone"></i> {{entrance_user.mobile_number}}</h2>
+          <br/>
+          <h2 class="form-group">
+            <label class="control-label fa fa-envelope" for="email">
+              <input type="text" id="email" class="form-control" name="email" [(ngModel)]="entrance_user.email">
+            </label>
+          </h2>
+
+          <h2 id="gender" class="btn-group">
+            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+              <input type="radio" name="gender" value="male" [(ngModel)]="entrance_user.gender"> &nbsp; <i class="fa fa-male fa-lg"></i> Male &nbsp;
+            </label>
+            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+              <input type="radio" name="gender" value="female" [(ngModel)]="entrance_user.gender"> <i class="fa fa-female fa-lg"></i> Female
+            </label>
+          </h2>
+
+          <h2 *ngIf="entrance_user.fee.enabled" class="btn-group">
+            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+              <input type="radio" name="method" value="cash" [(ngModel)]="entrance_user.fee.method"> &nbsp; <i class="fa fa-money fa-lg"></i> Cash &nbsp;
+            </label>
+            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+              <input type="radio" name="method" value="creditcard" [(ngModel)]="entrance_user.fee.method"> <i class="fa fa-credit-card fa-lg"></i> Creditcard
+            </label>
+          </h2>
+          <br/>
+          <h1 *ngIf="!entrance_user.entered">
+            <i class="fa fa-circle-o" style="color: green;"> Waiting</i>
+          </h1>
+          <h1 *ngIf="entrance_user.entered">
+              <i class="fa fa-minus-circle" style="color: red;"> Done</i>
+              {{entrance_user.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}
+          </h1>
         </div>
-
-        <div class="clearfix"></div>
-
-        <!-- menu profile quick info -->
-        <div class="profile">
-          <div class="profile_pic">
-            <img [src]="admin_image" alt="..." class="img-circle profile_img">
-          </div>
-          <div class="profile_info">
-            <span>Welcome,</span>
-            <h2>{{admin_name}}</h2>
-          </div>
+        <div class="right col-xs-5 text-center">
+          <img src="./assets/images/user.png" alt="" class="img-circle img-responsive">
         </div>
-        <!-- /menu profile quick info -->
-
-        <br />
-
-        <!-- sidebar menu -->
-        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-          <div class="menu_section">
-            <h3>Manager</h3>
-            <ul class="nav side-menu">
-              <li><a routerLink="/home"><i class="fa fa-home"></i> Home </a></li>
-              <li class="active"><a routerLink="/entrance"><i class="fa fa-sign-in"></i> Entrance </a></li>
-              <li><a routerLink="/invitation"><i class="fa fa-ticket"></i> Invitation </a></li>
-              <li><a routerLink="/notification"><i class="fa fa-bell"></i> Notification <span class="badge bg-green" *ngIf="notification_unread">N</span></a></li>
-            </ul>
-          </div>
-
-        </div>
-        <!-- /sidebar menu -->
-
-        <!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small">
-          <a data-toggle="tooltip" data-placement="top" title="Settings">
-            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-          </a>
-          <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-          </a>
-          <a data-toggle="tooltip" data-placement="top" title="Lock">
-            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-          </a>
-          <a routerLink="/login" data-toggle="tooltip" data-placement="top" title="Logout">
-            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-          </a>
-        </div>
-        <!-- /menu footer buttons -->
       </div>
-    </div>
-
-    <!-- top navigation -->
-    <div class="top_nav">
-      <div class="nav_menu">
-        <nav>
-          <div class="nav toggle">
-            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-          </div>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li class="">
-              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img [src]="admin_image" alt="">{{admin_name}}
-                <span class=" fa fa-angle-down"></span>
-              </a>
-              <ul class="dropdown-menu dropdown-usermenu pull-right">
-                <li><a href="javascript:;"> Profile</a></li>
-                <li>
-                  <a href="javascript:;">
-                    <span class="badge bg-red pull-right">50%</span>
-                    <span>Settings</span>
-                  </a>
-                </li>
-                <li><a href="javascript:;">Help</a></li>
-                <li><a routerLink="/login"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-              </ul>
-            </li>
-
-            <li role="presentation" class="dropdown">
-              <a (click)="loadNotifications()" href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell-o"></i>
-                <span class="badge bg-green" *ngIf="notification_unread">N</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <!-- /top navigation -->
-
-    <!-- page content -->
-    <div class="right_col" role="main">
-      <div class="">
-        <div class="page-title">
-          <div class="title_left">
-            <h1>Entrance</h1>
-            <h3>The Final COUNTDOWN 2017 <small>by VU Ent.</small></h3>
-          </div>
+      <div class="col-xs-12 bottom text-center">
+        <div class="col-xs-12 col-sm-6 emphasis">
         </div>
-
-        <div class="clearfix"></div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="x_panel">
-              <div class="x_content">
-                <div class="row">
-                  <!-- entrance card -->
-                  <div class="col-md-12 col-sm-12 col-xs-12 profile_details">
-                    <div *ngIf="is_entrance" class="well profile_view">
-                      <div class="col-sm-12">
-                        <h2 class="brief"><i class="fa fa-building"></i> {{entrance_user.group}}</h2>
-                        <div class="left col-xs-7">
-                          <h2>{{entrance_user.name}}</h2>
-                          <h2 class="form-group">
-                            <label class="control-label fa fa-birthday-cake" for="birthday">
-                              <input type="text" id="birthday" class="form-control" name="birthday" [(ngModel)]="entrance_user.birthday">
-                            </label>
-                          </h2>
-                          <h2><i class="fa fa-ticket"></i> {{entrance_user.type}}</h2>
-                          <h2><i class="fa fa-phone"></i> {{entrance_user.mobile_number}}</h2>
-                          <br/>
-                          <h2 class="form-group">
-                            <label class="control-label fa fa-envelope" for="email">
-                              <input type="text" id="email" class="form-control" name="email" [(ngModel)]="entrance_user.email">
-                            </label>
-                          </h2>
-
-                          <h2 id="gender" class="btn-group">
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="male" [(ngModel)]="entrance_user.gender"> &nbsp; <i class="fa fa-male fa-lg"></i> Male &nbsp;
-                            </label>
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="female" [(ngModel)]="entrance_user.gender"> <i class="fa fa-female fa-lg"></i> Female
-                            </label>
-                          </h2>
-
-                          <h2 *ngIf="entrance_user.fee.enabled" class="btn-group">
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="method" value="cash" [(ngModel)]="entrance_user.fee.method"> &nbsp; <i class="fa fa-money fa-lg"></i> Cash &nbsp;
-                            </label>
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="method" value="creditcard" [(ngModel)]="entrance_user.fee.method"> <i class="fa fa-credit-card fa-lg"></i> Creditcard
-                            </label>
-                          </h2>
-                          <br/>
-                          <h1 *ngIf="!entrance_user.entered">
-                            <i class="fa fa-circle-o" style="color: green;"> Waiting</i>
-                          </h1>
-                          <h1 *ngIf="entrance_user.entered">
-                              <i class="fa fa-minus-circle" style="color: red;"> Done</i>
-                              {{entrance_user.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}
-                          </h1>
-                        </div>
-                        <div class="right col-xs-5 text-center">
-                          <img src="./assets/images/user.png" alt="" class="img-circle img-responsive">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 bottom text-center">
-                        <div class="col-xs-12 col-sm-6 emphasis">
-                        </div>
-                        <div class="col-xs-12 col-sm-6 emphasis">
-                          <button type="button" class="btn btn-success btn" (click)="onEnter($event)">
-                            <i class="fa fa-sign-in"></i> Enter
-                          </button>
-                          <button type="button" class="btn btn-cancel btn" (click)="onCancel($event)">Cancel</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div *ngIf="!is_entrance">
-                      <h1><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Waiting a request.</h1>
-                    </div>
-                  </div>
-                  <!-- entrance card end -->
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="col-xs-12 col-sm-6 emphasis">
+          <button type="button" class="btn btn-success btn" (click)="onEnter($event)">
+            <i class="fa fa-sign-in"></i> Enter
+          </button>
+          <button type="button" class="btn btn-cancel btn" (click)="onCancel($event)">Cancel</button>
         </div>
       </div>
     </div>
-    <simple-notifications></simple-notifications>
-    <!-- /page content -->
+    <div *ngIf="!is_entrance">
+      <h1><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Waiting a request.</h1>
+    </div>
+  </div>
+  <!-- entrance card end -->
+</div>
 
-    <!-- footer content -->
-    <footer>
-      <div class="pull-right">
-        TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a>
-      </div>
-      <div class="clearfix"></div>
-    </footer>
-    <!-- /footer content -->
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
   </div>
 </div>
+
+<simple-notifications></simple-notifications>
