@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   visits_rate: Number;
   total_revenue: Number;
   notification_unread: Number;
+  is_mobile: boolean;
 
   constructor(private notificationService: NotificationService,
               private dashboardService: DashboardService) { }
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     this.total_revenue = 0;
     this.loadDashboard();
     this.loadNotifications();
+    this.is_mobile = true;
   }
 
   loadDashboard() {
@@ -56,6 +58,14 @@ export class HomeComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  toggleMobile() {
+    if(this.is_mobile) {
+      this.is_mobile = false;
+    }else {
+      this.is_mobile = true;
+    }
   }
 
 }
