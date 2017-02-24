@@ -17,6 +17,52 @@ export class HomeComponent implements OnInit {
   notification_unread: Number;
   is_mobile: boolean;
 
+  type = 'pie';
+  data = {
+    labels: ["여자", "남자"],
+    datasets: [
+      {
+        data: [280, 85],
+        backgroundColor: [
+            "#FF6384",
+            "#36A2EB"
+        ],
+        hoverBackgroundColor: [
+            "#FF6384",
+            "#36A2EB"
+        ]
+      }
+    ]
+  };
+  options = {
+    responsive: true,
+    maintainAspectRatio: false
+  };
+
+  type2 = 'doughnut';
+  data2 = {
+    labels: ["20대", "30대", "40대"],
+    datasets: [
+      {
+        data: [250, 98, 6],
+        backgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+        ],
+        hoverBackgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+        ]
+      }
+    ]
+  };
+  options2 = {
+    responsive: true,
+    maintainAspectRatio: false
+  };
+
   constructor(private notificationService: NotificationService,
               private dashboardService: DashboardService) { }
 
