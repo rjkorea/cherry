@@ -1,71 +1,49 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
     <h3>The Final COUNTDOWN 2017 <small>by VU Ent.</small></h3>
-    <div *ngIf="is_entrance" class="well profile_view">
-      <div class="col-sm-12">
-        <h2 class="brief"><i class="fa fa-building"></i> {{entrance_user.group}}</h2>
-        <div class="left col-xs-7">
-          <h2>{{entrance_user.name}}</h2>
-          <h2 class="form-group">
-            <label class="control-label fa fa-birthday-cake" for="birthday">
-              <input type="text" id="birthday" class="form-control" name="birthday" [(ngModel)]="entrance_user.birthday">
-            </label>
-          </h2>
-          <h2><i class="fa fa-ticket"></i> {{entrance_user.type}}</h2>
-          <h2><i class="fa fa-phone"></i> {{entrance_user.mobile_number}}</h2>
-          <br/>
-          <h2 class="form-group">
-            <label class="control-label fa fa-envelope" for="email">
-              <input type="text" id="email" class="form-control" name="email" [(ngModel)]="entrance_user.email">
-            </label>
-          </h2>
-
-          <h2 id="gender" class="btn-group">
-            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-              <input type="radio" name="gender" value="male" [(ngModel)]="entrance_user.gender"> &nbsp; <i class="fa fa-male fa-lg"></i> Male &nbsp;
-            </label>
-            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-              <input type="radio" name="gender" value="female" [(ngModel)]="entrance_user.gender"> <i class="fa fa-female fa-lg"></i> Female
-            </label>
-          </h2>
-
-          <h2 *ngIf="entrance_user.fee.enabled" class="btn-group">
-            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-              <input type="radio" name="method" value="cash" [(ngModel)]="entrance_user.fee.method"> &nbsp; <i class="fa fa-money fa-lg"></i> Cash &nbsp;
-            </label>
-            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-              <input type="radio" name="method" value="creditcard" [(ngModel)]="entrance_user.fee.method"> <i class="fa fa-credit-card fa-lg"></i> Creditcard
-            </label>
-          </h2>
-          <br/>
-          <h1 *ngIf="!entrance_user.entered">
-            <i class="fa fa-circle-o" style="color: green;"> Waiting</i>
-          </h1>
-          <h1 *ngIf="entrance_user.entered">
-              <i class="fa fa-minus-circle" style="color: red;"> Done</i>
-              {{entrance_user.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}
-          </h1>
+    <div *ngIf="is_entrance">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{entrance_user.group}}</h3>
         </div>
-        <div class="right col-xs-5 text-center">
-          <img src="./assets/images/user.png" alt="" class="img-circle img-responsive">
-        </div>
-      </div>
-      <div class="col-xs-12 bottom text-center">
-        <div class="col-xs-12 col-sm-6 emphasis">
-        </div>
-        <div class="col-xs-12 col-sm-6 emphasis">
-          <button type="button" class="btn btn-success btn" (click)="onEnter($event)">
-            <i class="fa fa-sign-in"></i> Enter
-          </button>
-          <button type="button" class="btn btn-cancel btn" (click)="onCancel($event)">Cancel</button>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+              <img class="img-thumbnail github-avatar" src="./assets/images/user.png">
+            </div>
+            <div class="col-md-8">
+              <div class="stats">
+                <span class="label label-default"> {{entrance_user.gender}}</span>
+                <span class="label label-primary"> {{entrance_user.fee.method}}</span>
+              </div>
+              <br>
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Name: </strong>{{entrance_user.name}}</li>
+                <li class="list-group-item"><strong>Ticket Type: </strong>{{entrance_user.type}}</li>
+                <li class="list-group-item"><strong>Mobile Number: </strong>{{entrance_user.mobile_number}}</li>
+                <li class="list-group-item"><strong>Email: </strong>{{entrance_user.email}}</li>
+                <li class="list-group-item"><strong>Birthday: </strong>{{entrance_user.birthday}}</li>
+                <li *ngIf="!entrance_user.entered" class="list-group-item">
+                  <i class="glyphicon glyphicon-ok-circle" style="color: green;"> Waiting</i>
+                </li>
+                <li *ngIf="entrance_user.entered" class="list-group-item"><strong>Entered: </strong>
+                    <i class="glyphicon glyphicon-remove-circle" style="color: red;"> Done</i>
+                    {{entrance_user.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}
+                </li>
+              </ul>
+              <button type="button" class="btn btn-success btn" (click)="onEnter($event)">
+                <i class="fa fa-sign-in"></i> Enter
+              </button>
+              <button type="button" class="btn btn-cancel btn" (click)="onCancel($event)">Cancel</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div *ngIf="!is_entrance">
-      <h1><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Waiting a request.</h1>
+      <h1><i class="glyphicon glyphicon-repeat gly-spin"></i> Waiting a request.</h1>
     </div>
   </div>
-  <!-- entrance card end -->
 </div>
 
 <div class="row">
