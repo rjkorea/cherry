@@ -20,6 +20,7 @@ import { SignupComponent } from './signup/signup.component';
 import { NotificationComponent } from './notification/notification.component';
 import { EntranceComponent } from './entrance/entrance.component';
 import { InvitationComponent } from './invitation/invitation.component';
+import { UserComponent } from './user/user.component';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
@@ -43,7 +44,8 @@ import { DataFilterPipe } from './data-filter.pipe';
     NotificationComponent,
     DataFilterPipe,
     EntranceComponent,
-    InvitationComponent
+    InvitationComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,7 @@ import { DataFilterPipe } from './data-filter.pipe';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
       { path: 'invitation', component: InvitationComponent, canActivate: [AuthGuard] },
       { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
       { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
