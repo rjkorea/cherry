@@ -27,7 +27,7 @@ export class AuthService {
                         console.log(this.cookieService.get('csk'));
                         localStorage.setItem('name', response.json().data.name);
                         localStorage.setItem('_id', response.json().data._id);
-                        localStorage.setItem('image', response.json().data.image);
+                        localStorage.setItem('role', response.json().data.role);
 
                         this.isLoggedIn = true;
                       }
@@ -43,7 +43,7 @@ export class AuthService {
     this.cookieService.remove('csk');
     localStorage.removeItem('name');
     localStorage.removeItem('_id');
-    localStorage.removeItem('image');
+    localStorage.removeItem('role');
     this.isLoggedIn = false;
   }
 
@@ -59,6 +59,10 @@ export class AuthService {
                       }
                     })
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  getRole() {
+    return localStorage.getItem('role');
   }
 
 }
