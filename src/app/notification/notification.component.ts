@@ -11,7 +11,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class NotificationComponent implements OnInit {
   admin_name: string;
-  admin_image: string;
   notifications: Array<Object>;
   notification_count: Number;
   notification_unread: Number;
@@ -40,12 +39,11 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit() {
     this.admin_name = localStorage.getItem('name');
-    this.admin_image = localStorage.getItem('image');
     this.loadNotifications();
   }
 
   loadNotifications() {
-    this.notificationService.getNotifications(0, 20, localStorage.getItem('_id'))
+    this.notificationService.getNotifications(0, 20)
       .subscribe(
         response => {
           this.notifications = response['data'];

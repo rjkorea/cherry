@@ -9,7 +9,6 @@ import { NotificationService } from '../notification.service';
 })
 export class HomeComponent implements OnInit {
   admin_name: string;
-  admin_image: string;
   total_users_count: Number;
   total_visitors_count: Number;
   visits_rate: Number;
@@ -68,7 +67,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.admin_name = localStorage.getItem('name');
-    this.admin_image = localStorage.getItem('image');
     this.total_users_count = 0;
     this.total_visitors_count = 0;
     this.visits_rate = 0.0;
@@ -94,7 +92,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadNotifications() {
-    this.notificationService.getNotifications(0, 4, localStorage.getItem('_id'))
+    this.notificationService.getNotifications(0, 4)
       .subscribe(
         response => {
           this.notification_unread = response['unread_count'];

@@ -12,7 +12,6 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class EntranceComponent implements OnInit {
   admin_name: string;
-  admin_image: string;
   is_entrance: boolean;
   entrance_user: Object;
   notification_unread: Number;
@@ -26,7 +25,6 @@ export class EntranceComponent implements OnInit {
 
   ngOnInit() {
     this.admin_name = localStorage.getItem('name');
-    this.admin_image = localStorage.getItem('image');
     this.is_entrance = false;
     this.entrance_user = {
       'group': '',
@@ -65,7 +63,7 @@ export class EntranceComponent implements OnInit {
   }
 
   loadNotifications() {
-    this.notificationService.getNotifications(0, 0, localStorage.getItem('_id'))
+    this.notificationService.getNotifications(0, 0)
       .subscribe(
         response => {
           this.notification_unread = response['unread_count'];

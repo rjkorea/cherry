@@ -18,7 +18,7 @@ export class NotificationService {
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
-  public getNotifications(start:Number, size:Number, _id: string): Observable<{}> {
+  public getNotifications(start: Number, size: Number): Observable<{}> {
     let url = this.notificationsUrl + '?start=' + start + '&size=' + size;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())

@@ -13,7 +13,6 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class InvitationComponent implements OnInit {
   admin_name: string;
-  admin_image: string;
   invitations: Array<Object>;
   invitation_count: Number;
   notifications: Array<Object>;
@@ -64,7 +63,6 @@ export class InvitationComponent implements OnInit {
 
   ngOnInit() {
     this.admin_name = localStorage.getItem('name');
-    this.admin_image = localStorage.getItem('image');
     this.notification_options = {
       timeOut: 3000,
       showProgressBar: true,
@@ -91,7 +89,7 @@ export class InvitationComponent implements OnInit {
   }
 
   loadNotifications() {
-    this.notificationService.getNotifications(0, 4, localStorage.getItem('_id'))
+    this.notificationService.getNotifications(0, 4)
       .subscribe(
         response => {
           this.notifications = response['data'];
