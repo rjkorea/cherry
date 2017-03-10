@@ -1,9 +1,54 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-    <p>user component</p>
+<!-- <div class="row">
+    <div class="col-md-12">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Username" [(ngModel)]="username" name="username" (keyup.enter)="search()">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" (click)="search()">Go!</button>
+            </span>
+        </div>
+        <br>
+    </div>
+</div> -->
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Admins</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngFor="let admin of admins">
+          <div class="row">
+            <div class="col-md-2">
+              <img class="img-thumbnail" src="{{admin.image}}">
+            </div>
+            <div class="col-md-4">
+              <h4>{{admin.name}}</h4>
+              <h5 *ngIf="admin.company"><a href="{{admin.website}}" target="_blank">{{admin.company}}</a></h5>
+              <p>{{admin.email}}</p>
+              <p>{{admin.mobile_number}}</p>
+            </div>
+            <div class="col-md-3">
+              <span *ngIf="admin.enabled" class="label label-success">enabled</span>
+              <span *ngIf="!admin.enabled" class="label label-danger">disabled</span>
+            </div>
+            <div class="col-md-3">
+              <span class="label label-default">{{admin._id}}</span>
+              <span class="label label-primary">{{admin.role}} Role</span>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </div>
+    </div>
+    <nav aria-label="...">
+      <ul class="pager">
+        <li><a href="#">Previous</a></li>
+        <li><a href="#">Next</a></li>
+      </ul>
+    </nav>
   </div>
 </div>
-<br>
 <div class="row">
   <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
     <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>

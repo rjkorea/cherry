@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InvitationService } from '../invitation.service';
-import { NotificationService } from '../notification.service';
-import { WebSocketService } from '../websocket.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
@@ -12,7 +9,39 @@ import { NotificationsService } from 'angular2-notifications';
   providers: [NotificationsService]
 })
 export class UserComponent implements OnInit {
-  constructor() { }
+  private admins: Array<Object>;
+  private notification_options: Object;
 
-  ngOnInit() { }
+  constructor(private userService: UserService,
+              private simpleNotificationsService: NotificationsService) { }
+
+  ngOnInit() {
+    this.loadAdmins();
+    this.notification_options = {
+      timeOut: 3000,
+      showProgressBar: true,
+      pauseOnHover: false,
+      clickToClose: true,
+      maxLength: 128
+    }
+  }
+
+  loadAdmins() {
+    this.userService.getAdmins(0, 10)
+      .subscribe(
+        response => {
+          this.admins = response['data'];
+          console.log(this.admins);
+        },
+        error => {
+          this.simpleNotificationsService.error(
+            'Error',
+            error['message'],
+            this.notification_options
+          );
+          console.log(error);
+        }
+      );
+  }
+
 }

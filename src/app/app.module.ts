@@ -28,6 +28,8 @@ import { DashboardService } from './dashboard.service';
 import { InvitationService } from './invitation.service';
 import { NotificationService } from './notification.service';
 import { WebSocketService } from './websocket.service';
+import { UserService } from './user.service';
+
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { DataFilterPipe } from './data-filter.pipe';
@@ -80,6 +82,7 @@ import { DataFilterPipe } from './data-filter.pipe';
     InvitationService,
     NotificationService,
     WebSocketService,
+    UserService,
     CookieService
   ],
   bootstrap: [AppComponent]
