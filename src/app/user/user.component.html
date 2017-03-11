@@ -43,8 +43,8 @@
     </div>
     <nav aria-label="...">
       <ul class="pager">
-        <li><a href="#">Previous</a></li>
-        <li><a href="#">Next</a></li>
+        <li *ngIf="page!=1"><a [routerLink]="['/user', {page: page-1}]">Previous</a></li>
+        <li><a [routerLink]="['/user', {page: page+1}]">Next</a></li>
       </ul>
     </nav>
   </div>
