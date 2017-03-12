@@ -13,7 +13,7 @@ export class UserComponent implements OnInit {
   private admins: Array<Object>;
   private notification_options: Object;
   private page: any = 1;
-  private size: any = 2;
+  private size: any = 3;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     let params: Params = this.route.snapshot.params;
     if('page' in params) {
-      this.page = parseInt(params['page']);
+      this.page = +params['page'];
     }
     this.loadAdmins(this.page);
     this.notification_options = {
@@ -40,7 +40,6 @@ export class UserComponent implements OnInit {
       .subscribe(
         response => {
           this.admins = response['data'];
-          console.log(this.admins);
         },
         error => {
           this.simpleNotificationsService.error(
@@ -51,6 +50,20 @@ export class UserComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  onPrev() {
+    let page = this.page - 1;
+    this.page = page
+    this.router.navigate(['/user', {page: page}]);
+    this.loadAdmins(page);
+  }
+
+  onNext() {
+    let page = this.page + 1;
+    this.page = page;
+    this.router.navigate(['/user', {page: page}]);
+    this.loadAdmins(page);
   }
 
 }
