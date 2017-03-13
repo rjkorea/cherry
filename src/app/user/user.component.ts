@@ -12,8 +12,10 @@ import { NotificationsService } from 'angular2-notifications';
 export class UserComponent implements OnInit {
   private admins: Array<Object>;
   private notification_options: Object;
+  private query: any = '';
   private page: any = 1;
   private size: any = 3;
+  private count: any = 0;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
@@ -22,10 +24,13 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     let params: Params = this.route.snapshot.params;
+    if('query'in params) {
+      this.query = params['query'];
+    }
     if('page' in params) {
       this.page = +params['page'];
     }
-    this.loadAdmins(this.page);
+    this.loadAdmins(this.query, this.page);
     this.notification_options = {
       timeOut: 3000,
       showProgressBar: true,
@@ -35,10 +40,11 @@ export class UserComponent implements OnInit {
     }
   }
 
-  loadAdmins(page: any) {
-    this.userService.getAdmins((page-1)*this.size, this.size)
+  loadAdmins(query:any, page: any) {
+    this.userService.getAdmins(query, (page-1)*this.size, this.size)
       .subscribe(
         response => {
+          this.count = response['count'];
           this.admins = response['data'];
         },
         error => {
@@ -55,15 +61,20 @@ export class UserComponent implements OnInit {
   onPrev() {
     let page = this.page - 1;
     this.page = page
-    this.router.navigate(['/user', {page: page}]);
-    this.loadAdmins(page);
+    this.router.navigate(['/user', {query: this.query, page: page}]);
+    this.loadAdmins(this.query, page);
   }
 
   onNext() {
     let page = this.page + 1;
     this.page = page;
-    this.router.navigate(['/user', {page: page}]);
-    this.loadAdmins(page);
+    this.router.navigate(['/user', {query: this.query, page: page}]);
+    this.loadAdmins(this.query, page);
+  }
+
+  search() {
+    this.router.navigate(['/user', {query: this.query, page: this.page}]);
+    this.loadAdmins(this.query, 1);
   }
 
 }

@@ -18,8 +18,8 @@ export class UserService {
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
-  public getAdmins(start: Number, size: Number): Observable<{}> {
-    let url = this.adminsUrl + '?start=' + start + '&size=' + size;
+  public getAdmins(query: string, start: Number, size: Number): Observable<{}> {
+    let url = this.adminsUrl + '?q=' + query + '&start=' + start + '&size=' + size;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
