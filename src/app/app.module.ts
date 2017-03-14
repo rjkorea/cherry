@@ -3,6 +3,7 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { AppRoutingModule }     from './app-routing.module';
 
 // 3rd party module
 import { UiSwitchModule } from 'angular2-ui-switch';
@@ -21,6 +22,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { EntranceComponent } from './entrance/entrance.component';
 import { InvitationComponent } from './invitation/invitation.component';
 import { UserComponent } from './user/user.component';
+import { UserDetailComponent } from './user/user-detail.component';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
@@ -47,10 +49,12 @@ import { DataFilterPipe } from './data-filter.pipe';
     DataFilterPipe,
     EntranceComponent,
     InvitationComponent,
-    UserComponent
+    UserComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
@@ -58,18 +62,7 @@ import { DataFilterPipe } from './data-filter.pipe';
     DataTableModule,
     SimpleNotificationsModule,
     MomentModule,
-    ChartModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-      { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
-      { path: 'invitation', component: InvitationComponent, canActivate: [AuthGuard] },
-      { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
-      { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
-      { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent },
-      { path: '**', component: PageNotFoundComponent }
-    ])
+    ChartModule
   ],
   providers: [
     {
