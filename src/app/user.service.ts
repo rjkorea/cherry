@@ -27,7 +27,7 @@ export class UserService {
 
   public readAdmin(_id: string): Observable<{}> {
     let url = this.adminUrl + '/' + _id;
-    return this.http.put(url, JSON.stringify({read: true}), this.options)
+    return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
