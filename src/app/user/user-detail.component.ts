@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
 import { UserService } from '../user.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
@@ -14,11 +13,9 @@ export class UserDetailComponent implements OnInit {
   admin: any;
   notification_options: Object;
 
-  constructor(private userService: UserService,
-              private route: ActivatedRoute,
-              private simpleNotificationsService: NotificationsService,
-              private fb: FormBuilder) {
-  }
+  constructor(private route: ActivatedRoute,
+              private userService: UserService,
+              private simpleNotificationsService: NotificationsService) { }
 
   ngOnInit() {
     let params: Params = this.route.snapshot.params;
