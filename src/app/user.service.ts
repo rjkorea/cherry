@@ -18,16 +18,23 @@ export class UserService {
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
-  public getAdmins(query: string, start: Number, size: Number): Observable<{}> {
+  public getAdminList(query: string, start: Number, size: Number): Observable<{}> {
     let url = this.adminsUrl + '?q=' + query + '&start=' + start + '&size=' + size;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public readAdmin(_id: string): Observable<{}> {
+  public getAdmin(_id: string): Observable<{}> {
     let url = this.adminUrl + '/' + _id;
     return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public updateAdmin(id: string, data: any): Observable<{}> {
+    let url = this.adminUrl + '/' + id;
+    return this.http.put(url, JSON.stringify(data), this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }

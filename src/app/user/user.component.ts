@@ -41,7 +41,7 @@ export class UserComponent implements OnInit {
   }
 
   loadAdmins(query:any, page: any) {
-    this.userService.getAdmins(query, (page-1)*this.size, this.size)
+    this.userService.getAdminList(query, (page-1)*this.size, this.size)
       .subscribe(
         response => {
           this.count = response['count'];
