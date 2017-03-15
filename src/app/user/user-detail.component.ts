@@ -80,6 +80,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   onCancel() {
+    this.loadAdmin(this.admin._id);
     this.edit_mode = false;
   }
 
