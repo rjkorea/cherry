@@ -11,7 +11,9 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class UserDetailComponent implements OnInit {
   admin: any;
+  admin_form: any;
   notification_options: Object;
+  edit_mode: boolean;
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
@@ -19,8 +21,6 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
     let params: Params = this.route.snapshot.params;
-    console.log(params);
-
     this.notification_options = {
       timeOut: 3000,
       showProgressBar: true,
@@ -29,14 +29,14 @@ export class UserDetailComponent implements OnInit {
       maxLength: 128
     }
     this.loadAdmin(params['id']);
+    this.edit_mode = false;
   }
 
   loadAdmin(id: string) {
-    this.userService.readAdmin(id)
+    this.userService.getAdmin(id)
       .subscribe(
         response => {
           this.admin = response['data'];
-          console.log(this.admin);
         },
         error => {
           this.simpleNotificationsService.error(
@@ -47,6 +47,39 @@ export class UserDetailComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  onEdit() {
+    this.edit_mode = true;
+  }
+
+  onSave() {
+    this.admin_form = {
+      name: this.admin.name,
+      email: this.admin.email,
+      mobile_number: this.admin.mobile_number,
+      company: this.admin.company,
+      website: this.admin.website
+    }
+    this.userService.updateAdmin(this.admin._id, this.admin_form)
+      .subscribe(
+        response => {
+          this.loadAdmin(this.admin._id);
+          this.edit_mode = false;
+        },
+        error => {
+          this.simpleNotificationsService.error(
+            'Error',
+            error['message'],
+            this.notification_options
+          );
+          console.log(error);
+        }
+      );
+  }
+
+  onCancel() {
+    this.edit_mode = false;
   }
 
 }
