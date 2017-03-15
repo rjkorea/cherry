@@ -59,7 +59,8 @@ export class UserDetailComponent implements OnInit {
       email: this.admin.email,
       mobile_number: this.admin.mobile_number,
       company: this.admin.company,
-      website: this.admin.website
+      website: this.admin.website,
+      enabled: this.admin.enabled
     }
     this.userService.updateAdmin(this.admin._id, this.admin_form)
       .subscribe(
