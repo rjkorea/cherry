@@ -24,13 +24,13 @@ import { InvitationComponent } from './invitation/invitation.component';
 import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user/user-detail.component';
 
-import { AuthGuard } from './auth.guard';
-import { AuthService } from './auth.service';
-import { DashboardService } from './dashboard.service';
-import { InvitationService } from './invitation.service';
-import { NotificationService } from './notification.service';
-import { WebSocketService } from './websocket.service';
-import { UserService } from './user.service';
+import { AuthGuard } from './services/auth.guard';
+import { AuthService } from './services/auth.service';
+import { DashboardService } from './services/dashboard.service';
+import { InvitationService } from './services/invitation.service';
+import { NotificationService } from './services/notification.service';
+import { WebSocketService } from './services/websocket.service';
+import { UserService } from './services/user.service';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 

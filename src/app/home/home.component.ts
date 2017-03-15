@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardService } from '../dashboard.service';
-import { NotificationService } from '../notification.service';
+import { DashboardService } from '../services/dashboard.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-home',
