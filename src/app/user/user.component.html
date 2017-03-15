@@ -26,7 +26,7 @@
               <div class="col-md-4">
                 <h4><a [routerLink]="['/user', admin._id]">{{admin.name}}</a></h4>
                 <h5 *ngIf="admin.company">
-                  <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> <a href="{{admin.website}}" target="_blank">{{admin.company}}</a>
+                  <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> {{admin.company}}
                 </h5>
                 <p>
                   <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{admin.email}}
