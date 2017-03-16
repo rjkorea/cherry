@@ -34,7 +34,7 @@ import { UserService } from './services/user.service';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
-import { DataFilterPipe } from './data-filter.pipe';
+import { DataFilterPipe } from './pipes/data-filter.pipe';
 
 @NgModule({
   declarations: [
