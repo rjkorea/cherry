@@ -15,7 +15,6 @@ import { ChartModule } from 'angular2-chartjs';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -42,7 +41,6 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    HomeComponent,
     DashboardComponent,
     NotificationComponent,
     PageNotFoundComponent,
