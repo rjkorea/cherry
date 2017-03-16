@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <h3>The Final COUNTDOWN 2017 <small>by VU Ent.</small></h3>
+  </div>
+</div>
+
+<div *ngIf="is_mobile">
+  <div class="row">
+    <div class="col-md-4 col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">방문율</h3>
+        </div>
+        <div class="panel-body">
+          <h1>65.6 <small>%</small></h1>
+          <span class="label label-default">565명 초대권 대상자</span>
+          <span class="label label-primary">365명 방문객</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">평균연령</h3>
+        </div>
+        <div class="panel-body">
+          <h1>27 <small>세</small></h1>
+          <span class="label label-warning">26세 여자</span>
+          <span class="label label-info">29세 남자</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">초대권 매출</h3>
+        </div>
+        <div class="panel-body">
+          <h1>2,690,000 <small>원</small></h1>
+          <span class="label label-success">1,730,000원 현금</span>
+          <span class="label label-danger">960,000원 신용카드</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">성별</h3>
+        </div>
+        <div class="panel-body">
+          <chart [type]="type" [data]="data" [options]="options"></chart>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">연령대</h3>
+        </div>
+        <div class="panel-body">
+          <chart [type]="type2" [data]="data2" [options]="options2"></chart>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">입장그룹 Top 5</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item"><span class="badge">162</span>일반게스트</li>
+            <li class="list-group-item"><span class="badge">44</span>RJ Ent. 일반게스트</li>
+            <li class="list-group-item"><span class="badge">32</span>프로모션 파워블로거</li>
+            <li class="list-group-item"><span class="badge">19</span>MC프라임 게스트</li>
+            <li class="list-group-item"><span class="badge">19</span>티몬 일반게스트</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!is_mobile">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <div class="embed-responsive embed-responsive-4by3">
+        <iframe class="embed-responsive-item" src="http://localhost:5601/app/kibana#/dashboard/The-Final-Coutdown-2017?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3A'2016-12-30T03%3A00%3A00.000Z'%2Cmode%3Aabsolute%2Cto%3A'2016-12-31T18%3A00%3A00.000Z'))"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <p class="text-right">
+      <button *ngIf="!is_mobile" type="button" class="btn btn-default" (click)=toggleMobile()>Mobile</button>
+      <button *ngIf="is_mobile" type="button" class="btn btn-default" (click)=toggleMobile()>PC</button>
+       TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a>
+    </p>
+  </div>
+</div>
