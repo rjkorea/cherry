@@ -14,15 +14,15 @@ import { ChartModule } from 'angular2-chartjs';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
-import { SignupComponent } from './signup/signup.component';
-import { NotificationComponent } from './notification/notification.component';
-import { EntranceComponent } from './entrance/entrance.component';
-import { InvitationComponent } from './invitation/invitation.component';
-import { UserComponent } from './user/user.component';
-import { UserDetailComponent } from './user/user-detail.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { EntranceComponent } from './components/entrance/entrance.component';
+import { InvitationComponent } from './components/invitation/invitation.component';
+import { UserComponent } from './components/user/user.component';
+import { UserDetailComponent } from './components/user/user-detail.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';

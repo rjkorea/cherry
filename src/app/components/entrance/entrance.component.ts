@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InvitationService } from '../services/invitation.service';
-import { NotificationService } from '../services/notification.service';
-import { WebSocketService } from '../services/websocket.service';
+import { InvitationService } from '../../services/invitation.service';
+import { NotificationService } from '../../services/notification.service';
+import { WebSocketService } from '../../services/websocket.service';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({

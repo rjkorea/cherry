@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css'],
   providers: [NotificationsService]
 })
-export class LoginComponent implements OnInit {
+export class SignupComponent implements OnInit {
   model: any = {};
   notification_options: Object;
 
@@ -26,16 +26,17 @@ export class LoginComponent implements OnInit {
       clickToClose: true,
       maxLength: 128
     }
-    console.log('init login component');
+    console.log('init signup component');
     this.authService.logout();
   }
 
-  login() {
-    console.log('clicked login');
-    this.authService.login(this.model.email, this.model.password)
+  signup() {
+    console.log('clicked signup');
+    this.authService.signup(this.model.name, this.model.email, this.model.password,
+                            this.model.password2, this.model.mobile_number)
       .subscribe(
         response => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/login']);
         },
         error => {
           this.simpleNotificationsService.error(
