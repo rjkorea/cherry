@@ -1,31 +1,31 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle collapsed" (click)="toggleState()" data-toggle="collapse" data-target="#navbar">
-    <span class="sr-only">Toggle navigation</span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" routerLink="/home">
-      <img class="brand-logo" alt="Brand" src="../../../assets/images/logo.png">
-    </a>
-  </div>
-  <div id="navbar" class="collapse navbar-collapse" [ngClass]="{'in': isIn}">
-    <ul class="nav navbar-nav navbar-left">
-      <li *ngIf="authService.loggedIn()"><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">Home</a></li>
-      <li *ngIf="authService.loggedIn() && authService.getRole() == 'super'"><a routerLink="/user" routerLinkActive="active" data-toggle="collapse">User</a></li>
-      <li *ngIf="authService.loggedIn()"><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
-      <li *ngIf="authService.loggedIn()"><a routerLink="/invitation" routerLinkActive="active" data-toggle="collapse">Invitation</a></li>
-      <li *ngIf="authService.loggedIn()"><a routerLink="/notification" routerLinkActive="active" data-toggle="collapse">Notification</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="!authService.loggedIn()"><a routerLink="/login" routerLinkActive="active" data-toggle="collapse">Login</a></li>
-      <li *ngIf="!authService.loggedIn()"><a routerLink="/signup" routerLinkActive="active" data-toggle="collapse">Signup</a></li>
-      <li *ngIf="authService.loggedIn()"><p class="navbar-text">Signed in as {{getUserName()}} ({{authService.getRole()}})</p></li>
-      <li *ngIf="authService.loggedIn()"><a routerLink="/login" (click)="authService.logout()" href="#">Logout</a></li>
-    </ul>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" (click)="toggleState()" data-toggle="collapse" data-target="#navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/home">
+        <img class="brand-logo" alt="Brand" src="../../../assets/images/logo.png">
+      </a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse" [ngClass]="{'in': isIn}">
+      <ul class="nav navbar-nav navbar-left">
+        <li *ngIf="authService.loggedIn()"><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">Home</a></li>
+        <li *ngIf="authService.loggedIn() && authService.getRole() == 'super'"><a routerLink="/user" routerLinkActive="active" data-toggle="collapse">User</a></li>
+        <li *ngIf="authService.loggedIn()"><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
+        <li *ngIf="authService.loggedIn()"><a routerLink="/invitation" routerLinkActive="active" data-toggle="collapse">Invitation</a></li>
+        <li *ngIf="authService.loggedIn()"><a routerLink="/notification" routerLinkActive="active" data-toggle="collapse">Notification</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!authService.loggedIn()"><a routerLink="/login" routerLinkActive="active" data-toggle="collapse">Login</a></li>
+        <li *ngIf="!authService.loggedIn()"><a routerLink="/signup" routerLinkActive="active" data-toggle="collapse">Signup</a></li>
+        <li *ngIf="authService.loggedIn()"><p class="navbar-text">Signed in as {{getUserName()}} ({{authService.getRole()}})</p></li>
+        <li *ngIf="authService.loggedIn()"><a routerLink="/login" (click)="authService.logout()" href="#">Logout</a></li>
+      </ul>
 
-  </div><!--/.nav-collapse -->
+    </div><!--/.nav-collapse -->
   </div>
 </nav>
