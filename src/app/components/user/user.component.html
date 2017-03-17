@@ -21,7 +21,8 @@
           <div *ngFor="let admin of admins">
             <div class="row">
               <div class="col-md-2">
-                <img class="img-thumbnail" src="{{admin.image}}">
+                <img *ngIf="!admin.image" class="img-thumbnail" src="assets/images/user.png">
+                <img *ngIf="admin.image" class="img-thumbnail" src="{{admin.image}}">
               </div>
               <div class="col-md-4">
                 <h4><a [routerLink]="['/user', admin._id]">{{admin.name}}</a></h4>
