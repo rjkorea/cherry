@@ -1,0 +1,77 @@
+<div *ngIf="admin">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{admin.name}}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-2">
+          <img *ngIf="!admin.image" class="img-thumbnail" src="assets/images/user.png">
+          <img *ngIf="admin.image" class="img-thumbnail" src="{{admin.image}}">
+        </div>
+        <div class="col-md-8">
+          <br />
+          <div class="stats">
+            <span *ngIf="admin.enabled" class="label label-success">enabled</span>
+            <span *ngIf="!admin.enabled" class="label label-danger">disabled</span>
+            <span class="label label-primary">{{admin.role}}</span>
+          </div>
+          <br>
+          <ul *ngIf="!edit_mode" class="list-group">
+            <li class="list-group-item"><strong>ID: </strong>{{admin._id}}</li>
+            <li class="list-group-item"><strong>Username: </strong>{{admin.name}}</li>
+            <li class="list-group-item"><strong>Email: </strong>{{admin.email}}</li>
+            <li class="list-group-item"><strong>Mobile Number: </strong>{{admin.mobile_number}}</li>
+            <li class="list-group-item"><strong>Company: </strong>{{admin.company}}</li>
+            <li class="list-group-item"><strong>Website: </strong><a href="http://{{admin.website}}" blank="_target">http://{{admin.website}}</a></li>
+            <li class="list-group-item"><strong>Updated at: </strong>{{admin.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>Member Since: </strong>{{admin.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+          </ul>
+          <div *ngIf="edit_mode" class="edit">
+            <div class="input-group">
+              <ui-switch size="small" class="form-control" [(ngModel)]="admin.enabled"></ui-switch>
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon">Username</span>
+              <input type="text" class="form-control" [(ngModel)]="admin.name" name="name">
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon">Email</span>
+              <input type="text" class="form-control" [(ngModel)]="admin.email" name="email">
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon">Mobile Number</span>
+              <input type="tel" class="form-control" [(ngModel)]="admin.mobile_number" name="mobile_number">
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon">Company</span>
+              <input type="text" class="form-control" [(ngModel)]="admin.company" name="company">
+            </div>
+            <br>
+            <label for="basic-url">Website</label>
+            <div class="input-group">
+              <span class="input-group-addon">http://</span>
+              <input type="text" class="form-control" id="basic-url" [(ngModel)]="admin.website" name="website">
+            </div>
+            <br>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="onEdit()">Edit</button>
+          <button *ngIf="edit_mode" type="button" class="btn btn-default" (click)="onSave()">Save</button>
+          <a *ngIf="edit_mode" (click)="onCancel()">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+    </div>
+  </div>
+</div>
+<simple-notifications></simple-notifications>

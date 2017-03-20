@@ -23,6 +23,8 @@ import { EntranceComponent } from './components/entrance/entrance.component';
 import { InvitationComponent } from './components/invitation/invitation.component';
 import { UserComponent } from './components/user/user.component';
 import { UserDetailComponent } from './components/user/user-detail.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminDetailComponent } from './components/admin/admin-detail.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -30,6 +32,7 @@ import { DashboardService } from './services/dashboard.service';
 import { InvitationService } from './services/invitation.service';
 import { NotificationService } from './services/notification.service';
 import { WebSocketService } from './services/websocket.service';
+import { AdminService } from './services/admin.service';
 import { UserService } from './services/user.service';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
@@ -50,7 +53,9 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     EntranceComponent,
     InvitationComponent,
     UserComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    AdminComponent,
+    AdminDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +80,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     InvitationService,
     NotificationService,
     WebSocketService,
+    AdminService,
     UserService,
     CookieService
   ],

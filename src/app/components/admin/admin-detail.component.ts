@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
-import { UserService } from '../../services/user.service';
+import { AdminService } from '../../services/admin.service';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
-  selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.css'],
+  selector: 'app-admin-detail',
+  templateUrl: './admin-detail.component.html',
+  styleUrls: ['./admin-detail.component.css'],
   providers: [NotificationsService]
 })
-export class UserDetailComponent implements OnInit {
-  user: any;
-  user_form: any;
+export class AdminDetailComponent implements OnInit {
+  admin: any;
+  admin_form: any;
   notification_options: Object;
   edit_mode: boolean;
 
   constructor(private route: ActivatedRoute,
-              private userService: UserService,
+              private adminService: AdminService,
               private simpleNotificationsService: NotificationsService) { }
 
   ngOnInit() {
@@ -28,15 +28,15 @@ export class UserDetailComponent implements OnInit {
       clickToClose: true,
       maxLength: 128
     }
-    this.loadUser(params['id']);
+    this.loadAdmin(params['id']);
     this.edit_mode = false;
   }
 
-  loadUser(id: string) {
-    this.userService.getUser(id)
+  loadAdmin(id: string) {
+    this.adminService.getAdmin(id)
       .subscribe(
         response => {
-          this.user = response['data'];
+          this.admin = response['data'];
         },
         error => {
           this.simpleNotificationsService.error(
@@ -54,18 +54,18 @@ export class UserDetailComponent implements OnInit {
   }
 
   onSave() {
-    this.user_form = {
-      name: this.user.name,
-      email: this.user.email,
-      mobile_number: this.user.mobile_number,
-      birthday: this.user.birthday,
-      gender: this.user.gender,
-      enabled: this.user.enabled
+    this.admin_form = {
+      name: this.admin.name,
+      email: this.admin.email,
+      mobile_number: this.admin.mobile_number,
+      company: this.admin.company,
+      website: this.admin.website,
+      enabled: this.admin.enabled
     }
-    this.userService.updateUser(this.user._id, this.user_form)
+    this.adminService.updateAdmin(this.admin._id, this.admin_form)
       .subscribe(
         response => {
-          this.loadUser(this.user._id);
+          this.loadAdmin(this.admin._id);
           this.edit_mode = false;
         },
         error => {
@@ -80,7 +80,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   onCancel() {
-    this.loadUser(this.user._id);
+    this.loadAdmin(this.admin._id);
     this.edit_mode = false;
   }
 

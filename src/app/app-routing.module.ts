@@ -11,6 +11,8 @@ import { EntranceComponent } from './components/entrance/entrance.component';
 import { InvitationComponent } from './components/invitation/invitation.component';
 import { UserComponent } from './components/user/user.component';
 import { UserDetailComponent } from './components/user/user-detail.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminDetailComponent } from './components/admin/admin-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthGuard] },
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   { path: 'user/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+  { path: 'admin/:id', component: AdminDetailComponent, canActivate: [AuthGuard] },
   { path: 'invitation', component: InvitationComponent, canActivate: [AuthGuard] },
   { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
   { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },

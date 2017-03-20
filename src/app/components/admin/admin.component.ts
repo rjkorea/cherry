@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
-import { UserService } from '../../services/user.service';
+import { AdminService } from '../../services/admin.service';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css'],
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css'],
   providers: [NotificationsService]
 })
-export class UserComponent implements OnInit {
-  private users: Array<Object>;
+export class AdminComponent implements OnInit {
+  private admins: Array<Object>;
   private notification_options: Object;
   private query: any = '';
   private page: any = 1;
   private size: any = 3;
   private count: any = 0;
 
-  constructor(private userService: UserService,
+  constructor(private adminService: AdminService,
               private route: ActivatedRoute,
               private router: Router,
               private simpleNotificationsService: NotificationsService) { }
@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
     if('page' in params) {
       this.page = +params['page'];
     }
-    this.loadUsers(this.query, this.page);
+    this.loadAdmins(this.query, this.page);
     this.notification_options = {
       timeOut: 3000,
       showProgressBar: true,
@@ -40,12 +40,12 @@ export class UserComponent implements OnInit {
     }
   }
 
-  loadUsers(query:any, page: any) {
-    this.userService.getUserList(query, (page-1)*this.size, this.size)
+  loadAdmins(query:any, page: any) {
+    this.adminService.getAdminList(query, (page-1)*this.size, this.size)
       .subscribe(
         response => {
           this.count = response['count'];
-          this.users = response['data'];
+          this.admins = response['data'];
         },
         error => {
           this.simpleNotificationsService.error(
@@ -61,20 +61,20 @@ export class UserComponent implements OnInit {
   onPrev() {
     let page = this.page - 1;
     this.page = page
-    this.router.navigate(['/user', {query: this.query, page: page}]);
-    this.loadUsers(this.query, page);
+    this.router.navigate(['/admin', {query: this.query, page: page}]);
+    this.loadAdmins(this.query, page);
   }
 
   onNext() {
     let page = this.page + 1;
     this.page = page;
-    this.router.navigate(['/user', {query: this.query, page: page}]);
-    this.loadUsers(this.query, page);
+    this.router.navigate(['/admin', {query: this.query, page: page}]);
+    this.loadAdmins(this.query, page);
   }
 
   search() {
-    this.router.navigate(['/user', {query: this.query, page: this.page}]);
-    this.loadUsers(this.query, 1);
+    this.router.navigate(['/admin', {query: this.query, page: this.page}]);
+    this.loadAdmins(this.query, 1);
   }
 
 }
