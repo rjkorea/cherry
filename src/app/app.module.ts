@@ -34,6 +34,7 @@ import { NotificationService } from './services/notification.service';
 import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
 import { UserService } from './services/user.service';
+import { ContentService } from './services/content.service';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
@@ -82,6 +83,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     WebSocketService,
     AdminService,
     UserService,
+    ContentService,
     CookieService
   ],
   bootstrap: [AppComponent]
