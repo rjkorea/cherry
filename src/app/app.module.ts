@@ -25,6 +25,8 @@ import { UserComponent } from './components/user/user.component';
 import { UserDetailComponent } from './components/user/user-detail.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDetailComponent } from './components/admin/admin-detail.component';
+import { ContentComponent } from './components/content/content.component';
+import { ContentDetailComponent } from './components/content/content-detail.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -56,7 +58,9 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     UserComponent,
     UserDetailComponent,
     AdminComponent,
-    AdminDetailComponent
+    AdminDetailComponent,
+    ContentComponent,
+    ContentDetailComponent
   ],
   imports: [
     BrowserModule,

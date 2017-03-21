@@ -13,6 +13,8 @@ import { UserComponent } from './components/user/user.component';
 import { UserDetailComponent } from './components/user/user-detail.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDetailComponent } from './components/admin/admin-detail.component';
+import { ContentComponent } from './components/content/content.component';
+import { ContentDetailComponent } from './components/content/content-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthGuard] },
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'user/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'admin/:id', component: AdminDetailComponent, canActivate: [AuthGuard] },
+  { path: 'content', component: ContentComponent, canActivate: [AuthGuard] },
+  { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
   { path: 'invitation', component: InvitationComponent, canActivate: [AuthGuard] },
   { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
   { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
