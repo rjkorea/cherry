@@ -56,7 +56,9 @@ export class ContentDetailComponent implements OnInit {
   onSave() {
     this.content_form = {
       name: this.content.name,
-      desc: this.content.desc
+      desc: this.content.desc,
+      place: this.content.place,
+      enabled: this.content.enabled
     }
     this.contentService.updateContent(this.content._id, this.content_form)
       .subscribe(

@@ -3,7 +3,7 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule }     from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 // 3rd party module
 import { UiSwitchModule } from 'angular2-ui-switch';
@@ -11,6 +11,7 @@ import { DataTableModule } from 'angular2-datatable';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
+import { RlTagInputModule} from 'angular2-tag-input';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -72,7 +73,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     DataTableModule,
     SimpleNotificationsModule,
     MomentModule,
-    ChartModule
+    ChartModule,
+    RlTagInputModule
   ],
   providers: [
     {

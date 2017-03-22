@@ -12,6 +12,10 @@
     "build-electron": "ng build && cp src/electron/* dist/",
     "electron": "npm run build-electron && electron dist/"
   },
+  "author": {
+    "name": "Kevin Cho",
+    "email": "kevin.cho@rjkorea.com"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~2.1.0",
@@ -31,7 +35,8 @@
     "angular2-notifications": "~0.4.47",
     "angular2-moment": "~1.0.0",
     "angular2-chartjs": "~0.1.6",
-    "angular2-cookie": "~1.2.6"
+    "angular2-cookie": "~1.2.6",
+    "angular2-tag-input": "~1.2.3"
   },
   "devDependencies": {
     "@types/jasmine": "^2.2.30",
