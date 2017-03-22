@@ -28,6 +28,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminDetailComponent } from './components/admin/admin-detail.component';
 import { ContentComponent } from './components/content/content.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
+import { ContentNewComponent } from './components/content/content-new.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -61,7 +62,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     AdminComponent,
     AdminDetailComponent,
     ContentComponent,
-    ContentDetailComponent
+    ContentDetailComponent,
+    ContentNewComponent
   ],
   imports: [
     BrowserModule,

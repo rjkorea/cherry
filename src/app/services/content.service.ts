@@ -18,6 +18,12 @@ export class ContentService {
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
+  public addContent(data: any): Observable<{}> {
+    return this.http.post(this.contentUrl, JSON.stringify(data), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
   public getContentList(query: string, start: Number, size: Number): Observable<{}> {
     let url = this.contentsUrl + '?q=' + query + '&start=' + start + '&size=' + size;
     return this.http.get(url, this.options)

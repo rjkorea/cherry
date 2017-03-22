@@ -15,6 +15,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminDetailComponent } from './components/admin/admin-detail.component';
 import { ContentComponent } from './components/content/content.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
+import { ContentNewComponent } from './components/content/content-new.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthGuard] },
@@ -24,8 +25,28 @@ const routes: Routes = [
   { path: 'user/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'admin/:id', component: AdminDetailComponent, canActivate: [AuthGuard] },
+
+  // TODO: fix children routing
+  // {
+  //   path: 'content',
+  //   component: ContentComponent,
+  //   children: [
+  //     {
+  //       path: ':id',
+  //       component: ContentDetailComponent
+  //     },
+  //     {
+  //       path: 'new',
+  //       component: ContentNewComponent
+  //     }
+  //   ],
+  //   canActivate: [AuthGuard]
+  // },
+
   { path: 'content', component: ContentComponent, canActivate: [AuthGuard] },
   { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
+  { path: 'contentnew', component: ContentNewComponent, canActivate: [AuthGuard] },
+
   { path: 'invitation', component: InvitationComponent, canActivate: [AuthGuard] },
   { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
   { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
