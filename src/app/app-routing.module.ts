@@ -14,6 +14,7 @@ import { UserDetailComponent } from './components/user/user-detail.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDetailComponent } from './components/admin/admin-detail.component';
 import { ContentComponent } from './components/content/content.component';
+import { ContentListComponent } from './components/content/content-list.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
 import { ContentNewComponent } from './components/content/content-new.component';
 
@@ -30,22 +31,23 @@ const routes: Routes = [
   // {
   //   path: 'content',
   //   component: ContentComponent,
+  //   canActivate: [AuthGuard],
   //   children: [
   //     {
-  //       path: ':id',
-  //       component: ContentDetailComponent
-  //     },
-  //     {
-  //       path: 'new',
-  //       component: ContentNewComponent
+  //       path: '',
+  //       children: [
+  //         { path: '', component: ContentListComponent },
+  //         { path: ':id', component: ContentDetailComponent },
+  //         { path: 'new', component: ContentNewComponent }
+  //       ]
   //     }
   //   ],
-  //   canActivate: [AuthGuard]
+  //
   // },
 
-  { path: 'content', component: ContentComponent, canActivate: [AuthGuard] },
+  { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
   { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
-  { path: 'contentnew', component: ContentNewComponent, canActivate: [AuthGuard] },
+  { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
 
   { path: 'invitation', component: InvitationComponent, canActivate: [AuthGuard] },
   { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
