@@ -11,7 +11,6 @@ import { DataTableModule } from 'angular2-datatable';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
-import { RlTagInputModule} from 'angular2-tag-input';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -30,6 +29,9 @@ import { ContentComponent } from './components/content/content.component';
 import { ContentListComponent } from './components/content/content-list.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
 import { ContentNewComponent } from './components/content/content-new.component';
+import { TicketTypeListComponent } from './components/ticket/type-list.component';
+import { TicketTypeDetailComponent } from './components/ticket/type-detail.component';
+import { TicketTypeNewComponent } from './components/ticket/type-new.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -40,7 +42,7 @@ import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
 import { UserService } from './services/user.service';
 import { ContentService } from './services/content.service';
-
+import { TicketService } from './services/ticket.service';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
@@ -65,7 +67,10 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     ContentComponent,
     ContentListComponent,
     ContentDetailComponent,
-    ContentNewComponent
+    ContentNewComponent,
+    TicketTypeListComponent,
+    TicketTypeDetailComponent,
+    TicketTypeNewComponent
   ],
   imports: [
     BrowserModule,
@@ -77,8 +82,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     DataTableModule,
     SimpleNotificationsModule,
     MomentModule,
-    ChartModule,
-    RlTagInputModule
+    ChartModule
   ],
   providers: [
     {
@@ -94,6 +98,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     AdminService,
     UserService,
     ContentService,
+    TicketService,
     CookieService
   ],
   bootstrap: [AppComponent]

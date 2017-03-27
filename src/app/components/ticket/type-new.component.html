@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">New Type</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="input-group">
+          <label for="name">Name (required)</label>
+          <input type="text" class="form-control" cols="30" [(ngModel)]="type.name" name="name">
+        </div>
+        <br>
+        <div class="input-group">
+          <label>Description (required)</label>
+          <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="type.desc" name="desc"></textarea>
+        </div>
+        <br>
+        <div class="input-group">
+          <label for="place">Price (required)</label>
+          <input type="tel" class="form-control" cols="30" [(ngModel)]="type.price" name="price">
+        </div>
+        <br>
+        <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">Sumit new type</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+  </div>
+</div>
+<simple-notifications></simple-notifications>

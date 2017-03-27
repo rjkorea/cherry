@@ -17,6 +17,9 @@ import { ContentComponent } from './components/content/content.component';
 import { ContentListComponent } from './components/content/content-list.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
 import { ContentNewComponent } from './components/content/content-new.component';
+import { TicketTypeListComponent } from './components/ticket/type-list.component';
+import { TicketTypeDetailComponent } from './components/ticket/type-detail.component';
+import { TicketTypeNewComponent } from './components/ticket/type-new.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthGuard] },
@@ -48,6 +51,10 @@ const routes: Routes = [
   { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
   { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
   { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
+
+  { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
+  { path: 'ticket/type/:id', component: TicketTypeDetailComponent, canActivate: [AuthGuard] },
+  { path: 'ticket/types/new', component: TicketTypeNewComponent, canActivate: [AuthGuard] },
 
   { path: 'invitation', component: InvitationComponent, canActivate: [AuthGuard] },
   { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
