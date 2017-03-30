@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
 // 3rd party module
-// import { UiSwitchModule } from 'angular2-ui-switch';
-// import { DataTableModule } from 'angular2-datatable';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
@@ -20,7 +18,6 @@ import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.co
 import { SignupComponent } from './components/signup/signup.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { EntranceComponent } from './components/entrance/entrance.component';
-import { InvitationComponent } from './components/invitation/invitation.component';
 import { UserComponent } from './components/user/user.component';
 import { UserDetailComponent } from './components/user/user-detail.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -59,7 +56,6 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     NotificationComponent,
     DataFilterPipe,
     EntranceComponent,
-    InvitationComponent,
     UserComponent,
     UserDetailComponent,
     AdminComponent,
@@ -78,8 +74,6 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    // UiSwitchModule,
-    // DataTableModule,
     SimpleNotificationsModule,
     MomentModule,
     ChartModule

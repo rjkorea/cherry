@@ -6,8 +6,9 @@
 export const environment = {
   production: false,
   api: {
+    host: "172.30.1.20",
     // host: "192.168.35.150",
-    host: "localhost",
+    // host: "localhost",
     port: 5100
   }
 };
