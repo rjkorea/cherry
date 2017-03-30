@@ -6,8 +6,8 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
 // 3rd party module
-import { UiSwitchModule } from 'angular2-ui-switch';
-import { DataTableModule } from 'angular2-datatable';
+// import { UiSwitchModule } from 'angular2-ui-switch';
+// import { DataTableModule } from 'angular2-datatable';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
@@ -78,8 +78,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    UiSwitchModule,
-    DataTableModule,
+    // UiSwitchModule,
+    // DataTableModule,
     SimpleNotificationsModule,
     MomentModule,
     ChartModule

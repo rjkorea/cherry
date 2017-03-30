@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class NgcliPage {
+export class CherryPage {
   navigateTo() {
     return browser.get('/');
   }

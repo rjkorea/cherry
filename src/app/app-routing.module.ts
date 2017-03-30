@@ -30,27 +30,13 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'admin/:id', component: AdminDetailComponent, canActivate: [AuthGuard] },
 
-  // TODO: fix children routing
-  // {
-  //   path: 'content',
-  //   component: ContentComponent,
-  //   canActivate: [AuthGuard],
-  //   children: [
-  //     {
-  //       path: '',
-  //       children: [
-  //         { path: '', component: ContentListComponent },
-  //         { path: ':id', component: ContentDetailComponent },
-  //         { path: 'new', component: ContentNewComponent }
-  //       ]
-  //     }
-  //   ],
-  //
-  // },
+  // { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
+  // { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
+  // { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
 
-  { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
-  { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
-  { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
+  { path: 'content', component: ContentListComponent },
+  { path: 'content/:id', component: ContentDetailComponent },
+  { path: 'contents/new', component: ContentNewComponent },
 
   { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/type/:id', component: TicketTypeDetailComponent, canActivate: [AuthGuard] },
