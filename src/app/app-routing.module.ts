@@ -24,19 +24,18 @@ import { TicketTypeNewComponent } from './components/ticket/type-new.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
+
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   { path: 'user/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
+
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'admin/:id', component: AdminDetailComponent, canActivate: [AuthGuard] },
 
-  // { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
-  // { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
-  // { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
-
-  { path: 'content', component: ContentListComponent },
-  { path: 'content/:id', component: ContentDetailComponent },
-  { path: 'contents/new', component: ContentNewComponent },
+  { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
+  { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
+  { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
 
   { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/type/:id', component: TicketTypeDetailComponent, canActivate: [AuthGuard] },
