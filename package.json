@@ -32,7 +32,9 @@
     "angular2-notifications": "~0.4.47",
     "angular2-moment": "~1.0.0",
     "angular2-chartjs": "~0.1.6",
-    "angular2-cookie": "~1.2.6"
+    "angular2-cookie": "~1.2.6",
+    "ng2-select": "~1.2.0",
+    "ng2-bootstrap": "~1.6.0"
   },
   "devDependencies": {
     "@angular/cli": "^1.0.0",
