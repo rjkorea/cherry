@@ -33,8 +33,8 @@
     "angular2-moment": "~1.0.0",
     "angular2-chartjs": "~0.1.6",
     "angular2-cookie": "~1.2.6",
+    "ng2-ui-switch": "~1.0.2",
     "ng2-select": "~1.2.0",
-    "ng2-switch": "~2.1.0",
     "ng2-bootstrap": "~1.6.0"
   },
   "devDependencies": {

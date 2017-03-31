@@ -10,7 +10,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
 import { SelectModule } from 'ng2-select';
-import { NgSwitchModule } from 'ng2-switch';
+import { UiSwitchModule } from 'ng2-ui-switch'
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -80,7 +80,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     MomentModule,
     ChartModule,
     SelectModule,
-    NgSwitchModule
+    UiSwitchModule
   ],
   providers: [
     {
