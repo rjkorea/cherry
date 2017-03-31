@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
-import { SelectModule } from 'ng2-select';
 import { UiSwitchModule } from 'ng2-ui-switch'
 
 import { AppComponent } from './app.component';
@@ -79,7 +78,6 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     SimpleNotificationsModule,
     MomentModule,
     ChartModule,
-    SelectModule,
     UiSwitchModule
   ],
   providers: [
