@@ -27,6 +27,7 @@
               <img *ngIf="!type.content.image" src="assets/images/no_image_icon.png"> -->
               <div class="caption">
                 <h3><a [routerLink]="['/ticket/type', type._id]">{{type.name}}</a></h3>
+                <h4>{{type.day}} <strong>day</strong></h4>
                 <p>{{type.desc}}</p>
                 <hr />
                 <p>
