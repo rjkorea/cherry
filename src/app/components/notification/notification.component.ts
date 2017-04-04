@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { InvitationService } from '../../services/invitation.service';
 import { NotificationService } from '../../services/notification.service';
 import { WebSocketService } from '../../services/websocket.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -16,25 +15,8 @@ export class NotificationComponent implements OnInit {
   notification_unread: Number;
   edit_invitation_form: FormGroup;
 
-  constructor(private invitationService: InvitationService,
-              private notificationService: NotificationService,
+  constructor(private notificationService: NotificationService,
               private fb:FormBuilder) {
-                this.edit_invitation_form = this.fb.group({
-                  'name': ['', Validators.required],
-                  'mobile_number': ['', Validators.required],
-                  'birthday': ['', ],
-                  'email': ['', ],
-                  'type': ['', Validators.required],
-                  'gender': ['', ],
-                  'entered': ['', ],
-                  'group': ['', ],
-                  'assignee': ['', ],
-                  'fee': this.fb.group({
-                    'enabled': [, ],
-                    'price': [, ],
-                    'method': ['', ]
-                  })
-                });
               }
 
   ngOnInit() {
@@ -69,50 +51,4 @@ export class NotificationComponent implements OnInit {
       );
   }
 
-  loadInvitation(_id: string, invitation_oid: string) {
-    this.readNotification(_id);
-    this.loadNotifications();
-    this.invitationService.getInvitation(invitation_oid)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.edit_invitation_form = this.fb.group(response['data']);
-          this.edit_invitation_form = this.fb.group({
-            '_id': response['data']['_id'],
-            'name': response['data']['name'],
-            'mobile_number': response['data']['mobile_number'],
-            'birthday': response['data']['birthday'],
-            'email': response['data']['email'],
-            'type': response['data']['type'],
-            'gender': response['data']['gender'],
-            'entered': response['data']['entered'],
-            'group': response['data']['group'],
-            'assignee': response['data']['assignee'],
-            'fee': this.fb.group({
-              'enabled': response['data']['fee']['enabled'],
-              'price': response['data']['fee']['price'],
-              'method': response['data']['fee']['method']
-            })
-          });
-
-        },
-        error => {
-          console.log(error);
-        }
-      );
-  }
-
-  editInvitation(form: any) {
-    console.log(form);
-    this.invitationService.updateInvitation(form)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.loadNotifications();
-        },
-        error => {
-          console.log(error);
-        }
-      );
-  }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { InvitationService } from '../../services/invitation.service';
 import { NotificationService } from '../../services/notification.service';
 import { WebSocketService } from '../../services/websocket.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -17,8 +16,7 @@ export class EntranceComponent implements OnInit {
   notification_unread: Number;
   notification_options: Object;
 
-  constructor(private invitationService: InvitationService,
-              private notificationService: NotificationService,
+  constructor(private notificationService: NotificationService,
               private websocketService: WebSocketService,
               private simpleNotificationsService: NotificationsService) {
               }
@@ -79,20 +77,6 @@ export class EntranceComponent implements OnInit {
     console.log(event);
     this.entrance_user['entered'] = true;
     delete this.entrance_user['admin_oid'];
-    this.invitationService.updateInvitation(this.entrance_user)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.simpleNotificationsService.success(
-            'OK',
-            this.entrance_user['name'] + ' complete entrance',
-            this.notification_options
-          );
-        },
-        error => {
-          console.log(error);
-        }
-      );
     this.is_entrance = false;
   }
 

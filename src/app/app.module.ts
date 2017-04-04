@@ -34,7 +34,6 @@ import { TicketTypeNewComponent } from './components/ticket/type-new.component';
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { DashboardService } from './services/dashboard.service';
-import { InvitationService } from './services/invitation.service';
 import { NotificationService } from './services/notification.service';
 import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
@@ -88,7 +87,6 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     AuthGuard,
     AuthService,
     DashboardService,
-    InvitationService,
     NotificationService,
     WebSocketService,
     AdminService,
