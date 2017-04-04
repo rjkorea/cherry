@@ -11,6 +11,8 @@ import 'rxjs/add/operator/catch';
 export class TicketService {
   private typeUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/ticket/type';
   private typesUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/ticket/types';
+  private orderUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/ticket/order';
+  private ordersUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/ticket/orders';
   private options;
 
   constructor(private http: Http, private cookieService: CookieService) {
@@ -40,6 +42,33 @@ export class TicketService {
 
   public updateType(id: string, data: any): Observable<{}> {
     let url = this.typeUrl + '/' + id;
+    return this.http.put(url, JSON.stringify(data), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public addOrder(data: any): Observable<{}> {
+    return this.http.post(this.orderUrl, JSON.stringify(data), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public getOrderList(query: string, start: Number, size: Number): Observable<{}> {
+    let url = this.ordersUrl + '?q=' + query + '&start=' + start + '&size=' + size;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public getOrder(_id: string): Observable<{}> {
+    let url = this.orderUrl + '/' + _id;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public updateOrder(id: string, data: any): Observable<{}> {
+    let url = this.orderUrl + '/' + id;
     return this.http.put(url, JSON.stringify(data), this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
