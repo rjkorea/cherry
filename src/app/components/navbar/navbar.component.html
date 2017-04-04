@@ -18,6 +18,7 @@
         <li *ngIf="authService.loggedIn() && authService.getRole() == 'super'"><a routerLink="/user" routerLinkActive="active" data-toggle="collapse">User</a></li>
         <li *ngIf="authService.loggedIn() && authService.getRole() == 'super'"><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">Content</a></li>
         <li *ngIf="authService.loggedIn() && authService.getRole() == 'super'"><a routerLink="/ticket/type" routerLinkActive="active" data-toggle="collapse">TType</a></li>
+        <li *ngIf="authService.loggedIn() && authService.getRole() == 'super'"><a routerLink="/ticket/order" routerLinkActive="active" data-toggle="collapse">TOrder</a></li>
         <li *ngIf="authService.loggedIn()"><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
         <li *ngIf="authService.loggedIn()"><a routerLink="/notification" routerLinkActive="active" data-toggle="collapse">Notification</a></li>
       </ul>

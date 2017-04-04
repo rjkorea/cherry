@@ -30,6 +30,7 @@ import { ContentNewComponent } from './components/content/content-new.component'
 import { TicketTypeListComponent } from './components/ticket/type-list.component';
 import { TicketTypeDetailComponent } from './components/ticket/type-detail.component';
 import { TicketTypeNewComponent } from './components/ticket/type-new.component';
+import { TicketOrderListComponent } from './components/ticket/order-list.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -66,7 +67,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     ContentNewComponent,
     TicketTypeListComponent,
     TicketTypeDetailComponent,
-    TicketTypeNewComponent
+    TicketTypeNewComponent,
+    TicketOrderListComponent
   ],
   imports: [
     BrowserModule,

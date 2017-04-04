@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-md-11">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="name, desc" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            </span>
+        </div>
+        <br>
+    </div>
+    <div class="col-md-1">
+      <p><a routerLink="/ticket/orders/new" class="btn btn-success" role="button">New</a></p>
+    </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Orders <span class="badge">{{count}}</span></h3>
+  </div>
+  <div class="panel-body">
+    <div *ngIf="count">
+      <div class="row">
+        <div *ngFor="let order of orders">
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <!-- <img *ngIf="type.content.image" src="{{type.content.image.m}}">
+              <img *ngIf="!type.content.image" src="assets/images/no_image_icon.png"> -->
+              <div class="caption">
+                <h3><a [routerLink]="['/ticket/order', order._id]">{{order.ticket_type.name}}</a></h3>
+                <p>{{order.ticket_type.desc}}</p>
+                <p>{{order.ticket_type.day}} Day</p>
+                <h4>
+                  <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> <strong>{{order.qty}}</strong>
+                </h4>
+                <h5>
+                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <strong>{{order.expiry_date | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</strong>
+                </h5>
+                <hr />
+                <h5 *ngIf="order.fee">
+                  <span *ngIf="order.fee.method=='creditcard'" class="glyphicon glyphicon-creditcard" aria-hidden="true"></span>
+                  <span *ngIf="order.fee.method=='cash'" class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+                  {{order.fee.method}}
+                  {{order.fee.price}}
+                </h5>
+                <hr *ngIf="order.fee" />
+                <p>
+                  <span *ngIf="order.enabled" class="label label-success">enabled</span>
+                  <span *ngIf="!order.enabled" class="label label-danger">disabled</span>
+                </p>
+                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{order.receiver.name}}</p>
+                <p><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{order.receiver.mobile_number}}</p>
+                <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{order.receiver.access_code}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav aria-label="...">
+        <ul class="pager">
+          <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
+          <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div *ngIf="!!!count">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+          <h4 class="text-center">No results matched your search.</h4>
+        </div>
+      </div>
+      <hr />
+    </div>
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+  </div>
+</div>
+<simple-notifications></simple-notifications>
