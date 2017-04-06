@@ -13,7 +13,6 @@ export class TicketOrderDetailComponent implements OnInit {
   order: any;
   order_form: any;
   notification_options: Object;
-  edit_mode: boolean;
 
   constructor(private route: ActivatedRoute,
               private ticketService: TicketService,
@@ -29,7 +28,6 @@ export class TicketOrderDetailComponent implements OnInit {
       maxLength: 128
     }
     this.loadOrder(params['id']);
-    this.edit_mode = false;
   }
 
   loadOrder(id: string) {
@@ -50,34 +48,32 @@ export class TicketOrderDetailComponent implements OnInit {
       );
   }
 
-  onEdit() {
-    this.edit_mode = true;
+  onDisable() {
+    this.order_form = {
+      enabled: false
+    }
+    this.ticketService.updateOrder(this.order._id, this.order_form)
+      .subscribe(
+        response => {
+          this.loadOrder(this.order._id);
+        },
+        error => {
+          this.simpleNotificationsService.error(
+            'Error',
+            error['message'],
+            this.notification_options
+          );
+          console.log(error);
+        }
+      );
   }
 
-  onSave() {
-    // this.order_form = {
-    //   enabled: this.order.enabled
-    // }
-    // this.ticketService.updateOrder(this.type._id, this.type_form)
-    //   .subscribe(
-    //     response => {
-    //       this.loadType(this.order._id);
-    //       this.edit_mode = false;
-    //     },
-    //     error => {
-    //       this.simpleNotificationsService.error(
-    //         'Error',
-    //         error['message'],
-    //         this.notification_options
-    //       );
-    //       console.log(error);
-    //     }
-    //   );
+  onSend() {
+    console.log('onSend');
   }
 
-  onCancel() {
-    this.loadOrder(this.order._id);
-    this.edit_mode = false;
+  isDisable() {
+    return !this.order.enabled;
   }
 
 }
