@@ -4,34 +4,33 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-8">
-        <div class="input-group">
-          <select [(ngModel)]="type.content_oid">
-            <option [ngValue]="">No content</option>
-            <option *ngFor="let c of contents" [ngValue]="c.id">{{c.text}}</option>
-          </select>
-        </div>
-        <div class="input-group">
-          <label for="name">Name (required)</label>
-          <input type="text" class="form-control" cols="30" [(ngModel)]="type.name" name="name">
-        </div>
-        <br>
-        <div class="input-group">
-          <label>Description (required)</label>
-          <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="type.desc" name="desc"></textarea>
-        </div>
-        <br>
-        <div class="input-group">
-          <label for="place">Day (required)</label>
-          <input type="number" class="form-control" cols="30" [(ngModel)]="type.day" name="day">
-        </div>
-        <br>
-        <div class="input-group">
-          <label for="place">Price (required)</label>
-          <input type="number" class="form-control" cols="30" [(ngModel)]="type.price" name="price">
-        </div>
-        <br>
-        <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">Sumit new type</button>
+      <div class="col-md-6">
+        <form>
+          <div class="form-group">
+            <label for="content">Content (required)</label>
+            <select class="form-control" name="content" [(ngModel)]="type.content_oid">
+              <option [ngValue]="">Select content</option>
+              <option *ngFor="let c of contents" [ngValue]="c.id">{{c.text}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">Name (required)</label>
+            <input type="text" class="form-control" cols="30" [(ngModel)]="type.name" name="name">
+          </div>
+          <div class="form-group">
+            <label>Description (required)</label>
+            <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="type.desc" name="desc"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="place">Day (required)</label>
+            <input type="number" class="form-control" cols="30" [(ngModel)]="type.day" name="day">
+          </div>
+          <div class="form-group">
+            <label for="place">Price (required)</label>
+            <input type="number" class="form-control" cols="30" [(ngModel)]="type.price" name="price">
+          </div>
+          <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">Sumit new type</button>
+        </form>
       </div>
     </div>
   </div>
