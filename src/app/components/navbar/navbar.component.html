@@ -15,18 +15,18 @@
       <ul class="nav navbar-nav navbar-left">
         <li *ngIf="authService.loggedIn()"><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">Home</a></li>
         <li *ngIf="authService.loggedIn() && authService.getRole() == 'super'" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" routerLinkActive="active"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/admin" routerLinkActive="active" data-toggle="collapse">Admin</a></li>
-            <li><a routerLink="/user" routerLinkActive="active" data-toggle="collapse">User</a></li>
+            <li><a routerLink="/admin" data-toggle="collapse">Admin</a></li>
+            <li><a routerLink="/user" data-toggle="collapse">User</a></li>
           </ul>
         </li>
         <li *ngIf="authService.loggedIn() && authService.getRole() == 'super'"><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">Content</a></li>
         <li *ngIf="authService.loggedIn() && authService.getRole() == 'super'" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ticket <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ticket <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/ticket/type" routerLinkActive="active" data-toggle="collapse">Type</a></li>
-            <li><a routerLink="/ticket/order" routerLinkActive="active" data-toggle="collapse">Order</a></li>
+            <li><a routerLink="/ticket/type" data-toggle="collapse">Type</a></li>
+            <li><a routerLink="/ticket/order" data-toggle="collapse">Order</a></li>
           </ul>
         </li>
         <li *ngIf="authService.loggedIn()"><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
