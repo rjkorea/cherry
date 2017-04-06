@@ -7,13 +7,11 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  private isIn: boolean;
+  // private isIn: boolean;
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {
-    this.isIn = false;
-  }
+  ngOnInit() { }
 
   getUserName() {
     return localStorage.getItem('name');
@@ -21,11 +19,6 @@ export class NavbarComponent implements OnInit {
 
   getUserImage() {
     return localStorage.getItem('image');
-  }
-
-  toggleState() {
-    let bool = this.isIn;
-    this.isIn = bool === false ? true : false;
   }
 
 }
