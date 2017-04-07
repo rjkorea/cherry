@@ -1,0 +1,87 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">New Order</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <form>
+          <div class="form-group">
+            <label for="type">Type (required)</label>
+            <select class="form-control" name="type" [(ngModel)]="order.ticket_type_oid">
+              <option [ngValue]="">Select type</option>
+              <option *ngFor="let t of types" [ngValue]="t.id">{{t.text}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="qty">Quantity (required)</label>
+            <input type="number" class="form-control" [(ngModel)]="order.qty" name="qty">
+          </div>
+          <div class="form-group">
+            <label for="expiry-date">Expiry Date (required)</label>
+            <input type="text" class="form-control" [(ngModel)]="order.expiry_date" name="expiry-date" placeholder="2017-12-30T20:00:00">
+          </div>
+          <hr />
+          <div class="form-group">
+            <label for="receiver-name">Receiver Name (required)</label>
+            <input type="text" class="form-control" [(ngModel)]="order.receiver.name" name="receiver-name" placeholder="input real name">
+          </div>
+          <div class="form-group">
+            <label for="receiver-access-code">Receiver Access Code (required)</label>
+            <input type="text" class="form-control" [(ngModel)]="order.receiver.access_code" name="receiver-access-code">
+          </div>
+          <form class="form-inline">
+            <div class="form-group">
+              <label class="sr-only" for="receiver-country-code">Country Code</label>
+              <select class="form-control" name="receiver-country-code" [(ngModel)]="country_code">
+                <option [ngValue]="">Select country code</option>
+                <option [ngValue]="+82">South Korea (+82)</option>
+                <option [ngValue]="+61">Australia (+61)</option>
+                <option [ngValue]="+55">Brazil (+55)</option>
+                <option [ngValue]="+1">Canada (+1)</option>
+                <option [ngValue]="+86">China (+86)</option>
+                <option [ngValue]="+49">Germany (+49)</option>
+                <option [ngValue]="+852">Hong Kong (+852)</option>
+                <option [ngValue]="+81">Japan (+81)</option>
+                <option [ngValue]="+65">Singapore (+65)</option>
+                <option [ngValue]="+66">Thailand (+66)</option>
+                <option [ngValue]="+44">United Kingdom (+44)</option>
+                <option [ngValue]="+1">United States (+1)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="receiver-mobile-number">Mobile Number</label>
+              <input type="tel" class="form-control" name="receiver-mobile-number" [(ngModel)]="mobile_number" placeholder="mobile number">
+            </div>
+          </form>
+          <hr />
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" [checked]="is_fee" (change)="is_fee = !is_fee"> Fee
+            </label>
+          </div>
+          <div *ngIf="is_fee" class="form-group">
+            <label for="fee-method">Fee Method</label>
+            <select class="form-control" name="fee-method" [(ngModel)]="fee.method">
+              <option value="cash" [selected]="true">Cash</option>
+              <option value="creditcard">Creditcard</option>
+            </select>
+          </div>
+          <div *ngIf="is_fee" class="form-group">
+            <label for="fee-price">Fee Price</label>
+            <input type="number" class="form-control" name="fee-price" [(ngModel)]="fee.price">
+          </div>
+          <hr />
+          <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">Sumit new order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+  </div>
+</div>
+<simple-notifications></simple-notifications>
