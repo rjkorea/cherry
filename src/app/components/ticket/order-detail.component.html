@@ -32,7 +32,7 @@
             <li class="list-group-item"><strong>Mobile Number: </strong>{{order.receiver.mobile_number}}</li>
             <li class="list-group-item"><strong>Access Code: </strong>{{order.receiver.access_code}}</li>
           </ul>
-          <ul class="list-group">
+          <ul *ngIf="order.fee" class="list-group">
             <li class="list-group-item"><strong>Fee</strong></li>
             <li class="list-group-item"><strong>Method: </strong>{{order.fee.method}}</li>
             <li class="list-group-item"><strong>Price: </strong>{{order.fee.price}}</li>
