@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
 import { NotificationsService } from 'angular2-notifications';
+import { DatepickerModule } from 'angular2-material-datepicker';
 
 @Component({
   selector: 'app-ticket-order-new',
@@ -18,6 +19,10 @@ export class TicketOrderNewComponent implements OnInit {
   private country_code: string;
   private mobile_number: string;
 
+  private minDate: Date = void 0;
+  private dateDisabled: {date: Date, mode: string}[];
+  private expiry: any;
+
   constructor(private ticketService: TicketService,
               private router: Router,
               private simpleNotificationsService: NotificationsService) { }
@@ -25,12 +30,15 @@ export class TicketOrderNewComponent implements OnInit {
   ngOnInit() {
     this.is_fee = false;
     this.fee = {};
+    this.expiry = {
+      date: new Date(),
+      time: new Date()
+    };
     this.country_code = '';
     this.mobile_number = '';
     this.order = {
       ticket_type_oid: '',
       qty: 0,
-      expiry_date: '',
       receiver: {
         name: '',
         mobile_number: '',
@@ -75,6 +83,7 @@ export class TicketOrderNewComponent implements OnInit {
       delete this.order.fee;
     }
     this.order.receiver.mobile_number = this.country_code + this.mobile_number.substr(1);
+    this.order.expiry_date = this.getISODate();
     console.log(this.order);
     this.ticketService.addOrder(this.order)
       .subscribe(
@@ -92,14 +101,20 @@ export class TicketOrderNewComponent implements OnInit {
       );
   }
 
+  public getISODate() {
+    return this.expiry.date.getFullYear() + '-' + (this.expiry.date.getMonth()+1) + '-' + this.expiry.date.getDate()
+      + 'T' + this.expiry.time.getHours() + ':' + this.expiry.time.getMinutes() + ':' +this.expiry.time.getSeconds();
+  }
+
   public disabledSubmit() {
     return !(this.order.ticket_type_oid &&
       this.order.qty &&
-      this.order.expiry_date &&
       this.order.receiver.name &&
       this.order.receiver.access_code &&
       this.country_code &&
-      this.mobile_number
+      this.mobile_number &&
+      this.expiry.date &&
+      this.expiry.time
     );
   }
 

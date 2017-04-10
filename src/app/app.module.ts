@@ -9,7 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
-import { UiSwitchModule } from 'ng2-ui-switch'
+import { UiSwitchModule } from 'ng2-ui-switch';
+import { DatepickerModule, TimepickerModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -83,7 +84,9 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     SimpleNotificationsModule,
     MomentModule,
     ChartModule,
-    UiSwitchModule
+    UiSwitchModule,
+    DatepickerModule.forRoot(),
+    TimepickerModule.forRoot()
   ],
   providers: [
     {
