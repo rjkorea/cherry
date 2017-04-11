@@ -35,6 +35,7 @@ import { TicketOrderListComponent } from './components/ticket/order-list.compone
 import { TicketOrderDetailComponent } from './components/ticket/order-detail.component';
 import { TicketOrderNewComponent } from './components/ticket/order-new.component';
 import { TicketListComponent } from './components/ticket/ticket-list.component';
+import { TicketDetailComponent } from './components/ticket/ticket-detail.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -75,7 +76,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     TicketOrderListComponent,
     TicketOrderDetailComponent,
     TicketOrderNewComponent,
-    TicketListComponent
+    TicketListComponent,
+    TicketDetailComponent
   ],
   imports: [
     BrowserModule,

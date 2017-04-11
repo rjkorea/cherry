@@ -23,6 +23,7 @@ import { TicketOrderListComponent } from './components/ticket/order-list.compone
 import { TicketOrderDetailComponent } from './components/ticket/order-detail.component';
 import { TicketOrderNewComponent } from './components/ticket/order-new.component';
 import { TicketListComponent } from './components/ticket/ticket-list.component';
+import { TicketDetailComponent } from './components/ticket/ticket-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthGuard] },
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'ticket/orders/new', component: TicketOrderNewComponent, canActivate: [AuthGuard] },
 
   { path: 'ticket', component: TicketListComponent, canActivate: [AuthGuard] },
+  { path: 'ticket/:id', component: TicketDetailComponent, canActivate: [AuthGuard] },
 
   { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
   { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
