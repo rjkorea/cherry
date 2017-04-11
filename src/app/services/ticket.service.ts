@@ -13,6 +13,8 @@ export class TicketService {
   private typesUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/ticket/types';
   private orderUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/ticket/order';
   private ordersUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/ticket/orders';
+  private ticketUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/ticket';
+  private ticketsUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/tickets';
   private options;
 
   constructor(private http: Http, private cookieService: CookieService) {
@@ -77,6 +79,27 @@ export class TicketService {
   public sendOrder(id: string): Observable<{}> {
     let url = this.orderUrl + '/' + id + '/send';
     return this.http.put(url, {}, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public getTicketList(query: string, start: Number, size: Number): Observable<{}> {
+    let url = this.ticketsUrl + '?q=' + query + '&start=' + start + '&size=' + size;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public getTicket(_id: string): Observable<{}> {
+    let url = this.ticketUrl + '/' + _id;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public updateTicket(id: string, data: any): Observable<{}> {
+    let url = this.ticketUrl + '/' + id;
+    return this.http.put(url, JSON.stringify(data), this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
