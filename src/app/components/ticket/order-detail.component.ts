@@ -69,7 +69,20 @@ export class TicketOrderDetailComponent implements OnInit {
   }
 
   onSend() {
-    console.log('onSend');
+    this.ticketService.sendOrder(this.order._id)
+      .subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          this.simpleNotificationsService.error(
+            'Error',
+            error['message'],
+            this.notification_options
+          );
+          console.log(error);
+        }
+      );
   }
 
   isDisable() {
