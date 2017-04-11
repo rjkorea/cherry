@@ -30,8 +30,7 @@
             <li><a routerLink="/ticket" data-toggle="collapse">Ticket</a></li>
           </ul>
         </li>
-        <li *ngIf="authService.loggedIn()"><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
-        <li *ngIf="authService.loggedIn()"><a routerLink="/notification" routerLinkActive="active" data-toggle="collapse">Notification</a></li>
+        <li *ngIf="authService.loggedIn() && authService.getRole() == 'super'"><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!authService.loggedIn()"><a routerLink="/login" routerLinkActive="active" data-toggle="collapse">Login</a></li>
