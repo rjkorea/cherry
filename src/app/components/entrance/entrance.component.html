@@ -1,55 +1,132 @@
 <div class="row">
-  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-    <h3>The Final COUNTDOWN 2017 <small>by VU Ent.</small></h3>
-    <div *ngIf="is_entrance">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{entrance_user.group}}</h3>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-4">
-              <img class="img-thumbnail github-avatar" src="./assets/images/user.png">
-            </div>
-            <div class="col-md-8">
-              <div class="stats">
-                <span class="label label-default"> {{entrance_user.gender}}</span>
-                <span class="label label-primary"> {{entrance_user.fee.method}}</span>
+  <div class="col-md-12">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="name, mobile number, email, birthday" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="onSearch()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
+    </div>
+    <br>
+  </div>
+</div>
+
+
+<div *ngIf="mode=='idle'">
+  <h1><i class="glyphicon glyphicon-repeat gly-spin"></i> Waiting a tablet request.</h1>
+</div>
+
+<div *ngIf="mode=='tablet'" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">User's ticket list <span class="badge">33</span></h3>
+    <!-- <h3 class="panel-title">Tickets <span class="badge">{{count}}</span></h3> -->
+  </div>
+  <div class="panel-body">
+    <div *ngIf="count">
+      <div class="row">
+        <div *ngFor="let ticket of tickets">
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <!-- <img *ngIf="type.content.image" src="{{type.content.image.m}}">
+              <img *ngIf="!type.content.image" src="assets/images/no_image_icon.png"> -->
+              <div class="caption">
+                <!-- <h4><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <a [routerLink]="['/ticket', ticket._id]">{{ticket._id}}</a></h4>
+                <h4>{{ticket.day}} <strong>day</strong></h4>
+                <p>
+                  <span *ngIf="ticket.status=='pend'" class="label label-default">pend</span>
+                  <span *ngIf="ticket.status=='send'" class="label label-info">send</span>
+                  <span *ngIf="ticket.status=='register'" class="label label-primary">register</span>
+                  <span *ngIf="ticket.status=='use'" class="label label-success">use</span>
+                </p>
+                <p>
+                  <span *ngIf="ticket.enabled" class="label label-success">enabled</span>
+                  <span *ngIf="!ticket.enabled" class="label label-danger">disabled</span>
+                </p>
+                <p *ngIf="ticket.user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ticket.user.name}}</p>
+                <p *ngIf="!ticket.user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></p> -->
               </div>
-              <br>
-              <ul class="list-group">
-                <li class="list-group-item"><strong>Name: </strong>{{entrance_user.name}}</li>
-                <li class="list-group-item"><strong>Ticket Type: </strong>{{entrance_user.type}}</li>
-                <li class="list-group-item"><strong>Mobile Number: </strong>{{entrance_user.mobile_number}}</li>
-                <li class="list-group-item"><strong>Email: </strong>{{entrance_user.email}}</li>
-                <li class="list-group-item"><strong>Birthday: </strong>{{entrance_user.birthday}}</li>
-                <li *ngIf="!entrance_user.entered" class="list-group-item">
-                  <i class="glyphicon glyphicon-ok-circle" style="color: green;"> Waiting</i>
-                </li>
-                <li *ngIf="entrance_user.entered" class="list-group-item"><strong>Entered: </strong>
-                    <i class="glyphicon glyphicon-remove-circle" style="color: red;"> Done</i>
-                    {{entrance_user.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}
-                </li>
-              </ul>
-              <button type="button" class="btn btn-success btn" (click)="onEnter($event)">
-                <i class="fa fa-sign-in"></i> Enter
-              </button>
-              <button type="button" class="btn btn-cancel btn" (click)="onCancel($event)">Cancel</button>
             </div>
           </div>
         </div>
       </div>
+      <!-- <nav aria-label="...">
+        <ul class="pager">
+          <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
+          <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+        </ul>
+      </nav> -->
     </div>
-    <div *ngIf="!is_entrance">
-      <h1><i class="glyphicon glyphicon-repeat gly-spin"></i> Waiting a request.</h1>
-    </div>
+
+    <!-- <div *ngIf="!!!count">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+          <h4 class="text-center">No results matched your search.</h4>
+        </div>
+      </div>
+      <hr />
+    </div> -->
+
   </div>
 </div>
+
+
+<div *ngIf="mode=='search'" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Users <span class="badge">7</span></h3>
+    <!-- <h3 class="panel-title">Tickets <span class="badge">{{count}}</span></h3> -->
+  </div>
+  <div class="panel-body">
+    <div *ngIf="count">
+      <div class="row">
+        <div *ngFor="let ticket of tickets">
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <!-- <img *ngIf="type.content.image" src="{{type.content.image.m}}">
+              <img *ngIf="!type.content.image" src="assets/images/no_image_icon.png"> -->
+              <div class="caption">
+                <!-- <h4><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <a [routerLink]="['/ticket', ticket._id]">{{ticket._id}}</a></h4>
+                <h4>{{ticket.day}} <strong>day</strong></h4>
+                <p>
+                  <span *ngIf="ticket.status=='pend'" class="label label-default">pend</span>
+                  <span *ngIf="ticket.status=='send'" class="label label-info">send</span>
+                  <span *ngIf="ticket.status=='register'" class="label label-primary">register</span>
+                  <span *ngIf="ticket.status=='use'" class="label label-success">use</span>
+                </p>
+                <p>
+                  <span *ngIf="ticket.enabled" class="label label-success">enabled</span>
+                  <span *ngIf="!ticket.enabled" class="label label-danger">disabled</span>
+                </p>
+                <p *ngIf="ticket.user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ticket.user.name}}</p>
+                <p *ngIf="!ticket.user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <nav aria-label="...">
+        <ul class="pager">
+          <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
+          <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+        </ul>
+      </nav> -->
+    </div>
+
+    <!-- <div *ngIf="!!!count">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+          <h4 class="text-center">No results matched your search.</h4>
+        </div>
+      </div>
+      <hr />
+    </div> -->
+
+  </div>
+</div>
+
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
     <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
   </div>
 </div>
-
-<simple-notifications></simple-notifications>
