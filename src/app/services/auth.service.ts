@@ -28,6 +28,7 @@ export class AuthService {
                         localStorage.setItem('name', response.json().data.name);
                         localStorage.setItem('_id', response.json().data._id);
                         localStorage.setItem('role', response.json().data.role);
+                        localStorage.setItem('tablet_code', response.json().data.tablet_code);
 
                         this.isLoggedIn = true;
                       }
@@ -44,6 +45,7 @@ export class AuthService {
     localStorage.removeItem('name');
     localStorage.removeItem('_id');
     localStorage.removeItem('role');
+    localStorage.removeItem('tablet_code');
     this.isLoggedIn = false;
   }
 

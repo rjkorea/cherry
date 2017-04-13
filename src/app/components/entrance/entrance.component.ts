@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from '../../services/notification.service';
+import { UserService } from '../../services/user.service';
+import { TicketService } from '../../services/ticket.service';
 import { WebSocketService } from '../../services/websocket.service';
 
 @Component({
@@ -9,14 +10,21 @@ import { WebSocketService } from '../../services/websocket.service';
   providers: []
 })
 export class EntranceComponent implements OnInit {
-  admin_name: string;
-  mode: string;
-  tickets: Array<any>;
+  private mode: string;
+  private user: string;
+  private tickets: Array<any>;
+  private tickets_count: any;
 
-  constructor(private websocketService: WebSocketService) { }
+  constructor(
+    private userService: UserService,
+    private ticketService: TicketService,
+    private websocketService: WebSocketService) { }
 
   ngOnInit() {
     this.mode = 'idle'; //idle, tablet, user search
+    this.user = 'Noname';
+    this.tickets = [];
+    this.tickets_count = [];
     this.initWebSocket();
   }
 
@@ -24,10 +32,9 @@ export class EntranceComponent implements OnInit {
     this.websocketService.getInstance().subscribe(
       response => {
         console.log(response);
-        // check admin _id
-        if(localStorage.getItem('_id') == response['admin_oid']) {
-          console.log(response['admin_oid']);
-          this.mode = 'tablet';
+        // check tablet_code
+        if(localStorage.getItem('tablet_code') == response['tablet_code']) {
+          this.onTablet(response['auth_user_oid']);
         }
       },
       error => {
@@ -45,8 +52,35 @@ export class EntranceComponent implements OnInit {
   }
 
   onSearch() {
-    console.log('clicke search');
+    console.log('click search');
     this.mode = 'search'
+  }
+
+  onTablet(auth_user_oid: string) {
+    this.userService.getUser(auth_user_oid)
+      .subscribe(
+        response => {
+          this.user = response['data'];
+          console.log(this.user);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
+    this.ticketService.getTicketListByUser(auth_user_oid, 0, 100)
+      .subscribe(
+        response => {
+          this.tickets = response['data'];
+          this.tickets_count = response['count'];
+          console.log(this.tickets);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
+    this.mode = 'tablet';
   }
 
 }
