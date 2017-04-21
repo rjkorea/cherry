@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
 import { NotificationsService } from 'angular2-notifications';
-import { DatepickerModule } from 'angular2-material-datepicker';
 
 @Component({
   selector: 'app-ticket-order-new',
