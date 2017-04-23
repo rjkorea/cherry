@@ -22,6 +22,7 @@
             <li class="list-group-item"><strong>Username: </strong>{{admin.name}}</li>
             <li class="list-group-item"><strong>Email: </strong>{{admin.email}}</li>
             <li class="list-group-item"><strong>Mobile Number: </strong>{{admin.mobile_number}}</li>
+            <li class="list-group-item"><strong>Tablet Code: </strong>{{admin.tablet_code}}</li>
             <li class="list-group-item"><strong>Company: </strong>{{admin.company}}</li>
             <li class="list-group-item"><strong>Website: </strong><a href="http://{{admin.website}}" blank="_target">http://{{admin.website}}</a></li>
             <li class="list-group-item"><strong>Updated at: </strong>{{admin.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
@@ -45,6 +46,11 @@
             <div class="input-group">
               <span class="input-group-addon">Mobile Number</span>
               <input type="tel" class="form-control" [(ngModel)]="admin.mobile_number" name="mobile_number">
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon">Tablet Code</span>
+              <input type="text" class="form-control" [(ngModel)]="admin.tablet_code" name="tablet_code">
             </div>
             <br>
             <div class="input-group">

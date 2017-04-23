@@ -58,6 +58,7 @@ export class AdminDetailComponent implements OnInit {
       name: this.admin.name,
       email: this.admin.email,
       mobile_number: this.admin.mobile_number,
+      tablet_code: this.admin.tablet_code,
       company: this.admin.company,
       website: this.admin.website,
       enabled: this.admin.enabled
