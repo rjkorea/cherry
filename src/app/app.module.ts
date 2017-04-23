@@ -11,6 +11,7 @@ import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
 import { UiSwitchModule } from 'ng2-ui-switch';
 import { DatepickerModule, TimepickerModule } from 'ngx-bootstrap';
+import { CookieModule } from 'ngx-cookie';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -46,7 +47,6 @@ import { AdminService } from './services/admin.service';
 import { UserService } from './services/user.service';
 import { ContentService } from './services/content.service';
 import { TicketService } from './services/ticket.service';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 
@@ -90,7 +90,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     ChartModule,
     UiSwitchModule,
     DatepickerModule.forRoot(),
-    TimepickerModule.forRoot()
+    TimepickerModule.forRoot(),
+    CookieModule.forRoot()
   ],
   providers: [
     {
@@ -105,8 +106,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     AdminService,
     UserService,
     ContentService,
-    TicketService,
-    CookieService
+    TicketService
   ],
   bootstrap: [AppComponent]
 })
