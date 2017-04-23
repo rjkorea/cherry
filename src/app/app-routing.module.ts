@@ -56,6 +56,7 @@ const routes: Routes = [
   { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'profile/:id', component: AdminDetailComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 
 ];

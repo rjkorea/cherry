@@ -13,6 +13,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() { }
 
+  getUserId() {
+    return localStorage.getItem('_id');
+  }
+
   getUserName() {
     return localStorage.getItem('name');
   }

@@ -35,8 +35,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!authService.loggedIn()"><a routerLink="/login" routerLinkActive="active" data-toggle="collapse">Login</a></li>
         <li *ngIf="!authService.loggedIn()"><a routerLink="/signup" routerLinkActive="active" data-toggle="collapse">Signup</a></li>
-        <li *ngIf="authService.loggedIn()"><p class="navbar-text">Signed in as {{getUserName()}} ({{authService.getRole()}})</p></li>
-        <li *ngIf="authService.loggedIn()"><a routerLink="/login" (click)="authService.logout()" href="#">Logout</a></li>
+        <li *ngIf="authService.loggedIn() && authService.getRole() == 'super'" class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{getUserName()}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['/profile', getUserId()]" data-toggle="collapse">Profile</a></li>
+            <li *ngIf="authService.loggedIn()"><a routerLink="/login" (click)="authService.logout()">Logout</a></li>
+          </ul>
+        </li>
       </ul>
 
     </div><!--/.nav-collapse -->
