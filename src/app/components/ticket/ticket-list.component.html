@@ -27,7 +27,7 @@
               <img *ngIf="!type.content.image" src="assets/images/no_image_icon.png"> -->
               <div class="caption">
                 <h4><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <a [routerLink]="['/ticket', ticket._id]">{{ticket._id}}</a></h4>
-                <h4>{{ticket.day}} <strong>day</strong></h4>
+                <h4>{{ticket.days.length}} <strong>days</strong></h4>
                 <p>
                   <span *ngIf="ticket.status=='pend'" class="label label-default">pend</span>
                   <span *ngIf="ticket.status=='send'" class="label label-info">send</span>
