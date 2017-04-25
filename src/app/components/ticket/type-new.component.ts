@@ -28,7 +28,7 @@ export class TicketTypeNewComponent implements OnInit {
       day: 1,
       price: 0,
       content_oid: '',
-      user_oid: ''
+      admin_oid: ''
     }
     this.loadContents()
     this.notification_options = {
@@ -41,7 +41,7 @@ export class TicketTypeNewComponent implements OnInit {
   }
 
   onSubmit() {
-    this.type.user_oid = localStorage.getItem('_id');
+    this.type.admin_oid = localStorage.getItem('_id');
     this.ticketService.addType(this.type)
       .subscribe(
         response => {

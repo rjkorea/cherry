@@ -28,8 +28,8 @@ export class TicketService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public getTypeList(query: string, start: Number, size: Number): Observable<{}> {
-    let url = this.typesUrl + '?q=' + query + '&start=' + start + '&size=' + size;
+  public getTypeList(content_oid: string, admin_oid: string, query: string, start: Number, size: Number): Observable<{}> {
+    let url = this.typesUrl + '?q=' + query + '&start=' + start + '&size=' + size + '&content_oid=' + content_oid + '&admin_oid=' + admin_oid;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));

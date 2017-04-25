@@ -41,7 +41,7 @@ export class TicketTypeListComponent implements OnInit {
   }
 
   loadTypes(query:any, page: any) {
-    this.ticketService.getTypeList(query, (page-1)*this.size, this.size)
+    this.ticketService.getTypeList('', '', query, (page-1)*this.size, this.size)
       .subscribe(
         response => {
           this.count = response['count'];

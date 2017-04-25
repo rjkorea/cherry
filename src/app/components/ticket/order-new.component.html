@@ -7,6 +7,13 @@
       <div class="col-md-6">
         <form>
           <div class="form-group">
+            <label for="type">Content (required)</label>
+            <select class="form-control" name="content" [(ngModel)]="order.content_oid" (ngModelChange)="changeContent()">
+              <option [ngValue]="">Select content</option>
+              <option *ngFor="let c of contents" [ngValue]="c.id">{{c.text}}</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label for="type">Type (required)</label>
             <select class="form-control" name="type" [(ngModel)]="order.ticket_type_oid">
               <option [ngValue]="">Select type</option>

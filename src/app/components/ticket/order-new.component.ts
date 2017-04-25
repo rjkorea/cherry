@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
+import { ContentService } from '../../services/content.service';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
@@ -12,6 +13,7 @@ import { NotificationsService } from 'angular2-notifications';
 export class TicketOrderNewComponent implements OnInit {
   private order: any;
   private notification_options: Object;
+  private contents: Array<any> = [];
   private types: Array<any> = [];
   private is_fee: boolean;
   private fee: any;
@@ -23,6 +25,7 @@ export class TicketOrderNewComponent implements OnInit {
   private expiry: any;
 
   constructor(private ticketService: TicketService,
+              private contentService: ContentService,
               private router: Router,
               private simpleNotificationsService: NotificationsService) { }
 
@@ -44,7 +47,7 @@ export class TicketOrderNewComponent implements OnInit {
         access_code: ''
       }
     }
-    this.loadTypes();
+    this.loadContents();
     this.notification_options = {
       timeOut: 3000,
       showProgressBar: true,
@@ -54,8 +57,14 @@ export class TicketOrderNewComponent implements OnInit {
     }
   }
 
+  changeContent() {
+    this.types = [];
+    this.loadTypes();
+    console.log(this.order.content_oid);
+  }
+
   loadTypes() {
-    this.ticketService.getTypeList('', 0, 100)
+    this.ticketService.getTypeList(this.order.content_oid, '','', 0, 100)
     .subscribe(
       response => {
         for (let t of response['data']) {
@@ -72,7 +81,26 @@ export class TicketOrderNewComponent implements OnInit {
         console.log(error);
       }
     );
+  }
 
+  loadContents() {
+    this.contentService.getContentList('', 0, 100)
+    .subscribe(
+      response => {
+        for (let t of response['data']) {
+          this.contents.push({id: t['_id'], text: t['name']})
+        }
+        console.log(this.contents);
+      },
+      error => {
+        this.simpleNotificationsService.error(
+          'Error',
+          error['message'],
+          this.notification_options
+        );
+        console.log(error);
+      }
+    );
   }
 
   onSubmit() {
@@ -106,7 +134,8 @@ export class TicketOrderNewComponent implements OnInit {
   }
 
   public disabledSubmit() {
-    return !(this.order.ticket_type_oid &&
+    return !(this.order.content_oid &&
+      this.order.ticket_type_oid &&
       this.order.qty &&
       this.order.receiver.name &&
       this.order.receiver.access_code &&

@@ -24,7 +24,7 @@
             <li *ngIf="content.desc" class="list-group-item"><strong>Description: </strong>{{content.desc}}</li>
             <li *ngIf="content.when" class="list-group-item"><strong>When: </strong>{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}} ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item"><strong>Place: </strong>{{content.place}}</li>
-            <li class="list-group-item"><strong>User ID: </strong>{{content.user_oid}}</li>
+            <li class="list-group-item"><strong>Admin ID: </strong>{{content.admin_oid}}</li>
             <li class="list-group-item"><strong>Updated at: </strong>{{content.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item"><strong>Member Since: </strong>{{content.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
