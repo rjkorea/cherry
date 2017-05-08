@@ -1,14 +1,14 @@
 {
-    apps: [
+    "apps": [
         {
-            name: "tkit_admin_dev",
-            script: "/usr/local/bin/ng",
-            args: "serve --host 0.0.0.0"
+            "name": "tkit_admin_dev",
+            "script": "/usr/local/bin/ng",
+            "args": "serve --host 0.0.0.0"
         },
         {
-            name: "tkit_admin_live",
-            script: "/usr/bin/ng",
-            args: "serve --host 0.0.0.0 --port 9200 --prod"
+            "name": "tkit_admin_live",
+            "script": "/usr/bin/ng",
+            "args": "serve --host 0.0.0.0 --port 9200 --env=prod"
         },
     ]
 }
