@@ -6,8 +6,8 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-4">
-          <img *ngIf="!content.image.banner" class="img-thumbnail" src="assets/images/no_image_icon.png">
-          <img *ngIf="content.image.banner" class="img-thumbnail" src="{{content.image.banner.m}}">
+          <img *ngIf="!content.image" class="img-thumbnail" src="assets/images/no_image_icon.png">
+          <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.logo.m}}">
         </div>
         <div class="col-md-6">
           <br />

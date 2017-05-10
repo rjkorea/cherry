@@ -23,8 +23,8 @@
         <div *ngFor="let content of contents">
           <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-              <img *ngIf="content.image.banner" src="{{content.image.banner.m}}">
-              <img *ngIf="!content.image.banner" src="assets/images/no_image_icon.png">
+              <img *ngIf="content.image" src="{{content.image.logo.m}}">
+              <img *ngIf="!content.image" src="assets/images/no_image_icon.png">
               <div class="caption">
                 <h3><a [routerLink]="['/content', content._id]">{{content.name}}</a></h3>
                 <p>{{content.desc}}</p>
