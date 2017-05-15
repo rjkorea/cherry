@@ -24,4 +24,8 @@ export class NavbarComponent implements OnInit {
     return localStorage.getItem('image');
   }
 
+  getRole() {
+    return localStorage.getItem('role');
+  }
+
 }
