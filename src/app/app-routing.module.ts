@@ -2,6 +2,7 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
 
+
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
@@ -26,7 +27,7 @@ import { TicketListComponent } from './components/ticket/ticket-list.component';
 import { TicketDetailComponent } from './components/ticket/ticket-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -52,11 +53,12 @@ const routes: Routes = [
   { path: 'ticket', component: TicketListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/:id', component: TicketDetailComponent, canActivate: [AuthGuard] },
 
-  { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
   { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
+
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'profile/:id', component: AdminDetailComponent, canActivate: [AuthGuard] },
+  { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 
 ];

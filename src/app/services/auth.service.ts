@@ -49,6 +49,10 @@ export class AuthService {
     this.isLoggedIn = false;
   }
 
+  getRole() {
+    return localStorage.getItem('role');
+  }
+
   public signup(name: string, email: string, password: string,
                 password2: string, mobile_number: string): Observable<{}> {
     let headers = new Headers({'Content-Type': 'application/json'});
@@ -61,10 +65,6 @@ export class AuthService {
                       }
                     })
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
-  }
-
-  getRole() {
-    return localStorage.getItem('role');
   }
 
 }
