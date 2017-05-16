@@ -21,6 +21,9 @@ import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.co
 import { SignupComponent } from './components/signup/signup.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { EntranceComponent } from './components/entrance/entrance.component';
+import { CompanyListComponent } from './components/company/company-list.component';
+import { CompanyDetailComponent } from './components/company/company-detail.component';
+import { CompanyNewComponent } from './components/company/company-new.component';
 import { UserComponent } from './components/user/user.component';
 import { UserDetailComponent } from './components/user/user-detail.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -46,6 +49,7 @@ import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
 import { UserService } from './services/user.service';
 import { ContentService } from './services/content.service';
+import { CompanyService } from './services/company.service';
 import { TicketService } from './services/ticket.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
@@ -62,6 +66,9 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     NotificationComponent,
     DataFilterPipe,
     EntranceComponent,
+    CompanyListComponent,
+    CompanyDetailComponent,
+    CompanyNewComponent,
     UserComponent,
     UserDetailComponent,
     AdminComponent,
@@ -106,6 +113,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     AdminService,
     UserService,
     ContentService,
+    CompanyService,
     TicketService
   ],
   bootstrap: [AppComponent]

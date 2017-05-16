@@ -9,11 +9,13 @@ import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.co
 import { SignupComponent } from './components/signup/signup.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { EntranceComponent } from './components/entrance/entrance.component';
+import { CompanyListComponent } from './components/company/company-list.component';
+import { CompanyDetailComponent } from './components/company/company-detail.component';
+import { CompanyNewComponent } from './components/company/company-new.component';
 import { UserComponent } from './components/user/user.component';
 import { UserDetailComponent } from './components/user/user-detail.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDetailComponent } from './components/admin/admin-detail.component';
-import { ContentComponent } from './components/content/content.component';
 import { ContentListComponent } from './components/content/content-list.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
 import { ContentNewComponent } from './components/content/content-new.component';
@@ -31,6 +33,10 @@ const routes: Routes = [
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+
+  { path: 'company', component: CompanyListComponent, canActivate: [AuthGuard] },
+  { path: 'company/:id', component: CompanyDetailComponent, canActivate: [AuthGuard] },
+  { path: 'companies/new', component: CompanyNewComponent, canActivate: [AuthGuard] },
 
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   { path: 'user/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
