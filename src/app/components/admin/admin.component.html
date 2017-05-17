@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-11">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="name, email, company, mobile number, role" [(ngModel)]="query" name="query" (keyup.enter)="search()">
             <span class="input-group-btn">
@@ -7,6 +7,9 @@
             </span>
         </div>
         <br>
+    </div>
+    <div class="col-md-1">
+      <p><a routerLink="/admins/new" class="btn btn-success" role="button">New</a></p>
     </div>
 </div>
 

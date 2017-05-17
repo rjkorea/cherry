@@ -18,6 +18,12 @@ export class AdminService {
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
+  public addAdmin(data: any): Observable<{}> {
+    return this.http.post(this.adminUrl, JSON.stringify(data), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
   public getAdminList(query: string, start: Number, size: Number): Observable<{}> {
     let url = this.adminsUrl + '?q=' + query + '&start=' + start + '&size=' + size;
     return this.http.get(url, this.options)

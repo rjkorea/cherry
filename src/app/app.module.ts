@@ -28,6 +28,7 @@ import { UserComponent } from './components/user/user.component';
 import { UserDetailComponent } from './components/user/user-detail.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDetailComponent } from './components/admin/admin-detail.component';
+import { AdminNewComponent } from './components/admin/admin-new.component';
 import { ContentComponent } from './components/content/content.component';
 import { ContentListComponent } from './components/content/content-list.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
@@ -73,6 +74,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     UserDetailComponent,
     AdminComponent,
     AdminDetailComponent,
+    AdminNewComponent,
     ContentComponent,
     ContentListComponent,
     ContentDetailComponent,
