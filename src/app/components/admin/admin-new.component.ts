@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from '../../services/admin.service';
+import { CompanyService } from '../../services/company.service';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
@@ -11,21 +12,27 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class AdminNewComponent implements OnInit {
   admin: any;
+  roles: string[];
+  companies: any;
   notification_options: Object;
 
   constructor(private adminService: AdminService,
+              private companyService: CompanyService,
               private router: Router,
               private simpleNotificationsService: NotificationsService) { }
 
   ngOnInit() {
+    this.roles = ['', 'admin', 'host', 'staff'];
     this.admin = {
       name: '',
       email: '',
       mobile_number: '',
       password: 'tkittkit',
       password2: 'tkittkit',
-      role: ''
+      role: this.roles[0],
+      company_oid: ''
     }
+    this.loadCompanies()
     this.notification_options = {
       timeOut: 3000,
       showProgressBar: true,
@@ -36,11 +43,34 @@ export class AdminNewComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.admin);
     this.adminService.addAdmin(this.admin)
       .subscribe(
         response => {
           this.router.navigate(['/admin']);
+        },
+        error => {
+          this.simpleNotificationsService.error(
+            'Error',
+            error['message'],
+            this.notification_options
+          );
+          console.log(error);
+        }
+      );
+  }
+
+  changeRole() {
+    if(this.admin.role == 'admin') {
+      this.admin.company_oid = '';
+    }
+    console.log(this.admin);
+  }
+
+  loadCompanies() {
+    this.companyService.getCompanyList('', 0, 100)
+      .subscribe(
+        response => {
+          this.companies = response['data'];
         },
         error => {
           this.simpleNotificationsService.error(
