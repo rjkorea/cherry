@@ -57,7 +57,7 @@ export class AuthService {
                 password2: string, mobile_number: string): Observable<{}> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers, withCredentials: true});
-    let body = JSON.stringify({name, email, password, password2, mobile_number, 'role':['host']});
+    let body = JSON.stringify({name, email, password, password2, mobile_number, 'role':'host'});
     return this.http.post(this.signupUrl, body, options)
                     .map((response: Response) => {
                       if(response.status==200) {
