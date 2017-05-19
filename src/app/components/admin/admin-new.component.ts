@@ -4,6 +4,8 @@ import { AdminService } from '../../services/admin.service';
 import { CompanyService } from '../../services/company.service';
 import { NotificationsService } from 'angular2-notifications';
 
+const DEFAULT_PASSWORD = 'tkittkit';
+
 @Component({
   selector: 'app-admin-new',
   templateUrl: './admin-new.component.html',
@@ -27,8 +29,8 @@ export class AdminNewComponent implements OnInit {
       name: '',
       email: '',
       mobile_number: '',
-      password: 'tkittkit',
-      password2: 'tkittkit',
+      password: DEFAULT_PASSWORD,
+      password2: DEFAULT_PASSWORD,
       role: this.roles[0],
       company_oid: ''
     }
