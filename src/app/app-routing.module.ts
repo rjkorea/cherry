@@ -28,6 +28,9 @@ import { TicketOrderDetailComponent } from './components/ticket/order-detail.com
 import { TicketOrderNewComponent } from './components/ticket/order-new.component';
 import { TicketListComponent } from './components/ticket/ticket-list.component';
 import { TicketDetailComponent } from './components/ticket/ticket-detail.component';
+import { PlaceListComponent } from './components/place/place-list.component';
+import { PlaceDetailComponent } from './components/place/place-detail.component';
+import { PlaceNewComponent } from './components/place/place-new.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -62,6 +65,10 @@ const routes: Routes = [
   { path: 'ticket/:id', component: TicketDetailComponent, canActivate: [AuthGuard] },
 
   { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
+
+  { path: 'place', component: PlaceListComponent, canActivate: [AuthGuard] },
+  { path: 'place/:id', component: PlaceDetailComponent, canActivate: [AuthGuard] },
+  { path: 'places/new', component: PlaceNewComponent, canActivate: [AuthGuard] },
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

@@ -41,6 +41,9 @@ import { TicketOrderDetailComponent } from './components/ticket/order-detail.com
 import { TicketOrderNewComponent } from './components/ticket/order-new.component';
 import { TicketListComponent } from './components/ticket/ticket-list.component';
 import { TicketDetailComponent } from './components/ticket/ticket-detail.component';
+import { PlaceListComponent } from './components/place/place-list.component';
+import { PlaceDetailComponent } from './components/place/place-detail.component';
+import { PlaceNewComponent } from './components/place/place-new.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -52,6 +55,7 @@ import { UserService } from './services/user.service';
 import { ContentService } from './services/content.service';
 import { CompanyService } from './services/company.service';
 import { TicketService } from './services/ticket.service';
+import { PlaceService } from './services/place.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 
@@ -86,7 +90,10 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     TicketOrderDetailComponent,
     TicketOrderNewComponent,
     TicketListComponent,
-    TicketDetailComponent
+    TicketDetailComponent,
+    PlaceListComponent,
+    PlaceDetailComponent,
+    PlaceNewComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +123,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     UserService,
     ContentService,
     CompanyService,
-    TicketService
+    TicketService,
+    PlaceService
   ],
   bootstrap: [AppComponent]
 })
