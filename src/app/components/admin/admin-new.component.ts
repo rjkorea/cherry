@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from '../../services/admin.service';
 import { CompanyService } from '../../services/company.service';
+import { AuthService } from '../../services/auth.service';
 import { NotificationsService } from 'angular2-notifications';
 
 const DEFAULT_PASSWORD = 'tkittkit';
@@ -18,8 +19,21 @@ export class AdminNewComponent implements OnInit {
   companies: any;
   notification_options: Object;
 
+  ROLE_MAP: any = {
+    super: [
+      'admin', 'host', 'staff'
+    ],
+    admin: [
+      'host', 'staff'
+    ],
+    host: [
+      'staff'
+    ]
+  }
+
   constructor(private adminService: AdminService,
               private companyService: CompanyService,
+              private authService: AuthService,
               private router: Router,
               private simpleNotificationsService: NotificationsService) { }
 
@@ -65,7 +79,6 @@ export class AdminNewComponent implements OnInit {
     if(this.admin.role == 'admin') {
       this.admin.company_oid = '';
     }
-    console.log(this.admin);
   }
 
   loadCompanies() {
