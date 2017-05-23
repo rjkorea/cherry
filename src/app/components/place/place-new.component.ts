@@ -24,7 +24,7 @@ export class PlaceNewComponent implements OnInit {
     if('area'in params) {
       this.area = params['area'];
     }
-    this.areas = [' ', 'A', 'B', 'C'];
+    this.areas = [' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G'];
     this.error = false;
     this.place = {
       name: '',
