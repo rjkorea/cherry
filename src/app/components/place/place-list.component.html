@@ -1,16 +1,27 @@
 <div class="row">
-    <div class="col-md-11">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="name, mobile number, area, number" [(ngModel)]="query" name="query" (keyup.enter)="search()">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-            </span>
-        </div>
-        <br>
+  <div class="col-sm-12 col-md-12">
+      <div class="input-group">
+          <input type="text" class="form-control" placeholder="name, mobile number, area, number" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+          <span class="input-group-btn">
+              <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          </span>
+      </div>
+      <br>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-md-6">
+    <div class="list-group">
+      <button [routerLink]="['/places/new', 'A']" type="button" class="list-group-item list-group-item-success">A 체크인</button>
+      <button [routerLink]="['/places/new', 'B']" type="button" class="list-group-item list-group-item-info">B 체크인</button>
+      <button [routerLink]="['/places/new', 'C']" type="button" class="list-group-item list-group-item-success">C 체크인</button>
+      <button [routerLink]="['/places/new', 'D']" type="button" class="list-group-item list-group-item-info">D 체크인</button>
+      <button [routerLink]="['/places/new', 'E']" type="button" class="list-group-item list-group-item-success">E 체크인</button>
+      <button [routerLink]="['/places/new', 'F']" type="button" class="list-group-item list-group-item-info">F 체크인</button>
+      <button [routerLink]="['/places/new', 'G']" type="button" class="list-group-item list-group-item-success">G 체크인</button>
     </div>
-    <div class="col-md-1">
-      <p><a routerLink="/places/new" class="btn btn-success" role="button">New</a></p>
-    </div>
+  </div>
 </div>
 
 <div class="panel panel-default">

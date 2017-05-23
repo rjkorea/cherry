@@ -18,25 +18,16 @@
         <br>
         <div class="form-group">
           <label for="area">영역</label>
-          <input type="text" class="form-control" [(ngModel)]="place.area" name="area">
-        </div>
-        <br>
-        <!-- <div class="form-group">
-          <label for="area">영역</label>
           <select class="form-control" name="area" [(ngModel)]="place.area">
-            <option [ngValue]="A">A</option>
-            <option [ngValue]="B">B</option>
-            <option [ngValue]="C">C</option>
-            <option [ngValue]="D">D</option>
-            <option [ngValue]="E">E</option>
-            <option [ngValue]="F">F</option>
-            <option [ngValue]="G">G</option>
+            <ng-container *ngFor="let a of areas">
+              <option [ngValue]="a">{{a}}</option>
+            </ng-container>
           </select>
         </div>
-        <br> -->
+        <br>
         <div class="form-group">
           <label for="number">번호</label>
-          <input type="number" class="form-control" [(ngModel)]="place.number" name="number">
+          <input type="text" class="form-control" [(ngModel)]="place.number" name="number">
         </div>
         <br>
         <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">체크인</button>
@@ -44,6 +35,15 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="error" class="row">
+  <div class="col-md-6">
+    <div class="alert alert-danger" role="alert">
+      <strong>에러</strong> 중복되는 체크인입니다.
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
     <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>

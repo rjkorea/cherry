@@ -12,7 +12,7 @@ export class PlaceListComponent implements OnInit {
   private places: Array<Object>;
   private query: any = '';
   private page: any = 1;
-  private size: any = 10;
+  private size: any = 9;
   private count: any = 0;
 
   constructor(private placeService: PlaceService,

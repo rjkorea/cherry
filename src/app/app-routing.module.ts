@@ -68,7 +68,7 @@ const routes: Routes = [
 
   { path: 'place', component: PlaceListComponent, canActivate: [AuthGuard] },
   { path: 'place/:id', component: PlaceDetailComponent, canActivate: [AuthGuard] },
-  { path: 'places/new', component: PlaceNewComponent, canActivate: [AuthGuard] },
+  { path: 'places/new/:area', component: PlaceNewComponent, canActivate: [AuthGuard] },
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

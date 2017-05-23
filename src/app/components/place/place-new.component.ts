@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PlaceService } from '../../services/place.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -11,15 +11,25 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class PlaceNewComponent implements OnInit {
   place: any;
+  area: string;
+  error: boolean;
+  areas: string[];
 
   constructor(private placeService: PlaceService,
+              private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
+    let params: Params = this.route.snapshot.params;
+    if('area'in params) {
+      this.area = params['area'];
+    }
+    this.areas = [' ', 'A', 'B', 'C'];
+    this.error = false;
     this.place = {
       name: '',
       mobile_number: '',
-      area: '',
+      area: this.area,
       number: ''
     }
   }
@@ -31,6 +41,7 @@ export class PlaceNewComponent implements OnInit {
           this.router.navigate(['/place']);
         },
         error => {
+          this.error = true;
           console.log(error);
         }
       );
