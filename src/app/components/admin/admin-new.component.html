@@ -4,9 +4,9 @@
   </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-6">
         <br>
-        <div class="input-group">
+        <div class="form-group">
           <label for="role">Role (required)</label>
           <select class="form-control" name="role" [(ngModel)]="admin.role" (ngModelChange)="changeRole()">
             <ng-container *ngFor="let r of roles">
@@ -16,7 +16,7 @@
         </div>
         <ng-template [ngIf]="admin.role=='host' || admin.role=='staff'">
           <br>
-          <div class="input-group">
+          <div class="form-group">
             <label for="company">Company (required)</label>
             <select class="form-control" name="company" [(ngModel)]="admin.company_oid">
               <ng-container *ngFor="let c of companies">
@@ -26,27 +26,27 @@
           </div>
         </ng-template>
         <br>
-        <div class="input-group">
+        <div class="form-group">
           <label for="name">Name (required)</label>
           <input type="text" class="form-control" [(ngModel)]="admin.name" name="name">
         </div>
         <br>
-        <div class="input-group">
+        <div class="form-group">
           <label for="email">Email (required)</label>
           <input type="text" class="form-control" [(ngModel)]="admin.email" name="email">
         </div>
         <br>
-        <div class="input-group">
+        <div class="form-group">
           <label for="mobile_number">Mobile Number (required)</label>
           <input type="text" class="form-control" [(ngModel)]="admin.mobile_number" name="mobile_number">
         </div>
         <br>
-        <div class="input-group">
+        <div class="form-group">
           <label for="password">Password (required)</label>
           <input type="password" class="form-control" [(ngModel)]="admin.password" name="password">
         </div>
         <br>
-        <div class="input-group">
+        <div class="form-group">
           <label for="password2">Confirm Password (required)</label>
           <input type="password" class="form-control" [(ngModel)]="admin.password2" name="password2">
         </div>

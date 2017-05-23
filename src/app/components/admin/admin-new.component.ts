@@ -5,7 +5,19 @@ import { CompanyService } from '../../services/company.service';
 import { AuthService } from '../../services/auth.service';
 import { NotificationsService } from 'angular2-notifications';
 
+const ROLE_MAP: any = {
+  super: [
+    'admin', 'host', 'staff'
+  ],
+  admin: [
+    'host', 'staff'
+  ],
+  host: [
+    'staff'
+  ]
+}
 const DEFAULT_PASSWORD = 'tkittkit';
+
 
 @Component({
   selector: 'app-admin-new',
@@ -38,7 +50,7 @@ export class AdminNewComponent implements OnInit {
               private simpleNotificationsService: NotificationsService) { }
 
   ngOnInit() {
-    this.roles = ['', 'admin', 'host', 'staff'];
+    this.roles = ROLE_MAP[this.authService.getRole()];
     this.admin = {
       name: '',
       email: '',
