@@ -12,6 +12,7 @@ export class PlaceDetailComponent implements OnInit {
   place: any;
   place_form: any;
   edit_mode: boolean;
+  error: boolean;
 
   constructor(private route: ActivatedRoute,
               private placeService: PlaceService) { }
@@ -20,6 +21,7 @@ export class PlaceDetailComponent implements OnInit {
     let params: Params = this.route.snapshot.params;
     this.loadPlace(params['id']);
     this.edit_mode = false;
+    this.error = false;
   }
 
   loadPlace(id: string) {
@@ -50,9 +52,11 @@ export class PlaceDetailComponent implements OnInit {
       .subscribe(
         response => {
           this.loadPlace(this.place._id);
+          this.error = false;
           this.edit_mode = false;
         },
         error => {
+          this.error = true;
           console.log(error);
         }
       );
@@ -60,6 +64,7 @@ export class PlaceDetailComponent implements OnInit {
 
   onCancel() {
     this.loadPlace(this.place._id);
+    this.error = false;
     this.edit_mode = false;
   }
 
