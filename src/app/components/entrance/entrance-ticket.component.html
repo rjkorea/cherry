@@ -1,0 +1,60 @@
+<div *ngIf="ticket">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ticket.ticket_type.name}} {{ticket.ticket_type.desc}} ({{ticket.content.name}})</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <ul *ngIf="ticket.user" class="list-group">
+            <li class="list-group-item list-group-item-success"><strong>입장객</strong></li>
+            <li class="list-group-item"><strong>이름: </strong>{{ticket.user.name}}</li>
+            <li *ngIf="ticket.user.birthday" class="list-group-item"><strong>생년월일: </strong>{{ticket.user.birthday}}</li>
+            <li class="list-group-item"><strong>핸드폰 번호: </strong>{{ticket.user.mobile_number}}</li>
+            <li *ngIf="ticket.user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.user.gender}}</li>
+            <li class="list-group-item"><strong>상태: </strong>
+              <span *ngIf="ticket.enabled" class="label label-success">enabled</span>
+              <span *ngIf="!ticket.enabled" class="label label-danger">disabled</span>
+            </li>
+            <li class="list-group-item"><strong>수정일: </strong>{{ticket.user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>가입일: </strong>{{ticket.user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <button type="button" class="btn btn-default" (click)="onEditUser()">입장객 정보 수정</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <ul class="list-group" *ngFor="let d of ticket.days">
+            <li class="list-group-item list-group-item-success"><strong>Day </strong>{{d.day}}</li>
+            <li class="list-group-item input-group">
+              <strong>입장: </strong>
+                <ui-switch size="small" [(ngModel)]="d.entered"></ui-switch>
+            </li>
+            <li class="list-group-item" *ngIf="d.entered_at"><strong>입장시간: </strong>{{d.entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item" *ngIf="d.fee"><strong>환경부담금: </strong>{{d.fee.price}}</li>
+            <li class="list-group-item" *ngIf="d.fee">
+              <select class="form-control" [(ngModel)]="d.fee.method">
+                <ng-container *ngFor="let m of methods">
+                  <option [ngValue]="m">{{m}} 결제</option>
+                </ng-container>
+              </select>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-default" (click)="onDoneEntrance()">입장완료</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+    </div>
+  </div>
+</div>

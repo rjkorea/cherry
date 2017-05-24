@@ -12,8 +12,11 @@ import { WebSocketService } from '../../services/websocket.service';
 export class EntranceComponent implements OnInit {
   private mode: string;
   private user: string;
+  private users: Array<any>;
+  private users_count: number;
   private tickets: Array<any>;
-  private tickets_count: any;
+  private tickets_count: number;
+  private query: string;
 
   constructor(
     private userService: UserService,
@@ -21,10 +24,11 @@ export class EntranceComponent implements OnInit {
     private websocketService: WebSocketService) { }
 
   ngOnInit() {
+    this.query = '';
     this.mode = 'idle'; //idle, tablet, user search
     this.user = 'Noname';
     this.tickets = [];
-    this.tickets_count = [];
+    this.tickets_count = 0;
     this.initWebSocket();
   }
 
@@ -53,6 +57,16 @@ export class EntranceComponent implements OnInit {
 
   onSearch() {
     console.log('click search');
+    this.userService.getUserList(this.query, 0, 100)
+      .subscribe(
+        response => {
+          this.users_count = response['count'];
+          this.users = response['data'];
+        },
+        error => {
+          console.log(error);
+        }
+      );
     this.mode = 'search'
   }
 

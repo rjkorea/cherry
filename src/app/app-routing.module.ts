@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.co
 import { SignupComponent } from './components/signup/signup.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { EntranceComponent } from './components/entrance/entrance.component';
+import { EntranceTicketComponent } from './components/entrance/entrance-ticket.component';
 import { CompanyListComponent } from './components/company/company-list.component';
 import { CompanyDetailComponent } from './components/company/company-detail.component';
 import { CompanyNewComponent } from './components/company/company-new.component';
@@ -65,6 +66,7 @@ const routes: Routes = [
   { path: 'ticket/:id', component: TicketDetailComponent, canActivate: [AuthGuard] },
 
   { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
+  { path: 'entrance/ticket/:id', component: EntranceTicketComponent, canActivate: [AuthGuard]},
 
   { path: 'place', component: PlaceListComponent, canActivate: [AuthGuard] },
   { path: 'place/:id', component: PlaceDetailComponent, canActivate: [AuthGuard] },

@@ -21,6 +21,7 @@ import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.co
 import { SignupComponent } from './components/signup/signup.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { EntranceComponent } from './components/entrance/entrance.component';
+import { EntranceTicketComponent } from './components/entrance/entrance-ticket.component';
 import { CompanyListComponent } from './components/company/company-list.component';
 import { CompanyDetailComponent } from './components/company/company-detail.component';
 import { CompanyNewComponent } from './components/company/company-new.component';
@@ -71,6 +72,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     NotificationComponent,
     DataFilterPipe,
     EntranceComponent,
+    EntranceTicketComponent,
     CompanyListComponent,
     CompanyDetailComponent,
     CompanyNewComponent,

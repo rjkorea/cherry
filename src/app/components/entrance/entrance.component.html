@@ -24,16 +24,17 @@
         <div *ngFor="let ticket of tickets">
           <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-              <!-- <img *ngIf="type.content.image" src="{{type.content.image.m}}">
+              <!-- <img *ngIf="type.content.image" src="{{type.content.image.logo.m}}">
               <img *ngIf="!type.content.image" src="assets/images/no_image_icon.png"> -->
               <div class="caption">
-                <h4><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <a [routerLink]="['/ticket', ticket._id]">{{ticket._id}}</a></h4>
-                <h4>{{ticket.day}} <strong>day</strong></h4>
+                <h4><a [routerLink]="['ticket', ticket._id]">{{ticket.content.name}}</a></h4>
+                <h4>{{ticket.ticket_type.day}} <strong>day</strong></h4>
                 <p>
                   <span *ngIf="ticket.status=='pend'" class="label label-default">pend</span>
                   <span *ngIf="ticket.status=='send'" class="label label-info">send</span>
                   <span *ngIf="ticket.status=='register'" class="label label-primary">register</span>
                   <span *ngIf="ticket.status=='use'" class="label label-success">use</span>
+                  <span *ngIf="ticket.status=='cancel'" class="label label-warning">warning</span>
                 </p>
                 <p>
                   <span *ngIf="ticket.enabled" class="label label-success">enabled</span>
@@ -62,46 +63,49 @@
 
 <div *ngIf="mode=='search'" class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Not implements <span class="badge">7</span></h3>
-    <!-- <h3 class="panel-title">Tickets <span class="badge">{{count}}</span></h3> -->
+    <h3 class="panel-title">Users <span class="badge">{{users_count}}</span></h3>
   </div>
   <div class="panel-body">
-    <div *ngIf="count">
+    <div *ngIf="users_count">
       <div class="row">
-        <div *ngFor="let ticket of tickets">
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <!-- <img *ngIf="type.content.image" src="{{type.content.image.m}}">
-              <img *ngIf="!type.content.image" src="assets/images/no_image_icon.png"> -->
-              <div class="caption">
-                <!-- <h4><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <a [routerLink]="['/ticket', ticket._id]">{{ticket._id}}</a></h4>
-                <h4>{{ticket.day}} <strong>day</strong></h4>
-                <p>
-                  <span *ngIf="ticket.status=='pend'" class="label label-default">pend</span>
-                  <span *ngIf="ticket.status=='send'" class="label label-info">send</span>
-                  <span *ngIf="ticket.status=='register'" class="label label-primary">register</span>
-                  <span *ngIf="ticket.status=='use'" class="label label-success">use</span>
+        <div class="col-md-12">
+          <div *ngFor="let user of users">
+            <div class="row">
+              <div class="col-md-2">
+                <img *ngIf="!user.image" class="img-thumbnail" src="assets/images/user.png">
+                <img *ngIf="user.image" class="img-thumbnail" src="{{user.image}}">
+              </div>
+              <div class="col-md-4">
+                <h4><a (click)="onTablet(user._id)">{{user.name}}</a></h4>
+                <p *ngIf="user.mobile_number">
+                  <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{user.mobile_number}}
                 </p>
-                <p>
-                  <span *ngIf="ticket.enabled" class="label label-success">enabled</span>
-                  <span *ngIf="!ticket.enabled" class="label label-danger">disabled</span>
+                <p *ngIf="user.email">
+                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{user.email}}
                 </p>
-                <p *ngIf="ticket.user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ticket.user.name}}</p>
-                <p *ngIf="!ticket.user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></p> -->
+                <p *ngIf="user.birthday">
+                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{user.birthday}}
+                </p>
+                <p *ngIf="user.gender">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{user.gender}}
+                </p>
+              </div>
+              <div class="col-md-3">
+                <span *ngIf="user.enabled" class="label label-success">enabled</span>
+                <span *ngIf="!user.enabled" class="label label-danger">disabled</span>
+              </div>
+              <div class="col-md-3">
+                <span class="label label-default">{{user._id}}</span>
+                <span class="label label-primary">{{user.role}}</span>
               </div>
             </div>
+            <hr />
           </div>
         </div>
       </div>
-      <!-- <nav aria-label="...">
-        <ul class="pager">
-          <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
-          <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
-        </ul>
-      </nav> -->
     </div>
 
-    <!-- <div *ngIf="!!!count">
+    <div *ngIf="!!!users_count">
       <div class="row">
         <div class="col-md-12">
           <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
@@ -109,7 +113,7 @@
         </div>
       </div>
       <hr />
-    </div> -->
+    </div>
 
   </div>
 </div>

@@ -14,6 +14,9 @@
           <ul class="list-group">
             <li class="list-group-item"><strong>ID: </strong>{{ticket._id}}</li>
             <li class="list-group-item"><strong>Ticket Order ID: </strong>{{ticket.ticket_order._id}}</li>
+            <li class="list-group-item"><strong>Content Name: </strong>{{ticket.content.name}}</li>
+            <li class="list-group-item"><strong>Ticket Type Name: </strong>{{ticket.ticket_type.name}}</li>
+            <li class="list-group-item"><strong>Ticket Type Description: </strong>{{ticket.ticket_type.desc}}</li>
             <li class="list-group-item"><strong>Days: </strong>{{ticket.days.length}}</li>
             <li class="list-group-item"><strong>Status: </strong>{{ticket.status}}</li>
             <li *ngIf="ticket.entered_at" class="list-group-item"><strong>Entered at: </strong>{{ticket.enter_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
@@ -34,7 +37,7 @@
             <li class="list-group-item"><strong>Mobile Number: </strong>{{ticket.user.mobile_number}}</li>
             <li *ngIf="ticket.user.birthday" class="list-group-item"><strong>Birthday: </strong>{{ticket.user.birthday}}</li>
             <li *ngIf="ticket.user.gender" class="list-group-item"><strong>Gender: </strong>{{ticket.user.gender}}</li>
-            <li class="list-group-item"><strong>Member Since: </strong>{{ticket.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>Member Since: </strong>{{ticket.user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
         </div>
       </div>
