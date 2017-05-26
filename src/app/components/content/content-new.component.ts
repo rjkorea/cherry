@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContentService } from '../../services/content.service';
+import { CompanyService } from '../../services/company.service';
+import { AdminService } from '../../services/admin.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-content-new',
@@ -10,16 +13,26 @@ import { ContentService } from '../../services/content.service';
 })
 export class ContentNewComponent implements OnInit {
   content: any;
+  companies: any;
+  admins: any;
+  role: string;
 
   constructor(private contentService: ContentService,
+              private companyService: CompanyService,
+              private adminService: AdminService,
+              private authService: AuthService,
               private router: Router) { }
 
   ngOnInit() {
+    this.role = this.authService.getRole();
     this.content = {
+      company_oid: '',
+      admin_oid: '',
       name: '',
       place: '',
       desc: ''
     }
+    this.loadCompanies();
   }
 
   onSubmit() {
@@ -32,6 +45,34 @@ export class ContentNewComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  loadCompanies() {
+    this.companyService.getCompanyList('', 0, 100)
+      .subscribe(
+        response => {
+          this.companies = response['data'];
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  loadAdmins(company_oid: string) {
+    this.adminService.getAdminList(company_oid, 0, 100)
+      .subscribe(
+        response => {
+          this.admins = response['data'];
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  changeRole() {
+    console.log(this.content.company_oid);
   }
 
   disabledSubmit() {

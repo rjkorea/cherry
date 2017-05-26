@@ -8,18 +8,29 @@
         <img class="img-thumbnail" src="assets/images/no_image_icon.png">
       </div>
       <div class="col-md-8">
+        <ng-template [ngIf]="role=='super' || role=='admin'">
+          <br>
+          <div class="form-group">
+            <label for="company">Company (required)</label>
+            <select class="form-control" name="company" [(ngModel)]="content.company_oid" (ngModelChange)="changeRole()">
+              <ng-container *ngFor="let c of companies">
+                <option [ngValue]="c._id">{{c.name}} ({{c.contact.name}})</option>
+              </ng-container>
+            </select>
+          </div>
+        </ng-template>
         <br>
-        <div class="input-group">
+        <div class="form-group">
           <label for="name">Name (required)</label>
           <input type="text" class="form-control" [(ngModel)]="content.name" name="name">
         </div>
         <br>
-        <div class="input-group">
+        <div class="form-group">
           <label for="place">Place (required)</label>
           <input type="text" class="form-control" [(ngModel)]="content.place" name="place">
         </div>
         <br>
-        <div class="input-group">
+        <div class="form-group">
           <label>Description</label>
           <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="content.desc" name="desc"></textarea>
         </div>
