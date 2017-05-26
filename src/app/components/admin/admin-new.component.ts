@@ -15,7 +15,7 @@ const ROLE_MAP: any = {
   host: [
     'staff'
   ]
-}
+};
 const DEFAULT_PASSWORD = 'tkittkit';
 
 
@@ -30,18 +30,6 @@ export class AdminNewComponent implements OnInit {
   roles: string[];
   companies: any;
   notification_options: Object;
-
-  ROLE_MAP: any = {
-    super: [
-      'admin', 'host', 'staff'
-    ],
-    admin: [
-      'host', 'staff'
-    ],
-    host: [
-      'staff'
-    ]
-  }
 
   constructor(private adminService: AdminService,
               private companyService: CompanyService,
@@ -111,7 +99,11 @@ export class AdminNewComponent implements OnInit {
   }
 
   disabledSubmit() {
-    return !(this.admin.role && this.admin.name && this.admin.email && this.admin.mobile_number && this.admin.password);
+    return !(this.admin.role &&
+            this.admin.name &&
+            this.admin.email &&
+            this.admin.mobile_number &&
+            this.admin.password);
   }
 
 }
