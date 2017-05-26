@@ -40,7 +40,9 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">체크인 <span class="badge">{{count}}</span></h3>
+    <h3 class="panel-title">체크인 <strong>{{((count/stats.total)*100).toString() | slice:0:4}}% </strong>
+      <span class="badge">{{count}} / {{stats.total}}</span>
+    </h3>
   </div>
   <div class="panel-body">
     <div *ngIf="count">

@@ -18,8 +18,7 @@
             <li class="list-group-item"><strong>휴대폰: </strong>{{place.mobile_number}}</li>
             <li class="list-group-item"><strong>영역: </strong>{{place.area}}</li>
             <li class="list-group-item"><strong>번호: </strong>{{place.number}}</li>
-            <li class="list-group-item"><strong>수정일시: </strong>{{place.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-            <li class="list-group-item"><strong>생성일시: </strong>{{place.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>체크인 일시: </strong>{{place.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
           <div *ngIf="edit_mode" class="edit">
             <div class="input-group">

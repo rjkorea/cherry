@@ -57,6 +57,7 @@ export class PlaceListComponent implements OnInit {
         checkin: 40,
         total: 225
       },
+      total: 0
     };
     this.loadStats();
     this.loadPlaces(this.query, this.page);
@@ -86,6 +87,8 @@ export class PlaceListComponent implements OnInit {
           this.stats.E.checkin = response['data']['E'];
           this.stats.F.checkin = response['data']['F'];
           this.stats.G.checkin = response['data']['G'];
+          this.stats.total = this.stats.A.total + this.stats.B.total + this.stats.C.total + this.stats.D.total + this.stats.E.total + this.stats.F.total + this.stats.G.total;
+          console.log(this.stats.total);
         },
         error => {
           console.log(error);
