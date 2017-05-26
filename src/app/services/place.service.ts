@@ -45,4 +45,11 @@ export class PlaceService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public getStats(): Observable<{}> {
+    let url = this.placesUrl + '/stats';
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }

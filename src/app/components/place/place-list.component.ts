@@ -14,6 +14,7 @@ export class PlaceListComponent implements OnInit {
   private page: any = 1;
   private size: any = 9;
   private count: any = 0;
+  private stats: any;
 
   constructor(private placeService: PlaceService,
               private route: ActivatedRoute,
@@ -27,6 +28,37 @@ export class PlaceListComponent implements OnInit {
     if('page' in params) {
       this.page = +params['page'];
     }
+    this.stats = {
+      A: {
+        checkin: 34,
+        total: 180
+      },
+      B: {
+        checkin: 3,
+        total: 100
+      },
+      C: {
+        checkin: 10,
+        total: 30
+      },
+      D: {
+        checkin: 154,
+        total: 190
+      },
+      E: {
+        checkin: 39,
+        total: 100
+      },
+      F: {
+        checkin: 530,
+        total: 569
+      },
+      G: {
+        checkin: 40,
+        total: 225
+      },
+    };
+    this.loadStats();
     this.loadPlaces(this.query, this.page);
   }
 
@@ -36,6 +68,24 @@ export class PlaceListComponent implements OnInit {
         response => {
           this.count = response['count'];
           this.places = response['data'];
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  loadStats() {
+    this.placeService.getStats()
+      .subscribe(
+        response => {
+          this.stats.A.checkin = response['data']['A'];
+          this.stats.B.checkin = response['data']['B'];
+          this.stats.C.checkin = response['data']['C'];
+          this.stats.D.checkin = response['data']['D'];
+          this.stats.E.checkin = response['data']['E'];
+          this.stats.F.checkin = response['data']['F'];
+          this.stats.G.checkin = response['data']['G'];
         },
         error => {
           console.log(error);
