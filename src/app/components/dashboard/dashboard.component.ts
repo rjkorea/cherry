@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
-import { NotificationService } from '../../services/notification.service';
+import { ContentService } from '../../services/content.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +12,9 @@ export class DashboardComponent implements OnInit {
   private total_company_count: number;
   private total_user_count: number;
   private total_content_count: number;
+
+  private contents: any;
+  private content_oid: string;
 
   type = 'pie';
   data = {
@@ -59,9 +62,11 @@ export class DashboardComponent implements OnInit {
     maintainAspectRatio: false
   };
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService,
+              private contentService: ContentService) { }
 
   ngOnInit() {
+    this.loadContents();
     this.loadDashboard();
   }
 
@@ -78,6 +83,23 @@ export class DashboardComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  loadContents() {
+    this.contentService.getContentList('', 0, 100)
+      .subscribe(
+        response => {
+          this.contents = response['data'];
+          console.log(this.contents);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  changeContent() {
+    console.log('changed content', this.content_oid);
   }
 
 }
