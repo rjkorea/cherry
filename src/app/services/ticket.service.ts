@@ -111,4 +111,11 @@ export class TicketService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public registerTicket(id: string, user: any): Observable<{}> {
+    let url = this.ticketUrl + '/' + id + '/register/user';
+    return this.http.put(url, JSON.stringify(user), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }
