@@ -39,11 +39,11 @@
             <li *ngIf="ticket.user.gender" class="list-group-item"><strong>Gender: </strong>{{ticket.user.gender}}</li>
             <li class="list-group-item"><strong>Member Since: </strong>{{ticket.user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
+          <button *ngIf="!ticket.user" type="button" class="btn btn-success" (click)="registerUser()">Register User</button>
         </div>
       </div>
     </div>
   </div>
-
 
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
@@ -51,5 +51,3 @@
     </div>
   </div>
 </div>
-
-<simple-notifications></simple-notifications>
