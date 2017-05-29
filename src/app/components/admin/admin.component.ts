@@ -14,7 +14,7 @@ export class AdminComponent implements OnInit {
   private notification_options: Object;
   private query: any = '';
   private page: any = 1;
-  private size: any = 3;
+  private size: any = 10;
   private count: any = 0;
 
   constructor(private adminService: AdminService,
