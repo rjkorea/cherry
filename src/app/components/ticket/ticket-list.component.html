@@ -28,7 +28,7 @@
               <div class="caption">
                 <h4><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <a [routerLink]="['/ticket', ticket._id]">{{ticket.ticket_type.name}} ({{ticket.content.name}})</a></h4>
                 <h4>{{ticket.days.length}} <strong>days</strong></h4>
-                <p *ngIf="ticket.days[0].fee.price">
+                <p *ngIf="ticket.days[0].fee">
                   <strong>Fee </strong>{{ticket.days[0].fee.price}}
                 </p>
                 <!--<p>
