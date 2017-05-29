@@ -37,12 +37,12 @@
             <br>
             <div class="input-group">
               <span class="input-group-addon">영역</span>
-              <input type="text" class="form-control" [(ngModel)]="place.area" name="area">
+              <input type="text" class="form-control" [(ngModel)]="place.area" name="area" [disabled]="!place.enabled">
             </div>
             <br>
             <div class="input-group">
               <span class="input-group-addon">번호</span>
-              <input type="text" class="form-control" [(ngModel)]="place.number" name="number">
+              <input type="text" class="form-control" [(ngModel)]="place.number" name="number" [disabled]="!place.enabled">
             </div>
             <br>
           </div>
