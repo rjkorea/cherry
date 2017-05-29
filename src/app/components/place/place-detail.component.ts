@@ -68,4 +68,11 @@ export class PlaceDetailComponent implements OnInit {
     this.edit_mode = false;
   }
 
+  changeEnabled() {
+    if(!this.place.enabled) {
+      this.place.area = '';
+      this.place.number= '';
+    }
+  }
+
 }
