@@ -35,9 +35,13 @@
               <input type="text" class="form-control" [(ngModel)]="place.mobile_number" name="mobile_number">
             </div>
             <br>
-            <div class="input-group">
-              <span class="input-group-addon">영역</span>
-              <input type="text" class="form-control" [(ngModel)]="place.area" name="area" [disabled]="!place.enabled">
+            <div class="form-group">
+              <label for="area">영역</label>
+              <select class="form-control" name="area" [(ngModel)]="place.area" [disabled]="!place.enabled">
+                <ng-container *ngFor="let a of areas">
+                  <option [ngValue]="a">{{a}}</option>
+                </ng-container>
+              </select>
             </div>
             <br>
             <div class="input-group">

@@ -9,16 +9,18 @@ import { PlaceService } from '../../services/place.service';
   providers: []
 })
 export class PlaceDetailComponent implements OnInit {
-  place: any;
-  place_form: any;
-  edit_mode: boolean;
-  error: boolean;
+  private place: any;
+  private place_form: any;
+  private edit_mode: boolean;
+  private error: boolean;
+  private areas: string[];
 
   constructor(private route: ActivatedRoute,
               private placeService: PlaceService) { }
 
   ngOnInit() {
     let params: Params = this.route.snapshot.params;
+    this.areas = [' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G'];
     this.loadPlace(params['id']);
     this.edit_mode = false;
     this.error = false;
