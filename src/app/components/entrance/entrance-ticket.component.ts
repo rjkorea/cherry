@@ -77,6 +77,7 @@ export class EntranceTicketComponent implements OnInit {
   }
 
   onCancelUser() {
+    this.loadTicket(this.ticket._id);
     this.user_edit_mode = false;
   }
 
