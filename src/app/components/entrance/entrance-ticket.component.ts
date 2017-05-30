@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-entrance-ticket',
@@ -9,16 +10,32 @@ import { TicketService } from '../../services/ticket.service';
   providers: []
 })
 export class EntranceTicketComponent implements OnInit {
-  ticket: any;
-  ticket_form: any;
-  methods: string[];
+  private ticket: any;
+  private ticket_form: any;
+  private methods: string[];
+  private user_edit_mode: boolean;
+  private genders: any;
+  private user_form: any;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              private userService: UserService,
               private ticketService: TicketService) { }
 
   ngOnInit() {
+    this.user_edit_mode = false;
     this.methods = ['cash', 'creditcard'];
+    this.genders = [
+      {text: 'Male', value: 'male'},
+      {text: 'Female', value: 'female'}
+    ];
+    this.user_form = {
+      name: '',
+      mobile_number: '',
+      birthday: '',
+      gender: '',
+      email: ''
+    };
     let params: Params = this.route.snapshot.params;
     this.loadTicket(params['id']);
   }
@@ -36,11 +53,34 @@ export class EntranceTicketComponent implements OnInit {
   }
 
   onEditUser() {
-    this.router.navigate(['/user', this.ticket.user._id]);
+    this.user_edit_mode = true;
+  }
+
+  onSaveUser() {
+    this.user_form = {
+      name: this.ticket.user.name,
+      email: this.ticket.user.email,
+      mobile_number: this.ticket.user.mobile_number,
+      birthday: this.ticket.user.birthday,
+      gender: this.ticket.user.gender
+    }
+    this.userService.updateUser(this.ticket.user._id, this.user_form)
+      .subscribe(
+        response => {
+          this.loadTicket(this.ticket._id);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    this.user_edit_mode = false;
+  }
+
+  onCancelUser() {
+    this.user_edit_mode = false;
   }
 
   onDoneEntrance() {
-    console.log(this.ticket);
     this.ticket_form = {
       days: this.ticket.days
     };
