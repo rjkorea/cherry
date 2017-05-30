@@ -83,7 +83,8 @@ export class EntranceTicketComponent implements OnInit {
 
   onDoneEntrance() {
     this.ticket_form = {
-      days: this.ticket.days
+      days: this.ticket.days,
+      status: 'use'
     };
     this.ticketService.updateTicket(this.ticket._id ,this.ticket_form)
       .subscribe(
