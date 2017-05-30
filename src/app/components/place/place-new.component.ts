@@ -12,8 +12,8 @@ import { NotificationsService } from 'angular2-notifications';
 export class PlaceNewComponent implements OnInit {
   place: any;
   area: string;
-  error: boolean;
   areas: string[];
+  error_msg = '';
 
   constructor(private placeService: PlaceService,
               private route: ActivatedRoute,
@@ -25,7 +25,6 @@ export class PlaceNewComponent implements OnInit {
       this.area = params['area'];
     }
     this.areas = [' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G'];
-    this.error = false;
     this.place = {
       name: '',
       mobile_number: '',
@@ -41,8 +40,8 @@ export class PlaceNewComponent implements OnInit {
           this.router.navigate(['/place']);
         },
         error => {
-          this.error = true;
-          console.log(error);
+          this.error_msg = '중복되는 체크인입니다.';
+          console.log(this.error_msg);
         }
       );
   }

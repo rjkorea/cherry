@@ -36,10 +36,10 @@
   </div>
 </div>
 
-<div *ngIf="error" class="row">
+<div *ngIf="error_msg" class="row">
   <div class="col-md-6">
     <div class="alert alert-danger" role="alert">
-      <strong>에러</strong> 중복되는 체크인입니다.
+      <strong>에러</strong> {{error_msg}}
     </div>
   </div>
 </div>

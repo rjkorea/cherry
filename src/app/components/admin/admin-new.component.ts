@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AdminService } from '../../services/admin.service';
 import { CompanyService } from '../../services/company.service';
 import { AuthService } from '../../services/auth.service';
-import { NotificationsService } from 'angular2-notifications';
 
 const ROLE_MAP: any = {
   super: [
@@ -23,19 +22,18 @@ const DEFAULT_PASSWORD = 'tkittkit';
   selector: 'app-admin-new',
   templateUrl: './admin-new.component.html',
   styleUrls: ['./admin-new.component.css'],
-  providers: [NotificationsService]
+  providers: []
 })
 export class AdminNewComponent implements OnInit {
   admin: any;
   roles: string[];
   companies: any;
-  notification_options: Object;
+  error_msg = '';
 
   constructor(private adminService: AdminService,
               private companyService: CompanyService,
               private authService: AuthService,
-              private router: Router,
-              private simpleNotificationsService: NotificationsService) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.roles = ROLE_MAP[this.authService.getRole()];
@@ -49,13 +47,6 @@ export class AdminNewComponent implements OnInit {
       company_oid: ''
     }
     this.loadCompanies()
-    this.notification_options = {
-      timeOut: 3000,
-      showProgressBar: true,
-      pauseOnHover: false,
-      clickToClose: true,
-      maxLength: 128
-    }
   }
 
   onSubmit() {
@@ -65,12 +56,8 @@ export class AdminNewComponent implements OnInit {
           this.router.navigate(['/admin']);
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
-          console.log(error);
+          this.error_msg = error['message']
+          console.log(this.error_msg);
         }
       );
   }
@@ -88,12 +75,8 @@ export class AdminNewComponent implements OnInit {
           this.companies = response['data'];
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
-          console.log(error);
+          this.error_msg = error['message']
+          console.log(this.error_msg);
         }
       );
   }

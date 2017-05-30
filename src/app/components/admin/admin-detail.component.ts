@@ -1,33 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
 import { AdminService } from '../../services/admin.service';
-import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-admin-detail',
   templateUrl: './admin-detail.component.html',
   styleUrls: ['./admin-detail.component.css'],
-  providers: [NotificationsService]
+  providers: []
 })
 export class AdminDetailComponent implements OnInit {
   admin: any;
   admin_form: any;
-  notification_options: Object;
   edit_mode: boolean;
+  error_msg = '';
 
   constructor(private route: ActivatedRoute,
-              private adminService: AdminService,
-              private simpleNotificationsService: NotificationsService) { }
+              private adminService: AdminService) { }
 
   ngOnInit() {
     let params: Params = this.route.snapshot.params;
-    this.notification_options = {
-      timeOut: 3000,
-      showProgressBar: true,
-      pauseOnHover: false,
-      clickToClose: true,
-      maxLength: 128
-    }
     this.loadAdmin(params['id']);
     this.edit_mode = false;
   }
@@ -39,11 +30,6 @@ export class AdminDetailComponent implements OnInit {
           this.admin = response['data'];
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
@@ -70,12 +56,8 @@ export class AdminDetailComponent implements OnInit {
           this.edit_mode = false;
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
-          console.log(error);
+          this.error_msg = error['message'];
+          console.log(this.error_msg);
         }
       );
   }

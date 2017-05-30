@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log('clicked login');
-    this.authService.login(this.model.email, this.model.password)
+    this.authService.login(this.model.email.trim(), this.model.password.trim())
       .subscribe(
         response => {
           if(this.authService.getRole() == 'staff') {

@@ -52,6 +52,13 @@
         </div>
         <br>
         <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">Sumit new admin</button>
+        <div *ngIf="error_msg" class="row">
+          <div class="col-md-6">
+            <div class="alert alert-danger" role="alert">
+              <strong>에러</strong> {{error_msg}}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -61,4 +68,3 @@
     <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
   </div>
 </div>
-<simple-notifications></simple-notifications>
