@@ -45,4 +45,11 @@ export class AdminService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public updateAdminPassword(id: string, data: any): Observable<{}> {
+    let url = this.adminUrl + '/' + id + '/password';
+    return this.http.put(url, JSON.stringify(data), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }
