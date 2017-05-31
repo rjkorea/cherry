@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params} from '@angular/router';
+import { Router, ActivatedRoute, Params} from '@angular/router';
 import { AdminService } from '../../services/admin.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class AdminDetailComponent implements OnInit {
   error_msg = '';
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private adminService: AdminService) { }
 
   ngOnInit() {
@@ -60,6 +61,10 @@ export class AdminDetailComponent implements OnInit {
           console.log(this.error_msg);
         }
       );
+  }
+
+  changePassword() {
+    this.router.navigate(['/admin', this.route.snapshot.params['id'], 'password']);
   }
 
   onCancel() {

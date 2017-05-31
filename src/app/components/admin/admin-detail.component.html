@@ -9,7 +9,7 @@
           <img *ngIf="!admin.image" class="img-thumbnail" src="assets/images/user.png">
           <img *ngIf="admin.image" class="img-thumbnail" src="{{admin.image}}">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
           <br />
           <div class="stats">
             <span *ngIf="admin.enabled" class="label label-success">enabled</span>
@@ -66,8 +66,9 @@
             <br>
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
           <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="onEdit()">Edit</button>
+          <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="changePassword()">Change Password</button>
           <button *ngIf="edit_mode" type="button" class="btn btn-default" (click)="onSave()">Save</button>
           <a *ngIf="edit_mode" (click)="onCancel()">Cancel</a>
         </div>
