@@ -13,6 +13,8 @@ export class DashboardComponent implements OnInit {
   private total_user_count: number;
   private total_content_count: number;
 
+  private recent_contents;
+
   private contents: any;
   private content_oid: string;
 
@@ -66,6 +68,13 @@ export class DashboardComponent implements OnInit {
               private contentService: ContentService) { }
 
   ngOnInit() {
+    this.recent_contents = [
+      { name: '', _id: '' },
+      { name: '', _id: '' },
+      { name: '', _id: '' },
+      { name: '', _id: '' },
+      { name: '', _id: '' }
+    ];
     this.loadContents();
     this.loadDashboard();
   }
@@ -78,6 +87,7 @@ export class DashboardComponent implements OnInit {
           this.total_company_count = response['data']['total_company_count'];
           this.total_user_count = response['data']['total_ticket_count'];
           this.total_content_count = response['data']['total_content_count'];
+          this.recent_contents = response['data']['recent_contents'];
         },
         error => {
           console.log(error);
