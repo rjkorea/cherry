@@ -11,6 +11,14 @@
         <input type="password" class="form-control" [(ngModel)]="model.password" name="password">
       </div>
       <input type="submit" class="btn btn-primary" value="Login">
+      <br>
+      <div *ngIf="error_msg" class="row">
+        <div class="col-md-6">
+          <div class="alert alert-danger" role="alert">
+            <strong>에러</strong> {{error_msg}}
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </div>
@@ -20,4 +28,3 @@
     <p class="lead text-center">©2017 All Rights Reserved. RJ Korea Entertainment. Privacy and Terms</p>
   </div>
 </div>
-<simple-notifications></simple-notifications>
