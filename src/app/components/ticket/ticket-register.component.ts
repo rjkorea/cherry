@@ -60,7 +60,7 @@ export class TicketRegisterComponent implements OnInit {
   }
 
   private disabledDone() {
-    return !(this.user.name && this.user.mobile_number && this.user.gender && this.user.birthday);
+    return !(this.user.name && this.user.mobile_number && this.user.gender && this.country_code);
   }
 
 }

@@ -11,7 +11,7 @@
             <input type="text" class="form-control" [(ngModel)]="user.name" name="name">
           </div>
           <div class="form-group">
-            <label for="country_code">Country Code</label>
+            <label for="country_code">Country Code (required)</label>
             <select class="form-control" name="country_code" [(ngModel)]="country_code">
               <ng-container *ngFor="let cc of country_codes">
                 <option [ngValue]="cc.value">{{cc.text}}</option>
@@ -23,16 +23,16 @@
             <input type="text" class="form-control" [(ngModel)]="user.mobile_number" name="desc">
           </div>
           <div class="form-group">
-            <label for="birthday">Birthday (required)</label>
-            <input type="text" class="form-control" [(ngModel)]="user.birthday" name="birthday">
-          </div>
-          <div class="form-group">
             <label for="area">Gender</label>
             <select class="form-control" name="gender" [(ngModel)]="user.gender">
               <ng-container *ngFor="let g of genders">
                 <option [ngValue]="g.value">{{g.text}}</option>
               </ng-container>
             </select>
+          </div>
+          <div class="form-group">
+            <label for="birthday">Birthday</label>
+            <input type="text" class="form-control" [(ngModel)]="user.birthday" name="birthday">
           </div>
           <!--<div class="form-group">
             <label for="email">E-mail(required)</label>
