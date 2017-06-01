@@ -23,8 +23,7 @@
             <li class="list-group-item"><strong>Email: </strong>{{admin.email}}</li>
             <li class="list-group-item"><strong>Mobile Number: </strong>{{admin.mobile_number}}</li>
             <li class="list-group-item"><strong>Tablet Code: </strong>{{admin.tablet_code}}</li>
-            <li class="list-group-item"><strong>Company: </strong>{{admin.company}}</li>
-            <li class="list-group-item"><strong>Website: </strong><a href="http://{{admin.website}}" blank="_target">http://{{admin.website}}</a></li>
+            <li class="list-group-item"><strong>Company: </strong>{{admin.company.name}}</li>
             <li class="list-group-item"><strong>Updated at: </strong>{{admin.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item"><strong>Member Since: </strong>{{admin.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
@@ -53,15 +52,12 @@
               <input type="text" class="form-control" [(ngModel)]="admin.tablet_code" name="tablet_code">
             </div>
             <br>
-            <div class="input-group">
-              <span class="input-group-addon">Company</span>
-              <input type="text" class="form-control" [(ngModel)]="admin.company" name="company">
-            </div>
-            <br>
-            <label for="basic-url">Website</label>
-            <div class="input-group">
-              <span class="input-group-addon">http://</span>
-              <input type="text" class="form-control" id="basic-url" [(ngModel)]="admin.website" name="website">
+            <div class="form-group">
+              <select class="form-control" name="company" [(ngModel)]="company_oid">
+                <ng-container *ngFor="let c of companies">
+                  <option [ngValue]="c._id">{{c.name}} ({{c.contact.name}})</option>
+                </ng-container>
+              </select>
             </div>
             <br>
           </div>
