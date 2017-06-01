@@ -1,4 +1,33 @@
 <div class="row">
+  <!--<div class="col-md-6">
+    <ng-template [ngIf]="authService.getRole()=='super' || authService.getRole()=='admin'">
+      <br>
+      <div class="form-group">
+        <label for="company">Company</label>
+        <select class="form-control" name="company" [(ngModel)]="company_oid" (ngModelChange)="changeCompany()">
+          <ng-container *ngFor="let c of companies">
+            <option [ngValue]="c._id">{{c.name}} ({{c.contact.name}})</option>
+          </ng-container>
+        </select>
+      </div>
+    </ng-template>
+  </div>-->
+  <div class="col-md-6">
+    <ng-template [ngIf]="authService.getRole()=='super' || authService.getRole()=='admin' || authService.getRole()=='host'">
+      <br>
+      <div class="form-group">
+        <!--<label for="content">Content</label>-->
+        <select class="form-control" name="content" [(ngModel)]="content_oid" (ngModelChange)="changeContent()">
+          <ng-container *ngFor="let c of contents">
+            <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
+          </ng-container>
+        </select>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<div class="row">
     <div class="col-md-12">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="status" [(ngModel)]="query" name="query" (keyup.enter)="search()">
@@ -73,4 +102,3 @@
     <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
   </div>
 </div>
-<simple-notifications></simple-notifications>

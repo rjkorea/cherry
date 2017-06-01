@@ -83,8 +83,8 @@ export class TicketService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public getTicketList(query: string, start: Number, size: Number): Observable<{}> {
-    let url = this.ticketsUrl + '?q=' + query + '&start=' + start + '&size=' + size;
+  public getTicketList(query: string, company_oid: string, content_oid: string, start: Number, size: Number): Observable<{}> {
+    let url = this.ticketsUrl + '?q=' + query + '&company_oid=' + company_oid + '&content_oid=' + content_oid + '&start=' + start + '&size=' + size;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
