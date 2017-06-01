@@ -40,6 +40,7 @@ const routes: Routes = [
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/:id', component: DashboardComponent, canActivate: [AuthGuard] },
 
   { path: 'company', component: CompanyListComponent, canActivate: [AuthGuard] },
   { path: 'company/:id', component: CompanyDetailComponent, canActivate: [AuthGuard] },

@@ -23,4 +23,11 @@ export class DashboardService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public getDashboardContent(content_oid: string): Observable<{}> {
+    let url = this.dashboardUrl + '/' + content_oid;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }
