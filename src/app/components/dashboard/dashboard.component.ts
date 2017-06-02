@@ -81,20 +81,8 @@ export class DashboardComponent implements OnInit {
         company: { name: '회사 이름' }
       }
     ];
-    this.recent_contents = [
-      { name: '', _id: '' },
-      { name: '', _id: '' },
-      { name: '', _id: '' },
-      { name: '', _id: '' },
-      { name: '', _id: '' }
-    ];
-    this.recent_ticket_types = [
-      { name: '', _id: '' },
-      { name: '', _id: '' },
-      { name: '', _id: '' },
-      { name: '', _id: '' },
-      { name: '', _id: '' }
-    ];
+    this.recent_contents = [];
+    this.recent_ticket_types = [];
     this.ticket_count = {
       use: 0,
       total: 0
@@ -134,7 +122,7 @@ export class DashboardComponent implements OnInit {
           this.ticket_count = response['data']['ticket_count'];
           this.avg_age = response['data']['avg_age'];
           this.revenue = response['data']['revenue'];
-          // this.recent_ticket_types = response['data']['recent_ticket_types'];
+          this.recent_ticket_types = response['data']['recent_ticket_types'];
         },
         error => {
           console.log(error);

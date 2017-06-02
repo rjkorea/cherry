@@ -89,11 +89,9 @@
         </div>
         <div class="panel-body">
           <ul class="list-group">
-            <li class="list-group-item"><span class="badge">765432</span>{{recent_contents[0].name}}</li>
-            <li class="list-group-item"><span class="badge">41000</span>{{recent_contents[1].name}}</li>
-            <li class="list-group-item"><span class="badge">3200</span>{{recent_contents[2].name}}</li>
-            <li class="list-group-item"><span class="badge">1100</span>{{recent_contents[3].name}}</li>
-            <li class="list-group-item"><span class="badge">985</span>{{recent_contents[4].name}}</li>
+            <ng-container *ngFor="let rc of recent_contents">
+              <li class="list-group-item"><span class="badge">78</span>{{rc.name}}</li>
+            </ng-container>
           </ul>
         </div>
       </div>
@@ -169,11 +167,9 @@
         </div>
         <div class="panel-body">
           <ul class="list-group">
-            <li class="list-group-item"><span class="badge">62721</span>{{recent_ticket_types[0].name}}</li>
-            <li class="list-group-item"><span class="badge">41000</span>{{recent_ticket_types[1].name}}</li>
-            <li class="list-group-item"><span class="badge">3200</span>{{recent_ticket_types[2].name}}</li>
-            <li class="list-group-item"><span class="badge">1100</span>{{recent_ticket_types[3].name}}</li>
-            <li class="list-group-item"><span class="badge">985</span>{{recent_ticket_types[4].name}}</li>
+            <ng-container *ngFor="let rtt of recent_ticket_types">
+              <li class="list-group-item"><span class="badge">108</span>{{rtt.name}}</li>
+            </ng-container>
           </ul>
         </div>
       </div>
