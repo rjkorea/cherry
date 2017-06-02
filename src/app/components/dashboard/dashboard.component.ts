@@ -105,7 +105,7 @@ export class DashboardComponent implements OnInit {
         response => {
           this.total_ticket_count = response['data']['total_ticket_count'];
           this.total_company_count = response['data']['total_company_count'];
-          this.total_user_count = response['data']['total_ticket_count'];
+          this.total_user_count = response['data']['total_user_count'];
           this.total_content_count = response['data']['total_content_count'];
           this.recent_contents = response['data']['recent_contents'];
         },
