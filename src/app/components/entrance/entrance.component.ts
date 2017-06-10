@@ -37,7 +37,7 @@ export class EntranceComponent implements OnInit {
       response => {
         console.log(response);
         // check tablet_code
-        if(localStorage.getItem('tablet_code') == response['tablet_code']) {
+        if(localStorage.getItem('tablet_code') === response['tablet_code']) {
           this.onTablet(response['auth_user_oid']);
         }
       },
