@@ -9,23 +9,23 @@ import { PlaceService } from '../../services/place.service';
   providers: []
 })
 export class PlaceListComponent implements OnInit {
-  private places: Array<Object>;
-  private query: any = '';
-  private page: any = 1;
-  private size: any = 9;
-  private count: any = 0;
-  private stats: any;
+  places: Array<Object>;
+  query: any = '';
+  page: any = 1;
+  size: any = 9;
+  count: any = 0;
+  stats: any;
 
   constructor(private placeService: PlaceService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
-    let params: Params = this.route.snapshot.params;
-    if('query'in params) {
+    const params: Params = this.route.snapshot.params;
+    if ('query' in params) {
       this.query = params['query'];
     }
-    if('page' in params) {
+    if ('page' in params) {
       this.page = +params['page'];
     }
     this.stats = {
@@ -63,8 +63,8 @@ export class PlaceListComponent implements OnInit {
     this.loadPlaces(this.query, this.page);
   }
 
-  loadPlaces(query:any, page: any) {
-    this.placeService.getPlaceList(query, (page-1)*this.size, this.size)
+  loadPlaces(query: any, page: any) {
+    this.placeService.getPlaceList(query, (page - 1) * this.size, this.size)
       .subscribe(
         response => {
           this.count = response['count'];
@@ -87,7 +87,8 @@ export class PlaceListComponent implements OnInit {
           this.stats.E.checkin = response['data']['E'];
           this.stats.F.checkin = response['data']['F'];
           this.stats.G.checkin = response['data']['G'];
-          this.stats.total = this.stats.A.total + this.stats.B.total + this.stats.C.total + this.stats.D.total + this.stats.E.total + this.stats.F.total + this.stats.G.total;
+          this.stats.total = this.stats.A.total + this.stats.B.total + this.stats.C.total
+                           + this.stats.D.total + this.stats.E.total + this.stats.F.total + this.stats.G.total;
           console.log(this.stats.total);
         },
         error => {
@@ -97,14 +98,14 @@ export class PlaceListComponent implements OnInit {
   }
 
   onPrev() {
-    let page = this.page - 1;
-    this.page = page
+    const page = this.page - 1;
+    this.page = page;
     this.router.navigate(['/place', {query: this.query, page: page}]);
     this.loadPlaces(this.query, page);
   }
 
   onNext() {
-    let page = this.page + 1;
+    const page = this.page + 1;
     this.page = page;
     this.router.navigate(['/place', {query: this.query, page: page}]);
     this.loadPlaces(this.query, page);
