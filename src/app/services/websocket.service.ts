@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class WebSocketService {
-  private notificationsWSUrl = 'ws://' + environment.api.host + ':' + environment.api.port + '/ws';
+  private url = `ws://${environment.api.host}:${environment.api.port}/ws`;
   private websocket: WebSocket;
 
   constructor() { }
@@ -14,7 +14,7 @@ export class WebSocketService {
   }
 
   public getInstance(): Observable<any> {
-    this.websocket = new WebSocket(this.notificationsWSUrl);
+    this.websocket = new WebSocket(this.url);
     this.websocket.onopen = (evt) => {
       console.log(evt);
     };

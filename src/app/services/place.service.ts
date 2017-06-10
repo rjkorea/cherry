@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import { CookieService } from 'ngx-cookie';
 import { Observable } from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+const URL = `${environment.api.protocol}://${environment.api.host}:${environment.api.port}`;
+
 @Injectable()
 export class PlaceService {
-  private placeUrl = `http://${environment.api.host}:${environment.api.port}/a/place`;
-  private placesUrl = `http://${environment.api.host}:${environment.api.port}/a/places`;
+  private placeUrl = `${URL}/a/place`;
+  private placesUrl = `${URL}/a/places`;
   private options;
 
-  constructor(private http: Http, private cookieService: CookieService) {
-    let headers = new Headers({'Content-Type': 'application/json', 'Set-Cookie': 'csk=' + this.cookieService.get('csk')});
+  constructor(private http: Http) {
+    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
@@ -25,28 +26,28 @@ export class PlaceService {
   }
 
   public getPlaceList(query: string, start: Number, size: Number): Observable<{}> {
-    let url = this.placesUrl + '?q=' + query + '&start=' + start + '&size=' + size;
+    const url = `${this.placesUrl}?q=${query}&start=${start}&size=${size}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public getPlace(_id: string): Observable<{}> {
-    let url = this.placeUrl + '/' + _id;
+  public getPlace(id: string): Observable<{}> {
+    const url = `${this.placeUrl}/${id}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
   public updatePlace(id: string, data: any): Observable<{}> {
-    let url = this.placeUrl + '/' + id;
+    const url = `${this.placeUrl}/${id}`;
     return this.http.put(url, JSON.stringify(data), this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
   public getStats(): Observable<{}> {
-    let url = this.placesUrl + '/stats';
+    const url = `${this.placesUrl}/stats`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));

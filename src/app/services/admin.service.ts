@@ -7,14 +7,16 @@ import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+const URL = `${environment.api.protocol}://${environment.api.host}:${environment.api.port}`;
+
 @Injectable()
 export class AdminService {
-  private adminUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/admin';
-  private adminsUrl = 'http://' + environment.api.host + ':' + environment.api.port + '/a/admins';
+  private adminUrl = `${URL}/a/admin`;
+  private adminsUrl = `${URL}/a/admins`;
   private options;
 
   constructor(private http: Http, private cookieService: CookieService) {
-    let headers = new Headers({'Content-Type': 'application/json', 'Set-Cookie': 'csk=' + this.cookieService.get('csk')});
+    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
@@ -25,28 +27,28 @@ export class AdminService {
   }
 
   public getAdminList(query: string, start: Number, size: Number): Observable<{}> {
-    let url = this.adminsUrl + '?q=' + query + '&start=' + start + '&size=' + size;
+    const url = `${this.adminsUrl}?q=${query}&start=${start}&size=${size}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public getAdmin(_id: string): Observable<{}> {
-    let url = this.adminUrl + '/' + _id;
+  public getAdmin(id: string): Observable<{}> {
+    const url = `${this.adminUrl}/${id}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
   public updateAdmin(id: string, data: any): Observable<{}> {
-    let url = this.adminUrl + '/' + id;
+    const url = `${this.adminUrl}/${id}`;
     return this.http.put(url, JSON.stringify(data), this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
   public updateAdminPassword(id: string, data: any): Observable<{}> {
-    let url = this.adminUrl + '/' + id + '/password';
+    const url = `${this.adminUrl}/${id}/password`;
     return this.http.put(url, JSON.stringify(data), this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
