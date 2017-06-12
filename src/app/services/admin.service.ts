@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import { CookieService } from 'ngx-cookie';
 import { Observable } from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 
@@ -15,7 +14,7 @@ export class AdminService {
   private adminsUrl = `${URL}/a/admins`;
   private options;
 
-  constructor(private http: Http, private cookieService: CookieService) {
+  constructor(private http: Http) {
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }

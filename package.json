@@ -34,7 +34,6 @@
     "angular2-chartjs": "~0.1.6",
     "ng2-ui-switch": "~1.0.2",
     "ngx-bootstrap": "~1.6.5",
-    "ngx-cookie": "~1.0.0",
     "bootstrap": "~3.3.7",
     "jquery": "~3.2.1"
   },

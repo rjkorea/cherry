@@ -15,7 +15,7 @@ export class NotificationService {
   private options;
 
   constructor(private http: Http) {
-    const headers = new Headers({'Content-Type': 'application/json', 'Set-Cookie': 'csk=' + localStorage.getItem('csk')});
+    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
