@@ -6,7 +6,8 @@
 export const environment = {
   production: false,
   api: {
-    host: "localhost",
+    protocol: 'http',
+    host: 'localhost',
     port: 5100
   }
 };

@@ -1,0 +1,142 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/home">
+        <img class="brand-logo" alt="Brand" src="assets/images/logo.png">
+      </a>
+    </div>
+
+    <!-- default -->
+    <div *ngIf="!authService.loggedIn() && !authService.getRole()" id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/login" routerLinkActive="active" data-toggle="collapse">Login</a></li>
+        <li><a routerLink="/signup" routerLinkActive="active" data-toggle="collapse">Signup</a></li>
+      </ul>
+    </div>
+
+    <!-- super -->
+    <div *ngIf="authService.loggedIn() && authService.getRole()=='super'" id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">Home</a></li>
+        <li><a routerLink="/company" routerLinkActive="active" data-toggle="collapse">Company</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/admin" data-toggle="collapse">Admin</a></li>
+            <li><a routerLink="/user" data-toggle="collapse">User</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">Content</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ticket <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/ticket/type" data-toggle="collapse">Type</a></li>
+            <li><a routerLink="/ticket/order" data-toggle="collapse">Order</a></li>
+            <li><a routerLink="/ticket" data-toggle="collapse">Ticket</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
+        <li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{getUserName()}} ({{getRole()}})<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['/profile', getUserId()]" data-toggle="collapse">Profile</a></li>
+            <li><a routerLink="/login" (click)="authService.logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- admin -->
+    <div *ngIf="authService.loggedIn() && authService.getRole()=='admin'" id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">Home</a></li>
+        <li><a routerLink="/company" routerLinkActive="active" data-toggle="collapse">Company</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/admin" data-toggle="collapse">Admin</a></li>
+            <li><a routerLink="/user" data-toggle="collapse">User</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">Content</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ticket <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/ticket/type" data-toggle="collapse">Type</a></li>
+            <li><a routerLink="/ticket/order" data-toggle="collapse">Order</a></li>
+            <li><a routerLink="/ticket" data-toggle="collapse">Ticket</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
+        <li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{getUserName()}} ({{getRole()}})<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['/profile', getUserId()]" data-toggle="collapse">Profile</a></li>
+            <li><a routerLink="/login" (click)="authService.logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- host -->
+    <div *ngIf="authService.loggedIn() && authService.getRole()=='host'" id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">Home</a></li>
+        <li><a routerLink="/admin" routerLinkActive="active" data-toggle="collapse">Staff</a></li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">Content</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ticket <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/ticket/type" data-toggle="collapse">Type</a></li>
+            <li><a routerLink="/ticket/order" data-toggle="collapse">Order</a></li>
+            <li><a routerLink="/ticket" data-toggle="collapse">Ticket</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
+        <li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{getUserName()}} ({{getRole()}})<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['/profile', getUserId()]" data-toggle="collapse">Profile</a></li>
+            <li><a routerLink="/login" (click)="authService.logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- staff -->
+    <div *ngIf="authService.loggedIn() && authService.getRole()=='staff'" id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <!--<li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">Home</a></li>-->
+        <li><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">Entrance</a></li>
+        <li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{getUserName()}} ({{getRole()}})<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['/profile', getUserId()]" data-toggle="collapse">Profile</a></li>
+            <li><a routerLink="/login" (click)="authService.logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>

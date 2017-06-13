@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+      <div class="input-group">
+          <input type="text" class="form-control" placeholder="name, mobile number, area, number" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+          <span class="input-group-btn">
+              <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          </span>
+      </div>
+      <br>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-md-6">
+    <div class="list-group">
+      <button [routerLink]="['/places/new', 'A']" type="button" class="list-group-item list-group-item-success">A 체크인
+        <span class="badge">{{stats.A.checkin}} / {{stats.A.total}}</span> <strong>{{((stats.A.checkin/stats.A.total)*100).toString() | slice:0:4}}%</strong>
+      </button>
+      <button [routerLink]="['/places/new', 'B']" type="button" class="list-group-item list-group-item-info">B 체크인
+        <span class="badge">{{stats.B.checkin}} / {{stats.A.total}}</span> <strong>{{((stats.B.checkin/stats.B.total)*100).toString() | slice:0:4}}%</strong>
+      </button>
+      <button [routerLink]="['/places/new', 'C']" type="button" class="list-group-item list-group-item-success">C 체크인
+        <span class="badge">{{stats.C.checkin}} / {{stats.C.total}}</span> <strong>{{((stats.C.checkin/stats.C.total)*100).toString() | slice:0:4}}%</strong>
+      </button>
+      <button [routerLink]="['/places/new', 'D']" type="button" class="list-group-item list-group-item-info">D 체크인
+        <span class="badge">{{stats.D.checkin}} / {{stats.D.total}}</span> <strong>{{((stats.D.checkin/stats.D.total)*100).toString() | slice:0:4}}%</strong>
+      </button>
+      <button [routerLink]="['/places/new', 'E']" type="button" class="list-group-item list-group-item-success">E 체크인
+        <span class="badge">{{stats.E.checkin}} / {{stats.E.total}}</span> <strong>{{((stats.E.checkin/stats.E.total)*100).toString() | slice:0:4}}%</strong>
+      </button>
+      <button [routerLink]="['/places/new', 'F']" type="button" class="list-group-item list-group-item-info">F 체크인
+        <span class="badge">{{stats.F.checkin}} / {{stats.F.total}}</span> <strong>{{((stats.F.checkin/stats.F.total)*100).toString() | slice:0:4}}%</strong>
+      </button>
+      <button [routerLink]="['/places/new', 'G']" type="button" class="list-group-item list-group-item-success">G 체크인
+        <span class="badge">{{stats.G.checkin}} / {{stats.G.total}}</span> <strong>{{((stats.G.checkin/stats.G.total)*100).toString() | slice:0:4}}%</strong>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">체크인 <strong>{{((count/stats.total)*100).toString() | slice:0:4}}% </strong>
+      <span class="badge">{{count}} / {{stats.total}}</span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div *ngIf="count">
+      <div class="row">
+        <div *ngFor="let place of places">
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <div class="caption">
+                <h3><a [routerLink]="['/place', place._id]">{{place.name}}</a></h3>
+                <hr />
+                <p>
+                  <span *ngIf="place.enabled" class="label label-success">enabled</span>
+                  <span *ngIf="!place.enabled" class="label label-danger">disabled</span>
+                </p>
+                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{place.name}}</p>
+                <p><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{place.mobile_number}}</p>
+                <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{place.area}}</p>
+                <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{place.number}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav aria-label="...">
+        <ul class="pager">
+          <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
+          <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div *ngIf="!!!count">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+          <h4 class="text-center">No results matched your search.</h4>
+        </div>
+      </div>
+      <hr />
+    </div>
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+  </div>
+</div>

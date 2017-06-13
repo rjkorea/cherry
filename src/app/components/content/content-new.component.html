@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">New Content</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <img class="img-thumbnail" src="assets/images/no_image_icon.png">
+      </div>
+      <div class="col-md-8">
+        <ng-template [ngIf]="role=='super' || role=='admin'">
+          <br>
+          <div class="form-group">
+            <label for="company">Company (required)</label>
+            <select class="form-control" name="company" [(ngModel)]="content.company_oid" (ngModelChange)="changeRole()">
+              <ng-container *ngFor="let c of companies">
+                <option [ngValue]="c._id">{{c.name}} ({{c.contact.name}})</option>
+              </ng-container>
+            </select>
+          </div>
+        </ng-template>
+        <br>
+        <div class="form-group">
+          <label for="name">Name (required)</label>
+          <input type="text" class="form-control" [(ngModel)]="content.name" name="name">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="place">Place (required)</label>
+          <input type="text" class="form-control" [(ngModel)]="content.place" name="place">
+        </div>
+        <br>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="content.desc" name="desc"></textarea>
+        </div>
+        <br>
+        <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">Submit new content</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+  </div>
+</div>

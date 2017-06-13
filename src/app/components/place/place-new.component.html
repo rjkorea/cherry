@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">체크인</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <br>
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input type="text" class="form-control" [(ngModel)]="place.name" name="name">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="mobile_number">휴대폰 번호</label>
+          <input type="text" class="form-control" [(ngModel)]="place.mobile_number" name="mobile_number">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="area">영역</label>
+          <select class="form-control" name="area" [(ngModel)]="place.area">
+            <ng-container *ngFor="let a of areas">
+              <option [ngValue]="a">{{a}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="number">번호</label>
+          <input type="text" class="form-control" [(ngModel)]="place.number" name="number">
+        </div>
+        <br>
+        <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">체크인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="error_msg" class="row">
+  <div class="col-md-6">
+    <div class="alert alert-danger" role="alert">
+      <strong>에러</strong> {{error_msg}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+  </div>
+</div>

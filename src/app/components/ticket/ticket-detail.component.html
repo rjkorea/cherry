@@ -1,0 +1,53 @@
+<div *ngIf="ticket">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Ticket</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="stats">
+            <span *ngIf="ticket.enabled" class="label label-success">enabled</span>
+            <span *ngIf="!ticket.enabled" class="label label-danger">disabled</span>
+          </div>
+          <br>
+          <ul class="list-group">
+            <li class="list-group-item"><strong>ID: </strong>{{ticket._id}}</li>
+            <li class="list-group-item"><strong>Ticket Order ID: </strong>{{ticket.ticket_order._id}}</li>
+            <li class="list-group-item"><strong>Content Name: </strong>{{ticket.content.name}}</li>
+            <li class="list-group-item"><strong>Ticket Type Name: </strong>{{ticket.ticket_type.name}}</li>
+            <li class="list-group-item"><strong>Ticket Type Description: </strong>{{ticket.ticket_type.desc}}</li>
+            <li class="list-group-item"><strong>Days: </strong>{{ticket.days.length}}</li>
+            <li class="list-group-item"><strong>Status: </strong>{{ticket.status}}</li>
+            <li *ngIf="ticket.entered_at" class="list-group-item"><strong>Entered at: </strong>{{ticket.enter_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>Updated at: </strong>{{ticket.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>Created at: </strong>{{ticket.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+          </ul>
+          <ul class="list-group" *ngFor="let d of ticket.days">
+            <li class="list-group-item"><strong>Day: </strong>{{d.day}}</li>
+            <li class="list-group-item"><strong>Entered: </strong>{{d.entered}}</li>
+            <li class="list-group-item" *ngIf="d.entered_at"><strong>Entered At: </strong>{{d.entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item" *ngIf="d.fee"><strong>Fee Method: </strong>{{d.fee.method}}</li>
+            <li class="list-group-item" *ngIf="d.fee"><strong>Fee Price: </strong>{{d.fee.price}}</li>
+          </ul>
+          <ul *ngIf="ticket.user" class="list-group">
+            <li class="list-group-item"><strong>User</strong></li>
+            <li class="list-group-item"><strong>ID: </strong>{{ticket.user._id}}</li>
+            <li class="list-group-item"><strong>Name: </strong>{{ticket.user.name}}</li>
+            <li class="list-group-item"><strong>Mobile Number: </strong>{{ticket.user.mobile_number}}</li>
+            <li *ngIf="ticket.user.birthday" class="list-group-item"><strong>Birthday: </strong>{{ticket.user.birthday}}</li>
+            <li *ngIf="ticket.user.gender" class="list-group-item"><strong>Gender: </strong>{{ticket.user.gender}}</li>
+            <li class="list-group-item"><strong>Member Since: </strong>{{ticket.user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+          </ul>
+          <button *ngIf="!ticket.user" type="button" class="btn btn-success" (click)="registerUser()">Register User</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+    </div>
+  </div>
+</div>

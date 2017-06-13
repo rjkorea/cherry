@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <h2>Notifications <small>Total</small> ({{notification_count}})</h2>
+    <ul class="list-group">
+      <li *ngFor="let data of notifications" class="list-group-item">
+        <div class="row">
+          <div class="col-md-9">
+            <span class="image">
+              <span *ngIf="data.type == 'request_auth'" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              <span *ngIf="data.type == 'receive_message'" class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            </span>
+            <span>{{data.data.name}}</span>
+            <span class="message">
+              {{data.data.mobile_number}}
+            </span>
+          </div>
+          <div class="col-md-3">
+            <span class="time">{{data.created_at | amFromUnix | amTimeAgo: true}} ago</span>
+          </div>
+        </div>
+        <hr />
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+  </div>
+</div>
