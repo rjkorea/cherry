@@ -70,8 +70,8 @@
                   <span *ngIf="ticket.enabled" class="label label-success">enabled</span>
                   <span *ngIf="!ticket.enabled" class="label label-danger">disabled</span>
                 </p>
-                <p *ngIf="ticket.user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ticket.user.name}}</p>
-                <p *ngIf="!ticket.user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></p>
+                <p *ngIf="ticket.receive_user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ticket.receive_user.name}}</p>
+                <p *ngIf="!ticket.receive_user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></p>
               </div>
             </div>
           </div>

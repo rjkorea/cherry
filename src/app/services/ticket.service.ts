@@ -91,8 +91,8 @@ export class TicketService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public getTicketListByUser(user_oid: string, start: Number, size: Number): Observable<{}> {
-    const url = `${this.ticketsUrl}?user_oid=${user_oid}&start=${start}&size=${size}`;
+  public getTicketListByUser(receive_user_oid: string, start: Number, size: Number): Observable<{}> {
+    const url = `${this.ticketsUrl}?receive_user_oid=${receive_user_oid}&start=${start}&size=${size}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));

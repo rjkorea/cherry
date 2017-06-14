@@ -58,13 +58,13 @@ export class EntranceTicketComponent implements OnInit {
 
   onSaveUser() {
     this.user_form = {
-      name: this.ticket.user.name,
-      email: this.ticket.user.email,
-      mobile_number: this.ticket.user.mobile_number,
-      birthday: this.ticket.user.birthday,
-      gender: this.ticket.user.gender
+      name: this.ticket.receive_user.name,
+      email: this.ticket.receive_user.email,
+      mobile_number: this.ticket.receive_user.mobile_number,
+      birthday: this.ticket.receive_user.birthday,
+      gender: this.ticket.receive_user.gender
     }
-    this.userService.updateUser(this.ticket.user._id, this.user_form)
+    this.userService.updateUser(this.ticket.receive_user._id, this.user_form)
       .subscribe(
         response => {
           this.loadTicket(this.ticket._id);

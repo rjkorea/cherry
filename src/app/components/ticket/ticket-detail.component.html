@@ -30,16 +30,16 @@
             <li class="list-group-item" *ngIf="d.fee"><strong>Fee Method: </strong>{{d.fee.method}}</li>
             <li class="list-group-item" *ngIf="d.fee"><strong>Fee Price: </strong>{{d.fee.price}}</li>
           </ul>
-          <ul *ngIf="ticket.user" class="list-group">
+          <ul *ngIf="ticket.receive_user" class="list-group">
             <li class="list-group-item"><strong>User</strong></li>
-            <li class="list-group-item"><strong>ID: </strong>{{ticket.user._id}}</li>
-            <li class="list-group-item"><strong>Name: </strong>{{ticket.user.name}}</li>
-            <li class="list-group-item"><strong>Mobile Number: </strong>{{ticket.user.mobile_number}}</li>
-            <li *ngIf="ticket.user.birthday" class="list-group-item"><strong>Birthday: </strong>{{ticket.user.birthday}}</li>
-            <li *ngIf="ticket.user.gender" class="list-group-item"><strong>Gender: </strong>{{ticket.user.gender}}</li>
-            <li class="list-group-item"><strong>Member Since: </strong>{{ticket.user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>ID: </strong>{{ticket.receive_user._id}}</li>
+            <li class="list-group-item"><strong>Name: </strong>{{ticket.receive_user.name}}</li>
+            <li class="list-group-item"><strong>Mobile Number: </strong>{{ticket.receive_user.mobile_number}}</li>
+            <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>Birthday: </strong>{{ticket.receive_user.birthday}}</li>
+            <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>Gender: </strong>{{ticket.receive_user.gender}}</li>
+            <li class="list-group-item"><strong>Member Since: </strong>{{ticket.receive_user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
-          <button *ngIf="!ticket.user" type="button" class="btn btn-success" (click)="registerUser()">Register User</button>
+          <button *ngIf="!ticket.receive_user" type="button" class="btn btn-success" (click)="registerUser()">Register User</button>
         </div>
       </div>
     </div>
