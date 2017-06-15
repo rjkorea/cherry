@@ -12,15 +12,15 @@ import { AuthService } from '../../services/auth.service';
   providers: []
 })
 export class TicketListComponent implements OnInit {
-  private tickets: Array<Object>;
-  private query: any = '';
-  private page: any = 1;
-  private size: any = 21;
-  private count: any = 0;
-  private company_oid: string = '';
-  private companies: any;
-  private content_oid: string = '';
-  private contents: any;
+  tickets: Array<Object>;
+  query: any = '';
+  page: any = 1;
+  size: any = 20;
+  count: any = 0;
+  company_oid: string = '';
+  companies: any;
+  content_oid: string = '';
+  contents: any;
 
   constructor(private ticketService: TicketService,
               private authService: AuthService,
@@ -53,7 +53,7 @@ export class TicketListComponent implements OnInit {
     if('page' in params) {
       this.page = +params['page'];
     }
-    // this.loadTickets(this.query, this.page);
+    this.loadTickets(this.query, this.page);
   }
 
   loadTickets(query:any, page: any) {

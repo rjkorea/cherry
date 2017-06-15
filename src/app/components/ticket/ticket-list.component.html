@@ -1,17 +1,4 @@
 <div class="row">
-  <!--<div class="col-md-6">
-    <ng-template [ngIf]="authService.getRole()=='super' || authService.getRole()=='admin'">
-      <br>
-      <div class="form-group">
-        <label for="company">Company</label>
-        <select class="form-control" name="company" [(ngModel)]="company_oid" (ngModelChange)="changeCompany()">
-          <ng-container *ngFor="let c of companies">
-            <option [ngValue]="c._id">{{c.name}} ({{c.contact.name}})</option>
-          </ng-container>
-        </select>
-      </div>
-    </ng-template>
-  </div>-->
   <div class="col-md-6">
     <ng-template [ngIf]="authService.getRole()=='super' || authService.getRole()=='admin' || authService.getRole()=='host'">
       <br>
@@ -27,56 +14,76 @@
   </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="status" [(ngModel)]="query" name="query" (keyup.enter)="search()">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-            </span>
-        </div>
-        <br>
-    </div>
-    <!-- <div class="col-md-1">
-      <p><a routerLink="/ticket/types/new" class="btn btn-success" role="button">New</a></p>
-    </div> -->
-</div>
-
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Tickets <span class="badge">{{count}}</span></h3>
   </div>
   <div class="panel-body">
     <div *ngIf="count">
+
       <div class="row">
-        <div *ngFor="let ticket of tickets">
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <!-- <img *ngIf="type.content.image" src="{{type.content.image.m}}">
-              <img *ngIf="!type.content.image" src="assets/images/no_image_icon.png"> -->
-              <div class="caption">
-                <h4><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <a [routerLink]="['/ticket', ticket._id]">{{ticket.ticket_type.name}} ({{ticket.content.name}})</a></h4>
-                <h4>{{ticket.days.length}} <strong>days</strong></h4>
-                <p *ngIf="ticket.days[0].fee">
-                  <strong>Fee </strong>{{ticket.days[0].fee.price}}
-                </p>
-                <!--<p>
-                  <span *ngIf="ticket.status=='pend'" class="label label-default">pend</span>
-                  <span *ngIf="ticket.status=='send'" class="label label-info">send</span>
-                  <span *ngIf="ticket.status=='register'" class="label label-primary">register</span>
-                  <span *ngIf="ticket.status=='use'" class="label label-success">use</span>
-                </p>-->
-                <p>
-                  <span *ngIf="ticket.enabled" class="label label-success">enabled</span>
-                  <span *ngIf="!ticket.enabled" class="label label-danger">disabled</span>
-                </p>
-                <p *ngIf="ticket.receive_user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ticket.receive_user.name}}</p>
-                <p *ngIf="!ticket.receive_user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></p>
-              </div>
+        <div class="col-sm-12 col-md-12">
+          <div class="list-group">
+            <div *ngFor="let ticket of tickets">
+              <a *ngIf="ticket.status=='pend'" [routerLink]="['/ticket', ticket._id]" class="list-group-item disabled">
+                <h4>
+                  {{ticket.ticket_type.name}} /
+                  {{ticket.ticket_type.day}} days /
+                  {{ticket.ticket_type.price}} /
+                  <span *ngIf="ticket.days[0].fee">Fee: {{ticket.days[0].fee.price}}</span>
+                  <span class="badge">{{ticket.status}}</span>
+                </h4>
+              </a>
+              <a *ngIf="ticket.status=='send'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-warning">
+                <h4>
+                  {{ticket.ticket_type.name}} /
+                  {{ticket.ticket_type.day}} days /
+                  {{ticket.ticket_type.price}} /
+                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} /</span>
+                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}} /</strong>
+                  <span *ngIf="ticket.days[0].fee">Fee: {{ticket.days[0].fee.price}}</span>
+                  <span class="badge">{{ticket.status}}</span>
+                </h4>
+              </a>
+              <a *ngIf="ticket.status=='register'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-success">
+                <h4>
+                  {{ticket.ticket_type.name}} /
+                  {{ticket.ticket_type.day}} days /
+                  {{ticket.ticket_type.price}} /
+                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} /</span>
+                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}} /</strong>
+                  <span *ngIf="ticket.days[0].fee">Fee: {{ticket.days[0].fee.price}}</span>
+                  <span class="badge">{{ticket.status}}</span>
+                </h4>
+              </a>
+              <a *ngIf="ticket.status=='use'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-info">
+                <h4>
+                  {{ticket.ticket_type.name}} /
+                  {{ticket.ticket_type.day}} days /
+                  {{ticket.ticket_type.price}} /
+                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} /</span>
+                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}} /</strong>
+                  <span *ngIf="ticket.days[0].fee">{{ticket.days[0].entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss' | amTimeAgo}} /</span>
+                  <span *ngIf="ticket.days[0].fee">Fee: {{ticket.days[0].fee.price}}</span>
+                  <span class="badge">{{ticket.status}}</span>
+                </h4>
+              </a>
+              <a *ngIf="ticket.status=='cancel'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-danger">
+                <h4>
+                  {{ticket.ticket_type.name}} /
+                  {{ticket.ticket_type.day}} days /
+                  {{ticket.ticket_type.price}} /
+                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} /</span>
+                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}} /</strong>
+                  <span *ngIf="ticket.days[0].fee">Fee: {{ticket.days[0].fee.price}}</span>
+                  <span class="badge">{{ticket.status}}</span>
+                </h4>
+              </a>
             </div>
           </div>
         </div>
       </div>
+
       <nav aria-label="...">
         <ul class="pager">
           <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
