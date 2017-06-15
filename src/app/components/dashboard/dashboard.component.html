@@ -89,8 +89,8 @@
         </div>
         <div class="panel-body">
           <ul class="list-group">
-            <ng-container *ngFor="let rc of recent_contents">
-              <li class="list-group-item"><span class="badge">78</span>{{rc.name}}</li>
+            <ng-container *ngFor="let tc of top_contents">
+              <li class="list-group-item"><span class="badge">{{tc.ticket_cnt}}</span>{{tc.content.name}}</li>
             </ng-container>
           </ul>
         </div>
@@ -167,8 +167,8 @@
         </div>
         <div class="panel-body">
           <ul class="list-group">
-            <ng-container *ngFor="let rtt of recent_ticket_types">
-              <li class="list-group-item"><span class="badge">108</span>{{rtt.name}}</li>
+            <ng-container *ngFor="let ttt of top_ticket_types">
+              <li class="list-group-item"><span class="badge">{{ttt.ticket_cnt}}</span>{{ttt.ticket_type.name}}</li>
             </ng-container>
           </ul>
         </div>

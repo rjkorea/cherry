@@ -9,19 +9,19 @@ import { ContentService } from '../../services/content.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  private contents: any;
-  private content_oid: string;
+  contents: any;
+  content_oid: string;
 
-  private total_ticket_count: number;
-  private total_company_count: number;
-  private total_user_count: number;
-  private total_content_count: number;
-  private recent_contents;
+  total_ticket_count: number;
+  total_company_count: number;
+  total_user_count: number;
+  total_content_count: number;
+  top_contents;
 
-  private ticket_count: any;
-  private avg_age: any;
-  private revenue: any;
-  private recent_ticket_types;
+  ticket_count: any;
+  avg_age: any;
+  revenue: any;
+  top_ticket_types;
 
   type = 'pie';
   data = {
@@ -81,8 +81,8 @@ export class DashboardComponent implements OnInit {
         company: { name: '회사 이름' }
       }
     ];
-    this.recent_contents = [];
-    this.recent_ticket_types = [];
+    this.top_contents = [];
+    this.top_ticket_types = [];
     this.ticket_count = {
       use: 0,
       total: 0
@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit {
           this.total_company_count = response['data']['total_company_count'];
           this.total_user_count = response['data']['total_user_count'];
           this.total_content_count = response['data']['total_content_count'];
-          this.recent_contents = response['data']['recent_contents'];
+          this.top_contents = response['data']['top_contents'];
         },
         error => {
           console.log(error);
@@ -122,7 +122,7 @@ export class DashboardComponent implements OnInit {
           this.ticket_count = response['data']['ticket_count'];
           this.avg_age = response['data']['avg_age'];
           this.revenue = response['data']['revenue'];
-          this.recent_ticket_types = response['data']['recent_ticket_types'];
+          this.top_ticket_types = response['data']['top_ticket_types'];
         },
         error => {
           console.log(error);
