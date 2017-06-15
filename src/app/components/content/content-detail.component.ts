@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
 import { ContentService } from '../../services/content.service';
-import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-content-detail',
   templateUrl: './content-detail.component.html',
   styleUrls: ['./content-detail.component.css'],
-  providers: [NotificationsService]
+  providers: []
 })
 export class ContentDetailComponent implements OnInit {
   content: any;
@@ -16,18 +15,10 @@ export class ContentDetailComponent implements OnInit {
   edit_mode: boolean;
 
   constructor(private route: ActivatedRoute,
-              private contentService: ContentService,
-              private simpleNotificationsService: NotificationsService) { }
+              private contentService: ContentService) { }
 
   ngOnInit() {
-    let params: Params = this.route.snapshot.params;
-    this.notification_options = {
-      timeOut: 3000,
-      showProgressBar: true,
-      pauseOnHover: false,
-      clickToClose: true,
-      maxLength: 128
-    }
+    const params: Params = this.route.snapshot.params;
     this.loadContent(params['id']);
     this.edit_mode = false;
   }
@@ -39,11 +30,6 @@ export class ContentDetailComponent implements OnInit {
           this.content = response['data'];
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
@@ -67,11 +53,6 @@ export class ContentDetailComponent implements OnInit {
           this.edit_mode = false;
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );

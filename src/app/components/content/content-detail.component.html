@@ -20,6 +20,7 @@
           <br>
           <ul *ngIf="!edit_mode" class="list-group">
             <li class="list-group-item"><strong>ID: </strong>{{content._id}}</li>
+            <li class="list-group-item"><strong>Short ID: </strong>{{content.short_id}}</li>
             <li class="list-group-item"><strong>Name: </strong>{{content.name}}</li>
             <li *ngIf="content.desc" class="list-group-item"><strong>Description: </strong>{{content.desc}}</li>
             <li *ngIf="content.when" class="list-group-item"><strong>When: </strong>{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}} ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
@@ -64,4 +65,3 @@
     </div>
   </div>
 </div>
-<simple-notifications></simple-notifications>
