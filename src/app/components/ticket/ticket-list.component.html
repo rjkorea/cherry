@@ -27,56 +27,51 @@
             <div *ngFor="let ticket of tickets">
               <a *ngIf="ticket.status=='pend'" [routerLink]="['/ticket', ticket._id]" class="list-group-item disabled">
                 <h4>
-                  {{ticket.ticket_type.name}} /
-                  {{ticket.ticket_type.day}} days /
-                  {{ticket.ticket_type.price}} /
-                  <span *ngIf="ticket.days[0].fee">Fee: {{ticket.days[0].fee.price}}</span>
-                  <span class="badge">{{ticket.status}}</span>
+                  <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                  {{ticket.ticket_type.name}} {{ticket.ticket_type.day}} days
+                  <span *ngIf="ticket.days[0].fee" class="glyphicon glyphicon-leaf">{{ticket.days[0].fee.price}}</span>
+                  <span class="label label-default">전송준비</span>
                 </h4>
               </a>
               <a *ngIf="ticket.status=='send'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-warning">
                 <h4>
-                  {{ticket.ticket_type.name}} /
-                  {{ticket.ticket_type.day}} days /
-                  {{ticket.ticket_type.price}} /
-                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} /</span>
-                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}} /</strong>
-                  <span *ngIf="ticket.days[0].fee">Fee: {{ticket.days[0].fee.price}}</span>
-                  <span class="badge">{{ticket.status}}</span>
+                  <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                  {{ticket.ticket_type.name}} {{ticket.ticket_type.day}} days
+                  <span *ngIf="ticket.days[0].fee" class="glyphicon glyphicon-leaf">{{ticket.days[0].fee.price}}</span>
+                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </span>
+                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}}</strong>
+                  <span class="label label-warning">전송중</span>
                 </h4>
               </a>
               <a *ngIf="ticket.status=='register'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-success">
                 <h4>
-                  {{ticket.ticket_type.name}} /
-                  {{ticket.ticket_type.day}} days /
-                  {{ticket.ticket_type.price}} /
-                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} /</span>
-                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}} /</strong>
-                  <span *ngIf="ticket.days[0].fee">Fee: {{ticket.days[0].fee.price}}</span>
-                  <span class="badge">{{ticket.status}}</span>
+                  <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                  {{ticket.ticket_type.name}} {{ticket.ticket_type.day}} days
+                  <span *ngIf="ticket.days[0].fee" class="glyphicon glyphicon-leaf">{{ticket.days[0].fee.price}}</span>
+                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </span>
+                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}}</strong>
+                  <span class="label label-success">등록완료</span>
                 </h4>
               </a>
               <a *ngIf="ticket.status=='use'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-info">
                 <h4>
-                  {{ticket.ticket_type.name}} /
-                  {{ticket.ticket_type.day}} days /
-                  {{ticket.ticket_type.price}} /
-                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} /</span>
-                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}} /</strong>
-                  <span *ngIf="ticket.days[0].fee">{{ticket.days[0].entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss' | amTimeAgo}} /</span>
-                  <span *ngIf="ticket.days[0].fee">Fee: {{ticket.days[0].fee.price}}</span>
-                  <span class="badge">{{ticket.status}}</span>
+                  <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                  {{ticket.ticket_type.name}} {{ticket.ticket_type.day}} days
+                  <span *ngIf="ticket.days[0].fee" class="glyphicon glyphicon-leaf">{{ticket.days[0].fee.price}}</span>
+                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </span>
+                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}}</strong>
+                  <span *ngIf="ticket.days[0]">{{ticket.days[0].entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss' | amTimeAgo}}</span>
+                  <span class="label label-info">입장완료</span>
                 </h4>
               </a>
               <a *ngIf="ticket.status=='cancel'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-danger">
                 <h4>
-                  {{ticket.ticket_type.name}} /
-                  {{ticket.ticket_type.day}} days /
-                  {{ticket.ticket_type.price}} /
-                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} /</span>
-                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}} /</strong>
-                  <span *ngIf="ticket.days[0].fee">Fee: {{ticket.days[0].fee.price}}</span>
-                  <span class="badge">{{ticket.status}}</span>
+                  <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                  {{ticket.ticket_type.name}} {{ticket.ticket_type.day}} days
+                  <span *ngIf="ticket.days[0].fee" class="glyphicon glyphicon-leaf">{{ticket.days[0].fee.price}}</span>
+                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </span>
+                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}}</strong>
+                  <span class="label label-danger">취소</span>
                 </h4>
               </a>
             </div>
