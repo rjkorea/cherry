@@ -62,6 +62,7 @@ export class TicketListComponent implements OnInit {
         response => {
           this.count = response['count'];
           this.tickets = response['data'];
+          window.scrollTo(0, 0);
         },
         error => {
           console.log(error);
@@ -70,17 +71,15 @@ export class TicketListComponent implements OnInit {
   }
 
   onPrev() {
-    let page = this.page - 1;
-    this.page = page
-    this.router.navigate(['/ticket', {query: this.query, page: page}]);
-    this.loadTickets(this.query, page);
+    this.page = this.page - 1;
+    this.router.navigate(['/ticket', {query: this.query, page: this.page}]);
+    this.loadTickets(this.query, this.page);
   }
 
   onNext() {
-    let page = this.page + 1;
-    this.page = page;
-    this.router.navigate(['/ticket', {query: this.query, page: page}]);
-    this.loadTickets(this.query, page);
+    this.page = this.page + 1;
+    this.router.navigate(['/ticket', {query: this.query, page: this.page}]);
+    this.loadTickets(this.query, this.page);
   }
 
   search() {
@@ -101,8 +100,9 @@ export class TicketListComponent implements OnInit {
   }
 
   changeCompany() {
+    this.page = 1;
+    this.router.navigate(['/ticket', {query: this.query, page: this.page}]);
     this.loadTickets(this.query, this.page);
-    console.log('changed company', this.company_oid);
   }
 
   loadContents() {
@@ -118,8 +118,9 @@ export class TicketListComponent implements OnInit {
   }
 
   changeContent() {
+    this.page = 1;
+    this.router.navigate(['/ticket', {query: this.query, page: this.page}]);
     this.loadTickets(this.query, this.page);
-    console.log('changed content', this.content_oid);
   }
 
 }
