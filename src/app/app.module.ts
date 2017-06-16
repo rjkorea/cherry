@@ -57,6 +57,7 @@ import { ContentService } from './services/content.service';
 import { CompanyService } from './services/company.service';
 import { TicketService } from './services/ticket.service';
 import { PlaceService } from './services/place.service';
+import { UtilService } from './services/util.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 
@@ -126,7 +127,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     ContentService,
     CompanyService,
     TicketService,
-    PlaceService
+    PlaceService,
+    UtilService
   ],
   bootstrap: [AppComponent]
 })
