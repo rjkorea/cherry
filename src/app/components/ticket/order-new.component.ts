@@ -2,32 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
 import { ContentService } from '../../services/content.service';
-import { NotificationsService } from 'angular2-notifications';
+import { UtilService } from '../../services/util.service';
 
 @Component({
   selector: 'app-ticket-order-new',
   templateUrl: './order-new.component.html',
   styleUrls: ['./order-new.component.css'],
-  providers: [NotificationsService]
+  providers: []
 })
 export class TicketOrderNewComponent implements OnInit {
-  private order: any;
-  private notification_options: Object;
-  private contents: Array<any> = [];
-  private types: Array<any> = [];
-  private is_fee: boolean;
-  private fee: any;
-  private country_code: string;
-  private mobile_number: string;
+  order: any;
+  contents: any;
+  countries: any;
+  types: any;
+  is_fee: boolean;
+  fee: any;
+  country_code: string;
+  mobile_number: string;
 
-  private minDate: Date = void 0;
-  private dateDisabled: {date: Date, mode: string}[];
-  private expiry: any;
+  minDate: Date = void 0;
+  dateDisabled: {date: Date, mode: string}[];
+  expiry: any;
 
   constructor(private ticketService: TicketService,
               private contentService: ContentService,
-              private router: Router,
-              private simpleNotificationsService: NotificationsService) { }
+              private utilService: UtilService,
+              private router: Router) { }
 
   ngOnInit() {
     this.is_fee = false;
@@ -40,44 +40,58 @@ export class TicketOrderNewComponent implements OnInit {
     this.mobile_number = '';
     this.order = {
       ticket_type_oid: '',
-      qty: 0,
+      qty: 1,
       receiver: {
         name: '',
-        mobile_number: '',
-        access_code: ''
+        mobile_number: ''
       }
-    }
+    };
+    this.contents = [
+      {
+        _id: '',
+        name: '컨텐츠',
+        company: { name: '회사 이름' }
+      }
+    ];
+    this.types = [
+      {
+        _id: '',
+        name: '티켓타입',
+        desc: '설명',
+        day: 'day'
+      }
+    ];
+    this.countries = [
+      {
+        _id: '',
+        name: '국가이름',
+        code: '코드'
+      }
+    ];
+
     this.loadContents();
-    this.notification_options = {
-      timeOut: 3000,
-      showProgressBar: true,
-      pauseOnHover: false,
-      clickToClose: true,
-      maxLength: 128
-    }
+    this.loadCountryList();
   }
 
   changeContent() {
-    this.types = [];
+    this.types = [
+      {
+        _id: '',
+        name: '티켓타입',
+        desc: '설명',
+        day: 'day'
+      }
+    ];
     this.loadTypes();
-    console.log(this.order.content_oid);
   }
 
   loadTypes() {
-    this.ticketService.getTypeList(this.order.content_oid, '','', 0, 100)
+    this.ticketService.getTypeList(this.order.content_oid, '', '', 0, 100)
     .subscribe(
       response => {
-        for (let t of response['data']) {
-          this.types.push({id: t['_id'], text: t['name']})
-        }
-        console.log(this.types);
+        this.types = this.types.concat(response['data']);
       },
       error => {
-        this.simpleNotificationsService.error(
-          'Error',
-          error['message'],
-          this.notification_options
-        );
         console.log(error);
       }
     );
@@ -87,24 +101,28 @@ export class TicketOrderNewComponent implements OnInit {
     this.contentService.getContentList('', 0, 100)
     .subscribe(
       response => {
-        for (let t of response['data']) {
-          this.contents.push({id: t['_id'], text: t['name']})
-        }
-        console.log(this.contents);
+        this.contents = this.contents.concat(response['data']);
       },
       error => {
-        this.simpleNotificationsService.error(
-          'Error',
-          error['message'],
-          this.notification_options
-        );
+        console.log(error);
+      }
+    );
+  }
+
+  loadCountryList() {
+    this.utilService.getCountryList('', 0, 100)
+    .subscribe(
+      response => {
+        this.countries = this.countries.concat(response['data']);
+      },
+      error => {
         console.log(error);
       }
     );
   }
 
   onSubmit() {
-    if(this.is_fee) {
+    if (this.is_fee) {
       this.order.fee = this.fee;
     }else {
       delete this.order.fee;
@@ -118,27 +136,21 @@ export class TicketOrderNewComponent implements OnInit {
           this.router.navigate(['/ticket/order']);
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
   }
 
-  public getISODate() {
-    return this.expiry.date.getFullYear() + '-' + (this.expiry.date.getMonth()+1) + '-' + this.expiry.date.getDate()
-      + 'T' + this.expiry.time.getHours() + ':' + this.expiry.time.getMinutes() + ':' +this.expiry.time.getSeconds();
+  getISODate() {
+    return this.expiry.date.getFullYear() + '-' + (this.expiry.date.getMonth() + 1) + '-' + this.expiry.date.getDate()
+      + 'T' + this.expiry.time.getHours() + ':' + this.expiry.time.getMinutes() + ':' + this.expiry.time.getSeconds();
   }
 
-  public disabledSubmit() {
+  disabledSubmit() {
     return !(this.order.content_oid &&
       this.order.ticket_type_oid &&
       this.order.qty &&
       this.order.receiver.name &&
-      this.order.receiver.access_code &&
       this.country_code &&
       this.mobile_number &&
       this.expiry.date &&

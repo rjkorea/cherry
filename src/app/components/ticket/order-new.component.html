@@ -7,17 +7,19 @@
       <div class="col-md-6">
         <form>
           <div class="form-group">
-            <label for="type">Content (required)</label>
+            <!--<label for="content">Content (required)</label>-->
             <select class="form-control" name="content" [(ngModel)]="order.content_oid" (ngModelChange)="changeContent()">
-              <option [ngValue]="">Select content</option>
-              <option *ngFor="let c of contents" [ngValue]="c.id">{{c.text}}</option>
+              <ng-container *ngFor="let c of contents">
+                <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
+              </ng-container>
             </select>
           </div>
           <div class="form-group">
-            <label for="type">Type (required)</label>
+            <!--<label for="content">Type (required)</label>-->
             <select class="form-control" name="type" [(ngModel)]="order.ticket_type_oid">
-              <option [ngValue]="">Select type</option>
-              <option *ngFor="let t of types" [ngValue]="t.id">{{t.text}}</option>
+              <ng-container *ngFor="let t of types">
+                <option [ngValue]="t._id">{{t.name}} ({{t.day}} day) - {{t.desc}}</option>
+              </ng-container>
             </select>
           </div>
           <div class="form-group">
@@ -37,27 +39,13 @@
             <label for="receiver-name">Receiver Name (required)</label>
             <input type="text" class="form-control" [(ngModel)]="order.receiver.name" name="receiver-name" placeholder="input real name">
           </div>
-          <div class="form-group">
-            <label for="receiver-access-code">Receiver Access Code (required)</label>
-            <input type="text" class="form-control" [(ngModel)]="order.receiver.access_code" name="receiver-access-code">
-          </div>
           <form class="form-inline">
             <div class="form-group">
-              <label class="sr-only" for="receiver-country-code">Country Code</label>
-              <select class="form-control" name="receiver-country-code" [(ngModel)]="country_code">
-                <option [ngValue]="">Select country code</option>
-                <option [ngValue]="+82">South Korea (+82)</option>
-                <option [ngValue]="+61">Australia (+61)</option>
-                <option [ngValue]="+55">Brazil (+55)</option>
-                <option [ngValue]="+1">Canada (+1)</option>
-                <option [ngValue]="+86">China (+86)</option>
-                <option [ngValue]="+49">Germany (+49)</option>
-                <option [ngValue]="+852">Hong Kong (+852)</option>
-                <option [ngValue]="+81">Japan (+81)</option>
-                <option [ngValue]="+65">Singapore (+65)</option>
-                <option [ngValue]="+66">Thailand (+66)</option>
-                <option [ngValue]="+44">United Kingdom (+44)</option>
-                <option [ngValue]="+1">United States (+1)</option>
+              <label class="sr-only" for="receive-country-code">Country Code</label>
+              <select class="form-control" name="receive-country-code" [(ngModel)]="country_code">
+                <ng-container *ngFor="let c of countries">
+                  <option [ngValue]="c.code">{{c.name}} (+{{c.code}})</option>
+                </ng-container>
               </select>
             </div>
             <div class="form-group">
@@ -66,7 +54,6 @@
             </div>
           </form>
           <hr />
-
           <div class="checkbox">
             <label>
               <input type="checkbox" [checked]="is_fee" (change)="is_fee = !is_fee"> Fee
@@ -95,4 +82,3 @@
     <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
   </div>
 </div>
-<simple-notifications></simple-notifications>

@@ -19,7 +19,7 @@ export class TicketOrderDetailComponent implements OnInit {
               private simpleNotificationsService: NotificationsService) { }
 
   ngOnInit() {
-    let params: Params = this.route.snapshot.params;
+    const params: Params = this.route.snapshot.params;
     this.notification_options = {
       timeOut: 3000,
       showProgressBar: true,

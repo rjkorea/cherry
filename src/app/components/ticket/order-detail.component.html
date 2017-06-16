@@ -20,20 +20,19 @@
             <li class="list-group-item"><strong>Created at: </strong>{{order.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
           <ul class="list-group">
-            <li class="list-group-item"><strong>Type</strong></li>
+            <li class="list-group-item list-group-item-info"><strong>Type</strong></li>
             <li class="list-group-item"><strong>Name: </strong>{{order.ticket_type.name}}</li>
             <li class="list-group-item"><strong>Description: </strong>{{order.ticket_type.desc}}</li>
             <li class="list-group-item"><strong>Day: </strong>{{order.ticket_type.day}}</li>
             <li class="list-group-item"><strong>Price: </strong>{{order.ticket_type.price}}</li>
           </ul>
           <ul class="list-group">
-            <li class="list-group-item"><strong>Receiver</strong></li>
+            <li class="list-group-item list-group-item-info"><strong>Receiver</strong></li>
             <li class="list-group-item"><strong>Name: </strong>{{order.receiver.name}}</li>
             <li class="list-group-item"><strong>Mobile Number: </strong>{{order.receiver.mobile_number}}</li>
-            <li class="list-group-item"><strong>Access Code: </strong>{{order.receiver.access_code}}</li>
           </ul>
           <ul *ngIf="order.fee" class="list-group">
-            <li class="list-group-item"><strong>Fee</strong></li>
+            <li class="list-group-item list-group-item-info"><strong>Fee</strong></li>
             <li class="list-group-item"><strong>Method: </strong>{{order.fee.method}}</li>
             <li class="list-group-item"><strong>Price: </strong>{{order.fee.price}}</li>
           </ul>
@@ -54,7 +53,6 @@
                   <p><strong>Send ticket order?</strong></p>
                   <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{order.receiver.name}}</p>
                   <p><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{order.receiver.mobile_number}}</p>
-                  <p><span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span> {{order.receiver.access_code}}</p>
 
                 </div>
                 <div class="modal-footer">
