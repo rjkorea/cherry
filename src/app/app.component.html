@@ -1,5 +1,21 @@
 <navbar></navbar>
 
 <div class="container">
+  <!-- for debug -->
+  <ul *ngIf="debug" class="list-group">
+    <li class="list-group-item list-group-item-danger">
+      <h4>userAgent</h4>
+      <p>{{userAgent}}</p>
+    </li>
+    <li class="list-group-item list-group-item-danger">
+      <h4>vendor</h4>
+      <p>{{vendor}}</p>
+    </li>
+    <li class="list-group-item list-group-item-danger">
+      <h4>vendorSub</h4>
+      <p>{{vendorSub}}</p>
+    </li>
+  </ul>
+
   <router-outlet></router-outlet>
 </div><!-- /.container -->

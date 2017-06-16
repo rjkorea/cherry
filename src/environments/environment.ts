@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+  debug: false,
   api: {
     protocol: 'http',
     host: 'localhost',
