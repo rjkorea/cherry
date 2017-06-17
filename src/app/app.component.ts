@@ -1,5 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 
 @Component({
@@ -13,7 +12,7 @@ export class AppComponent implements OnInit {
   vendor: any;
   vendorSub: any;
 
-  constructor(private meta: Meta) { }
+  constructor() { }
 
   ngOnInit() {
     this.debug = environment.debug;
@@ -32,12 +31,6 @@ export class AppComponent implements OnInit {
         console.log('online');
       });
     }
-
-    // set meta property
-    this.meta.addTag({property: 'og:title', content: '세상의 모든 즐거움을 티킷하다'});
-    this.meta.addTag({property: 'og:image', content: 'http://www.tkit.me/images/opengraph.jpg'});
-    this.meta.addTag({property: 'og:url', content: 'http://host.tkit.me'});
-    this.meta.addTag({property: 'og:type', content: 'website'});
 
   }
 
