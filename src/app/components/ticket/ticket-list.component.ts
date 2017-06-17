@@ -123,4 +123,10 @@ export class TicketListComponent implements OnInit {
     this.loadTickets(this.query, this.page);
   }
 
+  checkRole() {
+    return this.authService.getRole() === 'super' ||
+           this.authService.getRole() === 'admin' ||
+           this.authService.getRole() === 'host';
+  }
+
 }

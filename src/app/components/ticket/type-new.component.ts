@@ -11,9 +11,9 @@ import { NotificationsService } from 'angular2-notifications';
   providers: [NotificationsService]
 })
 export class TicketTypeNewComponent implements OnInit {
-  private type: any;
-  private notification_options: Object;
-  private contents: Array<any> = [];
+  type: any;
+  notification_options: Object;
+  contents: Array<any> = [];
 
 
   constructor(private ticketService: TicketService,

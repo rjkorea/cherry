@@ -10,12 +10,12 @@ import { NotificationsService } from 'angular2-notifications';
   providers: [NotificationsService]
 })
 export class TicketOrderListComponent implements OnInit {
-  private orders: Array<Object>;
-  private notification_options: Object;
-  private query: any = '';
-  private page: any = 1;
-  private size: any = 9;
-  private count: any = 0;
+  orders: Array<Object>;
+  notification_options: Object;
+  query: any = '';
+  page: any = 1;
+  size: any = 9;
+  count: any = 0;
 
   constructor(private ticketService: TicketService,
               private route: ActivatedRoute,

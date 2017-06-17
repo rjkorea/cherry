@@ -10,12 +10,12 @@ import { UserService } from '../../services/user.service';
   providers: []
 })
 export class EntranceTicketComponent implements OnInit {
-  private ticket: any;
-  private ticket_form: any;
-  private methods: string[];
-  private user_edit_mode: boolean;
-  private genders: any;
-  private user_form: any;
+  ticket: any;
+  ticket_form: any;
+  methods: string[];
+  user_edit_mode: boolean;
+  genders: any;
+  user_form: any;
 
   constructor(private route: ActivatedRoute,
               private router: Router,

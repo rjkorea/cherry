@@ -10,8 +10,8 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 
 @Injectable()
 export class UtilService {
-  private countriesUrl = `${URL}/a/countries`;
-  private options;
+  countriesUrl = `${URL}/a/countries`;
+  options;
 
   constructor(private http: Http) {
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});

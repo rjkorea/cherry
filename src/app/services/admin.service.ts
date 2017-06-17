@@ -10,9 +10,9 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 
 @Injectable()
 export class AdminService {
-  private adminUrl = `${URL}/a/admin`;
-  private adminsUrl = `${URL}/a/admins`;
-  private options;
+  adminUrl = `${URL}/a/admin`;
+  adminsUrl = `${URL}/a/admins`;
+  options;
 
   constructor(private http: Http) {
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});

@@ -10,9 +10,9 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 
 @Injectable()
 export class AuthService {
-  private loginUrl = `${URL}/a/auth/login`;
-  private signupUrl = `${URL}/a/auth/register`;
-  private isLoggedIn = false;
+  loginUrl = `${URL}/a/auth/login`;
+  signupUrl = `${URL}/a/auth/register`;
+  isLoggedIn = false;
 
   constructor(private http: Http) {
     this.isLoggedIn = !!localStorage.getItem('csk');
@@ -23,7 +23,7 @@ export class AuthService {
     const options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(this.loginUrl, JSON.stringify({email, password}), options)
                     .map((response: Response) => {
-                      if(response.status==200) {
+                      if(response.status === 200) {
                         localStorage.setItem('csk', response.json().data.csk);
                         localStorage.setItem('name', response.json().data.name);
                         localStorage.setItem('_id', response.json().data._id);

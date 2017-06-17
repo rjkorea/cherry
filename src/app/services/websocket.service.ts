@@ -4,8 +4,8 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class WebSocketService {
-  private url = `ws://${environment.api.host}:${environment.api.port}/ws`;
-  private websocket: WebSocket;
+  url = `ws://${environment.api.host}:${environment.api.port}/ws`;
+  websocket: WebSocket;
 
   constructor() { }
 

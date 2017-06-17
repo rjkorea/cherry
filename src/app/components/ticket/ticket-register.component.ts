@@ -9,10 +9,10 @@ import { TicketService } from '../../services/ticket.service';
   providers: []
 })
 export class TicketRegisterComponent implements OnInit {
-  private user: any;
-  private genders: any;
-  private country_codes: any;
-  private country_code: string;
+  user: any;
+  genders: any;
+  country_codes: any;
+  country_code: string;
 
   constructor(private ticketService: TicketService,
               private route: ActivatedRoute,
@@ -46,7 +46,7 @@ export class TicketRegisterComponent implements OnInit {
     ];
   }
 
-  private onDone() {
+  onDone() {
     this.user.mobile_number = this.country_code.slice(1) + this.user.mobile_number.slice(1);
     this.ticketService.registerTicket(this.route.snapshot.params['id'], this.user)
       .subscribe(
@@ -59,7 +59,7 @@ export class TicketRegisterComponent implements OnInit {
       );
   }
 
-  private disabledDone() {
+  disabledDone() {
     return !(this.user.name && this.user.mobile_number && this.user.gender && this.country_code);
   }
 

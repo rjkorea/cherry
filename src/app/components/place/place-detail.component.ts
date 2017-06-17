@@ -9,11 +9,11 @@ import { PlaceService } from '../../services/place.service';
   providers: []
 })
 export class PlaceDetailComponent implements OnInit {
-  private place: any;
-  private place_form: any;
-  private edit_mode: boolean;
-  private error: boolean;
-  private areas: string[];
+  place: any;
+  place_form: any;
+  edit_mode: boolean;
+  error: boolean;
+  areas: string[];
 
   constructor(private route: ActivatedRoute,
               private placeService: PlaceService) { }

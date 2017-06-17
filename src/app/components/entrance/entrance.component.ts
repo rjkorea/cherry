@@ -10,13 +10,13 @@ import { WebSocketService } from '../../services/websocket.service';
   providers: []
 })
 export class EntranceComponent implements OnInit {
-  private mode: string;
-  private user: string;
-  private users: Array<any>;
-  private users_count: number;
-  private tickets: Array<any>;
-  private tickets_count: number;
-  private query: string;
+  mode: string;
+  user: string;
+  users: Array<any>;
+  users_count: number;
+  tickets: Array<any>;
+  tickets_count: number;
+  query: string;
 
   constructor(
     private userService: UserService,

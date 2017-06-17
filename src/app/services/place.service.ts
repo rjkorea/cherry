@@ -10,9 +10,9 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 
 @Injectable()
 export class PlaceService {
-  private placeUrl = `${URL}/a/place`;
-  private placesUrl = `${URL}/a/places`;
-  private options;
+  placeUrl = `${URL}/a/place`;
+  placesUrl = `${URL}/a/places`;
+  options;
 
   constructor(private http: Http) {
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});

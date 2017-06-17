@@ -10,9 +10,9 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 
 @Injectable()
 export class NotificationService {
-  private notificationUrl = `${URL}/a/notification`;
-  private notificationsUrl = `${URL}/a/notifications`;
-  private options;
+  notificationUrl = `${URL}/a/notification`;
+  notificationsUrl = `${URL}/a/notifications`;
+  options;
 
   constructor(private http: Http) {
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});

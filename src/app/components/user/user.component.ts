@@ -10,12 +10,12 @@ import { NotificationsService } from 'angular2-notifications';
   providers: [NotificationsService]
 })
 export class UserComponent implements OnInit {
-  private users: Array<Object>;
-  private notification_options: Object;
-  private query: any = '';
-  private page: any = 1;
-  private size: any = 10;
-  private count: any = 0;
+  users: Array<Object>;
+  notification_options: Object;
+  query: any = '';
+  page: any = 1;
+  size: any = 10;
+  count: any = 0;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,

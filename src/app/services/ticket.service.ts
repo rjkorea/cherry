@@ -10,13 +10,13 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 
 @Injectable()
 export class TicketService {
-  private typeUrl = `${URL}/a/ticket/type`;
-  private typesUrl = `${URL}/a/ticket/types`;
-  private orderUrl = `${URL}/a/ticket/order`;
-  private ordersUrl = `${URL}/a/ticket/orders`;
-  private ticketUrl = `${URL}/a/ticket`;
-  private ticketsUrl = `${URL}/a/tickets`;
-  private options;
+  typeUrl = `${URL}/a/ticket/type`;
+  typesUrl = `${URL}/a/ticket/types`;
+  orderUrl = `${URL}/a/ticket/order`;
+  ordersUrl = `${URL}/a/ticket/orders`;
+  ticketUrl = `${URL}/a/ticket`;
+  ticketsUrl = `${URL}/a/tickets`;
+  options;
 
   constructor(private http: Http) {
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});

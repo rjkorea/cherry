@@ -28,4 +28,28 @@ export class NavbarComponent implements OnInit {
     return localStorage.getItem('role');
   }
 
+  isDefaultNavbar() {
+    return !this.authService.loggedIn() && !this.authService.getRole();
+  }
+
+  isSuperNavbar() {
+    return this.authService.loggedIn() && this.authService.getRole() === 'super';
+  }
+
+  isAdminNavbar() {
+    return this.authService.loggedIn() && this.authService.getRole() === 'admin';
+  }
+
+  isHostNavbar() {
+    return this.authService.loggedIn() && this.authService.getRole() === 'host';
+  }
+
+  isStaffNavbar() {
+    return this.authService.loggedIn() && this.authService.getRole() === 'staff';
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
 }
