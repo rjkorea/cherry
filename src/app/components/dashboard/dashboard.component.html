@@ -17,9 +17,15 @@
           <h3 class="panel-title">전체 티켓</h3>
         </div>
         <div class="panel-body">
-          <h1>{{total_ticket_count}} <small>장</small></h1>
-          <!--<span class="label label-default">565명 초대권 대상자</span>
-          <span class="label label-primary">365명 방문객</span>-->
+          <h1>
+            {{total_ticket_count.pend + total_ticket_count.send + total_ticket_count.register + total_ticket_count.use + total_ticket_count.cancel}}
+            <small>장</small>
+          </h1>
+          <span class="label label-default">전송준비{{total_ticket_count.pend}}</span>
+          <span class="label label-warning">전송중{{total_ticket_count.send}}</span>
+          <span class="label label-success">등록완료{{total_ticket_count.register}}</span>
+          <span class="label label-info">입장완료{{total_ticket_count.use}}</span>
+          <span class="label label-danger">취소{{total_ticket_count.cancel}}</span>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   contents: any;
   content_oid: string;
 
-  total_ticket_count: number;
+  total_ticket_count: any;
   total_company_count: number;
   total_user_count: number;
   total_content_count: number;
@@ -81,6 +81,13 @@ export class DashboardComponent implements OnInit {
         company: { name: '회사 이름' }
       }
     ];
+    this.total_ticket_count = {
+      pend: 0,
+      send: 0,
+      register: 0,
+      use: 0,
+      cancel: 0
+    };
     this.top_contents = [];
     this.top_ticket_types = [];
     this.ticket_count = {
@@ -103,7 +110,7 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getDashboard()
       .subscribe(
         response => {
-          this.total_ticket_count = response['data']['total_ticket_count'];
+          this.total_ticket_count = response['data']['ticket_count'];
           this.total_company_count = response['data']['total_company_count'];
           this.total_user_count = response['data']['total_user_count'];
           this.total_content_count = response['data']['total_content_count'];
