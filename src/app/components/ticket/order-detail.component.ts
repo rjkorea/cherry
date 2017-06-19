@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
-import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-ticket-order-detail',
   templateUrl: './order-detail.component.html',
   styleUrls: ['./order-detail.component.css'],
-  providers: [NotificationsService]
+  providers: []
 })
 export class TicketOrderDetailComponent implements OnInit {
   order: any;
@@ -15,8 +14,7 @@ export class TicketOrderDetailComponent implements OnInit {
   notification_options: Object;
 
   constructor(private route: ActivatedRoute,
-              private ticketService: TicketService,
-              private simpleNotificationsService: NotificationsService) { }
+              private ticketService: TicketService) { }
 
   ngOnInit() {
     const params: Params = this.route.snapshot.params;
@@ -38,11 +36,6 @@ export class TicketOrderDetailComponent implements OnInit {
           console.log(this.order);
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
@@ -58,11 +51,6 @@ export class TicketOrderDetailComponent implements OnInit {
           this.loadOrder(this.order._id);
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
@@ -75,11 +63,6 @@ export class TicketOrderDetailComponent implements OnInit {
           console.log(response);
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );

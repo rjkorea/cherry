@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CompanyService } from '../../services/company.service';
-import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-company-new',
   templateUrl: './company-new.component.html',
   styleUrls: ['./company-new.component.css'],
-  providers: [NotificationsService]
+  providers: []
 })
 export class CompanyNewComponent implements OnInit {
   company: any;
-  notification_options: Object;
 
   constructor(private companyService: CompanyService,
-              private router: Router,
-              private simpleNotificationsService: NotificationsService) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.company = {
@@ -25,14 +22,7 @@ export class CompanyNewComponent implements OnInit {
         'mobile_number': '',
         'email': ''
       }
-    }
-    this.notification_options = {
-      timeOut: 3000,
-      showProgressBar: true,
-      pauseOnHover: false,
-      clickToClose: true,
-      maxLength: 128
-    }
+    };
   }
 
   onSubmit() {
@@ -42,11 +32,6 @@ export class CompanyNewComponent implements OnInit {
           this.router.navigate(['/company']);
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );

@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { CompanyService } from '../../services/company.service';
-import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-company-list',
   templateUrl: './company-list.component.html',
   styleUrls: ['./company-list.component.css'],
-  providers: [NotificationsService]
+  providers: []
 })
 export class CompanyListComponent implements OnInit {
   companies: Array<Object>;
-  notification_options: Object;
   query: any = '';
   page: any = 1;
   size: any = 9;
@@ -19,11 +17,10 @@ export class CompanyListComponent implements OnInit {
 
   constructor(private companyService: CompanyService,
               private route: ActivatedRoute,
-              private router: Router,
-              private simpleNotificationsService: NotificationsService) { }
+              private router: Router) { }
 
   ngOnInit() {
-    let params: Params = this.route.snapshot.params;
+    const params: Params = this.route.snapshot.params;
     if('query'in params) {
       this.query = params['query'];
     }
@@ -31,13 +28,6 @@ export class CompanyListComponent implements OnInit {
       this.page = +params['page'];
     }
     this.loadCompanies(this.query, this.page);
-    this.notification_options = {
-      timeOut: 3000,
-      showProgressBar: true,
-      pauseOnHover: false,
-      clickToClose: true,
-      maxLength: 128
-    }
   }
 
   loadCompanies(query:any, page: any) {
@@ -48,25 +38,20 @@ export class CompanyListComponent implements OnInit {
           this.companies = response['data'];
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
   }
 
   onPrev() {
-    let page = this.page - 1;
+    const page = this.page - 1;
     this.page = page
     this.router.navigate(['/company', {query: this.query, page: page}]);
     this.loadCompanies(this.query, page);
   }
 
   onNext() {
-    let page = this.page + 1;
+    const page = this.page + 1;
     this.page = page;
     this.router.navigate(['/company', {query: this.query, page: page}]);
     this.loadCompanies(this.query, page);

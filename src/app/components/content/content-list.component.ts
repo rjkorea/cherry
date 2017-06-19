@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { ContentService } from '../../services/content.service';
-import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-content-list',
   templateUrl: './content-list.component.html',
   styleUrls: ['./content-list.component.css'],
-  providers: [NotificationsService]
+  providers: []
 })
 export class ContentListComponent implements OnInit {
   contents: Array<Object>;
@@ -19,25 +18,17 @@ export class ContentListComponent implements OnInit {
 
   constructor(private contentService: ContentService,
               private route: ActivatedRoute,
-              private router: Router,
-              private simpleNotificationsService: NotificationsService) { }
+              private router: Router) { }
 
   ngOnInit() {
-    let params: Params = this.route.snapshot.params;
-    if('query'in params) {
+    const params: Params = this.route.snapshot.params;
+    if ('query' in params) {
       this.query = params['query'];
     }
     if('page' in params) {
       this.page = +params['page'];
     }
     this.loadContents(this.query, this.page);
-    this.notification_options = {
-      timeOut: 3000,
-      showProgressBar: true,
-      pauseOnHover: false,
-      clickToClose: true,
-      maxLength: 128
-    }
   }
 
   loadContents(query:any, page: any) {
@@ -48,25 +39,20 @@ export class ContentListComponent implements OnInit {
           this.contents = response['data'];
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
   }
 
   onPrev() {
-    let page = this.page - 1;
-    this.page = page
+    const page = this.page - 1;
+    this.page = page;
     this.router.navigate(['/content', {query: this.query, page: page}]);
     this.loadContents(this.query, page);
   }
 
   onNext() {
-    let page = this.page + 1;
+    const page = this.page + 1;
     this.page = page;
     this.router.navigate(['/content', {query: this.query, page: page}]);
     this.loadContents(this.query, page);

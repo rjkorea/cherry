@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { AdminService } from '../../services/admin.service';
-import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
-  providers: [NotificationsService]
+  providers: []
 })
 export class AdminComponent implements OnInit {
   admins: Array<Object>;
-  notification_options: Object;
   query: any = '';
   page: any = 1;
   size: any = 10;
@@ -19,11 +17,10 @@ export class AdminComponent implements OnInit {
 
   constructor(private adminService: AdminService,
               private route: ActivatedRoute,
-              private router: Router,
-              private simpleNotificationsService: NotificationsService) { }
+              private router: Router) { }
 
   ngOnInit() {
-    let params: Params = this.route.snapshot.params;
+    const params: Params = this.route.snapshot.params;
     if('query'in params) {
       this.query = params['query'];
     }
@@ -31,13 +28,6 @@ export class AdminComponent implements OnInit {
       this.page = +params['page'];
     }
     this.loadAdmins(this.query, this.page);
-    this.notification_options = {
-      timeOut: 3000,
-      showProgressBar: true,
-      pauseOnHover: false,
-      clickToClose: true,
-      maxLength: 128
-    }
   }
 
   loadAdmins(query:any, page: any) {
@@ -48,25 +38,20 @@ export class AdminComponent implements OnInit {
           this.admins = response['data'];
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
   }
 
   onPrev() {
-    let page = this.page - 1;
+    const page = this.page - 1;
     this.page = page
     this.router.navigate(['/admin', {query: this.query, page: page}]);
     this.loadAdmins(this.query, page);
   }
 
   onNext() {
-    let page = this.page + 1;
+    const page = this.page + 1;
     this.page = page;
     this.router.navigate(['/admin', {query: this.query, page: page}]);
     this.loadAdmins(this.query, page);

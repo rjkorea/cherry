@@ -1,33 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css'],
-  providers: [NotificationsService]
+  providers: []
 })
 export class UserDetailComponent implements OnInit {
   user: any;
   user_form: any;
-  notification_options: Object;
   edit_mode: boolean;
 
   constructor(private route: ActivatedRoute,
-              private userService: UserService,
-              private simpleNotificationsService: NotificationsService) { }
+              private userService: UserService) { }
 
   ngOnInit() {
-    let params: Params = this.route.snapshot.params;
-    this.notification_options = {
-      timeOut: 3000,
-      showProgressBar: true,
-      pauseOnHover: false,
-      clickToClose: true,
-      maxLength: 128
-    }
+    const params: Params = this.route.snapshot.params;
     this.loadUser(params['id']);
     this.edit_mode = false;
   }
@@ -39,11 +29,6 @@ export class UserDetailComponent implements OnInit {
           this.user = response['data'];
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
@@ -69,11 +54,6 @@ export class UserDetailComponent implements OnInit {
           this.edit_mode = false;
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
