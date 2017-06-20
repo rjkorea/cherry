@@ -23,51 +23,8 @@ export class DashboardComponent implements OnInit {
   revenue: any;
   top_ticket_types;
 
-  type = 'pie';
-  data = {
-    labels: ["여자", "남자"],
-    datasets: [
-      {
-        data: [280, 85],
-        backgroundColor: [
-            "#FF6384",
-            "#36A2EB"
-        ],
-        hoverBackgroundColor: [
-            "#FF6384",
-            "#36A2EB"
-        ]
-      }
-    ]
-  };
-  options = {
-    responsive: true,
-    maintainAspectRatio: false
-  };
-
-  type2 = 'doughnut';
-  data2 = {
-    labels: ["20대", "30대", "40대"],
-    datasets: [
-      {
-        data: [250, 98, 6],
-        backgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-        ],
-        hoverBackgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-        ]
-      }
-    ]
-  };
-  options2 = {
-    responsive: true,
-    maintainAspectRatio: false
-  };
+  gender_chart: any;
+  age_chart: any;
 
   constructor(private route: ActivatedRoute,
               private dashboardService: DashboardService,
@@ -102,6 +59,55 @@ export class DashboardComponent implements OnInit {
       cash: 0,
       creditcard: 0
     };
+    this.gender_chart = {
+      type: 'pie',
+      data: {
+        labels: ['여자', '남자'],
+        datasets: [
+          {
+            data: [0, 0],
+            backgroundColor: [
+              '#FF6384',
+              '#36A2EB'
+            ],
+            hoverBackgroundColor: [
+              '#FF6384',
+              '#36A2EB'
+            ]
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    };
+    this.age_chart = {
+      type: 'doughnut',
+      data: {
+        labels: ['20대', '30대', '40대'],
+        datasets: [
+          {
+            data: [250, 98, 6],
+            backgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56'
+            ],
+            hoverBackgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56'
+            ]
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    };
+
     this.loadContents();
     this.loadDashboard();
   }
@@ -115,6 +121,11 @@ export class DashboardComponent implements OnInit {
           this.total_user_count = response['data']['total_user_count'];
           this.total_content_count = response['data']['total_content_count'];
           this.top_contents = response['data']['top_contents'];
+          this.gender_chart['data']['datasets'][0]['data'] = [
+            response['data']['gender_count']['male'],
+            response['data']['gender_count']['female']
+          ];
+          console.log(this.gender_chart);
         },
         error => {
           console.log(error);
@@ -151,7 +162,7 @@ export class DashboardComponent implements OnInit {
 
   changeContent() {
     console.log('changed content', this.content_oid);
-    if(this.content_oid) {
+    if (this.content_oid) {
       this.loadDashboardContent(this.content_oid);
     }else {
       this.loadDashboard();
