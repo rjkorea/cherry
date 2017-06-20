@@ -46,7 +46,7 @@ export class UserDetailComponent implements OnInit {
       birthday: this.user.birthday,
       gender: this.user.gender,
       enabled: this.user.enabled
-    }
+    };
     this.userService.updateUser(this.user._id, this.user_form)
       .subscribe(
         response => {
