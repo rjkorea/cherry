@@ -22,10 +22,10 @@ export class PlaceListComponent implements OnInit {
 
   ngOnInit() {
     const params: Params = this.route.snapshot.params;
-    if ('query' in params) {
+    if (params['query']) {
       this.query = params['query'];
     }
-    if ('page' in params) {
+    if (params['page']) {
       this.page = +params['page'];
     }
     this.stats = {
