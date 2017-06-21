@@ -34,6 +34,7 @@ import { TicketRegisterComponent } from './components/ticket/ticket-register.com
 import { PlaceListComponent } from './components/place/place-list.component';
 import { PlaceDetailComponent } from './components/place/place-detail.component';
 import { PlaceNewComponent } from './components/place/place-new.component';
+import { QnaListComponent } from './components/qna/qna-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -76,6 +77,8 @@ const routes: Routes = [
   { path: 'place', component: PlaceListComponent, canActivate: [AuthGuard] },
   { path: 'place/:id', component: PlaceDetailComponent, canActivate: [AuthGuard] },
   { path: 'places/new/:area', component: PlaceNewComponent, canActivate: [AuthGuard] },
+
+  { path: 'qna', component: QnaListComponent, canActivate: [AuthGuard] },
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

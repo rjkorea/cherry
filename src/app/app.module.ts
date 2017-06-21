@@ -45,6 +45,7 @@ import { TicketRegisterComponent } from './components/ticket/ticket-register.com
 import { PlaceListComponent } from './components/place/place-list.component';
 import { PlaceDetailComponent } from './components/place/place-detail.component';
 import { PlaceNewComponent } from './components/place/place-new.component';
+import { QnaListComponent } from './components/qna/qna-list.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -58,6 +59,7 @@ import { CompanyService } from './services/company.service';
 import { TicketService } from './services/ticket.service';
 import { PlaceService } from './services/place.service';
 import { UtilService } from './services/util.service';
+import { QnaService } from './services/qna.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 
@@ -97,7 +99,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     TicketRegisterComponent,
     PlaceListComponent,
     PlaceDetailComponent,
-    PlaceNewComponent
+    PlaceNewComponent,
+    QnaListComponent
   ],
   imports: [
     BrowserModule,
@@ -128,7 +131,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     CompanyService,
     TicketService,
     PlaceService,
-    UtilService
+    UtilService,
+    QnaService
   ],
   bootstrap: [AppComponent]
 })
