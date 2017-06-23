@@ -27,11 +27,14 @@ export class DashboardComponent implements OnInit {
   gender_chart: any;
   age_chart: any;
 
+  is_loading: boolean;
+
   constructor(private route: ActivatedRoute,
               private dashboardService: DashboardService,
               private contentService: ContentService) { }
 
   ngOnInit() {
+    this.is_loading = true;
     this.contents = [
       {
         _id: '',
@@ -115,6 +118,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadDashboard() {
+    this.is_loading = true;
     this.dashboardService.getDashboard()
       .subscribe(
         response => {
@@ -127,8 +131,7 @@ export class DashboardComponent implements OnInit {
             response['data']['gender_count']['male'],
             response['data']['gender_count']['female']
           ];
-          this.gender_chart.update();
-          console.log(this.gender_chart);
+          this.is_loading = false;
         },
         error => {
           console.log(error);
@@ -137,6 +140,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadDashboardContent(id: string) {
+    this.is_loading = true;
     this.dashboardService.getDashboardContent(id)
       .subscribe(
         response => {
@@ -144,6 +148,7 @@ export class DashboardComponent implements OnInit {
           this.avg_age = response['data']['avg_age'];
           this.revenue = response['data']['revenue'];
           this.top_ticket_types = response['data']['top_ticket_types'];
+          this.is_loading = false;
         },
         error => {
           console.log(error);
