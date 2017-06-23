@@ -129,4 +129,12 @@ export class TicketListComponent implements OnInit {
            this.authService.getRole() === 'host';
   }
 
+  onTicket(id: string) {
+    this.router.navigate(['/ticket', id]);
+  }
+
+  onCancel(id: string) {
+    console.log('ticket cancel');
+  }
+
 }

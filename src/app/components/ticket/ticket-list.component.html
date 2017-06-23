@@ -22,6 +22,50 @@
     <div *ngIf="count">
 
       <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <tr>
+                <th>티켓타입</th>
+                <th>티켓상태</th>
+                <th>갱신일자</th>
+                <th>받는사람 이름</th>
+                <th>핸드폰번호</th>
+                <th>생년월일</th>
+                <th>성별</th>
+                <th>이메일</th>
+                <th></th>
+              </tr>
+              <tr *ngFor="let t of tickets" (click)="onTicket(t._id)">
+                <td>{{t.ticket_type.name}}</td>
+                <td>
+                  <span *ngIf="t.status === 'pend'" class="label label-default">전송준비</span>
+                  <span *ngIf="t.status === 'send'" class="label label-warning">전송중</span>
+                  <span *ngIf="t.status === 'register'" class="label label-success">등록완료</span>
+                  <span *ngIf="t.status === 'use'" class="label label-info">입장완료</span>
+                  <span *ngIf="t.status === 'cancel'" class="label label-danger">취소</span>
+                </td>
+                <td>{{t.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</td>
+                <td><span *ngIf="t.receive_user">{{t.receive_user.name}}</span></td>
+                <td><span *ngIf="t.receive_user">{{t.receive_user.mobile_number}}</span></td>
+                <td><span *ngIf="t.receive_user && t.receive_user.birthday">{{t.receive_user.birthday}}</span></td>
+                <td><span *ngIf="t.receive_user && t.receive_user.gender">{{t.receive_user.gender}}</span></td>
+                <td><span *ngIf="t.receive_user && t.receive_user.email">{{t.receive_user.email}}</span></td>
+                <td>
+                  <button *ngIf="t.status === 'register' || t.status === 'send'" type="button" class="btn btn-default btn-sm" (click)="onCancel(t._id)">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"> 티켓취소</span>
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+
+
+
+
+      <!--<div class="row">
         <div class="col-sm-12 col-md-12">
           <div class="list-group">
             <div *ngFor="let ticket of tickets">
@@ -77,7 +121,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
 
       <nav aria-label="...">
         <ul class="pager">
