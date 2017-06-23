@@ -62,4 +62,12 @@ export class TicketOrderListComponent implements OnInit {
     this.loadOrders(this.query, 1);
   }
 
+  onOrder(id: string) {
+    this.router.navigate(['/ticket/order', id]);
+  }
+
+  onSend(id: string) {
+    console.log('onSend');
+  }
+
 }
