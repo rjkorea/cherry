@@ -11,6 +11,7 @@ import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
 import { UiSwitchModule } from 'ng2-ui-switch';
 import { DatepickerModule, TimepickerModule } from 'ngx-bootstrap';
+import { SharedComponentsModule } from './components/shared/shared-components.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -114,6 +115,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     UiSwitchModule,
     DatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
+    SharedComponentsModule
   ],
   providers: [
     {
