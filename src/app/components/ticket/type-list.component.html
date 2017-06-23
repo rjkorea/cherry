@@ -1,16 +1,16 @@
 <div class="row">
-    <div class="col-md-11">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="name, desc" [(ngModel)]="query" name="query" (keyup.enter)="search()">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-            </span>
-        </div>
-        <br>
+  <div class="col-md-11">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="name, desc" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
     </div>
-    <div class="col-md-1">
-      <p><a routerLink="/ticket/types/new" class="btn btn-success" role="button">New</a></p>
-    </div>
+    <br>
+  </div>
+  <div class="col-md-1">
+    <p><a routerLink="/ticket/types/new" class="btn btn-success" role="button">New</a></p>
+  </div>
 </div>
 
 <div class="panel panel-default">
@@ -20,25 +20,22 @@
   <div class="panel-body">
     <div *ngIf="count">
       <div class="row">
-        <div *ngFor="let type of types">
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <!-- <img *ngIf="type.content.image" src="{{type.content.image.m}}">
-              <img *ngIf="!type.content.image" src="assets/images/no_image_icon.png"> -->
-              <div class="caption">
-                <h3><a [routerLink]="['/ticket/type', type._id]">{{type.name}}</a></h3>
-                <h4>{{type.day}} <strong>day</strong></h4>
-                <p>{{type.desc}}</p>
-                <hr />
-                <p>
-                  <span *ngIf="type.enabled" class="label label-success">enabled</span>
-                  <span *ngIf="!type.enabled" class="label label-danger">disabled</span>
-                </p>
-                <p><span class="glyphicon glyphicon-tent" aria-hidden="true"></span> {{type.content.name}}</p>
-                <p><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> {{type.price}}</p>
-                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{type.admin.name}}</p>
-              </div>
-            </div>
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <tr>
+                <th>이름</th>
+                <th>설명</th>
+                <th>데이</th>
+                <th>가격</th>
+              </tr>
+              <tr *ngFor="let t of types" (click)="onType(t._id)">
+                <td>{{t.name}}</td>
+                <td>{{t.desc}}</td>
+                <td>{{t.day}} Day</td>
+                <td>{{t.price}} 원</td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>

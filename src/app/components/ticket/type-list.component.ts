@@ -10,10 +10,9 @@ import { TicketService } from '../../services/ticket.service';
 })
 export class TicketTypeListComponent implements OnInit {
   types: Array<Object>;
-  notification_options: Object;
   query: any = '';
   page: any = 1;
-  size: any = 9;
+  size: any = 20;
   count: any = 0;
 
   constructor(private ticketService: TicketService,
@@ -32,11 +31,12 @@ export class TicketTypeListComponent implements OnInit {
   }
 
   loadTypes(query: any, page: any) {
-    this.ticketService.getTypeList('', '', query, (page-1)*this.size, this.size)
+    this.ticketService.getTypeList('', '', query, (page - 1) * this.size, this.size)
       .subscribe(
         response => {
           this.count = response['count'];
           this.types = response['data'];
+          window.scrollTo(0, 0);
         },
         error => {
           console.log(error);
@@ -61,6 +61,10 @@ export class TicketTypeListComponent implements OnInit {
   search() {
     this.router.navigate(['/ticket/type', {query: this.query, page: this.page}]);
     this.loadTypes(this.query, 1);
+  }
+
+  onType(id: string) {
+    this.router.navigate(['ticket/type/', id]);
   }
 
 }
