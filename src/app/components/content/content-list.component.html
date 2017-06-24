@@ -13,56 +13,106 @@
     </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Contents <span class="badge">{{count}}</span></h3>
-  </div>
-  <div class="panel-body">
-    <div *ngIf="count">
-      <div class="row">
-        <div *ngFor="let content of contents">
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <!--<img *ngIf="content.image" class="content_logo" src="{{content.image.logo.m}}">-->
-              <img *ngIf="content.image" class="content_logo img-thumbnail" src="{{content.image.logo.m}}">
-              <img *ngIf="!content.image" class="content_logo" src="assets/images/no_image_icon.png">
-              <div class="caption">
-                <h3><a [routerLink]="['/content', content._id]">{{content.name | slice: 0:24}}</a></h3>
-                <p>{{content.desc | slice: 0:200}}</p>
-                <hr />
-                <p>
-                  <span *ngIf="content.enabled" class="label label-success">enabled</span>
-                  <span *ngIf="!content.enabled" class="label label-danger">disabled</span>
-                </p>
-                <p *ngIf="content.when"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD'}} ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</p>
-                <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{content.place}}</p>
-              </div>
+<div *ngIf="is_loading">
+  <app-loader></app-loader>
+</div>
+
+<div *ngIf="!is_loading">
+
+  <div *ngIf="count">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Content <span class="badge">{{count}}</span></h3>
+      </div>
+      <div *ngFor="let content of contents">
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <img *ngIf="content.image" class="content_logo img-thumbnail" src="{{content.image.logo.m}}">
+            <img *ngIf="!content.image" class="content_logo" src="assets/images/no_image_icon.png">
+            <div class="caption">
+              <h3><a [routerLink]="['/content', content._id]">{{content.name | slice: 0:24}}</a></h3>
+              <p>{{content.desc | slice: 0:200}}</p>
+              <hr />
+              <p>
+                <span *ngIf="content.enabled" class="label label-success">enabled</span>
+                <span *ngIf="!content.enabled" class="label label-danger">disabled</span>
+              </p>
+              <p *ngIf="content.when"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD'}} ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</p>
+              <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{content.place}}</p>
             </div>
           </div>
         </div>
       </div>
-      <nav aria-label="...">
-        <ul class="pager">
-          <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
-          <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
-        </ul>
-      </nav>
     </div>
-
-    <div *ngIf="!!!count">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
-          <h4 class="text-center">No results matched your search.</h4>
-        </div>
-      </div>
-      <hr />
-    </div>
-
+    <nav aria-label="...">
+      <ul class="pager">
+        <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
+        <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+      </ul>
+    </nav>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+
+  <div *ngIf="!!!count">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+        <h4 class="text-center">No results matched your search.</h4>
+      </div>
+    </div>
+    <hr />
+  </div>
+
+
+  <!--<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Contents <span class="badge">{{count}}</span></h3>
+    </div>
+    <div class="panel-body">
+      <div *ngIf="count">
+        <div class="row">
+          <div *ngFor="let content of contents">
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">
+                <img *ngIf="content.image" class="content_logo img-thumbnail" src="{{content.image.logo.m}}">
+                <img *ngIf="!content.image" class="content_logo" src="assets/images/no_image_icon.png">
+                <div class="caption">
+                  <h3><a [routerLink]="['/content', content._id]">{{content.name | slice: 0:24}}</a></h3>
+                  <p>{{content.desc | slice: 0:200}}</p>
+                  <hr />
+                  <p>
+                    <span *ngIf="content.enabled" class="label label-success">enabled</span>
+                    <span *ngIf="!content.enabled" class="label label-danger">disabled</span>
+                  </p>
+                  <p *ngIf="content.when"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD'}} ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</p>
+                  <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{content.place}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav aria-label="...">
+          <ul class="pager">
+            <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
+            <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div *ngIf="!!!count">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+            <h4 class="text-center">No results matched your search.</h4>
+          </div>
+        </div>
+        <hr />
+      </div>
+
+    </div>
+  </div>-->
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+    </div>
   </div>
 </div>

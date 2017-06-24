@@ -10,33 +10,38 @@ import { ContentService } from '../../services/content.service';
 })
 export class ContentListComponent implements OnInit {
   contents: Array<Object>;
-  notification_options: Object;
   query: any = '';
   page: any = 1;
   size: any = 9;
   count: any = 0;
+
+  is_loading: boolean;
 
   constructor(private contentService: ContentService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
+    this.is_loading = true;
     const params: Params = this.route.snapshot.params;
     if ('query' in params) {
       this.query = params['query'];
     }
-    if('page' in params) {
+    if ('page' in params) {
       this.page = +params['page'];
     }
     this.loadContents(this.query, this.page);
   }
 
   loadContents(query:any, page: any) {
-    this.contentService.getContentList(query, (page-1)*this.size, this.size)
+    this.is_loading = true;
+    this.contentService.getContentList(query, (page - 1) * this.size, this.size)
       .subscribe(
         response => {
           this.count = response['count'];
           this.contents = response['data'];
+          window.scrollTo(0, 0);
+          this.is_loading = false;
         },
         error => {
           console.log(error);
