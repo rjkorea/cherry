@@ -11,7 +11,9 @@
 </div>
 
 <div *ngIf="mode=='idle'">
-  <h1><i class="glyphicon glyphicon-repeat gly-spin"></i> Waiting a tablet request.</h1>
+  <app-loader></app-loader>
+  <!--<app-entrance-loader></app-entrance-loader>-->
+  <!--<h1><i class="glyphicon glyphicon-repeat gly-spin"></i> Waiting a tablet request.</h1>-->
 </div>
 
 <div *ngIf="mode=='tablet'" class="panel panel-default">
