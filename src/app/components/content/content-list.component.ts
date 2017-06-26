@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { ContentService } from '../../services/content.service';
+import { Content } from '../../models/content';
 
 @Component({
   selector: 'app-content-list',
@@ -9,7 +10,7 @@ import { ContentService } from '../../services/content.service';
   providers: []
 })
 export class ContentListComponent implements OnInit {
-  contents: Array<Object>;
+  contents: Content[];
   query: any = '';
   page: any = 1;
   size: any = 9;
@@ -35,7 +36,7 @@ export class ContentListComponent implements OnInit {
     this.loadContents(this.query, this.page);
   }
 
-  loadContents(query:any, page: any) {
+  loadContents(query: any, page: any) {
     this.is_loading = true;
     this.contentService.getContentList(query, (page - 1) * this.size, this.size)
       .subscribe(
