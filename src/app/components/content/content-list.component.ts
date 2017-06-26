@@ -16,6 +16,7 @@ export class ContentListComponent implements OnInit {
   count: any = 0;
 
   is_loading: boolean;
+  error_message: string;
 
   constructor(private contentService: ContentService,
               private route: ActivatedRoute,
@@ -23,6 +24,7 @@ export class ContentListComponent implements OnInit {
 
   ngOnInit() {
     this.is_loading = true;
+    this.error_message = '';
     const params: Params = this.route.snapshot.params;
     if ('query' in params) {
       this.query = params['query'];
@@ -45,6 +47,8 @@ export class ContentListComponent implements OnInit {
         },
         error => {
           console.log(error);
+          this.error_message = error;
+          this.is_loading = false;
         }
       );
   }
