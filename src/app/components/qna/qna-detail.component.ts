@@ -46,7 +46,8 @@ export class QnaDetailComponent implements OnInit {
   onSave() {
     this.qna_form = {
       question: this.qna.question.trim(),
-      answer: this.qna.answer.trim()
+      answer: this.qna.answer.trim(),
+      is_mytkit: this.qna.is_mytkit
     };
     this.qnaService.updateQna(this.qna._id, this.qna_form)
       .subscribe(

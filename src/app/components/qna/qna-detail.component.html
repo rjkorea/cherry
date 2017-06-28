@@ -22,8 +22,12 @@
               <div class="form-group">
                 <textarea type="text" class="form-control" rows="10" [(ngModel)]="qna.answer" name="answer"></textarea>
               </div>
+              <div class="form-group">
+                <ui-switch size="small" [(ngModel)]="qna.is_mytkit"></ui-switch>
+              </div>
               <br>
             </ng-template>
+            <p><span *ngIf="qna.is_mytkit" class="label label-success">마이티킷</span></p>
             <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="onEdit()">Edit</button>
             <button *ngIf="edit_mode" type="button" class="btn btn-default" (click)="onSave()">Save</button>
             <a *ngIf="edit_mode" (click)="onCancel()">Cancel</a>
