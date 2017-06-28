@@ -10,8 +10,8 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 
 @Injectable()
 export class QnaService {
-  contentUrl = `${URL}/a/qna`;
-  contentsUrl = `${URL}/a/qnas`;
+  qnaUrl = `${URL}/a/qna`;
+  qnasUrl = `${URL}/a/qnas`;
   options;
 
   constructor(private http: Http) {
@@ -19,31 +19,31 @@ export class QnaService {
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
-  // public addContent(data: any): Observable<{}> {
-  //   return this.http.post(this.contentUrl, JSON.stringify(data), this.options)
-  //                   .map((response: Response) => response.json())
-  //                   .catch((error: any) => Observable.throw(error.json() || 'Server error'));
-  // }
+  public addQna(data: any): Observable<{}> {
+    return this.http.post(this.qnaUrl, JSON.stringify(data), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 
   public getQnaList(query: string, start: Number, size: Number, content_oid: string): Observable<{}> {
-    const url = `${this.contentsUrl}?q=${query}&start=${start}&size=${size}&content_oid=${content_oid}`;
+    const url = `${this.qnasUrl}?q=${query}&start=${start}&size=${size}&content_oid=${content_oid}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  // public getContent(id: string): Observable<{}> {
-  //   const url = `${this.contentUrl}/${id}`;
-  //   return this.http.get(url, this.options)
-  //                   .map((response: Response) => response.json())
-  //                   .catch((error: any) => Observable.throw(error.json() || 'Server error'));
-  // }
+  public getQna(id: string): Observable<{}> {
+    const url = `${this.qnaUrl}/${id}`;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 
-  // public updateContent(id: string, data: any): Observable<{}> {
-  //   const url = `${this.contentUrl}/${id}`;
-  //   return this.http.put(url, JSON.stringify(data), this.options)
-  //                   .map((response: Response) => response.json())
-  //                   .catch((error: any) => Observable.throw(error.json() || 'Server error'));
-  // }
+  public updateQna(id: string, data: any): Observable<{}> {
+    const url = `${this.qnaUrl}/${id}`;
+    return this.http.put(url, JSON.stringify(data), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 
 }

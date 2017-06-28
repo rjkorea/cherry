@@ -35,6 +35,8 @@ import { PlaceListComponent } from './components/place/place-list.component';
 import { PlaceDetailComponent } from './components/place/place-detail.component';
 import { PlaceNewComponent } from './components/place/place-new.component';
 import { QnaListComponent } from './components/qna/qna-list.component';
+import { QnaDetailComponent } from './components/qna/qna-detail.component';
+import { QnaNewComponent } from './components/qna/qna-new.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -79,6 +81,8 @@ const routes: Routes = [
   { path: 'places/new/:area', component: PlaceNewComponent, canActivate: [AuthGuard] },
 
   { path: 'qna', component: QnaListComponent, canActivate: [AuthGuard] },
+  { path: 'qna/:id', component: QnaDetailComponent, canActivate: [AuthGuard]},
+  { path: 'qnas/new', component: QnaNewComponent, canActivate: [AuthGuard]},
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

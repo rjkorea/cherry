@@ -1,66 +1,68 @@
-<!--<div class="row">
+<div *ngIf="is_loading">
+  <app-loader></app-loader>
+</div>
+
+<div class="row">
   <div class="col-md-6">
-    <ng-template [ngIf]="checkRole()">
-      <br>
-      <div class="form-group">
-        <label for="content">Content</label>
-        <select class="form-control" name="content" [(ngModel)]="content_oid" (ngModelChange)="changeContent()">
-          <ng-container *ngFor="let c of contents">
-            <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
-          </ng-container>
-        </select>
-      </div>
-    </ng-template>
-  </div>
-</div>-->
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Question / Answer <span class="badge">{{count}}</span></h3>
-  </div>
-  <div class="panel-body">
-    <div *ngIf="count">
-
-      <div class="row">
-        <div class="col-sm-12 col-md-12">
-          <div class="list-group">
-            <div *ngFor="let q of qnas">
-              <a [routerLink]="['/qna', q._id]" class="list-group-item">
-                <h4 class="list-group-item-heading">
-                  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-                  {{q.question}}
-                  {{q.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss' | amTimeAgo}}
-                </h4>
-                <p class="list-group-item-text">
-                  {{q.answer}}
-                </p>
-              </a>
-          </div>
-        </div>
-      </div>
-
-      <nav aria-label="...">
-        <ul class="pager">
-          <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
-          <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
-        </ul>
-      </nav>
+    <br>
+    <div class="form-group">
+      <select class="form-control" name="content" [(ngModel)]="content_oid" (ngModelChange)="changeContent()">
+        <ng-container *ngFor="let c of contents">
+          <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
+        </ng-container>
+      </select>
     </div>
-
-    <div *ngIf="!!!count">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
-          <h4 class="text-center">No results matched your search.</h4>
-        </div>
-      </div>
-      <hr />
-    </div>
-
+  </div>
+  <div class="col-md-6">
+    <p class="text-right"><a routerLink="/qnas/new" class="btn btn-success" role="button">New</a></p>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+
+<div *ngIf="!is_loading">
+  <div *ngIf="count">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Question / Answer <span class="badge">{{count}}</span></h3>
+      </div>
+      <div class="col-sm-12 col-md-12">
+        <div class="list-group">
+          <ng-template ngFor let-q [ngForOf]="qnas">
+            <a [routerLink]="['/qna', q._id]" class="list-group-item">
+              <h4 class="list-group-item-heading">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                {{q.question}}
+                <!--{{q.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss' | amTimeAgo}}-->
+              </h4>
+              <p class="list-group-item-text">
+                {{q.answer}}
+              </p>
+            </a>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <nav aria-label="...">
+      <ul class="pager">
+        <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
+        <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div *ngIf="!!!count">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+        <h4 class="text-center">No results matched your search.</h4>
+      </div>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+    </div>
   </div>
 </div>

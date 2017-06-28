@@ -47,6 +47,8 @@ import { PlaceListComponent } from './components/place/place-list.component';
 import { PlaceDetailComponent } from './components/place/place-detail.component';
 import { PlaceNewComponent } from './components/place/place-new.component';
 import { QnaListComponent } from './components/qna/qna-list.component';
+import { QnaDetailComponent } from './components/qna/qna-detail.component';
+import { QnaNewComponent } from './components/qna/qna-new.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -101,7 +103,9 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     PlaceListComponent,
     PlaceDetailComponent,
     PlaceNewComponent,
-    QnaListComponent
+    QnaListComponent,
+    QnaDetailComponent,
+    QnaNewComponent
   ],
   imports: [
     BrowserModule,

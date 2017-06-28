@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { QnaService } from '../../services/qna.service';
+import { ContentService } from '../../services/content.service';
 
 @Component({
   selector: 'app-qna-list',
@@ -9,18 +10,31 @@ import { QnaService } from '../../services/qna.service';
   providers: []
 })
 export class QnaListComponent implements OnInit {
-  qnas: Array<Object>;
-  content_oid: string = '';
+  qnas: object[];
+  content_oid: string;
+  contents: object[];
   query: any = '';
   page: any = 1;
-  size: any = 9;
+  size: any = 10;
   count: any = 0;
+  is_loading: boolean;
 
   constructor(private qnaService: QnaService,
+              private contentService: ContentService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
+    this.is_loading = true;
+    this.content_oid = '';
+    this.contents = [
+      {
+        _id: '',
+        name: '컨텐츠',
+        company: { name: '회사 이름' }
+      }
+    ];
+    this.loadContents();
     const params: Params = this.route.snapshot.params;
     if ('query' in params) {
       this.query = params['query'];
@@ -32,17 +46,38 @@ export class QnaListComponent implements OnInit {
   }
 
   loadQnas(query: any, page: any) {
+    this.is_loading = true;
     this.qnaService.getQnaList(query, (page - 1 ) * this.size, this.size, this.content_oid)
       .subscribe(
         response => {
           this.count = response['count'];
           this.qnas = response['data'];
           window.scrollTo(0, 0);
+          this.is_loading = false;
+        },
+        error => {
+          console.log(error);
+          this.is_loading = false;
+        }
+      );
+  }
+
+  loadContents() {
+    this.contentService.getContentList('', 0, 100)
+      .subscribe(
+        response => {
+          this.contents = this.contents.concat(response['data']);
         },
         error => {
           console.log(error);
         }
       );
+  }
+
+  changeContent() {
+    this.page = 1;
+    this.router.navigate(['/qna', {query: this.query, page: this.page}]);
+    this.loadQnas(this.query, this.page);
   }
 
   onPrev() {

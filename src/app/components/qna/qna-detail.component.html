@@ -1,0 +1,40 @@
+<ng-template [ngIf]="is_loading">
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template [ngIf]="!is_loading">
+  <div class="row">
+    <div class="col-md-6">
+      <div *ngIf="qna">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Question / Answer</h3>
+          </div>
+          <div class="panel-body">
+            <ng-template [ngIf]="!edit_mode">
+              <h4><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> {{qna.question}}</h4>
+              <p>{{qna.answer}}</p>
+            </ng-template>
+            <ng-template [ngIf]="edit_mode">
+              <div class="form-group">
+                <input type="text" class="form-control"[(ngModel)]="qna.question" name="question">
+              </div>
+              <div class="form-group">
+                <textarea type="text" class="form-control" rows="10" [(ngModel)]="qna.answer" name="answer"></textarea>
+              </div>
+              <br>
+            </ng-template>
+            <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="onEdit()">Edit</button>
+            <button *ngIf="edit_mode" type="button" class="btn btn-default" (click)="onSave()">Save</button>
+            <a *ngIf="edit_mode" (click)="onCancel()">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+        <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+      </div>
+    </div>
+  </div>
+</ng-template>
