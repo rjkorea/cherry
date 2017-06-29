@@ -31,7 +31,7 @@
                 <td>{{o.receiver.mobile_number}}</td>
                 <td>{{o.ticket_type.name}}</td>
                 <td>{{o.qty}}</td>
-                <td><span *ngIf="o.fee">{{o.fee.price}} 원</span></td>
+                <td><span *ngIf="o.fee">{{o.fee.price | currency: 'KRW': true}} 원</span></td>
                 <!--<td><span class="glyphicon glyphicon-send" (click)="onSend(o._id)" aria-hidden="true"> SMS전송</span></td>-->
                 <td>
                   <button type="button" class="btn btn-default btn-sm" (click)="onSend(o._id)">
@@ -61,7 +61,7 @@
                   <span *ngIf="order.fee.method=='creditcard'" class="glyphicon glyphicon-creditcard" aria-hidden="true"></span>
                   <span *ngIf="order.fee.method=='cash'" class="glyphicon glyphicon-usd" aria-hidden="true"></span>
                   {{order.fee.method}}
-                  {{order.fee.price}}
+                  {{order.fee.price | currency: 'KRW': true}}
                 </h5>
                 <hr *ngIf="order.fee" />
                 <p>

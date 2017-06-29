@@ -69,7 +69,7 @@
                 <ui-switch size="small" [(ngModel)]="d.entered"></ui-switch>
             </li>
             <li class="list-group-item" *ngIf="d.entered_at"><strong>입장시간: </strong>{{d.entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-            <li class="list-group-item" *ngIf="d.fee"><strong>환경부담금: </strong>{{d.fee.price}}</li>
+            <li class="list-group-item" *ngIf="d.fee"><strong>환경부담금: </strong>{{d.fee.price | currency: 'KRW': true}}</li>
             <li class="list-group-item" *ngIf="d.fee">
               <select class="form-control" [(ngModel)]="d.fee.method">
                 <ng-container *ngFor="let m of methods">

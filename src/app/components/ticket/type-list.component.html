@@ -33,7 +33,7 @@
                 <td>{{t.name}}</td>
                 <td>{{t.desc}}</td>
                 <td>{{t.day}} Day</td>
-                <td>{{t.price}} 원</td>
+                <td>{{t.price | currency: 'KRW': true}}</td>
               </tr>
             </table>
           </div>

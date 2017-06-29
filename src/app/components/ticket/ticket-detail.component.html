@@ -27,7 +27,7 @@
             <li class="list-group-item"><strong>Entered: </strong>{{d.entered}}</li>
             <li class="list-group-item" *ngIf="d.entered_at"><strong>Entered At: </strong>{{d.entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item" *ngIf="d.fee"><strong>Fee Method: </strong>{{d.fee.method}}</li>
-            <li class="list-group-item" *ngIf="d.fee"><strong>Fee Price: </strong>{{d.fee.price}}</li>
+            <li class="list-group-item" *ngIf="d.fee"><strong>Fee Price: </strong>{{d.fee.price | currency: 'KRW': true}}</li>
           </ul>
           <ul *ngIf="ticket.receive_user" class="list-group">
             <li class="list-group-item list-group-item-info"><strong>Receive User</strong></li>

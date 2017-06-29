@@ -24,7 +24,7 @@
             <li class="list-group-item"><strong>Name: </strong>{{order.ticket_type.name}}</li>
             <li class="list-group-item"><strong>Description: </strong>{{order.ticket_type.desc}}</li>
             <li class="list-group-item"><strong>Day: </strong>{{order.ticket_type.day}}</li>
-            <li class="list-group-item"><strong>Price: </strong>{{order.ticket_type.price}}</li>
+            <li class="list-group-item"><strong>Price: </strong>{{order.ticket_type.price | currency: 'KRW': true}}</li>
           </ul>
           <ul class="list-group">
             <li class="list-group-item list-group-item-info"><strong>Receiver</strong></li>
@@ -34,7 +34,7 @@
           <ul *ngIf="order.fee" class="list-group">
             <li class="list-group-item list-group-item-info"><strong>Fee</strong></li>
             <li class="list-group-item"><strong>Method: </strong>{{order.fee.method}}</li>
-            <li class="list-group-item"><strong>Price: </strong>{{order.fee.price}}</li>
+            <li class="list-group-item"><strong>Price: </strong>{{order.fee.price | currency: 'KRW': true}}</li>
           </ul>
 
           <!-- Send Button -->

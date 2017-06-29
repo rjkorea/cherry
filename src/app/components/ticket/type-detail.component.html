@@ -16,7 +16,7 @@
             <li class="list-group-item"><strong>Name: </strong>{{type.name}}</li>
             <li class="list-group-item"><strong>Description: </strong>{{type.desc}}</li>
             <li class="list-group-item"><strong>Day: </strong>{{type.day}}</li>
-            <li class="list-group-item"><strong>Price: </strong>{{type.price}}</li>
+            <li class="list-group-item"><strong>Price: </strong>{{type.price | currency: 'KRW': true}}</li>
             <li class="list-group-item"><strong>Content: </strong>{{type.content.name}}</li>
             <li class="list-group-item"><strong>Host: </strong>{{type.admin.name}}</li>
             <li class="list-group-item"><strong>Updated at: </strong>{{type.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
