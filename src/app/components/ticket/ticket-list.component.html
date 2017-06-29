@@ -1,3 +1,7 @@
+<ng-template [ngIf]="is_loading">
+  <app-loader></app-loader>
+</ng-template>
+
 <div class="row">
   <div class="col-md-6">
     <ng-template [ngIf]="checkRole()">
@@ -14,137 +18,73 @@
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Tickets <span class="badge">{{count}}</span></h3>
-  </div>
-  <div class="panel-body">
-    <div *ngIf="count">
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <tr>
-                <th>티켓타입</th>
-                <th>티켓상태</th>
-                <th>갱신일자</th>
-                <th>받는사람 이름</th>
-                <th>핸드폰번호</th>
-                <th>생년월일</th>
-                <th>성별</th>
-                <th>이메일</th>
-                <th></th>
-              </tr>
-              <tr *ngFor="let t of tickets" (click)="onTicket(t._id)">
-                <td>{{t.ticket_type.name}}</td>
-                <td>
-                  <span *ngIf="t.status === 'pend'" class="label label-default">전송준비</span>
-                  <span *ngIf="t.status === 'send'" class="label label-warning">전송중</span>
-                  <span *ngIf="t.status === 'register'" class="label label-success">등록완료</span>
-                  <span *ngIf="t.status === 'use'" class="label label-info">입장완료</span>
-                  <span *ngIf="t.status === 'cancel'" class="label label-danger">취소</span>
-                </td>
-                <td>{{t.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</td>
-                <td><span *ngIf="t.receive_user">{{t.receive_user.name}}</span></td>
-                <td><span *ngIf="t.receive_user">{{t.receive_user.mobile_number}}</span></td>
-                <td><span *ngIf="t.receive_user && t.receive_user.birthday">{{t.receive_user.birthday}}</span></td>
-                <td><span *ngIf="t.receive_user && t.receive_user.gender">{{t.receive_user.gender}}</span></td>
-                <td><span *ngIf="t.receive_user && t.receive_user.email">{{t.receive_user.email}}</span></td>
-                <td>
-                  <button *ngIf="t.status === 'register' || t.status === 'send'" type="button" class="btn btn-default btn-sm" (click)="onCancel(t._id)">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"> 티켓취소</span>
-                  </button>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
-
-
-
-
-      <!--<div class="row">
-        <div class="col-sm-12 col-md-12">
-          <div class="list-group">
-            <div *ngFor="let ticket of tickets">
-              <a *ngIf="ticket.status=='pend'" [routerLink]="['/ticket', ticket._id]" class="list-group-item disabled">
-                <h4>
-                  <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
-                  {{ticket.ticket_type.name}} {{ticket.ticket_type.day}} days
-                  <span *ngIf="ticket.days[0].fee" class="glyphicon glyphicon-leaf">{{ticket.days[0].fee.price}}</span>
-                  <span class="label label-default">전송준비</span>
-                </h4>
-              </a>
-              <a *ngIf="ticket.status=='send'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-warning">
-                <h4>
-                  <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
-                  {{ticket.ticket_type.name}} {{ticket.ticket_type.day}} days
-                  <span *ngIf="ticket.days[0].fee" class="glyphicon glyphicon-leaf">{{ticket.days[0].fee.price}}</span>
-                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </span>
-                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}}</strong>
-                  <span class="label label-warning">전송중</span>
-                </h4>
-              </a>
-              <a *ngIf="ticket.status=='register'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-success">
-                <h4>
-                  <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
-                  {{ticket.ticket_type.name}} {{ticket.ticket_type.day}} days
-                  <span *ngIf="ticket.days[0].fee" class="glyphicon glyphicon-leaf">{{ticket.days[0].fee.price}}</span>
-                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </span>
-                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}}</strong>
-                  <span class="label label-success">등록완료</span>
-                </h4>
-              </a>
-              <a *ngIf="ticket.status=='use'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-info">
-                <h4>
-                  <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
-                  {{ticket.ticket_type.name}} {{ticket.ticket_type.day}} days
-                  <span *ngIf="ticket.days[0].fee" class="glyphicon glyphicon-leaf">{{ticket.days[0].fee.price}}</span>
-                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </span>
-                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}}</strong>
-                  <span *ngIf="ticket.days[0]">{{ticket.days[0].entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss' | amTimeAgo}}</span>
-                  <span class="label label-info">입장완료</span>
-                </h4>
-              </a>
-              <a *ngIf="ticket.status=='cancel'" [routerLink]="['/ticket', ticket._id]" class="list-group-item list-group-item-danger">
-                <h4>
-                  <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
-                  {{ticket.ticket_type.name}} {{ticket.ticket_type.day}} days
-                  <span *ngIf="ticket.days[0].fee" class="glyphicon glyphicon-leaf">{{ticket.days[0].fee.price}}</span>
-                  <span *ngIf="ticket.send_user">{{ticket.send_user.name}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </span>
-                  <strong *ngIf="ticket.receive_user">{{ticket.receive_user.name}}</strong>
-                  <span class="label label-danger">취소</span>
-                </h4>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>-->
-
-      <nav aria-label="...">
-        <ul class="pager">
-          <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
-          <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <div *ngIf="!!!count">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
-          <h4 class="text-center">No results matched your search.</h4>
-        </div>
+<div *ngIf="!is_loading">
+  <div *ngIf="count">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Tickets <span class="badge">{{count}}</span></h3>
       </div>
-      <hr />
-    </div>
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <tr>
+              <th>티켓타입</th>
+              <th>티켓상태</th>
+              <th>갱신일자</th>
+              <th>받는사람 이름</th>
+              <th>핸드폰번호</th>
+              <th>생년월일</th>
+              <th>성별</th>
+              <th>이메일</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let t of tickets" (click)="onTicket(t._id)">
+              <td>{{t.ticket_type.name}}</td>
+              <td>
+                <span *ngIf="t.status === 'pend'" class="label label-default">전송준비</span>
+                <span *ngIf="t.status === 'send'" class="label label-warning">전송중</span>
+                <span *ngIf="t.status === 'register'" class="label label-success">등록완료</span>
+                <span *ngIf="t.status === 'use'" class="label label-info">입장완료</span>
+                <span *ngIf="t.status === 'cancel'" class="label label-danger">취소</span>
+              </td>
+              <td>{{t.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</td>
+              <td><span *ngIf="t.receive_user">{{t.receive_user.name}}</span></td>
+              <td><span *ngIf="t.receive_user">{{t.receive_user.mobile_number}}</span></td>
+              <td><span *ngIf="t.receive_user && t.receive_user.birthday">{{t.receive_user.birthday}}</span></td>
+              <td><span *ngIf="t.receive_user && t.receive_user.gender">{{t.receive_user.gender}}</span></td>
+              <td><span *ngIf="t.receive_user && t.receive_user.email">{{t.receive_user.email}}</span></td>
+              <td>
+                <button *ngIf="t.status === 'register' || t.status === 'send'" type="button" class="btn btn-default btn-sm" (click)="onCancel(t._id)">
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"> 티켓취소</span>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
 
+        <nav aria-label="...">
+          <ul class="pager">
+            <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
+            <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div *ngIf="!!!count">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+            <h4 class="text-center">No results matched your search.</h4>
+          </div>
+        </div>
+        <hr />
+      </div>
+
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+    </div>
   </div>
 </div>
