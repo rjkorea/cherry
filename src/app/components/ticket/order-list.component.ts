@@ -14,6 +14,7 @@ export class TicketOrderListComponent implements OnInit {
   page: any = 1;
   size: any = 9;
   count: any = 0;
+  ticket_type_oid: string;
 
   constructor(private ticketService: TicketService,
               private route: ActivatedRoute,
@@ -24,14 +25,17 @@ export class TicketOrderListComponent implements OnInit {
     if ('query' in params) {
       this.query = params['query'];
     }
-    if('page' in params) {
+    if ('page' in params) {
       this.page = +params['page'];
+    }
+    if ('ticket_type_oid' in params) {
+      this.ticket_type_oid = params['ticket_type_oid'];
     }
     this.loadOrders(this.query, this.page);
   }
 
   loadOrders(query:any, page: any) {
-    this.ticketService.getOrderList(query, (page-1)*this.size, this.size)
+    this.ticketService.getOrderList(query, (page - 1) * this.size, this.size, this.ticket_type_oid)
       .subscribe(
         response => {
           this.count = response['count'];
@@ -46,19 +50,19 @@ export class TicketOrderListComponent implements OnInit {
   onPrev() {
     const page = this.page - 1;
     this.page = page;
-    this.router.navigate(['/ticket/order', {query: this.query, page: page}]);
+    this.router.navigate(['/ticket/order', {query: this.query, page: page, ticket_type_oid: this.ticket_type_oid}]);
     this.loadOrders(this.query, page);
   }
 
   onNext() {
     const page = this.page + 1;
     this.page = page;
-    this.router.navigate(['/ticket/order', {query: this.query, page: page}]);
+    this.router.navigate(['/ticket/order', {query: this.query, page: page, ticket_type_oid: this.ticket_type_oid}]);
     this.loadOrders(this.query, page);
   }
 
   search() {
-    this.router.navigate(['/ticket/order', {query: this.query, page: this.page}]);
+    this.router.navigate(['/ticket/order', {query: this.query, page: this.page, ticket_type_oid: this.ticket_type_oid}]);
     this.loadOrders(this.query, 1);
   }
 
