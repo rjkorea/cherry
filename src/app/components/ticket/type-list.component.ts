@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
+import { ContentService } from '../../services/content.service';
 
 @Component({
   selector: 'app-ticket-type-list',
@@ -14,12 +15,26 @@ export class TicketTypeListComponent implements OnInit {
   page: any = 1;
   size: any = 20;
   count: any = 0;
+  contents: any;
+  content_oid: string;
+  is_loading: boolean;
 
   constructor(private ticketService: TicketService,
+              private contentService: ContentService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
+    this.is_loading = true;
+    this.contents = [
+      {
+        _id: '',
+        name: '컨텐츠',
+        company: { name: '회사 이름' }
+      }
+    ];
+    this.content_oid = '';
+    this.loadContents();
     const params: Params = this.route.snapshot.params;
     if ('query' in params) {
       this.query = params['query'];
@@ -31,18 +46,40 @@ export class TicketTypeListComponent implements OnInit {
   }
 
   loadTypes(query: any, page: any) {
-    this.ticketService.getTypeList('', '', query, (page - 1) * this.size, this.size)
+    this.is_loading = true;
+    this.ticketService.getTypeList(this.content_oid, '', query, (page - 1) * this.size, this.size)
       .subscribe(
         response => {
           this.count = response['count'];
           this.types = response['data'];
           window.scrollTo(0, 0);
+          this.is_loading = false;
+        },
+        error => {
+          console.log(error);
+          this.is_loading = false;
+        }
+      );
+  }
+
+  loadContents() {
+    this.contentService.getContentList('', 0, 100)
+      .subscribe(
+        response => {
+          this.contents = this.contents.concat(response['data']);
         },
         error => {
           console.log(error);
         }
       );
   }
+
+  changeContent() {
+    this.page = 1;
+    this.router.navigate(['/ticket/type', {query: this.query, page: this.page}]);
+    this.loadTypes(this.query, this.page);
+  }
+
 
   onPrev() {
     const page = this.page - 1;
@@ -63,8 +100,8 @@ export class TicketTypeListComponent implements OnInit {
     this.loadTypes(this.query, 1);
   }
 
-  onType(id: string) {
-    this.router.navigate(['ticket/type/', id]);
+  onOrder(id: string) {
+    this.router.navigate(['ticket/order', {ticket_type_oid: id}]);
   }
 
 }
