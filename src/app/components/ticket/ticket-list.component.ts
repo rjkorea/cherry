@@ -21,6 +21,7 @@ export class TicketListComponent implements OnInit {
   companies: any;
   content_oid: string = '';
   contents: any;
+  ticket_order_oid: string;
   is_loading: boolean;
 
   constructor(private ticketService: TicketService,
@@ -49,18 +50,21 @@ export class TicketListComponent implements OnInit {
     ];
     this.loadContents();
     const params: Params = this.route.snapshot.params;
-    if ('query'in params) {
+    if ('query' in params) {
       this.query = params['query'];
     }
     if ('page' in params) {
       this.page = +params['page'];
     }
+    if ('ticket_order_oid' in params) {
+      this.ticket_order_oid = params['ticket_order_oid'];
+    }
     this.loadTickets(this.query, this.page);
   }
 
-  loadTickets(query:any, page: any) {
+  loadTickets(query: any, page: any) {
     this.is_loading = true;
-    this.ticketService.getTicketList(query, this.company_oid, this.content_oid, (page-1)*this.size, this.size)
+    this.ticketService.getTicketList(query, this.company_oid, this.content_oid, (page - 1) * this.size, this.size, this.ticket_order_oid)
       .subscribe(
         response => {
           this.count = response['count'];

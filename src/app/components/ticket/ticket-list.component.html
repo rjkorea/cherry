@@ -22,6 +22,11 @@
   <div *ngIf="count">
     <div class="row">
       <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li><a [routerLink]="['/ticket/type']">{{tickets[0].content.name}} {{tickets[0].ticket_type.name}}</a></li>
+          <li><a [routerLink]="['/ticket/order', {ticket_type_oid: tickets[0].ticket_type._id}]">{{tickets[0].ticket_order.receiver.name}} {{tickets[0].ticket_order.qty}}장</a></li>
+          <!--<li class="active">Orders</li>-->
+        </ol>
         <h3>Tickets <span class="badge">{{count}}</span></h3>
       </div>
       <div class="col-md-12">
