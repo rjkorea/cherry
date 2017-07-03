@@ -1,3 +1,7 @@
+<ng-template [ngIf]="is_loading">
+  <app-loader></app-loader>
+</ng-template>
+
 <div class="row">
     <div class="col-md-11">
     </div>
@@ -6,75 +10,46 @@
     </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Orders <span class="badge">{{count}}</span></h3>
-  </div>
-  <div class="panel-body">
-    <div *ngIf="count">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <tr>
-                <th>생성일자</th>
-                <th>받는사람 이름</th>
-                <th>받는사람 핸드폰번호</th>
-                <th>티켓타입</th>
-                <th>티켓수량</th>
-                <th>환경부담금</th>
-                <th></th>
-              </tr>
-              <tr *ngFor="let o of orders" (click)="onOrder(o._id)">
-                <td>{{o.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</td>
-                <td>{{o.receiver.name}}</td>
-                <td>{{o.receiver.mobile_number}}</td>
-                <td>{{o.ticket_type.name}}</td>
-                <td>{{o.qty}}</td>
-                <td><span *ngIf="o.fee">{{o.fee.price | currency: 'KRW': true}}</span></td>
-                <!--<td><span class="glyphicon glyphicon-send" (click)="onSend(o._id)" aria-hidden="true"> SMS전송</span></td>-->
-                <td>
-                  <button type="button" class="btn btn-default btn-sm" (click)="onSend(o._id)">
-                    <span class="glyphicon glyphicon-send" aria-hidden="true"> SMS전송</span>
-                  </button>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
 
-        <!--<div *ngFor="let order of orders">
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <div class="caption">
-                <h3><a [routerLink]="['/ticket/order', order._id]">{{order.ticket_type.name}}</a></h3>
-                <p>{{order.ticket_type.desc}}</p>
-                <p>{{order.ticket_type.day}} Day</p>
-                <h4>
-                  <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> <strong>{{order.qty}}</strong>
-                </h4>
-                <h5>
-                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <strong>{{order.expiry_date | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</strong>
-                </h5>
-                <hr />
-                <h5 *ngIf="order.fee">
-                  <span *ngIf="order.fee.method=='creditcard'" class="glyphicon glyphicon-creditcard" aria-hidden="true"></span>
-                  <span *ngIf="order.fee.method=='cash'" class="glyphicon glyphicon-usd" aria-hidden="true"></span>
-                  {{order.fee.method}}
-                  {{order.fee.price | currency: 'KRW': true}}
-                </h5>
-                <hr *ngIf="order.fee" />
-                <p>
-                  <span *ngIf="order.enabled" class="label label-success">enabled</span>
-                  <span *ngIf="!order.enabled" class="label label-danger">disabled</span>
-                </p>
-                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{order.receiver.name}}</p>
-                <p><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{order.receiver.mobile_number}}</p>
-                <p><span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span> {{order.receiver.access_code}}</p>
-              </div>
-            </div>
-          </div>
-        </div>-->
+<ng-template [ngIf]="!is_loading">
+  <div *ngIf="count">
+    <div class="row">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li><a [routerLink]="['/ticket/type']">{{orders[0].content.name}} {{orders[0].ticket_type.name}}</a></li>
+          <!--<li class="active">Orders</li>-->
+        </ol>
+        <h3>Orders <span class="badge">{{count}}</span></h3>
+      </div>
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <tr>
+              <th>생성일자</th>
+              <th>받는사람 이름</th>
+              <th>받는사람 핸드폰번호</th>
+              <th>환경부담금</th>
+              <th>티켓수량</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let o of orders">
+              <td><a [routerLink]="['/ticket/order', o._id]">{{o.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</a></td>
+              <td>{{o.receiver.name}}</td>
+              <td>{{o.receiver.mobile_number}}</td>
+              <td><span *ngIf="o.fee">{{o.fee.price | currency: 'KRW': true}}</span></td>
+              <td>
+                <button class="btn btn-default" type="button" (click)="onTicket(o._id)">
+                  Tickets <span class="badge">{{o.qty}}</span>
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-default btn-sm" (click)="onSend(o._id)">
+                  <span class="glyphicon glyphicon-send" aria-hidden="true"></span> SMS전송
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
       <nav aria-label="...">
         <ul class="pager">
@@ -95,9 +70,9 @@
     </div>
 
   </div>
-</div>
-<div class="row">
-  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+    </div>
   </div>
-</div>
+</ng-template>

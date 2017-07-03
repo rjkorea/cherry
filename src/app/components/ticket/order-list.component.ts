@@ -12,15 +12,17 @@ export class TicketOrderListComponent implements OnInit {
   orders: Array<Object>;
   query: any = '';
   page: any = 1;
-  size: any = 9;
+  size: any = 20;
   count: any = 0;
   ticket_type_oid: string;
+  is_loading: boolean;
 
   constructor(private ticketService: TicketService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
+    this.is_loading = true;
     const params: Params = this.route.snapshot.params;
     if ('query' in params) {
       this.query = params['query'];
@@ -34,15 +36,19 @@ export class TicketOrderListComponent implements OnInit {
     this.loadOrders(this.query, this.page);
   }
 
-  loadOrders(query:any, page: any) {
+  loadOrders(query: any, page: any) {
+    this.is_loading = true;
     this.ticketService.getOrderList(query, (page - 1) * this.size, this.size, this.ticket_type_oid)
       .subscribe(
         response => {
           this.count = response['count'];
           this.orders = response['data'];
+          window.scrollTo(0, 0);
+          this.is_loading = false;
         },
         error => {
           console.log(error);
+          this.is_loading = false;
         }
       );
   }
@@ -66,8 +72,8 @@ export class TicketOrderListComponent implements OnInit {
     this.loadOrders(this.query, 1);
   }
 
-  onOrder(id: string) {
-    this.router.navigate(['/ticket/order', id]);
+  onTicket(id: string) {
+    this.router.navigate(['/ticket', {ticket_order_oid: id}]);
   }
 
   onSend(id: string) {
