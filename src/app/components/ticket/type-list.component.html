@@ -55,7 +55,7 @@
               <td>{{t.day}} Day</td>
               <td>{{t.price | currency: 'KRW': true}}</td>
               <td>
-                <button class="btn btn-default" type="button" (click)="onOrder(t._id)">
+                <button class="btn btn-default btn-sm" type="button" (click)="onOrder(t._id)">
                   Orders <span class="badge">{{t.ticket_order_cnt}}</span>
                 </button>
               </td>
