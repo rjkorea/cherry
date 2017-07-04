@@ -77,7 +77,15 @@ export class TicketOrderListComponent implements OnInit {
   }
 
   onSend(id: string) {
-    console.log('onSend');
+    this.ticketService.sendOrder(id)
+      .subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
 }
