@@ -77,9 +77,9 @@ export class TicketService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public sendOrder(id: string): Observable<{}> {
+  public sendOrder(id: string, data): Observable<{}> {
     const url = `${this.orderUrl}/${id}/send`;
-    return this.http.put(url, {}, this.options)
+    return this.http.put(url, JSON.stringify(data), this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }

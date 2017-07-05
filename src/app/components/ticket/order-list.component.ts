@@ -17,6 +17,7 @@ export class TicketOrderListComponent implements OnInit {
   ticket_type_oid: string;
   is_loading: boolean;
   selected_order: any;
+  sms_message: string;
 
   constructor(private ticketService: TicketService,
               private route: ActivatedRoute,
@@ -24,6 +25,7 @@ export class TicketOrderListComponent implements OnInit {
 
   ngOnInit() {
     this.is_loading = true;
+    this.sms_message = '';
     const params: Params = this.route.snapshot.params;
     if ('query' in params) {
       this.query = params['query'];
@@ -79,10 +81,14 @@ export class TicketOrderListComponent implements OnInit {
 
   onSms(order: any) {
     this.selected_order = order;
+    this.sms_message = `${this.selected_order.content.name}에 함께해주셔서 감사합니다. 티켓등록정보 -> http://i.tkit.me/l/${this.selected_order.content.short_id}`;
   }
 
   onSend(id: string) {
-    this.ticketService.sendOrder(id)
+    let data = {
+      sms_message: this.sms_message
+    };
+    this.ticketService.sendOrder(id, data)
       .subscribe(
         response => {
           console.log(response);
