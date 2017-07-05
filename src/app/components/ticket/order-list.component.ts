@@ -16,6 +16,7 @@ export class TicketOrderListComponent implements OnInit {
   count: any = 0;
   ticket_type_oid: string;
   is_loading: boolean;
+  selected_order: any;
 
   constructor(private ticketService: TicketService,
               private route: ActivatedRoute,
@@ -74,6 +75,10 @@ export class TicketOrderListComponent implements OnInit {
 
   onTicket(id: string) {
     this.router.navigate(['/ticket', {ticket_order_oid: id}]);
+  }
+
+  onSms(order: any) {
+    this.selected_order = order;
   }
 
   onSend(id: string) {
