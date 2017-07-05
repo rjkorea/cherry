@@ -37,32 +37,6 @@
             <li class="list-group-item"><strong>Price: </strong>{{order.fee.price | currency: 'KRW': true}}</li>
           </ul>
 
-          <!-- Send Button -->
-          <button type="button" class="btn btn-success" [disabled]="isDisable()" data-toggle="modal" data-target="#send-modal">
-            <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Send
-          </button>
-          <!-- Send Modal -->
-          <div class="modal fade" id="send-modal" tabindex="-1" role="dialog" aria-labelledby="send-modal-label">
-            <div class="modal-dialog modal-sm" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="disable-modal-label">Confirm</h4>
-                </div>
-                <div class="modal-body">
-                  <p><strong>Send ticket order?</strong></p>
-                  <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{order.receiver.name}}</p>
-                  <p><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{order.receiver.mobile_number}}</p>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onSend()">Yes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <!-- Disable Button -->
           <button type="button" class="btn btn-danger" [disabled]="isDisable()" data-toggle="modal" data-target="#disable-modal">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable

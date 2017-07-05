@@ -11,20 +11,12 @@ import { TicketService } from '../../services/ticket.service';
 export class TicketOrderDetailComponent implements OnInit {
   order: any;
   order_form: any;
-  notification_options: Object;
 
   constructor(private route: ActivatedRoute,
               private ticketService: TicketService) { }
 
   ngOnInit() {
     const params: Params = this.route.snapshot.params;
-    this.notification_options = {
-      timeOut: 3000,
-      showProgressBar: true,
-      pauseOnHover: false,
-      clickToClose: true,
-      maxLength: 128
-    }
     this.loadOrder(params['id']);
   }
 
@@ -49,18 +41,6 @@ export class TicketOrderDetailComponent implements OnInit {
       .subscribe(
         response => {
           this.loadOrder(this.order._id);
-        },
-        error => {
-          console.log(error);
-        }
-      );
-  }
-
-  onSend() {
-    this.ticketService.sendOrder(this.order._id)
-      .subscribe(
-        response => {
-          console.log(response);
         },
         error => {
           console.log(error);
