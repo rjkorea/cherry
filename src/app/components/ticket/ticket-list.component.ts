@@ -143,7 +143,16 @@ export class TicketListComponent implements OnInit {
   }
 
   onCancel(id: string) {
-    console.log('ticket cancel');
+    this.ticketService.cancelTicket(id)
+      .subscribe(
+        response => {
+          this.loadTickets(this.query, this.page);
+          console.log(response['data']);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
 }

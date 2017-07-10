@@ -119,4 +119,11 @@ export class TicketService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public cancelTicket(id: string): Observable<{}> {
+    const url = `${this.ticketUrl}/${id}/cancel`;
+    return this.http.put(url, {}, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }
