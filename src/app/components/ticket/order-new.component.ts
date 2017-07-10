@@ -33,8 +33,8 @@ export class TicketOrderNewComponent implements OnInit {
     this.is_fee = false;
     this.fee = {};
     this.expiry = {
-      date: new Date(),
-      time: new Date()
+      date: new Date()
+      // time: new Date()
     };
     this.country_code = '';
     this.mobile_number = '';
@@ -142,8 +142,8 @@ export class TicketOrderNewComponent implements OnInit {
   }
 
   getISODate() {
-    return this.expiry.date.getFullYear() + '-' + (this.expiry.date.getMonth() + 1) + '-' + this.expiry.date.getDate()
-      + 'T' + this.expiry.time.getHours() + ':' + this.expiry.time.getMinutes() + ':' + this.expiry.time.getSeconds();
+    return this.expiry.date.getFullYear() + '-' + (this.expiry.date.getMonth() + 1) + '-' + this.expiry.date.getDate() + 'T00:00:00';
+      // + 'T' + this.expiry.time.getHours() + ':' + this.expiry.time.getMinutes() + ':' + this.expiry.time.getSeconds();
   }
 
   disabledSubmit() {
@@ -153,8 +153,7 @@ export class TicketOrderNewComponent implements OnInit {
       this.order.receiver.name &&
       this.country_code &&
       this.mobile_number &&
-      this.expiry.date &&
-      this.expiry.time
+      this.expiry.date
     );
   }
 
