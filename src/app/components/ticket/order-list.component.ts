@@ -81,7 +81,7 @@ export class TicketOrderListComponent implements OnInit {
 
   onSms(order: any) {
     this.selected_order = order;
-    this.sms_message = `${this.selected_order.content.name}에 함께해주셔서 감사합니다. 티켓등록정보 -> http://i.tkit.me/l/${this.selected_order.content.short_id}`;
+    this.sms_message = `${this.selected_order.content.name}에 함께해주셔서 감사합니다 해당 링크를 통해 티켓정보를 등록해주셔야만 공연 입장이 가능합니다 http://i.tkit.me/l/${this.selected_order.content.short_id}`;
   }
 
   onSend(id: string) {
