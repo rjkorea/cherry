@@ -37,33 +37,38 @@
                 </button>
               </td>
               <td>
-                <button type="button" class="btn btn-default btn-sm" (click)="onSms(o)" data-toggle="modal" data-target="#send-modal">
-                  <!--<span class="glyphicon glyphicon-send" aria-hidden="true"></span> SMS전송-->
-                  <i class="fa fa-comment fa-lg" aria-hidden="true"></i> SMS전송
-                </button>
-                <!-- Send Modal -->
-                <div class="modal fade" id="send-modal" tabindex="-1" role="dialog" aria-labelledby="send-modal-label">
-                  <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="disable-modal-label">전송 - SMS 받는사람</h4>
-                      </div>
-                      <div class="modal-body">
-                        <p *ngIf="selected_order"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{selected_order.receiver.name}}</p>
-                        <p *ngIf="selected_order"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{selected_order.receiver.mobile_number}}</p>
-                        <div class="form-group">
-                          <textarea type="text" class="form-control" rows="5" [(ngModel)]="sms_message"></textarea>
+                <ng-template [ngIf]="!o.slug">
+                  <button type="button" class="btn btn-default btn-sm" (click)="onSms(o)" data-toggle="modal" data-target="#send-modal">
+                    <!--<span class="glyphicon glyphicon-send" aria-hidden="true"></span> SMS전송-->
+                    <i class="fa fa-comment fa-lg" aria-hidden="true"></i> SMS전송
+                  </button>
+                  <!-- Send Modal -->
+                  <div class="modal fade" id="send-modal" tabindex="-1" role="dialog" aria-labelledby="send-modal-label">
+                    <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="disable-modal-label">전송 - SMS 받는사람</h4>
                         </div>
-                        <p>Send 받은 사람의 이름과 전화번호로 인증을 거쳐야만 티켓 확인 및 등록이 가능합니다.</p>
+                        <div class="modal-body">
+                          <p *ngIf="selected_order"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{selected_order.receiver.name}}</p>
+                          <p *ngIf="selected_order"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{selected_order.receiver.mobile_number}}</p>
+                          <div class="form-group">
+                            <textarea type="text" class="form-control" rows="5" [(ngModel)]="sms_message"></textarea>
+                          </div>
+                          <p>Send 받은 사람의 이름과 전화번호로 인증을 거쳐야만 티켓 확인 및 등록이 가능합니다.</p>
 
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onSend(selected_order._id)">SEND</button>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onSend(selected_order._id)">SEND</button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </ng-template>
+                <ng-template [ngIf]="o.slug">
+                  <p>hard ticket</p>
+                </ng-template>
               </td>
             </tr>
           </table>
