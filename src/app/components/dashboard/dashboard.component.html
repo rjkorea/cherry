@@ -25,11 +25,6 @@
               {{total_ticket_count}}
               <small>장</small>
             </h1>
-            <!--<span class="label label-default">전송준비{{total_ticket_count.pend}}</span>
-            <span class="label label-warning">전송중{{total_ticket_count.send}}</span>
-            <span class="label label-success">등록완료{{total_ticket_count.register}}</span>
-            <span class="label label-info">입장완료{{total_ticket_count.use}}</span>
-            <span class="label label-danger">취소{{total_ticket_count.cancel}}</span>-->
           </div>
         </div>
       </div>
@@ -40,8 +35,6 @@
           </div>
           <div class="panel-body">
             <h1>{{total_company_count}} <small>사</small></h1>
-            <!--<span class="label label-warning">26세 여자</span>
-            <span class="label label-info">29세 남자</span>-->
           </div>
         </div>
       </div>
@@ -52,8 +45,6 @@
           </div>
           <div class="panel-body">
             <h1>{{total_user_count}} <small>명</small></h1>
-            <!--<span class="label label-success">1,730,000원 현금</span>
-            <span class="label label-danger">960,000원 신용카드</span>-->
           </div>
         </div>
       </div>
@@ -64,8 +55,6 @@
           </div>
           <div class="panel-body">
             <h1>{{total_content_count}} <small>개</small></h1>
-            <!--<span class="label label-success">1,730,000원 현금</span>
-            <span class="label label-danger">960,000원 신용카드</span>-->
           </div>
         </div>
       </div>
@@ -75,20 +64,20 @@
       <div class="col-md-4 col-sm-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">전체 성별비율</h3>
+            <h3 class="panel-title">전체 티켓현황</h3>
           </div>
           <div class="panel-body">
-            <chart [type]="gender_chart.type" [data]="gender_chart.data" [options]="gender_chart.options"></chart>
+            <chart [type]="ticket_count_chart.type" [data]="ticket_count_chart.data" [options]="ticket_count_chart.options"></chart>
           </div>
         </div>
       </div>
       <div class="col-md-4 col-sm-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">전체 연령비율</h3>
+            <h3 class="panel-title">전체 성별비율</h3>
           </div>
           <div class="panel-body">
-            <chart [type]="age_chart.type" [data]="age_chart.data" [options]="age_chart.options"></chart>
+            <chart [type]="gender_chart.type" [data]="gender_chart.data" [options]="gender_chart.options"></chart>
           </div>
         </div>
       </div>
@@ -111,19 +100,19 @@
 
   <ng-template [ngIf]="content_oid">
     <div class="row">
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">방문율</h3>
           </div>
           <div class="panel-body">
-            <h1>{{((ticket_count.use/ticket_count.total)*100).toString() | slice:0:4}} <small>%</small></h1>
-            <span class="label label-default">{{ticket_count.total}}명 초대권 대상자</span>
+            <h1>{{((ticket_count.use/(ticket_count.register+ticket_count.use))*100).toString() | slice:0:4}} <small>%</small></h1>
+            <span class="label label-default">{{ticket_count.register}}명 초대권 대상자</span>
             <span class="label label-primary">{{ticket_count.use}}명 방문객</span>
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
+      <!--<div class="col-md-4 col-sm-4">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">평균연령</h3>
@@ -134,16 +123,16 @@
             <span class="label label-info">{{avg_age.male}}세 남자</span>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 col-sm-4">
+      </div>-->
+      <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">초대권 매출</h3>
           </div>
           <div class="panel-body">
-            <h1>{{revenue.cash+revenue.creditcard}} <small>원</small></h1>
-            <span class="label label-success">{{revenue.cash}}원 현금</span>
-            <span class="label label-danger">{{revenue.creditcard}}원 신용카드</span>
+            <h1>{{(revenue.cash+revenue.creditcard) | currency: 'KRW': true}} <small>원</small></h1>
+            <span class="label label-success">{{revenue.cash | currency: 'KRW': true}}원 현금</span>
+            <span class="label label-danger">{{revenue.creditcard | currency: 'KRW': true}}원 신용카드</span>
           </div>
         </div>
       </div>
@@ -153,20 +142,20 @@
       <div class="col-md-4 col-sm-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">전체 성별비율</h3>
+            <h3 class="panel-title">전체 티켓현황</h3>
           </div>
           <div class="panel-body">
-            <chart [type]="gender_chart.type" [data]="gender_chart.data" [options]="gender_chart.options"></chart>
+            <chart [type]="ticket_count_chart.type" [data]="ticket_count_chart.data" [options]="ticket_count_chart.options"></chart>
           </div>
         </div>
       </div>
       <div class="col-md-4 col-sm-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">전체 연령비율</h3>
+            <h3 class="panel-title">전체 성별비율</h3>
           </div>
           <div class="panel-body">
-            <chart [type]="age_chart.type" [data]="age_chart.data" [options]="age_chart.options"></chart>
+            <chart [type]="gender_chart.type" [data]="gender_chart.data" [options]="gender_chart.options"></chart>
           </div>
         </div>
       </div>

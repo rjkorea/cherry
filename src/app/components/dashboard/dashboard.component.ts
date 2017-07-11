@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
 
   gender_chart: any;
   age_chart: any;
+  ticket_count_chart: any;
 
   is_loading: boolean;
 
@@ -43,7 +44,7 @@ export class DashboardComponent implements OnInit {
       }
     ];
     this.total_ticket_count = 0;
-    this.total_ticket = {
+    this.ticket_count = {
       pend: 0,
       send: 0,
       register: 0,
@@ -65,7 +66,7 @@ export class DashboardComponent implements OnInit {
       creditcard: 0
     };
     this.gender_chart = {
-      type: 'pie',
+      type: 'doughnut',
       data: {
         labels: ['여자', '남자'],
         datasets: [
@@ -87,22 +88,26 @@ export class DashboardComponent implements OnInit {
         maintainAspectRatio: false
       }
     };
-    this.age_chart = {
-      type: 'doughnut',
+    this.ticket_count_chart = {
+      type: 'pie',
       data: {
-        labels: ['20대', '30대', '40대'],
+        labels: ['전송준비', '전송중', '등록완료', '입장완료', '취소'],
         datasets: [
           {
-            data: [250, 98, 6],
+            data: [0, 0, 0, 0, 0],
             backgroundColor: [
-              '#FF6384',
-              '#36A2EB',
-              '#FFCE56'
+              '#777777',
+              '#F0AD4E',
+              '#5CB85C',
+              '#5BC0DE',
+              '#D9534F'
             ],
             hoverBackgroundColor: [
-              '#FF6384',
-              '#36A2EB',
-              '#FFCE56'
+              '#777777',
+              '#F0AD4E',
+              '#5CB85C',
+              '#5BC0DE',
+              '#D9534F'
             ]
           }
         ]
@@ -123,6 +128,13 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         response => {
           this.total_ticket_count = response['data']['total_ticket_count'];
+          this.ticket_count_chart['data']['datasets'][0]['data'] = [
+            response['data']['ticket_count']['pend'],
+            response['data']['ticket_count']['send'],
+            response['data']['ticket_count']['register'],
+            response['data']['ticket_count']['use'],
+            response['data']['ticket_count']['cancel']
+          ];
           this.total_company_count = response['data']['total_company_count'];
           this.total_user_count = response['data']['total_user_count'];
           this.total_content_count = response['data']['total_content_count'];
@@ -145,9 +157,20 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         response => {
           this.ticket_count = response['data']['ticket_count'];
+          this.ticket_count_chart['data']['datasets'][0]['data'] = [
+            response['data']['ticket_count']['pend'],
+            response['data']['ticket_count']['send'],
+            response['data']['ticket_count']['register'],
+            response['data']['ticket_count']['use'],
+            response['data']['ticket_count']['cancel']
+          ];
           this.avg_age = response['data']['avg_age'];
           this.revenue = response['data']['revenue'];
           this.top_ticket_types = response['data']['top_ticket_types'];
+          this.gender_chart['data']['datasets'][0]['data'] = [
+            response['data']['gender_count']['male'],
+            response['data']['gender_count']['female']
+          ];
           this.is_loading = false;
         },
         error => {
