@@ -33,6 +33,7 @@
     "angular2-moment": "~1.0.0",
     "angular2-chartjs": "~0.1.6",
     "ng2-ui-switch": "~1.0.2",
+    "angular-tag-cloud-module":"~1.4.0",
     "ngx-bootstrap": "~1.6.5",
     "bootstrap": "~3.3.7",
     "jquery": "~3.2.1"

@@ -95,6 +95,16 @@
           </div>
         </div>
       </div>
+      <div class="col-md-12 col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">컨텐츠 클라우드</h3>
+          </div>
+          <div class="panel-body">
+            <angular-tag-cloud [data]="content_cloud.data" [width]="content_cloud.options.width" [overflow]="content_cloud.options.overflow"></angular-tag-cloud>
+          </div>
+        </div>
+      </div>
     </div>
   </ng-template>
 

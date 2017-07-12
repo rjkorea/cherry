@@ -12,6 +12,7 @@ import { ChartModule } from 'angular2-chartjs';
 import { UiSwitchModule } from 'ng2-ui-switch';
 import { DatepickerModule, TimepickerModule } from 'ngx-bootstrap';
 import { SharedComponentsModule } from './components/shared/shared-components.module';
+import { TagCloudModule } from 'angular-tag-cloud-module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -117,6 +118,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     MomentModule,
     ChartModule,
     UiSwitchModule,
+    TagCloudModule,
     DatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     SharedComponentsModule

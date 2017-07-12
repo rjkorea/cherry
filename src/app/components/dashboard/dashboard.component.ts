@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../../services/dashboard.service';
 import { ContentService } from '../../services/content.service';
+import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,6 +28,8 @@ export class DashboardComponent implements OnInit {
   gender_chart: any;
   age_chart: any;
   ticket_count_chart: any;
+
+  content_cloud: any;
 
   is_loading: boolean;
 
@@ -117,6 +120,13 @@ export class DashboardComponent implements OnInit {
         maintainAspectRatio: false
       }
     };
+    this.content_cloud = {
+      data: [],
+      options: {
+        width: 1,
+        overflow: true
+      }
+    }
 
     this.loadContents();
     this.loadDashboard();
@@ -139,6 +149,9 @@ export class DashboardComponent implements OnInit {
           this.total_user_count = response['data']['total_user_count'];
           this.total_content_count = response['data']['total_content_count'];
           this.top_contents = response['data']['top_contents'];
+          for (const c of this.top_contents) {
+            this.content_cloud.data.push({text: c.content.name, weight: c.ticket_cnt});
+          }
           this.gender_chart['data']['datasets'][0]['data'] = [
             response['data']['gender_count']['male'],
             response['data']['gender_count']['female']
@@ -192,7 +205,6 @@ export class DashboardComponent implements OnInit {
   }
 
   changeContent() {
-    console.log('changed content', this.content_oid);
     if (this.content_oid) {
       this.loadDashboardContent(this.content_oid);
     }else {
