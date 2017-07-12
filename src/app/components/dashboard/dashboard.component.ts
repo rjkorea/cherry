@@ -126,7 +126,7 @@ export class DashboardComponent implements OnInit {
         width: 1,
         overflow: true
       }
-    }
+    };
 
     this.loadContents();
     this.loadDashboard();
