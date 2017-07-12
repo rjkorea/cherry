@@ -149,6 +149,7 @@ export class DashboardComponent implements OnInit {
           this.total_user_count = response['data']['total_user_count'];
           this.total_content_count = response['data']['total_content_count'];
           this.top_contents = response['data']['top_contents'];
+          this.content_cloud.data = [];
           for (const c of this.top_contents) {
             this.content_cloud.data.push({text: c.content.name, weight: c.ticket_cnt});
           }
