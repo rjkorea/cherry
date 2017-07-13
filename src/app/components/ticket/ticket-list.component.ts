@@ -22,6 +22,7 @@ export class TicketListComponent implements OnInit {
   content_oid: string = '';
   contents: any;
   ticket_order_oid: string;
+  selected_ticket: any;
   is_loading: boolean;
 
   constructor(private ticketService: TicketService,
@@ -81,18 +82,18 @@ export class TicketListComponent implements OnInit {
 
   onPrev() {
     this.page = this.page - 1;
-    this.router.navigate(['/ticket', {query: this.query, page: this.page}]);
+    this.router.navigate(['/ticket', {query: this.query, page: this.page, ticket_order_oid: this.ticket_order_oid}]);
     this.loadTickets(this.query, this.page);
   }
 
   onNext() {
     this.page = this.page + 1;
-    this.router.navigate(['/ticket', {query: this.query, page: this.page}]);
+    this.router.navigate(['/ticket', {query: this.query, page: this.page, ticket_order_oid: this.ticket_order_oid}]);
     this.loadTickets(this.query, this.page);
   }
 
   search() {
-    this.router.navigate(['/ticket', {query: this.query, page: this.page}]);
+    this.router.navigate(['/ticket', {query: this.query, page: this.page, ticket_order_oid: this.ticket_order_oid}]);
     this.loadTickets(this.query, 1);
   }
 
@@ -110,7 +111,7 @@ export class TicketListComponent implements OnInit {
 
   changeCompany() {
     this.page = 1;
-    this.router.navigate(['/ticket', {query: this.query, page: this.page}]);
+    this.router.navigate(['/ticket', {query: this.query, page: this.page, ticket_order_oid: this.ticket_order_oid}]);
     this.loadTickets(this.query, this.page);
   }
 
@@ -128,7 +129,7 @@ export class TicketListComponent implements OnInit {
 
   changeContent() {
     this.page = 1;
-    this.router.navigate(['/ticket', {query: this.query, page: this.page}]);
+    this.router.navigate(['/ticket', {query: this.query, page: this.page, ticket_order_oid: this.ticket_order_oid}]);
     this.loadTickets(this.query, this.page);
   }
 
@@ -140,6 +141,10 @@ export class TicketListComponent implements OnInit {
 
   onTicket(id: string) {
     this.router.navigate(['/ticket', id]);
+  }
+
+  onCancelModal(ticket: any) {
+    this.selected_ticket = ticket;
   }
 
   onCancel(id: string) {

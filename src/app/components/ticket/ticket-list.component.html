@@ -58,9 +58,29 @@
               <td><span *ngIf="t.receive_user && t.receive_user.gender">{{t.receive_user.gender}}</span></td>
               <td><span *ngIf="t.receive_user && t.receive_user.email">{{t.receive_user.email}}</span></td>
               <td>
-                <button *ngIf="t.status === 'register' || t.status === 'send'" type="button" class="btn btn-default btn-sm" (click)="onCancel(t._id)">
+                <button *ngIf="t.status === 'register' || t.status === 'send'" type="button" class="btn btn-danger btn-sm" (click)="onCancelModal(t)" data-toggle="modal" data-target="#cancel-modal">
                   <span class="glyphicon glyphicon-trash" aria-hidden="true"> 티켓취소</span>
                 </button>
+                <!-- Cancel Modal -->
+                <div class="modal fade" id="cancel-modal" tabindex="-1" role="dialog" aria-labelledby="cancel-modal-label">
+                  <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="disable-modal-label">티켓 취소</h4>
+                      </div>
+                      <div class="modal-body">
+                        <h5>티켓 취소 시 행사 입장이 불가해 집니다</h5>
+                        <h5>정말 티켓을 취소 하시겠습니까?</h5>
+                        <p *ngIf="receive_user">{{t.receive_user.name}}</p>
+                        <p *ngIf="receive_user">{{t.receive_user.mobile_number}}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onCancel(selected_ticket._id)">취소</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </td>
             </tr>
           </table>
