@@ -33,14 +33,17 @@ export class TicketTypeListComponent implements OnInit {
         company: { name: '회사 이름' }
       }
     ];
-    this.content_oid = '';
     this.loadContents();
+    this.content_oid = '';
     const params: Params = this.route.snapshot.params;
     if ('query' in params) {
       this.query = params['query'];
     }
     if ('page' in params) {
       this.page = +params['page'];
+    }
+    if ('content_oid' in params) {
+      this.content_oid = params['content_oid'];
     }
     this.loadTypes(this.query, this.page);
   }
@@ -76,7 +79,7 @@ export class TicketTypeListComponent implements OnInit {
 
   changeContent() {
     this.page = 1;
-    this.router.navigate(['/ticket/type', {query: this.query, page: this.page}]);
+    this.router.navigate(['/ticket/type', {query: this.query, page: this.page, content_oid: this.content_oid}]);
     this.loadTypes(this.query, this.page);
   }
 
@@ -84,19 +87,19 @@ export class TicketTypeListComponent implements OnInit {
   onPrev() {
     const page = this.page - 1;
     this.page = page;
-    this.router.navigate(['/ticket/type', {query: this.query, page: page}]);
+    this.router.navigate(['/ticket/type', {query: this.query, page: page, content_oid: this.content_oid}]);
     this.loadTypes(this.query, page);
   }
 
   onNext() {
     const page = this.page + 1;
     this.page = page;
-    this.router.navigate(['/ticket/type', {query: this.query, page: page}]);
+    this.router.navigate(['/ticket/type', {query: this.query, page: page, content_oid: this.content_oid}]);
     this.loadTypes(this.query, page);
   }
 
   search() {
-    this.router.navigate(['/ticket/type', {query: this.query, page: this.page}]);
+    this.router.navigate(['/ticket/type', {query: this.query, page: this.page, content_oid: this.content_oid}]);
     this.loadTypes(this.query, 1);
   }
 
