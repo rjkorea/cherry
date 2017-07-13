@@ -129,7 +129,8 @@
             <h3 class="panel-title">방문율</h3>
           </div>
           <div class="panel-body">
-            <h1>{{((ticket_count.use/(ticket_count.register+ticket_count.use))*100).toString() | slice:0:4}} <small>%</small></h1>
+            <h1 *ngIf="ticket_count.use>0">{{((ticket_count.use/(ticket_count.register+ticket_count.use))*100).toString() | slice:0:4}} <small>%</small></h1>
+            <h1 *ngIf="ticket_count.use===0">0 <small>%</small></h1>
             <span class="label label-success">{{ticket_count.register}}명 초대권 대상자</span>
             <span class="label label-info">{{ticket_count.use}}명 방문객</span>
           </div>
