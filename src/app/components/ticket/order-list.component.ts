@@ -91,6 +91,13 @@ export class TicketOrderListComponent implements OnInit {
     this.ticketService.sendOrder(id, data)
       .subscribe(
         response => {
+          if (response['is_sent_receiver']) {
+            alert('SMS 전송이 완료되었습니다.');
+          }else {
+            alert('SMS 전송이 실패하였습니다.')
+          }
+          this.router.navigate(['/ticket/order', {query: this.query, page: this.page, ticket_type_oid: this.ticket_type_oid}]);
+          this.loadOrders(this.query, this.page);
           console.log(response);
         },
         error => {

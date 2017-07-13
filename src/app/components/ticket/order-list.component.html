@@ -25,6 +25,7 @@
               <th>환경부담금</th>
               <th>티켓수량</th>
               <th></th>
+              <th></th>
             </tr>
             <tr *ngFor="let o of orders">
               <td><a [routerLink]="['/ticket/order', o._id]">{{o.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</a></td>
@@ -41,6 +42,7 @@
                   <button type="button" class="btn btn-default btn-sm" (click)="onSms(o)" data-toggle="modal" data-target="#send-modal">
                     <!--<span class="glyphicon glyphicon-send" aria-hidden="true"></span> SMS전송-->
                     <i class="fa fa-comment fa-lg" aria-hidden="true"></i> SMS전송
+                    <span class="badge">{{o.receiver.sms.count}}</span>
                   </button>
                   <!-- Send Modal -->
                   <div class="modal fade" id="send-modal" tabindex="-1" role="dialog" aria-labelledby="send-modal-label">
@@ -69,6 +71,9 @@
                 <ng-template [ngIf]="o.slug">
                   <a href="http://i.tkit.me/hard/{{o.slug}}">{{o.slug}}</a>
                 </ng-template>
+              </td>
+              <td>
+                <span *ngIf="o.receiver.sms.sent_at">Sent {{o.receiver.sms.sent_at | amFromUnix | amTimeAgo: true}} ago</span>
               </td>
             </tr>
           </table>
