@@ -106,4 +106,8 @@ export class TicketOrderListComponent implements OnInit {
       );
   }
 
+  onNew() {
+    this.router.navigate(['/ticket/orders/new', {ticket_type_oid: this.ticket_type_oid}]);
+  }
+
 }

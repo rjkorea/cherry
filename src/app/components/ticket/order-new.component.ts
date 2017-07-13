@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
 import { ContentService } from '../../services/content.service';
 import { UtilService } from '../../services/util.service';
@@ -11,6 +11,7 @@ import { UtilService } from '../../services/util.service';
   providers: []
 })
 export class TicketOrderNewComponent implements OnInit {
+  ticket_type_oid: string;
   order: any;
   contents: any;
   countries: any;
@@ -27,9 +28,14 @@ export class TicketOrderNewComponent implements OnInit {
   constructor(private ticketService: TicketService,
               private contentService: ContentService,
               private utilService: UtilService,
+              private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
+    const params: Params = this.route.snapshot.params;
+    if ('ticket_type_oid' in params) {
+      this.ticket_type_oid = params['ticket_type_oid'];
+    }
     this.is_fee = false;
     this.fee = {};
     this.expiry = {
@@ -58,7 +64,7 @@ export class TicketOrderNewComponent implements OnInit {
         _id: '',
         name: '티켓타입',
         desc: '설명',
-        day: 'day'
+        day: '1'
       }
     ];
     this.countries = [
@@ -133,9 +139,11 @@ export class TicketOrderNewComponent implements OnInit {
     this.ticketService.addOrder(this.order)
       .subscribe(
         response => {
-          this.router.navigate(['/ticket/order']);
+          alert('티켓오더를 생성하였습니다. \'SMS전송\'버튼을 이용하여 티켓을 전송해주세요.');
+          this.router.navigate(['/ticket/order', {ticket_type_oid: this.ticket_type_oid}]);
         },
         error => {
+          alert('티켓오더 생성을 실패하였습니다.')
           console.log(error);
         }
       );
