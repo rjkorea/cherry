@@ -1,0 +1,169 @@
+<div *ngIf="is_loading">
+  <app-loader></app-loader>
+</div>
+<div *ngIf="!is_loading">
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <select class="form-control" [(ngModel)]="content_oid" (ngModelChange)="changeContent()">
+        <ng-container *ngFor="let c of contents">
+          <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+  <br>
+
+  <ng-template [ngIf]="!content_oid">
+    <div class="row">
+      <div class="col-md-3 col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">전체 티켓</h3>
+          </div>
+          <div class="panel-body">
+            <h1>
+              {{total_ticket_count}}
+              <small>장</small>
+            </h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">전체 회사</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{total_company_count}} <small>사</small></h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">전체 사용자</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{total_user_count}} <small>명</small></h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">전체 컨텐츠</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{total_content_count}} <small>개</small></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">전체 티켓현황</h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="ticket_count_chart.type" [data]="ticket_count_chart.data" [options]="ticket_count_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">전체 성별비율</h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="gender_chart.type" [data]="gender_chart.data" [options]="gender_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">컨텐츠 Top 5</h3>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <ng-container *ngFor="let tc of top_contents">
+                <li class="list-group-item"><span class="badge">{{tc.ticket_cnt}}</span>{{tc.content.name}}</li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">컨텐츠 클라우드</h3>
+          </div>
+          <div class="panel-body">
+            <angular-tag-cloud [data]="content_cloud.data" [width]="content_cloud.options.width" [overflow]="content_cloud.options.overflow"></angular-tag-cloud>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="content_oid">
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">방문율</h3>
+          </div>
+          <div class="panel-body">
+            <h1 *ngIf="ticket_count.use>0">{{((ticket_count.use/(ticket_count.register+ticket_count.use))*100).toString() | slice:0:4}} <small>%</small></h1>
+            <h1 *ngIf="ticket_count.use===0">0 <small>%</small></h1>
+            <span class="label label-success">{{ticket_count.register}}명 초대권 대상자</span>
+            <span class="label label-info">{{ticket_count.use}}명 방문객</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <img class="img-thumbnail" src="assets/images/banner.png">
+        <!-- <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">광고영역</h3>
+          </div>
+          <div class="panel-body">
+            <img class="img-thumbnail" src="assets/images/user.png">
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">전체 티켓현황</h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="ticket_count_chart.type" [data]="ticket_count_chart.data" [options]="ticket_count_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">전체 성별비율</h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="gender_chart.type" [data]="gender_chart.data" [options]="gender_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">
+        TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a>
+      </p>
+    </div>
+  </div>
+</div>

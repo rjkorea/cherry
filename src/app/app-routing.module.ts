@@ -2,7 +2,6 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
 
-
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
@@ -37,6 +36,7 @@ import { PlaceNewComponent } from './components/place/place-new.component';
 import { QnaListComponent } from './components/qna/qna-list.component';
 import { QnaDetailComponent } from './components/qna/qna-detail.component';
 import { QnaNewComponent } from './components/qna/qna-new.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -83,6 +83,8 @@ const routes: Routes = [
   { path: 'qna', component: QnaListComponent, canActivate: [AuthGuard] },
   { path: 'qna/:id', component: QnaDetailComponent, canActivate: [AuthGuard]},
   { path: 'qnas/new', component: QnaNewComponent, canActivate: [AuthGuard]},
+
+  { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

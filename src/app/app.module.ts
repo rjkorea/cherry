@@ -50,6 +50,7 @@ import { PlaceNewComponent } from './components/place/place-new.component';
 import { QnaListComponent } from './components/qna/qna-list.component';
 import { QnaDetailComponent } from './components/qna/qna-detail.component';
 import { QnaNewComponent } from './components/qna/qna-new.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -106,7 +107,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     PlaceNewComponent,
     QnaListComponent,
     QnaDetailComponent,
-    QnaNewComponent
+    QnaNewComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
