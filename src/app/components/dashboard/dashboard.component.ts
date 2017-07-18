@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { DashboardService } from '../../services/dashboard.service';
 import { ContentService } from '../../services/content.service';
 import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
   is_loading: boolean;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private dashboardService: DashboardService,
               private contentService: ContentService) { }
 
@@ -129,7 +130,13 @@ export class DashboardComponent implements OnInit {
     };
 
     this.loadContents();
-    this.loadDashboard();
+    const params: Params = this.route.snapshot.params;
+    if ('id' in params) {
+      this.content_oid = params['id'];
+      this.loadDashboardContent(params['id']);
+    } else {
+      this.loadDashboard();
+    }
   }
 
   loadDashboard() {
@@ -207,8 +214,10 @@ export class DashboardComponent implements OnInit {
 
   changeContent() {
     if (this.content_oid) {
+      this.router.navigate(['/dashboard', this.content_oid]);
       this.loadDashboardContent(this.content_oid);
-    }else {
+    } else {
+      this.router.navigate(['/dashboard', this.content_oid]);
       this.loadDashboard();
     }
   }
