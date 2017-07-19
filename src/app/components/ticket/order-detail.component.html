@@ -1,11 +1,11 @@
 <div *ngIf="order">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Ticket Order</h3>
-    </div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-md-6">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Ticket Order</h3>
+        </div>
+        <div class="panel-body">
           <div class="stats">
             <span *ngIf="order.enabled" class="label label-success">enabled</span>
             <span *ngIf="!order.enabled" class="label label-danger">disabled</span>
@@ -36,35 +36,10 @@
             <li class="list-group-item"><strong>Method: </strong>{{order.fee.method}}</li>
             <li class="list-group-item"><strong>Price: </strong>{{order.fee.price | currency: 'KRW': true}}</li>
           </ul>
-
-          <!-- Disable Button -->
-          <button type="button" class="btn btn-danger" [disabled]="isDisable()" data-toggle="modal" data-target="#disable-modal">
-            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Disable
-          </button>
-          <!-- Disable Modal -->
-          <div class="modal fade" id="disable-modal" tabindex="-1" role="dialog" aria-labelledby="disable-modal-label">
-            <div class="modal-dialog modal-sm" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="disable-modal-label">Confirm</h4>
-                </div>
-                <div class="modal-body">
-                  <p>Disable ticket order?</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onDisable()">Yes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
   </div>
-
 
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
