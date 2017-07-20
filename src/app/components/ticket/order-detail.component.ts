@@ -32,24 +32,4 @@ export class TicketOrderDetailComponent implements OnInit {
         }
       );
   }
-
-  onDisable() {
-    this.order_form = {
-      enabled: false
-    }
-    this.ticketService.updateOrder(this.order._id, this.order_form)
-      .subscribe(
-        response => {
-          this.loadOrder(this.order._id);
-        },
-        error => {
-          console.log(error);
-        }
-      );
-  }
-
-  isDisable() {
-    return !this.order.enabled;
-  }
-
 }
