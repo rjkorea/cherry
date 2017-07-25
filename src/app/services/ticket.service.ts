@@ -126,4 +126,10 @@ export class TicketService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public sendSmsTicket(id: string, data): Observable<{}> {
+    const url = `${this.ticketUrl}/${id}/sms/send`;
+    return this.http.put(url, JSON.stringify(data), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 }
