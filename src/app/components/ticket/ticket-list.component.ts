@@ -23,6 +23,7 @@ export class TicketListComponent implements OnInit {
   contents: any;
   ticket_order_oid: string;
   selected_ticket: any;
+  sms_message: string;
   is_loading: boolean;
 
   constructor(private ticketService: TicketService,
@@ -153,6 +154,30 @@ export class TicketListComponent implements OnInit {
         response => {
           this.loadTickets(this.query, this.page);
           console.log(response['data']);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  onSmsModal(ticket: any) {
+    this.selected_ticket = ticket;
+    this.sms_message = `${this.selected_ticket.content.name}에 함께해주셔서 감사합니다 해당 링크를 통해 티켓정보를 등록해주셔야만 공연 입장이 가능합니다 http://i.tkit.me/l/${this.selected_ticket.content.short_id}`;
+  }
+
+  onSend(id: string) {
+    let data = {
+      sms_message: this.sms_message
+    };
+    this.ticketService.sendSmsTicket(id, data)
+      .subscribe(
+        response => {
+          if (response['is_sent_receiver']) {
+            alert('SMS 전송이 완료되었습니다.');
+          }else {
+            alert('SMS 전송이 실패하였습니다.')
+          }
         },
         error => {
           console.log(error);
