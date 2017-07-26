@@ -77,7 +77,7 @@
             <h3 class="panel-title">전체 성별비율</h3>
           </div>
           <div class="panel-body">
-            <chart [type]="gender_chart.type" [data]="gender_chart.data" [options]="gender_chart.options"></chart>
+            <chart [type]="total_gender_chart.type" [data]="total_gender_chart.data" [options]="total_gender_chart.options"></chart>
           </div>
         </div>
       </div>
@@ -177,14 +177,26 @@
       <div class="col-md-4 col-sm-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">전체 성별비율</h3>
+            <h3 class="panel-title">등록완료티켓 성별비율</h3>
           </div>
           <div class="panel-body">
-            <chart [type]="gender_chart.type" [data]="gender_chart.data" [options]="gender_chart.options"></chart>
+            <chart [type]="register_gender_chart.type" [data]="register_gender_chart.data" [options]="register_gender_chart.options"></chart>
           </div>
         </div>
       </div>
       <div class="col-md-4 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">입장객 성별비율</h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="use_gender_chart.type" [data]="use_gender_chart.data" [options]="use_gender_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">티켓타입 Top 10</h3>
@@ -192,7 +204,25 @@
           <div class="panel-body">
             <ul class="list-group">
               <ng-container *ngFor="let ttt of top_ticket_types">
-                <li class="list-group-item"><span class="badge">{{ttt.ticket_cnt}}</span>{{ttt.ticket_type.name}}({{ttt.ticket_type.desc}})</li>
+                <li class="list-group-item">
+                  <span class="badge">{{ttt.ticket_register_cnt}} / {{ttt.ticket_cnt}}</span>{{ttt.ticket_type.name}} ({{ttt.ticket_type.desc}}) <span class="label label-success">{{((ttt.ticket_register_cnt/ttt.ticket_cnt)*100).toString() | slice:0:4}}%</span>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">티켓오더 Top 20</h3>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <ng-container *ngFor="let tto of top_ticket_orders">
+                <li class="list-group-item">
+                  <span class="badge">{{tto.ticket_register_cnt}} / {{tto.ticket_cnt}}</span>{{tto.ticket_order.receiver.name}} ({{tto.ticket_order.receiver.mobile_number}}) - {{tto.ticket_type.name}} ({{tto.ticket_type.desc}}) <span class="label label-success">{{((tto.ticket_register_cnt/tto.ticket_cnt)*100).toString() | slice:0:4}}%</span>
+                </li>
               </ng-container>
             </ul>
           </div>

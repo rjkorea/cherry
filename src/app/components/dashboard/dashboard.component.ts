@@ -18,14 +18,17 @@ export class DashboardComponent implements OnInit {
   total_company_count: number;
   total_user_count: number;
   total_content_count: number;
+  total_gender_chart: any;
   top_contents;
 
   ticket_count: any;
   avg_age: any;
   revenue: any;
   top_ticket_types;
+  top_ticket_orders;
 
-  gender_chart: any;
+  register_gender_chart: any;
+  use_gender_chart: any;
   age_chart: any;
   ticket_count_chart: any;
 
@@ -55,8 +58,32 @@ export class DashboardComponent implements OnInit {
       use: 0,
       cancel: 0
     };
+    this.total_gender_chart = {
+      type: 'doughnut',
+      data: {
+        labels: ['여자', '남자'],
+        datasets: [
+          {
+            data: [0, 0],
+            backgroundColor: [
+              '#FF6384',
+              '#36A2EB'
+            ],
+            hoverBackgroundColor: [
+              '#FF6384',
+              '#36A2EB'
+            ]
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    };
     this.top_contents = [];
     this.top_ticket_types = [];
+    this.top_ticket_orders = [];
     this.ticket_count = {
       use: 0,
       total: 0
@@ -69,8 +96,31 @@ export class DashboardComponent implements OnInit {
       cash: 0,
       creditcard: 0
     };
-    this.gender_chart = {
+    this.register_gender_chart = {
       type: 'doughnut',
+      data: {
+        labels: ['여자', '남자'],
+        datasets: [
+          {
+            data: [0, 0],
+            backgroundColor: [
+              '#FF6384',
+              '#36A2EB'
+            ],
+            hoverBackgroundColor: [
+              '#FF6384',
+              '#36A2EB'
+            ]
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    };
+    this.use_gender_chart = {
+      type: 'pie',
       data: {
         labels: ['여자', '남자'],
         datasets: [
@@ -160,7 +210,7 @@ export class DashboardComponent implements OnInit {
           for (const c of this.top_contents) {
             this.content_cloud.data.push({text: c.content.name, weight: c.ticket_cnt});
           }
-          this.gender_chart['data']['datasets'][0]['data'] = [
+          this.total_gender_chart['data']['datasets'][0]['data'] = [
             response['data']['gender_count']['male'],
             response['data']['gender_count']['female']
           ];
@@ -188,9 +238,14 @@ export class DashboardComponent implements OnInit {
           this.avg_age = response['data']['avg_age'];
           this.revenue = response['data']['revenue'];
           this.top_ticket_types = response['data']['top_ticket_types'];
-          this.gender_chart['data']['datasets'][0]['data'] = [
-            response['data']['gender_count']['male'],
-            response['data']['gender_count']['female']
+          this.top_ticket_orders = response['data']['top_ticket_orders'];
+          this.register_gender_chart['data']['datasets'][0]['data'] = [
+            response['data']['gender_count']['register']['male'],
+            response['data']['gender_count']['register']['female']
+          ];
+          this.use_gender_chart['data']['datasets'][0]['data'] = [
+            response['data']['gender_count']['use']['male'],
+            response['data']['gender_count']['use']['female']
           ];
           this.is_loading = false;
         },
