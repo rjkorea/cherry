@@ -4,6 +4,8 @@ import { TicketService } from '../../services/ticket.service';
 import { ContentService } from '../../services/content.service';
 import { UtilService } from '../../services/util.service';
 
+const DEFAULT_COUNTRY_CODE: string = '82';
+
 @Component({
   selector: 'app-ticket-order-new',
   templateUrl: './order-new.component.html',
@@ -37,12 +39,15 @@ export class TicketOrderNewComponent implements OnInit {
       this.ticket_type_oid = params['ticket_type_oid'];
     }
     this.is_fee = false;
-    this.fee = {};
+    this.fee = {
+      method: 'cash',
+      price: 10000
+    };
     this.expiry = {
       date: new Date()
       // time: new Date()
     };
-    this.country_code = '';
+    this.country_code = DEFAULT_COUNTRY_CODE;
     this.mobile_number = '';
     this.order = {
       ticket_type_oid: '',

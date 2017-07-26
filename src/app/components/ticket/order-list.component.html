@@ -79,12 +79,16 @@
           </table>
         </div>
       </div>
-      <nav aria-label="...">
-        <ul class="pager">
-          <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
-          <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
-        </ul>
-      </nav>
+      <div class="row">
+        <div class="col-md-12">
+          <nav aria-label="...">
+            <ul class="pager">
+              <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
+              <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
 
     <div *ngIf="!!!count">
