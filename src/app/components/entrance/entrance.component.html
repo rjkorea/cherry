@@ -30,18 +30,23 @@
               <img *ngIf="!type.content.image" src="assets/images/no_image_icon.png"> -->
               <div class="caption">
                 <h4><a [routerLink]="['ticket', ticket._id]">{{ticket.content.name}}</a></h4>
-                <h4>{{ticket.ticket_type.day}} <strong>day</strong></h4>
+                <h5>{{ticket.ticket_type.name}}</h5>
+                <h5>{{ticket.ticket_type.desc}}</h5>
+                <h5>{{ticket.ticket_type.price | currency: 'KRW': true}} 원</h5>
+                <h5>{{ticket.ticket_type.day}} <strong>day</strong></h5>
+                <h5 *ngIf="!ticket.send_user">보낸사람: 호스트</h5>
+                <h5 *ngIf="ticket.send_user">보낸사람: {{ticket.send_user.name}}</h5>
                 <p>
-                  <span *ngIf="ticket.status=='pend'" class="label label-default">pend</span>
-                  <span *ngIf="ticket.status=='send'" class="label label-info">send</span>
-                  <span *ngIf="ticket.status=='register'" class="label label-primary">register</span>
-                  <span *ngIf="ticket.status=='use'" class="label label-success">use</span>
-                  <span *ngIf="ticket.status=='cancel'" class="label label-warning">warning</span>
+                  <span *ngIf="ticket.status=='pend'" class="label label-default">전송준비</span>
+                  <span *ngIf="ticket.status=='send'" class="label label-warning">전송중</span>
+                  <span *ngIf="ticket.status=='register'" class="label label-success">등록완료</span>
+                  <span *ngIf="ticket.status=='use'" class="label label-info">입장완료</span>
+                  <span *ngIf="ticket.status=='cancel'" class="label label-danger">취소</span>
                 </p>
-                <p>
+                <!-- <p>
                   <span *ngIf="ticket.enabled" class="label label-success">enabled</span>
                   <span *ngIf="!ticket.enabled" class="label label-danger">disabled</span>
-                </p>
+                </p> -->
               </div>
             </div>
           </div>
