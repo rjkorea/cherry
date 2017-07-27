@@ -1,11 +1,11 @@
 <div *ngIf="ticket">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">{{ticket.ticket_type.name}} {{ticket.ticket_type.desc}} ({{ticket.content.name}})</h3>
-    </div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-md-6">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{ticket.content.name}} / {{ticket.ticket_type.name}} / {{ticket.ticket_type.desc}}</h3>
+        </div>
+        <div class="panel-body">
           <div *ngIf="!user_edit_mode" class="edit">
             <ul *ngIf="ticket.receive_user" class="list-group">
               <li class="list-group-item list-group-item-success"><strong>입장객</strong></li>
@@ -14,12 +14,12 @@
               <li class="list-group-item"><strong>핸드폰 번호: </strong>{{ticket.receive_user.mobile_number}}</li>
               <li class="list-group-item"><strong>이메일: </strong>{{ticket.receive_user.email}}</li>
               <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender}}</li>
-              <li class="list-group-item"><strong>상태: </strong>
+              <!-- <li class="list-group-item"><strong>상태: </strong>
                 <span *ngIf="ticket.enabled" class="label label-success">enabled</span>
                 <span *ngIf="!ticket.enabled" class="label label-danger">disabled</span>
               </li>
               <li class="list-group-item"><strong>수정일: </strong>{{ticket.receive_user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-              <li class="list-group-item"><strong>가입일: </strong>{{ticket.receive_user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+              <li class="list-group-item"><strong>가입일: </strong>{{ticket.receive_user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li> -->
             </ul>
           </div>
           <div *ngIf="user_edit_mode" class="edit">
@@ -53,15 +53,7 @@
             </div>
             <br>
           </div>
-        </div>
-        <div class="col-md-6">
-          <button *ngIf="!user_edit_mode" type="button" class="btn btn-default" (click)="onEditUser()">입장객 정보수정</button>
-          <button *ngIf="user_edit_mode" type="button" class="btn btn-default" (click)="onSaveUser()">저장</button>
-          <a *ngIf="user_edit_mode" (click)="onCancelUser()">취소</a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
+
           <ul class="list-group" *ngFor="let d of ticket.days">
             <li class="list-group-item list-group-item-success"><strong>Day </strong>{{d.day}}</li>
             <li class="list-group-item input-group">
@@ -78,19 +70,20 @@
               </select>
             </li>
           </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <button type="button" class="btn btn-default" (click)="onDoneEntrance()">입장완료</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-      <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-default" (click)="onDoneEntrance()">입장완료</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+          <p class="text-right">TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
