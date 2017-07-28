@@ -59,6 +59,7 @@ export class AdminDetailComponent implements OnInit {
       .subscribe(
         response => {
           this.loadAdmin(this.admin._id);
+          localStorage.setItem('tablet_code', this.admin.tablet_code);
           this.edit_mode = false;
         },
         error => {
