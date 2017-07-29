@@ -129,7 +129,7 @@
             <h3 class="panel-title">등록율</h3>
           </div>
           <div class="panel-body">
-            <h1 *ngIf="ticket_count.register>0">{{((ticket_count.register/(ticket_count.send+ticket_count.register))*100).toString() | slice:0:4}} <small>%</small></h1>
+            <h1 *ngIf="ticket_count.register>0">{{(((ticket_count.register+ticket_count.use)/(ticket_count.send+ticket_count.register+ticket_count.use))*100).toString() | slice:0:4}} <small>%</small></h1>
             <h1 *ngIf="ticket_count.register===0">0 <small>%</small></h1>
             <span class="label label-warning">{{ticket_count.send}} 전송중</span>
             <span class="label label-success">{{ticket_count.register}} 등록완료</span>
@@ -205,7 +205,7 @@
             <ul class="list-group">
               <ng-container *ngFor="let ttt of top_ticket_types">
                 <li class="list-group-item">
-                  <span class="badge">{{ttt.ticket_register_cnt}} / {{ttt.ticket_cnt}}</span>{{ttt.ticket_type.name}} ({{ttt.ticket_type.desc}}) <span class="label label-success">{{((ttt.ticket_register_cnt/ttt.ticket_cnt)*100).toString() | slice:0:4}}%</span>
+                  <span class="badge">{{ttt.ticket_register_cnt+ttt.ticket_use_cnt}} / {{ttt.ticket_cnt}}</span>{{ttt.ticket_type.name}} ({{ttt.ticket_type.desc}}) <span class="label label-success">{{(((ttt.ticket_register_cnt+ttt.ticket_use_cnt)/ttt.ticket_cnt)*100).toString() | slice:0:4}}%</span>
                 </li>
               </ng-container>
             </ul>
@@ -221,7 +221,7 @@
             <ul class="list-group">
               <ng-container *ngFor="let tto of top_ticket_orders">
                 <li class="list-group-item">
-                  <span class="badge">{{tto.ticket_register_cnt}} / {{tto.ticket_cnt}}</span>{{tto.ticket_order.receiver.name}} ({{tto.ticket_order.receiver.mobile_number}}) - {{tto.ticket_type.name}} ({{tto.ticket_type.desc}}) <span class="label label-success">{{((tto.ticket_register_cnt/tto.ticket_cnt)*100).toString() | slice:0:4}}%</span>
+                  <span class="badge">{{tto.ticket_register_cnt+tto.ticket_use_cnt}} / {{tto.ticket_cnt}}</span>{{tto.ticket_order.receiver.name}} ({{tto.ticket_order.receiver.mobile_number}}) - {{tto.ticket_type.name}} ({{tto.ticket_type.desc}}) <span class="label label-success">{{(((tto.ticket_register_cnt+tto.ticket_use_cnt)/tto.ticket_cnt)*100).toString() | slice:0:4}}%</span>
                 </li>
               </ng-container>
             </ul>
