@@ -51,6 +51,7 @@ import { QnaListComponent } from './components/qna/qna-list.component';
 import { QnaDetailComponent } from './components/qna/qna-detail.component';
 import { QnaNewComponent } from './components/qna/qna-new.component';
 import { StatsComponent } from './components/stats/stats.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -108,7 +109,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     QnaListComponent,
     QnaDetailComponent,
     QnaNewComponent,
-    StatsComponent
+    StatsComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

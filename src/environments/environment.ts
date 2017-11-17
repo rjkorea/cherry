@@ -6,9 +6,19 @@
 export const environment = {
   production: false,
   debug: false,
+  app: {
+    protocol: 'http',
+    host: '192.168.35.183',
+    port: 4200
+  },
   api: {
     protocol: 'http',
-    host: 'localhost',
+    host: '192.168.35.183',
     port: 5100
+  },
+  iamport: {
+    code: 'imp74899369',
+    api_key: '4335180923213950',
+    api_secret: '8PJ0Bmp6JLDTBITQ281p2BuM5jJ0FpWOeGOQ2eWMZAGBizrkHtKK4ewaygadG72VORLR5IE5ikHBT8WA'
   }
 };
