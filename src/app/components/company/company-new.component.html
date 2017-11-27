@@ -1,32 +1,32 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">New Company</h3>
+    <h3 class="panel-title">회사 만들기</h3>
   </div>
   <div class="panel-body">
     <div class="row">
       <div class="col-md-6">
         <br>
         <div class="form-group">
-          <label for="name">Name (required)</label>
+          <label for="name">이름 (필수)</label>
           <input type="text" class="form-control" [(ngModel)]="company.name" name="name">
         </div>
         <br>
         <div class="form-group">
-          <label for="place">Contact Name (required)</label>
+          <label for="place">담당자 이름 (필수)</label>
           <input type="text" class="form-control" [(ngModel)]="company.contact.name" name="name">
         </div>
         <br>
         <div class="form-group">
-          <label for="place">Contact Mobile Number (required)</label>
+          <label for="place">담당자 핸드폰번호 (필수)</label>
           <input type="text" class="form-control" [(ngModel)]="company.contact.mobile_number" name="mobile_number">
         </div>
         <br>
         <div class="form-group">
-          <label for="place">Contact Email (required)</label>
+          <label for="place">담당자 이메일 (필수)</label>
           <input type="text" class="form-control" [(ngModel)]="company.contact.email" name="email">
         </div>
         <br>
-        <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">Submit new company</button>
+        <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
       </div>
     </div>
   </div>

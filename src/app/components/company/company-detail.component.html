@@ -8,18 +8,18 @@
         <div class="col-md-6">
           <br />
           <div class="stats">
-            <span *ngIf="company.enabled" class="label label-success">enabled</span>
-            <span *ngIf="!company.enabled" class="label label-danger">disabled</span>
+            <span *ngIf="company.enabled" class="label label-success">활성상태</span>
+            <span *ngIf="!company.enabled" class="label label-danger">비활성상태</span>
           </div>
           <br>
           <ul *ngIf="!edit_mode" class="list-group">
-            <li class="list-group-item"><strong>ID: </strong>{{company._id}}</li>
-            <li class="list-group-item"><strong>Name: </strong>{{company.name}}</li>
-            <li class="list-group-item"><strong>Contact Name: </strong>{{company.contact.name}}</li>
-            <li class="list-group-item"><strong>Contact Mobile Number: </strong>{{company.contact.mobile_number}}</li>
-            <li class="list-group-item"><strong>Contact Email: </strong>{{company.contact.email}}</li>
-            <li class="list-group-item"><strong>Updated at: </strong>{{company.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-            <li class="list-group-item"><strong>Member Since: </strong>{{company.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>아이디: </strong>{{company._id}}</li>
+            <li class="list-group-item"><strong>이름: </strong>{{company.name}}</li>
+            <li class="list-group-item"><strong>담당자 이름: </strong>{{company.contact.name}}</li>
+            <li class="list-group-item"><strong>담당자 핸드폰번호: </strong>{{company.contact.mobile_number}}</li>
+            <li class="list-group-item"><strong>담당자 이메일: </strong>{{company.contact.email}}</li>
+            <li class="list-group-item"><strong>수정일시: </strong>{{company.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>생성일시: </strong>{{company.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
           <div *ngIf="edit_mode" class="edit">
             <div class="input-group">
@@ -27,31 +27,31 @@
             </div>
             <br>
             <div class="input-group">
-              <span class="input-group-addon">Name</span>
+              <span class="input-group-addon">이름</span>
               <input type="text" class="form-control" [(ngModel)]="company.name" name="name">
             </div>
             <br>
             <div class="input-group">
-              <span class="input-group-addon">Contact Name</span>
+              <span class="input-group-addon">담당자 이름</span>
               <input type="text" class="form-control" [(ngModel)]="company.contact.name" name="name">
             </div>
             <br>
             <div class="input-group">
-              <span class="input-group-addon">Contact Mobile Number</span>
+              <span class="input-group-addon">담당자 핸드폰번호</span>
               <input type="text" class="form-control" [(ngModel)]="company.contact.mobile_number" name="mobile_number">
             </div>
             <br>
             <div class="input-group">
-              <span class="input-group-addon">Contact Email</span>
+              <span class="input-group-addon">담당자 이메일</span>
               <input type="text" class="form-control" [(ngModel)]="company.contact.email" name="email">
             </div>
             <br>
           </div>
         </div>
         <div class="col-md-2">
-          <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="onEdit()">Edit</button>
-          <button *ngIf="edit_mode" type="button" class="btn btn-default" (click)="onSave()">Save</button>
-          <a *ngIf="edit_mode" (click)="onCancel()">Cancel</a>
+          <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="onEdit()">수정</button>
+          <button *ngIf="edit_mode" type="button" class="btn btn-default" (click)="onSave()">저장</button>
+          <a *ngIf="edit_mode" (click)="onCancel()">취소</a>
         </div>
       </div>
     </div>
