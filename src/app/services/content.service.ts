@@ -46,4 +46,35 @@ export class ContentService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public uploadPosterImage(id: string, files: FileList): Observable<{}> {
+    // WIP: build file form data
+    console.log(files);
+    const url = `${this.contentUrl}/${id}/image/poster`;
+    let form = new FormData();
+    form.append('image', files[0], files[0].name);
+    form.append('test', 'hello world');
+    console.log(form);
+    const headers = new Headers({'Content-Type': 'multipart/form-data', 'Authorization': 'csk=' + localStorage.getItem('csk')});
+    const options = new RequestOptions({headers: headers, withCredentials: true});
+    return this.http.post(url, form, options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public uploadLogoImage(id: string, files: FileList): Observable<{}> {
+    // TODO: build file form data
+    const url = `${this.contentUrl}/${id}/image/logo`;
+    return this.http.post(url, files, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public uploadOgImage(id: string, files: FileList): Observable<{}> {
+    // TODO: build file form data
+    const url = `${this.contentUrl}/${id}/image/og`;
+    return this.http.post(url, files, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }
