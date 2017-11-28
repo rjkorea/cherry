@@ -3,38 +3,38 @@
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Ticket Order</h3>
+          <h3 class="panel-title">티켓오더</h3>
         </div>
         <div class="panel-body">
           <div class="stats">
-            <span *ngIf="order.enabled" class="label label-success">enabled</span>
-            <span *ngIf="!order.enabled" class="label label-danger">disabled</span>
+            <span *ngIf="order.enabled" class="label label-success">활성화</span>
+            <span *ngIf="!order.enabled" class="label label-danger">비활성화</span>
           </div>
           <br>
           <ul class="list-group">
-            <li *ngIf="order.parent_oid" class="list-group-item"><strong>Parent ID: </strong>{{order.parent_oid}}</li>
-            <li class="list-group-item"><strong>ID: </strong>{{order._id}}</li>
-            <li class="list-group-item"><strong>Quantity: </strong>{{order.qty}}</li>
-            <li class="list-group-item"><strong>Expiry at: </strong>{{order.expiry_date | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-            <li class="list-group-item"><strong>Updated at: </strong>{{order.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-            <li class="list-group-item"><strong>Created at: </strong>{{order.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li *ngIf="order.parent_oid" class="list-group-item"><strong>부모 아이디: </strong>{{order.parent_oid}}</li>
+            <li class="list-group-item"><strong>아이디: </strong>{{order._id}}</li>
+            <li class="list-group-item"><strong>수량: </strong>{{order.qty}}</li>
+            <li class="list-group-item"><strong>유효기한: </strong>{{order.expiry_date | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>수정일시: </strong>{{order.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>생성일시: </strong>{{order.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
           <ul class="list-group">
-            <li class="list-group-item list-group-item-info"><strong>Type</strong></li>
-            <li class="list-group-item"><strong>Name: </strong>{{order.ticket_type.name}}</li>
-            <li class="list-group-item"><strong>Description: </strong>{{order.ticket_type.desc}}</li>
-            <li class="list-group-item"><strong>Day: </strong>{{order.ticket_type.day}}</li>
-            <li class="list-group-item"><strong>Price: </strong>{{order.ticket_type.price | currency: 'KRW': true}}</li>
+            <li class="list-group-item list-group-item-info"><strong>티켓타입</strong></li>
+            <li class="list-group-item"><strong>이름: </strong>{{order.ticket_type.name}}</li>
+            <li class="list-group-item"><strong>설명: </strong>{{order.ticket_type.desc}}</li>
+            <li class="list-group-item"><strong>데이: </strong>{{order.ticket_type.day}}</li>
+            <li class="list-group-item"><strong>가격: </strong>{{order.ticket_type.price | currency: 'KRW': true}}</li>
           </ul>
           <ul class="list-group">
-            <li class="list-group-item list-group-item-info"><strong>Receiver</strong></li>
-            <li class="list-group-item"><strong>Name: </strong>{{order.receiver.name}}</li>
-            <li class="list-group-item"><strong>Mobile Number: </strong>{{order.receiver.mobile_number}}</li>
+            <li class="list-group-item list-group-item-info"><strong>받는사람</strong></li>
+            <li class="list-group-item"><strong>이름: </strong>{{order.receiver.name}}</li>
+            <li class="list-group-item"><strong>핸드폰 번호: </strong>{{order.receiver.mobile_number}}</li>
           </ul>
           <ul *ngIf="order.fee" class="list-group">
-            <li class="list-group-item list-group-item-info"><strong>Fee</strong></li>
-            <li class="list-group-item"><strong>Method: </strong>{{order.fee.method}}</li>
-            <li class="list-group-item"><strong>Price: </strong>{{order.fee.price | currency: 'KRW': true}}</li>
+            <li class="list-group-item list-group-item-info"><strong>환경부담금</strong></li>
+            <li class="list-group-item"><strong>결제수단: </strong>{{order.fee.method}}</li>
+            <li class="list-group-item"><strong>가격: </strong>{{order.fee.price | currency: 'KRW': true}}</li>
           </ul>
         </div>
       </div>

@@ -1,35 +1,35 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">New Type</h3>
+    <h3 class="panel-title">티켓타입 만들기</h3>
   </div>
   <div class="panel-body">
     <div class="row">
       <div class="col-md-6">
         <form>
           <div class="form-group">
-            <label for="content">Content (required)</label>
+            <label for="content">컨텐츠 (필수)</label>
             <select class="form-control" name="content" [(ngModel)]="type.content_oid">
-              <option [ngValue]="">Select content</option>
+              <option [ngValue]="">컨텐츠를 선택하세요</option>
               <option *ngFor="let c of contents" [ngValue]="c.id">{{c.text}}</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="name">Name (required)</label>
+            <label for="name">이름 (필수)</label>
             <input type="text" class="form-control" cols="30" [(ngModel)]="type.name" name="name">
           </div>
           <div class="form-group">
-            <label>Description (required)</label>
+            <label>설명 (필수)</label>
             <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="type.desc" name="desc"></textarea>
           </div>
           <div class="form-group">
-            <label for="place">Day (required)</label>
+            <label for="place">데이 (필수)</label>
             <input type="number" class="form-control" cols="30" [(ngModel)]="type.day" name="day">
           </div>
           <div class="form-group">
-            <label for="place">Price (required)</label>
+            <label for="place">가격 (필수)</label>
             <input type="number" class="form-control" cols="30" [(ngModel)]="type.price" name="price">
           </div>
-          <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">Sumit new type</button>
+          <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
         </form>
       </div>
     </div>

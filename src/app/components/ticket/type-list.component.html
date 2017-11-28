@@ -16,12 +16,10 @@
   </div>
 </div>
 
-
-
 <div class="row">
   <div class="col-md-11">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="name, desc" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+      <input type="text" class="form-control" placeholder="이름, 설명" [(ngModel)]="query" name="query" (keyup.enter)="search()">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
       </span>
@@ -29,7 +27,7 @@
     <br>
   </div>
   <div class="col-md-1">
-    <p><a routerLink="/ticket/types/new" class="btn btn-success" role="button">New</a></p>
+    <p><a routerLink="/ticket/types/new" class="btn btn-success" role="button">티켓타입 만들기</a></p>
   </div>
 </div>
 
@@ -37,7 +35,7 @@
   <div *ngIf="count">
     <div class="row">
       <div class="col-md-12">
-        <h3>Types <span class="badge">{{count}}</span></h3>
+        <h3>티켓타입 <span class="badge">{{count}}</span></h3>
       </div>
       <div class="col-md-12">
         <div class="table-responsive">
@@ -56,7 +54,7 @@
               <td>{{t.price | currency: 'KRW': true}}</td>
               <td>
                 <button class="btn btn-default btn-sm" type="button" (click)="onOrder(t._id)">
-                  Orders <span class="badge">{{t.ticket_order_cnt}}</span>
+                  티켓오더 <span class="badge">{{t.ticket_order_cnt}}</span>
                 </button>
               </td>
             </tr>
@@ -66,8 +64,8 @@
     </div>
     <nav aria-label="...">
       <ul class="pager">
-        <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
-        <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+        <li *ngIf="page!=1"><a (click)="onPrev()">이전</a></li>
+        <li *ngIf="page*size<count"><a (click)="onNext()">다음</a></li>
       </ul>
     </nav>
   </div>
@@ -76,7 +74,7 @@
     <div class="row">
       <div class="col-md-12">
         <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
-        <h4 class="text-center">No results matched your search.</h4>
+        <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
       </div>
     </div>
     <hr />

@@ -1,17 +1,17 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Register User</h3>
+    <h3 class="panel-title">유저 등록</h3>
   </div>
   <div class="panel-body">
     <div class="row">
       <div class="col-md-6">
         <form>
           <div class="form-group">
-            <label for="name">Name (required)</label>
+            <label for="name">이름 (필수)</label>
             <input type="text" class="form-control" [(ngModel)]="user.name" name="name">
           </div>
           <div class="form-group">
-            <label for="country_code">Country Code (required)</label>
+            <label for="country_code">국가코드 (필수)</label>
             <select class="form-control" name="country_code" [(ngModel)]="country_code">
               <ng-container *ngFor="let cc of country_codes">
                 <option [ngValue]="cc.value">{{cc.text}}</option>
@@ -19,11 +19,11 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="mobile_number">Mobile Number (required)</label>
+            <label for="mobile_number">핸드폰번호 (필수)</label>
             <input type="text" class="form-control" [(ngModel)]="user.mobile_number" name="desc">
           </div>
           <div class="form-group">
-            <label for="area">Gender</label>
+            <label for="area">성별</label>
             <select class="form-control" name="gender" [(ngModel)]="user.gender">
               <ng-container *ngFor="let g of genders">
                 <option [ngValue]="g.value">{{g.text}}</option>
@@ -31,14 +31,14 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="birthday">Birthday</label>
+            <label for="birthday">생년월일</label>
             <input type="text" class="form-control" [(ngModel)]="user.birthday" name="birthday">
           </div>
           <!--<div class="form-group">
             <label for="email">E-mail(required)</label>
             <input type="text" class="form-control" [(ngModel)]="user.email" name="email">
           </div>-->
-          <button type="button" class="btn btn-success" [disabled]="disabledDone()" (click)="onDone()">Done</button>
+          <button type="button" class="btn btn-success" [disabled]="disabledDone()" (click)="onDone()">완료</button>
         </form>
       </div>
     </div>

@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-11">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="name, desc, place, genre, lineup, role" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+            <input type="text" class="form-control" placeholder="이름, 설명, 장소, 장르, 라인업, 권한" [(ngModel)]="query" name="query" (keyup.enter)="search()">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
             </span>
@@ -11,7 +11,7 @@
         <br>
     </div>
     <div class="col-md-1">
-      <p><a routerLink="/contents/new" class="btn btn-success" role="button">New</a></p>
+      <p><a routerLink="/contents/new" class="btn btn-success" role="button">컨텐츠 만들기</a></p>
     </div>
 </div>
 
@@ -24,7 +24,7 @@
   <div *ngIf="count">
     <div class="row">
       <div class="col-md-12">
-        <h3>Content <span class="badge">{{count}}</span></h3>
+        <h3>컨텐츠 <span class="badge">{{count}}</span></h3>
       </div>
       <div *ngFor="let content of contents">
         <div class="col-sm-6 col-md-4">
@@ -33,11 +33,10 @@
             <img *ngIf="!content.image" class="content_logo" src="assets/images/no_image_icon.png">
             <div class="caption">
               <h3><a [routerLink]="['/content', content._id]">{{content.name | slice: 0:24}}</a></h3>
-              <p>{{content.desc | slice: 0:200}}</p>
               <hr />
               <p>
-                <span *ngIf="content.enabled" class="label label-success">enabled</span>
-                <span *ngIf="!content.enabled" class="label label-danger">disabled</span>
+                <span *ngIf="content.enabled" class="label label-success">활성화</span>
+                <span *ngIf="!content.enabled" class="label label-danger">비활성화</span>
               </p>
               <p *ngIf="content.when"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD'}} ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</p>
               <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{content.place}}</p>
@@ -48,8 +47,8 @@
     </div>
     <nav aria-label="...">
       <ul class="pager">
-        <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
-        <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+        <li *ngIf="page!=1"><a (click)="onPrev()">이전</a></li>
+        <li *ngIf="page*size<count"><a (click)="onNext()">다음</a></li>
       </ul>
     </nav>
   </div>
@@ -58,7 +57,7 @@
     <div class="row">
       <div class="col-md-12">
         <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
-        <h4 class="text-center">No results matched your search.</h4>
+        <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
       </div>
     </div>
     <hr />
