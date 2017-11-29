@@ -28,12 +28,19 @@
             <li class="list-group-item"><strong>아이디: </strong>{{content._id}}</li>
             <li class="list-group-item"><strong>숏 아이디: </strong>{{content.short_id}}</li>
             <li class="list-group-item"><strong>이름: </strong>{{content.name}}</li>
-            <li *ngIf="content.desc" class="list-group-item"><strong>설명: </strong>{{content.desc}}</li>
+            <li *ngIf="content.desc" class="list-group-item">
+              <h5 class="list-group-item-heading">설명</h5>
+              <p class="list-group-item-text">{{content.desc}}</p>
+            </li>
             <li *ngIf="content.when" class="list-group-item"><strong>기간: </strong>{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}} ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item"><strong>장소: </strong>{{content.place}}</li>
             <li class="list-group-item"><strong>호스트 아이디: </strong>{{content.admin_oid}}</li>
             <li class="list-group-item"><strong>수정일시: </strong>{{content.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item"><strong>생성일시: </strong>{{content.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li *ngIf="content.sms" class="list-group-item">
+              <h5 class="list-group-item-heading">SMS 기본 메세지</h5>
+              <p class="list-group-item-text">{{content.sms.message}}</p>
+            </li>
           </ul>
           <div *ngIf="edit_mode" class="edit">
             <div class="input-group">
@@ -47,12 +54,17 @@
             <br>
             <div class="input-group">
               <span class="input-group-addon">설명</span>
-              <input type="text" class="form-control" [(ngModel)]="content.desc" name="desc">
+              <textarea class="form-control" rows="5" [(ngModel)]="content.desc" name="desc"></textarea>
             </div>
             <br>
             <div class="input-group">
               <span class="input-group-addon">장소</span>
               <input type="text" class="form-control" [(ngModel)]="content.place" name="place">
+            </div>
+            <br>
+            <div *ngIf="content.sms" class="input-group">
+              <span class="input-group-addon">SMS 기본 메세지</span>
+              <textarea class="form-control" rows="13" [(ngModel)]="content.sms.message" name="sms.message"></textarea>
             </div>
             <br>
           </div>
