@@ -10,10 +10,10 @@
           <li><a [routerLink]="['/ticket/type']">{{orders[0].content.name}} {{orders[0].ticket_type.name}}</a></li>
           <!--<li class="active">Orders</li>-->
         </ol>
-        <h3>Orders <span class="badge">{{count}}</span></h3>
+        <h3>티켓오더 <span class="badge">{{count}}</span></h3>
       </div>
       <div class="col-md-1">
-        <button type="button" class="btn btn-success" (click)="onNew()">New</button>
+        <button type="button" class="btn btn-success" (click)="onNew()">티켓오더 만들기</button>
       </div>
       <div class="col-md-12">
         <div class="table-responsive">
@@ -25,7 +25,7 @@
               <th>환경부담금</th>
               <th>티켓수량</th>
               <th></th>
-              <th></th>
+              <th>전송일시</th>
             </tr>
             <tr *ngFor="let o of orders">
               <td><a [routerLink]="['/ticket/order', o._id]">{{o.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</a></td>
@@ -46,7 +46,7 @@
                   </button>
                   <!-- Send Modal -->
                   <div class="modal fade" id="send-modal" tabindex="-1" role="dialog" aria-labelledby="send-modal-label">
-                    <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -55,10 +55,10 @@
                         <div class="modal-body">
                           <p *ngIf="selected_order"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{selected_order.receiver.name}}</p>
                           <p *ngIf="selected_order"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{selected_order.receiver.mobile_number}}</p>
-                          <div class="form-group">
-                            <textarea type="text" class="form-control" rows="5" [(ngModel)]="sms_message"></textarea>
+                          <div *ngIf="selected_order" class="form-group">
+                            <textarea type="text" class="form-control" rows="9" [(ngModel)]="selected_order.content.sms.message"></textarea>
                           </div>
-                          <p>Send 받은 사람의 이름과 전화번호로 인증을 거쳐야만 티켓 확인 및 등록이 가능합니다.</p>
+                          <p>전송받은 사람의 이름과 전화번호로 인증을 거쳐야만 티켓 확인 및 등록이 가능합니다.</p>
 
                         </div>
                         <div class="modal-footer">
@@ -73,7 +73,8 @@
                 </ng-template>
               </td>
               <td>
-                <span *ngIf="o.receiver.sms.sent_at">Sent {{o.receiver.sms.sent_at | amFromUnix | amTimeAgo: true}} ago</span>
+                <span *ngIf="o.receiver.sms.sent_at">{{o.receiver.sms.sent_at | amFromUnix | amTimeAgo: true}} ago</span>
+                <span *ngIf="!o.receiver.sms.sent_at">전송대기</span>
               </td>
             </tr>
           </table>
@@ -83,8 +84,8 @@
         <div class="col-md-12">
           <nav aria-label="...">
             <ul class="pager">
-              <li *ngIf="page!=1"><a (click)="onPrev()">Previous</a></li>
-              <li *ngIf="page*size<count"><a (click)="onNext()">Next</a></li>
+              <li *ngIf="page!=1"><a (click)="onPrev()">이전</a></li>
+              <li *ngIf="page*size<count"><a (click)="onNext()">다음</a></li>
             </ul>
           </nav>
         </div>
@@ -106,10 +107,10 @@
   <div *ngIf="!count">
     <div class="row">
       <div class="col-md-11">
-        <h3>Orders <span class="badge">{{count}}</span></h3>
+        <h3>티켓오더 <span class="badge">{{count}}</span></h3>
       </div>
       <div class="col-md-1">
-        <p><a routerLink="/ticket/orders/new" class="btn btn-success" role="button">New</a></p>
+        <p><a routerLink="/ticket/orders/new" class="btn btn-success" role="button">티켓오더 만들기</a></p>
       </div>
     </div>
   </div>

@@ -44,8 +44,11 @@ export class ContentDetailComponent implements OnInit {
       name: this.content.name,
       desc: this.content.desc,
       place: this.content.place,
-      enabled: this.content.enabled
-    }
+      enabled: this.content.enabled,
+      sms: {
+        message: this.content.sms.message
+      }
+    };
     this.contentService.updateContent(this.content._id, this.content_form)
       .subscribe(
         response => {
@@ -61,6 +64,21 @@ export class ContentDetailComponent implements OnInit {
   onCancel() {
     this.loadContent(this.content._id);
     this.edit_mode = false;
+  }
+
+  uploadPoster(event) {
+    const files: FileList = event.srcElement.files;
+    this.contentService.uploadPosterImage(this.content._id, files)
+      .subscribe(
+        response => {
+          console.log(response);
+          alert('Complete upload poster image');
+        },
+        error => {
+          console.log(error);
+          alert(error.message);
+        }
+      );
   }
 
 }

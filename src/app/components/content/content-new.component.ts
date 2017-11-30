@@ -31,7 +31,7 @@ export class ContentNewComponent implements OnInit {
       name: '',
       place: '',
       desc: ''
-    }
+    };
     this.loadCompanies();
   }
 
@@ -42,6 +42,7 @@ export class ContentNewComponent implements OnInit {
           this.router.navigate(['/content']);
         },
         error => {
+          alert(error.message);
           console.log(error);
         }
       );

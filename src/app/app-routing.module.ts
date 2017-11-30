@@ -37,6 +37,7 @@ import { QnaListComponent } from './components/qna/qna-list.component';
 import { QnaDetailComponent } from './components/qna/qna-detail.component';
 import { QnaNewComponent } from './components/qna/qna-new.component';
 import { StatsComponent } from './components/stats/stats.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -85,6 +86,8 @@ const routes: Routes = [
   { path: 'qnas/new', component: QnaNewComponent, canActivate: [AuthGuard]},
 
   { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
+
+  { path: 'pay', component: PaymentComponent, canActivate: [AuthGuard] },
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

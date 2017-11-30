@@ -1,53 +1,53 @@
 <div *ngIf="ticket">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Ticket</h3>
+      <h3 class="panel-title">티켓</h3>
     </div>
     <div class="panel-body">
       <div class="row">
         <div class="col-md-6">
           <div class="stats">
-            <span *ngIf="ticket.enabled" class="label label-success">enabled</span>
-            <span *ngIf="!ticket.enabled" class="label label-danger">disabled</span>
+            <span *ngIf="ticket.enabled" class="label label-success">활성화</span>
+            <span *ngIf="!ticket.enabled" class="label label-danger">비활성화</span>
           </div>
           <br>
           <ul class="list-group">
-            <li class="list-group-item"><strong>ID: </strong>{{ticket._id}}</li>
-            <li class="list-group-item"><strong>Ticket Order ID: </strong>{{ticket.ticket_order._id}}</li>
-            <li class="list-group-item"><strong>Content Name: </strong>{{ticket.content.name}}</li>
-            <li class="list-group-item"><strong>Ticket Type Name: </strong>{{ticket.ticket_type.name}}</li>
-            <li class="list-group-item"><strong>Ticket Type Description: </strong>{{ticket.ticket_type.desc}}</li>
-            <li class="list-group-item"><strong>Status: </strong>{{ticket.status}}</li>
-            <li *ngIf="ticket.entered_at" class="list-group-item"><strong>Entered at: </strong>{{ticket.enter_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-            <li class="list-group-item"><strong>Updated at: </strong>{{ticket.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-            <li class="list-group-item"><strong>Created at: </strong>{{ticket.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>아이디: </strong>{{ticket._id}}</li>
+            <li class="list-group-item"><strong>티켓오더 아이디: </strong>{{ticket.ticket_order._id}}</li>
+            <li class="list-group-item"><strong>컨텐츠: </strong>{{ticket.content.name}}</li>
+            <li class="list-group-item"><strong>티켓타입 이름: </strong>{{ticket.ticket_type.name}}</li>
+            <li class="list-group-item"><strong>티켓타입 설명: </strong>{{ticket.ticket_type.desc}}</li>
+            <li class="list-group-item"><strong>상태: </strong>{{ticket.status}}</li>
+            <li *ngIf="ticket.entered_at" class="list-group-item"><strong>입장일시: </strong>{{ticket.enter_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>수정일시: </strong>{{ticket.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>생성일시: </strong>{{ticket.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
           <ul class="list-group" *ngFor="let d of ticket.days">
-            <li class="list-group-item"><strong>Day: </strong>{{d.day}}</li>
-            <li class="list-group-item"><strong>Entered: </strong>{{d.entered}}</li>
-            <li class="list-group-item" *ngIf="d.entered_at"><strong>Entered At: </strong>{{d.entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-            <li class="list-group-item" *ngIf="d.fee"><strong>Fee Method: </strong>{{d.fee.method}}</li>
-            <li class="list-group-item" *ngIf="d.fee"><strong>Fee Price: </strong>{{d.fee.price | currency: 'KRW': true}}</li>
+            <li class="list-group-item"><strong>데이: </strong>{{d.day}}</li>
+            <li class="list-group-item"><strong>입장여부: </strong>{{d.entered}}</li>
+            <li class="list-group-item" *ngIf="d.entered_at"><strong>입장일시: </strong>{{d.entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item" *ngIf="d.fee"><strong>환경부담금 결제수단: </strong>{{d.fee.method}}</li>
+            <li class="list-group-item" *ngIf="d.fee"><strong>환경부담금 금액: </strong>{{d.fee.price | currency: 'KRW': true}}</li>
           </ul>
           <ul *ngIf="ticket.receive_user" class="list-group">
-            <li class="list-group-item list-group-item-info"><strong>Receive User</strong></li>
-            <li class="list-group-item"><strong>ID: </strong>{{ticket.receive_user._id}}</li>
-            <li class="list-group-item"><strong>Name: </strong>{{ticket.receive_user.name}}</li>
-            <li class="list-group-item"><strong>Mobile Number: </strong>{{ticket.receive_user.mobile_number}}</li>
-            <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>Birthday: </strong>{{ticket.receive_user.birthday}}</li>
-            <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>Gender: </strong>{{ticket.receive_user.gender}}</li>
-            <li class="list-group-item"><strong>Member Since: </strong>{{ticket.receive_user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item list-group-item-info"><strong>받은사람</strong></li>
+            <li class="list-group-item"><strong>아이디: </strong>{{ticket.receive_user._id}}</li>
+            <li class="list-group-item"><strong>이름: </strong>{{ticket.receive_user.name}}</li>
+            <li class="list-group-item"><strong>핸드폰번호: </strong>{{ticket.receive_user.mobile_number}}</li>
+            <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>생년월일: </strong>{{ticket.receive_user.birthday}}</li>
+            <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender}}</li>
+            <li class="list-group-item"><strong>생성일시: </strong>{{ticket.receive_user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
           <ul *ngIf="ticket.send_user" class="list-group">
-            <li class="list-group-item list-group-item-info"><strong>Send User</strong></li>
-            <li class="list-group-item"><strong>ID: </strong>{{ticket.send_user._id}}</li>
-            <li class="list-group-item"><strong>Name: </strong>{{ticket.send_user.name}}</li>
-            <li class="list-group-item"><strong>Mobile Number: </strong>{{ticket.send_user.mobile_number}}</li>
-            <li *ngIf="ticket.send_user.birthday" class="list-group-item"><strong>Birthday: </strong>{{ticket.send_user.birthday}}</li>
-            <li *ngIf="ticket.send_user.gender" class="list-group-item"><strong>Gender: </strong>{{ticket.send_user.gender}}</li>
-            <li class="list-group-item"><strong>Member Since: </strong>{{ticket.send_user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item list-group-item-info"><strong>보낸사람</strong></li>
+            <li class="list-group-item"><strong>아이디: </strong>{{ticket.send_user._id}}</li>
+            <li class="list-group-item"><strong>이름: </strong>{{ticket.send_user.name}}</li>
+            <li class="list-group-item"><strong>핸드폰번호: </strong>{{ticket.send_user.mobile_number}}</li>
+            <li *ngIf="ticket.send_user.birthday" class="list-group-item"><strong>생년월일: </strong>{{ticket.send_user.birthday}}</li>
+            <li *ngIf="ticket.send_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.send_user.gender}}</li>
+            <li class="list-group-item"><strong>생성일시: </strong>{{ticket.send_user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
-          <button *ngIf="!ticket.receive_user" type="button" class="btn btn-success" (click)="registerUser()">Register User</button>
+          <button *ngIf="!ticket.receive_user" type="button" class="btn btn-success" (click)="registerUser()">유저 등록</button>
         </div>
       </div>
     </div>
