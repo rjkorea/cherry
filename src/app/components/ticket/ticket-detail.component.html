@@ -6,12 +6,29 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-6">
-          <div class="stats">
-            <span *ngIf="ticket.enabled" class="label label-success">활성화</span>
-            <span *ngIf="!ticket.enabled" class="label label-danger">비활성화</span>
-          </div>
-          <br>
+          <ul *ngIf="ticket.receive_user" class="list-group">
+            <li class="list-group-item list-group-item-info"><strong>받은사람</strong></li>
+            <li class="list-group-item"><strong>아이디: </strong>{{ticket.receive_user._id}}</li>
+            <li class="list-group-item"><strong>이름: </strong>{{ticket.receive_user.name}}</li>
+            <li class="list-group-item"><strong>핸드폰번호: </strong>{{ticket.receive_user.mobile_number}}</li>
+            <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>생년월일: </strong>{{ticket.receive_user.birthday}}</li>
+            <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender}}</li>
+          </ul>
+          <ul *ngIf="ticket.send_user" class="list-group">
+            <li class="list-group-item list-group-item-info"><strong>보낸사람</strong></li>
+            <li class="list-group-item"><strong>아이디: </strong>{{ticket.send_user._id}}</li>
+            <li class="list-group-item"><strong>이름: </strong>{{ticket.send_user.name}}</li>
+            <li class="list-group-item"><strong>핸드폰번호: </strong>{{ticket.send_user.mobile_number}}</li>
+          </ul>
+          <ul *ngIf="ticket.history_send_users" class="list-group">
+            <li class="list-group-item list-group-item-info"><strong>티켓 전송 히스토리</strong></li>
+          </ul>
+          <ul class="list-group" *ngFor="let user of ticket.history_send_users">
+            <li class="list-group-item"><strong>이름: </strong>{{user.name}}</li>
+            <li class="list-group-item"><strong>핸드폰번호: </strong>{{user.mobile_number}}</li>
+          </ul>
           <ul class="list-group">
+            <li class="list-group-item list-group-item-info"><strong>티켓정보</strong></li>
             <li class="list-group-item"><strong>아이디: </strong>{{ticket._id}}</li>
             <li class="list-group-item"><strong>티켓오더 아이디: </strong>{{ticket.ticket_order._id}}</li>
             <li class="list-group-item"><strong>컨텐츠: </strong>{{ticket.content.name}}</li>
@@ -29,24 +46,10 @@
             <li class="list-group-item" *ngIf="d.fee"><strong>환경부담금 결제수단: </strong>{{d.fee.method}}</li>
             <li class="list-group-item" *ngIf="d.fee"><strong>환경부담금 금액: </strong>{{d.fee.price | currency: 'KRW': true}}</li>
           </ul>
-          <ul *ngIf="ticket.receive_user" class="list-group">
-            <li class="list-group-item list-group-item-info"><strong>받은사람</strong></li>
-            <li class="list-group-item"><strong>아이디: </strong>{{ticket.receive_user._id}}</li>
-            <li class="list-group-item"><strong>이름: </strong>{{ticket.receive_user.name}}</li>
-            <li class="list-group-item"><strong>핸드폰번호: </strong>{{ticket.receive_user.mobile_number}}</li>
-            <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>생년월일: </strong>{{ticket.receive_user.birthday}}</li>
-            <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender}}</li>
-            <li class="list-group-item"><strong>생성일시: </strong>{{ticket.receive_user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-          </ul>
-          <ul *ngIf="ticket.send_user" class="list-group">
-            <li class="list-group-item list-group-item-info"><strong>보낸사람</strong></li>
-            <li class="list-group-item"><strong>아이디: </strong>{{ticket.send_user._id}}</li>
-            <li class="list-group-item"><strong>이름: </strong>{{ticket.send_user.name}}</li>
-            <li class="list-group-item"><strong>핸드폰번호: </strong>{{ticket.send_user.mobile_number}}</li>
-            <li *ngIf="ticket.send_user.birthday" class="list-group-item"><strong>생년월일: </strong>{{ticket.send_user.birthday}}</li>
-            <li *ngIf="ticket.send_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.send_user.gender}}</li>
-            <li class="list-group-item"><strong>생성일시: </strong>{{ticket.send_user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-          </ul>
+          <div class="stats">
+            <span *ngIf="ticket.enabled" class="label label-success">활성화</span>
+            <span *ngIf="!ticket.enabled" class="label label-danger">비활성화</span>
+          </div>
           <button *ngIf="!ticket.receive_user" type="button" class="btn btn-success" (click)="registerUser()">유저 등록</button>
         </div>
       </div>
