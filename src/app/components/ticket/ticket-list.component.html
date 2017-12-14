@@ -49,6 +49,7 @@
                 <span *ngIf="t.status === 'pend'" class="label label-default">전송준비</span>
                 <span *ngIf="t.status === 'send'" class="label label-warning">전송중</span>
                 <span *ngIf="t.status === 'register'" class="label label-success">등록완료</span>
+                <span *ngIf="t.status === 'pay'" class="label label-primary">결제완료</span>
                 <span *ngIf="t.status === 'use'" class="label label-info">입장완료</span>
                 <span *ngIf="t.status === 'cancel'" class="label label-danger">취소</span>
               </td>
