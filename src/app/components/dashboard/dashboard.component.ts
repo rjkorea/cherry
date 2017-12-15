@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   ticket_count: any;
   avg_age: any;
   revenue: any;
+  pre_revenue: any;
   top_ticket_types;
   top_ticket_orders;
 
@@ -55,6 +56,7 @@ export class DashboardComponent implements OnInit {
       pend: 0,
       send: 0,
       register: 0,
+      pay: 0,
       use: 0,
       cancel: 0
     };
@@ -95,6 +97,10 @@ export class DashboardComponent implements OnInit {
     this.revenue = {
       cash: 0,
       creditcard: 0
+    };
+    this.pre_revenue = {
+      amount: 0,
+      count: 0
     };
     this.register_gender_chart = {
       type: 'doughnut',
@@ -145,7 +151,7 @@ export class DashboardComponent implements OnInit {
     this.ticket_count_chart = {
       type: 'pie',
       data: {
-        labels: ['전송준비', '전송중', '등록완료', '입장완료', '취소'],
+        labels: ['전송준비', '전송중', '등록완료', '결제', '입장완료', '취소'],
         datasets: [
           {
             data: [0, 0, 0, 0, 0],
@@ -153,6 +159,7 @@ export class DashboardComponent implements OnInit {
               '#777777',
               '#F0AD4E',
               '#5CB85C',
+              '#337AB7',
               '#5BC0DE',
               '#D9534F'
             ],
@@ -160,6 +167,7 @@ export class DashboardComponent implements OnInit {
               '#777777',
               '#F0AD4E',
               '#5CB85C',
+              '#337AB7',
               '#5BC0DE',
               '#D9534F'
             ]
@@ -199,6 +207,7 @@ export class DashboardComponent implements OnInit {
             response['data']['ticket_count']['pend'],
             response['data']['ticket_count']['send'],
             response['data']['ticket_count']['register'],
+            response['data']['ticket_count']['pay'],
             response['data']['ticket_count']['use'],
             response['data']['ticket_count']['cancel']
           ];
@@ -232,11 +241,13 @@ export class DashboardComponent implements OnInit {
             response['data']['ticket_count']['pend'],
             response['data']['ticket_count']['send'],
             response['data']['ticket_count']['register'],
+            response['data']['ticket_count']['pay'],
             response['data']['ticket_count']['use'],
             response['data']['ticket_count']['cancel']
           ];
           this.avg_age = response['data']['avg_age'];
           this.revenue = response['data']['revenue'];
+          this.pre_revenue = response['data']['pre_revenue'];
           this.top_ticket_types = response['data']['top_ticket_types'];
           this.top_ticket_orders = response['data']['top_ticket_orders'];
           this.register_gender_chart['data']['datasets'][0]['data'] = [
