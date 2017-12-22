@@ -26,8 +26,8 @@
         <div *ngFor="let ticket of tickets">
           <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-              <!-- <img *ngIf="type.content.image" src="{{type.content.image.logo.m}}">
-              <img *ngIf="!type.content.image" src="assets/images/no_image_icon.png"> -->
+              <img *ngIf="ticket.content.image" src="{{ticket.content.image.logo.m}}">
+              <img *ngIf="!ticket.content.image" src="assets/images/no_image_icon.png">
               <div class="caption">
                 <h4><a [routerLink]="['ticket', ticket._id]">{{ticket.content.name}}</a></h4>
                 <h5>{{ticket.ticket_type.name}}</h5>
@@ -41,6 +41,7 @@
                   <span *ngIf="ticket.status=='send'" class="label label-warning">전송중</span>
                   <span *ngIf="ticket.status=='register'" class="label label-success">등록완료</span>
                   <span *ngIf="ticket.status=='use'" class="label label-info">입장완료</span>
+                  <span *ngIf="ticket.status=='pay'" class="label label-primary">결제완료</span>
                   <span *ngIf="ticket.status=='cancel'" class="label label-danger">취소</span>
                 </p>
                 <!-- <p>
@@ -80,7 +81,7 @@
             <div class="row">
               <div class="col-md-2">
                 <img *ngIf="!user.image" class="img-thumbnail" src="assets/images/user.png">
-                <img *ngIf="user.image" class="img-thumbnail" src="{{user.image}}">
+                <img *ngIf="user.image" class="img-thumbnail" src="{{user.image.profile.m}}">
               </div>
               <div class="col-md-4">
                 <h4><a (click)="onTablet(user._id)">{{user.name}}</a></h4>
