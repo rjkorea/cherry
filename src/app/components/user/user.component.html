@@ -22,7 +22,7 @@
             <div class="row">
               <div class="col-md-2">
                 <img *ngIf="!user.image" class="img-thumbnail" src="assets/images/user.png">
-                <img *ngIf="user.image" class="img-thumbnail" src="{{user.image}}">
+                <img *ngIf="user.image" class="img-thumbnail" src="{{user.image.profile.m}}">
               </div>
               <div class="col-md-4">
                 <h4><a [routerLink]="['/user', user._id]">{{user.name}}</a></h4>
