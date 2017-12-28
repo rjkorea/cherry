@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: true
       }
     };
     this.top_contents = [];
@@ -122,7 +122,7 @@ export class DashboardComponent implements OnInit {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: true
       }
     };
     this.use_gender_chart = {
@@ -145,7 +145,7 @@ export class DashboardComponent implements OnInit {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: true
       }
     };
     this.ticket_count_chart = {
@@ -176,7 +176,7 @@ export class DashboardComponent implements OnInit {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: true
       }
     };
     this.content_cloud = {

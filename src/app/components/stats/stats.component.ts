@@ -88,7 +88,7 @@ export class StatsComponent implements OnInit {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: true
       }
     };
     this.ticket_count_chart = {
@@ -117,7 +117,7 @@ export class StatsComponent implements OnInit {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: true
       }
     };
     this.content_cloud = {
