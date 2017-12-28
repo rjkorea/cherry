@@ -16,6 +16,7 @@ export class TicketService {
   ordersUrl = `${URL}/a/ticket/orders`;
   ticketUrl = `${URL}/a/ticket`;
   ticketsUrl = `${URL}/a/tickets`;
+  logsUrl = `${URL}/a/tickets/logs`;
   options;
 
   constructor(private http: Http) {
@@ -132,4 +133,12 @@ export class TicketService {
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
+
+  public getLogList(content_oid: string, start: Number, size: Number): Observable<{}> {
+    const url = `${this.logsUrl}?content_oid=${content_oid}&start=${start}&size=${size}`;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }

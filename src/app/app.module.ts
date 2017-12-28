@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ReportComponent } from './components/report/report.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -44,6 +45,7 @@ import { TicketOrderNewComponent } from './components/ticket/order-new.component
 import { TicketListComponent } from './components/ticket/ticket-list.component';
 import { TicketDetailComponent } from './components/ticket/ticket-detail.component';
 import { TicketRegisterComponent } from './components/ticket/ticket-register.component';
+import { TicketLogListComponent } from './components/ticket/log-list.component';
 import { PlaceListComponent } from './components/place/place-list.component';
 import { PlaceDetailComponent } from './components/place/place-detail.component';
 import { PlaceNewComponent } from './components/place/place-new.component';
@@ -56,6 +58,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { DashboardService } from './services/dashboard.service';
+import { ReportService } from './services/report.service';
 import { NotificationService } from './services/notification.service';
 import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
@@ -75,6 +78,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     NavbarComponent,
     LoginComponent,
     DashboardComponent,
+    ReportComponent,
     NotificationComponent,
     PageNotFoundComponent,
     SignupComponent,
@@ -103,6 +107,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     TicketListComponent,
     TicketDetailComponent,
     TicketRegisterComponent,
+    TicketLogListComponent,
     PlaceListComponent,
     PlaceDetailComponent,
     PlaceNewComponent,
@@ -135,6 +140,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     AuthGuard,
     AuthService,
     DashboardService,
+    ReportService,
     NotificationService,
     WebSocketService,
     AdminService,

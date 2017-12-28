@@ -1,0 +1,75 @@
+<div *ngIf="is_loading">
+  <app-loader></app-loader>
+</div>
+<div *ngIf="!is_loading">
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <select class="form-control" [(ngModel)]="content_oid" (ngModelChange)="changeContent()">
+        <ng-container *ngFor="let c of contents">
+          <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+  <br>
+
+  <ng-template [ngIf]="!content_oid">
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">레포트</h3>
+          </div>
+          <div class="panel-body">
+            <h1>
+              레포팅할 컨텐츠를 선택해주세요
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="content_oid">
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">최종 방문객수</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{(total_visit)}} <small>명</small></h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">최종 매출</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{total_revenue.cash+total_revenue.creditcard | currency: 'KRW': true}} <small>원</small></h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">최종 티켓 전달횟수</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{total_forward}} <small>회</small></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">
+        TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a>
+      </p>
+    </div>
+  </div>
+</div>
