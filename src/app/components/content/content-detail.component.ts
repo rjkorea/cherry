@@ -47,6 +47,10 @@ export class ContentDetailComponent implements OnInit {
       enabled: this.content.enabled,
       sms: {
         message: this.content.sms.message
+      },
+      notice: {
+        enabled: this.content.notice.enabled,
+        message: this.content.notice.message
       }
     };
     this.contentService.updateContent(this.content._id, this.content_form)
