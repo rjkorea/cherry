@@ -79,7 +79,7 @@ export class TicketTypeNewComponent implements OnInit {
   }
 
   public disabledSubmit() {
-    return !(this.type.content_oid && this.type.name && this.type.desc && this.type.price && this.type.day);
+    return !(this.type.content_oid && this.type.name && this.type.desc && this.type.day);
   }
 
 }
