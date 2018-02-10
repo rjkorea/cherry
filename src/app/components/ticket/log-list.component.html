@@ -1,0 +1,94 @@
+<ng-template [ngIf]="is_loading">
+  <app-loader></app-loader>
+</ng-template>
+
+<div class="row">
+  <div class="col-md-6">
+    <ng-template [ngIf]="checkRole()">
+      <br>
+      <div class="form-group">
+        <select class="form-control" name="content" [(ngModel)]="content_oid" (ngModelChange)="changeContent()">
+          <ng-container *ngFor="let c of contents">
+            <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
+          </ng-container>
+        </select>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<div *ngIf="!is_loading">
+  <div *ngIf="count">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>티켓로그
+          <span class="badge">{{count}}</span>
+        </h3>
+      </div>
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <tr>
+              <th>전송일시</th>
+              <th>보낸사람</th>
+              <th>받은사람</th>
+              <th>티켓</th>
+              <th>갯수</th>
+              <th>액션</th>
+            </tr>
+            <tr *ngFor="let l of logs">
+              <td>
+                <span>{{l.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD hh:mm:ss'}}</span>
+              </td>
+              <td>
+                <span>{{l.send_user.name}}</span>
+              </td>
+              <td>
+                <span>{{l.receive_user.name}}</span>
+              </td>
+              <td>
+                <span>{{l.tickets[0].name}} 그외 기타</span>
+              </td>
+              <td>
+                <span>{{l.tickets.length}}</span>
+              </td>
+              <td>
+                <span *ngIf="l.action === 'send'" class="label label-warning">전송중</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+<!--    <nav aria-label="...">
+          <ul class="pager">
+            <li *ngIf="page!=1">
+              <a (click)="onPrev()">이전</a>
+            </li>
+            <li *ngIf="page*size<count">
+              <a (click)="onNext()">다음</a>
+            </li>
+          </ul>
+        </nav> -->
+      </div>
+
+      <div *ngIf="!!!count">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            </h1>
+            <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
+          </div>
+        </div>
+        <hr />
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">TKIT - Admin by
+        <a href="http://rjkorea.com">RJ Korea Entertainment</a>
+      </p>
+    </div>
+  </div>
+</div>
