@@ -26,6 +26,7 @@
         <div class="form-group">
           <label for="expiry-date">유효기한 (필수)</label>
           <datepicker name="expiry-date" [(ngModel)]="expiry.date" [minDate]="minDate" [dateDisabled]="dateDisabled" [showWeeks]="true"></datepicker>
+          <span>{{expiry.date | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</span>
         </div>
         <hr />
         <div class="form-group">
