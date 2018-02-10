@@ -145,7 +145,7 @@ export class TicketOrderNewComponent implements OnInit {
       .subscribe(
         response => {
           alert('티켓오더를 생성하였습니다. \'SMS전송\'버튼을 이용하여 티켓을 전송해주세요.');
-          this.router.navigate(['/ticket/order', {ticket_type_oid: this.ticket_type_oid}]);
+          this.router.navigate(['/ticket/order', {ticket_type_oid: this.order.ticket_type_oid}]);
         },
         error => {
           alert('티켓오더 생성을 실패하였습니다.')
