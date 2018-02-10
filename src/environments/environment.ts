@@ -8,12 +8,12 @@ export const environment = {
   debug: false,
   app: {
     protocol: 'http',
-    host: '192.168.35.183',
+    host: 'localhost',
     port: 4200
   },
   api: {
     protocol: 'http',
-    host: '192.168.35.183',
+    host: 'localhost',
     port: 5100
   },
   iamport: {
