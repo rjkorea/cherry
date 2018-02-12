@@ -25,10 +25,6 @@
             <label for="place">데이 (필수)</label>
             <input type="number" class="form-control" cols="30" [(ngModel)]="type.day" name="day">
           </div>
-          <div class="form-group">
-            <label for="place">가격</label>
-            <input type="number" class="form-control" cols="30" [(ngModel)]="type.price" name="price">
-          </div>
           <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
         </form>
       </div>

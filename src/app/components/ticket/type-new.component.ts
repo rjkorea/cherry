@@ -29,15 +29,15 @@ export class TicketTypeNewComponent implements OnInit {
       price: 0,
       content_oid: '',
       admin_oid: ''
-    }
-    this.loadContents()
+    };
+    this.loadContents();
     this.notification_options = {
       timeOut: 3000,
       showProgressBar: true,
       pauseOnHover: false,
       clickToClose: true,
       maxLength: 128
-    }
+    };
   }
 
   onSubmit() {
