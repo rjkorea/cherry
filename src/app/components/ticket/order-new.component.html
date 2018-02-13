@@ -26,6 +26,7 @@
         <div class="form-group">
           <label for="expiry-date">유효기한 (필수)</label>
           <datepicker name="expiry-date" [(ngModel)]="expiry.date" [minDate]="minDate" [dateDisabled]="dateDisabled" [showWeeks]="true"></datepicker>
+          <span>{{expiry.date | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</span>
         </div>
         <hr />
         <div class="form-group">
@@ -47,11 +48,11 @@
         <hr />
         <div class="checkbox">
           <label>
-            <input type="checkbox" [checked]="is_fee" (change)="is_fee = !is_fee"> 환경부담금
+            <input type="checkbox" [checked]="is_fee" (change)="is_fee = !is_fee"> 유료티켓
           </label>
         </div>
         <div *ngIf="is_fee" class="form-group">
-          <label for="fee-price">금액</label>
+          <label for="fee-price">가격</label>
           <input type="number" class="form-control" name="fee-price" [(ngModel)]="fee.price">
         </div>
         <hr />

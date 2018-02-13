@@ -43,8 +43,8 @@
             <li class="list-group-item"><strong>데이: </strong>{{d.day}}</li>
             <li class="list-group-item"><strong>입장여부: </strong>{{d.entered}}</li>
             <li class="list-group-item" *ngIf="d.entered_at"><strong>입장일시: </strong>{{d.entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-            <li class="list-group-item" *ngIf="d.fee"><strong>환경부담금 결제수단: </strong>{{d.fee.method}}</li>
-            <li class="list-group-item" *ngIf="d.fee"><strong>환경부담금 금액: </strong>{{d.fee.price | currency: 'KRW': true}}</li>
+            <li class="list-group-item" *ngIf="d.fee"><strong>결제수단: </strong>{{d.fee.method}}</li>
+            <li class="list-group-item" *ngIf="d.fee"><strong>가격: </strong>{{d.fee.price | currency: 'KRW': true}}</li>
           </ul>
           <div class="stats">
             <span *ngIf="ticket.enabled" class="label label-success">활성화</span>

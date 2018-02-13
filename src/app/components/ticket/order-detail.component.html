@@ -32,7 +32,7 @@
             <li class="list-group-item"><strong>핸드폰 번호: </strong>{{order.receiver.mobile_number}}</li>
           </ul>
           <ul *ngIf="order.fee" class="list-group">
-            <li class="list-group-item list-group-item-info"><strong>환경부담금</strong></li>
+            <li class="list-group-item list-group-item-info"><strong>티켓 가격</strong></li>
             <li class="list-group-item"><strong>결제수단: </strong>{{order.fee.method}}</li>
             <li class="list-group-item"><strong>가격: </strong>{{order.fee.price | currency: 'KRW': true}}</li>
           </ul>

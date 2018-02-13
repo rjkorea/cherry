@@ -145,17 +145,17 @@ export class TicketOrderNewComponent implements OnInit {
       .subscribe(
         response => {
           alert('티켓오더를 생성하였습니다. \'SMS전송\'버튼을 이용하여 티켓을 전송해주세요.');
-          this.router.navigate(['/ticket/order', {ticket_type_oid: this.ticket_type_oid}]);
+          this.router.navigate(['/ticket/order', {ticket_type_oid: this.order.ticket_type_oid}]);
         },
         error => {
-          alert('티켓오더 생성을 실패하였습니다.')
+          alert('티켓오더 생성을 실패하였습니다.');
           console.log(error);
         }
       );
   }
 
   getISODate() {
-    return this.expiry.date.getFullYear() + '-' + (this.expiry.date.getMonth() + 1) + '-' + this.expiry.date.getDate() + 'T00:00:00';
+    return this.expiry.date.getFullYear() + '-' + (this.expiry.date.getMonth() + 1) + '-' + this.expiry.date.getDate() + 'T23:59:59';
       // + 'T' + this.expiry.time.getHours() + ':' + this.expiry.time.getMinutes() + ':' + this.expiry.time.getSeconds();
   }
 

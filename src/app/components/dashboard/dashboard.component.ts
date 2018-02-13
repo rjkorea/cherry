@@ -220,8 +220,8 @@ export class DashboardComponent implements OnInit {
             this.content_cloud.data.push({text: c.content.name, weight: c.ticket_cnt});
           }
           this.total_gender_chart['data']['datasets'][0]['data'] = [
-            response['data']['gender_count']['male'],
-            response['data']['gender_count']['female']
+            response['data']['gender_count']['female'],
+            response['data']['gender_count']['male']
           ];
           this.is_loading = false;
         },
@@ -251,12 +251,12 @@ export class DashboardComponent implements OnInit {
           this.top_ticket_types = response['data']['top_ticket_types'];
           this.top_ticket_orders = response['data']['top_ticket_orders'];
           this.register_gender_chart['data']['datasets'][0]['data'] = [
-            response['data']['gender_count']['register']['male'],
-            response['data']['gender_count']['register']['female']
+            response['data']['gender_count']['register']['female'],
+            response['data']['gender_count']['register']['male']
           ];
           this.use_gender_chart['data']['datasets'][0]['data'] = [
-            response['data']['gender_count']['use']['male'],
-            response['data']['gender_count']['use']['female']
+            response['data']['gender_count']['use']['female'],
+            response['data']['gender_count']['use']['male']
           ];
           this.is_loading = false;
         },
