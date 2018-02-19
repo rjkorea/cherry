@@ -23,8 +23,6 @@ export class TicketOrderNewComponent implements OnInit {
   country_code: string;
   mobile_number: string;
 
-  minDate: Date = void 0;
-  dateDisabled: {date: Date, mode: string}[];
   expiry: any;
 
   constructor(private ticketService: TicketService,
@@ -44,8 +42,8 @@ export class TicketOrderNewComponent implements OnInit {
       price: 10000
     };
     this.expiry = {
-      date: new Date()
-      // time: new Date()
+      date: new Date(),
+      time: new Date()
     };
     this.country_code = DEFAULT_COUNTRY_CODE;
     this.mobile_number = '';
@@ -155,8 +153,7 @@ export class TicketOrderNewComponent implements OnInit {
   }
 
   getISODate() {
-    return this.expiry.date.getFullYear() + '-' + (this.expiry.date.getMonth() + 1) + '-' + this.expiry.date.getDate() + 'T23:59:59';
-      // + 'T' + this.expiry.time.getHours() + ':' + this.expiry.time.getMinutes() + ':' + this.expiry.time.getSeconds();
+    return `${this.expiry.date.getUTCFullYear()}-${this.expiry.date.getUTCMonth() + 1}-${this.expiry.date.getDate()}T${this.expiry.time.getUTCHours()}:${this.expiry.time.getUTCMinutes()}:00`;
   }
 
   disabledSubmit() {
