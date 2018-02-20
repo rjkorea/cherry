@@ -46,13 +46,11 @@ export class ContentNewComponent implements OnInit {
       if ('end' in this.content.when) {
         delete this.content.when.end;
       }
-      this.content.when.start = this.when_value;
+      this.content.when.start = `${this.when_value.getFullYear()}-${this.when_value.getMonth() + 1}-${this.when_value.getDate()}T00:00:00`;
     }else if (this.when_radio === 'range') {
-      this.content.when.start = this.when_range_value[0];
-      this.content.when.end = this.when_range_value[1];
+      this.content.when.start = `${this.when_range_value[0].getFullYear()}-${this.when_range_value[0].getMonth() + 1}-${this.when_range_value[0].getDate()}T00:00:00`;
+      this.content.when.end = `${this.when_range_value[1].getFullYear()}-${this.when_range_value[1].getMonth() + 1}-${this.when_range_value[1].getDate()}T00:00:00`;
     };
-    console.log(this.content);
-
     this.contentService.addContent(this.content)
       .subscribe(
         response => {
