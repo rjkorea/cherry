@@ -38,6 +38,18 @@ export class UserDetailComponent implements OnInit {
     this.edit_mode = true;
   }
 
+  onInit() {
+    this.userService.initUser(this.user._id)
+      .subscribe(
+        response => {
+          alert('유저의 암호와 약관동의 사항을 초기화 하였습니다.');
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
   onSave() {
     this.user_form = {
       name: this.user.name,

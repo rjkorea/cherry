@@ -61,6 +61,7 @@
         </div>
         <div class="col-md-2">
           <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="onEdit()">수정</button>
+          <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="onInit()">초기화</button>
           <button *ngIf="edit_mode" type="button" class="btn btn-default" (click)="onSave()">저장</button>
           <a *ngIf="edit_mode" (click)="onCancel()">취소</a>
         </div>
