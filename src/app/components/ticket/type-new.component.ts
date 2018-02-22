@@ -42,6 +42,9 @@ export class TicketTypeNewComponent implements OnInit {
 
   onSubmit() {
     this.type.admin_oid = localStorage.getItem('_id');
+    if (!this.type.desc.trim()) {
+      delete this.type.desc;
+    }
     this.ticketService.addType(this.type)
       .subscribe(
         response => {
@@ -79,7 +82,7 @@ export class TicketTypeNewComponent implements OnInit {
   }
 
   public disabledSubmit() {
-    return !(this.type.content_oid && this.type.name && this.type.desc && this.type.day);
+    return !(this.type.content_oid && this.type.name && this.type.day);
   }
 
 }
