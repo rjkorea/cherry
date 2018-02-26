@@ -11,6 +11,10 @@ import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
 import { UiSwitchModule } from 'ng2-ui-switch';
 import { DatepickerModule, TimepickerModule } from 'ngx-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { koLocale } from 'ngx-bootstrap/locale';
+import { ButtonsModule } from 'ngx-bootstrap';
 import { SharedComponentsModule } from './components/shared/shared-components.module';
 import { TagCloudModule } from 'angular-tag-cloud-module';
 
@@ -72,6 +76,8 @@ import { QnaService } from './services/qna.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 
+defineLocale('ko', koLocale);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,7 +121,7 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     QnaDetailComponent,
     QnaNewComponent,
     StatsComponent,
-    PaymentComponent
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,6 +136,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     TagCloudModule,
     DatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    ButtonsModule.forRoot(),
     SharedComponentsModule
   ],
   providers: [

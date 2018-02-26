@@ -30,8 +30,7 @@ export class AppComponent implements OnInit {
       window.addEventListener('online', function(e) {
         console.log('online');
       });
-    }
-
+    };
   }
 
 }

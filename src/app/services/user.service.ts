@@ -40,4 +40,11 @@ export class UserService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public initUser(id: string): Observable<{}> {
+    const url = `${this.userUrl}/init/${id}`;
+    return this.http.put(url, {}, this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }

@@ -32,7 +32,7 @@
               <h5 class="list-group-item-heading">설명</h5>
               <p class="list-group-item-text">{{content.desc}}</p>
             </li>
-            <li *ngIf="content.when" class="list-group-item"><strong>기간: </strong>{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}} ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li *ngIf="content.when" class="list-group-item"><strong>기간: </strong><span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span><span *ngIf="content.when.end"> ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span></li>
             <li class="list-group-item"><strong>장소: </strong>{{content.place}}</li>
             <li class="list-group-item"><strong>호스트 아이디: </strong>{{content.admin_oid}}</li>
             <li class="list-group-item"><strong>수정일시: </strong>{{content.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
