@@ -15,8 +15,6 @@
             <li class="list-group-item"><strong>아이디: </strong>{{type._id}}</li>
             <li class="list-group-item"><strong>이름: </strong>{{type.name}}</li>
             <li class="list-group-item"><strong>설명: </strong>{{type.desc}}</li>
-            <li class="list-group-item"><strong>데이: </strong>{{type.day}}</li>
-            <li class="list-group-item"><strong>가격: </strong>{{type.price | currency: 'KRW': true}}</li>
             <li class="list-group-item"><strong>컨텐츠: </strong>{{type.content.name}}</li>
             <li class="list-group-item"><strong>호스트: </strong>{{type.admin.name}}</li>
             <li class="list-group-item"><strong>수정일시: </strong>{{type.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
@@ -35,11 +33,6 @@
             <div class="input-group">
               <span class="input-group-addon">설명</span>
               <input type="text" class="form-control" [(ngModel)]="type.desc" name="desc">
-            </div>
-            <br>
-            <div class="input-group">
-              <span class="input-group-addon">가격</span>
-              <input type="number" class="form-control" [(ngModel)]="type.price" name="price">
             </div>
             <br>
           </div>

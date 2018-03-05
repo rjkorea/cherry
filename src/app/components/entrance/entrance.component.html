@@ -32,8 +32,6 @@
                 <h4><a [routerLink]="['ticket', ticket._id]">{{ticket.content.name}}</a></h4>
                 <h5>{{ticket.ticket_type.name}}</h5>
                 <h5>{{ticket.ticket_type.desc}}</h5>
-                <h5>{{ticket.ticket_type.price | currency: 'KRW': true}} 원</h5>
-                <h5>{{ticket.ticket_type.day}} <strong>day</strong></h5>
                 <h5 *ngIf="!ticket.send_user">보낸사람: 호스트</h5>
                 <h5 *ngIf="ticket.send_user">보낸사람: {{ticket.send_user.name}}</h5>
                 <p>

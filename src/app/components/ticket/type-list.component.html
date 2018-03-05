@@ -43,15 +43,13 @@
             <tr>
               <th>이름</th>
               <th>설명</th>
-              <th>데이</th>
-              <th>가격</th>
+              <th>생성일시</th>
               <th></th>
             </tr>
             <tr *ngFor="let t of types">
               <td><a [routerLink]="['/ticket/type', t._id]">{{t.name}}</a></td>
               <td>{{t.desc}}</td>
-              <td>{{t.day}} Day</td>
-              <td>{{t.price | currency: 'KRW': true}}</td>
+              <td>{{t.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
               <td>
                 <button class="btn btn-default btn-sm" type="button" (click)="onOrder(t._id)">
                   티켓오더 <span class="badge">{{t.ticket_order_cnt}}</span>

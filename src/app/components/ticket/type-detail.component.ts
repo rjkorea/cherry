@@ -11,7 +11,6 @@ import { TicketService } from '../../services/ticket.service';
 export class TicketTypeDetailComponent implements OnInit {
   type: any;
   type_form: any;
-  notification_options: Object;
   edit_mode: boolean;
 
   constructor(private route: ActivatedRoute,
@@ -45,7 +44,7 @@ export class TicketTypeDetailComponent implements OnInit {
       desc: this.type.desc,
       price: this.type.price,
       enabled: this.type.enabled
-    }
+    };
     this.ticketService.updateType(this.type._id, this.type_form)
       .subscribe(
         response => {
