@@ -4,8 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --env local",
+    "build:dev": "ng build --dev --aot",
+    "deploy:dev": "s3cmd sync --cf-invalidate -P -r dist/* s3://devhost.tkit.me",
+    "build:prod": "ng build --prod --aot",
+    "deploy:prod": "s3cmd sync --cf-invalidate -P -r dist/* s3://host.tkit.me",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
