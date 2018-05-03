@@ -1,0 +1,71 @@
+<ng-template [ngIf]="is_loading">
+  <app-loader></app-loader>
+</ng-template>
+
+<div class="row">
+  <div class="col-md-11">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="이름, 핸드폰번호" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
+    </div>
+    <br>
+  </div>
+</div>
+
+<ng-template [ngIf]="!is_loading">
+  <div *ngIf="count">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>{{content.name}} / {{group.name}} <span class="badge">{{count}}</span></h3>
+      </div>
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <tr>
+              <th>No</th>
+              <th>이름</th>
+              <th>전화번호</th>
+              <th>입장</th>
+            </tr>
+            <tr *ngFor="let t of tickets; let i = index">
+              <td>{{((page-1)*size)+(i+1)}}</td>
+              <td>
+                <input type="text" class="form-control" [(ngModel)]="t.name" name="name">
+              </td>
+              <td>
+                <input type="text" class="form-control" [(ngModel)]="t.mobile_number" name="mobile_number">
+              </td>
+              <td>
+                <ui-switch size="medium" [(ngModel)]="t.used"></ui-switch>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <nav aria-label="...">
+      <ul class="pager">
+        <li *ngIf="page!=1"><a (click)="onPrev()">이전</a></li>
+        <li *ngIf="page*size<count"><a (click)="onNext()">다음</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div *ngIf="!!!count">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+        <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
+      </div>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+    </div>
+  </div>
+</ng-template>
