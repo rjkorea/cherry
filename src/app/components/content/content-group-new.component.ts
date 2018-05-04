@@ -30,7 +30,7 @@ export class ContentGroupNewComponent implements OnInit {
   }
 
   onSubmit() {
-    this.groupService.addGroup(this.content._id, this.group)
+    this.groupService.addGroup(this.content['_id'], this.group)
       .subscribe(
         response => {
           this.router.navigate(['/content', this.content['_id'], 'groups']);
@@ -55,7 +55,7 @@ export class ContentGroupNewComponent implements OnInit {
   }
 
   disabledSubmit() {
-    return !(this.group.name && this.group.desc && this.group.qty);
+    return !(this.group['name'] && this.group['desc'] && this.group['qty']);
   }
 
 }
