@@ -18,11 +18,12 @@ export class GroupService {
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
-  // public addPlace(data: any): Observable<{}> {
-  //   return this.http.post(this.placeUrl, JSON.stringify(data), this.options)
-  //                   .map((response: Response) => response.json())
-  //                   .catch((error: any) => Observable.throw(error.json() || 'Server error'));
-  // }
+  public addGroup(content_oid: string, group: Object): Observable<{}> {
+    const url = `${URL}/a/content/${content_oid}/group`;
+    return this.http.post(url, JSON.stringify(group), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 
   public getGroup(content_oid: string, group_oid: string): Observable<{}> {
     const url = `${URL}/a/content/${content_oid}/group/${group_oid}`;
