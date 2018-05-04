@@ -54,6 +54,10 @@ export class ContentListComponent implements OnInit {
       );
   }
 
+  goGroup(content_oid: string) {
+    this.router.navigate(['/content', content_oid, 'groups']);
+  }
+
   onPrev() {
     const page = this.page - 1;
     this.page = page;
