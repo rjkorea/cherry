@@ -40,7 +40,10 @@
               </p>
               <p *ngIf="content.when"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span> <span *ngIf="content.when.end">~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span></p>
               <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{content.place}}</p>
-              <p></p><button type="button" class="btn btn-default" (click)="goGroup(content._id)">그룹티켓</button><p>
+              <p>
+                <button type="button" class="btn btn-default" (click)="goTicket(content._id)">네트워크티켓</button>
+                <button type="button" class="btn btn-default" (click)="goGroup(content._id)">그룹티켓</button>
+              </p>
             </div>
           </div>
         </div>
