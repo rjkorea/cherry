@@ -18,27 +18,31 @@
   <div *ngIf="count">
     <div class="row">
       <div class="col-md-12">
-        <h3>{{content.name}} / {{group.name}} <span class="badge">{{count}}</span></h3>
+        <h3><a [routerLink]="['/content', content._id, 'groups']">{{content.name}}</a> / {{group.name}} <span class="badge">{{count}}</span></h3>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-6">
         <div class="table-responsive">
           <table class="table table-striped">
             <tr>
-              <th>No</th>
+              <!-- <th>No</th> -->
+              <th>입장</th>
               <th>이름</th>
               <th>전화번호</th>
-              <th>입장</th>
+              <th></th>
             </tr>
             <tr *ngFor="let t of tickets; let i = index">
-              <td>{{((page-1)*size)+(i+1)}}</td>
+              <!-- <td>{{((page-1)*size)+(i+1)}}</td> -->
               <td>
-                <input type="text" class="form-control" [(ngModel)]="t.name" name="name">
+                <ui-switch size="small" [(ngModel)]="t.used"></ui-switch>
+              </td>
+              <td class="col-xs-3">
+                <input type="text" class="form-control input-sm" placeholder="이름을 입력하세요" [(ngModel)]="t.name" name="name">
+              </td>
+              <td class="col-xs-4">
+                <input type="text" class="form-control input-sm" placeholder="전화번호를 입력하세요" [(ngModel)]="t.mobile_number" name="mobile_number">
               </td>
               <td>
-                <input type="text" class="form-control" [(ngModel)]="t.mobile_number" name="mobile_number">
-              </td>
-              <td>
-                <ui-switch size="medium" [(ngModel)]="t.used"></ui-switch>
+                <button type="button" class="btn btn-sm btn-default" [disabled]="!(t.name && t.mobile_number)" (click)="onSave(t)">저장</button>
               </td>
             </tr>
           </table>

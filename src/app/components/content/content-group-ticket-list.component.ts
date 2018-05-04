@@ -20,6 +20,7 @@ export class ContentGroupTicketListComponent implements OnInit {
   content: Object;
   group_oid: string;
   group: Object;
+  ticket: Object;
   is_loading: boolean;
 
   constructor(private groupService: GroupService,
@@ -92,6 +93,24 @@ export class ContentGroupTicketListComponent implements OnInit {
         error => {
           console.log(error);
           this.is_loading = false;
+        }
+      );
+  }
+
+  onSave(group_ticket: Object) {
+    this.ticket = {
+      'name': group_ticket['name'],
+      'mobile_number': group_ticket['mobile_number'],
+      'used': group_ticket['used']
+    };
+    this.groupService.updateGroupTicket(this.content_oid, this.group_oid, group_ticket['_id'], this.ticket)
+      .subscribe(
+        response => {
+          alert('저장이 완료되었습니다.');
+          this.loadTickets(this.query, this.page);
+        },
+        error => {
+          alert(error['message']);
         }
       );
   }
