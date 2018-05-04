@@ -53,12 +53,12 @@ export class GroupService {
   //                   .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   // }
 
-  // public updatePlace(id: string, data: any): Observable<{}> {
-  //   const url = `${this.placeUrl}/${id}`;
-  //   return this.http.put(url, JSON.stringify(data), this.options)
-  //                   .map((response: Response) => response.json())
-  //                   .catch((error: any) => Observable.throw(error.json() || 'Server error'));
-  // }
+  public updateGroupTicket(content_oid: string, group_oid: string, ticket_oid: string, group: any): Observable<{}> {
+    const url = `${URL}/a/content/${content_oid}/group/${group_oid}/ticket/${ticket_oid}`;
+    return this.http.put(url, JSON.stringify(group), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 
   // public getStats(): Observable<{}> {
   //   const url = `${this.placesUrl}/stats`;
