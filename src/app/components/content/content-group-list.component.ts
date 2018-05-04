@@ -15,6 +15,7 @@ export class ContentGroupListComponent implements OnInit {
   page: any = 1;
   size: any = 20;
   count: any = 0;
+  group_ticket_count: any = 0;
   content_oid: string;
   content: Object;
   is_loading: boolean;
@@ -63,6 +64,7 @@ export class ContentGroupListComponent implements OnInit {
         response => {
           this.count = response['count'];
           this.groups = response['data'];
+          this.group_ticket_count = response['group_ticket_count'];
           window.scrollTo(0, 0);
           this.is_loading = false;
         },
