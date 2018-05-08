@@ -32,6 +32,7 @@
               <th>설명</th>
               <th>등록율</th>
               <th>입장 / 등록 / 전체</th>
+              <th></th>
             </tr>
             <tr *ngFor="let g of groups">
               <td><a [routerLink]="['/content', this.content_oid, 'group', g._id, 'tickets']">{{g.name}}</a></td>
@@ -39,6 +40,14 @@
               <td><strong>{{((g.reg_gt_cnt/g.qty)*100).toString() | slice:0:4}}%</strong></td>
               <td>
                 <span class="badge">{{g.used_gt_cnt}} / {{g.reg_gt_cnt}} / {{g.qty}}</span>
+              </td>
+              <td>
+                <button type="button" class="btn btn-default btn-sm" (click)="onEdit(g)">
+                  <span class="glyphicon glyphicon-edit"></span>
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="onRemove(g)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
               </td>
             </tr>
           </table>

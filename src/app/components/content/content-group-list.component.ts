@@ -11,6 +11,7 @@ import { ContentService } from '../../services/content.service';
 })
 export class ContentGroupListComponent implements OnInit {
   groups: Array<Object>;
+  group: Object;
   query: any = '';
   page: any = 1;
   size: any = 20;
@@ -73,6 +74,39 @@ export class ContentGroupListComponent implements OnInit {
           this.is_loading = false;
         }
       );
+  }
+
+  onEdit(group: Object) {
+    this.group = {
+      'name': group['name'],
+      'desc': group['desc']
+    };
+    // this.groupService.updateGroupTicket(this.content_oid, this.group_oid, group_ticket['_id'], this.ticket)
+    //   .subscribe(
+    //     response => {
+    //       alert('저장이 완료되었습니다.');
+    //       this.loadTickets(this.query, this.page);
+    //     },
+    //     error => {
+    //       alert(error['message']);
+    //     }
+    //   );
+  }
+
+  onRemove(group: Object) {
+    if (confirm('티켓그룹을 삭제하시겠습니까?')) {
+    }
+
+    // this.groupService.updateGroupTicket(this.content_oid, this.group_oid, group_ticket['_id'], this.ticket)
+    //   .subscribe(
+    //     response => {
+    //       alert('저장이 완료되었습니다.');
+    //       this.loadTickets(this.query, this.page);
+    //     },
+    //     error => {
+    //       alert(error['message']);
+    //     }
+    //   );
   }
 
   onPrev() {
