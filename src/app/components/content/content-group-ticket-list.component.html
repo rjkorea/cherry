@@ -18,7 +18,11 @@
   <div *ngIf="count">
     <div class="row">
       <div class="col-md-12">
-        <h3><a [routerLink]="['/content', content._id, 'groups']">{{content.name}}</a> / {{group.name}} <span class="badge">{{count}}</span></h3>
+        <h3><a [routerLink]="['/content', content._id, 'groups']">{{content.name}}</a> / {{group.name}} <span class="badge">{{count}}</span>
+          <button type="button" class="btn btn-sm btn-success" (click)="onAdd()">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </h3>
       </div>
       <div class="col-md-6">
         <div class="table-responsive">
@@ -42,7 +46,15 @@
                 <input type="text" class="form-control input-sm" placeholder="전화번호를 입력하세요" [(ngModel)]="t.mobile_number" name="mobile_number">
               </td>
               <td>
-                <button type="button" class="btn btn-sm btn-default" [disabled]="!(t.name && t.mobile_number)" (click)="onSave(t)">저장</button>
+                <button type="button" class="btn btn-sm btn-default" [disabled]="!(t.name && t.mobile_number)" (click)="onSave(t)">
+                  <span class="glyphicon glyphicon-save"></span>
+                </button>
+                <button type="button" class="btn btn-sm btn-warning" [disabled]="!(t.name && t.mobile_number)" (click)="onReset(t)">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <button type="button" class="btn btn-sm btn-danger" (click)="onRemove(t)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
               </td>
             </tr>
           </table>

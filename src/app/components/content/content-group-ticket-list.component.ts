@@ -97,6 +97,19 @@ export class ContentGroupTicketListComponent implements OnInit {
       );
   }
 
+  onAdd() {
+    this.groupService.addGroupTicket(this.content_oid, this.group_oid)
+      .subscribe(
+        response => {
+          this.loadTickets(this.query, this.page);
+          alert('그룹티켓이 추가되었습니다.');
+        },
+        error => {
+          alert(error['message']);
+        }
+      );
+  }
+
   onSave(group_ticket: Object) {
     this.ticket = {
       'name': group_ticket['name'],
@@ -113,6 +126,34 @@ export class ContentGroupTicketListComponent implements OnInit {
           alert(error['message']);
         }
       );
+  }
+
+  onReset(group_ticket: Object) {
+    if (confirm('티켓 등록자를 지우시겠습니까?')) {
+      this.groupService.resetGroupTicket(this.content_oid, this.group_oid, group_ticket['_id'])
+        .subscribe(
+          response => {
+            this.loadTickets(this.query, this.page);
+          },
+          error => {
+            alert(error['message']);
+          }
+        );
+      }
+    }
+
+  onRemove(group_ticket: Object) {
+    if (confirm('티켓을 삭제하시겠습니까?')) {
+      this.groupService.removeGroupTicket(this.content_oid, this.group_oid, group_ticket['_id'])
+        .subscribe(
+          response => {
+            this.loadTickets(this.query, this.page);
+          },
+          error => {
+            alert(error['message']);
+          }
+        );
+    }
   }
 
   onPrev() {
