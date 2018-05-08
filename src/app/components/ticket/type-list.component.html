@@ -41,20 +41,21 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <tr>
+              <th></th>
               <th>이름</th>
               <th>설명</th>
               <th>생성일시</th>
-              <th></th>
             </tr>
             <tr *ngFor="let t of types">
-              <td><a [routerLink]="['/ticket/type', t._id]">{{t.name}}</a></td>
-              <td>{{t.desc}}</td>
-              <td>{{t.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
               <td>
                 <button class="btn btn-default btn-sm" type="button" (click)="onOrder(t._id)">
-                  티켓오더 <span class="badge">{{t.ticket_order_cnt}}</span>
+                  티켓오더
+                  <span class="badge">{{t.ticket_order_cnt}}</span>
                 </button>
               </td>
+              <td><a [routerLink]="['/ticket/type', t._id]">{{t.name | slice: 0:50}}</a></td>
+              <td>{{t.desc | slice: 0:70}}</td>
+              <td>{{t.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
             </tr>
           </table>
         </div>
