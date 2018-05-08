@@ -39,19 +39,19 @@ export class GroupService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public addGroupTicket(content_oid: string, group_oid: string): Observable<{}> {
+    const url = `${URL}/a/content/${content_oid}/group/${group_oid}/ticket`;
+    return this.http.post(url, JSON.stringify({}), this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
   public getGroupTicketList(content_oid: string, group_oid: string, query: string, start: Number, size: Number): Observable<{}> {
     const url = `${URL}/a/content/${content_oid}/group/${group_oid}/tickets?q=${query}&start=${start}&size=${size}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
-
-  // public getPlace(id: string): Observable<{}> {
-  //   const url = `${this.placeUrl}/${id}`;
-  //   return this.http.get(url, this.options)
-  //                   .map((response: Response) => response.json())
-  //                   .catch((error: any) => Observable.throw(error.json() || 'Server error'));
-  // }
 
   public updateGroupTicket(content_oid: string, group_oid: string, ticket_oid: string, group: any): Observable<{}> {
     const url = `${URL}/a/content/${content_oid}/group/${group_oid}/ticket/${ticket_oid}`;
@@ -60,11 +60,18 @@ export class GroupService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  // public getStats(): Observable<{}> {
-  //   const url = `${this.placesUrl}/stats`;
-  //   return this.http.get(url, this.options)
-  //                   .map((response: Response) => response.json())
-  //                   .catch((error: any) => Observable.throw(error.json() || 'Server error'));
-  // }
+  public removeGroupTicket(content_oid: string, group_oid: string, ticket_oid: string): Observable<{}> {
+    const url = `${URL}/a/content/${content_oid}/group/${group_oid}/ticket/${ticket_oid}`;
+    return this.http.delete(url, this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public resetGroupTicket(content_oid: string, group_oid: string, ticket_oid: string): Observable<{}> {
+    const url = `${URL}/a/content/${content_oid}/group/${group_oid}/ticket/${ticket_oid}/reset`;
+    return this.http.put(url, JSON.stringify({}), this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 
 }
