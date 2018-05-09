@@ -40,6 +40,7 @@ import { AdminPasswordComponent } from './components/admin/admin-password.compon
 import { ContentListComponent } from './components/content/content-list.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
 import { ContentGroupListComponent } from './components/content/content-group-list.component';
+import { ContentGroupEditComponent } from './components/content/content-group-edit.component';
 import { ContentGroupNewComponent } from './components/content/content-group-new.component';
 import { ContentGroupTicketListComponent } from './components/content/content-group-ticket-list.component';
 import { ContentNewComponent } from './components/content/content-new.component';
@@ -109,6 +110,7 @@ defineLocale('ko', koLocale);
     ContentDetailComponent,
     ContentNewComponent,
     ContentGroupListComponent,
+    ContentGroupEditComponent,
     ContentGroupNewComponent,
     ContentGroupTicketListComponent,
     TicketTypeListComponent,

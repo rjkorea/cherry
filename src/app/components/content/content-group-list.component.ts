@@ -77,37 +77,23 @@ export class ContentGroupListComponent implements OnInit {
   }
 
   onEdit(group: Object) {
-    this.group = {
-      'name': group['name'],
-      'desc': group['desc']
-    };
-    // this.groupService.updateGroupTicket(this.content_oid, this.group_oid, group_ticket['_id'], this.ticket)
-    //   .subscribe(
-    //     response => {
-    //       alert('저장이 완료되었습니다.');
-    //       this.loadTickets(this.query, this.page);
-    //     },
-    //     error => {
-    //       alert(error['message']);
-    //     }
-    //   );
+    this.router.navigate(['/content', this.content_oid, 'group', group['_id'], 'edit']);
   }
 
   onRemove(group: Object) {
     if (confirm('티켓그룹을 삭제하시겠습니까?')) {
+      this.groupService.removeGroup(this.content_oid, group['_id'])
+        .subscribe(
+          response => {
+            alert('티켓그룹을 삭제를 완료하였습니다.');
+            this.loadGroups(this.query, this.page);
+          },
+          error => {
+            alert(error['message']);
+          }
+        );
+      }
     }
-
-    // this.groupService.updateGroupTicket(this.content_oid, this.group_oid, group_ticket['_id'], this.ticket)
-    //   .subscribe(
-    //     response => {
-    //       alert('저장이 완료되었습니다.');
-    //       this.loadTickets(this.query, this.page);
-    //     },
-    //     error => {
-    //       alert(error['message']);
-    //     }
-    //   );
-  }
 
   onPrev() {
     const page = this.page - 1;
@@ -126,10 +112,6 @@ export class ContentGroupListComponent implements OnInit {
   search() {
     this.router.navigate(['/content', this.content_oid, 'groups', {query: this.query, page: this.page}]);
     this.loadGroups(this.query, 1);
-  }
-
-  onOrder(id: string) {
-    this.router.navigate(['ticket/order', {ticket_type_oid: id}]);
   }
 
 }
