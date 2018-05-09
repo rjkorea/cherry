@@ -34,6 +34,10 @@ export class ContentDetailComponent implements OnInit {
           console.log(error);
         }
       );
+    }
+
+  goTicket(content_oid: string) {
+    this.router.navigate(['/ticket', 'type', { content_oid: this.content['_id'] }]);
   }
 
   goGroup() {
