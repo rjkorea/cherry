@@ -10,8 +10,8 @@ import { GroupService } from '../../services/group.service';
   providers: []
 })
 export class ContentGroupNewComponent implements OnInit {
-  content: Object;
-  group: Object;
+  content: any;
+  group: any;
 
   constructor(private contentService: ContentService,
               private groupService: GroupService,
