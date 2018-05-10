@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
 export class ContentGroupEditComponent implements OnInit {
   content: object;
   content_oid: string;
-  group: object;
+  group: any;
   group_oid: string;
 
   constructor(private contentService: ContentService,
