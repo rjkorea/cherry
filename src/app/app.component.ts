@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 
 @Component({
@@ -12,9 +13,20 @@ export class AppComponent implements OnInit {
   vendor: any;
   vendorSub: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    window.addEventListener('offline', function (e) {
+      alert('인터넷 연결이 끊겼습니다.');
+      console.log('offline');
+    });
+
+    window.addEventListener('online', function (e) {
+      alert('인터넷이 연결되었습니다.');
+      console.log('online');
+      window.location.href = '/';
+    });
+
     this.debug = environment.debug;
     // get navigator info
     if (this.debug) {
@@ -22,14 +34,6 @@ export class AppComponent implements OnInit {
       this.vendor = navigator.vendor;
       this.vendorSub = navigator.vendorSub;
       console.log(navigator);
-
-      window.addEventListener('offline', function(e) {
-        console.log('offline');
-      });
-
-      window.addEventListener('online', function(e) {
-        console.log('online');
-      });
     };
   }
 

@@ -54,6 +54,14 @@ export class ContentListComponent implements OnInit {
       );
   }
 
+  goTicket(content_oid: string) {
+    this.router.navigate(['/ticket', 'type', {content_oid: content_oid}]);
+  }
+
+  goGroup(content_oid: string) {
+    this.router.navigate(['/content', content_oid, 'groups']);
+  }
+
   onPrev() {
     const page = this.page - 1;
     this.page = page;

@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">그룹티켓 수정</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-8">
+        <br>
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input type="text" class="form-control" [(ngModel)]="group.name" name="name">
+        </div>
+        <br>
+        <div class="form-group">
+          <label>설명</label>
+          <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="group.desc" name="desc"></textarea>
+        </div>
+        <br>
+        <button type="button" class="btn btn-success" [disabled]="!(group.name && group.desc)" (click)="onEdit()">수정하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+  </div>
+</div>

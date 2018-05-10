@@ -39,6 +39,10 @@ import { AdminNewComponent } from './components/admin/admin-new.component';
 import { AdminPasswordComponent } from './components/admin/admin-password.component';
 import { ContentListComponent } from './components/content/content-list.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
+import { ContentGroupListComponent } from './components/content/content-group-list.component';
+import { ContentGroupEditComponent } from './components/content/content-group-edit.component';
+import { ContentGroupNewComponent } from './components/content/content-group-new.component';
+import { ContentGroupTicketListComponent } from './components/content/content-group-ticket-list.component';
 import { ContentNewComponent } from './components/content/content-new.component';
 import { TicketTypeListComponent } from './components/ticket/type-list.component';
 import { TicketTypeDetailComponent } from './components/ticket/type-detail.component';
@@ -68,6 +72,7 @@ import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
 import { UserService } from './services/user.service';
 import { ContentService } from './services/content.service';
+import { GroupService } from './services/group.service';
 import { CompanyService } from './services/company.service';
 import { TicketService } from './services/ticket.service';
 import { PlaceService } from './services/place.service';
@@ -104,6 +109,10 @@ defineLocale('ko', koLocale);
     ContentListComponent,
     ContentDetailComponent,
     ContentNewComponent,
+    ContentGroupListComponent,
+    ContentGroupEditComponent,
+    ContentGroupNewComponent,
+    ContentGroupTicketListComponent,
     TicketTypeListComponent,
     TicketTypeDetailComponent,
     TicketTypeNewComponent,
@@ -154,6 +163,7 @@ defineLocale('ko', koLocale);
     AdminService,
     UserService,
     ContentService,
+    GroupService,
     CompanyService,
     TicketService,
     PlaceService,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params} from '@angular/router';
+import { Router, ActivatedRoute, Params} from '@angular/router';
 import { ContentService } from '../../services/content.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class ContentDetailComponent implements OnInit {
   edit_mode: boolean;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private contentService: ContentService) { }
 
   ngOnInit() {
@@ -33,6 +34,14 @@ export class ContentDetailComponent implements OnInit {
           console.log(error);
         }
       );
+    }
+
+  goTicket(content_oid: string) {
+    this.router.navigate(['/ticket', 'type', { content_oid: this.content['_id'] }]);
+  }
+
+  goGroup() {
+    this.router.navigate(['/content', this.route.snapshot.params['id'], 'groups']);
   }
 
   onEdit() {

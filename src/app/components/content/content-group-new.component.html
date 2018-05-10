@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{content.name}} 그룹티켓 만들기</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="name">이름 (필수)</label>
+          <input type="text" class="form-control" [(ngModel)]="group.name" name="name">
+        </div>
+        <br>
+        <div class="form-group">
+          <label>설명 (필수)</label>
+          <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="group.desc" name="desc"></textarea>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="name">수량 (필수)</label>
+          <input type="number" class="form-control" [(ngModel)]="group.qty" name="name">
+        </div>
+        <br>
+        <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+  </div>
+</div>
