@@ -110,11 +110,30 @@ export class ContentGroupTicketListComponent implements OnInit {
       );
   }
 
+  changeUsed(group_ticket: Object) {
+    this.group = {
+      'used': !group_ticket['used']
+    };
+    this.groupService.updateGroupTicket(this.content_oid, this.group_oid, group_ticket['_id'], this.group)
+      .subscribe(
+        response => {
+          if (this.group['used']) {
+            alert('입장처리를 완료했습니다.');
+          } else {
+            alert('입장처리를 취소했습니다.');
+          }
+          this.loadTickets(this.query, this.page);
+        },
+        error => {
+          alert(error['message']);
+        }
+      );
+  }
+
   onSave(group_ticket: Object) {
     this.ticket = {
       'name': group_ticket['name'],
-      'mobile_number': group_ticket['mobile_number'],
-      'used': group_ticket['used']
+      'mobile_number': group_ticket['mobile_number']
     };
     this.groupService.updateGroupTicket(this.content_oid, this.group_oid, group_ticket['_id'], this.ticket)
       .subscribe(

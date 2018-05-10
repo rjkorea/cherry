@@ -37,7 +37,7 @@
             <tr *ngFor="let t of tickets; let i = index">
               <!-- <td>{{((page-1)*size)+(i+1)}}</td> -->
               <td>
-                <ui-switch size="small" [(ngModel)]="t.used"></ui-switch>
+                <ui-switch size="small" [disabled]="!(t.name && t.mobile_number)" [(ngModel)]="t.used" (change)="changeUsed(t)"></ui-switch>
               </td>
               <td class="col-xs-3">
                 <input type="text" class="form-control input-sm" placeholder="이름을 입력하세요" [(ngModel)]="t.name" name="name">
