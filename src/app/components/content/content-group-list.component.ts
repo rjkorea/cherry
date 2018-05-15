@@ -13,6 +13,8 @@ export class ContentGroupListComponent implements OnInit {
   groups: Array<Object>;
   group: Object;
   query: any = '';
+  query_group_ticket: any;
+  group_ticket: any;
   page: any = 1;
   size: any = 20;
   count: any = 0;
@@ -112,6 +114,25 @@ export class ContentGroupListComponent implements OnInit {
   search() {
     this.router.navigate(['/content', this.content_oid, 'groups', {query: this.query, page: this.page}]);
     this.loadGroups(this.query, 1);
+  }
+
+  searchUser() {
+    // TODO: search group ticket by user name and mobile_number
+    this.groupService.searchGroupTicket(this.content_oid, this.query_group_ticket)
+      .subscribe(
+        response => {
+          this.group_ticket = response['data'];
+          if (this.group_ticket) {
+            console.log(this.group_ticket);
+            this.router.navigate(['/content', this.content_oid, 'group', this.group_ticket['group_oid'], 'tickets', { query: this.query_group_ticket }]);
+          } else {
+            alert('등록되어 있지 않은 유저입니다.');
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
 }

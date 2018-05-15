@@ -87,4 +87,11 @@ export class GroupService {
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public searchGroupTicket(content_oid: string, query: string): Observable<{}> {
+    const url = `${URL}/a/content/${content_oid}/group/ticket/search?q=${query}`;
+    return this.http.get(url, this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }

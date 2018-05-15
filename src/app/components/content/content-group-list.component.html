@@ -3,11 +3,24 @@
 </ng-template>
 
 <div class="row">
-  <div class="col-md-11">
+  <div class="col-md-6">
     <div class="input-group">
+      <span class="input-group-addon">그룹</span>
       <input type="text" class="form-control" placeholder="이름, 설명" [(ngModel)]="query" name="query" (keyup.enter)="search()">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
+    </div>
+    <br>
+  </div>
+  <div class="col-md-5">
+    <div class="input-group">
+      <span class="input-group-addon">유저</span>
+      <input type="text" class="form-control" placeholder="이름, 핸드폰번호" [(ngModel)]="query_group_ticket" name="query_group_ticket" (keyup.enter)="searchUser()">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="searchUser()">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
       </span>
     </div>
     <br>
