@@ -22,6 +22,8 @@ export class ContentGroupListComponent implements OnInit {
   content_oid: string;
   content: Object;
   is_loading: boolean;
+  selected_group: any;
+  sms_message: string;
 
   constructor(private groupService: GroupService,
               private contentService: ContentService,
@@ -117,17 +119,35 @@ export class ContentGroupListComponent implements OnInit {
   }
 
   searchUser() {
-    // TODO: search group ticket by user name and mobile_number
     this.groupService.searchGroupTicket(this.content_oid, this.query_group_ticket)
       .subscribe(
         response => {
           this.group_ticket = response['data'];
           if (this.group_ticket) {
-            console.log(this.group_ticket);
             this.router.navigate(['/content', this.content_oid, 'group', this.group_ticket['group_oid'], 'tickets', { query: this.query_group_ticket }]);
           } else {
             alert('등록되어 있지 않은 유저입니다.');
           }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  onSmsModal(group: any) {
+    this.selected_group = group;
+    this.sms_message = '';
+  }
+
+  onSendSms() {
+    const data = {
+      sms_message: this.sms_message
+    };
+    this.groupService.sendSmsGroup(this.selected_group['content_oid'], this.selected_group['_id'], data)
+      .subscribe(
+        response => {
+          alert('SMS 전송이 완료되었습니다.');
         },
         error => {
           console.log(error);

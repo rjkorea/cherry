@@ -55,6 +55,36 @@
                 <span class="badge">{{g.used_gt_cnt}} / {{g.reg_gt_cnt}} / {{g.qty}}</span>
               </td>
               <td>
+                <button type="button" class="btn btn-default btn-sm" (click)="onSmsModal(g)" data-toggle="modal" data-target="#send-modal">
+                  <i class="fa fa-comment fa-lg" aria-hidden="true"></i> SMS전송
+                </button>
+                <!-- Send Modal -->
+                <div class="modal fade" id="send-modal" tabindex="-1" role="dialog" aria-labelledby="send-modal-label">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="disable-modal-label">그룹티켓등록자 전체 SMS전송</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p *ngIf="selected_group">
+                          <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{selected_group.name}} ({{selected_group.desc}})
+                        </p>
+                        <p *ngIf="selected_group">
+                          전송 대상자: {{selected_group.reg_gt_cnt}} 명
+                        </p>
+                        <div *ngIf="selected_group" class="form-group">
+                          <textarea type="text" class="form-control" rows="9" [(ngModel)]="sms_message"></textarea>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onSendSms()">SEND</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <button type="button" class="btn btn-default btn-sm" (click)="onEdit(g)">
                   <span class="glyphicon glyphicon-edit"></span>
                 </button>

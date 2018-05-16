@@ -22,6 +22,8 @@ export class ContentGroupTicketListComponent implements OnInit {
   group: Object;
   ticket: Object;
   is_loading: boolean;
+  selected_group_ticket: any;
+  sms_message: string;
 
   constructor(private groupService: GroupService,
               private contentService: ContentService,
@@ -192,6 +194,26 @@ export class ContentGroupTicketListComponent implements OnInit {
   search() {
     this.router.navigate(['/content', this.content_oid, 'group', this.group_oid, 'tickets', {query: this.query, page: this.page}]);
     this.loadTickets(this.query, 1);
+  }
+
+  onSmsModal(group_ticket: any) {
+    this.selected_group_ticket = group_ticket;
+    this.sms_message = '';
+  }
+
+  onSendSms() {
+    const data = {
+      sms_message: this.sms_message
+    };
+    this.groupService.sendSmsGroupTicket(this.selected_group_ticket['content_oid'], this.selected_group_ticket['group_oid'], this.selected_group_ticket['_id'], data)
+      .subscribe(
+        response => {
+          alert('SMS 전송이 완료되었습니다.');
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
 }
