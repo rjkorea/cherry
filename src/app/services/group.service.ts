@@ -94,4 +94,18 @@ export class GroupService {
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public sendSmsGroup(content_oid: string, group_oid: string, data: any): Observable<{}> {
+    const url = `${URL}/a/content/${content_oid}/group/${group_oid}/sms/send`;
+    return this.http.put(url, JSON.stringify(data), this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public sendSmsGroupTicket(content_oid: string, group_oid: string, ticket_oid: string, data: any): Observable<{}> {
+    const url = `${URL}/a/content/${content_oid}/group/${group_oid}/ticket/${ticket_oid}/sms/send`;
+    return this.http.put(url, JSON.stringify(data), this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }
