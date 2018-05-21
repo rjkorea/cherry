@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { TicketService } from '../../services/ticket.service';
 import { WebSocketService } from '../../services/websocket.service';
@@ -9,7 +9,7 @@ import { WebSocketService } from '../../services/websocket.service';
   styleUrls: ['./entrance.component.css'],
   providers: []
 })
-export class EntranceComponent implements OnInit {
+export class EntranceComponent implements OnInit, OnDestroy {
   mode: string;
   user: string;
   users: Array<any>;
@@ -32,12 +32,16 @@ export class EntranceComponent implements OnInit {
     this.initWebSocket();
   }
 
+  ngOnDestroy() {
+    this.websocketService.close();
+  }
+
   initWebSocket() {
     this.websocketService.getInstance().subscribe(
       response => {
         console.log(response);
         // check tablet_code
-        if(localStorage.getItem('tablet_code') === response['tablet_code']) {
+        if (localStorage.getItem('tablet_code') === response['tablet_code']) {
           this.onTablet(response['auth_user_oid']);
         }
       },
