@@ -28,4 +28,9 @@ export class WebSocketService {
     .share();
   }
 
+  public close() {
+    this.websocket.close();
+    console.log('closed websocket');
+  }
+
 }
