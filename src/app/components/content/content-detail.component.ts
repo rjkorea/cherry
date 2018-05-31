@@ -44,6 +44,10 @@ export class ContentDetailComponent implements OnInit {
     this.router.navigate(['/content', this.route.snapshot.params['id'], 'groups']);
   }
 
+  goEntrance(content_oid: string) {
+    this.router.navigate(['/entrance', { content_oid: this.content['_id'] }]);
+  }
+
   onEdit() {
     this.edit_mode = true;
   }
@@ -79,9 +83,8 @@ export class ContentDetailComponent implements OnInit {
     this.edit_mode = false;
   }
 
-  uploadPoster(event) {
-    const files: FileList = event.srcElement.files;
-    this.contentService.uploadPosterImage(this.content._id, files)
+  uploadPoster(files: FileList) {
+    this.contentService.uploadPosterImage(this.content._id, files.item(0))
       .subscribe(
         response => {
           console.log(response);

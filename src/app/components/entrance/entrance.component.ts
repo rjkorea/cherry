@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { TicketService } from '../../services/ticket.service';
+import { GroupService } from '../../services/group.service';
+import { ContentService } from '../../services/content.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { WebSocketService } from '../../services/websocket.service';
 
 @Component({
@@ -16,11 +19,18 @@ export class EntranceComponent implements OnInit, OnDestroy {
   users_count: number;
   tickets: Array<any>;
   tickets_count: number;
+  content_oid: string;
+  content_name: string;
+  group_ticket: any;
   query: string;
 
   constructor(
     private userService: UserService,
     private ticketService: TicketService,
+    private contentService: ContentService,
+    private groupService: GroupService,
+    private route: ActivatedRoute,
+    private router: Router,
     private websocketService: WebSocketService) { }
 
   ngOnInit() {
@@ -29,6 +39,13 @@ export class EntranceComponent implements OnInit, OnDestroy {
     this.user = 'Noname';
     this.tickets = [];
     this.tickets_count = 0;
+    this.content_oid = '';
+    this.content_name = '';
+    const params: Params = this.route.snapshot.params;
+    if ('content_oid' in params) {
+      this.content_oid = params['content_oid'];
+    }
+    this.loadContent(this.content_oid);
     this.initWebSocket();
   }
 
@@ -36,13 +53,27 @@ export class EntranceComponent implements OnInit, OnDestroy {
     this.websocketService.close();
   }
 
+  loadContent(content_oid: string) {
+    this.contentService.getContent(content_oid)
+      .subscribe(
+        response => {
+          this.content_name = response['data']['name'];
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
   initWebSocket() {
     this.websocketService.getInstance().subscribe(
       response => {
         console.log(response);
         // check tablet_code
-        if (localStorage.getItem('tablet_code') === response['tablet_code']) {
-          this.onTablet(response['auth_user_oid']);
+        if (localStorage.getItem('tablet_code') === response['tablet_code'] && this.content_oid === response['content_oid']) {
+          this.onTablet(response['content_oid'], response['auth_user_oid']);
+        } else {
+          console.log('아이패드의 컨텐츠 설정을 확인해주세요');
         }
       },
       error => {
@@ -71,10 +102,19 @@ export class EntranceComponent implements OnInit, OnDestroy {
           console.log(error);
         }
       );
+    // this.groupService.searchGroupTicket(this.content_oid, this.query)
+    //   .subscribe(
+    //     response => {
+    //       this.group_ticket = response['data'];
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   );
     this.mode = 'search'
   }
 
-  onTablet(auth_user_oid: string) {
+  onTablet(content_oid: string, auth_user_oid: string) {
     this.userService.getUser(auth_user_oid)
       .subscribe(
         response => {
@@ -86,7 +126,7 @@ export class EntranceComponent implements OnInit, OnDestroy {
         }
       );
 
-    this.ticketService.getTicketListByUser(auth_user_oid, 0, 100)
+    this.ticketService.getTicketEntranceListByUser(content_oid, auth_user_oid, 0, 100)
       .subscribe(
         response => {
           this.tickets = response['data'];

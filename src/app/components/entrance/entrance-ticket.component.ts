@@ -86,10 +86,10 @@ export class EntranceTicketComponent implements OnInit {
       days: this.ticket.days,
       status: 'use'
     };
-    this.ticketService.updateTicket(this.ticket._id ,this.ticket_form)
+    this.ticketService.updateTicket(this.ticket._id, this.ticket_form)
       .subscribe(
         response => {
-          this.router.navigate(['/entrance']);
+          this.router.navigate(['/entrance', {'content_oid': this.ticket['content']['_id']}]);
         },
         error => {
           console.log(error);

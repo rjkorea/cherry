@@ -1,5 +1,11 @@
 <div class="row">
   <div class="col-md-12">
+    <h3>{{content_name}} 입장</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
     <div class="input-group">
       <input type="text" class="form-control" placeholder="name, mobile number, email, birthday" [(ngModel)]="query" name="query" (keyup.enter)="onSearch()">
       <span class="input-group-btn">
@@ -82,7 +88,7 @@
                 <img *ngIf="user.image" class="img-thumbnail" src="{{user.image.profile.m}}">
               </div>
               <div class="col-md-4">
-                <h4><a (click)="onTablet(user._id)">{{user.name}}</a></h4>
+                <h4><a (click)="onTablet(content_oid, user._id)">{{user.name}}</a></h4>
                 <p *ngIf="user.mobile_number">
                   <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{user.mobile_number}}
                 </p>
