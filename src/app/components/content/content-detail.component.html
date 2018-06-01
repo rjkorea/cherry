@@ -8,9 +8,9 @@
         <div class="col-md-4">
           <img *ngIf="!content.image" class="img-thumbnail" src="assets/images/no_image_icon.png">
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.poster.m}}">
-          <div class="file-box">
+          <div class="form-group">
             <label for="upload-poster">포스터 이미지 업로드</label>
-            <input type="file" id="upload-poster" name="upload-poster" (change)="uploadPoster($event)">
+            <input type="file" id="upload-poster" name="upload-poster" (change)="uploadPoster($event.target.files)">
           </div>
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.logo.m}}">
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.og.m}}">
@@ -88,6 +88,7 @@
         <div class="col-md-2">
           <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="goTicket()">네트워크티켓</button>
           <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="goGroup()">그룹티켓</button>
+          <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="goEntrance(content._id)">입장</button>
           <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="onEdit()">수정</button>
           <button *ngIf="edit_mode" type="button" class="btn btn-default" (click)="onSave()">저장</button>
           <a *ngIf="edit_mode" (click)="onCancel()">취소</a>
