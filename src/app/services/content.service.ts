@@ -46,14 +46,12 @@ export class ContentService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public uploadPosterImage(id: string, files: FileList): Observable<{}> {
+  public uploadPosterImage(id: string, file: File): Observable<{}> {
     // WIP: build file form data
-    console.log(files);
+    console.log(file);
     const url = `${this.contentUrl}/${id}/image/poster`;
     let form = new FormData();
-    form.append('image', files[0], files[0].name);
-    form.append('test', 'hello world');
-    console.log(form);
+    form.append('image', file, file.name);
     const headers = new Headers({'Content-Type': 'multipart/form-data', 'Authorization': 'csk=' + localStorage.getItem('csk')});
     const options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(url, form, options)
