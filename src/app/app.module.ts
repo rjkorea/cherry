@@ -43,6 +43,7 @@ import { ContentGroupListComponent } from './components/content/content-group-li
 import { ContentGroupEditComponent } from './components/content/content-group-edit.component';
 import { ContentGroupNewComponent } from './components/content/content-group-new.component';
 import { ContentGroupTicketListComponent } from './components/content/content-group-ticket-list.component';
+import { ContentGroupTicketSearchComponent } from './components/content/content-group-ticket-search.component';
 import { ContentNewComponent } from './components/content/content-new.component';
 import { TicketTypeListComponent } from './components/ticket/type-list.component';
 import { TicketTypeDetailComponent } from './components/ticket/type-detail.component';
@@ -113,6 +114,7 @@ defineLocale('ko', koLocale);
     ContentGroupEditComponent,
     ContentGroupNewComponent,
     ContentGroupTicketListComponent,
+    ContentGroupTicketSearchComponent,
     TicketTypeListComponent,
     TicketTypeDetailComponent,
     TicketTypeNewComponent,

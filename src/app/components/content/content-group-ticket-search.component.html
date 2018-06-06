@@ -1,0 +1,117 @@
+<ng-template [ngIf]="is_loading">
+  <app-loader></app-loader>
+</ng-template>
+
+<div class="row">
+  <div class="col-md-11">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="이름, 핸드폰번호" [(ngModel)]="query" name="query" (keyup.enter)="search(query)">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" [disabled]="!query" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
+    </div>
+    <br>
+  </div>
+</div>
+
+<ng-template [ngIf]="!is_loading">
+  <div *ngIf="count">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>
+          <a [routerLink]="['/content', content._id, 'groups']">{{content.name}}</a> <span class="badge">{{count}}</span>
+        </h3>
+      </div>
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <tr>
+              <!-- <th>No</th> -->
+              <th>입장</th>
+              <th>그룹이름</th>
+              <th>그룹설명</th>
+              <th>이름   </th>
+              <th>전화번호</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let t of tickets; let i = index">
+              <!-- <td>{{((page-1)*size)+(i+1)}}</td> -->
+              <td>
+                <ui-switch size="small" [disabled]="!(t.name && t.mobile_number)" [(ngModel)]="t.used" (change)="changeUsed(t)"></ui-switch>
+              </td>
+              <td>
+                {{t.group.name}}
+              </td>
+              <td>
+                {{t.group.desc}}
+              </td>
+              <td class="col-8">
+                <input type="text" class="form-control input-sm" placeholder="이름을 입력하세요" [(ngModel)]="t.name" name="name">
+              </td>
+              <td class="col-8">
+                <input type="text" class="form-control input-sm" placeholder="전화번호를 입력하세요" [(ngModel)]="t.mobile_number" name="mobile_number">
+              </td>
+              <td>
+                <button type="button" class="btn btn-sm btn-default" [disabled]="!(t.name && t.mobile_number)" (click)="onSave(t)">
+                  <span class="glyphicon glyphicon-save"></span>
+                </button>
+                <button type="button" class="btn btn-sm btn-warning" [disabled]="!(t.name && t.mobile_number)" (click)="onReset(t)">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <button type="button" class="btn btn-sm btn-danger" (click)="onRemove(t)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm" [disabled]="!(t.name && t.mobile_number)" (click)="onSmsModal(t)" data-toggle="modal" data-target="#send-modal">
+                  <i class="fa fa-comment fa-lg" aria-hidden="true"></i>
+                </button>
+                <!-- Send Modal -->
+                <div class="modal fade" id="send-modal" tabindex="-1" role="dialog" aria-labelledby="send-modal-label">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="disable-modal-label">그룹티켓등록자 SMS전송</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p *ngIf="selected_group_ticket">
+                          <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{selected_group_ticket.name}}
+                        </p>
+                        <p *ngIf="selected_group_ticket">
+                          <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{selected_group_ticket.mobile_number}}
+                        </p>
+                        <div *ngIf="selected_group_ticket" class="form-group">
+                          <textarea type="text" class="form-control" rows="9" [(ngModel)]="sms_message"></textarea>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onSendSms()">SEND</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!!!count">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+        <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
+      </div>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">TKIT - Admin by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+    </div>
+  </div>
+</ng-template>
