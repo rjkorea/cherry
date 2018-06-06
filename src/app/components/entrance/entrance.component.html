@@ -24,7 +24,48 @@
 
 <div *ngIf="mode=='tablet'" class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">{{user.name}} 소유한 티켓 <span class="badge">{{tickets_count}}</span></h3>
+    <h3 class="panel-title">소유한 그룹티켓 <span class="badge">{{group_ticket_count}}</span></h3>
+  </div>
+  <div class="panel-body">
+    <div *ngIf="group_ticket_count">
+      <div class="row">
+        <div *ngFor="let gt of group_tickets">
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <img *ngIf="gt.content.image" src="{{gt.content.image.logo.m}}">
+              <img *ngIf="!gt.content.image" src="assets/images/no_image_icon.png">
+              <div class="caption">
+                <h3>{{gt.group.name}}</h3>
+                <h3>{{gt.group.desc}}</h3>
+                <h4>{{gt.name}}</h4>
+                <h5>{{gt.mobile_number.substr(0, 3)}} - {{gt.mobile_number.substr(3, 4)}} - {{gt.mobile_number.substr(7, 11)}}</h5>
+                <button type="button" class="btn btn-default" (click)="onDoneEntrance(gt)" [disabled]="gt.used">입장완료</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!!!group_ticket_count">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+          <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
+        </div>
+      </div>
+      <hr />
+    </div>
+
+  </div>
+</div>
+
+
+<div *ngIf="mode=='tablet'" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{user.name}} 소유한 네트워크 티켓
+      <span class="badge">{{tickets_count}}</span>
+    </h3>
   </div>
   <div class="panel-body">
     <div *ngIf="tickets_count">
@@ -35,7 +76,9 @@
               <img *ngIf="ticket.content.image" src="{{ticket.content.image.logo.m}}">
               <img *ngIf="!ticket.content.image" src="assets/images/no_image_icon.png">
               <div class="caption">
-                <h4><a [routerLink]="['ticket', ticket._id]">{{ticket.content.name}}</a></h4>
+                <h4>
+                  <a [routerLink]="['ticket', ticket._id]">{{ticket.content.name}}</a>
+                </h4>
                 <h5>{{ticket.ticket_type.name}}</h5>
                 <h5>{{ticket.ticket_type.desc}}</h5>
                 <h5 *ngIf="!ticket.send_user">보낸사람: 호스트</h5>
@@ -62,7 +105,9 @@
     <div *ngIf="!!!tickets_count">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+          <h1 class="text-center">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          </h1>
           <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
         </div>
       </div>
