@@ -153,7 +153,7 @@ export class ContentGroupTicketSearchComponent implements OnInit {
     const data = {
       sms_message: this.sms_message
     };
-    this.groupService.sendSmsGroupTicket(this.selected_group_ticket['content_oid'], this.selected_group_ticket['group_oid'], this.selected_group_ticket['_id'], data)
+    this.groupService.sendSmsGroupTicket(this.selected_group_ticket['content']['_id'], this.selected_group_ticket['group']['_id'], this.selected_group_ticket['_id'], data)
       .subscribe(
         response => {
           alert('SMS 전송이 완료되었습니다.');
