@@ -8,7 +8,7 @@
       <span class="input-group-addon">그룹</span>
       <input type="text" class="form-control" placeholder="이름, 설명" [(ngModel)]="query" name="query" (keyup.enter)="search()">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        <button class="btn btn-default" type="button" [disabled]="!query" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
       </span>
     </div>
     <br>
@@ -18,7 +18,7 @@
       <span class="input-group-addon">유저</span>
       <input type="text" class="form-control" placeholder="이름, 핸드폰번호" [(ngModel)]="query_group_ticket" name="query_group_ticket" (keyup.enter)="searchUser()">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button" (click)="searchUser()">
+        <button class="btn btn-default" type="button" [disabled]="!query_group_ticket" (click)="searchUser()">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </button>
       </span>
@@ -34,7 +34,7 @@
   <div *ngIf="count">
     <div class="row">
       <div class="col-md-12">
-        <h2>전체그룹티켓 {{group_ticket_count}} 매</h2>
+        <h2>전체그룹티켓 {{group_ticket_count}} 매 / 입장 {{group_ticket_used_count}} 명</h2>
         <h3><a [routerLink]="['/content', content._id]">{{content.name}}</a> <span class="badge">{{count}}</span></h3>
       </div>
       <div class="col-md-12">
@@ -44,6 +44,7 @@
               <th>이름</th>
               <th>설명</th>
               <th>등록율</th>
+              <th>입장율</th>
               <th>입장 / 등록 / 전체</th>
               <th></th>
             </tr>
@@ -51,6 +52,10 @@
               <td><a [routerLink]="['/content', this.content_oid, 'group', g._id, 'tickets']">{{g.name}}</a></td>
               <td>{{g.desc}}</td>
               <td><strong>{{((g.reg_gt_cnt/g.qty)*100).toString() | slice:0:4}}%</strong></td>
+              <td>
+                <strong *ngIf="g.reg_gt_cnt">{{((g.used_gt_cnt/g.reg_gt_cnt)*100).toString() | slice:0:4}}%</strong>
+                <strong *ngIf="!g.reg_gt_cnt">0%</strong>
+              </td>
               <td>
                 <span class="badge">{{g.used_gt_cnt}} / {{g.reg_gt_cnt}} / {{g.qty}}</span>
               </td>
