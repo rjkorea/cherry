@@ -32,7 +32,8 @@
             <img *ngIf="content.image" class="content_logo img-thumbnail" src="{{content.image.logo.m}}">
             <img *ngIf="!content.image" class="content_logo" src="assets/images/no_image_icon.png">
             <div class="caption">
-              <h3><a [routerLink]="['/content', content._id]">{{content.name | slice: 0:24}}</a></h3>
+              <h3 *ngIf="isStaffNavbar()">{{content.name | slice: 0:24}}</h3>
+              <h3 *ngIf="!isStaffNavbar()"><a [routerLink]="['/content', content._id]">{{content.name | slice: 0:24}}</a></h3>
               <hr />
               <p>
                 <span *ngIf="content.enabled" class="label label-success">활성화</span>
@@ -41,8 +42,8 @@
               <p *ngIf="content.when"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span> <span *ngIf="content.when.end">~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span></p>
               <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{content.place}}</p>
               <p>
-                <button type="button" class="btn btn-default" (click)="goTicket(content._id)">네트워크티켓</button>
-                <button type="button" class="btn btn-default" (click)="goGroup(content._id)">그룹티켓</button>
+                <button type="button" class="btn btn-default" [disabled]="isStaffNavbar()" (click)="goTicket(content._id)">네트워크티켓</button>
+                <button type="button" class="btn btn-default" [disabled]="isStaffNavbar()" (click)="goGroup(content._id)">그룹티켓</button>
                 <button type="button" class="btn btn-default" (click)="goEntrance(content._id)">입장</button>
               </p>
             </div>

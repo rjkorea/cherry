@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { ContentService } from '../../services/content.service';
+import { AuthService } from '../../services/auth.service';
 import { Content } from '../../models/content';
 
 @Component({
@@ -21,6 +22,7 @@ export class ContentListComponent implements OnInit {
 
   constructor(private contentService: ContentService,
               private route: ActivatedRoute,
+              private authService: AuthService,
               private router: Router) { }
 
   ngOnInit() {
@@ -85,4 +87,7 @@ export class ContentListComponent implements OnInit {
     this.loadContents(this.query, 1);
   }
 
+  isStaffNavbar() {
+    return this.authService.loggedIn() && this.authService.getRole() === 'staff';
+  }
 }
