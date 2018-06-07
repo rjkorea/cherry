@@ -26,6 +26,7 @@ import { ContentGroupListComponent } from './components/content/content-group-li
 import { ContentGroupEditComponent } from './components/content/content-group-edit.component';
 import { ContentGroupNewComponent } from './components/content/content-group-new.component';
 import { ContentGroupTicketListComponent } from './components/content/content-group-ticket-list.component';
+import { ContentGroupTicketSearchComponent } from './components/content/content-group-ticket-search.component';
 import { TicketTypeListComponent } from './components/ticket/type-list.component';
 import { TicketTypeDetailComponent } from './components/ticket/type-detail.component';
 import { TicketTypeNewComponent } from './components/ticket/type-new.component';
@@ -74,6 +75,7 @@ const routes: Routes = [
   { path: 'content/:content_oid/group/:group_oid/edit', component: ContentGroupEditComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/new', component: ContentGroupNewComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/:group_oid/tickets', component: ContentGroupTicketListComponent, canActivate: [AuthGuard] },
+  { path: 'content/:content_oid/group/search', component: ContentGroupTicketSearchComponent, canActivate: [AuthGuard] },
 
   { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/type/:id', component: TicketTypeDetailComponent, canActivate: [AuthGuard] },

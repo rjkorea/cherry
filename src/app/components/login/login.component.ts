@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.model.email.trim(), this.model.password.trim())
       .subscribe(
         response => {
-          if(this.authService.getRole() === 'staff') {
-            this.router.navigate(['/entrance']);
+          if (this.authService.getRole() === 'staff') {
+            this.router.navigate(['/content']);
           } else {
             this.router.navigate(['/home']);
           }

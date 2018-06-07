@@ -18,7 +18,8 @@ export class ContentGroupListComponent implements OnInit {
   page: any = 1;
   size: any = 20;
   count: any = 0;
-  group_ticket_count: any = 0;
+  group_ticket_count: number = 0;
+  group_ticket_used_count: number = 0;
   content_oid: string;
   content: Object;
   is_loading: boolean;
@@ -70,6 +71,7 @@ export class ContentGroupListComponent implements OnInit {
           this.count = response['count'];
           this.groups = response['data'];
           this.group_ticket_count = response['group_ticket_count'];
+          this.group_ticket_used_count = response['group_ticket_used_count'];
           window.scrollTo(0, 0);
           this.is_loading = false;
         },
@@ -119,20 +121,7 @@ export class ContentGroupListComponent implements OnInit {
   }
 
   searchUser() {
-    this.groupService.searchGroupTicket(this.content_oid, this.query_group_ticket)
-      .subscribe(
-        response => {
-          this.group_ticket = response['data'];
-          if (this.group_ticket) {
-            this.router.navigate(['/content', this.content_oid, 'group', this.group_ticket['group_oid'], 'tickets', { query: this.query_group_ticket }]);
-          } else {
-            alert('등록되어 있지 않은 유저입니다.');
-          }
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    this.router.navigate(['/content', this.content_oid, 'group', 'search', { query: this.query_group_ticket }])
   }
 
   onSmsModal(group: any) {

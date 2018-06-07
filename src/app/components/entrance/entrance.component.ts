@@ -21,7 +21,8 @@ export class EntranceComponent implements OnInit, OnDestroy {
   tickets_count: number;
   content_oid: string;
   content_name: string;
-  group_ticket: any;
+  group_tickets: any;
+  group_ticket_count: number;
   query: string;
 
   constructor(
@@ -39,6 +40,8 @@ export class EntranceComponent implements OnInit, OnDestroy {
     this.user = 'Noname';
     this.tickets = [];
     this.tickets_count = 0;
+    this.group_tickets = [];
+    this.group_ticket_count = 0;
     this.content_oid = '';
     this.content_name = '';
     const params: Params = this.route.snapshot.params;
@@ -68,10 +71,8 @@ export class EntranceComponent implements OnInit, OnDestroy {
   initWebSocket() {
     this.websocketService.getInstance().subscribe(
       response => {
-        console.log(response);
-        // check tablet_code
         if (localStorage.getItem('tablet_code') === response['tablet_code'] && this.content_oid === response['content_oid']) {
-          this.onTablet(response['content_oid'], response['auth_user_oid']);
+          this.onTablet(response['content_oid'], response['auth_user_oid'], response['mobile_number']);
         } else {
           console.log('아이패드의 컨텐츠 설정을 확인해주세요');
         }
@@ -91,7 +92,6 @@ export class EntranceComponent implements OnInit, OnDestroy {
   }
 
   onSearch() {
-    console.log('click search');
     this.userService.getUserList(this.query, 0, 100)
       .subscribe(
         response => {
@@ -102,43 +102,70 @@ export class EntranceComponent implements OnInit, OnDestroy {
           console.log(error);
         }
       );
-    // this.groupService.searchGroupTicket(this.content_oid, this.query)
-    //   .subscribe(
-    //     response => {
-    //       this.group_ticket = response['data'];
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   );
     this.mode = 'search'
   }
 
-  onTablet(content_oid: string, auth_user_oid: string) {
-    this.userService.getUser(auth_user_oid)
-      .subscribe(
-        response => {
-          this.user = response['data'];
-          console.log(this.user);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+  onTablet(content_oid: string, auth_user_oid: string, mobile_number: string) {
+    this.user = '';
+    this.tickets = null;
+    this.tickets_count = 0;
+    if (auth_user_oid) {
+      this.userService.getUser(auth_user_oid)
+        .subscribe(
+          response => {
+            this.user = response['data'];
+            this.getNetworkTickets();
+          },
+          error => {
+            console.log(error);
+          }
+        );
+    }
+    this.getGroupTickets(mobile_number);
+    this.mode = 'tablet';
+  }
 
-    this.ticketService.getTicketEntranceListByUser(content_oid, auth_user_oid, 0, 100)
+  getNetworkTickets() {
+    this.ticketService.getTicketEntranceListByUser(this.content_oid, this.user['_id'], 0, 100)
       .subscribe(
         response => {
           this.tickets = response['data'];
           this.tickets_count = response['count'];
-          console.log(this.tickets);
         },
         error => {
           console.log(error);
         }
       );
+  }
 
-    this.mode = 'tablet';
+  getGroupTickets(mobile_number: string) {
+    this.groupService.searchGroupTicket(this.content_oid, mobile_number)
+      .subscribe(
+        response => {
+          this.group_tickets = response['data'];
+          this.group_ticket_count = response['count'];
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  onDoneEntrance(group_ticket: any) {
+    const used_data = {
+      'used': true
+    };
+    this.groupService.updateGroupTicket(group_ticket['content']['_id'], group_ticket['group']['_id'], group_ticket['_id'], used_data)
+      .subscribe(
+        response => {
+          alert('입장처리를 완료했습니다.');
+          this.mode = 'idle';
+        },
+        error => {
+          alert(error['message']);
+          this.mode = 'idle';
+        }
+      );
   }
 
 }
