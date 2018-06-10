@@ -1,11 +1,13 @@
 <div class="row">
-  <div class="col-md-12">
-    <h3>{{content_name}} 입장</h3>
+  <div class="col-md-6">
+    <h3>
+      <a [routerLink]="['/content', content_oid]">{{content_name}}</a> 입장
+    </h3>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <div class="input-group">
       <input type="text" class="form-control" placeholder="name, mobile number, email, birthday" [(ngModel)]="query" name="query" (keyup.enter)="onSearch()">
       <span class="input-group-btn">
@@ -17,8 +19,22 @@
 </div>
 
 <div *ngIf="mode=='idle'">
-  <app-loader></app-loader>
-  <!--<app-entrance-loader></app-entrance-loader>-->
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">그룹티켓 방문율</h3>
+        </div>
+        <div class="panel-body">
+          <h1>{{((stats.group_ticket_used_count/stats.group_ticket_count)*100).toString() | slice:0:4}}
+            <small>%</small>
+          </h1>
+          <span class="label label-success">{{stats.group_ticket_count}} 등록완료</span>
+          <span class="label label-info">{{stats.group_ticket_used_count}} 방문객</span>
+        </div>
+      </div>
+    </div>
+  </div>
   <!--<h1><i class="glyphicon glyphicon-repeat gly-spin"></i> Waiting a tablet request.</h1>-->
 </div>
 
