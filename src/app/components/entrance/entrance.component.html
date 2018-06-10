@@ -29,8 +29,8 @@
           <h1>{{((stats.group_ticket_used_count/stats.group_ticket_count)*100).toString() | slice:0:4}}
             <small>%</small>
           </h1>
-          <span class="label label-success">{{stats.group_ticket_count}} 등록완료</span>
-          <span class="label label-info">{{stats.group_ticket_used_count}} 방문객</span>
+          <span class="label label-success">{{stats.group_ticket_count | number: '0.0-0'}} 등록완료</span>
+          <span class="label label-info">{{stats.group_ticket_used_count | number: '0.0-0'}} 방문객</span>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
 
 <div *ngIf="mode=='tablet'" class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">소유한 그룹티켓 <span class="badge">{{group_ticket_count}}</span></h3>
+    <h3 class="panel-title">소유한 그룹티켓 <span class="badge">{{group_ticket_count | number: '0.0-0'}}</span></h3>
   </div>
   <div class="panel-body">
     <div *ngIf="group_ticket_count">
@@ -136,7 +136,7 @@
 
 <div *ngIf="mode=='search'" class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">유저 <span class="badge">{{users_count}}</span></h3>
+    <h3 class="panel-title">유저 <span class="badge">{{users_count | number: '0.0-0'}}</span></h3>
   </div>
   <div class="panel-body">
     <div *ngIf="users_count">

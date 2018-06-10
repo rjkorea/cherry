@@ -24,7 +24,7 @@
             <li class="list-group-item"><strong>이름: </strong>{{order.ticket_type.name}}</li>
             <li class="list-group-item"><strong>설명: </strong>{{order.ticket_type.desc}}</li>
             <li class="list-group-item"><strong>데이: </strong>{{order.ticket_type.day}}</li>
-            <li class="list-group-item"><strong>가격: </strong>{{order.ticket_type.price | currency: 'KRW': true}}</li>
+            <li class="list-group-item"><strong>가격: </strong>{{order.ticket_type.price | currency: 'KRW': true: '0.0-0'}}</li>
           </ul>
           <ul class="list-group">
             <li class="list-group-item list-group-item-info"><strong>받는사람</strong></li>
@@ -34,7 +34,7 @@
           <ul *ngIf="order.fee" class="list-group">
             <li class="list-group-item list-group-item-info"><strong>티켓 가격</strong></li>
             <li class="list-group-item"><strong>결제수단: </strong>{{order.fee.method}}</li>
-            <li class="list-group-item"><strong>가격: </strong>{{order.fee.price | currency: 'KRW': true}}</li>
+            <li class="list-group-item"><strong>가격: </strong>{{order.fee.price | currency: 'KRW': true: '0.0-0'}}</li>
           </ul>
         </div>
       </div>

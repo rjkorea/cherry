@@ -22,7 +22,7 @@
           </div>
           <div class="panel-body">
             <h1>
-              {{total_ticket_count}}
+              {{total_ticket_count | number: '0.0-0'}}
               <small>장</small>
             </h1>
           </div>
@@ -34,7 +34,7 @@
             <h3 class="panel-title">전체 회사</h3>
           </div>
           <div class="panel-body">
-            <h1>{{total_company_count}} <small>사</small></h1>
+            <h1>{{total_company_count | number: '0.0-0'}} <small>사</small></h1>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
             <h3 class="panel-title">전체 사용자</h3>
           </div>
           <div class="panel-body">
-            <h1>{{total_user_count + total_group_ticket_count}} <small>명</small></h1>
+            <h1>{{(total_user_count + total_group_ticket_count) | number: '0.0-0'}} <small>명</small></h1>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
             <h3 class="panel-title">전체 컨텐츠</h3>
           </div>
           <div class="panel-body">
-            <h1>{{total_content_count}} <small>개</small></h1>
+            <h1>{{total_content_count | number: '0.0-0'}} <small>개</small></h1>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@
           <div class="panel-body">
             <ul class="list-group">
               <ng-container *ngFor="let tc of top_contents">
-                <li class="list-group-item"><span class="badge">{{tc.ticket_cnt}}</span>{{tc.content.name}}</li>
+                <li class="list-group-item"><span class="badge">{{tc.ticket_cnt | number: '0.0-0'}}</span>{{tc.content.name}}</li>
               </ng-container>
             </ul>
           </div>
@@ -116,8 +116,8 @@
             <h3 class="panel-title">온라인 사전결제 매출</h3>
           </div>
           <div class="panel-body">
-            <h1>{{pre_revenue.amount | currency: 'KRW': true}} <small>원</small></h1>
-            <span class="label label-success">{{pre_revenue.count}} 건</span>
+            <h1>{{pre_revenue.amount | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
+            <span class="label label-success">{{pre_revenue.count | number: '0.0-0'}} 건</span>
           </div>
         </div>
       </div>
@@ -127,9 +127,9 @@
             <h3 class="panel-title">현장 초대권 매출</h3>
           </div>
           <div class="panel-body">
-            <h1>{{(revenue.cash+revenue.creditcard) | currency: 'KRW': true}} <small>원</small></h1>
-            <span class="label label-success">{{revenue.cash | currency: 'KRW': true}}원 현금</span>
-            <span class="label label-primary">{{revenue.creditcard | currency: 'KRW': true}}원 신용카드</span>
+            <h1>{{(revenue.cash+revenue.creditcard) | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
+            <span class="label label-success">{{revenue.cash | currency: 'KRW': true: '0.0-0'}}원 현금</span>
+            <span class="label label-primary">{{revenue.creditcard | currency: 'KRW': true: '0.0-0'}}원 신용카드</span>
           </div>
         </div>
       </div>
@@ -142,10 +142,10 @@
             <h3 class="panel-title">발권티켓</h3>
           </div>
           <div class="panel-body">
-            <h1>{{(ticket_count.pend+ticket_count.send+ticket_count.register+ticket_count.pay+ticket_count.use+ticket_count.cancel)}} <small>장</small></h1>
-            <span class="label label-default">{{ticket_count.pend}} 전송대기</span>
-            <span class="label label-warning">{{ticket_count.send}} 전송중</span>
-            <span class="label label-danger">{{ticket_count.cancel}} 취소</span>
+            <h1>{{(ticket_count.pend+ticket_count.send+ticket_count.register+ticket_count.pay+ticket_count.use+ticket_count.cancel) | number: '0.0-0'}} <small>장</small></h1>
+            <span class="label label-default">{{ticket_count.pend | number: '0.0-0'}} 전송대기</span>
+            <span class="label label-warning">{{ticket_count.send | number: '0.0-0'}} 전송중</span>
+            <span class="label label-danger">{{ticket_count.cancel | number: '0.0-0'}} 취소</span>
           </div>
         </div>
       </div>
@@ -157,8 +157,8 @@
           <div class="panel-body">
             <h1 *ngIf="ticket_count.register>0">{{(((ticket_count.register+ticket_count.pay+ticket_count.use)/(ticket_count.send+ticket_count.register+ticket_count.pay+ticket_count.use))*100).toString() | slice:0:4}} <small>%</small></h1>
             <h1 *ngIf="ticket_count.register===0 && ticket_count.pay===0 && ticket_count.use===0">0 <small>%</small></h1>
-            <span class="label label-warning">{{ticket_count.send}} 전송중</span>
-            <span class="label label-success">{{ticket_count.register+ticket_count.pay}} 등록완료</span>
+            <span class="label label-warning">{{ticket_count.send | number: '0.0-0'}} 전송중</span>
+            <span class="label label-success">{{ticket_count.register+ticket_count.pay | number: '0.0-0'}} 등록완료</span>
           </div>
         </div>
       </div>
@@ -170,8 +170,8 @@
           <div class="panel-body">
             <h1 *ngIf="ticket_count.use>0">{{((ticket_count.use/(ticket_count.register+ticket_count.pay+ticket_count.use))*100).toString() | slice:0:4}} <small>%</small></h1>
             <h1 *ngIf="ticket_count.use===0">0 <small>%</small></h1>
-            <span class="label label-success">{{ticket_count.register+ticket_count.pay}}명 초대권 대상자</span>
-            <span class="label label-info">{{ticket_count.use}}명 방문객</span>
+            <span class="label label-success">{{(ticket_count.register+ticket_count.pay) | number: '0.0-0'}}명 초대권 대상자</span>
+            <span class="label label-info">{{ticket_count.use | number: '0.0-0'}}명 방문객</span>
           </div>
         </div>
       </div>
@@ -219,7 +219,7 @@
             <ul class="list-group">
               <ng-container *ngFor="let ttt of top_ticket_types">
                 <li class="list-group-item">
-                  <span class="badge">{{ttt.ticket_register_cnt+ttt.ticket_pay_cnt+ttt.ticket_use_cnt}} / {{ttt.ticket_cnt}}</span>{{ttt.ticket_type.name}} ({{ttt.ticket_type.desc}}) <span class="label label-default">{{(((ttt.ticket_register_cnt+ttt.ticket_pay_cnt+ttt.ticket_use_cnt)/ttt.ticket_cnt)*100).toString() | slice:0:4}}%</span>
+                  <span class="badge">{{(ttt.ticket_register_cnt+ttt.ticket_pay_cnt+ttt.ticket_use_cnt) | number: '0.0-0'}} / {{ttt.ticket_cnt | number: '0.0-0'}}</span>{{ttt.ticket_type.name}} ({{ttt.ticket_type.desc}}) <span class="label label-default">{{(((ttt.ticket_register_cnt+ttt.ticket_pay_cnt+ttt.ticket_use_cnt)/ttt.ticket_cnt)*100).toString() | slice:0:4}}%</span>
                 </li>
               </ng-container>
             </ul>
@@ -241,11 +241,11 @@
             <ul class="list-group">
               <ng-container *ngFor="let tto of top_ticket_orders">
                 <li class="list-group-item">
-                  <span class="badge">{{tto.ticket_register_cnt+tto.ticket_pay_cnt+tto.ticket_use_cnt}} / {{tto.ticket_cnt}}</span>
-                  <span class="badge badge-danger">{{tto.ticket_cancel_cnt}}</span>
-                  <span class="badge badge-info">{{tto.ticket_use_cnt}}</span>
-                  <span class="badge badge-primary">{{tto.ticket_pay_cnt}}</span>
-                  <span class="badge badge-success">{{tto.ticket_register_cnt}}</span>{{tto.ticket_order.receiver.name}} ({{tto.ticket_order.receiver.mobile_number}}) - {{tto.ticket_type.name}} ({{tto.ticket_type.desc}}) <span class="label label-default">{{(((tto.ticket_register_cnt+tto.ticket_pay_cnt+tto.ticket_use_cnt)/tto.ticket_cnt)*100).toString() | slice:0:4}}%</span>
+                  <span class="badge">{{(tto.ticket_register_cnt+tto.ticket_pay_cnt+tto.ticket_use_cnt) | number: '0.0-0'}} / {{tto.ticket_cnt | number: '0.0-0'}}</span>
+                  <span class="badge badge-danger">{{tto.ticket_cancel_cnt | number: '0.0-0'}}</span>
+                  <span class="badge badge-info">{{tto.ticket_use_cnt | number: '0.0-0'}}</span>
+                  <span class="badge badge-primary">{{tto.ticket_pay_cnt | number: '0.0-0'}}</span>
+                  <span class="badge badge-success">{{tto.ticket_register_cnt | number: '0.0-0'}}</span>{{tto.ticket_order.receiver.name}} ({{tto.ticket_order.receiver.mobile_number}}) - {{tto.ticket_type.name}} ({{tto.ticket_type.desc}}) <span class="label label-default">{{(((tto.ticket_register_cnt+tto.ticket_pay_cnt+tto.ticket_use_cnt)/tto.ticket_cnt)*100).toString() | slice:0:4}}%</span>
                 </li>
               </ng-container>
             </ul>

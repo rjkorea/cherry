@@ -37,7 +37,7 @@
               <td><a [routerLink]="['/ticket/order', o._id]">{{o.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</a></td>
               <td>{{o.receiver.name}}</td>
               <td>{{o.receiver.mobile_number}}</td>
-              <td><span *ngIf="o.fee">{{o.fee.price | currency: 'KRW': true}}</span></td>
+              <td><span *ngIf="o.fee">{{o.fee.price | currency: 'KRW': true: '0.0-0'}}</span></td>
               <td>
                 <ng-template [ngIf]="!o.slug">
                   <button type="button" class="btn btn-default btn-sm" (click)="onSms(o)" data-toggle="modal" data-target="#send-modal">
