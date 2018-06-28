@@ -27,7 +27,7 @@
     <br>
   </div>
   <div class="col-md-1">
-    <p><a routerLink="/ticket/types/new" class="btn btn-success" role="button">티켓타입 만들기</a></p>
+    <p><button class="btn btn-success" type="button" (click)="goNew()">티켓타입 만들기</button></p>
   </div>
 </div>
 
@@ -44,6 +44,7 @@
               <th></th>
               <th>이름</th>
               <th>설명</th>
+              <th>설명노출</th>
               <th>생성일시</th>
             </tr>
             <tr *ngFor="let t of types">
@@ -54,7 +55,10 @@
                 </button>
               </td>
               <td><a [routerLink]="['/ticket/type', t._id]">{{t.name | slice: 0:50}}</a></td>
-              <td>{{t.desc | slice: 0:70}}</td>
+              <td>{{t.desc.value | slice: 0:70}}</td>
+              <td>
+                <input type="checkbox" [(ngModel)]="t.desc.enabled" name="desc.enabled" [disabled]=true>
+              </td>
               <td>{{t.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
             </tr>
           </table>

@@ -34,8 +34,8 @@
   <div *ngIf="count">
     <div class="row">
       <div class="col-md-12">
-        <h2>전체그룹티켓 {{group_ticket_count}} 매 / 입장 {{group_ticket_used_count}} 명</h2>
-        <h3><a [routerLink]="['/content', content._id]">{{content.name}}</a> <span class="badge">{{count}}</span></h3>
+        <h2>전체그룹티켓 대상자 {{group_ticket_count | number: '0.0-0'}} 명 / 입장 {{group_ticket_used_count | number: '0.0-0'}} 명</h2>
+        <h3><a [routerLink]="['/content', content._id]">{{content.name}}</a> <span class="badge">{{count | number: '0.0-0'}}</span></h3>
       </div>
       <div class="col-md-12">
         <div class="table-responsive">
@@ -43,7 +43,7 @@
             <tr>
               <th>이름</th>
               <th>설명</th>
-              <th>등록율</th>
+              <!-- <th>등록율</th> -->
               <th>입장율</th>
               <th>입장 / 등록 / 전체</th>
               <th></th>
@@ -51,13 +51,13 @@
             <tr *ngFor="let g of groups">
               <td><a [routerLink]="['/content', this.content_oid, 'group', g._id, 'tickets']">{{g.name}}</a></td>
               <td>{{g.desc}}</td>
-              <td><strong>{{((g.reg_gt_cnt/g.qty)*100).toString() | slice:0:4}}%</strong></td>
+              <!-- <td><strong>{{((g.reg_gt_cnt/g.qty)*100).toString() | slice:0:4}}%</strong></td> -->
               <td>
                 <strong *ngIf="g.reg_gt_cnt">{{((g.used_gt_cnt/g.reg_gt_cnt)*100).toString() | slice:0:4}}%</strong>
                 <strong *ngIf="!g.reg_gt_cnt">0%</strong>
               </td>
               <td>
-                <span class="badge">{{g.used_gt_cnt}} / {{g.reg_gt_cnt}} / {{g.qty}}</span>
+                <span class="badge">{{g.used_gt_cnt | number: '0.0-0'}} / {{g.reg_gt_cnt | number: '0.0-0'}} / {{g.qty | number: '0.0-0'}}</span>
               </td>
               <td>
                 <button type="button" class="btn btn-default btn-sm" (click)="onSmsModal(g)" data-toggle="modal" data-target="#send-modal">
@@ -78,7 +78,7 @@
                           <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {{selected_group.name}} ({{selected_group.desc}})
                         </p>
                         <p *ngIf="selected_group">
-                          전송 대상자: {{selected_group.reg_gt_cnt}} 명
+                          전송 대상자: {{selected_group.reg_gt_cnt | number: '0.0-0'}} 명
                         </p>
                         <div *ngIf="selected_group" class="form-group">
                           <textarea type="text" class="form-control" rows="9" [(ngModel)]="sms_message"></textarea>

@@ -107,4 +107,8 @@ export class TicketTypeListComponent implements OnInit {
     this.router.navigate(['ticket/order', {ticket_type_oid: id}]);
   }
 
+  goNew() {
+    this.router.navigate(['/ticket/types/new', {content_oid: this.content_oid}]);
+  }
+
 }
