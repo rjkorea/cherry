@@ -26,7 +26,10 @@
           <h3 class="panel-title">그룹티켓 방문율</h3>
         </div>
         <div class="panel-body">
-          <h1>{{((stats.group_ticket_used_count/stats.group_ticket_count)*100).toString() | slice:0:4}}
+          <h1 *ngIf=stats.group_ticket_count>{{((stats.group_ticket_used_count/stats.group_ticket_count)*100).toString() | slice:0:4}}
+            <small>%</small>
+          </h1>
+          <h1 *ngIf=!stats.group_ticket_count>0
             <small>%</small>
           </h1>
           <span class="label label-success">{{stats.group_ticket_count | number: '0.0-0'}} 등록완료</span>
@@ -96,7 +99,7 @@
                   <a [routerLink]="['ticket', ticket._id]">{{ticket.content.name}}</a>
                 </h4>
                 <h5>{{ticket.ticket_type.name}}</h5>
-                <h5>{{ticket.ticket_type.desc}}</h5>
+                <h5>{{ticket.ticket_type.desc.value}}</h5>
                 <h5 *ngIf="!ticket.send_user">보낸사람: 호스트</h5>
                 <h5 *ngIf="ticket.send_user">보낸사람: {{ticket.send_user.name}}</h5>
                 <p>

@@ -14,7 +14,11 @@
           <ul *ngIf="!edit_mode" class="list-group">
             <li class="list-group-item"><strong>아이디: </strong>{{type._id}}</li>
             <li class="list-group-item"><strong>이름: </strong>{{type.name}}</li>
-            <li class="list-group-item"><strong>설명: </strong>{{type.desc}}</li>
+            <li class="list-group-item">
+              <strong>설명
+                <input type="checkbox" [(ngModel)]="type.desc.enabled" name="desc.enabled" [disabled]=true>
+            : </strong>{{type.desc.value}}
+            </li>
             <li class="list-group-item"><strong>컨텐츠: </strong>{{type.content.name}}</li>
             <li class="list-group-item"><strong>호스트: </strong>{{type.admin.name}}</li>
             <li class="list-group-item"><strong>수정일시: </strong>{{type.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
@@ -31,8 +35,13 @@
             </div>
             <br>
             <div class="input-group">
-              <span class="input-group-addon">설명</span>
-              <input type="text" class="form-control" [(ngModel)]="type.desc" name="desc">
+              <span class="input-group-addon">
+                설명
+              </span>
+              <input type="text" class="form-control" [(ngModel)]="type.desc.value" name="desc.value">
+              <span class="input-group-addon">
+                <input type="checkbox" [(ngModel)]="type.desc.enabled" name="desc.enabled"> 노출
+              </span>
             </div>
             <br>
           </div>

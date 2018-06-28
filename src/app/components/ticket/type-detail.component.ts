@@ -41,7 +41,10 @@ export class TicketTypeDetailComponent implements OnInit {
   onSave() {
     this.type_form = {
       name: this.type.name,
-      desc: this.type.desc,
+      desc: {
+        enabled: this.type.desc.enabled,
+        value: this.type.desc.value
+      },
       price: this.type.price,
       enabled: this.type.enabled
     };
