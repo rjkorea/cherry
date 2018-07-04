@@ -15,7 +15,7 @@
         <div class="form-group">
           <select class="form-control" name="type" [(ngModel)]="order.ticket_type_oid">
             <ng-container *ngFor="let t of types">
-              <option [ngValue]="t._id">{{t.name}} ({{t.day}} day) - {{t.desc}}</option>
+              <option [ngValue]="t._id">{{t.name}} ({{t.day}} day) - {{t.desc.value}}</option>
             </ng-container>
           </select>
         </div>
