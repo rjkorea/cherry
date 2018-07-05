@@ -1,31 +1,45 @@
 <div *ngIf="ticket">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">티켓</h3>
+      <h3 class="panel-title">티켓
+        <span *ngIf="ticket.status === 'pend'" class="label label-default">전송준비</span>
+        <span *ngIf="ticket.status === 'send'" class="label label-warning">전송중</span>
+        <span *ngIf="ticket.status === 'register'" class="label label-success">등록완료</span>
+        <span *ngIf="ticket.status === 'pay'" class="label label-primary">결제완료</span>
+        <span *ngIf="ticket.status === 'use'" class="label label-info">입장완료</span>
+        <span *ngIf="ticket.status === 'cancel'" class="label label-danger">취소</span>
+      </h3>
     </div>
     <div class="panel-body">
       <div class="row">
         <div class="col-md-6">
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-info">
+              <strong>티켓 전송 히스토리</strong>
+              <span class="badge badge-primary">{{ticket.history_send_users.length}}</span>
+            </li>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <tr>
+                  <th></th>
+                  <th>이름</th>
+                  <th>핸드폰번호</th>
+                </tr>
+                <tr *ngFor="let user of ticket.history_send_users">
+                  <td><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></td>
+                  <td>{{user.name}}</td>
+                  <td>{{user.mobile_number}}</td>
+                </tr>
+              </table>
+            </div>
+          </ul>
           <ul *ngIf="ticket.receive_user" class="list-group">
             <li class="list-group-item list-group-item-info"><strong>받은사람</strong></li>
-            <li class="list-group-item"><strong>아이디: </strong>{{ticket.receive_user._id}}</li>
             <li class="list-group-item"><strong>이름: </strong>{{ticket.receive_user.name}}</li>
             <li class="list-group-item"><strong>핸드폰번호: </strong>{{ticket.receive_user.mobile_number}}</li>
             <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>생년월일: </strong>{{ticket.receive_user.birthday}}</li>
             <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender}}</li>
-          </ul>
-          <ul *ngIf="ticket.send_user" class="list-group">
-            <li class="list-group-item list-group-item-info"><strong>보낸사람</strong></li>
-            <li class="list-group-item"><strong>아이디: </strong>{{ticket.send_user._id}}</li>
-            <li class="list-group-item"><strong>이름: </strong>{{ticket.send_user.name}}</li>
-            <li class="list-group-item"><strong>핸드폰번호: </strong>{{ticket.send_user.mobile_number}}</li>
-          </ul>
-          <ul *ngIf="ticket.history_send_users" class="list-group">
-            <li class="list-group-item list-group-item-info"><strong>티켓 전송 히스토리</strong></li>
-          </ul>
-          <ul class="list-group" *ngFor="let user of ticket.history_send_users">
-            <li class="list-group-item"><strong>이름: </strong>{{user.name}}</li>
-            <li class="list-group-item"><strong>핸드폰번호: </strong>{{user.mobile_number}}</li>
+            <li class="list-group-item"><strong>아이디: </strong>{{ticket.receive_user._id}}</li>
           </ul>
           <ul class="list-group">
             <li class="list-group-item list-group-item-info"><strong>티켓정보</strong></li>
@@ -44,7 +58,7 @@
             <li class="list-group-item"><strong>입장여부: </strong>{{d.entered}}</li>
             <li class="list-group-item" *ngIf="d.entered_at"><strong>입장일시: </strong>{{d.entered_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item" *ngIf="d.fee"><strong>결제수단: </strong>{{d.fee.method}}</li>
-            <li class="list-group-item" *ngIf="d.fee"><strong>가격: </strong>{{d.fee.price | currency: 'KRW': true}}</li>
+            <li class="list-group-item" *ngIf="d.fee"><strong>가격: </strong>{{d.fee.price | currency: 'KRW': true: '0.0-0'}}</li>
           </ul>
           <div class="stats">
             <span *ngIf="ticket.enabled" class="label label-success">활성화</span>
