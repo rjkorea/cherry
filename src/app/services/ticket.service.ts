@@ -18,6 +18,7 @@ export class TicketService {
   ticketsUrl = `${URL}/a/tickets`;
   ticketsEntranceUrl = `${URL}/a/tickets/entrance`;
   logsUrl = `${URL}/a/tickets/logs`;
+  logUrl = `${URL}/a/ticket/log`;
   options;
 
   constructor(private http: Http) {
@@ -135,11 +136,18 @@ export class TicketService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public getLogList(content_oid: string, start: Number, size: Number): Observable<{}> {
-    const url = `${this.logsUrl}?content_oid=${content_oid}&start=${start}&size=${size}`;
+  public getLogList(content_oid: string, query: string, start: Number, size: Number): Observable<{}> {
+    const url = `${this.logsUrl}?content_oid=${content_oid}&q=${query}&start=${start}&size=${size}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public getLog(id: string): Observable<{}> {
+    const url = `${this.logUrl}/${id}`;
+    return this.http.get(url, this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
   public getTicketEntranceListByUser(content_oid: string, receive_user_oid: string, start: Number, size: Number): Observable<{}> {

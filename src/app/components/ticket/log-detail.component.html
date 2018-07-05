@@ -1,0 +1,59 @@
+<div *ngIf="log">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">티켓로그 상세 <span *ngIf="log.action === 'send'" class="label label-warning">전송중</span> <span class="time">{{log.created_at | amFromUnix | amTimeAgo: true}} ago</span></h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-info"><strong>보낸사람</strong></li>
+            <li class="list-group-item"><strong>이름: </strong>{{log.send_user.name}}</li>
+            <li class="list-group-item"><strong>핸드폰번호: </strong>{{log.send_user.mobile_number}}</li>
+          </ul>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-info"><strong>받은사람</strong></li>
+            <li class="list-group-item"><strong>이름: </strong>{{log.receive_user.name}}</li>
+            <li class="list-group-item"><strong>핸드폰번호: </strong>{{log.receive_user.mobile_number}}</li>
+          </ul>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-info"><strong>컨텐츠 이름</strong></li>
+            <li class="list-group-item">{{log.content.name}}</li>
+          </ul>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-info"><strong>티켓 리스트</strong><span class="badge badge-primary">{{log.tickets.length}}</span></li>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <tr>
+                  <th>타입</th>
+                  <th>상태</th>
+                  <th>소유자</th>
+                </tr>
+                <tr *ngFor="let ticket of log.tickets">
+                  <td>
+                    <a [routerLink]="['/ticket', ticket._id]">{{ticket.ticket_type.name}} ({{ticket.ticket_type.desc.value}})</a>
+                  </td>
+                  <td>
+                    <span *ngIf="ticket.status === 'pend'" class="label label-default">전송준비</span>
+                    <span *ngIf="ticket.status === 'send'" class="label label-warning">전송중</span>
+                    <span *ngIf="ticket.status === 'register'" class="label label-success">등록완료</span>
+                    <span *ngIf="ticket.status === 'pay'" class="label label-primary">결제완료</span>
+                    <span *ngIf="ticket.status === 'use'" class="label label-info">입장완료</span>
+                    <span *ngIf="ticket.status === 'cancel'" class="label label-danger">취소</span>
+                  </td>
+                  <td>{{ticket.receive_user.name}}</td>
+                </tr>
+              </table>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+    </div>
+  </div>
+</div>

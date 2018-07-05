@@ -55,6 +55,7 @@ import { TicketListComponent } from './components/ticket/ticket-list.component';
 import { TicketDetailComponent } from './components/ticket/ticket-detail.component';
 import { TicketRegisterComponent } from './components/ticket/ticket-register.component';
 import { TicketLogListComponent } from './components/ticket/log-list.component';
+import { TicketLogDetailComponent } from './components/ticket/log-detail.component';
 import { PlaceListComponent } from './components/place/place-list.component';
 import { PlaceDetailComponent } from './components/place/place-detail.component';
 import { PlaceNewComponent } from './components/place/place-new.component';
@@ -125,6 +126,7 @@ defineLocale('ko', koLocale);
     TicketDetailComponent,
     TicketRegisterComponent,
     TicketLogListComponent,
+    TicketLogDetailComponent,
     PlaceListComponent,
     PlaceDetailComponent,
     PlaceNewComponent,

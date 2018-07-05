@@ -66,7 +66,10 @@ export class TicketOrderNewComponent implements OnInit {
       {
         _id: '',
         name: '티켓타입',
-        desc: '설명',
+        desc: {
+          enabled: true,
+          value: '설명',
+        },
         day: '1'
       }
     ];
@@ -87,7 +90,10 @@ export class TicketOrderNewComponent implements OnInit {
       {
         _id: '',
         name: '티켓타입',
-        desc: '설명',
+        desc: {
+          enabled: true,
+          value: '설명'
+        },
         day: 'day'
       }
     ];

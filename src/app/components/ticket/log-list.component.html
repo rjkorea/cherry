@@ -15,6 +15,17 @@
       </div>
     </ng-template>
   </div>
+  <div class="col-md-6">
+    <br>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="이름, 핸드폰번호" [(ngModel)]="query" name="query" (keyup.enter)="search(query)">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="search(query)">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+      </span>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="!is_loading">
@@ -29,7 +40,7 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <tr>
-              <th>전송일시</th>
+              <th>일시</th>
               <th>보낸사람</th>
               <th>받은사람</th>
               <th>티켓</th>
@@ -38,7 +49,7 @@
             </tr>
             <tr *ngFor="let l of logs">
               <td>
-                <span>{{l.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD hh:mm:ss'}}</span>
+                <a [routerLink]="['/tickets/log', l._id]">{{l.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD hh:mm:ss'}}</a>
               </td>
               <td>
                 <span>{{l.send_user.name}}</span>
@@ -47,7 +58,7 @@
                 <span>{{l.receive_user.name}}</span>
               </td>
               <td>
-                <span>{{l.tickets[0].name}} 그외 기타</span>
+                <span>{{l.tickets[0].ticket_type.name}} <span *ngIf="l.tickets.length>=2">그외 기타</span></span>
               </td>
               <td>
                 <span>{{l.tickets.length}}</span>
@@ -58,16 +69,12 @@
             </tr>
           </table>
         </div>
-<!--    <nav aria-label="...">
+        <nav aria-label="...">
           <ul class="pager">
-            <li *ngIf="page!=1">
-              <a (click)="onPrev()">이전</a>
-            </li>
-            <li *ngIf="page*size<count">
-              <a (click)="onNext()">다음</a>
-            </li>
+            <li *ngIf="page!=1"><a (click)="onPrev()">이전</a></li>
+            <li *ngIf="page*size<count"><a (click)="onNext()">다음</a></li>
           </ul>
-        </nav> -->
+        </nav>
       </div>
 
       <div *ngIf="!!!count">
@@ -86,7 +93,7 @@
   </div>
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-      <p class="text-right">TKIT - Admin by
+      <p class="text-right">TKIT - Host by
         <a href="http://rjkorea.com">RJ Korea Entertainment</a>
       </p>
     </div>
