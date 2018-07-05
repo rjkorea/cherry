@@ -20,7 +20,7 @@
     <div class="input-group">
       <input type="text" class="form-control" placeholder="이름, 핸드폰번호" [(ngModel)]="query" name="query" (keyup.enter)="search(query)">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button" (click)="search()">
+        <button class="btn btn-default" type="button" (click)="search(query)">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </button>
       </span>
