@@ -13,7 +13,7 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-6">
-          <ul class="list-group">
+          <ul *ngIf="ticket.history_send_users" class="list-group">
             <li class="list-group-item list-group-item-info">
               <strong>티켓 전송 히스토리</strong>
               <span class="badge badge-primary">{{ticket.history_send_users.length}}</span>
