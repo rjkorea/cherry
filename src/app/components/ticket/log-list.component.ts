@@ -15,6 +15,7 @@ export class TicketLogListComponent implements OnInit {
   count = 0;
   size = 20;
   page = 1;
+  query = '';
   logs: any;
   content_oid: any;
   contents: any;
@@ -44,8 +45,11 @@ export class TicketLogListComponent implements OnInit {
     if ('content_oid' in params) {
       this.content_oid = params['content_oid'];
     }
+    if ('query' in params) {
+      this.query = params['query'];
+    }
 
-    this.loadLogs(this.page, this.content_oid);
+    this.loadLogs(this.page, this.content_oid, this.query);
   }
 
   loadContents() {
@@ -61,9 +65,9 @@ export class TicketLogListComponent implements OnInit {
   }
 
 
-  loadLogs(page: any, content_oid: string) {
+  loadLogs(page: any, content_oid: string, query: string) {
     this.is_loading = true;
-    this.ticketService.getLogList(content_oid, (page - 1) * this.size, this.size)
+    this.ticketService.getLogList(content_oid, query, (page - 1) * this.size, this.size)
       .subscribe(
         response => {
           this.count = response['count'];
@@ -77,6 +81,26 @@ export class TicketLogListComponent implements OnInit {
       );
   }
 
+  search(query: string) {
+    this.page = 1;
+    this.router.navigate(['/tickets/log', { page: this.page, content: this.content_oid, query: this.query }]);
+    this.loadLogs(this.page, this.content_oid, this.query);
+  }
+
+  onPrev() {
+    const page = this.page - 1;
+    this.page = page;
+    this.router.navigate(['/tickets/log', { query: this.query, page: page, content_oid: this.content_oid }]);
+    this.loadLogs(page, this.content_oid, this.query);
+  }
+
+  onNext() {
+    const page = this.page + 1;
+    this.page = page;
+    this.router.navigate(['/tickets/log', { query: this.query, page: page, content_oid: this.content_oid }]);
+    this.loadLogs(page, this.content_oid, this.query);
+  }
+
   checkRole() {
     return this.authService.getRole() === 'super' ||
       this.authService.getRole() === 'admin' ||
@@ -85,8 +109,8 @@ export class TicketLogListComponent implements OnInit {
 
   changeContent() {
     this.page = 1;
-    this.router.navigate(['/tickets/log', { page: this.page, content: this.content_oid }]);
-    this.loadLogs(this.page, this.content_oid);
+    this.router.navigate(['/tickets/log', { page: this.page, content: this.content_oid, query: this.query }]);
+    this.loadLogs(this.page, this.content_oid, this.query);
   }
 
 }
