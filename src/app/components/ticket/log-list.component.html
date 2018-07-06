@@ -32,7 +32,7 @@
   <div *ngIf="count">
     <div class="row">
       <div class="col-md-12">
-        <h3>티켓로그
+        <h3>티켓트랙킹
           <span class="badge">{{count}}</span>
         </h3>
       </div>
@@ -49,7 +49,7 @@
             </tr>
             <tr *ngFor="let l of logs">
               <td>
-                <a [routerLink]="['/tickets/log', l._id]">{{l.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD hh:mm:ss'}}</a>
+                <a [routerLink]="['/tickets/log', l._id]">{{l.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD a hh:mm:ss'}}</a>
               </td>
               <td>
                 <span>{{l.send_user.name}}</span>
