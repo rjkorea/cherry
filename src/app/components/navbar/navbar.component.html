@@ -48,7 +48,7 @@
         <li><a routerLink="/qna" routerLinkActive="active" data-toggle="collapse">Q&A</a></li>
         <!--<li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>-->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">팀 (TIM) <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="new-badge" class="badge">N</span> 팀 (TIM) <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a routerLink="/tickets/log" data-toggle="collapse">티켓트랙킹</a></li>
           </ul>
@@ -158,6 +158,48 @@
         </li>
       </ul>
     </div>
+
+    <!-- pro -->
+    <div *ngIf="isProNavbar()" id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">홈</a></li>
+        <li><a routerLink="/admin" routerLinkActive="active" data-toggle="collapse">스텝</a></li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">컨텐츠</a></li>
+        <li><a routerLink="/ticket/type" routerLinkActive="active" data-toggle="collapse">티켓</a></li>
+        <!--<li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ticket <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/ticket/type" data-toggle="collapse">Type</a></li>
+            <li><a routerLink="/ticket/order" data-toggle="collapse">Order</a></li>
+            <li><a routerLink="/ticket" data-toggle="collapse">Ticket</a></li>
+          </ul>
+        </li>-->
+        <!-- <li><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">입장</a></li> -->
+        <li><a routerLink="/qna" routerLinkActive="active" data-toggle="collapse">Q&A</a></li>
+        <!--<li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>-->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">팀 (TIM)
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a routerLink="/tickets/log" data-toggle="collapse">티켓트랙킹</a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{getUserName()}} ({{getRole()}})<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['/profile', getUserId()]" data-toggle="collapse">프로필</a></li>
+            <li><a routerLink="/login" (click)="logout()">로그아웃</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
 
   </div>
 </nav>

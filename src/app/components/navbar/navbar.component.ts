@@ -48,6 +48,10 @@ export class NavbarComponent implements OnInit {
     return this.authService.loggedIn() && this.authService.getRole() === 'staff';
   }
 
+  isProNavbar() {
+    return this.authService.loggedIn() && this.authService.getRole() === 'pro';
+  }
+
   logout() {
     this.authService.logout();
   }
