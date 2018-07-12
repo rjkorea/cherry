@@ -104,7 +104,8 @@ export class TicketLogListComponent implements OnInit {
   checkRole() {
     return this.authService.getRole() === 'super' ||
       this.authService.getRole() === 'admin' ||
-      this.authService.getRole() === 'host';
+      this.authService.getRole() === 'host' ||
+      this.authService.getRole() === 'pro';
   }
 
   changeContent() {
