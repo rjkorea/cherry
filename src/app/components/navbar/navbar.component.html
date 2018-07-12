@@ -18,7 +18,6 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a routerLink="/login" routerLinkActive="active" data-toggle="collapse">로그인</a></li>
-        <!-- <li><a routerLink="/signup" routerLinkActive="active" data-toggle="collapse">Signup</a></li> -->
       </ul>
     </div>
 
@@ -35,25 +34,13 @@
           </ul>
         </li>
         <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">컨텐츠</a></li>
-        <!-- <li><a routerLink="/ticket/type" routerLinkActive="active" data-toggle="collapse">티켓</a></li> -->
-        <!--<li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ticket <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/ticket/type" data-toggle="collapse">Type</a></li>
-            <li><a routerLink="/ticket/order" data-toggle="collapse">Order</a></li>
-            <li><a routerLink="/ticket" data-toggle="collapse">Ticket</a></li>
-          </ul>
-        </li>-->
-        <!-- <li><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">입장</a></li> -->
         <li><a routerLink="/qna" routerLinkActive="active" data-toggle="collapse">Q&A</a></li>
-        <!--<li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>-->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="new-badge" class="badge">N</span> 팀 (TIM) <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/tickets/log" data-toggle="collapse">티켓트랙킹</a></li>
+            <li><a routerLink="/tickets/log" data-toggle="collapse">트레이스</a></li>
           </ul>
         </li>
-
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -79,25 +66,14 @@
           </ul>
         </li>
         <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">컨텐츠</a></li>
-        <!-- <li><a routerLink="/ticket/type" routerLinkActive="active" data-toggle="collapse">티켓</a></li> -->
-        <!--<li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ticket <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/ticket/type" data-toggle="collapse">Type</a></li>
-            <li><a routerLink="/ticket/order" data-toggle="collapse">Order</a></li>
-            <li><a routerLink="/ticket" data-toggle="collapse">Ticket</a></li>
-          </ul>
-        </li>-->
-        <!-- <li><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">입장</a></li> -->
         <li><a routerLink="/qna" routerLinkActive="active" data-toggle="collapse">Q&A</a></li>
         <!--<li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>-->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">팀 (TIM) <span class="caret"></span></a>
+        <!-- <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="new-badge" class="badge">N</span> 팀 (TIM) <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/tickets/log" data-toggle="collapse">티켓트랙킹</a></li>
+            <li><a routerLink="/tickets/log" data-toggle="collapse">트레이스</a></li>
           </ul>
-        </li>
-
+        </li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -117,17 +93,7 @@
         <li><a routerLink="/admin" routerLinkActive="active" data-toggle="collapse">스텝</a></li>
         <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">컨텐츠</a></li>
         <li><a routerLink="/ticket/type" routerLinkActive="active" data-toggle="collapse">티켓</a></li>
-        <!--<li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ticket <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/ticket/type" data-toggle="collapse">Type</a></li>
-            <li><a routerLink="/ticket/order" data-toggle="collapse">Order</a></li>
-            <li><a routerLink="/ticket" data-toggle="collapse">Ticket</a></li>
-          </ul>
-        </li>-->
-        <!-- <li><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">입장</a></li> -->
         <li><a routerLink="/qna" routerLinkActive="active" data-toggle="collapse">Q&A</a></li>
-        <!--<li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -144,9 +110,6 @@
     <div *ngIf="isStaffNavbar()" id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
         <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">컨텐츠</a></li>
-        <!--<li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">Home</a></li>-->
-        <!-- <li><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">입장</a></li> -->
-        <!--<li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -166,28 +129,17 @@
         <li><a routerLink="/admin" routerLinkActive="active" data-toggle="collapse">스텝</a></li>
         <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">컨텐츠</a></li>
         <li><a routerLink="/ticket/type" routerLinkActive="active" data-toggle="collapse">티켓</a></li>
-        <!--<li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ticket <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/ticket/type" data-toggle="collapse">Type</a></li>
-            <li><a routerLink="/ticket/order" data-toggle="collapse">Order</a></li>
-            <li><a routerLink="/ticket" data-toggle="collapse">Ticket</a></li>
-          </ul>
-        </li>-->
-        <!-- <li><a routerLink="/entrance" routerLinkActive="active" data-toggle="collapse">입장</a></li> -->
         <li><a routerLink="/qna" routerLinkActive="active" data-toggle="collapse">Q&A</a></li>
-        <!--<li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>-->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">팀 (TIM)
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="new-badge" class="badge">N</span> 팀 (TIM)
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a routerLink="/tickets/log" data-toggle="collapse">티켓트랙킹</a>
+              <a routerLink="/tickets/log" data-toggle="collapse">트레이스</a>
             </li>
           </ul>
         </li>
-
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -199,7 +151,6 @@
         </li>
       </ul>
     </div>
-
 
   </div>
 </nav>
