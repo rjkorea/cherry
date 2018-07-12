@@ -83,7 +83,7 @@ export class TicketLogListComponent implements OnInit {
 
   search(query: string) {
     this.page = 1;
-    this.router.navigate(['/tickets/log', { page: this.page, content: this.content_oid, query: this.query }]);
+    this.router.navigate(['/tickets/log', { page: this.page, content_oid: this.content_oid, query: this.query }]);
     this.loadLogs(this.page, this.content_oid, this.query);
   }
 
@@ -109,7 +109,7 @@ export class TicketLogListComponent implements OnInit {
 
   changeContent() {
     this.page = 1;
-    this.router.navigate(['/tickets/log', { page: this.page, content: this.content_oid, query: this.query }]);
+    this.router.navigate(['/tickets/log', { page: this.page, content_oid: this.content_oid, query: this.query }]);
     this.loadLogs(this.page, this.content_oid, this.query);
   }
 
