@@ -43,6 +43,7 @@
               <th>일시</th>
               <th>보낸사람</th>
               <th>받은사람</th>
+              <th>컨텐츠</th>
               <th>티켓</th>
               <th>갯수</th>
               <th>액션</th>
@@ -56,6 +57,9 @@
               </td>
               <td>
                 <span>{{l.receive_user.name}}</span>
+              </td>
+              <td>
+                <span>{{l.content.name}}</span>
               </td>
               <td>
                 <span>{{l.tickets[0].ticket_type.name}} <span *ngIf="l.tickets.length>=2">그외 기타</span></span>
