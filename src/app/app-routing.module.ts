@@ -4,6 +4,7 @@ import { AuthGuard } from './services/auth.guard';
 
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { RankComponent } from './components/rank/rank.component';
 import { ReportComponent } from './components/report/report.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -53,6 +54,8 @@ const routes: Routes = [
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/:id', component: DashboardComponent, canActivate: [AuthGuard] },
+
+  { path: 'rank', component: RankComponent, canActivate: [AuthGuard] },
 
   { path: 'report', component: ReportComponent, canActivate: [AuthGuard] },
   { path: 'report/:id', component: ReportComponent, canActivate: [AuthGuard] },

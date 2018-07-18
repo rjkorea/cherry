@@ -1,0 +1,73 @@
+<div *ngIf="is_loading">
+  <app-loader></app-loader>
+</div>
+<div *ngIf="!is_loading">
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <select class="form-control" [(ngModel)]="content_oid" (ngModelChange)="changeContent()">
+        <ng-container *ngFor="let c of contents">
+          <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+  <br>
+
+  <ng-template [ngIf]="!content_oid">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h3>팀의 티켓오더 메트릭스입니다. 컨텐츠를 선택해주세요.</h3>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="content_oid">
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3>티켓오더 메트릭스
+          <span class="badge"></span>
+        </h3>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <tr>
+              <th>셀러</th>
+              <th>티켓타입</th>
+              <th (click)="onSort('send')"><span *ngIf="sort=='send'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 전송중</th>
+              <th (click)="onSort('register')"><span *ngIf="sort=='register'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 등록완료</th>
+              <th (click)="onSort('pay')"><span *ngIf="sort=='pay'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 결제완료</th>
+              <th (click)="onSort('use')"><span *ngIf="sort=='use'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 입장</th>
+              <th (click)="onSort('cancel')"><span *ngIf="sort=='cancel'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 취소</th>
+              <th>전환율(등록+결제+입장)</th>
+            </tr>
+            <tr *ngFor="let tos of ticket_orders_stats">
+              <td>{{tos.ticket_order.receiver.name}} ({{tos.ticket_order.receiver.mobile_number}})</td>
+              <td>{{tos.ticket_type.name}} ({{tos.ticket_type.desc.value}})</td>
+              <td><span class="label label-warning">{{tos.send | number: '0.0-0'}}</span></td>
+              <td><span class="badge badge-success">{{tos.register | number: '0.0-0'}}</span></td>
+              <td><span class="badge badge-primary">{{tos.pay | number: '0.0-0'}}</span></td>
+              <td><span class="badge badge-info">{{tos.use | number: '0.0-0'}}</span></td>
+              <td><span class="badge badge-danger">{{tos.cancel | number: '0.0-0'}}</span></td>
+              <td>
+                <span class="badge">
+                  {{(((tos.register+tos.pay+tos.use)/(tos.pend+tos.send+tos.register+tos.pay+tos.use+tos.cancel))*100).toString() | slice:0:4}}%
+                  ({{(tos.register+tos.pay+tos.use) | number: '0.0-0'}} / {{(tos.pend+tos.send+tos.register+tos.pay+tos.use+tos.cancel) | number: '0.0-0'}})
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">
+        TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a>
+      </p>
+    </div>
+  </div>
+</div>
