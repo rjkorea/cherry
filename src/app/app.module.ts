@@ -22,6 +22,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { RankComponent } from './components/rank/rank.component';
 import { ReportComponent } from './components/report/report.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -82,6 +83,7 @@ import { UtilService } from './services/util.service';
 import { QnaService } from './services/qna.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
+import { RankService } from './services/rank.service';
 
 defineLocale('ko', koLocale);
 
@@ -91,6 +93,7 @@ defineLocale('ko', koLocale);
     NavbarComponent,
     LoginComponent,
     DashboardComponent,
+    RankComponent,
     ReportComponent,
     NotificationComponent,
     PageNotFoundComponent,
@@ -161,6 +164,7 @@ defineLocale('ko', koLocale);
     AuthGuard,
     AuthService,
     DashboardService,
+    RankService,
     ReportService,
     NotificationService,
     WebSocketService,
