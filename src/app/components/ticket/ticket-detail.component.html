@@ -37,7 +37,6 @@
             <li class="list-group-item list-group-item-info"><strong>받은사람</strong></li>
             <li class="list-group-item"><strong>이름: </strong>{{ticket.receive_user.name}}</li>
             <li class="list-group-item"><strong>핸드폰번호: </strong>{{ticket.receive_user.mobile_number}}</li>
-            <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>생년월일: </strong>{{ticket.receive_user.birthday}}</li>
             <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender}}</li>
             <li class="list-group-item"><strong>아이디: </strong>{{ticket.receive_user._id}}</li>
           </ul>
