@@ -37,7 +37,6 @@
               <th>티켓상태</th>
               <th>받은사람</th>
               <th>핸드폰번호</th>
-              <th>생년월일</th>
               <th>성별</th>
               <th></th>
               <th></th>
@@ -55,7 +54,6 @@
               </td>
               <td><span *ngIf="t.receive_user"><a [routerLink]="['/user', t.receive_user._id]">{{t.receive_user.name}}</a></span></td>
               <td><span *ngIf="t.receive_user">{{t.receive_user.mobile_number}}</span></td>
-              <td><span *ngIf="t.receive_user && t.receive_user.birthday">{{t.receive_user.birthday}}</span></td>
               <td><span *ngIf="t.receive_user && t.receive_user.gender">{{t.receive_user.gender}}</span></td>
               <td>
                 <button *ngIf="t.status === 'register' || t.status === 'send'" type="button" class="btn btn-default btn-sm" (click)="onSmsModal(t)" data-toggle="modal" data-target="#send-modal">
