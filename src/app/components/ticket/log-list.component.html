@@ -5,7 +5,6 @@
 <div class="row">
   <div class="col-md-6">
     <ng-template [ngIf]="checkRole()">
-      <br>
       <div class="form-group">
         <select class="form-control" name="content" [(ngModel)]="content_oid" (ngModelChange)="changeContent()">
           <ng-container *ngFor="let c of contents">
@@ -16,7 +15,6 @@
     </ng-template>
   </div>
   <div class="col-md-6">
-    <br>
     <div class="input-group">
       <input type="text" class="form-control" placeholder="이름, 핸드폰번호" [(ngModel)]="query" name="query" (keyup.enter)="search(query)">
       <span class="input-group-btn">

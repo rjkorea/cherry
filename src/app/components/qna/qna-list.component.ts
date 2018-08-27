@@ -12,7 +12,7 @@ import { ContentService } from '../../services/content.service';
 export class QnaListComponent implements OnInit {
   qnas: object[];
   content_oid: string;
-  contents: object[];
+  contents: any;
   query: any = '';
   page: any = 1;
   size: any = 10;
@@ -27,13 +27,7 @@ export class QnaListComponent implements OnInit {
   ngOnInit() {
     this.is_loading = true;
     this.content_oid = '';
-    this.contents = [
-      {
-        _id: '',
-        name: '컨텐츠',
-        company: { name: '회사 이름' }
-      }
-    ];
+    this.contents = [];
     this.loadContents();
     const params: Params = this.route.snapshot.params;
     if ('query' in params) {
@@ -42,7 +36,12 @@ export class QnaListComponent implements OnInit {
     if ('page' in params) {
       this.page = +params['page'];
     }
-    this.loadQnas(this.query, this.page);
+    if ('content_oid') {
+      this.content_oid = params['content_oid'];
+    }
+    if (this.content_oid) {
+      this.loadQnas(this.query, this.page);
+    }
   }
 
   loadQnas(query: any, page: any) {
@@ -66,7 +65,7 @@ export class QnaListComponent implements OnInit {
     this.contentService.getContentList('', 0, 100)
       .subscribe(
         response => {
-          this.contents = this.contents.concat(response['data']);
+          this.contents = response['data'];
         },
         error => {
           console.log(error);
