@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { AdminService } from '../../services/admin.service';
 import { CompanyService } from '../../services/company.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin-detail',
@@ -20,11 +21,12 @@ export class AdminDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private companyService: CompanyService,
+              private authService: AuthService,
               private adminService: AdminService) { }
 
   ngOnInit() {
     this.loadCompanies();
-    let params: Params = this.route.snapshot.params;
+    const params: Params = this.route.snapshot.params;
     this.loadAdmin(params['id']);
     this.edit_mode = false;
   }
