@@ -26,15 +26,8 @@ export class TicketTypeListComponent implements OnInit {
 
   ngOnInit() {
     this.is_loading = true;
-    this.contents = [
-      {
-        _id: '',
-        name: '컨텐츠',
-        company: { name: '회사 이름' }
-      }
-    ];
+    this.contents = [];
     this.loadContents();
-    this.content_oid = '';
     const params: Params = this.route.snapshot.params;
     if ('query' in params) {
       this.query = params['query'];
@@ -45,7 +38,9 @@ export class TicketTypeListComponent implements OnInit {
     if ('content_oid' in params) {
       this.content_oid = params['content_oid'];
     }
-    this.loadTypes(this.query, this.page);
+    if (this.content_oid) {
+      this.loadTypes(this.query, this.page);
+    }
   }
 
   loadTypes(query: any, page: any) {
@@ -69,7 +64,7 @@ export class TicketTypeListComponent implements OnInit {
     this.contentService.getContentList('', 0, 100)
       .subscribe(
         response => {
-          this.contents = this.contents.concat(response['data']);
+          this.contents = response['data'];
         },
         error => {
           console.log(error);

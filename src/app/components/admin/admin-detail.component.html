@@ -52,7 +52,7 @@
               <input type="text" class="form-control" [(ngModel)]="admin.tablet_code" name="tablet_code">
             </div>
             <br>
-            <div class="form-group">
+            <div *ngIf="authService.getRole() === 'super'" class="form-group">
               <select class="form-control" name="company" [(ngModel)]="company_oid">
                 <ng-container *ngFor="let c of companies">
                   <option [ngValue]="c._id">{{c.name}} ({{c.contact.name}})</option>
