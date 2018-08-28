@@ -85,7 +85,7 @@ export class TicketOrderListComponent implements OnInit {
   }
 
   onSend(id: string) {
-    let data = {
+    const data = {
       sms_message: this.sms_message
     };
     this.ticketService.sendOrder(id, data)
@@ -93,7 +93,7 @@ export class TicketOrderListComponent implements OnInit {
         response => {
           if (response['is_sent_receiver']) {
             alert('SMS 전송이 완료되었습니다.');
-          }else {
+          } else {
             alert('SMS 전송이 실패하였습니다.');
           }
           this.router.navigate(['/ticket/order', {query: this.query, page: this.page, ticket_type_oid: this.ticket_type_oid}]);
