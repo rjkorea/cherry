@@ -1,24 +1,10 @@
 <div class="col-md-6">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">티켓오더 만들기</h3>
+      <h3 class="panel-title">{{type.content.name}} - {{type.name}} ({{type.desc.value}}) 티켓오더 만들기</h3>
     </div>
     <div class="panel-body">
       <form>
-        <div class="form-group">
-          <select class="form-control" name="content" [(ngModel)]="order.content_oid" (ngModelChange)="changeContent()">
-            <ng-container *ngFor="let c of contents">
-              <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
-            </ng-container>
-          </select>
-        </div>
-        <div class="form-group">
-          <select class="form-control" name="type" [(ngModel)]="order.ticket_type_oid">
-            <ng-container *ngFor="let t of types">
-              <option [ngValue]="t._id">{{t.name}} ({{t.day}} day) - {{t.desc.value}}</option>
-            </ng-container>
-          </select>
-        </div>
         <div class="form-group">
           <label for="qty">티켓수량 (필수)</label>
           <input type="number" class="form-control" [(ngModel)]="order.qty" name="qty">
@@ -50,7 +36,7 @@
         <hr />
         <div class="checkbox">
           <label>
-            <input type="checkbox" [checked]="is_fee" (change)="is_fee = !is_fee"> 유료티켓
+            <input type="checkbox" [checked]="is_fee" (change)="is_fee = !is_fee"> 유료티켓 (선택)
           </label>
         </div>
         <div *ngIf="is_fee" class="form-group">
