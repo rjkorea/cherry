@@ -11,7 +11,9 @@ import { ContentService } from '../../services/content.service';
 })
 export class TicketTypeNewComponent implements OnInit {
   type: any;
-  contents: Array<any> = [];
+  content: object;
+  ticket_type: any;
+  ticket_types: any;
 
   constructor(private ticketService: TicketService,
               private contentService: ContentService,
@@ -19,7 +21,12 @@ export class TicketTypeNewComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.ticket_types = [
+      { name: '일반티켓', value: 'general' },
+      { name: '네트워크티켓', value: 'network' },
+    ];
     this.type = {
+      type: '',
       name: '',
       desc: {
         enabled: false,
@@ -30,12 +37,11 @@ export class TicketTypeNewComponent implements OnInit {
       content_oid: '',
       admin_oid: ''
     };
-    this.loadContents();
     const params: Params = this.route.snapshot.params;
-    console.log(params);
     if ('content_oid' in params) {
       this.type.content_oid = params['content_oid'];
     }
+    this.loadContent(this.type.content_oid);
   }
 
   onSubmit() {
@@ -51,14 +57,11 @@ export class TicketTypeNewComponent implements OnInit {
       );
   }
 
-  loadContents() {
-    this.contentService.getContentList('', 0, 100)
+  loadContent(id: string) {
+    this.contentService.getContent(id)
       .subscribe(
         response => {
-          for (const c of response['data']) {
-            this.contents.push({id: c['_id'], text: c['name']})
-          }
-          console.log(this.contents);
+          this.content = response['data'];
         },
         error => {
           console.log(error);
@@ -66,8 +69,12 @@ export class TicketTypeNewComponent implements OnInit {
       );
   }
 
+  changeTicketType() {
+    this.type.type = this.ticket_type;
+  }
+
   public disabledSubmit() {
-    return !(this.type.content_oid && this.type.name && this.type.day);
+    return !(this.type.content_oid && this.type.name);
   }
 
 }
