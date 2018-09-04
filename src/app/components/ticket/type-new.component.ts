@@ -11,7 +11,7 @@ import { ContentService } from '../../services/content.service';
 })
 export class TicketTypeNewComponent implements OnInit {
   type: any;
-  content: object;
+  content: any;
   ticket_type: any;
   ticket_types: any;
 
