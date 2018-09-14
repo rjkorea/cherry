@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
-import { ContentService } from '../../services/content.service';
 import { UtilService } from '../../services/util.service';
 
 const DEFAULT_COUNTRY_CODE: string = '82';
@@ -15,9 +14,9 @@ const DEFAULT_COUNTRY_CODE: string = '82';
 export class TicketOrderNewComponent implements OnInit {
   ticket_type_oid: string;
   order: any;
-  contents: any;
   countries: any;
   types: any;
+  type: any;
   is_fee: boolean;
   fee: any;
   country_code: string;
@@ -26,7 +25,6 @@ export class TicketOrderNewComponent implements OnInit {
   expiry: any;
 
   constructor(private ticketService: TicketService,
-              private contentService: ContentService,
               private utilService: UtilService,
               private route: ActivatedRoute,
               private router: Router) { }
@@ -55,24 +53,6 @@ export class TicketOrderNewComponent implements OnInit {
         mobile_number: ''
       }
     };
-    this.contents = [
-      {
-        _id: '',
-        name: '컨텐츠',
-        company: { name: '회사 이름' }
-      }
-    ];
-    this.types = [
-      {
-        _id: '',
-        name: '티켓타입',
-        desc: {
-          enabled: true,
-          value: '설명',
-        },
-        day: '1'
-      }
-    ];
     this.countries = [
       {
         _id: '',
@@ -80,48 +60,21 @@ export class TicketOrderNewComponent implements OnInit {
         code: '코드'
       }
     ];
-
-    this.loadContents();
+    this.loadType();
     this.loadCountryList();
   }
 
-  changeContent() {
-    this.types = [
-      {
-        _id: '',
-        name: '티켓타입',
-        desc: {
-          enabled: true,
-          value: '설명'
+  loadType() {
+    this.ticketService.getType(this.ticket_type_oid)
+      .subscribe(
+        response => {
+          this.type = response['data'];
         },
-        day: 'day'
-      }
-    ];
-    this.loadTypes();
-  }
-
-  loadTypes() {
-    this.ticketService.getTypeList(this.order.content_oid, '', '', 0, 100)
-    .subscribe(
-      response => {
-        this.types = this.types.concat(response['data']);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
-  loadContents() {
-    this.contentService.getContentList('', 0, 100)
-    .subscribe(
-      response => {
-        this.contents = this.contents.concat(response['data']);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+        error => {
+          alert(error.message);
+          console.log(error);
+        }
+      );
   }
 
   loadCountryList() {
@@ -139,12 +92,14 @@ export class TicketOrderNewComponent implements OnInit {
   onSubmit() {
     if (this.is_fee) {
       this.order.fee = this.fee;
-    }else {
+    } else {
       delete this.order.fee;
     }
-    this.order.receiver.mobile_number = this.country_code + this.mobile_number.substr(1);
+    this.order.ticket_type_oid = this.ticket_type_oid;
+    this.order.content_oid = this.type.content._id;
+    this.order.receiver.name = this.order.receiver.name.trim();
+    this.order.receiver.mobile_number = this.country_code + this.mobile_number.replace(/ /g, '').replace(/-/g, '').substr(1);
     this.order.expiry_date = this.getISODate();
-    console.log(this.order);
     this.ticketService.addOrder(this.order)
       .subscribe(
         response => {
@@ -163,9 +118,7 @@ export class TicketOrderNewComponent implements OnInit {
   }
 
   disabledSubmit() {
-    return !(this.order.content_oid &&
-      this.order.ticket_type_oid &&
-      this.order.qty &&
+    return !(this.order.qty &&
       this.order.receiver.name &&
       this.country_code &&
       this.mobile_number &&

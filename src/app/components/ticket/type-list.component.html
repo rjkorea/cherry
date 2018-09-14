@@ -37,6 +37,7 @@
           <table class="table table-striped">
             <tr>
               <th></th>
+              <th>타입</th>
               <th>이름</th>
               <th>설명</th>
               <th>설명노출</th>
@@ -48,6 +49,10 @@
                   티켓오더
                   <span class="badge">{{t.ticket_order_cnt}}</span>
                 </button>
+              </td>
+              <td>
+                <span *ngIf="t.type === 'general'" class="label label-success">일반티켓</span>
+                <span *ngIf="t.type === 'network'" class="label label-primary">네트워크티켓</span>
               </td>
               <td><a [routerLink]="['/ticket/type', t._id]">{{t.name | slice: 0:50}}</a></td>
               <td>{{t.desc.value | slice: 0:70}}</td>

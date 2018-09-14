@@ -9,6 +9,8 @@
           <div class="stats">
             <span *ngIf="type.enabled" class="label label-success">활성화</span>
             <span *ngIf="!type.enabled" class="label label-danger">비활성화</span>
+            <span *ngIf="type.type === 'general'" class="label label-success">일반티켓</span>
+            <span *ngIf="type.type === 'network'" class="label label-primary">네트워크티켓</span>
           </div>
           <br>
           <ul *ngIf="!edit_mode" class="list-group">
