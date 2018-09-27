@@ -8,7 +8,7 @@ export const environment = {
   },
   api: {
     protocol: 'https',
-    host: 'devapilbv2.tkit.me',
+    host: 'devapilb.tkit.me',
     port: 443
   },
   iamport: {

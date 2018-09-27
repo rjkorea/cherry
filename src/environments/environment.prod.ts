@@ -7,9 +7,9 @@ export const environment = {
     port: 80
   },
   api: {
-    protocol: 'http',
-    host: 'api.tkit.me',
-    port: 9100
+    protocol: 'https',
+    host: 'tapi.tkit.me',
+    port: 443
   },
   iamport: {
     code: 'imp74899369',
