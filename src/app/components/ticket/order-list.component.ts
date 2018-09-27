@@ -15,6 +15,7 @@ export class TicketOrderListComponent implements OnInit {
   size: any = 20;
   count: any = 0;
   ticket_type_oid: string;
+  ticket_order_type: string;
   is_loading: boolean;
   selected_order: any;
   sms_message: string;
@@ -26,6 +27,7 @@ export class TicketOrderListComponent implements OnInit {
   ngOnInit() {
     this.is_loading = true;
     this.sms_message = '';
+    this.ticket_order_type = '';
     const params: Params = this.route.snapshot.params;
     if ('query' in params) {
       this.query = params['query'];
@@ -46,6 +48,9 @@ export class TicketOrderListComponent implements OnInit {
         response => {
           this.count = response['count'];
           this.orders = response['data'];
+          if (this.count > 0) {
+            this.ticket_order_type = this.orders[0]['type'];
+          }
           window.scrollTo(0, 0);
           this.is_loading = false;
         },
