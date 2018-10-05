@@ -14,9 +14,11 @@ export class ContentDetailComponent implements OnInit {
   notification_options: Object;
   edit_mode: boolean;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private contentService: ContentService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private contentService: ContentService
+  ) {}
 
   ngOnInit() {
     const params: Params = this.route.snapshot.params;
@@ -25,16 +27,15 @@ export class ContentDetailComponent implements OnInit {
   }
 
   loadContent(id: string) {
-    this.contentService.getContent(id)
-      .subscribe(
-        response => {
-          this.content = response['data'];
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
+    this.contentService.getContent(id).subscribe(
+      response => {
+        this.content = response['data'];
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 
   goTicket(content_oid: string) {
     this.router.navigate(['/ticket', 'type', { content_oid: this.content['_id'] }]);
@@ -66,7 +67,8 @@ export class ContentDetailComponent implements OnInit {
         message: this.content.notice.message
       }
     };
-    this.contentService.updateContent(this.content._id, this.content_form)
+    this.contentService
+      .updateContent(this.content._id, this.content_form)
       .subscribe(
         response => {
           this.loadContent(this.content._id);
@@ -84,11 +86,39 @@ export class ContentDetailComponent implements OnInit {
   }
 
   uploadPoster(files: FileList) {
-    this.contentService.uploadPosterImage(this.content._id, files.item(0))
+    this.contentService
+      .uploadPosterImage(this.content._id, files.item(0))
       .subscribe(
         response => {
-          console.log(response);
-          alert('Complete upload poster image');
+          window.location.reload();
+        },
+        error => {
+          console.log(error);
+          alert(error.message);
+        }
+      );
+  }
+
+  uploadLogo(files: FileList) {
+    this.contentService
+      .uploadLogoImage(this.content._id, files.item(0))
+      .subscribe(
+        response => {
+          window.location.reload();
+        },
+        error => {
+          console.log(error);
+          alert(error.message);
+        }
+      );
+  }
+
+  uploadOg(files: FileList) {
+    this.contentService
+      .uploadOgImage(this.content._id, files.item(0))
+      .subscribe(
+        response => {
+          window.location.reload();
         },
         error => {
           console.log(error);

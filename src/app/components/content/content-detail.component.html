@@ -9,11 +9,19 @@
           <img *ngIf="!content.image" class="img-thumbnail" src="assets/images/no_image_icon.png">
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.poster.m}}">
           <div class="form-group">
-            <label for="upload-poster">포스터 이미지 업로드</label>
+            <label for="upload-poster">포스터 업로드 (사이즈 정보: 674 x 960 px, 용량: 2 MB)</label>
             <input type="file" id="upload-poster" name="upload-poster" (change)="uploadPoster($event.target.files)">
           </div>
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.logo.m}}">
+          <div class="form-group">
+            <label for="upload-logo">로고 업로드 (사이즈 정보: 360 x 120 px, 용량: 2 MB)</label>
+            <input type="file" id="upload-logo" name="upload-logo" (change)="uploadLogo($event.target.files)">
+          </div>
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.og.m}}">
+          <div class="form-group">
+            <label for="upload-og">오픈그래프 업로드 (사이즈 정보: 460 x 245 px, 용량: 2 MB)</label>
+            <input type="file" id="upload-og" name="upload-og" (change)="uploadOg($event.target.files)">
+          </div>
         </div>
         <div class="col-md-6">
           <br />
