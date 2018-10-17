@@ -38,7 +38,7 @@
             <li class="list-group-item"><strong>이름: </strong>{{content.name}}</li>
             <li *ngIf="content.desc" class="list-group-item">
               <h5 class="list-group-item-heading">설명</h5>
-              <p class="list-group-item-text">{{content.desc}}</p>
+              <pre class="list-group-item-text">{{content.desc}}</pre>
             </li>
             <li *ngIf="content.when" class="list-group-item"><strong>기간: </strong><span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span><span *ngIf="content.when.end"> ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span></li>
             <li class="list-group-item"><strong>장소: </strong>{{content.place}}</li>
@@ -54,7 +54,7 @@
                 <span *ngIf="content.notice.enabled" class="label label-success">활성화</span>
                 <span *ngIf="!content.notice.enabled" class="label label-danger">비활성화</span>
               </h5>
-              <p class="list-group-item-text">{{content.notice.message}}</p>
+              <pre class="list-group-item-text">{{content.notice.message}}</pre>
             </li>
           </ul>
           <div *ngIf="edit_mode" class="edit">
@@ -94,8 +94,7 @@
           </div>
         </div>
         <div class="col-md-2">
-          <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="goTicket()">네트워크티켓</button>
-          <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="goGroup()">그룹티켓</button>
+          <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="goTicket()">티켓</button>
           <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="goEntrance(content._id)">입장</button>
           <button *ngIf="!edit_mode" type="button" class="btn btn-default" (click)="onEdit()">수정</button>
           <button *ngIf="edit_mode" type="button" class="btn btn-default" (click)="onSave()">저장</button>
