@@ -23,8 +23,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatrixTicketOrderComponent } from './components/tim/matrix-ticket-order.component';
-import { MatrixTicketTypeComponent } from "./components/tim/matrix-ticket-type.component";
-import { ReportComponent } from './components/report/report.component';
+import { MatrixTicketTypeComponent } from './components/tim/matrix-ticket-type.component';
+import { ReportComponent } from './components/tim/report.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -70,7 +70,6 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { DashboardService } from './services/dashboard.service';
-import { ReportService } from './services/report.service';
 import { NotificationService } from './services/notification.service';
 import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
@@ -167,7 +166,6 @@ defineLocale('ko', koLocale);
     AuthService,
     DashboardService,
     TIMService,
-    ReportService,
     NotificationService,
     WebSocketService,
     AdminService,

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { DashboardService } from '../../services/dashboard.service';
-import { ReportService } from '../../services/report.service';
+import { TIMService } from '../../services/tim.service';
 import { ContentService } from '../../services/content.service';
 
 @Component({
-  selector: 'app-report',
+  selector: 'app-tim-report',
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css']
 })
@@ -16,6 +15,7 @@ export class ReportComponent implements OnInit {
   total_forward: any;
   total_visit: any;
   total_revenue: any;
+  commission: number;
 
   total_ticket_count: any;
   total_ticket: any;
@@ -43,8 +43,7 @@ export class ReportComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private reportService: ReportService,
-              private dashboardService: DashboardService,
+              private timService: TIMService,
               private contentService: ContentService) { }
 
   ngOnInit() {
@@ -62,6 +61,7 @@ export class ReportComponent implements OnInit {
       cash: 0,
       creditcard: 0
     };
+    this.commission = 1.0;
 
     this.loadContents();
     const params: Params = this.route.snapshot.params;
@@ -75,12 +75,13 @@ export class ReportComponent implements OnInit {
 
   loadReportContent(id: string) {
     this.is_loading = true;
-    this.reportService.getReportContent(id)
+    this.timService.getReportContent(id)
       .subscribe(
         response => {
           this.total_forward = response['data']['total_forward'];
           this.total_visit = response['data']['total_visit'];
           this.total_revenue = response['data']['revenue'];
+          this.commission = response['data']['commission'];
           this.is_loading = false;
         },
         error => {
@@ -103,10 +104,10 @@ export class ReportComponent implements OnInit {
 
   changeContent() {
     if (this.content_oid) {
-      this.router.navigate(['/report', this.content_oid]);
+      this.router.navigate(['/tim/report', this.content_oid]);
       this.loadReportContent(this.content_oid);
     } else {
-      this.router.navigate(['/report']);
+      this.router.navigate(['/tim/report']);
     }
   }
 

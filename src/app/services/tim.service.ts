@@ -28,8 +28,15 @@ export class TIMService {
   public getMatrixTicketTypeContent(content_oid: string, start: Number, size: Number, sort: string): Observable<{}> {
     const url = `${this.timUrl}/matrix/ticket/type/${content_oid}?start=${start}&size=${size}&sort=${sort}`;
     return this.http.get(url, this.options)
-      .map((response: Response) => response.json())
-      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public getReportContent(content_oid: string): Observable<{}> {
+    const url = `${this.timUrl}/report/${content_oid}`;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
 }
