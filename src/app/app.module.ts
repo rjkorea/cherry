@@ -23,6 +23,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatrixTicketOrderComponent } from './components/tim/matrix-ticket-order.component';
+import { MatrixTicketTypeComponent } from "./components/tim/matrix-ticket-type.component";
 import { ReportComponent } from './components/report/report.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -94,6 +95,7 @@ defineLocale('ko', koLocale);
     LoginComponent,
     DashboardComponent,
     MatrixTicketOrderComponent,
+    MatrixTicketTypeComponent,
     ReportComponent,
     NotificationComponent,
     PageNotFoundComponent,
