@@ -9,8 +9,8 @@ import 'rxjs/add/operator/catch';
 const URL = `${environment.api.protocol}://${environment.api.host}:${environment.api.port}`;
 
 @Injectable()
-export class RankService {
-  rankUrl = `${URL}/a/rank`;
+export class TIMService {
+  timUrl = `${URL}/a/tim`;
   options;
 
   constructor(private http: Http) {
@@ -18,8 +18,8 @@ export class RankService {
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
-  public getRankContent(content_oid: string, start: Number, size: Number, sort: string): Observable<{}> {
-    const url = `${this.rankUrl}/${content_oid}?start=${start}&size=${size}&sort=${sort}`;
+  public getMatrixTicketOrderContent(content_oid: string, start: Number, size: Number, sort: string): Observable<{}> {
+    const url = `${this.timUrl}/matrix/ticket/order/${content_oid}?start=${start}&size=${size}&sort=${sort}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
