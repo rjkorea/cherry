@@ -17,28 +17,6 @@ export class ReportComponent implements OnInit {
   total_revenue: any;
   commission: number;
 
-  total_ticket_count: any;
-  total_ticket: any;
-  total_company_count: number;
-  total_user_count: number;
-  total_content_count: number;
-  total_gender_chart: any;
-  top_contents;
-
-  ticket_count: any;
-  avg_age: any;
-  revenue: any;
-  pre_revenue: any;
-  top_ticket_types;
-  top_ticket_orders;
-
-  register_gender_chart: any;
-  use_gender_chart: any;
-  age_chart: any;
-  ticket_count_chart: any;
-
-  content_cloud: any;
-
   is_loading: boolean;
 
   constructor(private route: ActivatedRoute,
