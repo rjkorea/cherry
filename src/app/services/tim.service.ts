@@ -39,4 +39,11 @@ export class TIMService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public getAnalyticsContent(content_oid: string): Observable<{}> {
+    const url = `${this.timUrl}/analytics/${content_oid}`;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }

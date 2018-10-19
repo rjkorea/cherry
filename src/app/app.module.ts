@@ -16,7 +16,6 @@ import { defineLocale } from 'ngx-bootstrap/chronos';
 import { koLocale } from 'ngx-bootstrap/locale';
 import { ButtonsModule } from 'ngx-bootstrap';
 import { SharedComponentsModule } from './components/shared/shared-components.module';
-import { TagCloudModule } from 'angular-tag-cloud-module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -25,6 +24,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatrixTicketOrderComponent } from './components/tim/matrix-ticket-order.component';
 import { MatrixTicketTypeComponent } from './components/tim/matrix-ticket-type.component';
 import { ReportComponent } from './components/tim/report.component';
+import { AnalyticsComponent } from './components/tim/analytics.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -96,6 +96,7 @@ defineLocale('ko', koLocale);
     MatrixTicketOrderComponent,
     MatrixTicketTypeComponent,
     ReportComponent,
+    AnalyticsComponent,
     NotificationComponent,
     PageNotFoundComponent,
     SignupComponent,
@@ -150,7 +151,6 @@ defineLocale('ko', koLocale);
     MomentModule,
     ChartModule,
     UiSwitchModule,
-    TagCloudModule,
     DatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BsDatepickerModule.forRoot(),

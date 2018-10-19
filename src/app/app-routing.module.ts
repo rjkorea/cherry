@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatrixTicketOrderComponent } from './components/tim/matrix-ticket-order.component';
 import { MatrixTicketTypeComponent } from './components/tim/matrix-ticket-type.component';
 import { ReportComponent } from './components/tim/report.component';
+import { AnalyticsComponent } from './components/tim/analytics.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -60,6 +61,8 @@ const routes: Routes = [
   { path: 'tim/matrix/ticket/type', component: MatrixTicketTypeComponent, canActivate: [AuthGuard] },
   { path: 'tim/report', component: ReportComponent, canActivate: [AuthGuard] },
   { path: 'tim/report/:id', component: ReportComponent, canActivate: [AuthGuard] },
+  { path: 'tim/analytics', component: AnalyticsComponent, canActivate: [AuthGuard] },
+  { path: 'tim/analytics/:id', component: AnalyticsComponent, canActivate: [AuthGuard] },
 
   { path: 'company', component: CompanyListComponent, canActivate: [AuthGuard] },
   { path: 'company/:id', component: CompanyDetailComponent, canActivate: [AuthGuard] },
