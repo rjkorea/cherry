@@ -1,0 +1,90 @@
+<div *ngIf="is_loading">
+  <app-loader></app-loader>
+</div>
+<div *ngIf="!is_loading">
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <select class="form-control" [(ngModel)]="content_oid" (ngModelChange)="changeContent()">
+        <ng-container *ngFor="let c of contents">
+          <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+  <br>
+
+  <ng-template [ngIf]="!content_oid">
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">분석</h3>
+          </div>
+          <div class="panel-body">
+            <h1>
+              분석할 컨텐츠를 선택해주세요
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="content_oid">
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">등록율</h3>
+          </div>
+          <div class="panel-body">
+            <h1 *ngIf="ticket_count.register>0">{{(((ticket_count.register+ticket_count.pay+ticket_count.use)/(ticket_count.send+ticket_count.register+ticket_count.pay+ticket_count.use))*100).toString() | slice:0:4}} <small>%</small></h1>
+            <h1 *ngIf="ticket_count.register===0 && ticket_count.pay===0 && ticket_count.use===0">0 <small>%</small></h1>
+            <span class="label label-warning">{{ticket_count.send | number: '0.0-0'}} 전송중</span>
+            <span class="label label-success">{{ticket_count.register+ticket_count.pay | number: '0.0-0'}} 등록완료</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">입장율</h3>
+          </div>
+          <div class="panel-body">
+            <h1 *ngIf="ticket_count.use>0">{{((ticket_count.use/(ticket_count.register+ticket_count.pay+ticket_count.use))*100).toString() | slice:0:4}} <small>%</small></h1>
+            <h1 *ngIf="ticket_count.use===0">0 <small>%</small></h1>
+            <span class="label label-info">{{ticket_count.use | number: '0.0-0'}} 입장완료</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">티켓현황</h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="ticket_chart.type" [data]="ticket_chart.data" [options]="ticket_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">성별분포</h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="gender_chart.type" [data]="gender_chart.data" [options]="gender_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <p class="text-right">
+        TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -16,14 +16,15 @@ import { defineLocale } from 'ngx-bootstrap/chronos';
 import { koLocale } from 'ngx-bootstrap/locale';
 import { ButtonsModule } from 'ngx-bootstrap';
 import { SharedComponentsModule } from './components/shared/shared-components.module';
-import { TagCloudModule } from 'angular-tag-cloud-module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { RankComponent } from './components/rank/rank.component';
-import { ReportComponent } from './components/report/report.component';
+import { MatrixTicketOrderComponent } from './components/tim/matrix-ticket-order.component';
+import { MatrixTicketTypeComponent } from './components/tim/matrix-ticket-type.component';
+import { ReportComponent } from './components/tim/report.component';
+import { AnalyticsComponent } from './components/tim/analytics.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -69,7 +70,6 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { DashboardService } from './services/dashboard.service';
-import { ReportService } from './services/report.service';
 import { NotificationService } from './services/notification.service';
 import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
@@ -83,7 +83,7 @@ import { UtilService } from './services/util.service';
 import { QnaService } from './services/qna.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
-import { RankService } from './services/rank.service';
+import { TIMService } from './services/tim.service';
 
 defineLocale('ko', koLocale);
 
@@ -93,8 +93,10 @@ defineLocale('ko', koLocale);
     NavbarComponent,
     LoginComponent,
     DashboardComponent,
-    RankComponent,
+    MatrixTicketOrderComponent,
+    MatrixTicketTypeComponent,
     ReportComponent,
+    AnalyticsComponent,
     NotificationComponent,
     PageNotFoundComponent,
     SignupComponent,
@@ -149,7 +151,6 @@ defineLocale('ko', koLocale);
     MomentModule,
     ChartModule,
     UiSwitchModule,
-    TagCloudModule,
     DatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BsDatepickerModule.forRoot(),
@@ -164,8 +165,7 @@ defineLocale('ko', koLocale);
     AuthGuard,
     AuthService,
     DashboardService,
-    RankService,
-    ReportService,
+    TIMService,
     NotificationService,
     WebSocketService,
     AdminService,

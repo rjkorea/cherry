@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../../services/dashboard.service';
 import { ContentService } from '../../services/content.service';
-import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
 
 @Component({
   selector: 'app-stats',
@@ -208,7 +207,7 @@ export class StatsComponent implements OnInit {
   changeContent() {
     if (this.content_oid) {
       this.loadDashboardContent(this.content_oid);
-    }else {
+    } else {
       this.loadDashboard();
     }
   }

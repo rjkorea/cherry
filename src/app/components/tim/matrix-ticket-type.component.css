@@ -1,0 +1,27 @@
+.list-group {
+  list-style: decimal inside;
+}
+
+.list-group-item {
+  display: list-item;
+}
+
+.list-group li {
+  border: 0 none;
+}
+
+.badge-danger {
+  background-color: #D9534F;
+}
+
+.badge-info {
+  background-color: #5AC0DF;
+}
+
+.badge-success {
+  background-color: #5BB75B;
+}
+
+.badge-primary {
+  background-color: #337AB7;
+}

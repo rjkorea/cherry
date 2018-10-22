@@ -13,7 +13,7 @@
   </div>
   <br>
 
-  <ng-template [ngIf]="!content_oid">
+  <ng-template [ngIf]="!content_oid && (authService.getRole()==='super' || authService.getRole()==='admin')">
     <div class="row">
       <div class="col-md-3 col-sm-3">
         <div class="panel panel-default">
@@ -81,61 +81,22 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">컨텐츠 Top 5</h3>
-          </div>
-          <div class="panel-body">
-            <ul class="list-group">
-              <ng-container *ngFor="let tc of top_contents">
-                <li class="list-group-item"><span class="badge">{{tc.ticket_cnt | number: '0.0-0'}}</span>{{tc.content.name}}</li>
-              </ng-container>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12 col-sm-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">컨텐츠 클라우드</h3>
-          </div>
-          <div class="panel-body">
-            <angular-tag-cloud [data]="content_cloud.data" [width]="content_cloud.options.width" [overflow]="content_cloud.options.overflow"></angular-tag-cloud>
-          </div>
-        </div>
-      </div>
     </div>
   </ng-template>
 
   <ng-template [ngIf]="content_oid">
     <div class="row">
-      <div class="col-md-6 col-sm-6">
+      <div class="col-md-4 col-sm-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">온라인 사전결제 매출</h3>
+            <h3 class="panel-title">매출</h3>
           </div>
           <div class="panel-body">
-            <h1>{{pre_revenue.amount | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
-            <span class="label label-success">{{pre_revenue.count | number: '0.0-0'}} 건</span>
+            <h1>{{revenue.amount | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
+            <span class="label label-success">{{revenue.count | number: '0.0-0'}} 건</span>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-sm-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">현장 초대권 매출</h3>
-          </div>
-          <div class="panel-body">
-            <h1>{{(revenue.cash+revenue.creditcard) | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
-            <span class="label label-success">{{revenue.cash | currency: 'KRW': true: '0.0-0'}}원 현금</span>
-            <span class="label label-primary">{{revenue.creditcard | currency: 'KRW': true: '0.0-0'}}원 신용카드</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
       <div class="col-md-4 col-sm-4">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -159,96 +120,6 @@
             <h1 *ngIf="ticket_count.register===0 && ticket_count.pay===0 && ticket_count.use===0">0 <small>%</small></h1>
             <span class="label label-warning">{{ticket_count.send | number: '0.0-0'}} 전송중</span>
             <span class="label label-success">{{ticket_count.register+ticket_count.pay | number: '0.0-0'}} 등록완료</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">방문율</h3>
-          </div>
-          <div class="panel-body">
-            <h1 *ngIf="ticket_count.use>0">{{((ticket_count.use/(ticket_count.register+ticket_count.pay+ticket_count.use))*100).toString() | slice:0:4}} <small>%</small></h1>
-            <h1 *ngIf="ticket_count.use===0">0 <small>%</small></h1>
-            <span class="label label-success">{{(ticket_count.register+ticket_count.pay) | number: '0.0-0'}}명 초대권 대상자</span>
-            <span class="label label-info">{{ticket_count.use | number: '0.0-0'}}명 방문객</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4 col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">전체 티켓현황</h3>
-          </div>
-          <div class="panel-body">
-            <chart [type]="ticket_count_chart.type" [data]="ticket_count_chart.data" [options]="ticket_count_chart.options"></chart>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">등록완료티켓 성별비율</h3>
-          </div>
-          <div class="panel-body">
-            <chart [type]="register_gender_chart.type" [data]="register_gender_chart.data" [options]="register_gender_chart.options"></chart>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">입장객 성별비율</h3>
-          </div>
-          <div class="panel-body">
-            <chart [type]="use_gender_chart.type" [data]="use_gender_chart.data" [options]="use_gender_chart.options"></chart>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 col-sm-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">티켓타입 Top 10</h3>
-          </div>
-          <div class="panel-body">
-            <ul class="list-group">
-              <ng-container *ngFor="let ttt of top_ticket_types">
-                <li class="list-group-item">
-                  <span class="badge">{{(ttt.ticket_register_cnt+ttt.ticket_pay_cnt+ttt.ticket_use_cnt) | number: '0.0-0'}} / {{ttt.ticket_cnt | number: '0.0-0'}}</span>{{ttt.ticket_type.name}} ({{ttt.ticket_type.desc.value}}) <span class="label label-default">{{(((ttt.ticket_register_cnt+ttt.ticket_pay_cnt+ttt.ticket_use_cnt)/ttt.ticket_cnt)*100).toString() | slice:0:4}}%</span>
-                </li>
-              </ng-container>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">티켓오더 Top 10
-              <span class="label label-success">등록</span>
-              <span class="label label-primary">결제</span>
-              <span class="label label-info">입장</span>
-              <span class="label label-danger">취소</span>
-              <span class="label label-default">입장비율</span>
-            </h3>
-          </div>
-          <div class="panel-body">
-            <ul class="list-group">
-              <ng-container *ngFor="let tto of top_ticket_orders">
-                <li class="list-group-item">
-                  <span class="badge">{{(tto.ticket_register_cnt+tto.ticket_pay_cnt+tto.ticket_use_cnt) | number: '0.0-0'}} / {{tto.ticket_cnt | number: '0.0-0'}}</span>
-                  <span class="badge badge-danger">{{tto.ticket_cancel_cnt | number: '0.0-0'}}</span>
-                  <span class="badge badge-info">{{tto.ticket_use_cnt | number: '0.0-0'}}</span>
-                  <span class="badge badge-primary">{{tto.ticket_pay_cnt | number: '0.0-0'}}</span>
-                  <span class="badge badge-success">{{tto.ticket_register_cnt | number: '0.0-0'}}</span>{{tto.ticket_order.receiver.name}} ({{tto.ticket_order.receiver.mobile_number}}) - {{tto.ticket_type.name}} ({{tto.ticket_type.desc.value}}) <span class="label label-default">{{(((tto.ticket_register_cnt+tto.ticket_pay_cnt+tto.ticket_use_cnt)/tto.ticket_cnt)*100).toString() | slice:0:4}}%</span>
-                </li>
-              </ng-container>
-            </ul>
           </div>
         </div>
       </div>

@@ -4,8 +4,10 @@ import { AuthGuard } from './services/auth.guard';
 
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { RankComponent } from './components/rank/rank.component';
-import { ReportComponent } from './components/report/report.component';
+import { MatrixTicketOrderComponent } from './components/tim/matrix-ticket-order.component';
+import { MatrixTicketTypeComponent } from './components/tim/matrix-ticket-type.component';
+import { ReportComponent } from './components/tim/report.component';
+import { AnalyticsComponent } from './components/tim/analytics.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -55,10 +57,12 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/:id', component: DashboardComponent, canActivate: [AuthGuard] },
 
-  { path: 'rank', component: RankComponent, canActivate: [AuthGuard] },
-
-  { path: 'report', component: ReportComponent, canActivate: [AuthGuard] },
-  { path: 'report/:id', component: ReportComponent, canActivate: [AuthGuard] },
+  { path: 'tim/matrix/ticket/order', component: MatrixTicketOrderComponent, canActivate: [AuthGuard] },
+  { path: 'tim/matrix/ticket/type', component: MatrixTicketTypeComponent, canActivate: [AuthGuard] },
+  { path: 'tim/report', component: ReportComponent, canActivate: [AuthGuard] },
+  { path: 'tim/report/:id', component: ReportComponent, canActivate: [AuthGuard] },
+  { path: 'tim/analytics', component: AnalyticsComponent, canActivate: [AuthGuard] },
+  { path: 'tim/analytics/:id', component: AnalyticsComponent, canActivate: [AuthGuard] },
 
   { path: 'company', component: CompanyListComponent, canActivate: [AuthGuard] },
   { path: 'company/:id', component: CompanyDetailComponent, canActivate: [AuthGuard] },

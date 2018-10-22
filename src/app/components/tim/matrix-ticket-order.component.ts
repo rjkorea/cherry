@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { RankService } from '../../services/rank.service';
+import { TIMService } from '../../services/tim.service';
 import { ContentService } from '../../services/content.service';
-import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
 
 @Component({
-  selector: 'app-rank',
-  templateUrl: './rank.component.html',
-  styleUrls: ['./rank.component.css']
+  selector: 'app-tim-matrix-ticket-order',
+  templateUrl: './matrix-ticket-order.component.html',
+  styleUrls: ['./matrix-ticket-order.component.css']
 })
-export class RankComponent implements OnInit {
+export class MatrixTicketOrderComponent implements OnInit {
   contents: any;
   content_oid: string;
   ticket_orders_stats: any;
@@ -19,7 +18,7 @@ export class RankComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private rankService: RankService,
+              private timService: TIMService,
               private contentService: ContentService) { }
 
   ngOnInit() {
@@ -45,7 +44,7 @@ export class RankComponent implements OnInit {
 
   loadRankContent(id: string) {
     this.is_loading = true;
-    this.rankService.getRankContent(id, 0, 20, this.sort)
+    this.timService.getMatrixTicketOrderContent(id, 0, 20, this.sort)
       .subscribe(
         response => {
           this.ticket_orders_stats = response['data'];
@@ -71,17 +70,17 @@ export class RankComponent implements OnInit {
 
   changeContent() {
     if (this.content_oid) {
-      this.router.navigate(['/rank', { content_oid: this.content_oid, sort: this.sort }]);
+      this.router.navigate(['/tim/matrix/ticket/order', { content_oid: this.content_oid, sort: this.sort }]);
       this.loadRankContent(this.content_oid);
     } else {
       this.content_oid = '';
-      this.router.navigate(['/rank']);
+      this.router.navigate(['/tim/matrix/ticket/order']);
     }
   }
 
   onSort(sort: string) {
     this.sort = sort;
-    this.router.navigate(['/rank', { content_oid: this.content_oid, sort: this.sort }]);
+    this.router.navigate(['/tim/matrix/ticket/order', { content_oid: this.content_oid, sort: this.sort }]);
     this.loadRankContent(this.content_oid);
   }
 

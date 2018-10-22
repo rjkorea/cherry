@@ -47,30 +47,34 @@ export class ContentService {
   }
 
   public uploadPosterImage(id: string, file: File): Observable<{}> {
-    // WIP: build file form data
-    console.log(file);
     const url = `${this.contentUrl}/${id}/image/poster`;
-    let form = new FormData();
+    const form = new FormData();
     form.append('image', file, file.name);
-    const headers = new Headers({'Content-Type': 'multipart/form-data', 'Authorization': 'csk=' + localStorage.getItem('csk')});
+    const headers = new Headers({'Authorization': 'csk=' + localStorage.getItem('csk')});
     const options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(url, form, options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public uploadLogoImage(id: string, files: FileList): Observable<{}> {
-    // TODO: build file form data
+  public uploadLogoImage(id: string, file: File): Observable<{}> {
     const url = `${this.contentUrl}/${id}/image/logo`;
-    return this.http.post(url, files, this.options)
+    const form = new FormData();
+    form.append('image', file, file.name);
+    const headers = new Headers({ 'Authorization': 'csk=' + localStorage.getItem('csk') });
+    const options = new RequestOptions({ headers: headers, withCredentials: true });
+    return this.http.post(url, form, options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public uploadOgImage(id: string, files: FileList): Observable<{}> {
-    // TODO: build file form data
+  public uploadOgImage(id: string, file: File): Observable<{}> {
     const url = `${this.contentUrl}/${id}/image/og`;
-    return this.http.post(url, files, this.options)
+    const form = new FormData();
+    form.append('image', file, file.name);
+    const headers = new Headers({ 'Authorization': 'csk=' + localStorage.getItem('csk') });
+    const options = new RequestOptions({ headers: headers, withCredentials: true });
+    return this.http.post(url, form, options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
