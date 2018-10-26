@@ -46,7 +46,7 @@ export class EntranceComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.websocketService.close();
+    // this.websocketService.close();
   }
 
   loadContent(content_oid: string) {
