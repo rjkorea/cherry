@@ -12,8 +12,8 @@ export const environment = {
     port: 443
   },
   ws: {
-    protocol: 'ws',
-    host: 'ws.tkit.me',
+    protocol: 'wss',
+    host: 'wss.tkit.me',
     port: 443
   },
   iamport: {
