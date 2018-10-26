@@ -35,14 +35,15 @@
           <ul *ngIf="!edit_mode" class="list-group">
             <li class="list-group-item"><strong>아이디: </strong>{{content._id}}</li>
             <li class="list-group-item"><strong>숏 아이디: </strong>{{content.short_id}}</li>
-            <li class="list-group-item"><strong>이름: </strong>{{content.name}}</li>
+            <li class="list-group-item"><strong>행사명: </strong>{{content.name}}</li>
             <li *ngIf="content.desc" class="list-group-item">
               <h5 class="list-group-item-heading">설명</h5>
               <pre class="list-group-item-text">{{content.desc}}</pre>
             </li>
             <li *ngIf="content.when" class="list-group-item"><strong>기간: </strong><span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span><span *ngIf="content.when.end"> ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span></li>
             <li class="list-group-item"><strong>장소: </strong>{{content.place}}</li>
-            <li class="list-group-item"><strong>호스트 아이디: </strong>{{content.admin_oid}}</li>
+            <li class="list-group-item"><strong>주최사: </strong>{{content.company.name}}</li>
+            <li class="list-group-item"><strong>행사 생성 호스트: </strong>{{content.admin.name}}</li>
             <li class="list-group-item"><strong>수정일시: </strong>{{content.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item"><strong>생성일시: </strong>{{content.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li *ngIf="content.sms" class="list-group-item">

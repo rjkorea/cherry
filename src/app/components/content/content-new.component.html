@@ -13,7 +13,7 @@
         <ng-template [ngIf]="role=='super' || role=='admin'">
           <br>
           <div class="form-group">
-            <label for="company">회사 (필수)</label>
+            <label for="company">주최사 (필수)</label>
             <select class="form-control" name="company" [(ngModel)]="content.company_oid" (ngModelChange)="changeRole()">
               <ng-container *ngFor="let c of companies">
                 <option [ngValue]="c._id">{{c.name}} ({{c.contact.name}})</option>
@@ -23,7 +23,7 @@
         </ng-template>
         <br>
         <div class="form-group">
-          <label for="name">이름 (필수)</label>
+          <label for="name">행사명 (필수)</label>
           <input type="text" class="form-control" [(ngModel)]="content.name" name="name">
         </div>
         <br>
