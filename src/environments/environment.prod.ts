@@ -11,6 +11,11 @@ export const environment = {
     host: 'tapi.tkit.me',
     port: 443
   },
+  ws: {
+    protocol: 'ws',
+    host: 'ws.tkit.me',
+    port: 80
+  },
   iamport: {
     code: 'imp74899369',
     api_key: '4335180923213950',
