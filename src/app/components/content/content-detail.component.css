@@ -1,0 +1,49 @@
+.extra-image-list {
+  display: flex;
+}
+
+.extra-image {
+  display: block;
+}
+
+.img-thumbnail-extra {
+  display: block;
+  max-width: 95%;
+  height: auto;
+  padding: 4px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: all .2s ease-in-out;
+}
+
+.filebox {
+  display: block;
+}
+
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  display: inline-block;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}

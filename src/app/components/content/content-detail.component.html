@@ -44,6 +44,46 @@
             <li class="list-group-item"><strong>장소: </strong>{{content.place}}</li>
             <li class="list-group-item"><strong>주최사: </strong>{{content.company.name}}</li>
             <li class="list-group-item"><strong>행사 생성 호스트: </strong>{{content.admin.name}}</li>
+            <li *ngIf="content.image.extra" class="list-group-item">
+              <h5 class="list-group-item-heading"><strong>추가 이미지</strong></h5>
+              <div class="extra-image-list">
+                <div class="extra-image">
+                  <img *ngIf="content.image.extra[0].m" class="img-thumbnail-extra" src="{{content.image.extra[0].m}}">
+                  <div class="filebox">
+                    <label for="upload-extra-0">업로드</label>
+                    <input type="file" id="upload-extra-0" name="upload-extra-0" (change)="uploadExtra('0', $event.target.files)">
+                  </div>
+                </div>
+                <div class="extra-image">
+                  <img *ngIf="content.image.extra[1].m" class="img-thumbnail-extra" src="{{content.image.extra[1].m}}">
+                  <div class="filebox">
+                    <label for="upload-extra-1">업로드</label>
+                    <input type="file" id="upload-extra-1" name="upload-extra-1" (change)="uploadExtra('1', $event.target.files)">
+                  </div>
+                </div>
+                <div class="extra-image">
+                  <img *ngIf="content.image.extra[2].m" class="img-thumbnail-extra" src="{{content.image.extra[2].m}}">
+                  <div class="filebox">
+                    <label for="upload-extra-2">업로드</label>
+                    <input type="file" id="upload-extra-2" name="upload-extra-2" (change)="uploadExtra('2', $event.target.files)">
+                  </div>
+                </div>
+                <div class="extra-image">
+                  <img *ngIf="content.image.extra[3].m" class="img-thumbnail-extra" src="{{content.image.extra[3].m}}">
+                  <div class="filebox">
+                    <label for="upload-extra-3">업로드</label>
+                    <input type="file" id="upload-extra-3" name="upload-extra-3" (change)="uploadExtra('3', $event.target.files)">
+                  </div>
+                </div>
+                <div class="extra-image">
+                  <img *ngIf="content.image.extra[4].m" class="img-thumbnail-extra" src="{{content.image.extra[4].m}}">
+                  <div class="filebox">
+                    <label for="upload-extra-4">업로드</label>
+                    <input type="file" id="upload-extra-4" name="upload-extra-4" (change)="uploadExtra('4', $event.target.files)">
+                  </div>
+                </div>
+              </div>
+            </li>
             <li class="list-group-item"><strong>수정일시: </strong>{{content.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item"><strong>생성일시: </strong>{{content.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li *ngIf="content.sms" class="list-group-item">
