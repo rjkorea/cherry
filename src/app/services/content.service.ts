@@ -79,4 +79,14 @@ export class ContentService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public uploadExtraImage(id: string, num: string, file: File): Observable<{}> {
+    const url = `${this.contentUrl}/${id}/image/extra_${num}`;
+    const form = new FormData();
+    form.append('image', file, file.name);
+    const headers = new Headers({ 'Authorization': 'csk=' + localStorage.getItem('csk') });
+    const options = new RequestOptions({ headers: headers, withCredentials: true });
+    return this.http.post(url, form, options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 }
