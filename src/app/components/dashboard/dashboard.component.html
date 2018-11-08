@@ -44,7 +44,7 @@
             <h3 class="panel-title">전체 사용자</h3>
           </div>
           <div class="panel-body">
-            <h1>{{(total_user_count + total_group_ticket_count) | number: '0.0-0'}} <small>명</small></h1>
+            <h1>{{(total_user_count) | number: '0.0-0'}} <small>명</small></h1>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
           </div>
           <div class="panel-body">
             <h1>{{revenue.amount | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
-            <span class="label label-success">{{revenue.count | number: '0.0-0'}} 건</span>
+            <span class="label label-primary">{{revenue.count | number: '0.0-0'}} 건</span>
           </div>
         </div>
       </div>
@@ -119,7 +119,8 @@
             <h1 *ngIf="ticket_count.register>0">{{(((ticket_count.register+ticket_count.pay+ticket_count.use)/(ticket_count.send+ticket_count.register+ticket_count.pay+ticket_count.use))*100).toString() | slice:0:4}} <small>%</small></h1>
             <h1 *ngIf="ticket_count.register===0 && ticket_count.pay===0 && ticket_count.use===0">0 <small>%</small></h1>
             <span class="label label-warning">{{ticket_count.send | number: '0.0-0'}} 전송중</span>
-            <span class="label label-success">{{ticket_count.register+ticket_count.pay | number: '0.0-0'}} 등록완료</span>
+            <span class="label label-success">{{ticket_count.register | number: '0.0-0'}} 등록완료</span>
+            <span class="label label-primary">{{ticket_count.pay | number: '0.0-0'}} 결제완료</span>
           </div>
         </div>
       </div>

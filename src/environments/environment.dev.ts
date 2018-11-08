@@ -11,6 +11,11 @@ export const environment = {
     host: 'devapilb.tkit.me',
     port: 443
   },
+  ws: {
+    protocol: 'wss',
+    host: 'wss.tkit.me',
+    port: 443
+  },
   iamport: {
     code: 'imp74899369',
     api_key: '4335180923213950',

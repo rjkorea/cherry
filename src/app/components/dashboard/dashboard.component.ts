@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
   total_ticket: any;
   total_company_count: number;
   total_user_count: number;
-  total_group_ticket_count: number;
   total_content_count: number;
   total_gender_chart: any;
 
@@ -44,7 +43,6 @@ export class DashboardComponent implements OnInit {
       }
     ];
     this.total_ticket_count = 0;
-    this.total_group_ticket_count = 0;
     this.ticket_count = {
       pend: 0,
       send: 0,
@@ -132,7 +130,6 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         response => {
           this.total_ticket_count = response['data']['total_ticket_count'];
-          this.total_group_ticket_count = response['data']['total_group_ticket_count'];
           this.ticket_count_chart['data']['datasets'][0]['data'] = [
             response['data']['ticket_count']['pend'],
             response['data']['ticket_count']['send'],
