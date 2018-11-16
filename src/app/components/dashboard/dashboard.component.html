@@ -18,6 +18,26 @@
       <div class="col-md-3 col-sm-3">
         <div class="panel panel-default">
           <div class="panel-heading">
+            <h3 class="panel-title">전체 사용자</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{(total_user_count) | number: '0.0-0'}} <small>명</small></h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">지난달 성장율 (MNU)</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{((monthly_new_users_chart.data.datasets[0].data[10]-monthly_new_users_chart.data.datasets[0].data[9])/monthly_new_users_chart.data.datasets[0].data[9])*100 | number: '0.0-0'}} <small>%</small></h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
             <h3 class="panel-title">전체 티켓</h3>
           </div>
           <div class="panel-body">
@@ -31,30 +51,23 @@
       <div class="col-md-3 col-sm-3">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">전체 회사</h3>
-          </div>
-          <div class="panel-body">
-            <h1>{{total_company_count | number: '0.0-0'}} <small>사</small></h1>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">전체 사용자</h3>
-          </div>
-          <div class="panel-body">
-            <h1>{{(total_user_count) | number: '0.0-0'}} <small>명</small></h1>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
             <h3 class="panel-title">전체 컨텐츠</h3>
           </div>
           <div class="panel-body">
             <h1>{{total_content_count | number: '0.0-0'}} <small>개</small></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">월별 신규 사용자 (Monthly New Users)</h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="monthly_new_users_chart.type" [data]="monthly_new_users_chart.data" [options]="monthly_new_users_chart.options"></chart>
           </div>
         </div>
       </div>
@@ -78,6 +91,16 @@
           </div>
           <div class="panel-body">
             <chart [type]="total_gender_chart.type" [data]="total_gender_chart.data" [options]="total_gender_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">전체 회사</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{total_company_count | number: '0.0-0'}} <small>사</small></h1>
           </div>
         </div>
       </div>

@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   total_user_count: number;
   total_content_count: number;
   total_gender_chart: any;
+  monthly_new_users_chart: any;
 
   ticket_count: any;
   revenue: any;
@@ -113,6 +114,66 @@ export class DashboardComponent implements OnInit {
         maintainAspectRatio: true
       }
     };
+    this.monthly_new_users_chart = {
+      type: 'bar',
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'MNU',
+            data: [],
+            backgroundColor: [
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#ED7F81'
+            ],
+            borderColor: [
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#D87072'
+            ],
+            borderWidth: 1.5
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          yAxes: [{
+            gridLines: {
+              offsetGridLines: true
+            },
+            ticks: {
+              beginAtZero: true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              offsetGridLines: true
+            }
+          }]
+        }
+      }
+    };
 
     this.loadContents();
     const params: Params = this.route.snapshot.params;
@@ -145,6 +206,10 @@ export class DashboardComponent implements OnInit {
             response['data']['gender_count']['female'],
             response['data']['gender_count']['male']
           ];
+          response['data']['monthly_new_users'].forEach(element => {
+            this.monthly_new_users_chart['data']['labels'].push(element['_id']);
+            this.monthly_new_users_chart['data']['datasets'][0]['data'].push(element['count']);
+          });
           this.is_loading = false;
         },
         error => {
