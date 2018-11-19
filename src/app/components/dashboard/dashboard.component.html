@@ -28,22 +28,11 @@
       <div class="col-md-3 col-sm-3">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">지난달 성장율 (MNU)</h3>
-          </div>
-          <div class="panel-body">
-            <h1>{{((monthly_new_users_chart.data.datasets[0].data[10]-monthly_new_users_chart.data.datasets[0].data[9])/monthly_new_users_chart.data.datasets[0].data[9])*100 | number: '0.0-0'}} <small>%</small></h1>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
             <h3 class="panel-title">전체 티켓</h3>
           </div>
           <div class="panel-body">
             <h1>
-              {{total_ticket_count | number: '0.0-0'}}
-              <small>장</small>
+              {{total_ticket_count | number: '0.0-0'}} <small>장</small>
             </h1>
           </div>
         </div>
@@ -58,13 +47,29 @@
           </div>
         </div>
       </div>
+      <div class="col-md-3 col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">전체 회사</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{total_company_count | number: '0.0-0'}} <small>사</small></h1>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="row">
       <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">월별 신규 사용자 (Monthly New Users)</h3>
+            <h3 class="panel-title">월별 신규 사용자 (Monthly New Users)
+              <span *ngIf="monthly_new_users_growth_rate>0" class="glyphicon glyphicon-arrow-up"></span>
+              <span *ngIf="monthly_new_users_growth_rate===0" class="glyphicon glyphicon-minus"></span>
+              <span *ngIf="monthly_new_users_growth_rate<0" class="glyphicon glyphicon-arrow-down"></span>
+              {{monthly_new_users_growth_rate | number: '0.0-0'}} <small>%</small>
+              <span class="glyphicon glyphicon-info-sign" (click)="onInfoAlert('지난달 성장률')"></span>
+            </h3>
           </div>
           <div class="panel-body">
             <chart [type]="monthly_new_users_chart.type" [data]="monthly_new_users_chart.data" [options]="monthly_new_users_chart.options"></chart>
@@ -74,7 +79,13 @@
       <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">월별 티켓 바이럴 (Monthly Ticket Viral)</h3>
+            <h3 class="panel-title">월별 티켓 바이럴 (Monthly Ticket Viral)
+              <span *ngIf="monthly_ticket_viral_growth_rate>0" class="glyphicon glyphicon-arrow-up"></span>
+              <span *ngIf="monthly_ticket_viral_growth_rate===0" class="glyphicon glyphicon-minus"></span>
+              <span *ngIf="monthly_ticket_viral_growth_rate<0" class="glyphicon glyphicon-arrow-down"></span>
+              {{monthly_ticket_viral_growth_rate | number: '0.0-0'}} <small>%</small>
+              <span class="glyphicon glyphicon-info-sign" (click)="onInfoAlert('지난달 성장률')"></span>
+            </h3>
           </div>
           <div class="panel-body">
             <chart [type]="monthly_ticket_viral_chart.type" [data]="monthly_ticket_viral_chart.data" [options]="monthly_ticket_viral_chart.options"></chart>
@@ -84,7 +95,13 @@
       <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">월별 활성 사용자 (Monthly Active Users)</h3>
+            <h3 class="panel-title">월별 활성 사용자 (Monthly Active Users)
+              <span *ngIf="monthly_active_users_growth_rate>0" class="glyphicon glyphicon-arrow-up"></span>
+              <span *ngIf="monthly_active_users_growth_rate===0" class="glyphicon glyphicon-minus"></span>
+              <span *ngIf="monthly_active_users_growth_rate<0" class="glyphicon glyphicon-arrow-down"></span>
+              {{monthly_active_users_growth_rate | number: '0.0-0'}} <small>%</small>
+              <span class="glyphicon glyphicon-info-sign" (click)="onInfoAlert('지난달 성장률')"></span>
+            </h3>
           </div>
           <div class="panel-body">
             <chart [type]="monthly_active_users_chart.type" [data]="monthly_active_users_chart.data" [options]="monthly_active_users_chart.options"></chart>
@@ -111,16 +128,6 @@
           </div>
           <div class="panel-body">
             <chart [type]="ticket_count_chart.type" [data]="ticket_count_chart.data" [options]="ticket_count_chart.options"></chart>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">전체 회사</h3>
-          </div>
-          <div class="panel-body">
-            <h1>{{total_company_count | number: '0.0-0'}} <small>사</small></h1>
           </div>
         </div>
       </div>

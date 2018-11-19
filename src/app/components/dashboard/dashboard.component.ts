@@ -20,8 +20,11 @@ export class DashboardComponent implements OnInit {
   total_content_count: number;
   total_gender_chart: any;
   monthly_new_users_chart: any;
+  monthly_new_users_growth_rate: number;
   monthly_ticket_viral_chart: any;
+  monthly_ticket_viral_growth_rate: number;
   monthly_active_users_chart: any;
+  monthly_active_users_growth_rate: number;
 
   ticket_count: any;
   revenue: any;
@@ -316,6 +319,7 @@ export class DashboardComponent implements OnInit {
             element['count']
           );
         });
+        this.monthly_new_users_growth_rate = ((this.monthly_new_users_chart.data.datasets[0].data[10] - this.monthly_new_users_chart.data.datasets[0].data[9]) / this.monthly_new_users_chart.data.datasets[0].data[9]) * 100;
         response['data']['monthly_ticket_viral'].forEach(element => {
           this.monthly_ticket_viral_chart['data']['labels'].push(
             element['_id']
@@ -324,6 +328,7 @@ export class DashboardComponent implements OnInit {
             element['count']
           );
         });
+        this.monthly_ticket_viral_growth_rate = ((this.monthly_ticket_viral_chart.data.datasets[0].data[10] - this.monthly_ticket_viral_chart.data.datasets[0].data[9]) / this.monthly_ticket_viral_chart.data.datasets[0].data[9]) * 100;
         response['data']['monthly_active_users'].forEach(element => {
           this.monthly_active_users_chart['data']['labels'].push(
             element['_id']
@@ -332,6 +337,7 @@ export class DashboardComponent implements OnInit {
             element['count']
           );
         });
+        this.monthly_active_users_growth_rate = ((this.monthly_active_users_chart.data.datasets[0].data[10] - this.monthly_active_users_chart.data.datasets[0].data[9]) / this.monthly_active_users_chart.data.datasets[0].data[9]) * 100;
         this.is_loading = false;
       },
       error => {
@@ -381,5 +387,9 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['/dashboard', this.content_oid]);
       this.loadDashboard();
     }
+  }
+
+  onInfoAlert(msg: string) {
+    alert(msg);
   }
 }

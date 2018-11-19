@@ -25,3 +25,15 @@
 .badge-primary {
   background-color: #337AB7;
 }
+
+.glyphicon-arrow-up {
+  color: red;
+}
+
+.glyphicon-arrow-down {
+  color: blue;
+}
+
+.glyphicon-minus {
+  color: grey;
+}
