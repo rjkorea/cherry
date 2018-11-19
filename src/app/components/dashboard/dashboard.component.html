@@ -61,7 +61,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12 col-sm-12">
+      <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">월별 신규 사용자 (Monthly New Users)</h3>
@@ -71,20 +71,27 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">전체 티켓현황</h3>
+            <h3 class="panel-title">월별 티켓 바이럴 (Monthly Ticket Viral)</h3>
           </div>
           <div class="panel-body">
-            <chart [type]="ticket_count_chart.type" [data]="ticket_count_chart.data" [options]="ticket_count_chart.options"></chart>
+            <chart [type]="monthly_ticket_viral_chart.type" [data]="monthly_ticket_viral_chart.data" [options]="monthly_ticket_viral_chart.options"></chart>
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">월별 활성 사용자 (Monthly Active Users)</h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="monthly_active_users_chart.type" [data]="monthly_active_users_chart.data" [options]="monthly_active_users_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">전체 성별비율</h3>
@@ -94,7 +101,20 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">전체 티켓현황</h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="ticket_count_chart.type" [data]="ticket_count_chart.data" [options]="ticket_count_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">전체 회사</h3>
@@ -153,7 +173,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
       <p class="text-right">
-        TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a>
+        TKIT - Host by <a href="http://company.tkit.me">RJ Korea Entertainment</a>
       </p>
     </div>
   </div>
