@@ -35,9 +35,9 @@
           <ul *ngIf="!edit_mode" class="list-group">
             <li class="list-group-item"><strong>아이디: </strong>{{content._id}}</li>
             <li class="list-group-item"><strong>숏 아이디: </strong>{{content.short_id}}</li>
-            <li class="list-group-item"><strong>행사명: </strong>{{content.name}}</li>
+            <li class="list-group-item"><strong>행사이름: </strong>{{content.name}}</li>
             <li *ngIf="content.desc" class="list-group-item">
-              <h5 class="list-group-item-heading">설명</h5>
+              <h5 class="list-group-item-heading">행사내용</h5>
               <pre class="list-group-item-text">{{content.desc}}</pre>
             </li>
             <li *ngIf="content.when" class="list-group-item"><strong>기간: </strong><span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span><span *ngIf="content.when.end"> ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</span></li>
@@ -104,12 +104,12 @@
             </div>
             <br>
             <div class="input-group">
-              <span class="input-group-addon">이름</span>
+              <span class="input-group-addon">행사이름</span>
               <input type="text" class="form-control" [(ngModel)]="content.name" name="name">
             </div>
             <br>
             <div class="input-group">
-              <span class="input-group-addon">설명</span>
+              <span class="input-group-addon">행사내용</span>
               <textarea class="form-control" rows="5" [(ngModel)]="content.desc" name="desc"></textarea>
             </div>
             <br>
@@ -146,7 +146,7 @@
   </div>
   <div class="row">
     <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-      <p class="text-right">TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
+      <p class="text-right">TKIT - Host by <a href="https://compnay.tkit.me" target="_blank">RJ Korea Entertainment</a></p>
     </div>
   </div>
 </div>
