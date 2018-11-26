@@ -4,6 +4,7 @@
 }
 
 .active {
+  font-weight: bold;
   background: #e7e7e7 !important;
 }
 
