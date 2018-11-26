@@ -1,19 +1,22 @@
 <app-error-message [message]="error_message" *ngIf="error_message"></app-error-message>
 
 <div class="row">
-    <div class="col-md-11">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="이름, 설명, 장소, 장르, 라인업, 권한" [(ngModel)]="query" name="query" (keyup.enter)="search()">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-            </span>
-        </div>
-        <br>
+  <div class="col-md-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="이름, 설명, 장소, 장르, 라인업, 권한" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
     </div>
-    <div class="col-md-1">
-      <p><a routerLink="/contents/new" class="btn btn-success" role="button">컨텐츠 만들기</a></p>
-    </div>
+    <br>
+  </div>
 </div>
+<div class="row">
+  <div class="col-md-1">
+    <p><a routerLink="/contents/new" class="btn btn-success btn-lg" role="button">추가하기</a></p>
+  </div>
+</div>
+
 
 <div *ngIf="is_loading">
   <app-loader></app-loader>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -8,7 +8,7 @@
       <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" routerLink="/home">
-        <img class="brand-logo" alt="Brand" src="assets/images/logo.png">
+        <img class="brand-logo" alt="Brand" src="assets/images/logo.svg">
       </a>
     </div>
 
@@ -24,23 +24,22 @@
     <!-- super -->
     <div *ngIf="isSuperNavbar()" id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
-        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">홈</a></li>
-        <li><a routerLink="/company" routerLinkActive="active" data-toggle="collapse">회사</a></li>
+        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">현황</a></li>
+        <li><a routerLink="/company" routerLinkActive="active" data-toggle="collapse">회사관리</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">유저 <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">유저관리 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/admin" data-toggle="collapse">호스트</a></li>
+            <li><a routerLink="/admin" data-toggle="collapse">호스트유저</a></li>
             <li><a routerLink="/user" data-toggle="collapse">일반유저</a></li>
           </ul>
         </li>
-        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">컨텐츠</a></li>
-        <li><a routerLink="/qna" routerLinkActive="active" data-toggle="collapse">Q&A</a></li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="new-badge" class="badge">$</span> 팀 (TIM) <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TKIT PRO <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/tickets/log" data-toggle="collapse">티켓 트래킹</a></li>
-            <li><a routerLink="/tim/matrix/ticket/order" data-toggle="collapse">티켓오더 메트릭스</a></li>
-            <li><a routerLink="/tim/matrix/ticket/type" data-toggle="collapse">티켓타입 메트릭스</a></li>
+            <li><a routerLink="/tickets/log" data-toggle="collapse">티켓 추적하기</a></li>
+            <li><a routerLink="/tim/matrix/ticket/order" data-toggle="collapse">티켓 사용자 랭킹</a></li>
+            <li><a routerLink="/tim/matrix/ticket/type" data-toggle="collapse">티켓 종류별 랭킹</a></li>
             <li><a routerLink="/tim/report" data-toggle="collapse">레포트</a></li>
             <li><a routerLink="/tim/analytics" data-toggle="collapse">분석</a></li>
           </ul>
@@ -60,24 +59,23 @@
     <!-- admin -->
     <div *ngIf="isAdminNavbar()" id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
-        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">홈</a></li>
-        <li><a routerLink="/company" routerLinkActive="active" data-toggle="collapse">회사</a></li>
+        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">현황</a></li>
+        <li><a routerLink="/company" routerLinkActive="active" data-toggle="collapse">회사관리</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">유저 <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/admin" data-toggle="collapse">호스트</a></li>
+            <li><a routerLink="/admin" data-toggle="collapse">호스트유저</a></li>
             <li><a routerLink="/user" data-toggle="collapse">일반유저</a></li>
           </ul>
         </li>
-        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">컨텐츠</a></li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
         <li><a routerLink="/qna" routerLinkActive="active" data-toggle="collapse">Q&A</a></li>
-        <!--<li><a routerLink="/place" routerLinkActive="active" data-toggle="collapse">Place</a></li>-->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="new-badge" class="badge">$</span> 팀 (TIM) <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="new-badge" class="badge">$</span> TKIT PRO <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/tickets/log" data-toggle="collapse">트래킹</a></li>
-            <li><a routerLink="/tim/matrix/ticket/order" data-toggle="collapse">티켓오더 메트릭스</a></li>
-            <li><a routerLink="/tim/matrix/ticket/type" data-toggle="collapse">티켓타입 메트릭스</a></li>
+            <li><a routerLink="/tickets/log" data-toggle="collapse">티켓 추적하기</a></li>
+            <li><a routerLink="/tim/matrix/ticket/order" data-toggle="collapse">티켓 사용자 랭킹</a></li>
+            <li><a routerLink="/tim/matrix/ticket/type" data-toggle="collapse">티켓 종류별 랭킹</a></li>
             <li><a routerLink="/tim/report" data-toggle="collapse">레포트</a></li>
             <li><a routerLink="/tim/analytics" data-toggle="collapse">분석</a></li>
           </ul>
@@ -97,11 +95,20 @@
     <!-- host -->
     <div *ngIf="isHostNavbar()" id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
-        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">홈</a></li>
-        <li><a routerLink="/admin" routerLinkActive="active" data-toggle="collapse">스텝</a></li>
-        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">컨텐츠</a></li>
-        <li><a routerLink="/ticket/type" routerLinkActive="active" data-toggle="collapse">티켓</a></li>
-        <li><a routerLink="/qna" routerLinkActive="active" data-toggle="collapse">Q&A</a></li>
+        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">현황</a></li>
+        <li><a routerLink="/admin" routerLinkActive="active" data-toggle="collapse">스텝관리</a></li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TKIT PRO <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/tickets/log" data-toggle="collapse">티켓 추적하기</a></li>
+            <li><a routerLink="/tim/matrix/ticket/order" data-toggle="collapse">티켓 사용자 랭킹</a></li>
+            <li><a routerLink="/tim/matrix/ticket/type" data-toggle="collapse">티켓 종류별 랭킹</a></li>
+            <li><a routerLink="/tim/report" data-toggle="collapse">레포트</a></li>
+            <li><a routerLink="/tim/analytics" data-toggle="collapse">분석</a></li>
+          </ul>
+        </li>
+        <li><a href="http://pf.kakao.com/_xdlgxcxl/chat" target="_blank">HELP</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -117,7 +124,7 @@
     <!-- staff -->
     <div *ngIf="isStaffNavbar()" id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
-        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">컨텐츠</a></li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -133,23 +140,20 @@
     <!-- pro -->
     <div *ngIf="isProNavbar()" id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
-        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">홈</a></li>
-        <li><a routerLink="/admin" routerLinkActive="active" data-toggle="collapse">스텝</a></li>
-        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">컨텐츠</a></li>
-        <li><a routerLink="/ticket/type" routerLinkActive="active" data-toggle="collapse">티켓</a></li>
-        <li><a routerLink="/qna" routerLinkActive="active" data-toggle="collapse">Q&A</a></li>
+        <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">현황</a></li>
+        <li><a routerLink="/admin" routerLinkActive="active" data-toggle="collapse">스텝관리</a></li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="new-badge" class="badge">$</span> 팀 (TIM)
-            <span class="caret"></span>
-          </a>
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TKIT PRO <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/tickets/log" data-toggle="collapse">티켓 트래킹</a></li>
-            <li><a routerLink="/tim/matrix/ticket/order" data-toggle="collapse">티켓오더 메트릭스</a></li>
-            <li><a routerLink="/tim/matrix/ticket/type" data-toggle="collapse">티켓타입 메트릭스</a></li>
+            <li><a routerLink="/tickets/log" data-toggle="collapse">티켓 추적하기</a></li>
+            <li><a routerLink="/tim/matrix/ticket/order" data-toggle="collapse">티켓 사용자 랭킹</a></li>
+            <li><a routerLink="/tim/matrix/ticket/type" data-toggle="collapse">티켓 종류별 랭킹</a></li>
             <li><a routerLink="/tim/report" data-toggle="collapse">레포트</a></li>
             <li><a routerLink="/tim/analytics" data-toggle="collapse">분석</a></li>
           </ul>
         </li>
+        <li><a href="http://pf.kakao.com/_xdlgxcxl/chat" target="_blank">HELP</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

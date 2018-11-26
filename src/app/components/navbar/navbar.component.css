@@ -1,5 +1,11 @@
+.navbar-default {
+  background-color: #ffffff;
+  border-color: #e7e7e7;
+}
+
 .active {
-  background: #080808 !important;
+  font-weight: bold;
+  background: #e7e7e7 !important;
 }
 
 .brand-logo {

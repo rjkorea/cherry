@@ -113,6 +113,20 @@ export class ContentDetailComponent implements OnInit {
       );
   }
 
+  uploadOg(files: FileList) {
+    this.contentService
+      .uploadOgImage(this.content._id, files.item(0))
+      .subscribe(
+        response => {
+          window.location.reload();
+        },
+        error => {
+          console.log(error);
+          alert(error.message);
+        }
+      );
+  }
+
   uploadExtra(num: string, files: FileList) {
     this.contentService
       .uploadExtraImage(this.content._id, num, files.item(0))
