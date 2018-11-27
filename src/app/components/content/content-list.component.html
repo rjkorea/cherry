@@ -30,10 +30,9 @@
         <h3>컨텐츠 <span class="badge">{{count}}</span></h3>
       </div>
       <div *ngFor="let content of contents">
-        <div class="col-md-6">
+        <div class="col-md-3">
           <div class="thumbnail">
-            <img *ngIf="content.image" class="content_logo img-thumbnail" src="{{content.image.logo.m}}">
-            <img *ngIf="!content.image" class="content_logo" src="assets/images/no_image_icon.png">
+            <img *ngIf="content.image" class="content_logo img-thumbnail" src="{{content.image.poster.m}}">
             <div class="caption">
               <h3 *ngIf="isStaffNavbar()">{{content.name | slice: 0:24}}</h3>
               <h3 *ngIf="!isStaffNavbar()"><a [routerLink]="['/content', content._id]">{{content.name | slice: 0:24}}</a></h3>

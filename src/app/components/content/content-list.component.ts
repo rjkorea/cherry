@@ -14,7 +14,7 @@ export class ContentListComponent implements OnInit {
   contents: Content[];
   query: any = '';
   page: any = 1;
-  size: any = 9;
+  size: any = 4;
   count: any = 0;
 
   is_loading: boolean;
