@@ -1,6 +1,6 @@
 {
   "name": "cherry",
-  "version": "0.5.7",
+  "version": "0.7",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
