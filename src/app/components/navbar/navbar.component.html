@@ -48,6 +48,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="label label-super">S</span>
             {{getUserName()}} ({{getCompanyName()}})<span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
@@ -85,7 +86,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{getUserName()}} ({{getRole()}})<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="label label-admin">A</span>
+            {{getUserName()}} ({{getCompanyName()}})<span class="caret"></span>
+          </a>
           <ul class="dropdown-menu">
             <li><a [routerLink]="['/profile', getUserId()]" data-toggle="collapse">프로필</a></li>
             <li><a routerLink="/login" (click)="logout()">로그아웃</a></li>
@@ -114,7 +118,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{getUserName()}} ({{getRole()}})<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="label label-host">H</span>
+            {{getUserName()}} ({{getCompanyName()}})<span class="caret"></span>
+          </a>
           <ul class="dropdown-menu">
             <li><a [routerLink]="['/profile', getUserId()]" data-toggle="collapse">프로필</a></li>
             <li><a routerLink="/login" (click)="logout()">로그아웃</a></li>
@@ -130,7 +137,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{getUserName()}} ({{getRole()}})<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="label label-staff">S</span>
+            {{getUserName()}} ({{getCompanyName()}})<span class="caret"></span>
+          </a>
           <ul class="dropdown-menu">
             <li><a [routerLink]="['/profile', getUserId()]" data-toggle="collapse">프로필</a></li>
             <li><a routerLink="/login" (click)="logout()">로그아웃</a></li>
@@ -159,7 +169,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{getUserName()}} ({{getRole()}})<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="label label-pro">P</span>
+            {{getUserName()}} ({{getCompanyName()}})<span class="caret"></span>
+          </a>
           <ul class="dropdown-menu">
             <li><a [routerLink]="['/profile', getUserId()]" data-toggle="collapse">프로필</a></li>
             <li><a routerLink="/login" (click)="logout()">로그아웃</a></li>
