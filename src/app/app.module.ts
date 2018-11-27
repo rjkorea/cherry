@@ -18,6 +18,7 @@ import { ButtonsModule } from 'ngx-bootstrap';
 import { SharedComponentsModule } from './components/shared/shared-components.module';
 
 import { AppComponent } from './app.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -91,6 +92,7 @@ defineLocale('ko', koLocale);
   declarations: [
     AppComponent,
     NavbarComponent,
+    WelcomeComponent,
     LoginComponent,
     DashboardComponent,
     MatrixTicketOrderComponent,
