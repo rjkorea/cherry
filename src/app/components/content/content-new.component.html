@@ -1,10 +1,10 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Step 1. 행사 만들기</h3>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-6">
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Step 1. 행사 만들기</h3>
+      </div>
+      <div class="panel-body">
         <ng-template [ngIf]="role=='super' || role=='admin'">
           <div class="form-group">
             <label for="company">주최사 (필수)</label>
@@ -27,7 +27,7 @@
         </div>
         <br>
         <div class="form-group">
-          <label>행사내용</label>
+          <label>공지사항</label>
           <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="content.desc" name="desc"></textarea>
         </div>
         <br>
@@ -46,7 +46,12 @@
             bsDaterangepicker #drp="bsDaterangepicker">
         </div>
         <br>
-        <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
+        <div class="form-group">
+          <label>행사내용</label>
+          <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="content.desc" name="desc"></textarea>
+        </div>
+        <br>
+        <button type="button" class="btn btn-success btn-lg" [disabled]="disabledSubmit()" (click)="onSubmit()">Step 2. 이미지 등록하기</button>
       </div>
     </div>
   </div>
