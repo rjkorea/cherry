@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
+import { CompanyService} from './company.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -14,8 +15,9 @@ export class AuthService {
   signupUrl = `${URL}/a/auth/register`;
   isLoggedIn = false;
 
-  constructor(private http: Http) {
-    this.isLoggedIn = !!localStorage.getItem('csk');
+  constructor(private http: Http,
+              private companyService: CompanyService) {
+              this.isLoggedIn = !!localStorage.getItem('csk');
   }
 
   public login(email: string, password: string): Observable<{}> {
@@ -29,6 +31,12 @@ export class AuthService {
                         localStorage.setItem('_id', response.json().data._id);
                         localStorage.setItem('role', response.json().data.role);
                         localStorage.setItem('tablet_code', response.json().data.tablet_code);
+                        this.companyService.getCompany(response.json().data.company_oid)
+                          .subscribe(
+                            response => {
+                              localStorage.setItem('company_name', response['data']['name']);
+                            }
+                          );
                         this.isLoggedIn = true;
                       }
                     })
@@ -45,6 +53,7 @@ export class AuthService {
     localStorage.removeItem('_id');
     localStorage.removeItem('role');
     localStorage.removeItem('tablet_code');
+    localStorage.removeItem('company_name');
     this.isLoggedIn = false;
   }
 

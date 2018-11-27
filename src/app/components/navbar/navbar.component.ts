@@ -28,6 +28,10 @@ export class NavbarComponent implements OnInit {
     return localStorage.getItem('role');
   }
 
+  getCompanyName() {
+    return localStorage.getItem('company_name');
+  }
+
   isDefaultNavbar() {
     return !this.authService.loggedIn() && !this.authService.getRole();
   }
