@@ -1,17 +1,11 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">컨텐츠 만들기</h3>
+    <h3 class="panel-title">Step 1. 행사 만들기</h3>
   </div>
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-4">
-        <img class="img-thumbnail" src="https://s3.ap-northeast-2.amazonaws.com/devres.tkit.me/content/default/poster.m.png">
-        <img class="img-thumbnail" src="https://s3.ap-northeast-2.amazonaws.com/devres.tkit.me/content/default/logo.m.png">
-        <img class="img-thumbnail" src="https://s3.ap-northeast-2.amazonaws.com/devres.tkit.me/content/default/og.m.png">
-      </div>
-      <div class="col-md-8">
+      <div class="col-md-6">
         <ng-template [ngIf]="role=='super' || role=='admin'">
-          <br>
           <div class="form-group">
             <label for="company">주최사 (필수)</label>
             <select class="form-control" name="company" [(ngModel)]="content.company_oid" (ngModelChange)="changeRole()">
