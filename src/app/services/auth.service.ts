@@ -25,18 +25,14 @@ export class AuthService {
     const options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(this.loginUrl, JSON.stringify({email, password}), options)
                     .map((response: Response) => {
-                      if(response.status === 200) {
+                      if (response.status === 200) {
                         localStorage.setItem('csk', response.json().data.csk);
                         localStorage.setItem('name', response.json().data.name);
                         localStorage.setItem('_id', response.json().data._id);
                         localStorage.setItem('role', response.json().data.role);
                         localStorage.setItem('tablet_code', response.json().data.tablet_code);
-                        this.companyService.getCompany(response.json().data.company_oid)
-                          .subscribe(
-                            response => {
-                              localStorage.setItem('company_name', response['data']['name']);
-                            }
-                          );
+                        localStorage.setItem('company_name', response.json().data.company_name);
+                        localStorage.setItem('login_at', response.json().data.login_at);
                         this.isLoggedIn = true;
                       }
                     })
@@ -54,6 +50,7 @@ export class AuthService {
     localStorage.removeItem('role');
     localStorage.removeItem('tablet_code');
     localStorage.removeItem('company_name');
+    localStorage.removeItem('login_at');
     this.isLoggedIn = false;
   }
 
