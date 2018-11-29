@@ -51,7 +51,7 @@
           <input type="password" class="form-control" [(ngModel)]="admin.password2" name="password2">
         </div>
         <br>
-        <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
+        <button type="button" class="btn btn-tkit-mint" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
         <div *ngIf="error_msg" class="row">
           <div class="col-md-6">
             <div class="alert alert-danger" role="alert">

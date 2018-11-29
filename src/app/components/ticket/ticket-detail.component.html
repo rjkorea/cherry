@@ -63,7 +63,7 @@
             <span *ngIf="ticket.enabled" class="label label-success">활성화</span>
             <span *ngIf="!ticket.enabled" class="label label-danger">비활성화</span>
           </div>
-          <button *ngIf="!ticket.receive_user" type="button" class="btn btn-success" (click)="registerUser()">유저 등록</button>
+          <button *ngIf="!ticket.receive_user" type="button" class="btn btn-tkit-mint" (click)="registerUser()">유저 등록</button>
         </div>
       </div>
     </div>

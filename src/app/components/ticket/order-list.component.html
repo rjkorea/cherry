@@ -13,8 +13,8 @@
         <h3>티켓오더 <span class="badge">{{count}}</span></h3>
       </div>
       <div class="col-md-1">
-        <button *ngIf="count===0 && ticket_order_type==='general'" type="button" class="btn btn-success" (click)="onNew()">티켓오더 만들기</button>
-        <button *ngIf="ticket_order_type==='network'" type="button" class="btn btn-success" (click)="onNew()">티켓오더 만들기</button>
+        <button *ngIf="count===0 && ticket_order_type==='general'" type="button" class="btn btn-tkit-mint" (click)="onNew()">티켓오더 만들기</button>
+        <button *ngIf="ticket_order_type==='network'" type="button" class="btn btn-tkit-mint" (click)="onNew()">티켓오더 만들기</button>
       </div>
       <div class="col-md-12">
         <div class="table-responsive">
@@ -112,7 +112,7 @@
         <h3>티켓오더 <span class="badge">{{count}}</span></h3>
       </div>
       <div class="col-md-1">
-        <button type="button" class="btn btn-success" (click)="onNew()">티켓오더 만들기</button>
+        <button type="button" class="btn btn-tkit-mint" (click)="onNew()">티켓오더 만들기</button>
       </div>
     </div>
   </div>
