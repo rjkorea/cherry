@@ -3,9 +3,9 @@ import { Router, ActivatedRoute, Params} from '@angular/router';
 import { ContentService } from '../../services/content.service';
 
 @Component({
-  selector: "app-content-new-image",
-  templateUrl: "./content-new-image.component.html",
-  styleUrls: ["./content-new-image.component.css"],
+  selector: 'app-content-new-image',
+  templateUrl: './content-new-image.component.html',
+  styleUrls: ['./content-new-image.component.css'],
   providers: []
 })
 export class ContentNewImageComponent implements OnInit {
@@ -19,13 +19,13 @@ export class ContentNewImageComponent implements OnInit {
 
   ngOnInit() {
     const params: Params = this.route.snapshot.params;
-    this.loadContent(params["id"]);
+    this.loadContent(params['id']);
   }
 
   loadContent(id: string) {
     this.contentService.getContent(id).subscribe(
       response => {
-        this.content = response["data"];
+        this.content = response['data'];
       },
       error => {
         console.log(error);
