@@ -26,6 +26,7 @@ import { AdminPasswordComponent } from './components/admin/admin-password.compon
 import { ContentListComponent } from './components/content/content-list.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
 import { ContentNewComponent } from './components/content/content-new.component';
+import { ContentNewImageComponent } from './components/content/content-new-image.component';
 import { ContentGroupListComponent } from './components/content/content-group-list.component';
 import { ContentGroupEditComponent } from './components/content/content-group-edit.component';
 import { ContentGroupNewComponent } from './components/content/content-group-new.component';
@@ -82,6 +83,7 @@ const routes: Routes = [
   { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
   { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
   { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
+  { path: 'contents/new/:id/image', component: ContentNewImageComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/groups', component: ContentGroupListComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/:group_oid/edit', component: ContentGroupEditComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/new', component: ContentGroupNewComponent, canActivate: [AuthGuard] },
