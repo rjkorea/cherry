@@ -3,3 +3,15 @@
 body {
   padding-top: 70px;
 }
+
+.btn-tkit-mint {
+  color: #fff;
+  background-color: #62aab8;
+  border-color: #59a2b0;
+}
+
+.btn-tkit-coral {
+  color: #fff;
+  background-color: #d87072;
+  border-color: #ed7f81;
+}
