@@ -65,11 +65,10 @@ export class ContentNewComponent implements OnInit {
         }
       }
     }
-    console.log(this.content);
     this.contentService.addContent(this.content)
       .subscribe(
         response => {
-          this.router.navigate(['/content']);
+          this.router.navigate(['/contents', 'new', response['data']['content_oid'], 'image']);
         },
         error => {
           alert(error.message);
