@@ -1,6 +1,6 @@
 {
   "name": "cherry",
-  "version": "0.7",
+  "version": "0.7.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -41,6 +41,7 @@
     "angular2-chartjs": "0.4.1",
     "ng2-ui-switch": "1.0.2",
     "angular-tag-cloud-module": "1.4.0",
+    "ng-pick-datetime": "5.2.6",
     "ngx-bootstrap": "2.0.2",
     "bootstrap": "3.3.7",
     "jquery": "3.2.1"
