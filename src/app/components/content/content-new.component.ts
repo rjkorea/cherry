@@ -16,9 +16,8 @@ export class ContentNewComponent implements OnInit {
   companies: any;
   admins: any;
   role: string;
-  when_radio: string;
-  when_value: any;
   when_range_value: any;
+  when_datetime_range: Date[];
   tags: any;
 
   constructor(private contentService: ContentService,
@@ -29,7 +28,6 @@ export class ContentNewComponent implements OnInit {
 
   ngOnInit() {
     this.role = this.authService.getRole();
-    this.when_radio = 'day';
     this.content = {
       company_oid: '',
       admin_oid: '',
@@ -38,7 +36,7 @@ export class ContentNewComponent implements OnInit {
       place: '',
       desc: '',
       notice: {
-        enabled: true,
+        enabled: false,
         message: ''
       },
       tags: []
@@ -52,19 +50,13 @@ export class ContentNewComponent implements OnInit {
       meeting: false,
       etc: false
     };
+    this.when_datetime_range = [new Date(), new Date()];
     this.loadCompanies();
   }
 
   onSubmit() {
-    if (this.when_radio === 'day') {
-      if ('end' in this.content.when) {
-        delete this.content.when.end;
-      }
-      this.content.when.start = `${this.when_value.getFullYear()}-${this.when_value.getMonth() + 1}-${this.when_value.getDate()}T00:00:00`;
-    } else if (this.when_radio === 'range') {
-      this.content.when.start =`${this.when_range_value[0].getFullYear()}-${this.when_range_value[0].getMonth() + 1}-${this.when_range_value[0].getDate()}T00:00:00`;
-      this.content.when.end = `${this.when_range_value[1].getFullYear()}-${this.when_range_value[1].getMonth() + 1}-${this.when_range_value[1].getDate()}T00:00:00`;
-    };
+    this.content.when.start = `${this.when_datetime_range[0].getUTCFullYear()}-${this.when_datetime_range[0].getUTCMonth() + 1}-${this.when_datetime_range[0].getUTCDate()}T${this.when_datetime_range[0].getUTCHours()}:${this.when_datetime_range[0].getUTCMinutes()}:${this.when_datetime_range[0].getUTCSeconds()}`;
+    this.content.when.end = `${this.when_datetime_range[1].getUTCFullYear()}-${this.when_datetime_range[1].getUTCMonth() + 1}-${this.when_datetime_range[1].getUTCDate()}T${this.when_datetime_range[1].getUTCHours()}:${this.when_datetime_range[1].getUTCMinutes()}:${this.when_datetime_range[1].getUTCSeconds()}`;
     this.content.tags = [];
     for (const key in this.tags) {
       if (this.tags.hasOwnProperty(key)) {
@@ -74,17 +66,16 @@ export class ContentNewComponent implements OnInit {
       }
     }
     console.log(this.content);
-    // TODO comment out
-    // this.contentService.addContent(this.content)
-    //   .subscribe(
-    //     response => {
-    //       this.router.navigate(['/content']);
-    //     },
-    //     error => {
-    //       alert(error.message);
-    //       console.log(error);
-    //     }
-    //   );
+    this.contentService.addContent(this.content)
+      .subscribe(
+        response => {
+          this.router.navigate(['/content']);
+        },
+        error => {
+          alert(error.message);
+          console.log(error);
+        }
+      );
   }
 
   loadCompanies() {

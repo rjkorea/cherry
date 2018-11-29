@@ -42,19 +42,10 @@
           <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="content.notice.message" name="desc"></textarea>
         </div>
         <br>
-        <div class="btn-group" btnRadioGroup [(ngModel)]="when_radio">
-          <label class="btn btn-info" btnRadio="day">당일</label>
-          <label class="btn btn-info" btnRadio="range">기간</label>
-        </div>
-        <div *ngIf="when_radio=='day'" class="form-group">
-          <input placeholder="캘린더에서 행사날짜를 선택하세요." text="text" class="form-control"
-            [(bsValue)]=when_value
-            bsDatepicker #drp="bsDatepicker">
-        </div>
-        <div *ngIf="when_radio=='range'" class="form-group">
-          <input placeholder="캘린더에서 행사기간을 선택해주세요." text="text" class="form-control"
-            [(ngModel)]=when_range_value
-            bsDaterangepicker #drp="bsDaterangepicker">
+        <div class="form-group">
+          <label>행사 기간 일시 (필수)</label>
+          <input [(ngModel)]="when_datetime_range" [selectMode]="'range'" [owlDateTime]="dt_range" [owlDateTimeTrigger]="dt_range" placeholder="행사기간 설정" type="text" class="form-control">
+          <owl-date-time #dt_range></owl-date-time>
         </div>
         <br>
         <div class="form-group">
