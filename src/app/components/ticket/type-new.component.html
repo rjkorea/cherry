@@ -1,28 +1,38 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{content.name}} 티켓타입 만들기</h3>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-6">
-        <select class="form-control" [(ngModel)]="ticket_type" (ngModelChange)="changeTicketType()">
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{content.name}} 티켓타입 만들기</h3>
+      </div>
+      <div class="panel-body">
+        <!-- <select class="form-control" [(ngModel)]="ticket_type" (ngModelChange)="changeTicketType()">
           <ng-container *ngFor="let tt of ticket_types">
             <option [ngValue]="tt.value">{{tt.name}}</option>
           </ng-container>
         </select>
-        <br>
+        <br> -->
         <form>
           <div class="form-group">
-            <label for="name">티켓명 (필수)</label>
+            <label for="name">티켓 이름</label>
             <input type="text" class="form-control" cols="30" [(ngModel)]="type.name" name="name">
           </div>
           <div class="form-group">
-            <label>설명</label> <input type="checkbox" [(ngModel)]="type.desc.enabled" name="desc.enabled">
+            <label>티켓 설명</label> <input type="checkbox" [(ngModel)]="type.desc.enabled" name="desc.enabled">
             <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="type.desc.value" name="desc"></textarea>
           </div>
           <button type="button" class="btn btn-tkit-mint" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
         </form>
       </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="../../../assets/images/ticket_type_guide.png" alt="티켓 타입 만들기 가이드">
+      <!-- <div class="caption">
+        <h3>티켓 화면 가이드</h3>
+        <p>...</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div> -->
     </div>
   </div>
 </div>
