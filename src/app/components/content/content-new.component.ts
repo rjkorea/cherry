@@ -19,7 +19,7 @@ export class ContentNewComponent implements OnInit {
   when_radio: string;
   when_value: any;
   when_range_value: any;
-
+  tags: any;
 
   constructor(private contentService: ContentService,
               private companyService: CompanyService,
@@ -36,7 +36,21 @@ export class ContentNewComponent implements OnInit {
       when: {},
       name: '',
       place: '',
-      desc: ''
+      desc: '',
+      notice: {
+        enabled: true,
+        message: ''
+      },
+      tags: []
+    };
+    this.tags = {
+      festival: false,
+      exhibition: false,
+      show: false,
+      club: false,
+      party: false,
+      meeting: false,
+      etc: false
     };
     this.loadCompanies();
   }
@@ -47,20 +61,30 @@ export class ContentNewComponent implements OnInit {
         delete this.content.when.end;
       }
       this.content.when.start = `${this.when_value.getFullYear()}-${this.when_value.getMonth() + 1}-${this.when_value.getDate()}T00:00:00`;
-    }else if (this.when_radio === 'range') {
-      this.content.when.start = `${this.when_range_value[0].getFullYear()}-${this.when_range_value[0].getMonth() + 1}-${this.when_range_value[0].getDate()}T00:00:00`;
+    } else if (this.when_radio === 'range') {
+      this.content.when.start =`${this.when_range_value[0].getFullYear()}-${this.when_range_value[0].getMonth() + 1}-${this.when_range_value[0].getDate()}T00:00:00`;
       this.content.when.end = `${this.when_range_value[1].getFullYear()}-${this.when_range_value[1].getMonth() + 1}-${this.when_range_value[1].getDate()}T00:00:00`;
     };
-    this.contentService.addContent(this.content)
-      .subscribe(
-        response => {
-          this.router.navigate(['/content']);
-        },
-        error => {
-          alert(error.message);
-          console.log(error);
+    this.content.tags = [];
+    for (const key in this.tags) {
+      if (this.tags.hasOwnProperty(key)) {
+        if (this.tags[key]) {
+          this.content.tags.push(key);
         }
-      );
+      }
+    }
+    console.log(this.content);
+    // TODO comment out
+    // this.contentService.addContent(this.content)
+    //   .subscribe(
+    //     response => {
+    //       this.router.navigate(['/content']);
+    //     },
+    //     error => {
+    //       alert(error.message);
+    //       console.log(error);
+    //     }
+    //   );
   }
 
   loadCompanies() {

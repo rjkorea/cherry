@@ -15,6 +15,17 @@
             </select>
           </div>
         </ng-template>
+        <div>
+          <label class="checkbox-inline checkbox-lg"><input type="checkbox" name="festival" [(ngModel)]="tags.festival">페스티벌</label>
+          <label class="checkbox-inline checkbox-lg"><input type="checkbox" name="exhibition" [(ngModel)]="tags.exhibition">전시</label>
+          <label class="checkbox-inline checkbox-lg"><input type="checkbox" name="show" [(ngModel)]="tags.show">공연</label>
+          <label class="checkbox-inline checkbox-lg"><input type="checkbox" name="party" [(ngModel)]="tags.party">파티</label>
+        </div>
+        <div>
+          <label class="checkbox-inline checkbox-lg"><input type="checkbox" name="club" [(ngModel)]="tags.club">클럽</label>
+          <label class="checkbox-inline checkbox-lg"><input type="checkbox" name="meeting" [(ngModel)]="tags.meeting">모임</label>
+          <label class="checkbox-inline checkbox-lg"><input type="checkbox" name="etc" [(ngModel)]="tags.etc">기타</label>
+        </div>
         <br>
         <div class="form-group">
           <label for="name">행사이름 (필수)</label>
@@ -28,7 +39,7 @@
         <br>
         <div class="form-group">
           <label>공지사항</label>
-          <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="content.desc" name="desc"></textarea>
+          <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="content.notice.message" name="desc"></textarea>
         </div>
         <br>
         <div class="btn-group" btnRadioGroup [(ngModel)]="when_radio">
