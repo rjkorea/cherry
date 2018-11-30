@@ -8,17 +8,17 @@
         <div class="col-md-4">
           <img *ngIf="!content.image" class="img-thumbnail" src="assets/images/no_image_icon.png">
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.poster.m}}">
-          <div class="form-group">
+          <div class="filebox">
             <label for="upload-poster">포스터 업로드 (사이즈 정보: 674 x 960 px, 용량: 2 MB)</label>
             <input type="file" id="upload-poster" name="upload-poster" (change)="uploadPoster($event.target.files)">
           </div>
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.logo.m}}">
-          <div class="form-group">
+          <div class="filebox">
             <label for="upload-logo">로고 업로드 (사이즈 정보: 360 x 120 px, 용량: 2 MB)</label>
             <input type="file" id="upload-logo" name="upload-logo" (change)="uploadLogo($event.target.files)">
           </div>
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.og.m}}">
-          <div class="form-group">
+          <div class="filebox">
             <label for="upload-og">오픈그래프 업로드 (사이즈 정보: 460 x 245 px, 용량: 2 MB)</label>
             <input type="file" id="upload-og" name="upload-og" (change)="uploadOg($event.target.files)">
           </div>
@@ -26,20 +26,20 @@
         <div class="col-md-6">
           <br />
           <div class="stats">
-            <span *ngIf="content.enabled" class="label label-success">활성화</span>
-            <span *ngIf="!content.enabled" class="label label-danger">비활성화</span>
+            <span *ngIf="content.enabled" class="label label-tkit-mint">활성화</span>
+            <span *ngIf="!content.enabled" class="label label-tkit-coral">비활성화</span>
           </div>
           <br>
           <ul *ngIf="!edit_mode" class="list-group">
             <li class="list-group-item">
               <ng-container *ngFor="let tag of content.tags">
-                <label *ngIf="tag==='festival'" class="label label-primary label-lg">페스티벌</label>
-                <label *ngIf="tag==='exhibition'" class="label label-primary label-lg">전시</label>
-                <label *ngIf="tag==='show'" class="label label-primary label-lg">공연</label>
-                <label *ngIf="tag==='party'" class="label label-primary label-lg">파티</label>
-                <label *ngIf="tag==='club'" class="label label-primary label-lg">클럽</label>
-                <label *ngIf="tag==='meeting'" class="label label-primary label-lg">모임</label>
-                <label *ngIf="tag==='etc'" class="label label-primary label-lg">기타</label>
+                <label *ngIf="tag==='festival'" class="label label-tkit-mint label-lg">페스티벌</label>
+                <label *ngIf="tag==='exhibition'" class="label label-tkit-mint label-lg">전시</label>
+                <label *ngIf="tag==='show'" class="label label-tkit-mint label-lg">공연</label>
+                <label *ngIf="tag==='party'" class="label label-tkit-mint label-lg">파티</label>
+                <label *ngIf="tag==='club'" class="label label-tkit-mint label-lg">클럽</label>
+                <label *ngIf="tag==='meeting'" class="label label-tkit-mint label-lg">모임</label>
+                <label *ngIf="tag==='etc'" class="label label-tkit-mint label-lg">기타</label>
               </ng-container>
             </li>
             <li class="list-group-item"><strong>아이디: </strong>{{content._id}}</li>
@@ -101,8 +101,8 @@
             </li>
             <li *ngIf="content.notice" class="list-group-item">
               <h5 class="list-group-item-heading">공지사항 메세지
-                <span *ngIf="content.notice.enabled" class="label label-success">활성화</span>
-                <span *ngIf="!content.notice.enabled" class="label label-danger">비활성화</span>
+                <span *ngIf="content.notice.enabled" class="label label-tkit-mint">활성화</span>
+                <span *ngIf="!content.notice.enabled" class="label label-tkit-coral">비활성화</span>
               </h5>
               <pre class="list-group-item-text">{{content.notice.message}}</pre>
             </li>
