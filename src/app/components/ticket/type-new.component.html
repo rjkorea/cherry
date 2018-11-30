@@ -10,28 +10,30 @@
         <h3 class="panel-title">{{content.name}} 티켓타입 만들기</h3>
       </div>
       <div class="panel-body">
-        <!-- <select class="form-control" [(ngModel)]="ticket_type" (ngModelChange)="changeTicketType()">
-          <ng-container *ngFor="let tt of ticket_types">
-            <option [ngValue]="tt.value">{{tt.name}}</option>
-          </ng-container>
-        </select>
-        <br> -->
-        <form>
-          <div class="form-group">
-            <label for="name">티켓 이름</label>
-            <input type="text" class="form-control" cols="30" [(ngModel)]="type.name" name="name">
+        <div class="form-group">
+          <label for="name">티켓 이름</label>
+          <input type="text" class="form-control" cols="30" [(ngModel)]="type.name" name="name">
+        </div>
+        <div class="form-group">
+          <label>티켓 설명</label> <input type="checkbox" [(ngModel)]="type.desc.enabled" name="desc.enabled">
+          <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="type.desc.value" name="desc"></textarea>
+        </div>
+        <div class="form-group">
+          <h4>유효기간 일시: {{type.expiry_date | amDateFormat:'YYYY-MM-DD HH:mm:00'}}</h4>
+          <owl-date-time-inline [(ngModel)]="type.expiry_date"></owl-date-time-inline>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" [checked]="is_free" (change)="is_free = !is_free"> 무료티켓 (선택)
+            </label>
           </div>
-          <div class="form-group">
-            <label>티켓 설명</label> <input type="checkbox" [(ngModel)]="type.desc.enabled" name="desc.enabled">
-            <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="type.desc.value" name="desc"></textarea>
+          <div *ngIf="!is_free" class="form-group">
+            <label for="ticket-price">티켓 가격</label>
+            <input type="number" class="form-control" name="ticket-price" [(ngModel)]="price">
           </div>
-          <div class="form-group">
-            <label>행사 기간 일시 (필수)</label>
-            <!-- <input [(ngModel)]="when_datetime_range" placeholder="유효기간 설정" type="text" class="form-control"> -->
-            <!-- <owl-date-time-line [(ngModel)]="datetime"></owl-date-time-line> -->
-          </div>
-          <button type="button" class="btn btn-tkit-mint" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
-        </form>
+        </div>
+        <button type="button" class="btn btn-tkit-mint" [disabled]="disabledSubmit()" (click)="onDone()">완료</button>
       </div>
     </div>
   </div>

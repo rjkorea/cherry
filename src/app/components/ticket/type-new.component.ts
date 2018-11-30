@@ -12,9 +12,11 @@ import { ContentService } from '../../services/content.service';
 export class TicketTypeNewComponent implements OnInit {
   type: any;
   content: any;
-  ticket_type: any;
-  ticket_types: any;
+  expiry_date: Date;
   is_mobile: boolean;
+  is_free: boolean;
+
+  price: number;
 
   constructor(private ticketService: TicketService,
               private contentService: ContentService,
@@ -24,22 +26,23 @@ export class TicketTypeNewComponent implements OnInit {
   ngOnInit() {
     if (navigator.userAgent.toLowerCase().includes('mobile')) {
       this.is_mobile = true;
+    } else {
+      this.is_mobile = false;
     }
-    this.ticket_types = [
-      { name: '일반티켓', value: 'general' },
-      { name: '네트워크티켓', value: 'network' },
-    ];
+    this.is_free = false;
+    this.price = 10000;
+    this.content = { name: '' };
+    this.expiry_date = new Date();
     this.type = {
-      type: '',
+      type: 'network',
       name: '',
       desc: {
         enabled: false,
         value: ''
       },
-      day: 1,
-      price: 0,
       content_oid: '',
-      admin_oid: ''
+      admin_oid: '',
+      expiry_date: new Date()
     };
     const params: Params = this.route.snapshot.params;
     if ('content_oid' in params) {
@@ -48,8 +51,12 @@ export class TicketTypeNewComponent implements OnInit {
     this.loadContent(this.type.content_oid);
   }
 
-  onSubmit() {
+  onDone() {
     this.type.admin_oid = localStorage.getItem('_id');
+    if (!this.is_free) {
+      this.type['price'] = this.price;
+    }
+    this.type.expiry_date = `${this.expiry_date.getUTCFullYear()}-${this.expiry_date.getUTCMonth() + 1}-${this.expiry_date.getUTCDate()}T${this.expiry_date.getUTCHours()}:${this.expiry_date.getUTCMinutes()}:${this.expiry_date.getUTCSeconds()}`;
     this.ticketService.addType(this.type)
       .subscribe(
         response => {
@@ -71,10 +78,6 @@ export class TicketTypeNewComponent implements OnInit {
           console.log(error);
         }
       );
-  }
-
-  changeTicketType() {
-    this.type.type = this.ticket_type;
   }
 
   public disabledSubmit() {
