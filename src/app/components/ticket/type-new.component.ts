@@ -14,6 +14,7 @@ export class TicketTypeNewComponent implements OnInit {
   content: any;
   ticket_type: any;
   ticket_types: any;
+  is_mobile: boolean;
 
   constructor(private ticketService: TicketService,
               private contentService: ContentService,
@@ -21,6 +22,9 @@ export class TicketTypeNewComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    if (navigator.userAgent.toLowerCase().includes('mobile')) {
+      this.is_mobile = true;
+    }
     this.ticket_types = [
       { name: '일반티켓', value: 'general' },
       { name: '네트워크티켓', value: 'network' },
