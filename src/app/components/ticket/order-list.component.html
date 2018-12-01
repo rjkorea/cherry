@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <h3>티켓전송 <span class="badge">{{count}}</span></h3>
+        <h3>티켓전송 <span class="badge">{{count | number: '0.0-0'}}</span></h3>
       </div>
       <div class="col-md-12">
         <div class="table-responsive">
@@ -36,7 +36,7 @@
               <td>
                 <button class="btn btn-default btn-sm" type="button" (click)="onTicket(o._id)">
                   티켓
-                  <span class="badge">{{o.qty}}</span>
+                  <span class="badge">{{o.qty | number: '0.0-0'}}</span>
                 </button>
               </td>
               <td><a [routerLink]="['/ticket/order', o._id]">{{o.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD'}}</a></td>
@@ -47,7 +47,7 @@
                   <button type="button" class="btn btn-default btn-sm" (click)="onSms(o)" data-toggle="modal" data-target="#send-modal">
                     <!--<span class="glyphicon glyphicon-send" aria-hidden="true"></span> SMS전송-->
                     <i class="fa fa-comment fa-lg" aria-hidden="true"></i> SMS전송
-                    <span class="badge">{{o.receiver.sms.count}}</span>
+                    <span class="badge">{{o.receiver.sms.count | number: '0.0-0'}}</span>
                   </button>
                   <!-- Send Modal -->
                   <div class="modal fade" id="send-modal" tabindex="-1" role="dialog" aria-labelledby="send-modal-label">
