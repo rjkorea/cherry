@@ -80,19 +80,19 @@ export class TicketOrderListComponent implements OnInit {
     const page = this.page - 1;
     this.page = page;
     this.router.navigate(['/ticket/order', {query: this.query, page: page, ticket_type_oid: this.ticket_type_oid}]);
-    this.loadOrders(this.query, page);
+    this.loadOrders(this.ticket_type_oid, this.query, page);
   }
 
   onNext() {
     const page = this.page + 1;
     this.page = page;
     this.router.navigate(['/ticket/order', {query: this.query, page: page, ticket_type_oid: this.ticket_type_oid}]);
-    this.loadOrders(this.query, page);
+    this.loadOrders(this.ticket_type_oid, this.query, page);
   }
 
   search() {
     this.router.navigate(['/ticket/order', {query: this.query, page: this.page, ticket_type_oid: this.ticket_type_oid}]);
-    this.loadOrders(this.query, 1);
+    this.loadOrders(this.ticket_type_oid, this.query, 1);
   }
 
   onTicket(id: string) {
@@ -117,7 +117,7 @@ export class TicketOrderListComponent implements OnInit {
             alert('SMS 전송이 실패하였습니다.');
           }
           this.router.navigate(['/ticket/order', {query: this.query, page: this.page, ticket_type_oid: this.ticket_type_oid}]);
-          this.loadOrders(this.query, this.page);
+          this.loadOrders(this.ticket_type_oid, this.query, this.page);
           console.log(response);
         },
         error => {
