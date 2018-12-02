@@ -3,6 +3,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
 import { ContentService } from '../../services/content.service';
 
+
+class Validator {
+  constructor(
+    public length: number,
+    public max: number) { }
+}
+
 @Component({
   selector: 'app-ticket-type-new',
   templateUrl: './type-new.component.html',
@@ -15,8 +22,9 @@ export class TicketTypeNewComponent implements OnInit {
   expiry_date: Date;
   is_mobile: boolean;
   is_free: boolean;
-
   price: number;
+  input_name = new Validator(0, 30);
+  input_desc = new Validator(0, 120);
 
   constructor(private ticketService: TicketService,
               private contentService: ContentService,
@@ -78,6 +86,18 @@ export class TicketTypeNewComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  onNameKeyup(value: string) {
+    if (value.length > this.input_name.max) {
+      return;
+    } else {
+      this.input_name.length = value.length;
+    }
+  }
+
+  onDescKeyup(value: string) {
+    this.input_desc.length = value.length;
   }
 
   public disabledSubmit() {

@@ -11,12 +11,12 @@
       </div>
       <div class="panel-body">
         <div class="form-group">
-          <label for="name">티켓 이름</label>
-          <input type="text" class="form-control" cols="30" [(ngModel)]="type.name" name="name">
+          <label for="name">티켓 이름</label> <span class="length-check">{{input_name.length}} / {{input_name.max}}</span>
+          <input #name type="text" class="form-control" cols="30" [(ngModel)]="type.name" name="name" (keyup)="onNameKeyup(name.value)">
         </div>
-        <div class="form-group">
+        <div class="form-group"> <span class="length-check">{{input_desc.length}} / {{input_desc.max}}</span>
           <label>티켓 설명</label> <input type="checkbox" [(ngModel)]="type.desc.enabled" name="desc.enabled">
-          <textarea type="text" class="form-control" rows="3" cols="30" [(ngModel)]="type.desc.value" name="desc"></textarea>
+          <textarea #desc type="text" class="form-control" rows="3" cols="30" [(ngModel)]="type.desc.value" name="desc" (keyup)="onDescKeyup(desc.value)"></textarea>
         </div>
         <div class="form-group">
           <h4>유효기간 일시: {{type.expiry_date | amDateFormat:'YYYY-MM-DD HH:mm:00'}}</h4>
