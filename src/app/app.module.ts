@@ -11,8 +11,6 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
 import { UiSwitchModule } from 'ng2-ui-switch';
-import { DatepickerModule, TimepickerModule } from 'ngx-bootstrap';
-import { BsDatepickerModule } from 'ngx-bootstrap';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { koLocale } from 'ngx-bootstrap/locale';
 import { ButtonsModule } from 'ngx-bootstrap';
@@ -160,9 +158,6 @@ defineLocale('ko', koLocale);
     MomentModule,
     ChartModule,
     UiSwitchModule,
-    DatepickerModule.forRoot(),
-    TimepickerModule.forRoot(),
-    BsDatepickerModule.forRoot(),
     ButtonsModule.forRoot(),
     SharedComponentsModule
   ],
