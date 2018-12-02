@@ -7,7 +7,8 @@ import { ContentService } from '../../services/content.service';
 class Validator {
   constructor(
     public length: number,
-    public max: number) { }
+    public max: number,
+    public error_message: string) { }
 }
 
 @Component({
@@ -23,8 +24,8 @@ export class TicketTypeNewComponent implements OnInit {
   is_mobile: boolean;
   is_free: boolean;
   price: number;
-  input_name = new Validator(0, 30);
-  input_desc = new Validator(0, 120);
+  input_name = new Validator(0, 30, '');
+  input_desc = new Validator(0, 120, '');
 
   constructor(private ticketService: TicketService,
               private contentService: ContentService,
@@ -90,18 +91,24 @@ export class TicketTypeNewComponent implements OnInit {
 
   onNameKeyup(value: string) {
     if (value.length > this.input_name.max) {
-      return;
+      this.input_name.error_message = '티켓 이름 입력 최대길이를 초과 하였습니다.'
     } else {
-      this.input_name.length = value.length;
+      this.input_name.error_message = '';
     }
+    this.input_name.length = value.length;
   }
 
   onDescKeyup(value: string) {
+    if (value.length > this.input_desc.max) {
+      this.input_desc.error_message = '티켓 설명 입력 최대길이를 초과 하였습니다.'
+    } else {
+      this.input_desc.error_message = '';
+    }
     this.input_desc.length = value.length;
   }
 
   public disabledSubmit() {
-    return !(this.type.content_oid && this.type.name);
+    return !(this.type.content_oid && this.type.name && !this.input_desc.error_message && !this.input_name.error_message);
   }
 
 }
