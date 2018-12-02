@@ -43,6 +43,11 @@ body {
   border-radius: 6px;
 }
 
+.length-check {
+  float: right;
+  color: grey;
+}
+
 .filebox {
   display: block;
 }
