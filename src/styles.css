@@ -48,6 +48,10 @@ body {
   color: grey;
 }
 
+.error-message {
+  color: #ed7f81;
+}
+
 .filebox {
   display: block;
 }
