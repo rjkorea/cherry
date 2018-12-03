@@ -5,10 +5,23 @@ import { ContentService } from '../../services/content.service';
 
 
 class Validator {
+  length: number;
+  message: string;
   constructor(
-    public length: number,
     public max: number,
-    public error_message: string) { }
+    public invalid_message: string) {
+      this.length = 0;
+      this.message = '';
+    }
+
+  public onKeyup(value: string) {
+    if (value.length > this.max) {
+      this.message = this.invalid_message;
+    } else {
+      this.message = '';
+    }
+    this.length = value.length;
+  }
 }
 
 @Component({
@@ -24,8 +37,8 @@ export class TicketTypeNewComponent implements OnInit {
   is_mobile: boolean;
   is_free: boolean;
   price: number;
-  input_name = new Validator(0, 30, '');
-  input_desc = new Validator(0, 120, '');
+  input_name = new Validator(30, '티켓 이름 입력 최대길이(30 바이트)를 초과 하였습니다.');
+  input_desc = new Validator(120, '티켓 설명 입력 최대길이(120 바이트)를 초과 하였습니다.');
 
   constructor(private ticketService: TicketService,
               private contentService: ContentService,
@@ -89,26 +102,8 @@ export class TicketTypeNewComponent implements OnInit {
       );
   }
 
-  onNameKeyup(value: string) {
-    if (value.length > this.input_name.max) {
-      this.input_name.error_message = '티켓 이름 입력 최대길이를 초과 하였습니다.'
-    } else {
-      this.input_name.error_message = '';
-    }
-    this.input_name.length = value.length;
-  }
-
-  onDescKeyup(value: string) {
-    if (value.length > this.input_desc.max) {
-      this.input_desc.error_message = '티켓 설명 입력 최대길이를 초과 하였습니다.'
-    } else {
-      this.input_desc.error_message = '';
-    }
-    this.input_desc.length = value.length;
-  }
-
   public disabledSubmit() {
-    return !(this.type.content_oid && this.type.name && !this.input_desc.error_message && !this.input_name.error_message);
+    return !(this.type.content_oid && this.type.name && !this.input_desc.message && !this.input_name.message);
   }
 
 }
