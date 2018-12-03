@@ -117,6 +117,7 @@ const routes: Routes = [
   { path: 'qnas/new', component: QnaNewComponent, canActivate: [AuthGuard]},
 
   { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
+  { path: 'stats/:id', component: StatsComponent, canActivate: [AuthGuard] },
 
   { path: 'pay', component: PaymentComponent, canActivate: [AuthGuard] },
 

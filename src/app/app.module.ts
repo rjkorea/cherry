@@ -72,6 +72,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { DashboardService } from './services/dashboard.service';
+import { StatsService } from "./services/stats.service";
 import { NotificationService } from './services/notification.service';
 import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
@@ -169,6 +170,7 @@ defineLocale('ko', koLocale);
     AuthGuard,
     AuthService,
     DashboardService,
+    StatsService,
     TIMService,
     NotificationService,
     WebSocketService,
