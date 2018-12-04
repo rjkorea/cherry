@@ -23,6 +23,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminDetailComponent } from './components/admin/admin-detail.component';
 import { AdminNewComponent } from './components/admin/admin-new.component';
 import { AdminPasswordComponent } from './components/admin/admin-password.component';
+import { StaffListComponent } from './components/staff/staff-list.component';
+import { StaffNewComponent } from './components/staff/staff-new.component';
 import { ContentListComponent } from './components/content/content-list.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
 import { ContentNewComponent } from './components/content/content-new.component';
@@ -79,6 +81,9 @@ const routes: Routes = [
   { path: 'admin/:id', component: AdminDetailComponent, canActivate: [AuthGuard] },
   { path: 'admins/new', component: AdminNewComponent, canActivate: [AuthGuard] },
   { path: 'admin/:id/password', component: AdminPasswordComponent, canActivate: [AuthGuard] },
+
+  { path: 'staff', component: StaffListComponent, canActivate: [AuthGuard] },
+  { path: 'staff/new', component: StaffNewComponent, canActivate: [AuthGuard] },
 
   { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
   { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },

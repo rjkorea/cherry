@@ -32,6 +32,7 @@ export class AuthService {
                         localStorage.setItem('role', response.json().data.role);
                         localStorage.setItem('tablet_code', response.json().data.tablet_code);
                         localStorage.setItem('company_name', response.json().data.company_name);
+                        localStorage.setItem('company_oid', response.json().data.company_oid);
                         localStorage.setItem('login_at', response.json().data.login_at);
                         this.isLoggedIn = true;
                       }
