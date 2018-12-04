@@ -49,7 +49,7 @@
               <h5 class="list-group-item-heading">행사내용</h5>
               <pre class="list-group-item-text">{{content.desc}}</pre>
             </li>
-            <li *ngIf="content.when" class="list-group-item"><strong>행사 기간 일시: </strong><span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD hh:mm:ss'}}</span><span *ngIf="content.when.end"> ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD hh:mm:ss'}}</span></li>
+            <li *ngIf="content.when" class="list-group-item"><strong>행사 기간 일시: </strong><span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</span><span *ngIf="content.when.end"> ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</span></li>
             <li class="list-group-item"><strong>장소: </strong>{{content.place}}</li>
             <li class="list-group-item"><strong>주최사: </strong>{{content.company.name}}</li>
             <li class="list-group-item"><strong>행사 생성 호스트: </strong>{{content.admin.name}}</li>

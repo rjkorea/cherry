@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit {
       .subscribe(
         response => {
           if (this.authService.getRole() === 'staff') {
-            this.router.navigate(['/content']);
+            this.router.navigate(['/welcome']);
+          } else if (this.authService.getRole() === 'super') {
+            this.router.navigate(['/stats']);
           } else if (this.authService.getRole() === 'admin') {
             this.router.navigate(['/stats']);
           } else if (this.authService.getRole() === 'host') {
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
           } else if (this.authService.getRole() === 'pro') {
             this.router.navigate(['/stats']);
           } else {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/stats']);
           }
         },
         error => {
