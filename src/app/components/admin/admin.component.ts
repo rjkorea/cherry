@@ -30,8 +30,8 @@ export class AdminComponent implements OnInit {
     this.loadAdmins(this.query, this.page);
   }
 
-  loadAdmins(query:any, page: any) {
-    this.adminService.getAdminList(query, (page-1)*this.size, this.size)
+  loadAdmins(query: any, page: any) {
+    this.adminService.getAdminList(query, (page - 1) * this.size, this.size)
       .subscribe(
         response => {
           this.count = response['count'];
