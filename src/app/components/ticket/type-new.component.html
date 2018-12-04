@@ -21,8 +21,8 @@
           <span *ngIf="input_desc.message" class="error-message">{{input_desc.message}}</span>
         </div>
         <div class="form-group">
-          <h4>유효기간 일시: {{type.expiry_date | amDateFormat:'YYYY-MM-DD HH:mm:00'}}</h4>
-          <owl-date-time-inline [(ngModel)]="type.expiry_date"></owl-date-time-inline>
+          <h4>유효기간 일시: {{expiry_date | amDateFormat:'YYYY-MM-DD HH:mm:00'}}</h4>
+          <owl-date-time-inline [(ngModel)]="expiry_date"></owl-date-time-inline>
         </div>
         <div class="form-group">
           <div class="checkbox">
