@@ -1,26 +1,28 @@
 <div class="row">
-    <div class="col-md-11">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="이름, 이메일, 회사, 핸드폰번호, 권한" [(ngModel)]="query" name="query" (keyup.enter)="search()">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-            </span>
-        </div>
-        <br>
+  <div class="col-md-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="이름, 이메일, 회사, 핸드폰번호, 권한" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
     </div>
-    <div class="col-md-1">
-      <p><a routerLink="/admins/new" class="btn btn-success" role="button">호스트 만들기</a></p>
-    </div>
+    <br>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <p><a routerLink="/admins/new" class="btn btn-tkit-mint" role="button">호스트 만들기</a></p>
+  </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">호스트 <span class="badge">{{this.count}}</span></h3>
-  </div>
-  <div class="panel-body">
-    <div *ngIf="count">
-      <div class="row">
-        <div class="col-md-12">
+<div class="row">
+  <div class="col-md-10">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">호스트 <span class="badge">{{this.count}}</span></h3>
+      </div>
+      <div class="panel-body">
+        <div *ngIf="count">
           <div *ngFor="let admin of admins">
             <div class="row">
               <div class="col-md-2">
@@ -70,10 +72,5 @@
       <hr />
     </div>
 
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-    <p class="text-right">TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
   </div>
 </div>

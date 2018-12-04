@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
+import { CompanyService} from './company.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -14,8 +15,9 @@ export class AuthService {
   signupUrl = `${URL}/a/auth/register`;
   isLoggedIn = false;
 
-  constructor(private http: Http) {
-    this.isLoggedIn = !!localStorage.getItem('csk');
+  constructor(private http: Http,
+              private companyService: CompanyService) {
+              this.isLoggedIn = !!localStorage.getItem('csk');
   }
 
   public login(email: string, password: string): Observable<{}> {
@@ -23,12 +25,15 @@ export class AuthService {
     const options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(this.loginUrl, JSON.stringify({email, password}), options)
                     .map((response: Response) => {
-                      if(response.status === 200) {
+                      if (response.status === 200) {
                         localStorage.setItem('csk', response.json().data.csk);
                         localStorage.setItem('name', response.json().data.name);
                         localStorage.setItem('_id', response.json().data._id);
                         localStorage.setItem('role', response.json().data.role);
                         localStorage.setItem('tablet_code', response.json().data.tablet_code);
+                        localStorage.setItem('company_name', response.json().data.company_name);
+                        localStorage.setItem('company_oid', response.json().data.company_oid);
+                        localStorage.setItem('login_at', response.json().data.login_at);
                         this.isLoggedIn = true;
                       }
                     })
@@ -45,6 +50,8 @@ export class AuthService {
     localStorage.removeItem('_id');
     localStorage.removeItem('role');
     localStorage.removeItem('tablet_code');
+    localStorage.removeItem('company_name');
+    localStorage.removeItem('login_at');
     this.isLoggedIn = false;
   }
 

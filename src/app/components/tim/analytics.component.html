@@ -32,7 +32,27 @@
 
   <ng-template [ngIf]="content_oid">
     <div class="row">
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-3 col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">매출</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{revenue.cash+revenue.creditcard | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">티켓 전달횟수</h3>
+          </div>
+          <div class="panel-body">
+            <h1>{{total_forward | number: '0.0-0'}} <small>회</small></h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">등록율</h3>
@@ -45,7 +65,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-3 col-sm-3">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">입장율</h3>
@@ -80,11 +100,4 @@
     </div>
   </ng-template>
 
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-      <p class="text-right">
-        TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a>
-      </p>
-    </div>
-  </div>
 </div>

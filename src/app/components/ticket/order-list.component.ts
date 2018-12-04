@@ -15,6 +15,7 @@ export class TicketOrderListComponent implements OnInit {
   size: any = 20;
   count: any = 0;
   ticket_type_oid: string;
+  type: any;
   ticket_order_type: string;
   is_loading: boolean;
   selected_order: any;
@@ -38,19 +39,33 @@ export class TicketOrderListComponent implements OnInit {
     if ('ticket_type_oid' in params) {
       this.ticket_type_oid = params['ticket_type_oid'];
     }
-    this.loadOrders(this.query, this.page);
+    this.loadType(this.ticket_type_oid);
+    this.loadOrders(this.ticket_type_oid, this.query, this.page);
   }
 
-  loadOrders(query: any, page: any) {
+  loadType(id: string) {
     this.is_loading = true;
-    this.ticketService.getOrderList(query, (page - 1) * this.size, this.size, this.ticket_type_oid)
+    this.ticketService.getType(id)
+      .subscribe(
+        response => {
+          this.type = response['data'];
+          window.scrollTo(0, 0);
+          this.is_loading = false;
+        },
+        error => {
+          console.log(error);
+          this.is_loading = false;
+        }
+      );
+  }
+
+  loadOrders(ticket_type_oid: string, query: any, page: any) {
+    this.is_loading = true;
+    this.ticketService.getOrderList(query, (page - 1) * this.size, this.size, ticket_type_oid)
       .subscribe(
         response => {
           this.count = response['count'];
           this.orders = response['data'];
-          if (this.count > 0) {
-            this.ticket_order_type = this.orders[0]['type'];
-          }
           window.scrollTo(0, 0);
           this.is_loading = false;
         },
@@ -65,19 +80,19 @@ export class TicketOrderListComponent implements OnInit {
     const page = this.page - 1;
     this.page = page;
     this.router.navigate(['/ticket/order', {query: this.query, page: page, ticket_type_oid: this.ticket_type_oid}]);
-    this.loadOrders(this.query, page);
+    this.loadOrders(this.ticket_type_oid, this.query, page);
   }
 
   onNext() {
     const page = this.page + 1;
     this.page = page;
     this.router.navigate(['/ticket/order', {query: this.query, page: page, ticket_type_oid: this.ticket_type_oid}]);
-    this.loadOrders(this.query, page);
+    this.loadOrders(this.ticket_type_oid, this.query, page);
   }
 
   search() {
     this.router.navigate(['/ticket/order', {query: this.query, page: this.page, ticket_type_oid: this.ticket_type_oid}]);
-    this.loadOrders(this.query, 1);
+    this.loadOrders(this.ticket_type_oid, this.query, 1);
   }
 
   onTicket(id: string) {
@@ -102,7 +117,7 @@ export class TicketOrderListComponent implements OnInit {
             alert('SMS 전송이 실패하였습니다.');
           }
           this.router.navigate(['/ticket/order', {query: this.query, page: this.page, ticket_type_oid: this.ticket_type_oid}]);
-          this.loadOrders(this.query, this.page);
+          this.loadOrders(this.ticket_type_oid, this.query, this.page);
           console.log(response);
         },
         error => {

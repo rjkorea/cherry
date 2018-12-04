@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -10,14 +11,14 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
 import { UiSwitchModule } from 'ng2-ui-switch';
-import { DatepickerModule, TimepickerModule } from 'ngx-bootstrap';
-import { BsDatepickerModule } from 'ngx-bootstrap';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { koLocale } from 'ngx-bootstrap/locale';
 import { ButtonsModule } from 'ngx-bootstrap';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { SharedComponentsModule } from './components/shared/shared-components.module';
 
 import { AppComponent } from './app.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -39,6 +40,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminDetailComponent } from './components/admin/admin-detail.component';
 import { AdminNewComponent } from './components/admin/admin-new.component';
 import { AdminPasswordComponent } from './components/admin/admin-password.component';
+import { StaffListComponent } from './components/staff/staff-list.component';
+import { StaffNewComponent } from './components/staff/staff-new.component';
 import { ContentListComponent } from './components/content/content-list.component';
 import { ContentDetailComponent } from './components/content/content-detail.component';
 import { ContentGroupListComponent } from './components/content/content-group-list.component';
@@ -47,6 +50,7 @@ import { ContentGroupNewComponent } from './components/content/content-group-new
 import { ContentGroupTicketListComponent } from './components/content/content-group-ticket-list.component';
 import { ContentGroupTicketSearchComponent } from './components/content/content-group-ticket-search.component';
 import { ContentNewComponent } from './components/content/content-new.component';
+import { ContentNewImageComponent } from './components/content/content-new-image.component';
 import { TicketTypeListComponent } from './components/ticket/type-list.component';
 import { TicketTypeDetailComponent } from './components/ticket/type-detail.component';
 import { TicketTypeNewComponent } from './components/ticket/type-new.component';
@@ -70,6 +74,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { DashboardService } from './services/dashboard.service';
+import { StatsService } from "./services/stats.service";
 import { NotificationService } from './services/notification.service';
 import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
@@ -91,6 +96,7 @@ defineLocale('ko', koLocale);
   declarations: [
     AppComponent,
     NavbarComponent,
+    WelcomeComponent,
     LoginComponent,
     DashboardComponent,
     MatrixTicketOrderComponent,
@@ -113,9 +119,12 @@ defineLocale('ko', koLocale);
     AdminDetailComponent,
     AdminNewComponent,
     AdminPasswordComponent,
+    StaffListComponent,
+    StaffNewComponent,
     ContentListComponent,
     ContentDetailComponent,
     ContentNewComponent,
+    ContentNewImageComponent,
     ContentGroupListComponent,
     ContentGroupEditComponent,
     ContentGroupNewComponent,
@@ -143,6 +152,9 @@ defineLocale('ko', koLocale);
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -151,9 +163,6 @@ defineLocale('ko', koLocale);
     MomentModule,
     ChartModule,
     UiSwitchModule,
-    DatepickerModule.forRoot(),
-    TimepickerModule.forRoot(),
-    BsDatepickerModule.forRoot(),
     ButtonsModule.forRoot(),
     SharedComponentsModule
   ],
@@ -165,6 +174,7 @@ defineLocale('ko', koLocale);
     AuthGuard,
     AuthService,
     DashboardService,
+    StatsService,
     TIMService,
     NotificationService,
     WebSocketService,

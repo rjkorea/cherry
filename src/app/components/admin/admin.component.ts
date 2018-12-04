@@ -21,17 +21,17 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     const params: Params = this.route.snapshot.params;
-    if('query'in params) {
+    if ('query' in params) {
       this.query = params['query'];
     }
-    if('page' in params) {
+    if ('page' in params) {
       this.page = +params['page'];
     }
     this.loadAdmins(this.query, this.page);
   }
 
-  loadAdmins(query:any, page: any) {
-    this.adminService.getAdminList(query, (page-1)*this.size, this.size)
+  loadAdmins(query: any, page: any) {
+    this.adminService.getAdminList(query, (page - 1) * this.size, this.size)
       .subscribe(
         response => {
           this.count = response['count'];

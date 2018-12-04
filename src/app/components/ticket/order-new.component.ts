@@ -15,9 +15,7 @@ export class TicketOrderNewComponent implements OnInit {
   ticket_type_oid: string;
   order: any;
   countries: any;
-  types: any;
   type: any;
-  is_fee: boolean;
   fee: any;
   country_code: string;
   mobile_number: string;
@@ -34,7 +32,6 @@ export class TicketOrderNewComponent implements OnInit {
     if ('ticket_type_oid' in params) {
       this.ticket_type_oid = params['ticket_type_oid'];
     }
-    this.is_fee = false;
     this.fee = {
       method: 'cash',
       price: 10000
@@ -90,40 +87,32 @@ export class TicketOrderNewComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.is_fee) {
-      this.order.fee = this.fee;
-    } else {
-      delete this.order.fee;
-    }
+    console.log(this.type);
     this.order.ticket_type_oid = this.ticket_type_oid;
     this.order.content_oid = this.type.content._id;
     this.order.receiver.name = this.order.receiver.name.trim();
     this.order.receiver.mobile_number = this.country_code + this.mobile_number.replace(/ /g, '').replace(/-/g, '').substr(1);
-    this.order.expiry_date = this.getISODate();
+    this.order.fee = {
+      method: 'cash',
+      price: this.type.price
+    };
+    this.order.expiry_date = this.type.expiry_date;
+    console.log(this.order);
     this.ticketService.addOrder(this.order)
       .subscribe(
         response => {
-          alert('티켓오더를 생성하였습니다. \'SMS전송\'버튼을 이용하여 티켓을 전송해주세요.');
+          alert('티켓전송을 생성하였습니다. \'SMS전송\'버튼을 이용하여 티켓을 전송해주세요.');
           this.router.navigate(['/ticket/order', {ticket_type_oid: this.order.ticket_type_oid}]);
         },
         error => {
-          alert('티켓오더 생성을 실패하였습니다.');
+          alert('티켓전송 생성을 실패하였습니다.');
           console.log(error);
         }
       );
   }
 
-  getISODate() {
-    return `${this.expiry.date.getUTCFullYear()}-${this.expiry.date.getUTCMonth() + 1}-${this.expiry.date.getDate()}T${this.expiry.time.getUTCHours()}:${this.expiry.time.getUTCMinutes()}:00`;
-  }
-
   disabledSubmit() {
-    return !(this.order.qty &&
-      this.order.receiver.name &&
-      this.country_code &&
-      this.mobile_number &&
-      this.expiry.date
-    );
+    return !(this.order.qty && this.order.receiver.name && this.country_code && this.mobile_number);
   }
 
 }

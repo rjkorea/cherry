@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">스텝 만들기</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <br>
+        <div class="form-group">
+          <label for="name">이름 (필수)</label>
+          <input type="text" class="form-control" [(ngModel)]="staff.name" name="name">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="email">이메일 (필수)</label>
+          <input type="text" class="form-control" [(ngModel)]="staff.email" name="email">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="mobile_number">핸드폰번호 (필수)</label>
+          <input type="text" class="form-control" [(ngModel)]="staff.mobile_number" name="mobile_number">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="password">비밀번호 (필수)</label>
+          <input type="password" class="form-control" [(ngModel)]="staff.password" name="password">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="password2">비밀번호 확인 (필수)</label>
+          <input type="password" class="form-control" [(ngModel)]="staff.password2" name="password2">
+        </div>
+        <br>
+        <button type="button" class="btn btn-tkit-mint" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
+        <div *ngIf="error_msg" class="row">
+          <div class="col-md-6">
+            <div class="alert alert-danger" role="alert">
+              <strong>에러</strong> {{error_msg}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

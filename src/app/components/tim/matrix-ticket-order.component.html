@@ -16,7 +16,7 @@
   <ng-template [ngIf]="!content_oid">
     <div class="row">
       <div class="col-md-12 col-sm-12">
-        <h3>팀의 티켓오더 메트릭스입니다. 컨텐츠를 선택해주세요.</h3>
+        <h3>티킷 PRO 티켓 사용자 랭킹입니다. 컨텐츠를 선택해주세요.</h3>
       </div>
     </div>
   </ng-template>
@@ -25,7 +25,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <h3>티켓오더 메트릭스
+        <h3>티켓 사용자 랭킹
           <span class="badge"></span>
         </h3>
       </div>
@@ -34,7 +34,7 @@
           <table class="table table-striped">
             <tr>
               <th>셀러</th>
-              <th>티켓타입</th>
+              <th>티켓</th>
               <th (click)="onSort('send')"><span *ngIf="sort=='send'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 전송중</th>
               <th (click)="onSort('register')"><span *ngIf="sort=='register'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 등록완료</th>
               <th (click)="onSort('pay')"><span *ngIf="sort=='pay'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 결제완료</th>
@@ -63,11 +63,4 @@
     </div>
   </ng-template>
 
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-      <p class="text-right">
-        TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a>
-      </p>
-    </div>
-  </div>
 </div>

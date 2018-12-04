@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'navbar',
+  selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -26,6 +26,14 @@ export class NavbarComponent implements OnInit {
 
   getRole() {
     return localStorage.getItem('role');
+  }
+
+  getCompanyName() {
+    return localStorage.getItem('company_name');
+  }
+
+  getLoginAt() {
+    return localStorage.getItem('login_at');
   }
 
   isDefaultNavbar() {

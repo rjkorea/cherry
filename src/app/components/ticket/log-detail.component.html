@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">티켓로그 상세 <span *ngIf="log.action === 'send'" class="label label-warning">전송중</span> <span class="time">{{log.created_at | amFromUnix | amTimeAgo: true}} ago</span></h3>
+          <h3 class="panel-title">티켓 추적 상세 <span *ngIf="log.action === 'send'" class="label label-warning">전송중</span> <span class="time">{{log.created_at | amFromUnix | amTimeAgo: true}} ago</span></h3>
         </div>
         <div class="panel-body">
           <ul class="list-group">
@@ -51,9 +51,4 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-      <p class="text-right">TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
-    </div>
-  </div>
 </div>

@@ -3,3 +3,89 @@
 body {
   padding-top: 70px;
 }
+
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #fff;
+}
+
+.btn-tkit-mint {
+  color: #fff;
+  background-color: #62aab8;
+  border-color: #59a2b0;
+}
+
+.btn-tkit-coral {
+  color: #fff;
+  background-color: #d87072;
+  border-color: #ed7f81;
+}
+
+.label-tkit-mint {
+  background-color: #62aab8;
+}
+
+.label-tkit-coral {
+  background-color: #ed7f81;
+}
+
+.label-lg {
+  font-size: 100%;
+}
+
+.btn-xlg {
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+.length-check {
+  float: right;
+  color: grey;
+}
+
+.error-message {
+  color: #ed7f81;
+}
+
+.filebox {
+  display: block;
+}
+
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  display: inline-block;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+.owl-dt-container {
+  display: block;
+  font-size: 14px;
+  background: #fff;
+  pointer-events: auto;
+  z-index: 1000;
+}

@@ -13,6 +13,27 @@
   height: 20px;
 }
 
-#new-badge {
+.label-super {
+  font-size: 100%;
+  background-color: #faba0a;
+}
+
+.label-admin {
+  font-size: 100%;
+  background-color: #cccccc;
+}
+
+.label-host {
+  font-size: 100%;
+  background-color: #62aab8;
+}
+
+.label-pro {
+  font-size: 100%;
   background-color: #ed7f81;
+}
+
+.label-staff {
+  font-size: 100%;
+  background-color: #8f6dab;
 }

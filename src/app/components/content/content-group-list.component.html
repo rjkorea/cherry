@@ -26,7 +26,7 @@
     <br>
   </div>
   <div class="col-md-1">
-    <p><a [routerLink]="['/content', this.content_oid, 'group', 'new']" class="btn btn-success" role="button">그룹티켓 만들기</a></p>
+    <p><a [routerLink]="['/content', this.content_oid, 'group', 'new']" class="btn btn-tkit-mint" role="button">그룹티켓 만들기</a></p>
   </div>
 </div>
 
@@ -85,7 +85,7 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!sms_message" (click)="onSendSms()">SEND</button>
+                        <button type="button" class="btn btn-tkit-mint" data-dismiss="modal" [disabled]="!sms_message" (click)="onSendSms()">SEND</button>
                       </div>
                     </div>
                   </div>
@@ -120,9 +120,4 @@
     <hr />
   </div>
 
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-      <p class="text-right">TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
-    </div>
-  </div>
 </ng-template>

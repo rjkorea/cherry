@@ -15,6 +15,8 @@ export class AnalyticsComponent implements OnInit {
   ticket_count: any;
   ticket_chart: any;
   gender_chart: any;
+  revenue: any;
+  total_forward: number;
 
   is_loading: boolean;
 
@@ -32,7 +34,6 @@ export class AnalyticsComponent implements OnInit {
         company: { name: '회사 이름' }
       }
     ];
-
     this.ticket_count = {
       pend: 0,
       send: 0,
@@ -41,25 +42,25 @@ export class AnalyticsComponent implements OnInit {
       use: 0,
       cancel: 0
     };
-
+    this.total_forward = 0;
+    this.revenue = {
+      'cash': 0,
+      'creditcard': 0
+    };
     this.ticket_chart = {
       type: 'pie',
       data: {
-        labels: ['전송준비', '전송중', '등록완료', '결제', '입장완료', '취소'],
+        labels: ['등록완료', '결제', '입장완료', '취소'],
         datasets: [
           {
             data: [0, 0, 0, 0, 0],
             backgroundColor: [
-              '#777777',
-              '#F0AD4E',
               '#5CB85C',
               '#337AB7',
               '#5BC0DE',
               '#D9534F'
             ],
             hoverBackgroundColor: [
-              '#777777',
-              '#F0AD4E',
               '#5CB85C',
               '#337AB7',
               '#5BC0DE',
@@ -115,8 +116,6 @@ export class AnalyticsComponent implements OnInit {
         response => {
           this.ticket_count = response['data']['ticket_count'];
           this.ticket_chart['data']['datasets'][0]['data'] = [
-            response['data']['ticket_count']['pend'],
-            response['data']['ticket_count']['send'],
             response['data']['ticket_count']['register'],
             response['data']['ticket_count']['pay'],
             response['data']['ticket_count']['use'],
@@ -126,6 +125,8 @@ export class AnalyticsComponent implements OnInit {
             response['data']['gender']['female'],
             response['data']['gender']['male']
           ];
+          this.total_forward = response['data']['total_forward'];
+          this.revenue = response['data']['revenue'];
           this.is_loading = false;
         },
         error => {

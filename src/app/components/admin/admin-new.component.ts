@@ -63,7 +63,7 @@ export class AdminNewComponent implements OnInit {
   }
 
   changeRole() {
-    if(this.admin.role == 'admin') {
+    if (this.admin.role === 'admin') {
       this.admin.company_oid = '';
     }
   }

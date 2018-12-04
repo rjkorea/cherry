@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="이름, 이메일, 회사, 핸드폰번호, 권한" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
+    </div>
+    <br>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <p><a routerLink="/staff/new" class="btn btn-tkit-mint" role="button">스텝 만들기</a></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">스텝 <span class="badge">{{this.count}}</span></h3>
+      </div>
+      <div class="panel-body">
+        <div *ngIf="count">
+          <div *ngFor="let admin of admins">
+            <div class="row">
+              <div class="col-md-2">
+                <img *ngIf="!admin.image" class="img-thumbnail" src="assets/images/user.png">
+                <img *ngIf="admin.image" class="img-thumbnail" src="{{admin.image}}">
+              </div>
+              <div class="col-md-4">
+                <h4><a [routerLink]="['/admin', admin._id]">{{admin.name}}</a></h4>
+                <h5 *ngIf="admin.company">
+                  <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> {{admin.company}}
+                </h5>
+                <p>
+                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{admin.email}}
+                </p>
+                <p *ngIf="admin.mobile_number">
+                  <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{admin.mobile_number}}
+                </p>
+              </div>
+              <div class="col-md-3">
+                <span *ngIf="admin.enabled" class="label label-success">활성화</span>
+                <span *ngIf="!admin.enabled" class="label label-danger">비활성화</span>
+              </div>
+              <div class="col-md-3">
+                <span class="label label-default">{{admin._id}}</span>
+                <span class="label label-primary">{{admin.role}}</span>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+      </div>
+      <nav aria-label="...">
+        <ul class="pager">
+          <li *ngIf="page!=1"><a (click)="onPrev()">이전</a></li>
+          <li *ngIf="page*size<count"><a (click)="onNext()">다음</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div *ngIf="!!!count">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+          <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
+        </div>
+      </div>
+      <hr />
+    </div>
+
+  </div>
+</div>

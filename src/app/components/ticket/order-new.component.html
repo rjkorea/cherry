@@ -1,24 +1,16 @@
 <div class="col-md-6">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">{{type.content.name}} - {{type.name}} ({{type.desc.value}}) 티켓오더 만들기</h3>
+      <h3 class="panel-title">티켓 전송하기 ({{type.content.name}} / {{type.name}} / {{type.desc.value}})</h3>
     </div>
     <div class="panel-body">
       <form>
         <div class="form-group">
-          <label for="qty">티켓수량 (필수)</label>
+          <label for="qty">티켓 전송 수량 (필수)</label>
           <input type="number" class="form-control" [(ngModel)]="order.qty" name="qty">
         </div>
         <div class="form-group">
-          <label for="expiry-date">유효기한 (필수)</label>
-          <datepicker name="expiry-date" [(ngModel)]="expiry.date" [showWeeks]="true"></datepicker>
-          <span>날짜: {{expiry.date | amDateFormat:'YYYY-MM-DD'}}</span>
-          <timepicker name="expiry-time" [(ngModel)]="expiry.time" [arrowkeys]="true" [showMeridian]="false"></timepicker>
-          <span>시간: {{expiry.time | amDateFormat:'HH:mm'}}</span>
-        </div>
-        <hr />
-        <div class="form-group">
-          <label for="receiver-name">받는사람 이름 (필수)</label>
+          <label for="receiver-name">티켓 받는사람 이름 (필수)</label>
           <input type="text" class="form-control" [(ngModel)]="order.receiver.name" name="receiver-name" placeholder="실명을 입력해주세요.">
         </div>
         <div class="form-group">
@@ -33,25 +25,8 @@
           <label class="sr-only" for="receiver-mobile-number">핸드폰번호</label>
           <input type="tel" class="form-control" name="receiver-mobile-number" [(ngModel)]="mobile_number" placeholder="핸드폰번호 ('-'을 제외하고 입력해주세요)">
         </div>
-        <hr />
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" [checked]="is_fee" (change)="is_fee = !is_fee"> 유료티켓 (선택)
-          </label>
-        </div>
-        <div *ngIf="is_fee" class="form-group">
-          <label for="fee-price">가격</label>
-          <input type="number" class="form-control" name="fee-price" [(ngModel)]="fee.price">
-        </div>
-        <hr />
-        <button type="button" class="btn btn-success" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
+        <button type="button" class="btn btn-tkit-mint" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
       </form>
     </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-    <p class="text-right">TKIT - Host by <a href="http://rjkorea.com">RJ Korea Entertainment</a></p>
   </div>
 </div>

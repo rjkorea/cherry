@@ -1,0 +1,20 @@
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #fff;
+}
+
+.glyphicon {
+  padding: 9px;
+  font-size: 50px;
+}
+
+.thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  /* line-height: 1.42857143; */
+  background-color: #fff;
+}

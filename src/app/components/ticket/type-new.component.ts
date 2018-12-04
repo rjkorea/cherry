@@ -3,6 +3,27 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
 import { ContentService } from '../../services/content.service';
 
+
+class Validator {
+  length: number;
+  message: string;
+  constructor(
+    public max: number,
+    public invalid_message: string) {
+      this.length = 0;
+      this.message = '';
+    }
+
+  public onKeyup(value: string) {
+    if (value.length > this.max) {
+      this.message = this.invalid_message;
+    } else {
+      this.message = '';
+    }
+    this.length = value.length;
+  }
+}
+
 @Component({
   selector: 'app-ticket-type-new',
   templateUrl: './type-new.component.html',
@@ -12,8 +33,12 @@ import { ContentService } from '../../services/content.service';
 export class TicketTypeNewComponent implements OnInit {
   type: any;
   content: any;
-  ticket_type: any;
-  ticket_types: any;
+  expiry_date: Date;
+  is_mobile: boolean;
+  is_free: boolean;
+  price: number;
+  input_name = new Validator(30, '티켓 이름 입력 최대길이(30 바이트)를 초과 하였습니다.');
+  input_desc = new Validator(120, '티켓 설명 입력 최대길이(120 바이트)를 초과 하였습니다.');
 
   constructor(private ticketService: TicketService,
               private contentService: ContentService,
@@ -21,21 +46,25 @@ export class TicketTypeNewComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.ticket_types = [
-      { name: '일반티켓', value: 'general' },
-      { name: '네트워크티켓', value: 'network' },
-    ];
+    if (navigator.userAgent.toLowerCase().includes('mobile')) {
+      this.is_mobile = true;
+    } else {
+      this.is_mobile = false;
+    }
+    this.is_free = false;
+    this.price = 10000;
+    this.content = { name: '' };
+    this.expiry_date = new Date();
     this.type = {
-      type: '',
+      type: 'network',
       name: '',
       desc: {
         enabled: false,
         value: ''
       },
-      day: 1,
-      price: 0,
       content_oid: '',
-      admin_oid: ''
+      admin_oid: '',
+      expiry_date: new Date()
     };
     const params: Params = this.route.snapshot.params;
     if ('content_oid' in params) {
@@ -44,8 +73,12 @@ export class TicketTypeNewComponent implements OnInit {
     this.loadContent(this.type.content_oid);
   }
 
-  onSubmit() {
+  onDone() {
     this.type.admin_oid = localStorage.getItem('_id');
+    if (!this.is_free) {
+      this.type['price'] = this.price;
+    }
+    this.type.expiry_date = `${this.expiry_date.getUTCFullYear()}-${this.expiry_date.getUTCMonth() + 1}-${this.expiry_date.getUTCDate()}T${this.expiry_date.getUTCHours()}:${this.expiry_date.getUTCMinutes()}:${this.expiry_date.getUTCSeconds()}`;
     this.ticketService.addType(this.type)
       .subscribe(
         response => {
@@ -69,12 +102,8 @@ export class TicketTypeNewComponent implements OnInit {
       );
   }
 
-  changeTicketType() {
-    this.type.type = this.ticket_type;
-  }
-
   public disabledSubmit() {
-    return !(this.type.content_oid && this.type.name);
+    return !(this.type.content_oid && this.type.name && !this.input_desc.message && !this.input_name.message);
   }
 
 }
