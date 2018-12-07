@@ -6,65 +6,163 @@
           <h3 class="panel-title">Step 2. {{content.name}} 이미지 등록하기</h3>
         </div>
         <div class="panel-body">
-          <div class="row">
-            <div class="col-md-6">
-              <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.poster.m}}">
+          <div *ngIf="is_loading">
+            <app-loader></app-loader>
+          </div>
+          <div *ngIf="!is_loading" class="row">
+            <div *ngIf="checkDefaultImage(content.image.poster.m)" class="col-md-6">
+              <div class="upload-btn-wrapper">
+                <div class="upload-btn upload-poster-btn">
+                  <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                  <h2 class="upload-btn-name">포스터 업로드</h2>
+                  <p class="upload-btn-desc">추천 사이즈 정보: 674 x 960 px, 최대용량: 2 MB</p>
+                </div>
+                <input type="file" name="upload-poster" (change)="uploadPoster($event.target.files)">
+              </div>
+            </div>
+            <div *ngIf="!checkDefaultImage(content.image.poster.m)" class="col-md-6">
+              <img class="img-thumbnail" src="{{content.image.poster.m}}">
               <div class="filebox">
-                <label for="upload-poster">포스터 업로드 (사이즈 정보: 674 x 960 px, 용량: 2 MB)</label>
+                <label for="upload-poster">포스터 업데이트 (추천 사이즈 정보: 674 x 960 px, 최대용량: 2 MB)</label>
                 <input type="file" id="upload-poster" name="upload-poster" (change)="uploadPoster($event.target.files)">
               </div>
             </div>
             <div class="col-md-6">
-              <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.logo.m}}">
-              <div class="filebox">
-                <label for="upload-logo">로고 업로드 (사이즈 정보: 360 x 120 px, 용량: 2 MB)</label>
-                <input type="file" id="upload-logo" name="upload-logo" (change)="uploadLogo($event.target.files)">
+              <div *ngIf="checkDefaultImage(content.image.logo.m)">
+                <div class="upload-btn-wrapper">
+                  <div class="upload-btn upload-logo-btn">
+                    <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                    <h2 class="upload-btn-name">로고 업로드</h2>
+                    <p class="upload-btn-desc">추천 사이즈 정보: 360 x 120 px, 최대용량: 2 MB</p>
+                  </div>
+                  <input type="file" name="upload-logo" (change)="uploadLogo($event.target.files)">
+                </div>
               </div>
-              <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.og.m}}">
-              <div class="filebox">
-                <label for="upload-og">오픈그래프 업로드 (사이즈 정보: 460 x 245 px, 용량: 2 MB)</label>
-                <input type="file" id="upload-og" name="upload-og" (change)="uploadOg($event.target.files)">
+              <div *ngIf="!checkDefaultImage(content.image.logo.m)">
+                <img class="img-thumbnail" src="{{content.image.logo.m}}">
+                <div class="filebox">
+                  <label for="upload-logo">로고 업데이트 (추천 사이즈 정보: 360 x 120 px, 최대용량: 2 MB)</label>
+                  <input type="file" id="upload-logo" name="upload-logo" (change)="uploadLogo($event.target.files)">
+                </div>
+              </div>
+              <div *ngIf="checkDefaultImage(content.image.og.m)">
+                <div class="upload-btn-wrapper">
+                  <div class="upload-btn upload-og-btn">
+                    <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                    <h2 class="upload-btn-name">오픈그래프 업로드</h2>
+                    <p class="upload-btn-desc">추천 사이즈 정보: 668 x 668 px, 최대용량: 2 MB</p>
+                  </div>
+                  <input type="file" name="upload-og" (change)="uploadOg($event.target.files)">
+                </div>
+              </div>
+              <div *ngIf="!checkDefaultImage(content.image.og.m)">
+                <img class="img-thumbnail" src="{{content.image.og.m}}">
+                <div class="filebox">
+                  <label for="upload-og">오픈그래프 업데이트 (추천 사이즈 정보: 668 x 668 px, 최대용량: 2 MB)</label>
+                  <input type="file" id="upload-og" name="upload-og" (change)="uploadOg($event.target.files)">
+                </div>
               </div>
             </div>
             <div class="col-md-12">
               <li *ngIf="content.image.extra" class="list-group-item">
                 <h5 class="list-group-item-heading"><strong>추가 이미지</strong></h5>
                 <div class="extra-image-list">
+
                   <div class="extra-image">
-                    <img *ngIf="content.image.extra[0].m" class="img-thumbnail-extra" src="{{content.image.extra[0].m}}">
-                    <div class="filebox">
-                      <label for="upload-extra-0">업로드</label>
-                      <input type="file" id="upload-extra-0" name="upload-extra-0" (change)="uploadExtra('0', $event.target.files)">
+                    <div *ngIf="checkDefaultImage(content.image.extra[0].m)">
+                      <div class="upload-btn-wrapper">
+                        <div class="upload-btn upload-extra-btn">
+                          <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                          <h4 class="upload-btn-name">업로드</h4>
+                        </div>
+                        <input type="file" name="upload-extra-0" (change)="uploadExtra('0', $event.target.files)">
+                      </div>
+                    </div>
+                    <div *ngIf="!checkDefaultImage(content.image.extra[0].m)">
+                      <img class="img-thumbnail-extra" src="{{content.image.extra[0].m}}">
+                      <div class="filebox">
+                        <label for="upload-extra-0">업데이트</label>
+                        <input type="file" id="upload-extra-0" name="upload-extra-0" (change)="uploadExtra('0', $event.target.files)">
+                      </div>
                     </div>
                   </div>
+
                   <div class="extra-image">
-                    <img *ngIf="content.image.extra[1].m" class="img-thumbnail-extra" src="{{content.image.extra[1].m}}">
-                    <div class="filebox">
-                      <label for="upload-extra-1">업로드</label>
-                      <input type="file" id="upload-extra-1" name="upload-extra-1" (change)="uploadExtra('1', $event.target.files)">
+                    <div *ngIf="checkDefaultImage(content.image.extra[1].m)">
+                      <div class="upload-btn-wrapper">
+                        <div class="upload-btn upload-extra-btn">
+                          <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                          <h4 class="upload-btn-name">업로드</h4>
+                        </div>
+                        <input type="file" name="upload-extra-0" (change)="uploadExtra('1', $event.target.files)">
+                      </div>
+                    </div>
+                    <div *ngIf="!checkDefaultImage(content.image.extra[1].m)">
+                      <img *ngIf="content.image.extra[1].m" class="img-thumbnail-extra" src="{{content.image.extra[1].m}}">
+                      <div class="filebox">
+                        <label for="upload-extra-1">업데이트</label>
+                        <input type="file" id="upload-extra-1" name="upload-extra-1" (change)="uploadExtra('1', $event.target.files)">
+                      </div>
                     </div>
                   </div>
+
                   <div class="extra-image">
-                    <img *ngIf="content.image.extra[2].m" class="img-thumbnail-extra" src="{{content.image.extra[2].m}}">
-                    <div class="filebox">
-                      <label for="upload-extra-2">업로드</label>
-                      <input type="file" id="upload-extra-2" name="upload-extra-2" (change)="uploadExtra('2', $event.target.files)">
+                    <div *ngIf="checkDefaultImage(content.image.extra[2].m)">
+                      <div class="upload-btn-wrapper">
+                        <div class="upload-btn upload-extra-btn">
+                          <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                          <h4 class="upload-btn-name">업로드</h4>
+                        </div>
+                        <input type="file" name="upload-extra-2" (change)="uploadExtra('2', $event.target.files)">
+                      </div>
+                    </div>
+                    <div *ngIf="!checkDefaultImage(content.image.extra[2].m)">
+                      <img *ngIf="content.image.extra[2].m" class="img-thumbnail-extra" src="{{content.image.extra[2].m}}">
+                      <div class="filebox">
+                        <label for="upload-extra-2">업데이트</label>
+                        <input type="file" id="upload-extra-2" name="upload-extra-2" (change)="uploadExtra('2', $event.target.files)">
+                      </div>
                     </div>
                   </div>
+
                   <div class="extra-image">
-                    <img *ngIf="content.image.extra[3].m" class="img-thumbnail-extra" src="{{content.image.extra[3].m}}">
-                    <div class="filebox">
-                      <label for="upload-extra-3">업로드</label>
-                      <input type="file" id="upload-extra-3" name="upload-extra-3" (change)="uploadExtra('3', $event.target.files)">
+                    <div *ngIf="checkDefaultImage(content.image.extra[3].m)">
+                      <div class="upload-btn-wrapper">
+                        <div class="upload-btn upload-extra-btn">
+                          <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                          <h4 class="upload-btn-name">업로드</h4>
+                        </div>
+                        <input type="file" name="upload-extra-3" (change)="uploadExtra('3', $event.target.files)">
+                      </div>
+                    </div>
+                    <div *ngIf="!checkDefaultImage(content.image.extra[3].m)">
+                      <img *ngIf="content.image.extra[3].m" class="img-thumbnail-extra" src="{{content.image.extra[3].m}}">
+                      <div class="filebox">
+                        <label for="upload-extra-3">업데이트</label>
+                        <input type="file" id="upload-extra-3" name="upload-extra-3" (change)="uploadExtra('3', $event.target.files)">
+                      </div>
                     </div>
                   </div>
+
                   <div class="extra-image">
-                    <img *ngIf="content.image.extra[4].m" class="img-thumbnail-extra" src="{{content.image.extra[4].m}}">
-                    <div class="filebox">
-                      <label for="upload-extra-4">업로드</label>
-                      <input type="file" id="upload-extra-4" name="upload-extra-4" (change)="uploadExtra('4', $event.target.files)">
+                    <div *ngIf="checkDefaultImage(content.image.extra[4].m)">
+                      <div class="upload-btn-wrapper">
+                        <div class="upload-btn upload-extra-btn">
+                          <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                          <h4 class="upload-btn-name">업로드</h4>
+                        </div>
+                        <input type="file" name="upload-extra-4" (change)="uploadExtra('4', $event.target.files)">
+                      </div>
+                    </div>
+                    <div *ngIf="!checkDefaultImage(content.image.extra[4].m)">
+                      <img *ngIf="content.image.extra[4].m" class="img-thumbnail-extra" src="{{content.image.extra[4].m}}">
+                      <div class="filebox">
+                        <label for="upload-extra-4">업데이트</label>
+                        <input type="file" id="upload-extra-4" name="upload-extra-4" (change)="uploadExtra('4', $event.target.files)">
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </li>
               <br>

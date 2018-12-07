@@ -52,6 +52,14 @@ body {
   color: #ed7f81;
 }
 
+.owl-dt-container {
+  display: block;
+  font-size: 14px;
+  background: #fff;
+  pointer-events: auto;
+  z-index: 1000;
+}
+
 .filebox {
   display: block;
 }
@@ -82,10 +90,41 @@ body {
   border: 0;
 }
 
-.owl-dt-container {
-  display: block;
-  font-size: 14px;
-  background: #fff;
-  pointer-events: auto;
-  z-index: 1000;
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-btn {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+.upload-btn-name {
+  text-align: center;
+  font-weight: 400;
+}
+
+.upload-btn-desc {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
