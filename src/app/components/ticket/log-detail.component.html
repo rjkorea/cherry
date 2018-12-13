@@ -6,15 +6,25 @@
           <h3 class="panel-title">티켓 추적 상세 <span *ngIf="log.action === 'send'" class="label label-warning">전송중</span> <span class="time">{{log.created_at | amFromUnix | amTimeAgo: true}} ago</span></h3>
         </div>
         <div class="panel-body">
-          <ul class="list-group">
+          <ul *ngIf="log.send_user.name" class="list-group">
             <li class="list-group-item list-group-item-info"><strong>보낸사람</strong></li>
             <li class="list-group-item"><strong>이름: </strong>{{log.send_user.name}}</li>
             <li class="list-group-item"><strong>핸드폰번호: </strong>{{log.send_user.mobile_number}}</li>
           </ul>
-          <ul class="list-group">
+          <ul *ngIf="!log.send_user.name" class="list-group">
+            <li class="list-group-item list-group-item-info"><strong>보낸사람</strong></li>
+            <li class="list-group-item"><strong>이름: </strong>티킷</li>
+            <li class="list-group-item"><strong>핸드폰번호: </strong>821094669785</li>
+          </ul>
+          <ul *ngIf="log.receive_user.name" class="list-group">
             <li class="list-group-item list-group-item-info"><strong>받은사람</strong></li>
             <li class="list-group-item"><strong>이름: </strong>{{log.receive_user.name}}</li>
             <li class="list-group-item"><strong>핸드폰번호: </strong>{{log.receive_user.mobile_number}}</li>
+          </ul>
+          <ul *ngIf="!log.receive_user.name" class="list-group">
+            <li class="list-group-item list-group-item-info"><strong>받은사람</strong></li>
+            <li class="list-group-item"><strong>이름: </strong>티킷</li>
+            <li class="list-group-item"><strong>핸드폰번호: </strong>821094669785</li>
           </ul>
           <ul class="list-group">
             <li class="list-group-item list-group-item-info"><strong>컨텐츠 이름</strong></li>

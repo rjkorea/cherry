@@ -51,10 +51,12 @@
                 <a [routerLink]="['/tickets/log', l._id]">{{l.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD a hh:mm:ss'}}</a>
               </td>
               <td>
-                <span>{{l.send_user.name}}</span>
+                <span *ngIf="l.send_user.name">{{l.send_user.name}}</span>
+                <span *ngIf="!l.send_user.name">티킷</span>
               </td>
               <td>
-                <span>{{l.receive_user.name}}</span>
+                <span *ngIf="l.receive_user.name">{{l.receive_user.name}}</span>
+                <span *ngIf="!l.receive_user.name">티킷</span>
               </td>
               <td>
                 <span>{{l.content.name}}</span>
