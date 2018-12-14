@@ -15,9 +15,9 @@
           <br>
           <ul *ngIf="!edit_mode" class="list-group">
             <li class="list-group-item"><strong>아이디: </strong>{{type._id}}</li>
-            <li class="list-group-item"><strong>이름: </strong>{{type.name}}</li>
+            <li class="list-group-item"><strong>티켓 이름: </strong>{{type.name}}</li>
             <li class="list-group-item">
-              <strong>설명
+              <strong>티켓 설명
                 <input type="checkbox" [(ngModel)]="type.desc.enabled" name="desc.enabled" [disabled]=true>
             : </strong>{{type.desc.value}}
             </li>
@@ -34,18 +34,23 @@
             </div>
             <br>
             <div class="input-group">
-              <span class="input-group-addon">이름</span>
+              <span class="input-group-addon">티켓 이름</span>
               <input type="text" class="form-control" [(ngModel)]="type.name" name="name">
             </div>
             <br>
             <div class="input-group">
               <span class="input-group-addon">
-                설명
+                티켓 설명
               </span>
               <input type="text" class="form-control" [(ngModel)]="type.desc.value" name="desc.value">
               <span class="input-group-addon">
                 <input type="checkbox" [(ngModel)]="type.desc.enabled" name="desc.enabled"> 노출
               </span>
+            </div>
+            <br>
+            <div class="form-group">
+              <h4>유효기간 일시: {{expiry_date | amDateFormat:'YYYY-MM-DD HH:mm:00'}}</h4>
+              <owl-date-time-inline [(ngModel)]="expiry_date"></owl-date-time-inline>
             </div>
             <br>
           </div>
