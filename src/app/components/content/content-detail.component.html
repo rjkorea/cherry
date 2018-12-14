@@ -9,17 +9,17 @@
           <img *ngIf="!content.image" class="img-thumbnail" src="assets/images/no_image_icon.png">
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.poster.m}}">
           <div class="filebox">
-            <label for="upload-poster">포스터 업로드 (사이즈 정보: 674 x 960 px, 용량: 2 MB)</label>
+            <label for="upload-poster">포스터 업데이트 (사이즈 정보: 674 x 960 px, 용량: 2 MB)</label>
             <input type="file" id="upload-poster" name="upload-poster" (change)="uploadPoster($event.target.files)">
           </div>
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.logo.m}}">
           <div class="filebox">
-            <label for="upload-logo">로고 업로드 (사이즈 정보: 360 x 120 px, 용량: 2 MB)</label>
+            <label for="upload-logo">로고 업데이트 (사이즈 정보: 360 x 120 px, 용량: 2 MB)</label>
             <input type="file" id="upload-logo" name="upload-logo" (change)="uploadLogo($event.target.files)">
           </div>
           <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.og.m}}">
           <div class="filebox">
-            <label for="upload-og">오픈그래프 업로드 (사이즈 정보: 460 x 245 px, 용량: 2 MB)</label>
+            <label for="upload-og">오픈그래프 업데이트 (사이즈 정보: 460 x 245 px, 용량: 2 MB)</label>
             <input type="file" id="upload-og" name="upload-og" (change)="uploadOg($event.target.files)">
           </div>
         </div>
@@ -59,35 +59,35 @@
                 <div class="extra-image">
                   <img *ngIf="content.image.extra[0].m" class="img-thumbnail-extra" src="{{content.image.extra[0].m}}">
                   <div class="filebox">
-                    <label for="upload-extra-0">업로드</label>
+                    <label for="upload-extra-0">업데이트</label>
                     <input type="file" id="upload-extra-0" name="upload-extra-0" (change)="uploadExtra('0', $event.target.files)">
                   </div>
                 </div>
                 <div class="extra-image">
                   <img *ngIf="content.image.extra[1].m" class="img-thumbnail-extra" src="{{content.image.extra[1].m}}">
                   <div class="filebox">
-                    <label for="upload-extra-1">업로드</label>
+                    <label for="upload-extra-1">업데이트</label>
                     <input type="file" id="upload-extra-1" name="upload-extra-1" (change)="uploadExtra('1', $event.target.files)">
                   </div>
                 </div>
                 <div class="extra-image">
                   <img *ngIf="content.image.extra[2].m" class="img-thumbnail-extra" src="{{content.image.extra[2].m}}">
                   <div class="filebox">
-                    <label for="upload-extra-2">업로드</label>
+                    <label for="upload-extra-2">업데이트</label>
                     <input type="file" id="upload-extra-2" name="upload-extra-2" (change)="uploadExtra('2', $event.target.files)">
                   </div>
                 </div>
                 <div class="extra-image">
                   <img *ngIf="content.image.extra[3].m" class="img-thumbnail-extra" src="{{content.image.extra[3].m}}">
                   <div class="filebox">
-                    <label for="upload-extra-3">업로드</label>
+                    <label for="upload-extra-3">업데이트</label>
                     <input type="file" id="upload-extra-3" name="upload-extra-3" (change)="uploadExtra('3', $event.target.files)">
                   </div>
                 </div>
                 <div class="extra-image">
                   <img *ngIf="content.image.extra[4].m" class="img-thumbnail-extra" src="{{content.image.extra[4].m}}">
                   <div class="filebox">
-                    <label for="upload-extra-4">업로드</label>
+                    <label for="upload-extra-4">업데이트</label>
                     <input type="file" id="upload-extra-4" name="upload-extra-4" (change)="uploadExtra('4', $event.target.files)">
                   </div>
                 </div>
@@ -122,6 +122,14 @@
               <textarea class="form-control" rows="5" [(ngModel)]="content.desc" name="desc"></textarea>
             </div>
             <br>
+
+            <div class="input-group">
+              <span class="input-group-addon">행사 기간 일시</span>
+              <input [(ngModel)]="when_datetime_range" [selectMode]="'range'" [owlDateTime]="dt_range" [owlDateTimeTrigger]="dt_range" placeholder="행사기간 수정" type="text" class="form-control">
+              <owl-date-time #dt_range></owl-date-time>
+            </div>
+            <br>
+
             <div class="input-group">
               <span class="input-group-addon">장소</span>
               <input type="text" class="form-control" [(ngModel)]="content.place" name="place">
