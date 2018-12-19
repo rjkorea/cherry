@@ -28,7 +28,7 @@ export class TicketTypeDetailComponent implements OnInit {
       .subscribe(
         response => {
           this.type = response['data'];
-          this.expiry_date = this.type.expiry_date * 1000;
+          this.expiry_date = new Date(this.type.expiry_date * 1000);
         },
         error => {
           console.log(error);
