@@ -14,7 +14,7 @@ import { UiSwitchModule } from 'ng2-ui-switch';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { koLocale } from 'ngx-bootstrap/locale';
 import { ButtonsModule } from 'ngx-bootstrap';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { SharedComponentsModule } from './components/shared/shared-components.module';
 
 import { AppComponent } from './app.component';
@@ -186,7 +186,10 @@ defineLocale('ko', koLocale);
     TicketService,
     PlaceService,
     UtilService,
-    QnaService
+    QnaService,
+    {
+      provide: OWL_DATE_TIME_LOCALE, useValue: 'ko'
+    }
   ],
   bootstrap: [AppComponent]
 })
