@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { StatsService } from '../../services/stats.service';
 import { ContentService } from '../../services/content.service';
@@ -8,7 +8,7 @@ import { ContentService } from '../../services/content.service';
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.css']
 })
-export class StatsComponent implements OnInit {
+export class StatsComponent implements OnInit, AfterViewInit {
   contents: any;
   select_content: any;
   revenue: any;
@@ -63,6 +63,9 @@ export class StatsComponent implements OnInit {
         }
       }
     };
+  }
+
+  ngAfterViewInit() {
     this.loadContents();
   }
 
@@ -96,6 +99,7 @@ export class StatsComponent implements OnInit {
             this.daily_ticket_viral_chart['data']['labels'].push(element['_id']);
             this.daily_ticket_viral_chart['data']['datasets'][0]['data'].push(element['count']);
           });
+          this.router.navigate(['/stats', this.select_content._id]);
           this.is_loading = false;
         },
         error => {
@@ -106,7 +110,6 @@ export class StatsComponent implements OnInit {
   }
 
   onChangeContent() {
-    this.router.navigate(['/stats', this.select_content._id]);
     this.loadStatsContent();
   }
 
