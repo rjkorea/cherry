@@ -97,7 +97,6 @@ export class TicketOrderNewComponent implements OnInit {
       price: this.type.price
     };
     this.order.expiry_date = this.type.expiry_date;
-    console.log(this.order);
     this.ticketService.addOrder(this.order)
       .subscribe(
         response => {

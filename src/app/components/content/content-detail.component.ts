@@ -11,7 +11,7 @@ import { ContentService } from '../../services/content.service';
 export class ContentDetailComponent implements OnInit {
   content: any;
   content_form: any;
-  notification_options: Object;
+  when_datetime_range: Date[];
   edit_mode: boolean;
 
   constructor(
@@ -30,6 +30,10 @@ export class ContentDetailComponent implements OnInit {
     this.contentService.getContent(id).subscribe(
       response => {
         this.content = response['data'];
+        this.when_datetime_range = [
+          new Date(this.content['when']['start'] * 1000),
+          new Date(this.content['when']['end'] * 1000)
+        ];
       },
       error => {
         console.log(error);
@@ -65,6 +69,10 @@ export class ContentDetailComponent implements OnInit {
       notice: {
         enabled: this.content.notice.enabled,
         message: this.content.notice.message
+      },
+      when: {
+        start: `${this.when_datetime_range[0].getUTCFullYear()}-${this.when_datetime_range[0].getUTCMonth() + 1}-${this.when_datetime_range[0].getUTCDate()}T${this.when_datetime_range[0].getUTCHours()}:${this.when_datetime_range[0].getUTCMinutes()}:${this.when_datetime_range[0].getUTCSeconds()}`,
+        end: `${this.when_datetime_range[1].getUTCFullYear()}-${this.when_datetime_range[1].getUTCMonth() + 1}-${this.when_datetime_range[1].getUTCDate()}T${this.when_datetime_range[1].getUTCHours()}:${this.when_datetime_range[1].getUTCMinutes()}:${this.when_datetime_range[1].getUTCSeconds()}`
       }
     };
     this.contentService

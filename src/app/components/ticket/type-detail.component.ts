@@ -11,6 +11,7 @@ import { TicketService } from '../../services/ticket.service';
 export class TicketTypeDetailComponent implements OnInit {
   type: any;
   type_form: any;
+  expiry_date: any;
   edit_mode: boolean;
 
   constructor(private route: ActivatedRoute,
@@ -27,6 +28,7 @@ export class TicketTypeDetailComponent implements OnInit {
       .subscribe(
         response => {
           this.type = response['data'];
+          this.expiry_date = new Date(this.type.expiry_date * 1000);
         },
         error => {
           console.log(error);
@@ -45,6 +47,7 @@ export class TicketTypeDetailComponent implements OnInit {
         enabled: this.type.desc.enabled,
         value: this.type.desc.value
       },
+      expiry_date: `${this.expiry_date.getUTCFullYear()}-${this.expiry_date.getUTCMonth() + 1}-${this.expiry_date.getUTCDate()}T${this.expiry_date.getUTCHours()}:${this.expiry_date.getUTCMinutes()}:${this.expiry_date.getUTCSeconds()}`,
       price: this.type.price,
       enabled: this.type.enabled
     };
