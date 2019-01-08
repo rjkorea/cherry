@@ -45,4 +45,8 @@ export class LoginComponent implements OnInit {
       );
   }
 
+  disabledLogin() {
+    return !(this.model.email && this.model.password);
+  }
+
 }
