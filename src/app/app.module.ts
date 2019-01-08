@@ -19,6 +19,7 @@ import { SharedComponentsModule } from './components/shared/shared-components.mo
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { TutorialComponent } from './components/tutorial/tutorial.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -74,7 +75,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { DashboardService } from './services/dashboard.service';
-import { StatsService } from "./services/stats.service";
+import { StatsService } from './services/stats.service';
 import { NotificationService } from './services/notification.service';
 import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
@@ -96,6 +97,7 @@ defineLocale('ko', koLocale);
   declarations: [
     AppComponent,
     NavbarComponent,
+    TutorialComponent,
     WelcomeComponent,
     LoginComponent,
     DashboardComponent,

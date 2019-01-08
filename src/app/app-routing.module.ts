@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
 
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { TutorialComponent } from './components/tutorial/tutorial.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatrixTicketOrderComponent } from './components/tim/matrix-ticket-order.component';
@@ -59,6 +60,7 @@ const routes: Routes = [
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
 
   { path: 'welcome', component: WelcomeComponent },
+  { path: 'tutorial', component: TutorialComponent },
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/:id', component: DashboardComponent, canActivate: [AuthGuard] },
