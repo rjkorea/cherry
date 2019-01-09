@@ -1,34 +1,71 @@
 <div class="row">
-  <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
-    <h2 class="page-header">회원가입 <small>호스트</small></h2>
-    <form (submit)="signup()">
-      <div class="form-group">
-        <label>이름</label>
-        <input type="text" [(ngModel)]="model.name" name="name" class="form-control">
+  <div class="row hidden-xs hidden-sm">
+    <div class="col-md-6 left">
+      <img src="../../../assets/images/host-main-bg.png" class="img-responsive">
+    </div>
+    <div class="col-md-6 right signup">
+      <div class="signup-header">
+        <div class="title">
+          티킷 간편 회원가입
+        </div>
+        <div class="description">
+          간편하게 회원가입하고 친구에게 티켓을 보내보세요
+        </div>
       </div>
-      <div class="form-group">
-        <label>이메일</label>
-        <input type="text" [(ngModel)]="model.email" name="email" class="form-control" >
+      <div class="signup-body">
+        <div class="personal-button" (click)="goPersonalSignup()">
+          <img class="signup-icon" src="../../../assets/images/personal-icon.svg">
+          <div class="signup-title">
+            개인 회원가입
+          </div>
+          <div class="signup-description">
+            사업자번호가 없는 분은<br>
+            개인 회원으로 가입해주세요
+          </div>
+          <div class="underbar"></div>
+        </div>
+        <div class="business-button" (click)="goBusinessSignup()">
+          <img class="signup-icon" src="../../../assets/images/business-icon.svg">
+          <div class="signup-title">
+            사업자 회원가입
+          </div>
+          <div class="signup-description">
+            사업자번호가 있는 분은<br>
+            사업자 회원으로 가입해주세요
+          </div>
+          <div class="underbar"></div>
+        </div>
       </div>
-      <div class="form-group">
-        <label>비밀번호</label>
-        <input type="password" [(ngModel)]="model.password" name="password" class="form-control">
-      </div>
-      <div class="form-group">
-        <label>비밀번호 확인</label>
-        <input type="password" [(ngModel)]="model.password2" name="password2" class="form-control">
-      </div>
-      <div class="form-group">
-        <label>핸드폰번호</label>
-        <input type="tel" [(ngModel)]="model.mobile_number" name="mobile_number" class="form-control" >
-      </div>
-      <input type="submit" class="btn btn-tkit-mint" value="Submit">
-    </form>
+    </div>
   </div>
-</div>
-<br>
-<div class="row">
-  <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-    <p class="lead text-center">©2017 All Rights Reserved. RJ Korea Entertainment. Privacy and Terms</p>
+
+  <div class="row hidden-md hidden-lg">
+    <div class="col-xs-12">
+      <div class="personal-button" (click)="goPersonalSignup()">
+        <img class="signup-icon" src="../../../assets/images/personal-icon.svg">
+        <div class="signup-title">
+          개인 회원가입
+        </div>
+        <div class="signup-description">
+          사업자번호가 없는 분은<br>
+          개인 회원으로 가입해주세요
+        </div>
+        <div class="underbar"></div>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="business-button" (click)="goBusinessSignup()">
+        <img class="signup-icon" src="../../../assets/images/business-icon.svg">
+        <div class="signup-title">
+          사업자 회원가입
+        </div>
+        <div class="signup-description">
+          사업자번호가 있는 분은<br>
+          사업자 회원으로 가입해주세요
+        </div>
+        <div class="underbar"></div>
+      </div>
+    </div>
   </div>
+
 </div>
