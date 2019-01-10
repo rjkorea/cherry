@@ -4,6 +4,20 @@ body {
   padding-top: 70px;
 }
 
+@media (min-width: 992px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+button:disabled,
+button[disabled] {
+  box-shadow: 0 2px 3px 0 rgba(157, 157, 157, 0.5);
+  color: #aaaaaa;
+  background-color: #ffffff;
+  border-color: #aaaaaa;
+}
+
 .jumbotron {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -16,6 +30,7 @@ body {
   color: #fff;
   background-color: #62aab8;
   border-color: #59a2b0;
+  box-shadow: 0 2px 4px 0 rgba(142, 142, 142, 0.5)
 }
 
 .btn-tkit-coral {
@@ -23,6 +38,7 @@ body {
   background-color: #d87072;
   border-color: #ed7f81;
 }
+
 
 .label-tkit-mint {
   background-color: #62aab8;
@@ -127,4 +143,44 @@ body {
   left: 0;
   top: 0;
   opacity: 0;
+}
+
+.tkit-mint-color {
+  color: #62aab8;
+}
+
+.tkit-coral-color {
+  color: #ed7f81;
+}
+
+.hangang-blue-color {
+  color: #6794ca;
+}
+
+.ultra-bora-color {
+  color: #8f6dab;
+}
+
+.mustard-norang-color {
+  color: #f6d87f;
+}
+
+.tkit-mint-bg {
+  background-color: #62aab8;
+}
+
+.tkit-coral-bg {
+  background-color: #ed7f81;
+}
+
+.hangang-blue-bg {
+  background-color: #6794ca;
+}
+
+.ultra-bora-bg {
+  background-color: #8f6dab;
+}
+
+.mustard-norang-bg {
+  background-color: #f6d87f;
 }
