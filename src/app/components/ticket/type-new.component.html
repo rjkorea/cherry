@@ -1,7 +1,48 @@
 <div class="row">
-  <div *ngIf="is_mobile" class="col-md-4">
-    <div class="thumbnail">
-      <img src="../../../assets/images/ticket_type_guide.png" alt="티켓 타입 만들기 가이드">
+  <div class="col-md-4 hidden-md hidden-lg">
+    <div class="thumbnail gray-bg">
+      [티켓 화면 예시] 참고해주세요
+      <div class="preview-ticket">
+        <div *ngIf="type.color=='tkit-mint'" class="color-tag tkit-mint-bg"></div>
+        <div *ngIf="type.color=='tkit-coral'" class="color-tag tkit-coral-bg"></div>
+        <div *ngIf="type.color=='hangang-blue'" class="color-tag hangang-blue-bg"></div>
+        <div *ngIf="type.color=='ultra-bora'" class="color-tag ultra-bora-bg"></div>
+        <div *ngIf="type.color=='mustard-norang'" class="color-tag mustard-norang-bg"></div>
+        <div class="right">
+          <div class="header">
+            <span>{{content.name}}</span>
+          </div>
+          <div class="body">
+            <div class="name">
+              <span *ngIf="type.name">{{type.name}}</span>
+              <span class="gray-bg" *ngIf="!type.name">티켓 이름을 입력해주세요</span>
+            </div>
+            <div class="desc">
+              <span *ngIf="type.desc.value">{{type.desc.value}}</span>
+              <span class="gray-bg" *ngIf="!type.desc.value">티켓 설명을 입력해주세요</span>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="footer">
+            <div class="expiry-date">
+              <div class="desc">
+                등록 유효기간
+              </div>
+              <div>
+                {{expiry_date | amDateFormat:'YYYY.MM.DD HH:mm'}} 까지
+              </div>
+            </div>
+            <div class="price">
+              <div class="desc">
+                티켓가격
+              </div>
+              <div>
+                {{price | currency: 'KRW': true: '0.0-0'}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-md-6">
@@ -19,6 +60,16 @@
           <label>티켓 설명</label> <input type="checkbox" [(ngModel)]="type.desc.enabled" name="desc.enabled">
           <textarea #desc type="text" class="form-control" rows="3" cols="30" [(ngModel)]="type.desc.value" name="desc" (keyup)="input_desc.onKeyup(desc.value)"></textarea>
           <span *ngIf="input_desc.message" class="error-message">{{input_desc.message}}</span>
+        </div>
+        <div>
+          <label>티켓 컬러를 선택하세요</label>
+        </div>
+        <div class="form-group">
+          <label class="radio-inline"><input type="radio" name="tkit-mint" value="tkit-mint" [(ngModel)]="type.color" checked><span class="tkit-mint-bg tkit-mint-color">컬러샘플</span></label>
+          <label class="radio-inline"><input type="radio" name="tkit-coral" value="tkit-coral" [(ngModel)]="type.color"><span class="tkit-coral-bg tkit-coral-color">컬러샘플</span></label>
+          <label class="radio-inline"><input type="radio" name="hangang-blue" value="hangang-blue" [(ngModel)]="type.color"><span class="hangang-blue-bg hangang-blue-color">컬러샘플</span></label>
+          <label class="radio-inline"><input type="radio" name="ultra-bora" value="ultra-bora" [(ngModel)]="type.color"><span class="ultra-bora-bg ultra-bora-color">컬러샘플</span></label>
+          <label class="radio-inline"><input type="radio" name="mustard-norang" value="mustard-norang" [(ngModel)]="type.color"><span class="mustard-norang-bg mustard-norang-color">컬러샘플</span></label>
         </div>
         <div class="form-group">
           <h4>유효기간 일시: {{expiry_date | amDateFormat:'YYYY-MM-DD HH:mm:00'}}</h4>
@@ -39,9 +90,53 @@
       </div>
     </div>
   </div>
-  <div *ngIf="!is_mobile" class="col-md-4">
-    <div class="thumbnail">
-      <img src="../../../assets/images/ticket_type_guide.png" alt="티켓 타입 만들기 가이드">
+  <div class="col-md-4 hidden-xs hidden-sm">
+    <div class="thumbnail gray-bg">
+      [티켓 화면 예시] 참고해주세요
+      <div class="preview-ticket">
+        <div *ngIf="type.color=='tkit-mint'" class="color-tag tkit-mint-bg"></div>
+        <div *ngIf="type.color=='tkit-coral'" class="color-tag tkit-coral-bg"></div>
+        <div *ngIf="type.color=='hangang-blue'" class="color-tag hangang-blue-bg"></div>
+        <div *ngIf="type.color=='ultra-bora'" class="color-tag ultra-bora-bg"></div>
+        <div *ngIf="type.color=='mustard-norang'" class="color-tag mustard-norang-bg"></div>
+        <div class="right">
+          <div class="header">
+            <span>{{content.name}}</span>
+          </div>
+          <div class="body">
+            <div class="name">
+              <span *ngIf="type.name">{{type.name}}</span>
+              <span class="gray-bg" *ngIf="!type.name">티켓 이름을 입력해주세요</span>
+            </div>
+            <div class="desc">
+              <span *ngIf="type.desc.value">{{type.desc.value}}</span>
+              <span class="gray-bg" *ngIf="!type.desc.value">티켓 설명을 입력해주세요</span>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="footer">
+            <div class="expiry-date">
+              <div class="desc">
+                등록 유효기간
+              </div>
+              <div>
+                {{expiry_date | amDateFormat:'YYYY.MM.DD HH:mm'}} 까지
+              </div>
+            </div>
+            <div class="price">
+              <div class="desc">
+                티켓가격
+              </div>
+              <div *ngIf="is_free">
+                FREE TICKET
+              </div>
+              <div *ngIf="!is_free">
+                {{price | currency: 'KRW': true: '0.0-0'}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

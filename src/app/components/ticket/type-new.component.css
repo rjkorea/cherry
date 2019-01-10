@@ -1,0 +1,67 @@
+.gray-bg {
+  background-color: #f6f6f6;
+}
+
+.preview-ticket {
+  display: flex;
+  justify-content: flex-start;
+  width: 345px;
+  height: 145px;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px 0 rgba(173, 173, 173, 0.5);
+  background-color: #ffffff;
+}
+
+.color-tag {
+  width: 7.9px;
+  height: 145px;
+  /* background-color: #6eaab8; */
+}
+
+.right {
+  margin: 15px;
+}
+
+.header {
+  font-size: 11px;
+  color: #666666;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #444444;
+}
+
+.desc {
+  font-size: 11px;
+  line-height: 1.45;
+  color: #666666;
+}
+
+.body {
+  margin-bottom: 6px;
+}
+
+.line {
+  margin-bottom: 5px;
+  width: 307px;
+  border: .5px solid #dedede;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.expiry-date {
+  font-size: 12px;
+  font-weight: 500;
+  color: #ed7f81;
+}
+
+.price {
+  font-size: 12px;
+  font-weight: bold;
+  color: #666666;
+}

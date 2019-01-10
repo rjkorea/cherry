@@ -64,7 +64,8 @@ export class TicketTypeNewComponent implements OnInit {
       },
       content_oid: '',
       admin_oid: '',
-      expiry_date: new Date()
+      expiry_date: new Date(),
+      color: 'tkit-mint'
     };
     const params: Params = this.route.snapshot.params;
     if ('content_oid' in params) {
