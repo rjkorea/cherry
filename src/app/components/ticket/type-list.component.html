@@ -47,6 +47,7 @@
               <th>설명노출</th>
               <th>티켓유효일시기한</th>
               <th>생성일시</th>
+              <th></th>
             </tr>
             <tr *ngFor="let t of types">
               <td>
@@ -69,6 +70,13 @@
               </td>
               <td>{{t.expiry_date | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
               <td>{{t.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss' | amTimeAgo: true}} 전</td>
+              <td>
+                <span *ngIf="t.color && t.color.name==='tkit-mint'" class="tkit-mint-bg tkit-mint-color">컬러샘플</span>
+                <span *ngIf="t.color && t.color.name==='tkit-coral'" class="tkit-coral-bg tkit-coral-color">컬러샘플</span>
+                <span *ngIf="t.color && t.color.name==='hangang-blue'" class="hangang-blue-bg hangang-blue-color">컬러샘플</span>
+                <span *ngIf="t.color && t.color.name==='ultra-bora'" class="ultra-bora-bg ultra-bora-color">컬러샘플</span>
+                <span *ngIf="t.color && t.color.name==='mustard-norang'" class="mustard-norang-bg mustard-norang-color">컬러샘플</span>
+              </td>
             </tr>
           </table>
         </div>

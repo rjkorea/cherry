@@ -37,8 +37,31 @@ export class TicketTypeNewComponent implements OnInit {
   is_mobile: boolean;
   is_free: boolean;
   price: number;
+  color: string;
   input_name = new Validator(30, '티켓 이름 입력 최대길이(30 바이트)를 초과 하였습니다.');
   input_desc = new Validator(120, '티켓 설명 입력 최대길이(120 바이트)를 초과 하였습니다.');
+  COLORS = {
+    tkit_mint: {
+      name: 'tkit-mint',
+      value: '#62aab8'
+    },
+    tkit_coral: {
+      name: 'tkit-coral',
+      value: '#ed7f81'
+    },
+    hangang_blue: {
+      name: 'hangang-blue',
+      value: '#6794ca'
+    },
+    ultra_bora: {
+      name: 'ultra-bora',
+      value: '#8f6dab'
+    },
+    mustard_norang: {
+      name: 'mustard-norang',
+      value: '#f6d87f'
+    }
+  };
 
   constructor(private ticketService: TicketService,
               private contentService: ContentService,
@@ -55,6 +78,7 @@ export class TicketTypeNewComponent implements OnInit {
     this.price = 10000;
     this.content = { name: '' };
     this.expiry_date = new Date();
+    this.color = 'tkit_mint';
     this.type = {
       type: 'network',
       name: '',
@@ -65,7 +89,7 @@ export class TicketTypeNewComponent implements OnInit {
       content_oid: '',
       admin_oid: '',
       expiry_date: new Date(),
-      color: 'tkit-mint'
+      color: {}
     };
     const params: Params = this.route.snapshot.params;
     if ('content_oid' in params) {
@@ -80,6 +104,7 @@ export class TicketTypeNewComponent implements OnInit {
       this.type['price'] = this.price;
     }
     this.type.expiry_date = `${this.expiry_date.getUTCFullYear()}-${this.expiry_date.getUTCMonth() + 1}-${this.expiry_date.getUTCDate()}T${this.expiry_date.getUTCHours()}:${this.expiry_date.getUTCMinutes()}:${this.expiry_date.getUTCSeconds()}`;
+    this.type['color'] = this.COLORS[this.color];
     this.ticketService.addType(this.type)
       .subscribe(
         response => {
@@ -101,6 +126,10 @@ export class TicketTypeNewComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  clickColor(color: string) {
+    this.color = color;
   }
 
   public disabledSubmit() {

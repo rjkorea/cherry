@@ -3,11 +3,11 @@
     <div class="thumbnail gray-bg">
       [티켓 화면 예시] 참고해주세요
       <div class="preview-ticket">
-        <div *ngIf="type.color=='tkit-mint'" class="color-tag tkit-mint-bg"></div>
-        <div *ngIf="type.color=='tkit-coral'" class="color-tag tkit-coral-bg"></div>
-        <div *ngIf="type.color=='hangang-blue'" class="color-tag hangang-blue-bg"></div>
-        <div *ngIf="type.color=='ultra-bora'" class="color-tag ultra-bora-bg"></div>
-        <div *ngIf="type.color=='mustard-norang'" class="color-tag mustard-norang-bg"></div>
+        <div *ngIf="color=='tkit_mint'" class="color-tag tkit-mint-bg"></div>
+        <div *ngIf="color=='tkit_coral'" class="color-tag tkit-coral-bg"></div>
+        <div *ngIf="color=='hangang_blue'" class="color-tag hangang-blue-bg"></div>
+        <div *ngIf="color=='ultra_bora'" class="color-tag ultra-bora-bg"></div>
+        <div *ngIf="color=='mustard_norang'" class="color-tag mustard-norang-bg"></div>
         <div class="right">
           <div class="header">
             <span>{{content.name}}</span>
@@ -65,11 +65,11 @@
           <label>티켓 컬러를 선택하세요</label>
         </div>
         <div class="form-group">
-          <label class="radio-inline"><input type="radio" name="tkit-mint" value="tkit-mint" [(ngModel)]="type.color" checked><span class="tkit-mint-bg tkit-mint-color">컬러샘플</span></label>
-          <label class="radio-inline"><input type="radio" name="tkit-coral" value="tkit-coral" [(ngModel)]="type.color"><span class="tkit-coral-bg tkit-coral-color">컬러샘플</span></label>
-          <label class="radio-inline"><input type="radio" name="hangang-blue" value="hangang-blue" [(ngModel)]="type.color"><span class="hangang-blue-bg hangang-blue-color">컬러샘플</span></label>
-          <label class="radio-inline"><input type="radio" name="ultra-bora" value="ultra-bora" [(ngModel)]="type.color"><span class="ultra-bora-bg ultra-bora-color">컬러샘플</span></label>
-          <label class="radio-inline"><input type="radio" name="mustard-norang" value="mustard-norang" [(ngModel)]="type.color"><span class="mustard-norang-bg mustard-norang-color">컬러샘플</span></label>
+          <label class="radio-inline"><input type="radio" name="color" (click)="clickColor('tkit_mint')" checked><span class="tkit-mint-bg tkit-mint-color">컬러샘플</span></label>
+          <label class="radio-inline"><input type="radio" name="color" (click)="clickColor('tkit_coral')"><span class="tkit-coral-bg tkit-coral-color">컬러샘플</span></label>
+          <label class="radio-inline"><input type="radio" name="color" (click)="clickColor('hangang_blue')"><span class="hangang-blue-bg hangang-blue-color">컬러샘플</span></label>
+          <label class="radio-inline"><input type="radio" name="color" (click)="clickColor('ultra_bora')"><span class="ultra-bora-bg ultra-bora-color">컬러샘플</span></label>
+          <label class="radio-inline"><input type="radio" name="color" (click)="clickColor('mustard_norang')"><span class="mustard-norang-bg mustard-norang-color">컬러샘플</span></label>
         </div>
         <div class="form-group">
           <h4>유효기간 일시: {{expiry_date | amDateFormat:'YYYY-MM-DD HH:mm:00'}}</h4>
@@ -94,11 +94,11 @@
     <div class="thumbnail gray-bg">
       [티켓 화면 예시] 참고해주세요
       <div class="preview-ticket">
-        <div *ngIf="type.color=='tkit-mint'" class="color-tag tkit-mint-bg"></div>
-        <div *ngIf="type.color=='tkit-coral'" class="color-tag tkit-coral-bg"></div>
-        <div *ngIf="type.color=='hangang-blue'" class="color-tag hangang-blue-bg"></div>
-        <div *ngIf="type.color=='ultra-bora'" class="color-tag ultra-bora-bg"></div>
-        <div *ngIf="type.color=='mustard-norang'" class="color-tag mustard-norang-bg"></div>
+        <div *ngIf="color=='tkit_mint'" class="color-tag tkit-mint-bg"></div>
+        <div *ngIf="color=='tkit_coral'" class="color-tag tkit-coral-bg"></div>
+        <div *ngIf="color=='hangang_blue'" class="color-tag hangang-blue-bg"></div>
+        <div *ngIf="color=='ultra_bora'" class="color-tag ultra-bora-bg"></div>
+        <div *ngIf="color=='mustard_norang'" class="color-tag mustard-norang-bg"></div>
         <div class="right">
           <div class="header">
             <span>{{content.name}}</span>
