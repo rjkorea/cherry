@@ -34,7 +34,6 @@ export class TicketTypeNewComponent implements OnInit {
   type: any;
   content: any;
   expiry_date: Date;
-  is_mobile: boolean;
   is_free: boolean;
   price: number;
   color: string;
@@ -69,11 +68,6 @@ export class TicketTypeNewComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    if (navigator.userAgent.toLowerCase().includes('mobile')) {
-      this.is_mobile = true;
-    } else {
-      this.is_mobile = false;
-    }
     this.is_free = false;
     this.price = 10000;
     this.content = { name: '' };
@@ -89,7 +83,8 @@ export class TicketTypeNewComponent implements OnInit {
       content_oid: '',
       admin_oid: '',
       expiry_date: new Date(),
-      color: {}
+      color: {},
+      duplicated_registration: false
     };
     const params: Params = this.route.snapshot.params;
     if ('content_oid' in params) {

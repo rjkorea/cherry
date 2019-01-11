@@ -48,6 +48,7 @@
               <th>티켓유효일시기한</th>
               <th>생성일시</th>
               <th></th>
+              <th></th>
             </tr>
             <tr *ngFor="let t of types">
               <td>
@@ -76,6 +77,9 @@
                 <span *ngIf="t.color && t.color.name==='hangang-blue'" class="hangang-blue-bg hangang-blue-color">컬러샘플</span>
                 <span *ngIf="t.color && t.color.name==='ultra-bora'" class="ultra-bora-bg ultra-bora-color">컬러샘플</span>
                 <span *ngIf="t.color && t.color.name==='mustard-norang'" class="mustard-norang-bg mustard-norang-color">컬러샘플</span>
+              </td>
+              <td>
+                <span *ngIf="t.duplicated_registration" class="label hangang-blue-bg">중복허용</span>
               </td>
             </tr>
           </table>
