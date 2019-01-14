@@ -25,6 +25,7 @@ export class StatsComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.is_loading = false;
     this.contents = [];
+    this.select_content = '';
     this.daily_ticket_viral_chart = {
       type: 'line',
       data: {
@@ -87,25 +88,30 @@ export class StatsComponent implements OnInit, AfterViewInit {
 
   loadStatsContent() {
     this.is_loading = true;
-    this.statsService.getStatsContent(this.select_content._id)
-      .subscribe(
-        response => {
-          this.total_viral = response['data']['total_viral'];
-          this.revenue = response['data']['revenue'];
-          this.ticket_count = response['data']['ticket_count'];
-          this.daily_ticket_viral_chart['data']['labels'] = [];
-          this.daily_ticket_viral_chart['data']['datasets'][0]['data'] = [];
-          response['data']['daily_ticket_viral'].forEach(element => {
-            this.daily_ticket_viral_chart['data']['labels'].push(element['_id']);
-            this.daily_ticket_viral_chart['data']['datasets'][0]['data'].push(element['count']);
-          });
-          this.router.navigate(['/stats', this.select_content._id]);
-          this.is_loading = false;
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    if (this.select_content) {
+      this.statsService.getStatsContent(this.select_content._id)
+        .subscribe(
+          response => {
+            this.total_viral = response['data']['total_viral'];
+            this.revenue = response['data']['revenue'];
+            this.ticket_count = response['data']['ticket_count'];
+            this.daily_ticket_viral_chart['data']['labels'] = [];
+            this.daily_ticket_viral_chart['data']['datasets'][0]['data'] = [];
+            response['data']['daily_ticket_viral'].forEach(element => {
+              this.daily_ticket_viral_chart['data']['labels'].push(element['_id']);
+              this.daily_ticket_viral_chart['data']['datasets'][0]['data'].push(element['count']);
+            });
+            this.router.navigate(['/stats', this.select_content._id]);
+            this.is_loading = false;
+          },
+          error => {
+            this.is_loading = false;
+            console.log(error);
+          }
+        );
+    } else {
+      this.is_loading = false;
+    }
 
   }
 
