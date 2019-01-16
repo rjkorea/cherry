@@ -12,7 +12,7 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 @Injectable()
 export class AuthService {
   loginUrl = `${URL}/a/auth/login`;
-  signupUrl = `${URL}/a/auth/register`;
+  signupPersonalUrl = `${URL}/a/auth/signup/personal`;
   isLoggedIn = false;
 
   constructor(private http: Http,
@@ -59,17 +59,11 @@ export class AuthService {
     return localStorage.getItem('role');
   }
 
-  public signup(name: string, email: string, password: string,
-                password2: string, mobile_number: string): Observable<{}> {
+  signupPersonal(body: any): Observable<{}> {
     const headers = new Headers({'Content-Type': 'application/json'});
     const options = new RequestOptions({headers: headers, withCredentials: true});
-    const body = JSON.stringify({name, email, password, password2, mobile_number, 'role':'host'});
-    return this.http.post(this.signupUrl, body, options)
-                    .map((response: Response) => {
-                      if(response.status === 200) {
-                        console.log(response);
-                      }
-                    })
+    return this.http.post(this.signupPersonalUrl, body, options)
+                    .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
