@@ -1,9 +1,8 @@
-<!-- <div class="row hidden-xs hidden-sm"> -->
 <div class="row">
   <div class="col-md-offset-3 col-md-6 col-md-offset-3">
     <form [formGroup]="signupForm">
       <div class="header">
-        티킷 회원가입[개인]
+        티킷 회원가입<small>[개인]</small>
       </div>
       <div class="sub-header">
         필수입력
@@ -95,19 +94,31 @@
         <div class="col-md-4">
           <div class="form-group">
             <label class="tds-label">생년월일</label>
-            <input type="select" class="form-control tds-input" formControlName="birthday_year" placeholder="예) 1992">
+            <input type="text" class="form-control tds-input" formControlName="birthday_year" placeholder="예) 1992">
+            <div *ngIf="birthday_year.invalid && (birthday_year.dirty || birthday_year.touched)" class="tds-message-invalid">
+              <div *ngIf="birthday_year.errors.required">
+                생년월일 필수
+              </div>
+              <div *ngIf="birthday_year.errors.minlength">
+                4자리
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label class="tds-label empty-line"></label>
-            <input type="select" class="form-control tds-input" formControlName="birthday_month" placeholder="월">
+            <select class="form-control tds-input" formControlName="birthday_month">
+              <option *ngFor="let m of months" [ngValue]="m">{{m}}</option>
+            </select>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label class="tds-label empty-line"></label>
-            <input type="select" class="form-control tds-input" formControlName="birthday_day" placeholder="일">
+            <select class="form-control tds-input" formControlName="birthday_day">
+              <option *ngFor="let d of days" [ngValue]="d">{{d}}</option>
+            </select>
           </div>
         </div>
       </div>
@@ -115,18 +126,29 @@
         <div class="col-md-12">
           <div class="form-group">
             <label class="tds-label">성별</label>
-            <input type="select" class="form-control tds-input" formControlName="gender" placeholder="성별을 선택해주세요">
+            <select class="form-control tds-input" formControlName="gender">
+              <option *ngFor="let g of genders" [ngValue]="g">{{g.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group term">
+            <input type="checkbox" formControlName="is_term"> 서비스 이용약관 및 개인정보 취급방침에 동의함(필수)
           </div>
         </div>
       </div>
       <div class="sub-header">
-        선택입력 (유료티켓 판매시 필수 입력사항입니다)
+        선택입력 <small>(유료티켓 판매시 필수 입력사항입니다)</small>
       </div>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <label class="tds-label">입금은행</label>
-            <input type="select" class="form-control tds-input" formControlName="bank_name" placeholder="은행을 선택해주세요">
+            <select class="form-control tds-input" formControlName="bank_name">
+              <option *ngFor="let b of banks" [ngValue]="b">{{b}}</option>
+            </select>
           </div>
         </div>
         <div class="col-md-6">
@@ -139,15 +161,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-tkit-mint btn-block login-button" [disabled]="!signupForm.valid">완  료</button>
+      <button class="btn btn-tkit-mint btn-block login-button" [disabled]="!signupForm.valid" (click)="done()">완  료</button>
     </form>
-    <div>Signup Form Value: {{signupForm.value | json}}</div>
-    <div>Signup Form Status: {{signupForm.status}}</div>
   </div>
 </div>
-
-<!-- <div class="row hidden-md hidden-lg">
-  <div class="col-xs-12">
-    티킷 회원가입[개인] 모바일
-  </div>
-</div> -->
