@@ -21,12 +21,6 @@ export class AppComponent implements OnInit {
       console.log('offline');
     });
 
-    window.addEventListener('online', function (e) {
-      alert('인터넷이 연결되었습니다.');
-      console.log('online');
-      window.location.href = '/';
-    });
-
     this.debug = environment.debug;
     // get navigator info
     if (this.debug) {

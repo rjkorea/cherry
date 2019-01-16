@@ -13,6 +13,7 @@ import { AnalyticsComponent } from './components/tim/analytics.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SignupPersonalComponent } from './components/signup/signup-personal.component';
+import { SignupDoneComponent } from './components/signup/signup-done.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { EntranceComponent } from './components/entrance/entrance.component';
 import { EntranceTicketComponent } from './components/entrance/entrance-ticket.component';
@@ -132,6 +133,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'signup/personal', component: SignupPersonalComponent },
+  { path: 'signup/done', component: SignupDoneComponent },
   { path: 'profile/:id', component: AdminDetailComponent, canActivate: [AuthGuard] },
   { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }

@@ -86,7 +86,7 @@ export class SignupPersonalComponent implements OnInit {
     this.authService.signupPersonal(this.body)
       .subscribe(
         response => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/signup/done']);
         },
         error => {
           alert(error);
