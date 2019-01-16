@@ -1,0 +1,153 @@
+<!-- <div class="row hidden-xs hidden-sm"> -->
+<div class="row">
+  <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+    <form [formGroup]="signupForm">
+      <div class="header">
+        티킷 회원가입[개인]
+      </div>
+      <div class="sub-header">
+        필수입력
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="tds-label">이메일 주소</label>
+            <input type="text" class="form-control tds-input" formControlName="email" placeholder="예) help@rjkorea.com">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="tds-message-invalid">
+              <div *ngIf="email.errors.required">
+                이메일 주소 필수
+              </div>
+              <div *ngIf="email.errors.email">
+                이메일 형식이 올바르지 않음
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">이름(성)</label>
+            <input type="text" class="form-control tds-input" formControlName="last_name" placeholder="이름(성)">
+            <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="tds-message-invalid">
+              <div *ngIf="last_name.errors.required">
+                이름(성) 필수
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">이름</label>
+            <input type="text" class="form-control tds-input" formControlName="name" placeholder="이름">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="tds-message-invalid">
+              <div *ngIf="name.errors.required">
+                이름 필수
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">국가코드(나라)</label>
+            <select class="form-control tds-input" formControlName="mobile_country_code">
+              <option *ngFor="let cc of country_codes" [ngValue]="cc">+{{cc.code}}({{cc.name}})</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">휴대전화번호</label>
+            <input type="text" class="form-control tds-input" formControlName="mobile_number" placeholder="예) 01011112222">
+            <div *ngIf="mobile_number.invalid && (mobile_number.dirty || mobile_number.touched)" class="tds-message-invalid">
+              <div *ngIf="mobile_number.errors.required">
+                휴대전화번호 필수
+              </div>
+              <div *ngIf="mobile_number.errors.minLength">
+                최소 10자 이상
+              </div>
+              <div *ngIf="mobile_number.errors.maxLength">
+                최소 12자 이하
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="tds-label">패스워드</label>
+            <input type="password" class="form-control tds-input" formControlName="password" placeholder="패스워드 입력(최소 8자 이상)">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="tds-message-invalid">
+              <div *ngIf="password.errors.required">
+                패스워드 필수
+              </div>
+              <div *ngIf="password.errors.minlength">
+                최소 8자 이상
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="tds-label">생년월일</label>
+            <input type="select" class="form-control tds-input" formControlName="birthday_year" placeholder="예) 1992">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="tds-label empty-line"></label>
+            <input type="select" class="form-control tds-input" formControlName="birthday_month" placeholder="월">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="tds-label empty-line"></label>
+            <input type="select" class="form-control tds-input" formControlName="birthday_day" placeholder="일">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="tds-label">성별</label>
+            <input type="select" class="form-control tds-input" formControlName="gender" placeholder="성별을 선택해주세요">
+          </div>
+        </div>
+      </div>
+      <div class="sub-header">
+        선택입력 (유료티켓 판매시 필수 입력사항입니다)
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">입금은행</label>
+            <input type="select" class="form-control tds-input" formControlName="bank_name" placeholder="은행을 선택해주세요">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">입금 계좌번호</label>
+            <input type="text" class="form-control tds-input" formControlName="bank_number" placeholder="숫자만 입력해주세요">
+            <div class="tds-message-valid">
+              가입자 본인 계좌번호를 입력해주세요
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-tkit-mint btn-block login-button" [disabled]="!signupForm.valid">완  료</button>
+    </form>
+    <div>Signup Form Value: {{signupForm.value | json}}</div>
+    <div>Signup Form Status: {{signupForm.status}}</div>
+  </div>
+</div>
+
+<!-- <div class="row hidden-md hidden-lg">
+  <div class="col-xs-12">
+    티킷 회원가입[개인] 모바일
+  </div>
+</div> -->

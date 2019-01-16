@@ -184,3 +184,44 @@ button[disabled] {
 .mustard-norang-bg {
   background-color: #f6d87f;
 }
+
+.tds-label {
+  font-size: 14px;
+  color: #444444;
+}
+
+.tds-input {
+  height: 55px;
+  border-radius: 3px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #444444;
+  background-color: #fbfbfb;
+}
+
+.tds-message-valid {
+  color: #62aab8;
+}
+
+.tds-message-invalid {
+  color: #ed7f81;
+}
+
+.ng-valid {
+  border-color: #62aab8;
+}
+
+.ng-invalid {
+  border-color: #ed7f81;
+}
+
+.ng-pristine {
+  border: 1px solid #fbfbfb;
+}
+
+.empty-line {
+  width: 1px;
+  height: 14px;
+  background-color: #ffffff;
+  color: #ffffff;
+}

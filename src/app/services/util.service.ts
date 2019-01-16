@@ -14,7 +14,7 @@ export class UtilService {
   options;
 
   constructor(private http: Http) {
-    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});
+    const headers = new Headers({'Content-Type': 'application/json'});
     this.options = new RequestOptions({headers: headers});
   }
 
