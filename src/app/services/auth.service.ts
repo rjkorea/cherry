@@ -20,10 +20,10 @@ export class AuthService {
               this.isLoggedIn = !!localStorage.getItem('csk');
   }
 
-  public login(email: string, password: string): Observable<{}> {
+  public login(body: any): Observable<{}> {
     const headers = new Headers({'Content-Type': 'application/json'});
     const options = new RequestOptions({headers: headers, withCredentials: true});
-    return this.http.post(this.loginUrl, JSON.stringify({email, password}), options)
+    return this.http.post(this.loginUrl, body, options)
                     .map((response: Response) => {
                       if (response.status === 200) {
                         localStorage.setItem('csk', response.json().data.csk);

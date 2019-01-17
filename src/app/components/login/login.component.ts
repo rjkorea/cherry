@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -10,10 +11,15 @@ import { AuthService } from '../../services/auth.service';
   providers: []
 })
 export class LoginComponent implements OnInit {
-  model: any = {};
-  error_msg = '';
+  body: any;
+  loginForm = this.fb.group({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
+  });
+  error_msg: string;
 
   constructor(private router: Router,
+              private fb: FormBuilder,
               private authService: AuthService) { }
 
   ngOnInit() {
@@ -21,7 +27,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.model.email.trim(), this.model.password.trim())
+    this.body = {
+      email: this.loginForm.get('email').value,
+      password: this.loginForm.get('password').value
+    };
+    this.authService.login(this.body)
       .subscribe(
         response => {
           if (this.authService.getRole() === 'staff') {
@@ -39,14 +49,15 @@ export class LoginComponent implements OnInit {
           }
         },
         error => {
-          this.error_msg = error['message']
+          // this.error_msg = error['message']
+          this.error_msg = '유저 정보가 일치하지 않습니다'
           console.log(this.error_msg);
         }
       );
   }
 
-  disabledLogin() {
-    return !(this.model.email && this.model.password);
-  }
+  get email() { return this.loginForm.get('email'); }
+
+  get password() { return this.loginForm.get('password'); }
 
 }
