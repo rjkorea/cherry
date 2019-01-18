@@ -1,4 +1,3 @@
-<!-- <div class="row hidden-xs hidden-sm"> -->
 <div class="row">
   <div class="col-md-6">
     <img src="../../../assets/images/host-main-bg.png" class="img-responsive">
@@ -18,7 +17,7 @@
       </div>
       <form [formGroup]="loginForm">
         <div class="form-group">
-          <label class="tds-label">이메일 주소</label>
+          <label class="tds-label offset">아이디(이메일)</label>
           <input type="text" class="form-control tds-input" formControlName="email" placeholder="예) help@rjkorea.com">
           <div *ngIf="email.invalid && (email.dirty || email.touched)" class="tds-message-invalid">
             <div *ngIf="email.errors.required">
@@ -30,8 +29,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="tds-label">패스워드</label>
-          <input type="password" class="form-control tds-input" formControlName="password" placeholder="・・・・・・・・・・・">
+          <label class="tds-label offset">패스워드</label>
+          <input type="password" class="form-control tds-input" formControlName="password" placeholder="••••••••••••••">
           <div *ngIf="password.invalid && (password.dirty || password.touched)" class="tds-message-invalid">
             <div *ngIf="password.errors.required">
               패스워드 필수
@@ -55,37 +54,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="row hidden-md hidden-lg">
-  <div class="col-md-7 login-xs">
-    <div class="static-menu">
-      <div>
-        <div class="description">
-          쉽게 티켓을 만들어서<br>
-          친구에게 보내고 싶다면?
-        </div>
-        <div class="title">
-          티킷 호스트
-        </div>
-      </div>
-      <div>
-        <img src="../../../assets/images/welcome.svg" class="welcome">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="static-label">이메일 주소</label>
-      <input type="text" class="form-control static-input" [(ngModel)]="model.email" name="email" placeholder="예) help@rjkorea.com">
-    </div>
-    <div class="form-group">
-      <label class="static-label">패스워드</label>
-      <input type="password" class="form-control static-input" [(ngModel)]="model.password" name="password" placeholder="・・・・・・・・・・・">
-    </div>
-    <button class="btn btn-tkit-mint btn-block" (click)="login()" [disabled]="disabledLogin()">로그인</button>
-    <div *ngIf="error_msg" class="error">
-      <div class="alert alert-danger" role="alert">{{error_msg}}</div>
-    </div>
-    <div class="static-signup">
-      아직 티킷 호스트 계정이 없으신가요? <a routerLink="/signup" class="signup-link">회원가입</a>
-    </div>
-  </div>
-</div> -->

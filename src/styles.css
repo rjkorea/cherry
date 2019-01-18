@@ -219,11 +219,11 @@ button[disabled] {
 }
 
 .ng-invalid {
-  border-color: #ed7f81;
+  /* border-color: #ed7f81; */
 }
 
 .ng-pristine {
-  border: 1px solid #fbfbfb;
+  /* border: 1px solid #fbfbfb; */
 }
 
 .empty-line {
