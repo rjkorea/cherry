@@ -13,6 +13,7 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 export class AuthService {
   loginUrl = `${URL}/a/auth/login`;
   signupPersonalUrl = `${URL}/a/auth/signup/personal`;
+  signupBusinessUrl = `${URL}/a/auth/signup/business`;
   isLoggedIn = false;
 
   constructor(private http: Http,
@@ -67,4 +68,11 @@ export class AuthService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  signupBusiness(body: any): Observable<{}> {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers, withCredentials: true });
+    return this.http.post(this.signupBusinessUrl, body, options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 }
