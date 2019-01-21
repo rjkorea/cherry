@@ -1,0 +1,224 @@
+<div class="row">
+  <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+    <form [formGroup]="signupForm">
+      <div class="header">
+        티킷 회원가입<small>[사업자]</small>
+      </div>
+      <div class="sub-header">
+        필수입력
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="tds-label">이메일 주소</label>
+            <input type="text" class="form-control tds-input" formControlName="email" placeholder="예) help@rjkorea.com">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="tds-message-invalid">
+              <div *ngIf="email.errors.required">
+                이메일 주소 필수
+              </div>
+              <div *ngIf="email.errors.email">
+                이메일 형식이 올바르지 않음
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">담당장 이름(성)</label>
+            <input type="text" class="form-control tds-input" formControlName="manager_last_name" placeholder="이름(성)">
+            <div *ngIf="manager_last_name.invalid && (manager_last_name.dirty || manager_last_name.touched)" class="tds-message-invalid">
+              <div *ngIf="manager_last_name.errors.required">
+                이름(성) 필수
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">담당자 이름</label>
+            <input type="text" class="form-control tds-input" formControlName="manager_name" placeholder="이름">
+            <div *ngIf="manager_name.invalid && (manager_name.dirty || manager_name.touched)" class="tds-message-invalid">
+              <div *ngIf="manager_name.errors.required">
+                이름 필수
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">국가코드(나라)</label>
+            <select class="form-control tds-input" formControlName="mobile_country_code">
+              <option *ngFor="let cc of country_codes" [ngValue]="cc">+{{cc.code}}({{cc.name}})</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">휴대전화번호</label>
+            <input type="tel" class="form-control tds-input" formControlName="mobile_number" placeholder="예) 01011112222">
+            <div *ngIf="mobile_number.invalid && (mobile_number.dirty || mobile_number.touched)" class="tds-message-invalid">
+              <div *ngIf="mobile_number.errors.required">
+                휴대전화번호 필수
+              </div>
+              <div *ngIf="mobile_number.errors.minLength">
+                최소 10자 이상
+              </div>
+              <div *ngIf="mobile_number.errors.maxLength">
+                최소 12자 이하
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="tds-label">패스워드</label>
+            <input type="password" class="form-control tds-input" formControlName="password" placeholder="패스워드 입력(최소 8자 이상)">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="tds-message-invalid">
+              <div *ngIf="password.errors.required">
+                패스워드 필수
+              </div>
+              <div *ngIf="password.errors.minlength">
+                최소 8자 이상
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="tds-label">회사명</label>
+            <input type="text" class="form-control tds-input" formControlName="company_name" placeholder="회사명을 입력해주세요">
+            <div *ngIf="company_name.invalid && (company_name.dirty || company_name.touched)" class="tds-message-invalid">
+              <div *ngIf="company_name.errors.required">
+                회사명 필수
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="tds-label">사업자 등록번호</label>
+            <input type="tel" class="form-control tds-input" formControlName="business_license_number" placeholder="번호만 입력해주세요">
+            <div *ngIf="business_license_number.invalid && (business_license_number.dirty || business_license_number.touched)" class="tds-message-invalid">
+              <div *ngIf="business_license_number.errors.required">
+                사업자 등록번호 필수
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">대표자 이름(성)</label>
+            <input type="text" class="form-control tds-input" formControlName="president_last_name" placeholder="이름(성)">
+            <div *ngIf="president_last_name.invalid && (president_last_name.dirty || president_last_name.touched)" class="tds-message-invalid">
+              <div *ngIf="president_last_name.errors.required">
+                이름(성) 필수
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">대표자 이름</label>
+            <input type="text" class="form-control tds-input" formControlName="president_name" placeholder="이름">
+            <div *ngIf="president_name.invalid && (president_name.dirty || president_name.touched)" class="tds-message-invalid">
+              <div *ngIf="president_name.errors.required">
+                이름 필수
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">사업의 종류(업태)</label>
+            <input type="text" class="form-control tds-input" formControlName="business_license_category1" placeholder="사업 업태를 입력해주세요">
+            <div *ngIf="business_license_category1.invalid && (business_license_category1.dirty || business_license_category1.touched)"
+              class="tds-message-invalid">
+              <div *ngIf="business_license_category1.errors.required">
+                사업자 등록번호 필수
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">사업의 종류(종목)</label>
+            <input type="text" class="form-control tds-input" formControlName="business_license_category2" placeholder="사업 종목을 입력해주세요">
+            <div *ngIf="business_license_category2.invalid && (business_license_category2.dirty || business_license_category2.touched)"
+              class="tds-message-invalid">
+              <div *ngIf="business_license_category2.errors.required">
+                사업자 등록번호 필수
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">팩스번호</label>
+            <input type="tel" class="form-control tds-input" formControlName="fax" placeholder="번호만 입력해주세요">
+            <div *ngIf="fax.invalid && (fax.dirty || fax.touched)"
+              class="tds-message-invalid">
+              <div *ngIf="fax.errors.required">
+                팩스번호 필수
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">전화번호</label>
+            <input type="tel" class="form-control tds-input" formControlName="tel" placeholder="번호만 입력해주세요">
+            <div *ngIf="tel.invalid && (tel.dirty || tel.touched)"
+              class="tds-message-invalid">
+              <div *ngIf="tel.errors.required">
+                전화번호 필수
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">입금은행</label>
+            <select class="form-control tds-input" formControlName="bank_name">
+              <option *ngFor="let b of banks" [ngValue]="b">{{b}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="tds-label">입금 계좌번호</label>
+            <input type="tel" class="form-control tds-input" formControlName="bank_number" placeholder="숫자만 입력해주세요">
+            <div class="tds-message-valid">
+              회사 계좌번호를 입력해주세요
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group term">
+            <input type="checkbox" formControlName="is_term"> 서비스 이용약관 및 개인정보 취급방침에 동의함(필수)
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-tkit-mint btn-block login-button" [disabled]="!signupForm.valid" (click)="done()">완  료</button>
+    </form>
+  </div>
+</div>
