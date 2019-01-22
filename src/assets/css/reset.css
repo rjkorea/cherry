@@ -1,0 +1,20 @@
+@charset 'utf-8';
+
+button:disabled, button[disabled] {
+  box-shadow: 0 2px 3px 0 rgba(157, 157, 157, 0.5);
+  color: #aaaaaa;
+  background-color: #ffffff;
+  border-color: #aaaaaa;
+}
+
+button:disabled:hover, button[disabled]:hover {
+    color: inherit;
+}
+
+.btn:hover {
+    color: initial;
+}
+
+.btn-tkit-mint:hover {
+    color: white;
+}

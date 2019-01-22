@@ -1,0 +1,55 @@
+@charset 'utf-8';
+
+@font-face {
+	font-family: 'NotoSansLight';
+	font-style: normal;
+	font-display: fallback;
+	font-weight: 300;
+	src: local('NotoSansLight'), url('../../assets/font/NotoSansCJKkr-Regular.woff2'), url('../../assets/font/NotoSansCJKkr-Regular.woff');
+}
+
+@font-face {
+	font-family: 'NotoSansRegular';
+	font-style: normal;
+	font-display: fallback;
+	font-weight: 500;
+	src: local('NotoSansRegular'), url('../../assets/font/NotoSansCJKkr-Regular.woff2'), url('../../assets/font/NotoSansCJKkr-Regular.woff');
+}
+
+
+@font-face {
+	font-family: 'NotoSansBold';
+	font-style: normal;
+	font-display: fallback;
+	font-weight: 600;
+	src: local('NotoSansBold'), url('../../assets/font/NotoSansCJKkr-Regular.woff2'), url('../../assets/font/NotoSansCJKkr-Regular.woff');
+}
+
+@font-face {
+	font-family: 'NotoSansBolder';
+	font-style: normal;
+	font-display: fallback;
+	font-weight: 800;
+	src: local('NotoSansBolder'), url('../../assets/font/NotoSansCJKkr-Regular.woff2'), url('../../assets/font/NotoSansCJKkr-Regular.woff');
+}
+
+body {
+	font-family: 'NotoSansRegular';
+	color: #666666;
+}
+
+body .bold {
+	font-family: 'NotoSansBold';	
+}
+
+body .bolder {
+	font-family: 'NotoSansBolder';
+}
+
+body .light {
+	font-family: 'NotoSansLight';
+}
+
+body .default {
+	font-family: 'NotoSansRegular';
+}
