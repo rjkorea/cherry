@@ -1,5 +1,9 @@
 @charset 'utf-8';
 
+input:focus {
+    outline: none;
+}
+
 button:disabled, button[disabled] {
   box-shadow: 0 2px 3px 0 rgba(157, 157, 157, 0.5);
   color: #aaaaaa;

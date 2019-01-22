@@ -1,55 +1,52 @@
 @charset 'utf-8';
 
 @font-face {
-	font-family: 'NotoSansLight';
+	font-family: 'NotoSansCJKkr-Thin';
 	font-style: normal;
 	font-display: fallback;
-	font-weight: 300;
-	src: local('NotoSansLight'), url('../../assets/font/NotoSansCJKkr-Regular.woff2'), url('../../assets/font/NotoSansCJKkr-Regular.woff');
+	font-weight: 100;
+	src: local('NotoSansCJKkr-Thin'), url('../../assets/font/NotoSansCJKkr-Thin.woff');
 }
 
 @font-face {
-	font-family: 'NotoSansRegular';
+	font-family: 'NotoSansCJKkr-Regular';
 	font-style: normal;
 	font-display: fallback;
-	font-weight: 500;
-	src: local('NotoSansRegular'), url('../../assets/font/NotoSansCJKkr-Regular.woff2'), url('../../assets/font/NotoSansCJKkr-Regular.woff');
+	src: local('NotoSansCJKkr-Regular'), url('../../assets/font/NotoSansCJKkr-Regular.woff');
 }
 
 
 @font-face {
-	font-family: 'NotoSansBold';
+	font-family: 'NotoSansCJKkr-Bold';
 	font-style: normal;
 	font-display: fallback;
-	font-weight: 600;
-	src: local('NotoSansBold'), url('../../assets/font/NotoSansCJKkr-Regular.woff2'), url('../../assets/font/NotoSansCJKkr-Regular.woff');
+	src: local('NotoSansCJKkr-Bold'), url('../../assets/font/NotoSansCJKkr-Bold.woff');
 }
 
 @font-face {
-	font-family: 'NotoSansBolder';
+	font-family: 'NotoSansCJKkr-Bolder';
 	font-style: normal;
 	font-display: fallback;
-	font-weight: 800;
-	src: local('NotoSansBolder'), url('../../assets/font/NotoSansCJKkr-Regular.woff2'), url('../../assets/font/NotoSansCJKkr-Regular.woff');
+	src: local('NotoSansCJKkr-Bolder'), url('../../assets/font/NotoSansCJKkr-Black.woff');
 }
 
 body {
-	font-family: 'NotoSansRegular';
+	font-family: 'NotoSansCJKkr-Regular';
 	color: #666666;
 }
 
 .bold {
-	font-family: 'NotoSansBold';	
+	font-family: 'NotoSansCJKkr-Bold';	
 }
 
 .bolder {
-	font-family: 'NotoSansBolder';
+	font-family: 'NotoSansCJKkr-Bolder';
 }
 
 .light {
-	font-family: 'NotoSansLight';
+	font-family: 'NotoSansCJKkr-Thin';
 }
 
 .default {
-	font-family: 'NotoSansRegular';
+	font-family: 'NotoSansCJKkr-Regular';
 }
