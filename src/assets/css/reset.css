@@ -1,5 +1,12 @@
 @charset 'utf-8';
 
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: solid;
+}
+
 input:focus {
     outline: none;
 }
