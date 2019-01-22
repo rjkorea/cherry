@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding-top: 50px;
   min-height: 100%;
 }
 
@@ -100,20 +100,17 @@ body {
   padding: 8px 20px;
   border-radius: 8px;
   font-size: 20px;
-  font-weight: bold;
   cursor: pointer;
   text-align: center;
 }
 
 .upload-btn-name {
   text-align: center;
-  font-weight: 400;
 }
 
 .upload-btn-desc {
   font-size: 12px;
   line-height: 16px;
-  font-weight: 400;
 }
 
 .upload-btn-wrapper input[type=file] {
@@ -174,7 +171,6 @@ body {
   height: 55px;
   border-radius: 3px;
   font-size: 17px;
-  font-weight: 500;
   color: #444444;
   background-color: #fbfbfb;
 }

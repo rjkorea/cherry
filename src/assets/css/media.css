@@ -5,4 +5,12 @@
       width: 1170px;
     }
 }
-  
+
+@media screen and (max-width: 880px) {
+  .ticketistkit { display: none; }
+  .media-box { box-shadow: none; margin: 5% 0; }
+}
+
+@media screen and (min-width: 881px) and (max-width: 1440px) {
+  .media-box { box-shadow: 0 0 11px 0 rgba(52, 52, 52, 0.32); margin: 15% 0; }
+}

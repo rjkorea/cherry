@@ -1,10 +1,8 @@
 
 .login {
   height: 100%;
-  margin-top: 111px;
-  padding: 85px 70px 68px 70px;
+  padding: 15% 10%;
   border-radius: 7px;
-  box-shadow: 0 0 11px 0 rgba(52, 52, 52, 0.32);
   background-color: #ffffff;
 }
 
