@@ -38,18 +38,18 @@ body {
 	color: #666666;
 }
 
-body .bold {
+.bold {
 	font-family: 'NotoSansBold';	
 }
 
-body .bolder {
+.bolder {
 	font-family: 'NotoSansBolder';
 }
 
-body .light {
+.light {
 	font-family: 'NotoSansLight';
 }
 
-body .default {
+.default {
 	font-family: 'NotoSansRegular';
 }

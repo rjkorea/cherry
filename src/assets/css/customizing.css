@@ -1,0 +1,17 @@
+@charset 'utf-8';
+
+.ng-valid {
+    border-color: #62aab8;
+}
+
+.ng-dirty.ng-invalid {
+    border-color: #ed7f81;
+}
+
+.owl-dt-container {
+    display: block;
+    font-size: 14px;
+    background: #fff;
+    pointer-events: auto;
+    z-index: 1000;
+}
