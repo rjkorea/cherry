@@ -28,7 +28,7 @@
   margin-bottom: 13px;
   font-size: 40px;
   font-weight: 900;
-  line-height: 0.85;
+  line-height: 1.2;
   color: #444444;
 }
 
@@ -80,10 +80,12 @@
   margin-bottom: 12px;
 }
 
-input[type=password] {
-  font-size: 20px;
+input[type=password], input[type=password]::-webkit-input-placeholder {
+  font-size: 26px;
+  letter-spacing: 3px;
 }
 
 input[type=password]::-webkit-input-placeholder {
-  font-size: 18px;
+  font-size: 26px;
+  letter-spacing: 4px;
 }

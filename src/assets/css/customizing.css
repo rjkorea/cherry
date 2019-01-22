@@ -1,5 +1,6 @@
 @charset 'utf-8';
 
+/* angular */
 .ng-valid {
     border-color: #62aab8;
 }
@@ -8,10 +9,18 @@
     border-color: #ed7f81;
 }
 
+/* calendar (owl) */
 .owl-dt-container {
     display: block;
     font-size: 14px;
     background: #fff;
     pointer-events: auto;
     z-index: 1000;
+}
+
+/* bootstrap */
+.form-control:focus {
+    border-color: #62aab8;
+    outline: none;
+    box-shadow: none;
 }
