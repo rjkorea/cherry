@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row bolder">행사 만들기</div>
+  <div class="row">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="header">모바일 화면 미리보기</div>
+
+        <div class="preview">
+          <div class="title">
+            <ng-container *ngIf="previewObj.tags; else elseTags">
+              <span class="tag" *ngFor="let tag of previewObj.tags">&nbsp;#{{ tag }}</span>
+            </ng-container>
+            <span #elseTags class="tag">#티킷&nbsp;#TKIT</span>
+            <span class="bolder">{{ previewObj.name }}</span>
+          </div>
+          <div class="main-img">
+            <ng-container *ngIf="previewObj.mainImg; else elseMainImg">대표이미지</ng-container>
+            <div #elseMainImg><span>행사 대표 이미지가 표시되는 부분입니다</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row hidden-md hidden-lg">
+      <div class="col-xs-12">
+
+      </div>
+    </div>
+  </div>
+</div>

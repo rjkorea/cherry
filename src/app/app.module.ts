@@ -93,6 +93,9 @@ import { QnaService } from './services/qna.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { TIMService } from './services/tim.service';
+import { IdComponent } from './components/login/find/id/id.component';
+import { PasswordComponent } from './components/login/find/password/password.component';
+import { ContentNew2Component } from './components/content/content-new2/content-new2.component';
 
 defineLocale('ko', koLocale);
 
@@ -157,6 +160,9 @@ defineLocale('ko', koLocale);
     QnaNewComponent,
     StatsComponent,
     PaymentComponent,
+    IdComponent,
+    PasswordComponent,
+    ContentNew2Component,
   ],
   imports: [
     BrowserModule,
