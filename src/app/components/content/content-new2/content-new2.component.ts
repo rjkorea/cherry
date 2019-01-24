@@ -6,20 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./content-new2.component.css']
 })
 export class ContentNew2Component implements OnInit {
-  previewObj = {
+  previewData = {
     isHidden: false,
     name: '',
     tags: [],
     mainImg: '',
     place: '',
-    date: {
-      start: '',
-      end: ''
-    },
+    startDate: '',
+    endDate: '',
     notice: '',
-    homepage: '',
     desc: '',
-    images: []
+    images: [],
+    hostName: 'VU Entertainment'
   };
 
   constructor() { }

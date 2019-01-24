@@ -8,28 +8,22 @@
 
 .header {
     font-size: 1.25rem;
-    padding: 0.625rem 0.75rem;
+    padding: 0.625rem 1.0625rem;
     color: white;
-    background-color: #62aab8;
+    background-image: linear-gradient(to right, #529bae, #62aab8);
 }
 
-.title {
-    display: inline-block;
-    vertical-align: top;
-    width: 93.5%;
+.render {
+    font-size: 1.0625rem;
+    margin: 2.25rem 0;
+    text-align: center;
 }
 
-.title .tag {
-    font-size: 13px;
-    margin-left: -2px;
-    margin-right: 4px;
-    color: #ed7f81;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.title .bolder {
-    font-size: 22px;
-    color: #444444
+.render-btn {
+    margin-right: 0.425rem;
+    padding: 0.425rem 0.9375rem;
+    border-radius: 3px;
+    border: 1px solid #62aab8;
+    color: #62aab8;
+    cursor: pointer;
 }

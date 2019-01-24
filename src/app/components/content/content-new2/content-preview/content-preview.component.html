@@ -1,0 +1,39 @@
+<div class="media-preview">
+  <div class="scroll-box">
+    <div class="main">
+      <div class="title">
+        <ng-container *ngIf="previewData.tags.length > 0; else elseTags">
+          <span class="tag" *ngFor="let tag of previewData.tags">&nbsp;#{{ tag }}</span>
+        </ng-container>
+        <ng-template #elseTags><span class="tag">#티킷&nbsp;#TKIT</span></ng-template>
+        <ng-container *ngIf="previewData.name; else elseName">
+          <span class="bolder">{{ previewData.name }}</span>
+        </ng-container>
+        <ng-template #elseName><span class="bolder">행사명이<br>표시되는 부분입니다</span></ng-template>
+      </div>
+      <div class="img-box"><span>행사 대표 이미지가 표시되는 부분입니다</span></div>
+      <div class="date"><span class="bold">날짜 : </span>
+        <ng-container *ngIf="previewData.startDate || previewData.endDate; else elseDate">
+          <span *ngIf="previewData.startDate">{{ previewData.startDate | amFromUnix | amDateFormat:'YYYY. MM. DD HH:mm' }}</span>
+          <span *ngIf="previewData.endDate">{{ previewData.startDate | amFromUnix | amDateFormat:'YYYY. MM. DD HH:mm' }} - {{ previewData.endDate | amFromUnix | amDateFormat:'YYYY. MM. DD HH:mm' }}</span>
+        </ng-container>
+        <ng-template #elseDate><span>YYYY. MM. DD 12:00 - YYYY. MM. DD 22:00</span></ng-template>
+      </div>
+      <div class="host"><span class="bold">주최자 : </span><span>{{ previewData.hostName }}<img src="/assets/images/info.svg"></span></div>
+      <div class="draw"></div>
+    </div>
+  
+    <div class="place"><span class="bold">장소 : </span>
+      <ng-container *ngIf="previewData.place; else elsePlace"><span>{{ previewData.place }}</span></ng-container>
+      <ng-template #elsePlace>행사 장소가 표시되는 부분입니다</ng-template>
+      <div class="img-box"><span>행사 장소가 표시되는 부분입니다 (지도)</span></div>
+      <div class="draw"></div>
+    </div>
+
+    <div class="notice" *ngIf="previewData.notice">
+      <div class="bold">공지사항</div>
+      <p>{{ previewData.notice }}</p>
+      <div class="draw"></div>
+    </div>
+  </div>
+</div>

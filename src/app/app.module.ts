@@ -96,6 +96,7 @@ import { TIMService } from './services/tim.service';
 import { IdComponent } from './components/login/find/id/id.component';
 import { PasswordComponent } from './components/login/find/password/password.component';
 import { ContentNew2Component } from './components/content/content-new2/content-new2.component';
+import { ContentPreviewComponent } from './components/content/content-new2/content-preview/content-preview.component';
 
 defineLocale('ko', koLocale);
 
@@ -163,6 +164,7 @@ defineLocale('ko', koLocale);
     IdComponent,
     PasswordComponent,
     ContentNew2Component,
+    ContentPreviewComponent,
   ],
   imports: [
     BrowserModule,

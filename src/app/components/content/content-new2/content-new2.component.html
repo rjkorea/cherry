@@ -1,30 +1,31 @@
 <div class="container">
   <div class="row bolder">행사 만들기</div>
   <div class="row">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="header">모바일 화면 미리보기</div>
-
-        <div class="preview">
-          <div class="title">
-            <ng-container *ngIf="previewObj.tags; else elseTags">
-              <span class="tag" *ngFor="let tag of previewObj.tags">&nbsp;#{{ tag }}</span>
-            </ng-container>
-            <span #elseTags class="tag">#티킷&nbsp;#TKIT</span>
-            <span class="bolder">{{ previewObj.name }}</span>
-          </div>
-          <div class="main-img">
-            <ng-container *ngIf="previewObj.mainImg; else elseMainImg">대표이미지</ng-container>
-            <div #elseMainImg><span>행사 대표 이미지가 표시되는 부분입니다</span></div>
-          </div>
-        </div>
-
+    <div class="col-sm-5 hidden-xs hidden-sm">
+      <div class="header">모바일 화면 미리보기</div>
+      <div class="render">
+        <span class="render-btn bold">적용하기</span>
+        <span class="txt">버튼을 누르고 화면을 스크롤 해보세요</span>
       </div>
+      <app-content-preview [previewData]="previewData"></app-content-preview>
     </div>
 
-    <div class="row hidden-md hidden-lg">
-      <div class="col-xs-12">
-
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="header">필수입력</div>
+        <div class="">
+          <span>행사 공개여부</span>
+          <span><img src="/assets/images/question-mark.svg"></span>
+          <span>
+            <label>
+              <input type="checkbox" class="check" id="check">
+              <span>비공개</span>
+            </label>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="header">선택입력(행사 상세정보)</div>
       </div>
     </div>
   </div>

@@ -1,0 +1,89 @@
+@charset 'utf-8';
+
+.media-preview {
+    position: relative;
+    padding: 27% 11.5%;
+}
+
+.media-preview::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url(/assets/images/phone.svg) no-repeat center top;
+    background-size: 90%;
+}
+
+.img-box {
+    padding: 4rem 0;
+    margin: 0.625rem 0;
+    font-size: 0.8125rem;
+    text-align: center;
+    color: #999999;
+    border: 1px solid #cccccc;
+}
+
+.draw {
+    position: absolute;
+    background-color: #f6f6f6;
+    left: -6%;
+    width: 113%;
+    height: 12px;
+    bottom: -0.875rem;
+}
+
+.scroll-box {
+    padding: 5%;
+    overflow: scroll;
+}
+
+.main {
+    position: relative;
+    padding-bottom: 0.625rem;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 0.875rem;
+}
+
+
+.title {
+    display: inline-block;
+    vertical-align: top;
+    width: 93.5%;
+}
+
+.title span {
+    display: block;
+}
+
+.title .tag {
+    font-size: 13px;
+    margin-left: -2px;
+    margin-right: 4px;
+    color: #ed7f81;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.title .bolder {
+    font-size: 22px;
+    color: #444444
+}
+
+.date, .preview .host {
+    font-size: 0.8125rem;
+    color: #444444;
+}
+
+.host img {
+    margin-left: 0.25rem;
+}
+
+.place {
+    position: relative;
+    margin-bottom: 0.875rem;
+    padding: 0.625rem 5%;
+}
