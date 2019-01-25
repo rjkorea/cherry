@@ -9,19 +9,17 @@
       </div>
       <app-content-preview [previewData]="previewData"></app-content-preview>
     </div>
-
+    <div class="col-sm-1"></div>
     <div class="col-sm-6">
       <div class="row">
         <div class="header">필수입력</div>
-        <div class="">
-          <span>행사 공개여부</span>
-          <span><img src="/assets/images/question-mark.svg"></span>
-          <span>
-            <label>
-              <input type="checkbox" class="check" id="check">
-              <span>비공개</span>
-            </label>
-          </span>
+        <div class="is-hidden">
+          <span class="bold">행사 공개여부</span>
+          <span class="q-mark"><img src="/assets/images/question-mark.svg"></span>
+          <label>
+            <input type="checkbox" class="check" id="check">
+            <span>비공개</span>
+          </label>
         </div>
       </div>
       <div class="row">

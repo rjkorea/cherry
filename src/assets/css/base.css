@@ -203,17 +203,17 @@ body {
 
 .check:not(:checked), .check:checked {
   position:absolute;
+  pointer-events:none;
   opacity:0;
-  pointer-events:none
 }
 
 .check+span{
   position:relative;
-  padding-left:27px;
   cursor:pointer;
   display:inline-block;
-  height:18px;
-  line-height:18px;
+  height:15px;
+  line-height:10px;
+  padding-left:16px;
   -webkit-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
@@ -261,8 +261,8 @@ body {
 }
 
 .check:not(:checked)+span:after {
-  height:15px;
-  width:15px;
+  height:12px;
+  width:12px;
   background-color:transparent;
   border:1px solid #979797;
   top:0px;
@@ -270,10 +270,10 @@ body {
 }
 
 .check:checked+span:before {
-  top:0;
+  top:-2px;
   left:1px;
-  width:4px;
-  height:7px;
+  width:5px;
+  height:9px;
   border-top:2px solid transparent;
   border-left:2px solid transparent;
   border-right:2px solid #fff;
@@ -286,8 +286,8 @@ body {
 
 .check:checked+span:after {
   top:0;
-  width:15px;
-  height:15px;
+  width:12px;
+  height:12px;
   border:1px solid #62aab8;
   background-color:#62aab8;
   z-index:0

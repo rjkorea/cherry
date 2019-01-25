@@ -9,10 +9,12 @@ body {
 }
 
 .bold {
+	color: #444444;
 	font-weight: 600;
 }
 
 .bolder {
+	color: #444444;
 	font-weight: 800;
 }
 

@@ -70,12 +70,10 @@
 
 .title .bolder {
     font-size: 22px;
-    color: #444444
 }
 
 .date, .preview .host {
     font-size: 0.8125rem;
-    color: #444444;
 }
 
 .host img {
