@@ -190,6 +190,13 @@ body {
   color: #ffffff;
 }
 
+.bytes {
+  text-align: right;
+  color: $lightGrey;
+  padding: 0 5px;
+  font-size: 10px;
+}
+
 
 /************
  * checkbox *

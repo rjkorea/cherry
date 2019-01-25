@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row bolder">행사 만들기</div>
   <div class="row">
-    <div class="col-sm-5 hidden-xs hidden-sm">
+    <div class="col-sm-5 hidden-xs hidden-sm stick-left">
       <div class="header">모바일 화면 미리보기</div>
       <div class="render">
         <span class="render-btn bold">적용하기</span>
@@ -9,8 +9,10 @@
       </div>
       <app-content-preview [previewData]="previewData"></app-content-preview>
     </div>
-    <div class="col-sm-1"></div>
+    <div class="col-sm-1 hidden-xs hidden-sm "></div>
     <div class="col-sm-6">
+
+    <form>
       <div class="row">
         <div class="header">필수입력</div>
         <div class="is-hidden">
@@ -21,10 +23,18 @@
             <span>비공개</span>
           </label>
         </div>
+        <div class="form-group f-title">
+          <div class="bold">행사명</div>
+          <div class="in"><input type="text" class="form-control tds-input" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(enter, byteName)" (change)="checkBytes(enter, byteName)"></div>
+          <div class="bytes"><span #byteName>0</span> / 120 Bytes</div>
+        </div>
       </div>
+
       <div class="row">
         <div class="header">선택입력(행사 상세정보)</div>
       </div>
+    </form>
+
     </div>
   </div>
 </div>

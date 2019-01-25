@@ -24,3 +24,11 @@
     outline: none;
     box-shadow: none;
 }
+
+.row .stick-left {
+    padding-left: 0;
+}
+
+.row .stick-right {
+    padding-right: 0;
+}
