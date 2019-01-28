@@ -9,29 +9,136 @@
       </div>
       <app-content-preview [previewData]="previewData"></app-content-preview>
     </div>
-    <div class="col-sm-1 hidden-xs hidden-sm "></div>
+    <div class="col-sm-1 hidden-xs hidden-sm"></div>
     <div class="col-sm-6">
 
     <form>
       <div class="row">
         <div class="header">필수입력</div>
-        <div class="is-hidden">
-          <span class="bold">행사 공개여부</span>
-          <span class="q-mark"><img src="/assets/images/question-mark.svg"></span>
+        <div class="form-group is-hidden">
+          <div class="q-box">
+            <span class="bold">행사 공개여부</span>
+            <span class="q-mark"><img src="/assets/images/question-mark.svg"></span>
+          </div>
           <label>
-            <input type="checkbox" class="check" id="check">
+            <input type="checkbox" class="form-control check" id="check">
             <span>비공개</span>
           </label>
         </div>
         <div class="form-group f-title">
-          <div class="bold">행사명</div>
-          <div class="in"><input type="text" class="form-control tds-input" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(enter, byteName)" (change)="checkBytes(enter, byteName)"></div>
+          <label class="tds-label bold">행사명</label>
+          <div class="in"><input #name type="text" class="form-control tds-input" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byteName)" (change)="checkBytes(name, byteName)"></div>
           <div class="bytes"><span #byteName>0</span> / 120 Bytes</div>
+        </div>
+        <div class="form-group category">
+          <label class="tds-label bold">카테고리 <span class="default">(중복선택 가능)</span></label>
+          <div class="pkg-box">
+            <div class="pkg1">
+              <label>
+                <input type="checkbox" class="form-control check">
+                <span>전시</span>
+              </label>
+              <label>
+                <input type="checkbox" class="form-control check">
+                <span>쿠폰</span>
+              </label>
+            </div>
+            <div class="pkg2">
+              <label>
+                <input type="checkbox" class="form-control check">
+                <span>공연</span>
+              </label>
+              <label>
+                <input type="checkbox" class="form-control check">
+                <span>세미나</span>
+              </label>
+            </div>
+            <div class="pkg3">
+              <label>
+                <input type="checkbox" class="form-control check">
+                <span>콘서트</span>
+              </label>
+              <label>
+                <input type="checkbox" class="form-control check">
+                <span>초대장</span>
+              </label>
+            </div>
+            <div class="pkg4">
+              <label>
+                <input type="checkbox" class="form-control check">
+                <span>페스티벌</span>
+              </label>
+              <label>
+                <input type="checkbox" class="form-control check">
+                <span>청첩장</span>
+              </label>
+            </div>
+            <div class="pkg5">
+              <label>
+                <input type="checkbox" class="form-control check">
+                <span>클럽</span>
+              </label>
+              <label>
+                <input type="checkbox" class="form-control check">
+                <span>기타</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="tds-label bold">행사 대표 이미지</label>
+          <div class="img-container">
+            <div class="img-box">
+                <span class="bold">눌러서 이미지를 업로드 해주세요</span><br>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
+                <input type="file" name="file">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="tds-label bold">행사 장소</label>
+          <div class="img-container">
+            <div class="img-box">
+                <span class="bold">눌러서 장소를 검색해주세요</span><br>(지도로 표시됩니다)
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="tds-label bold">행사 일시</label>
+          <div class="calendar-box">
+            <div class="st-box">
+              <label>시작</label>
+              <img src="/assets/images/calendar.svg">
+              <input type="text" class="form-control tds-input" placeholder="YYYY-MM-DD">
+              <img src="/assets/images/watch.svg">
+              <input type="number" class="form-control tds-input" pattern="\d*"> : <input type="number" class="form-control tds-input" pattern="\d*">
+            </div>
+            <div class="ed-box"></div>
+          </div>
+        </div>
+        <div class="form-group host">
+          <div class="info-box">
+            <div class="bold">주최자 정보</div>
+            <span class="txt">주최자 정보를 입력하지 않으면 회원가입 시 입력한 주최자(주최사) 이름/이메일 주소/핸드폰 번호(회사 연락처)로 표시됩니다</span>
+          </div>
+          <div class="info-btn">입력하기</div>
         </div>
       </div>
 
       <div class="row">
         <div class="header">선택입력(행사 상세정보)</div>
+        <div class="form-group">
+          <label class="tds-label bold">행사 홈페이지</label>
+          <input type="text" class="form-control tds-input" placeholder="예) https://tkit.kr">
+        </div>
+        <div class="form-group">
+          <label class="tds-label bold">행사 관련 동영상 URL</label>
+          <input type="text" class="form-control tds-input" placeholder="예) https://tkit.kr">
+          <div class="txt">유튜브URL 이외 동영상URL은 링크로만 표시됩니다</div>
+        </div>
+        <div class="form-group">
+          <label class="tds-label bold">행사 공지사항</label>
+          <input type="text" class="form-control tds-input" placeholder="예) https://tkit.kr">
+        </div>
       </div>
     </form>
 

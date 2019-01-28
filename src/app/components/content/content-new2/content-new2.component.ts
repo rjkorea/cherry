@@ -8,7 +8,7 @@ import { utils } from '../../../shared/utils';
 })
 export class ContentNew2Component implements OnInit {
   maxByte120 = 120;
-  limitLength = 0;
+  limitByte = 0;
   previewData = {
     isHidden: false,
     name: '',
@@ -29,14 +29,12 @@ export class ContentNew2Component implements OnInit {
   }
 
   checkBytes(input, output): void {
-    console.log(output);
     const byte = utils.getByteSize(input.value, 0, 0);
 
     if (byte > this.maxByte120) {
-      input.value = input.value.slice(0, this.limitLength);
+      input.value = input.value.slice(0, this.limitByte);
     } else {
-      this.limitLength = input.value.length;
-      output.innerText = byte;
+      this.limitByte = output.innerText = byte;
     }
   }
 }

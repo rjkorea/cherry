@@ -33,21 +33,90 @@
 
 .is-hidden {
     display: flex;
-    font-size: 0.9375rem;
+    font-size: 1.25rem;
     margin: 2.25rem 0; 
 }
 
-.is-hidden label {
-    flex: 1;
-    text-align: right;
-}
-
-.is-hidden .bold, .q-mark {
+.q-box{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-content: center;
+    flex: 1;
 }
 
 .q-mark {
-    margin: 0 2px;
+    margin: 0 3px;
+}
+
+.q-mark img {
+    width: 1.5rem;
+}
+
+.pkg-box {
+    display: flex;
+}
+
+.pkg-box div {
+    display: flex;
+    flex-direction: column;
+}
+
+.pkg-box div label {
+    margin: 1rem 0;
+}
+
+.pkg1, .pkg2, .pkg3, .pkg4 {
+    flex: 1;
+}
+
+.img-container {
+    background-color: #fbfbfb;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    padding: 1.625rem;
+
+}
+
+.img-box {
+    position: relative;
+    text-align: center;
+    background-color: white;
+    border: 1px dashed #cccccc;
+    padding: 4rem 0;
+    font-size: 1.125rem;
+}
+
+.img-box input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.st-box {
+    display: flex;
+}
+
+.host {
+    display: flex;
+    font-size: 1.25rem;
+    padding-top: 15px;
+    border-top: 1px solid #dddddd;
+    margin-bottom: 35px;
+}
+
+.host .info-box {
+    flex: 0.8;
+}
+
+.host .info-box .txt {
+    font-size: 1.125rem;
+    word-break: keep-all;
+}
+
+.host .info-btn {
+    flex: 0.2;
+    text-align: right;
+    color: #ed7f81;
+    cursor: pointer;
 }

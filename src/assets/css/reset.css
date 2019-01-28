@@ -11,6 +11,10 @@ input {
     border: solid;
 }
 
+input[type="file"] {
+    opacity: 0;
+}
+
 input:focus {
     outline: none;
 }
