@@ -7,6 +7,7 @@ import { utils } from '../../../shared/utils';
   styleUrls: ['./content-new2.component.css']
 })
 export class ContentNew2Component implements OnInit {
+  images = ['', '', '', '', '', ''];
   maxByte120 = 120;
   limitByte = 0;
   previewData = {

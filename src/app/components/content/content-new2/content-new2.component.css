@@ -1,5 +1,10 @@
 @charset 'utf-8';
 
+input:disabled {
+    cursor: pointer;
+    background-color: #fbfbfb;
+}
+
 .right {
     float: right;
 }
@@ -95,14 +100,32 @@
 
 .st-box {
     display: flex;
+    align-items: center;
+}
+
+.st-box label {
+    font-size: 1rem;
+}
+
+.st-box img {
+    width: 1.5rem;
+    margin: 0 1rem;
+}
+
+.st-box input {
+    flex: 0.4;
+}
+
+.st-box select {
+    flex: 0.2;
 }
 
 .host {
     display: flex;
     font-size: 1.25rem;
-    padding-top: 15px;
+    padding-top: 1.125rem;
     border-top: 1px solid #dddddd;
-    margin-bottom: 35px;
+    margin-bottom: 2.25rem;
 }
 
 .host .info-box {
@@ -119,4 +142,82 @@
     text-align: right;
     color: #ed7f81;
     cursor: pointer;
+}
+
+.video-txt {
+    font-size: 1.125rem;
+    margin-top: 0.35rem;
+    color: #62aab8;
+}
+
+.m-textarea {
+    position: relative;
+}
+
+.m-textarea::before {
+    content: '';
+    position: absolute;
+    background: url(/assets/images/chevron-right.svg) no-repeat 97%;
+    background-size: 0.65rem;
+    width: 100%;
+    height: 100%;
+}
+
+.extra-container {
+    text-align: center;
+}
+
+.extra-box {
+    position: relative;
+    display: inline-block;
+    width: 31.2%;
+    height: 9rem;
+    margin-bottom: 3%;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+    background-color: #fbfbfb;
+}
+
+.extra-box:nth-child(2), .extra-box:nth-child(5) {
+    margin: 0 2%;
+}
+
+.extra-box span {
+    display: block;
+    text-align: right;
+    color: #cccccc;
+    font-size: 0.875rem;
+    padding: 0.5rem;
+}
+
+.extra-box input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.extra-box i {
+    opacity: 0.35;
+    padding-top: 1rem;
+    font-size: 2.2rem;
+}
+
+.book {
+    margin: 4rem 0;
+}
+
+.book label:first-child {
+    font-size: 1.25rem;
+}
+
+.book label:last-child {
+    float: right;
+}
+
+.btn-long {
+    margin-bottom: 3rem;
+    padding: 1rem 0;
+
 }

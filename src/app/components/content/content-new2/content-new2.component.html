@@ -110,7 +110,43 @@
               <img src="/assets/images/calendar.svg">
               <input type="text" class="form-control tds-input" placeholder="YYYY-MM-DD">
               <img src="/assets/images/watch.svg">
-              <input type="number" class="form-control tds-input" pattern="\d*"> : <input type="number" class="form-control tds-input" pattern="\d*">
+              <select class="form-control tds-input tds-select" required>
+                <option value="" hidden>시</option>
+                <option value="00">00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+              </select>
+              :
+              <select class="form-control tds-input tds-select" required>
+                <option value="" hidden>분</option>
+                <option value="00">00</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>
             </div>
             <div class="ed-box"></div>
           </div>
@@ -133,15 +169,40 @@
         <div class="form-group">
           <label class="tds-label bold">행사 관련 동영상 URL</label>
           <input type="text" class="form-control tds-input" placeholder="예) https://tkit.kr">
-          <div class="txt">유튜브URL 이외 동영상URL은 링크로만 표시됩니다</div>
+          <div class="video-txt">유튜브URL 이외 동영상URL은 링크로만 표시됩니다</div>
         </div>
         <div class="form-group">
           <label class="tds-label bold">행사 공지사항</label>
-          <input type="text" class="form-control tds-input" placeholder="예) https://tkit.kr">
+          <input type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="행사 공지사항을 입력해주세요">
+          <div class="m-textarea hidden-md hidden-lg"><input type="text" class="form-control tds-input" placeholder="행사 공지사항을 입력해주세요" disabled></div>
+        </div>
+        <div class="form-group">
+          <label class="tds-label bold">행사 상세설명</label>
+          <input type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="행사 상세설명을 입력해주세요">
+          <div class="m-textarea hidden-md hidden-lg"><input type="text" class="form-control tds-input" placeholder="행사 공지사항을 입력해주세요" disabled></div>
+        </div>
+        <div class="form-group">
+          <label class="tds-label bold">추가 이미지 <span class="default">(순서대로 업로드 됩니다)</span></label>
+          <div class="extra-container">
+            <ng-container *ngFor="let img of images; let i = index">
+              <div class="extra-box">
+                <span>{{ i + 1 }}</span>
+                <i class="fa fa-plus fa-2x"></i>
+                <input type="file" name="file">
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="form-group book">
+          <label class="bold">방명록</label>
+          <label>
+            <input type="checkbox" class="form-control check">
+            <span>비공개</span>
+          </label>
         </div>
       </div>
+      <div class="row"><button class="btn btn-tkit-mint btn-block btn-long">완 료</button> <!-- [disabled]="!loginForm.valid" --></div>
     </form>
-
     </div>
   </div>
 </div>

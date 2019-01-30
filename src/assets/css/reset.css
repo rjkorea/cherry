@@ -19,6 +19,16 @@ input:focus {
     outline: none;
 }
 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select:invalid {
+    color: #cccccc;
+}
+
 button:disabled, button[disabled] {
   box-shadow: 0 2px 3px 0 rgba(157, 157, 157, 0.5);
   color: #aaaaaa;

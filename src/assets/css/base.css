@@ -169,11 +169,21 @@ body {
 }
 
 .tds-input {
-  height: 55px;
+  height: 3.5rem;
   border-radius: 3px;
   font-size: 1.375rem;
   color: #444444;
   background-color: #fbfbfb;
+}
+
+.tds-input::placeholder {
+  color: #cccccc;
+}
+
+.tds-select {
+  background-image: url(/assets/images/chevron-down.svg);
+  background-repeat: no-repeat;
+  background-position: right 10px center;
 }
 
 .tds-message-valid {
