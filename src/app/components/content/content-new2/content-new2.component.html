@@ -105,13 +105,13 @@
         <div class="form-group">
           <label class="tds-label bold">행사 일시</label>
           <div class="calendar-box">
-            <div class="st-box">
+            <div class="time-box">
               <label>시작</label>
               <img src="/assets/images/calendar.svg">
               <input type="text" class="form-control tds-input" placeholder="YYYY-MM-DD">
               <img src="/assets/images/watch.svg">
               <select class="form-control tds-input tds-select" required>
-                <option value="" hidden>시</option>
+                <option value="" hidden>12</option>
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -137,9 +137,9 @@
                 <option value="22">22</option>
                 <option value="23">23</option>
               </select>
-              :
+              &nbsp;&nbsp;:&nbsp;&nbsp;
               <select class="form-control tds-input tds-select" required>
-                <option value="" hidden>분</option>
+                <option value="" hidden>00</option>
                 <option value="00">00</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -148,7 +148,49 @@
                 <option value="50">50</option>
               </select>
             </div>
-            <div class="ed-box"></div>
+            <div class="time-box">
+              <label>종료</label>
+              <img src="/assets/images/calendar.svg">
+              <input type="text" class="form-control tds-input" placeholder="YYYY-MM-DD">
+              <img src="/assets/images/watch.svg">
+              <select class="form-control tds-input tds-select" required>
+                <option value="" hidden>12</option>
+                <option value="00">00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+              </select>
+              &nbsp;&nbsp;:&nbsp;&nbsp;
+              <select class="form-control tds-input tds-select" required>
+                <option value="" hidden>00</option>
+                <option value="00">00</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="form-group host">
@@ -201,7 +243,15 @@
           </label>
         </div>
       </div>
-      <div class="row"><button class="btn btn-tkit-mint btn-block btn-long">완 료</button> <!-- [disabled]="!loginForm.valid" --></div>
+      <div class="row">
+        <div class="hidden-xs hidden-sm">
+          <button class="btn btn-tkit-mint btn-block btn-base">완 료</button> <!-- [disabled]="!loginForm.valid" -->
+        </div>
+        <div class="hidden-md hidden-lg">
+          <button class="btn btn-preview btn-base btn-short">미리보기</button>
+          <button class="btn btn-tkit-mint btn-base btn-short right">완 료</button>
+        </div>
+      </div>
     </form>
     </div>
   </div>
