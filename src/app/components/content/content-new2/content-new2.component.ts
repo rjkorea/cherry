@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { utils } from '../../../shared/utils';
+import { ModalService } from '../../../services/modal.service';
+import { SingleDateComponent } from 'app/components/common/calendar/single-date/single-date.component';
+import { ModalBottomComponent } from 'app/components/common/popup/modal-bottom/modal-bottom.component';
 
 @Component({
   selector: 'app-content-new2',
@@ -24,7 +27,10 @@ export class ContentNew2Component implements OnInit {
     hostName: 'VU Entertainment'
   };
 
-  constructor() { }
+  constructor(
+    private modalService: ModalService,
+    private viewContainerRef: ViewContainerRef
+  ) { }
 
   ngOnInit() {
   }
@@ -37,5 +43,10 @@ export class ContentNew2Component implements OnInit {
     } else {
       this.limitByte = output.innerText = byte;
     }
+  }
+
+  openCalendar(): void {
+    this.modalService.setView(this.viewContainerRef);
+    this.modalService.add(ModalBottomComponent, SingleDateComponent);
   }
 }

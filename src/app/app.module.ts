@@ -90,6 +90,7 @@ import { TicketService } from './services/ticket.service';
 import { PlaceService } from './services/place.service';
 import { UtilService } from './services/util.service';
 import { QnaService } from './services/qna.service';
+import { ModalService } from './services/modal.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { TIMService } from './services/tim.service';
@@ -97,6 +98,8 @@ import { IdComponent } from './components/login/find/id/id.component';
 import { PasswordComponent } from './components/login/find/password/password.component';
 import { ContentNew2Component } from './components/content/content-new2/content-new2.component';
 import { ContentPreviewComponent } from './components/content/content-new2/content-preview/content-preview.component';
+import { ModalBottomComponent } from './components/common/popup/modal-bottom/modal-bottom.component';
+import { SingleDateComponent } from './components/common/calendar/single-date/single-date.component';
 
 defineLocale('ko', koLocale);
 
@@ -165,6 +168,8 @@ defineLocale('ko', koLocale);
     PasswordComponent,
     ContentNew2Component,
     ContentPreviewComponent,
+    ModalBottomComponent,
+    SingleDateComponent,
   ],
   imports: [
     BrowserModule,
@@ -203,10 +208,15 @@ defineLocale('ko', koLocale);
     PlaceService,
     UtilService,
     QnaService,
+    ModalService,
     {
       provide: OWL_DATE_TIME_LOCALE, useValue: 'ko'
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModalBottomComponent,
+    SingleDateComponent
+  ]
 })
 export class AppModule { }
