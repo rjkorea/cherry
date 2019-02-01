@@ -93,6 +93,7 @@ import { QnaService } from './services/qna.service';
 import { ModalService } from './services/modal.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
+import { DateTimeFormatPipe } from './pipes/datetime.pipe';
 import { TIMService } from './services/tim.service';
 import { IdComponent } from './components/login/find/id/id.component';
 import { PasswordComponent } from './components/login/find/password/password.component';
@@ -170,6 +171,7 @@ defineLocale('ko', koLocale);
     ContentPreviewComponent,
     ModalBottomComponent,
     SingleDateComponent,
+    DateTimeFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -192,6 +194,9 @@ defineLocale('ko', koLocale);
       provide: LOCALE_ID,
       useValue: 'en-US'
     },
+    {
+      provide: OWL_DATE_TIME_LOCALE, useValue: 'ko'
+    },
     AuthGuard,
     AuthService,
     DashboardService,
@@ -209,9 +214,7 @@ defineLocale('ko', koLocale);
     UtilService,
     QnaService,
     ModalService,
-    {
-      provide: OWL_DATE_TIME_LOCALE, useValue: 'ko'
-    }
+    DateTimeFormatPipe
   ],
   bootstrap: [AppComponent],
   entryComponents: [

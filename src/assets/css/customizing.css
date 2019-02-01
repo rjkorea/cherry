@@ -11,11 +11,67 @@
 
 /* calendar (owl) */
 .owl-dt-container {
-    display: block;
-    font-size: 14px;
+    font-size: 1.5rem;
     background: #fff;
     pointer-events: auto;
+    box-shadow: none;
     z-index: 1000;
+}
+
+.owl-dt-control-button-content {
+    text-transform: uppercase;
+}
+
+.owl-dt-calendar-table .owl-dt-calendar-cell-content {
+    left: 15%;
+    width: 75%;
+    height: 75%;
+}
+
+.owl-dt-calendar-table .owl-dt-calendar-cell-selected {
+    background-color: #62aab8;
+}
+
+.owl-dt-calendar-table .owl-dt-calendar-header .owl-dt-weekdays th {
+    font-size: 1.5rem;
+    font-weight: normal;
+    padding-bottom: 0.5em;
+}
+
+.owl-dt-calendar-table .owl-dt-calendar-header .owl-dt-weekdays th:first-child {
+    color: #ed7f81;
+}
+
+.owl-dt-calendar-table .owl-dt-calendar-header .owl-dt-weekdays th:last-child {
+    color: #4a90e2;
+}
+
+.owl-dt-inline-container, .owl-dt-popup-container {
+    width: 95%;
+    box-shadow: none;
+}
+
+.owl-dt-inline-container .owl-dt-calendar, .owl-dt-popup-container .owl-dt-calendar {
+    height: 100%;
+}
+
+.owl-dt-calendar-table .owl-dt-calendar-cell-in-range {
+    background: #62aab8;
+}
+
+.owl-dt-container-info .owl-dt-container-info-active {
+    color: #62aab8;
+}
+
+.owl-dt-calendar-control {
+    padding: 2rem;
+    justify-content: center;
+}
+
+.owl-dt-calendar-control .owl-dt-calendar-control-content {
+    flex: 0.5;
+    font-weight: 600;
+    padding-left: 0.75rem;
 }
 
 /* bootstrap */

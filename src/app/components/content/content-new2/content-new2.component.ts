@@ -3,6 +3,7 @@ import { utils } from '../../../shared/utils';
 import { ModalService } from '../../../services/modal.service';
 import { SingleDateComponent } from 'app/components/common/calendar/single-date/single-date.component';
 import { ModalBottomComponent } from 'app/components/common/popup/modal-bottom/modal-bottom.component';
+import { DateTimeFormatPipe } from 'app/pipes/datetime.pipe';
 
 @Component({
   selector: 'app-content-new2',
@@ -13,6 +14,9 @@ export class ContentNew2Component implements OnInit {
   images = ['', '', '', '', '', ''];
   maxByte120 = 120;
   limitByte = 0;
+  fromDate = '';
+  toDate = '';
+
   previewData = {
     isHidden: false,
     name: '',
@@ -24,13 +28,25 @@ export class ContentNew2Component implements OnInit {
     notice: '',
     desc: '',
     images: [],
-    hostName: 'VU Entertainment'
+    hostName: ''
   };
 
   constructor(
     private modalService: ModalService,
-    private viewContainerRef: ViewContainerRef
-  ) { }
+    private viewContainerRef: ViewContainerRef,
+    private dateFormat: DateTimeFormatPipe
+  ) {
+    this.modalService.subject.subscribe(res => {
+      const date = this.dateFormat.transform(res.getTime(), 'date');
+      const type = this.modalService.getData();
+
+      if (type === 'from') {
+        this.fromDate = date;
+      } else {
+        this.toDate = date;
+      }
+    });
+  }
 
   ngOnInit() {
   }
@@ -45,7 +61,8 @@ export class ContentNew2Component implements OnInit {
     }
   }
 
-  openCalendar(): void {
+  openCalendar(type): void {
+    this.modalService.setData(type);
     this.modalService.setView(this.viewContainerRef);
     this.modalService.add(ModalBottomComponent, SingleDateComponent);
   }

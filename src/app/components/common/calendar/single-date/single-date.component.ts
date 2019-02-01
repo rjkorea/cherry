@@ -10,6 +10,7 @@ import { ModalService } from 'app/services/modal.service';
 export class SingleDateComponent implements OnInit {
   @ViewChild('singleDate') singleDate: ElementRef;
 
+  public type = 'from';
   selectedMoment = new Date();
 
   constructor(
@@ -24,7 +25,7 @@ export class SingleDateComponent implements OnInit {
 
     if (selected) {
       this.modalService.setSubject(selected);
-      this.clear();
+      // this.clear();
     }
   }
 

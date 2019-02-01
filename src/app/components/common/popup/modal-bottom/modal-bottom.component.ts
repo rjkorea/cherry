@@ -20,5 +20,4 @@ export class ModalBottomComponent implements OnInit {
     this.inner = this.factory.resolveComponentFactory(this.popup);
     this.child.createComponent(this.inner);
   }
-
 }
