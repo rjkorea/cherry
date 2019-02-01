@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import { utils } from '../../../shared/utils';
 import { ModalService } from '../../../services/modal.service';
 import { SingleDateComponent } from 'app/components/common/calendar/single-date/single-date.component';
@@ -11,11 +11,12 @@ import { DateTimeFormatPipe } from 'app/pipes/datetime.pipe';
   styleUrls: ['./content-new2.component.css']
 })
 export class ContentNew2Component implements OnInit {
+  @ViewChild('mFromDate') mFromDate: ElementRef;
+  @ViewChild('mToDate') mToDate: ElementRef;
+
   images = ['', '', '', '', '', ''];
   maxByte120 = 120;
   limitByte = 0;
-  fromDate = '';
-  toDate = '';
 
   previewData = {
     isHidden: false,
@@ -41,9 +42,9 @@ export class ContentNew2Component implements OnInit {
       const type = this.modalService.getData();
 
       if (type === 'from') {
-        this.fromDate = date;
+        this.mFromDate.nativeElement.value = date;
       } else {
-        this.toDate = date;
+        this.mToDate.nativeElement.value = date;
       }
     });
   }

@@ -108,7 +108,7 @@
             <div class="time-box">
               <label>시작</label>
               <img src="/assets/images/calendar.svg">
-              <input type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('from')" [(ngModel)]="fromDate" [ngModelOptions]="{ standalone: true }">
+              <input #mFromDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('from')">
               <input type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD">
               <img src="/assets/images/watch.svg">
               <select class="form-control tds-input tds-select" required>
@@ -152,7 +152,7 @@
             <div class="time-box">
               <label>종료</label>
               <img src="/assets/images/calendar.svg">
-              <input type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('to')">
+              <input #mToDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('to')">
               <input type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD">
               <img src="/assets/images/watch.svg">
               <select class="form-control tds-input tds-select" required>

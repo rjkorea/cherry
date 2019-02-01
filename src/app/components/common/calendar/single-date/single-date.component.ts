@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ModalBottomComponent } from '../../popup/modal-bottom/modal-bottom.component';
 import { ModalService } from 'app/services/modal.service';
 
 @Component({
@@ -10,7 +9,6 @@ import { ModalService } from 'app/services/modal.service';
 export class SingleDateComponent implements OnInit {
   @ViewChild('singleDate') singleDate: ElementRef;
 
-  public type = 'from';
   selectedMoment = new Date();
 
   constructor(
