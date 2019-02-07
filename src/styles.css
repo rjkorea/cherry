@@ -3,6 +3,6 @@
 @charset 'utf-8';
 @import './assets/css/customizing.css';
 @import './assets/css/media.css';
-@import './assets/css/base.css';
 @import './assets/css/fonts.css';
+@import './assets/css/base.css';
 @import './assets/css/reset.css';
