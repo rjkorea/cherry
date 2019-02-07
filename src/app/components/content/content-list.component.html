@@ -42,7 +42,7 @@
       <div *ngFor="let content of contents">
         <div class="col-md-3">
           <div class="thumbnail">
-            <img *ngIf="content.image" class="content_poster img-thumbnail" src="{{content.image.poster.m}}">
+            <img *ngIf="content.images" class="content_poster img-thumbnail" src="{{content.images[0].m}}">
             <div class="caption">
               <h3 *ngIf="isStaffNavbar()">{{content.name | slice: 0:24}}</h3>
               <h3 *ngIf="!isStaffNavbar()"><a [routerLink]="['/content', content._id]">{{content.name | slice: 0:24}}</a></h3>
@@ -52,7 +52,7 @@
                 <span *ngIf="!content.enabled" class="label label-danger">비활성화</span>
               </p>
               <p *ngIf="content.when"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm'}}</span> <span *ngIf="content.when.end">~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm'}}</span></p>
-              <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{content.place}}</p>
+              <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{content.place.name}}</p>
               <p>
                 <button type="button" class="btn btn-default" [disabled]="isStaffNavbar()" (click)="goTicket(content._id)">티켓</button>
                 <button type="button" class="btn btn-default" (click)="goEntrance(content._id)">입장</button>

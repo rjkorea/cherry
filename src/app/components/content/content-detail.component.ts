@@ -61,7 +61,9 @@ export class ContentDetailComponent implements OnInit {
     this.content_form = {
       name: this.content.name,
       desc: this.content.desc,
-      place: this.content.place,
+      place: {
+        name: this.content.place.name
+      },
       enabled: this.content.enabled,
       sms: {
         message: this.content.sms.message
