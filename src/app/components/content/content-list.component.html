@@ -54,8 +54,9 @@
               <p *ngIf="content.when"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm'}}</span> <span *ngIf="content.when.end">~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm'}}</span></p>
               <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{content.place.name}}</p>
               <p>
-                <button type="button" class="btn btn-default" [disabled]="isStaffNavbar()" (click)="goTicket(content._id)">티켓</button>
-                <button type="button" class="btn btn-default" (click)="goEntrance(content._id)">입장</button>
+                <button type="button" class="btn btn-default btn-block" [disabled]="isStaffNavbar()" (click)="goTicket(content._id)">티켓 관리</button>
+                <button type="button" class="btn btn-default btn-block" (click)="goEntrance(content._id)">입장 관리</button>
+                <button type="button" class="btn btn-default btn-block" (click)="goStats(content._id)">행사현황 보기</button>
               </p>
             </div>
           </div>
