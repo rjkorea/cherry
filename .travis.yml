@@ -13,7 +13,7 @@ branches:
     - master
 
 before_script:
-  - yum install s3cmd
+  - docker pull garland/docker-s3cmd
   - npm install -g @angular/cli
 
 script:
