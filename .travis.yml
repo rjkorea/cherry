@@ -1,0 +1,23 @@
+sudo: required
+
+addons:
+  chrome: stable
+
+language: node_js
+node_js:
+  - "6.9.1"
+
+branches:
+  only:
+    - dev
+    - master
+
+before_script:
+  - npm install -g angular/cli
+
+script:
+  - ng build --dev --aot
+  - s3cmd sync --cf-invalidate -P -r dist/* s3://devhost.tkit.me
+
+notifications:
+  slack: tkitme:YP4HX1luJf4x8QmXwqlVmnPv
