@@ -14,12 +14,11 @@ branches:
 
 before_script:
   - docker pull garland/docker-s3cmd
-  - /opt/main.sh
   - npm install -g @angular/cli
 
 script:
   - ng build --dev --aot
-  - s3cmd sync --access_key=$S3_ACCESS_KEY --secret_key=$S3_SECRET_KEY --cf-invalidate -P -r dist/* s3://devhost.tkit.me
+  - docker run garland-s3cmd sync --access_key=$S3_ACCESS_KEY --secret_key=$S3_SECRET_KEY --cf-invalidate -P -r dist/* s3://devhost.tkit.me
 
 notifications:
   slack: tkitme:YP4HX1luJf4x8QmXwqlVmnPv
