@@ -108,8 +108,8 @@
             <div class="time-box">
               <label>시작</label>
               <img src="/assets/images/calendar.svg">
-              <input #mFromDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('from')">
-              <input type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD">
+              <input #mFromDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('m', 'from')">
+              <input #pcFromDate type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD" (click)="openCalendar('pc', 'from')">
               <img src="/assets/images/watch.svg">
               <select class="form-control tds-input tds-select" required>
                 <option value="" hidden>12</option>
@@ -152,8 +152,8 @@
             <div class="time-box">
               <label>종료</label>
               <img src="/assets/images/calendar.svg">
-              <input #mToDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('to')">
-              <input type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD">
+              <input #mToDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('m', 'to')">
+              <input #pcToDate type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD" (click)="openCalendar('pc', 'to')">
               <img src="/assets/images/watch.svg">
               <select class="form-control tds-input tds-select" required>
                 <option value="" hidden>12</option>

@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import { utils } from '../../../shared/utils';
 import { ModalService } from '../../../services/modal.service';
-import { SingleDateComponent } from 'app/components/common/calendar/single-date/single-date.component';
-import { ModalBottomComponent } from 'app/components/common/popup/modal-bottom/modal-bottom.component';
-import { DateTimeFormatPipe } from 'app/pipes/datetime.pipe';
+import { SingleDateComponent } from '../../../components/common/calendar/single-date/single-date.component';
+import { ModalCenterComponent } from '../../../components/common/popup/modal-center/modal-center.component';
+import { ModalBottomComponent } from '../../../components/common/popup/modal-bottom/modal-bottom.component';
+import { DateTimeFormatPipe } from '../../../pipes/datetime.pipe';
 
 @Component({
   selector: 'app-content-new2',
@@ -12,7 +13,9 @@ import { DateTimeFormatPipe } from 'app/pipes/datetime.pipe';
 })
 export class ContentNew2Component implements OnInit {
   @ViewChild('mFromDate') mFromDate: ElementRef;
+  @ViewChild('pcFromDate') pcFromDate: ElementRef;
   @ViewChild('mToDate') mToDate: ElementRef;
+  @ViewChild('pcToDate') pcToDate: ElementRef;
 
   images = ['', '', '', '', '', ''];
   maxByte120 = 120;
@@ -43,8 +46,10 @@ export class ContentNew2Component implements OnInit {
 
       if (type === 'from') {
         this.mFromDate.nativeElement.value = date;
+        this.pcFromDate.nativeElement.value = date;
       } else {
         this.mToDate.nativeElement.value = date;
+        this.pcToDate.nativeElement.value = date;
       }
     });
   }
@@ -62,9 +67,14 @@ export class ContentNew2Component implements OnInit {
     }
   }
 
-  openCalendar(type): void {
-    this.modalService.setData(type);
+  openCalendar(type, when): void {
+    this.modalService.setData(when);
     this.modalService.setView(this.viewContainerRef);
-    this.modalService.add(ModalBottomComponent, SingleDateComponent);
+
+    if (type === 'm') {
+      this.modalService.add(ModalBottomComponent, SingleDateComponent);
+    } else {
+      this.modalService.add(ModalCenterComponent, SingleDateComponent);
+    }
   }
 }

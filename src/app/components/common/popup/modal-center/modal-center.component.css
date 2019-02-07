@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-.pop-modal {
+.u-modal {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -9,7 +9,7 @@
     z-index: 1030;
 }
 
-.overlay {
+.u-overlay {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -19,14 +19,15 @@
     background: black;
 }
 
-.close {
+.u-close {
     float: right;
-    margin-top: 6rem;
-    margin-right: 2rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    margin-right: 0.5rem;
     opacity: 1;
 }
 
-.wrapper {
+.u-wrapper {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -36,16 +37,18 @@
     overflow: auto;
 }
 
-.container {
+.u-container {
     text-align: center;
     margin: auto 0;
     padding: 0;
 }
 
-.content {
-    margin: 10rem 0 5rem;
-
-    margin-top: 10rem;
+.u-content {
     background-color: white;
+    margin: 5rem 0 2rem;
     border-radius: 5px;
+}
+
+.pc40 {
+    width: 40%;
 }

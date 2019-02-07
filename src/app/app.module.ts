@@ -170,10 +170,10 @@ defineLocale('ko', koLocale);
     PasswordComponent,
     ContentNew2Component,
     ContentPreviewComponent,
+    ModalCenterComponent,
     ModalBottomComponent,
     SingleDateComponent,
-    DateTimeFormatPipe,
-    ModalCenterComponent
+    DateTimeFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -220,6 +220,7 @@ defineLocale('ko', koLocale);
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    ModalCenterComponent,
     ModalBottomComponent,
     SingleDateComponent
   ]

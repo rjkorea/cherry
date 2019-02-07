@@ -36,7 +36,7 @@ export class ModalService {
     view.instance.popup = component;
     view.instance.clear = this.clearModal;
 
-    document.body.appendChild((this.content.insert(view.hostView) as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement);
+    this.content.insert(view.hostView) as EmbeddedViewRef<any>;
   }
 
   clearModal = (): void => {

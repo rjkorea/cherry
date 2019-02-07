@@ -1,0 +1,13 @@
+@charset 'utf8';
+
+.wrap-calendar-done {
+    width: 90%;
+    margin: auto;
+    padding: 1rem 0 2rem;
+}
+
+.btn-calendar {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 1.25rem;
+}

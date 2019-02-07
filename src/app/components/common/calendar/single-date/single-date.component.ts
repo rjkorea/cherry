@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ModalService } from 'app/services/modal.service';
+import { ModalService } from '../../../../services/modal.service';
 
 @Component({
   selector: 'app-single-date',
@@ -8,8 +8,9 @@ import { ModalService } from 'app/services/modal.service';
 })
 export class SingleDateComponent implements OnInit {
   @ViewChild('singleDate') singleDate: ElementRef;
+  @ViewChild('doneBtn') doneBtn: ElementRef;
 
-  selectedMoment = new Date();
+  background = '';
 
   constructor(
     private modalService: ModalService
@@ -18,12 +19,21 @@ export class SingleDateComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSelect(): void {
+    const selected = this.singleDate['selected'];
+
+    if (selected) {
+      this.background = 'btn-tkit-mint';
+      this.doneBtn.nativeElement['disabled'] = false;
+    }
+  }
+
   getMoment(): void {
     const selected = this.singleDate['selected'];
 
     if (selected) {
       this.modalService.setSubject(selected);
-      // this.clear();
+      this.clear();
     }
   }
 
