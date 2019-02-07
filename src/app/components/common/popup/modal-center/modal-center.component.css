@@ -27,6 +27,10 @@
     opacity: 1;
 }
 
+.u-close img {
+    width: 1.75rem;
+}
+
 .u-wrapper {
     position: absolute;
     display: flex;

@@ -47,3 +47,8 @@ button:disabled:hover, button[disabled]:hover {
 .btn-tkit-mint:hover {
     color: white;
 }
+
+.btn-block {
+    padding: 0.75rem 0;
+    font-size: 1.25rem;
+}

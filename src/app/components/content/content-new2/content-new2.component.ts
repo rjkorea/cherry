@@ -5,6 +5,7 @@ import { SingleDateComponent } from '../../../components/common/calendar/single-
 import { ModalCenterComponent } from '../../../components/common/popup/modal-center/modal-center.component';
 import { ModalBottomComponent } from '../../../components/common/popup/modal-bottom/modal-bottom.component';
 import { DateTimeFormatPipe } from '../../../pipes/datetime.pipe';
+import { ContentCropperComponent } from './content-cropper/content-cropper.component';
 
 @Component({
   selector: 'app-content-new2',
@@ -17,6 +18,7 @@ export class ContentNew2Component implements OnInit {
   @ViewChild('mToDate') mToDate: ElementRef;
   @ViewChild('pcToDate') pcToDate: ElementRef;
 
+  imgBackground: Object;
   images = ['', '', '', '', '', ''];
   maxByte120 = 120;
   limitByte = 0;
@@ -55,6 +57,26 @@ export class ContentNew2Component implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  changeImage(o): void {
+    const file = o.srcElement.files;
+    // const reader = new FileReader();
+
+    // reader.readAsDataURL(file[0]);
+    // reader.onload = () => {
+    //   this.imgBackground = {
+    //     'background': `url(${reader.result})`,
+    //     'background-size': 'contain',
+    //     'background-repeat': 'no-repeat',
+    //     'background-position': 'center'
+    //   };
+    // };
+
+    if (file) {
+      this.modalService.setView(this.viewContainerRef);
+      this.modalService.add(ModalCenterComponent, ContentCropperComponent);
+    }
   }
 
   checkBytes(input, output): void {

@@ -102,6 +102,7 @@ import { ContentPreviewComponent } from './components/content/content-new2/conte
 import { ModalBottomComponent } from './components/common/popup/modal-bottom/modal-bottom.component';
 import { SingleDateComponent } from './components/common/calendar/single-date/single-date.component';
 import { ModalCenterComponent } from './components/common/popup/modal-center/modal-center.component';
+import { ContentCropperComponent } from './components/content/content-new2/content-cropper/content-cropper.component';
 
 defineLocale('ko', koLocale);
 
@@ -173,7 +174,8 @@ defineLocale('ko', koLocale);
     ModalCenterComponent,
     ModalBottomComponent,
     SingleDateComponent,
-    DateTimeFormatPipe
+    DateTimeFormatPipe,
+    ContentCropperComponent
   ],
   imports: [
     BrowserModule,
@@ -222,7 +224,8 @@ defineLocale('ko', koLocale);
   entryComponents: [
     ModalCenterComponent,
     ModalBottomComponent,
-    SingleDateComponent
+    SingleDateComponent,
+    ContentCropperComponent
   ]
 })
 export class AppModule { }
