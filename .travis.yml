@@ -11,17 +11,11 @@ branches:
 
 before_script:
   - npm install -g @angular/cli
+  - sudo apt-get install -y s3cmd
 
 script:
   - ng build --dev --aot
-
-deploy:
-  provider: s3
-  access_key_id: ${S3_ACCESS_KEY}
-  secret_access_key: ${S3_SECRET_KEY}
-  bucket: "devhost.tkit.me"
-  skip_cleanup: true
-  acl: public_read
+  - s3cmd sync --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} --cf-invalidate --cf-invalidate-default-index dist/* s3://devhost.tkit.me
 
 notifications:
   slack: tkitme:YP4HX1luJf4x8QmXwqlVmnPv
