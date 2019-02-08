@@ -1,8 +1,5 @@
 sudo: required
 
-addons:
-  chrome: stable
-
 language: node_js
 node_js:
   - "6.9.1"
@@ -13,12 +10,18 @@ branches:
     - master
 
 before_script:
-  - docker pull garland/docker-s3cmd
   - npm install -g @angular/cli
 
 script:
   - ng build --dev --aot
-  - docker run garland-s3cmd sync --access_key=$S3_ACCESS_KEY --secret_key=$S3_SECRET_KEY --cf-invalidate -P -r dist/* s3://devhost.tkit.me
+
+deploy:
+  provider: s3
+  access_key_id: ${S3_ACCESS_KEY}
+  secret_access_key: ${S3_SECRET_KEY}
+  bucket: "devhost.tkit.me"
+  skip_cleanup: true
+  acl: public_read
 
 notifications:
   slack: tkitme:YP4HX1luJf4x8QmXwqlVmnPv
