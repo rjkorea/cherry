@@ -15,11 +15,16 @@
 }
 
 .crop-box {
+    height: 30rem;
     margin: 1rem 0;
-}
-.crop-box #cropper {
-    width: 100%;
     border-radius: 3px;
     border: 1px solid #bbbbbb;
     background-color: #fbfbfb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.crop-box #cropper {
+    width: 100%;
+    height: 100%;
 }

@@ -18,7 +18,7 @@ export class ContentNew2Component implements OnInit {
   @ViewChild('mToDate') mToDate: ElementRef;
   @ViewChild('pcToDate') pcToDate: ElementRef;
 
-  imgBackground: Object;
+  croppedImg = '';
   images = ['', '', '', '', '', ''];
   maxByte120 = 120;
   limitByte = 0;
@@ -54,6 +54,10 @@ export class ContentNew2Component implements OnInit {
         this.pcToDate.nativeElement.value = date;
       }
     });
+
+    this.modalService.endSubject.subscribe(res => {
+      this.croppedImg = res;
+    });
   }
 
   ngOnInit() {
@@ -61,19 +65,9 @@ export class ContentNew2Component implements OnInit {
 
   changeImage(o): void {
     const file = o.srcElement.files;
-    // const reader = new FileReader();
-
-    // reader.readAsDataURL(file[0]);
-    // reader.onload = () => {
-    //   this.imgBackground = {
-    //     'background': `url(${reader.result})`,
-    //     'background-size': 'contain',
-    //     'background-repeat': 'no-repeat',
-    //     'background-position': 'center'
-    //   };
-    // };
 
     if (file) {
+      this.modalService.setData(o);
       this.modalService.setView(this.viewContainerRef);
       this.modalService.add(ModalCenterComponent, ContentCropperComponent);
     }

@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class ModalService {
   public subject = new Subject<any>();
+  public endSubject = new Subject<any>();
   public data: any;
   private factory: any;
   private content: any;
@@ -41,5 +42,10 @@ export class ModalService {
 
   clearModal = (): void => {
     this.content.clear();
+  }
+
+  clearModalAndSet(data): void {
+    this.endSubject.next(data);
+    this.clearModal();
   }
 }

@@ -91,7 +91,7 @@
             <div class="img-box">
                 <span class="bold">눌러서 이미지를 업로드 해주세요</span><br>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
                 <input type="file" name="file" (change)="changeImage($event)">
-                <div class="thum-box" [ngStyle]="imgBackground"></div>
+                <div class="thum-box"><img [src]="croppedImg"></div>
             </div>
           </div>
         </div>
