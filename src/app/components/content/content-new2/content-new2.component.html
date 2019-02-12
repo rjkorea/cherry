@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!isCoverPopup">
   <div class="row bolder">행사 만들기</div>
   <div class="row">
     <div class="col-sm-5 hidden-xs hidden-sm stick-left">
@@ -87,7 +87,7 @@
         </div>
         <div class="form-group">
           <label class="tds-label bold">행사 대표 이미지</label>
-          <div class="img-container">
+          <div class="img-container hidden-md hidden-lg">
             <div class="img-box thum-box">
               <ng-container *ngIf="croppedImg">
                 <img [src]="croppedImg">
@@ -97,7 +97,20 @@
                   <span class="bold">눌러서 이미지를 업로드 해주세요</span><br>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
                 </div>
               </ng-container>
-              <input type="file" name="file" (change)="changeImage($event)">
+              <input type="file" name="file" (change)="changeImage($event, 'm')">
+            </div>
+          </div>
+          <div class="img-container hidden-xs hidden-sm">
+            <div class="img-box thum-box">
+              <ng-container *ngIf="croppedImg">
+                <img [src]="croppedImg">
+              </ng-container>
+              <ng-container *ngIf="!croppedImg">
+                <div class="desc-box">
+                  <span class="bold">눌러서 이미지를 업로드 해주세요</span><br>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
+                </div>
+              </ng-container>
+              <input type="file" name="file" (change)="changeImage($event, 'pc')">
             </div>
           </div>
         </div>
@@ -267,3 +280,7 @@
     </div>
   </div>
 </div>
+
+<ng-container *ngIf="isCoverPopup">
+  <app-content-cropper [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-cropper>
+</ng-container>

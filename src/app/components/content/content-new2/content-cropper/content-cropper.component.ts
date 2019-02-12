@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { ModalService } from 'app/services/modal.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ImageCropperComponent, ImageCroppedEvent } from 'ngx-image-cropper';
+import { PopupService } from '../../../../services/popup.service';
 
 @Component({
   selector: 'app-content-cropper',
@@ -8,14 +8,17 @@ import { ImageCropperComponent, ImageCroppedEvent } from 'ngx-image-cropper';
   styleUrls: ['./content-cropper.component.css']
 })
 export class ContentCropperComponent implements OnInit {
+  @Input() isCoverPopup: boolean;
+  @Output() controlCoverPopup: EventEmitter<any> = new EventEmitter();
+
   imageChangedEvent: any;
 
   constructor(
-    private modalService: ModalService
+    private PopupService: PopupService
   ) { }
 
   ngOnInit() {
-    this.imageChangedEvent = this.modalService.getData();
+    this.imageChangedEvent = this.PopupService.getData();
   }
 
   emitCrop(cropper: ImageCropperComponent): void {
@@ -23,8 +26,13 @@ export class ContentCropperComponent implements OnInit {
   }
 
   imageCropped(e: ImageCroppedEvent): void {
-    this.modalService.clearModalAndSet(e.base64);
+    this.PopupService.setEndSubject(e.base64);
 
+    if (this.isCoverPopup) {
+      this.controlCoverPopup.emit(false);
+    } else {
+      this.PopupService.clearPopup();
+    }
   }
 
   imageLoaded(): void {
@@ -33,6 +41,11 @@ export class ContentCropperComponent implements OnInit {
 
   loadImageFailed(): void {
     alert('이미지는 JPEG, PNG, JPG 형식만 가능합니다');
-    this.modalService.clearModal();
+
+    if (this.isCoverPopup) {
+      this.controlCoverPopup.emit(false);
+    } else {
+      this.PopupService.clearPopup();
+    }
   }
 }

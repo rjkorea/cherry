@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import { utils } from '../../../shared/utils';
-import { ModalService } from '../../../services/modal.service';
+import { PopupService } from '../../../services/popup.service';
 import { SingleDateComponent } from '../../../components/common/calendar/single-date/single-date.component';
 import { ModalCenterComponent } from '../../../components/common/popup/modal-center/modal-center.component';
 import { ModalBottomComponent } from '../../../components/common/popup/modal-bottom/modal-bottom.component';
@@ -22,6 +22,7 @@ export class ContentNew2Component implements OnInit {
   images = ['', '', '', '', '', ''];
   maxByte120 = 120;
   limitByte = 0;
+  isCoverPopup = false;
 
   previewData = {
     isHidden: false,
@@ -38,13 +39,13 @@ export class ContentNew2Component implements OnInit {
   };
 
   constructor(
-    private modalService: ModalService,
+    private PopupService: PopupService,
     private viewContainerRef: ViewContainerRef,
     private dateFormat: DateTimeFormatPipe
   ) {
-    this.modalService.subject.subscribe(res => {
+    this.PopupService.subject.subscribe(res => {
       const date = this.dateFormat.transform(res.getTime(), 'date');
-      const type = this.modalService.getData();
+      const type = this.PopupService.getData();
 
       if (type === 'from') {
         this.mFromDate.nativeElement.value = date;
@@ -55,7 +56,7 @@ export class ContentNew2Component implements OnInit {
       }
     });
 
-    this.modalService.endSubject.subscribe(res => {
+    this.PopupService.endSubject.subscribe(res => {
       this.croppedImg = res;
     });
   }
@@ -63,13 +64,18 @@ export class ContentNew2Component implements OnInit {
   ngOnInit() {
   }
 
-  changeImage(o): void {
+  changeImage(o, type): void {
     const file = o.srcElement.files;
 
     if (file) {
-      this.modalService.setData(o);
-      this.modalService.setView(this.viewContainerRef);
-      this.modalService.add(ModalCenterComponent, ContentCropperComponent);
+      this.PopupService.setData(o);
+
+      if (type === 'm') {
+        this.controlCoverPopup(true);
+      } else {
+        this.PopupService.setView(this.viewContainerRef);
+        this.PopupService.add(ModalCenterComponent, ContentCropperComponent);
+      }
     }
   }
 
@@ -84,13 +90,17 @@ export class ContentNew2Component implements OnInit {
   }
 
   openCalendar(type, when): void {
-    this.modalService.setData(when);
-    this.modalService.setView(this.viewContainerRef);
+    this.PopupService.setData(when);
+    this.PopupService.setView(this.viewContainerRef);
 
     if (type === 'm') {
-      this.modalService.add(ModalBottomComponent, SingleDateComponent);
+      this.PopupService.add(ModalBottomComponent, SingleDateComponent);
     } else {
-      this.modalService.add(ModalCenterComponent, SingleDateComponent);
+      this.PopupService.add(ModalCenterComponent, SingleDateComponent);
     }
+  }
+
+  controlCoverPopup(bool: boolean): void {
+    this.isCoverPopup = bool;
   }
 }

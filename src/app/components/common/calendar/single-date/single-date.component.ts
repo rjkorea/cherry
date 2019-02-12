@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ModalService } from '../../../../services/modal.service';
+import { PopupService } from '../../../../services/popup.service';
 
 @Component({
   selector: 'app-single-date',
@@ -13,7 +13,7 @@ export class SingleDateComponent implements OnInit {
   background = '';
 
   constructor(
-    private modalService: ModalService
+    private PopupService: PopupService
   ) { }
 
   ngOnInit() {
@@ -32,12 +32,12 @@ export class SingleDateComponent implements OnInit {
     const selected = this.singleDate['selected'];
 
     if (selected) {
-      this.modalService.setSubject(selected);
+      this.PopupService.setSubject(selected);
       this.clear();
     }
   }
 
   clear(): void {
-    this.modalService.clearModal();
+    this.PopupService.clearPopup();
   }
 }

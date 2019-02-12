@@ -91,7 +91,7 @@ import { TicketService } from './services/ticket.service';
 import { PlaceService } from './services/place.service';
 import { UtilService } from './services/util.service';
 import { QnaService } from './services/qna.service';
-import { ModalService } from './services/modal.service';
+import { PopupService } from './services/popup.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { DateTimeFormatPipe } from './pipes/datetime.pipe';
@@ -219,7 +219,7 @@ defineLocale('ko', koLocale);
     PlaceService,
     UtilService,
     QnaService,
-    ModalService,
+    PopupService,
     DateTimeFormatPipe
   ],
   bootstrap: [AppComponent],

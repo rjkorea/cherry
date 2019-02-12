@@ -6,7 +6,16 @@
 }
 
 .title {
+    display: flex;
     font-size: 1.75rem;
+}
+
+.title span {
+    flex: 1;
+}
+
+.title img {
+    width: 1.75rem;
 }
 
 .desc {

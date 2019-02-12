@@ -2,7 +2,7 @@ import { Injectable, Inject, ComponentFactoryResolver, EmbeddedViewRef } from '@
 import { Subject } from 'rxjs';
 
 @Injectable()
-export class ModalService {
+export class PopupService {
   public subject = new Subject<any>();
   public endSubject = new Subject<any>();
   public data: any;
@@ -22,6 +22,10 @@ export class ModalService {
     this.subject.next(sub);
   }
 
+  setEndSubject(eSub): void {
+    this.endSubject.next(eSub);
+  }
+
   setData(data): void {
     this.data = data;
   }
@@ -35,17 +39,12 @@ export class ModalService {
     const view = factory.create(this.content.parentInjector);
 
     view.instance.popup = component;
-    view.instance.clear = this.clearModal;
+    view.instance.clear = this.clearPopup;
 
     this.content.insert(view.hostView) as EmbeddedViewRef<any>;
   }
 
-  clearModal = (): void => {
+  clearPopup = (): void => {
     this.content.clear();
-  }
-
-  clearModalAndSet(data): void {
-    this.endSubject.next(data);
-    this.clearModal();
   }
 }
