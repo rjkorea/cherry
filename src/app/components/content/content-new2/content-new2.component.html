@@ -88,10 +88,16 @@
         <div class="form-group">
           <label class="tds-label bold">행사 대표 이미지</label>
           <div class="img-container">
-            <div class="img-box">
-                <span class="bold">눌러서 이미지를 업로드 해주세요</span><br>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
-                <input type="file" name="file" (change)="changeImage($event)">
-                <div class="thum-box"><img [src]="croppedImg"></div>
+            <div class="img-box thum-box">
+              <ng-container *ngIf="croppedImg">
+                <img [src]="croppedImg">
+              </ng-container>
+              <ng-container *ngIf="!croppedImg">
+                <div class="desc-box">
+                  <span class="bold">눌러서 이미지를 업로드 해주세요</span><br>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
+                </div>
+              </ng-container>
+              <input type="file" name="file" (change)="changeImage($event)">
             </div>
           </div>
         </div>
@@ -99,7 +105,9 @@
           <label class="tds-label bold">행사 장소</label>
           <div class="img-container">
             <div class="img-box">
-                <span class="bold">눌러서 장소를 검색해주세요</span><br>(지도로 표시됩니다)
+                <div class="desc-box">
+                  <span class="bold">눌러서 장소를 검색해주세요</span><br>(지도로 표시됩니다)
+                </div>
             </div>
           </div>
         </div>
