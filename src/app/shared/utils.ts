@@ -5,5 +5,11 @@ export const utils = {
         }
 
         return byte;
+    },
+
+    getTogglePopup(name: string, elm: any): void {
+        if (name === 'isPublic') {
+          elm.classList.toggle('on');
+        }
     }
 };

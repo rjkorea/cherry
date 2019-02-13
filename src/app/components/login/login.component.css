@@ -75,11 +75,11 @@
 }
 
 input[type=password], input[type=password]::-webkit-input-placeholder {
-  font-size: 26px;
+  font-size: 1.25rem;
   letter-spacing: 3px;
 }
 
 input[type=password]::-webkit-input-placeholder {
-  font-size: 26px;
+  font-size: 1.25rem;
   letter-spacing: 4px;
 }
