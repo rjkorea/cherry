@@ -256,11 +256,12 @@
         <div class="form-group">
           <label class="tds-label bold">추가 이미지 <span class="default">(순서대로 업로드 됩니다)</span></label>
           <div class="extra-container">
-            <ng-container *ngFor="let img of images; let i = index">
+            <ng-container *ngFor="let thum of thumnails; let i = index">
               <div class="extra-box">
                 <span>{{ i + 1 }}</span>
                 <i class="fa fa-plus fa-2x"></i>
-                <input type="file" name="file">
+                <input type="file" name="file" (change)="setExtraImg($event, i)">
+                <div class="mini-thum" [ngStyle]="{'background': 'url(' + thum + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div>
               </div>
             </ng-container>
           </div>

@@ -20,7 +20,7 @@ export class ContentNew2Component implements OnInit {
   @ViewChild('pcToDate') pcToDate: ElementRef;
 
   utils = utils;
-  images = ['', '', '', '', '', ''];
+  thumnails = ['', '', '', '', '', ''];
   maxByte40 = 40;
   limitByte = 0;
   isCoverPopup = false;
@@ -115,5 +115,17 @@ export class ContentNew2Component implements OnInit {
     this.isCoverPopup = isOpen;
     this.typeCoverPopup = type;
   }
-  
+ 
+  setExtraImg(o, idx): void {
+    const file = o.srcElement.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.thumnails[idx] = reader.result.toString();
+      }
+    }
+  }
 }
