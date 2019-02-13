@@ -54,6 +54,7 @@ input:disabled {
 
 .q-mark img {
     width: 1.5rem;
+    cursor: pointer;
 }
 
 .pkg-box {

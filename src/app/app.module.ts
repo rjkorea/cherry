@@ -104,6 +104,7 @@ import { ModalBottomComponent } from './components/common/popup/modal-bottom/mod
 import { SingleDateComponent } from './components/common/calendar/single-date/single-date.component';
 import { ModalCenterComponent } from './components/common/popup/modal-center/modal-center.component';
 import { ContentCropperComponent } from './components/content/content-new2/content-cropper/content-cropper.component';
+import { ToggleService } from './services/toggle.service';
 
 defineLocale('ko', koLocale);
 
@@ -220,6 +221,7 @@ defineLocale('ko', koLocale);
     UtilService,
     QnaService,
     PopupService,
+    ToggleService,
     DateTimeFormatPipe
   ],
   bootstrap: [AppComponent],

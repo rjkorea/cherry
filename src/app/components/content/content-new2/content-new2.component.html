@@ -18,7 +18,26 @@
         <div class="form-group is-hidden">
           <div class="q-box">
             <span class="bold">행사 공개여부</span>
-            <span class="q-mark"><img src="/assets/images/question-mark.svg"></span>
+            <span class="u-toggle-container q-mark hidden-xs hidden-sm" (click)="getTogglePopup('isPublic')">
+              <img src="/assets/images/question-mark.svg">
+
+              <div #toggle class="u-toggle">
+                <div class="title">
+                  <span class="tkit-mint-color">행사 공개여부</span>
+                  <img src="/assets/images/close-grey.svg">
+                </div>
+                <div class="desc">
+                  <div>행사 공개</div>
+                  <div>친구가 아닌 다른 사람도 이 행사를 보고 찾을 수 있습니다.<br>비공개 선택을 하지 않으면 공개 행사로 만들어집니다</div>
+                  <div>행사 비공개</div>
+                  <div>초대된 손님만 이 행사를 볼 수 있습니다.</div>
+                </div>
+              </div>
+
+            </span>
+            <span class="q-mark hidden-md hidden-lg" (click)="getDescPopup('isPublic')">
+              <img src="/assets/images/question-mark.svg">
+            </span>
           </div>
           <label>
             <input type="checkbox" class="form-control check" id="check">
@@ -28,7 +47,7 @@
         <div class="form-group f-title">
           <label class="tds-label bold">행사명</label>
           <div class="in"><input #name type="text" class="form-control tds-input" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byteName)" (change)="checkBytes(name, byteName)"></div>
-          <div class="bytes"><span #byteName>0</span> / 120 Bytes</div>
+          <div class="bytes"><span #byteName>0</span> / {{ maxByte40 }} Bytes</div>
         </div>
         <div class="form-group category">
           <label class="tds-label bold">카테고리 <span class="default">(중복선택 가능)</span></label>
@@ -282,5 +301,5 @@
 </div>
 
 <ng-container *ngIf="isCoverPopup">
-  <app-content-cropper [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-cropper>
+  <app-content-cropper *ngIf="typeCoverPopup === 'cropper'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-cropper>
 </ng-container>

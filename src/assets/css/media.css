@@ -45,7 +45,7 @@
 @media screen and (max-width: 768px) {
   .ticketistkit { display: none; }
   .media-box { box-shadow: none; margin: 0; }
-  .media-modal { width: auto; }
+  .media-modal { width: 80%; }
 }
 /* PC, Tablet */
 @media screen and (min-width: 769px) {

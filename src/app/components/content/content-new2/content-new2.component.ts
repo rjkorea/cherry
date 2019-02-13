@@ -6,6 +6,8 @@ import { ModalCenterComponent } from '../../../components/common/popup/modal-cen
 import { ModalBottomComponent } from '../../../components/common/popup/modal-bottom/modal-bottom.component';
 import { DateTimeFormatPipe } from '../../../pipes/datetime.pipe';
 import { ContentCropperComponent } from './content-cropper/content-cropper.component';
+import { ToggleComponent } from 'app/components/common/popup/toggle/toggle.component';
+import { ToggleService } from 'app/services/toggle.service';
 
 @Component({
   selector: 'app-content-new2',
@@ -13,16 +15,19 @@ import { ContentCropperComponent } from './content-cropper/content-cropper.compo
   styleUrls: ['./content-new2.component.css']
 })
 export class ContentNew2Component implements OnInit {
+  @ViewChild('toggle') toggle: ElementRef;
+
   @ViewChild('mFromDate') mFromDate: ElementRef;
   @ViewChild('pcFromDate') pcFromDate: ElementRef;
   @ViewChild('mToDate') mToDate: ElementRef;
   @ViewChild('pcToDate') pcToDate: ElementRef;
 
-  croppedImg = '';
   images = ['', '', '', '', '', ''];
-  maxByte120 = 120;
+  maxByte40 = 40;
   limitByte = 0;
   isCoverPopup = false;
+  typeCoverPopup = 'cropper';
+  croppedImg = '';
 
   previewData = {
     isHidden: false,
@@ -39,13 +44,14 @@ export class ContentNew2Component implements OnInit {
   };
 
   constructor(
-    private PopupService: PopupService,
+    private popupService: PopupService,
+    private toggleService: ToggleService,
     private viewContainerRef: ViewContainerRef,
     private dateFormat: DateTimeFormatPipe
   ) {
-    this.PopupService.subject.subscribe(res => {
+    this.popupService.subject.subscribe(res => {
       const date = this.dateFormat.transform(res.getTime(), 'date');
-      const type = this.PopupService.getData();
+      const type = this.popupService.getData();
 
       if (type === 'from') {
         this.mFromDate.nativeElement.value = date;
@@ -56,7 +62,7 @@ export class ContentNew2Component implements OnInit {
       }
     });
 
-    this.PopupService.endSubject.subscribe(res => {
+    this.popupService.endSubject.subscribe(res => {
       this.croppedImg = res;
     });
   }
@@ -64,17 +70,23 @@ export class ContentNew2Component implements OnInit {
   ngOnInit() {
   }
 
+  getTogglePopup(name): void {
+    if (name === 'isPublic') {
+      this.toggle.nativeElement.classList.toggle('on');
+    }
+  }
+
   changeImage(o, type): void {
     const file = o.srcElement.files;
 
     if (file) {
-      this.PopupService.setData(o);
+      this.popupService.setData(o);
 
       if (type === 'm') {
-        this.controlCoverPopup(true);
+        this.controlCoverPopup(true, 'cropper');
       } else {
-        this.PopupService.setView(this.viewContainerRef);
-        this.PopupService.add(ModalCenterComponent, ContentCropperComponent);
+        this.popupService.setView(this.viewContainerRef);
+        this.popupService.add(ModalCenterComponent, ContentCropperComponent);
       }
     }
   }
@@ -82,7 +94,7 @@ export class ContentNew2Component implements OnInit {
   checkBytes(input, output): void {
     const byte = utils.getByteSize(input.value, 0, 0);
 
-    if (byte > this.maxByte120) {
+    if (byte > this.maxByte40) {
       input.value = input.value.slice(0, this.limitByte);
     } else {
       this.limitByte = output.innerText = byte;
@@ -90,17 +102,18 @@ export class ContentNew2Component implements OnInit {
   }
 
   openCalendar(type, when): void {
-    this.PopupService.setData(when);
-    this.PopupService.setView(this.viewContainerRef);
+    this.popupService.setData(when);
+    this.popupService.setView(this.viewContainerRef);
 
     if (type === 'm') {
-      this.PopupService.add(ModalBottomComponent, SingleDateComponent);
+      this.popupService.add(ModalBottomComponent, SingleDateComponent);
     } else {
-      this.PopupService.add(ModalCenterComponent, SingleDateComponent);
+      this.popupService.add(ModalCenterComponent, SingleDateComponent);
     }
   }
 
-  controlCoverPopup(bool: boolean): void {
-    this.isCoverPopup = bool;
+  controlCoverPopup(isOpen: boolean, type: string): void {
+    this.isCoverPopup = isOpen;
+    this.typeCoverPopup = type;
   }
 }
