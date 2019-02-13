@@ -68,6 +68,10 @@ export class ContentListComponent implements OnInit {
     this.router.navigate(['/entrance', {content_oid: content_oid}]);
   }
 
+  goStats(content_oid: string) {
+    this.router.navigate(['/stats', content_oid ]);
+  }
+
   onPrev() {
     const page = this.page - 1;
     this.page = page;
