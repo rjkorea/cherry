@@ -6,6 +6,7 @@ import { ModalCenterComponent } from '../../../components/common/popup/modal-cen
 import { ModalBottomComponent } from '../../../components/common/popup/modal-bottom/modal-bottom.component';
 import { DateTimeFormatPipe } from '../../../pipes/datetime.pipe';
 import { ContentCropperComponent } from './content-cropper/content-cropper.component';
+import { ContentIsPublicComponent } from './content-is-public/content-is-public.component';
 
 @Component({
   selector: 'app-content-new2',
@@ -13,13 +14,12 @@ import { ContentCropperComponent } from './content-cropper/content-cropper.compo
   styleUrls: ['./content-new2.component.css']
 })
 export class ContentNew2Component implements OnInit {
-  @ViewChild('toggle') toggle: ElementRef;
-
   @ViewChild('mFromDate') mFromDate: ElementRef;
   @ViewChild('pcFromDate') pcFromDate: ElementRef;
   @ViewChild('mToDate') mToDate: ElementRef;
   @ViewChild('pcToDate') pcToDate: ElementRef;
 
+  utils = utils;
   images = ['', '', '', '', '', ''];
   maxByte40 = 40;
   limitByte = 0;
@@ -67,12 +67,6 @@ export class ContentNew2Component implements OnInit {
   ngOnInit() {
   }
 
-  getTogglePopup(name): void {
-    if (name === 'isPublic') {
-      this.toggle.nativeElement.classList.toggle('on');
-    }
-  }
-
   changeImage(o, type): void {
     const file = o.srcElement.files;
 
@@ -98,6 +92,14 @@ export class ContentNew2Component implements OnInit {
     }
   }
 
+  openDescriptionPopup(name): void {
+    this.popupService.setView(this.viewContainerRef);
+
+    if (name === 'isPublic') {
+      this.popupService.add(ModalCenterComponent, ContentIsPublicComponent);
+    }
+  }
+
   openCalendar(type, when): void {
     this.popupService.setData(when);
     this.popupService.setView(this.viewContainerRef);
@@ -113,4 +115,5 @@ export class ContentNew2Component implements OnInit {
     this.isCoverPopup = isOpen;
     this.typeCoverPopup = type;
   }
+  
 }
