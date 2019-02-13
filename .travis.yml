@@ -8,6 +8,7 @@ before_script:
   - tar xzf s3cmd-2.0.1.tar.gz
   - cd s3cmd-2.0.1
   - sudo python setup.py install
+  - export LANG=en_US.UTF-8
   - cd ..
   - npm install -g @angular/cli
 
