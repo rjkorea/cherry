@@ -6,8 +6,6 @@ import { ModalCenterComponent } from '../../../components/common/popup/modal-cen
 import { ModalBottomComponent } from '../../../components/common/popup/modal-bottom/modal-bottom.component';
 import { DateTimeFormatPipe } from '../../../pipes/datetime.pipe';
 import { ContentCropperComponent } from './content-cropper/content-cropper.component';
-import { ToggleComponent } from 'app/components/common/popup/toggle/toggle.component';
-import { ToggleService } from 'app/services/toggle.service';
 
 @Component({
   selector: 'app-content-new2',
@@ -45,7 +43,6 @@ export class ContentNew2Component implements OnInit {
 
   constructor(
     private popupService: PopupService,
-    private toggleService: ToggleService,
     private viewContainerRef: ViewContainerRef,
     private dateFormat: DateTimeFormatPipe
   ) {
