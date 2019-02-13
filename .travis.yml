@@ -13,7 +13,7 @@ branches:
     
 script:
   - ng build --dev --aot
-  - s3cmd sync --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} --cf-invalidate --cf-invalidate-default-index dist/* s3://devhost.tkit.me
+  - s3cmd sync --access_key=$S3_ACCESS_KEY --secret_key=$S3_SECRET_KEY --cf-invalidate --cf-invalidate-default-index dist/* s3://devhost.tkit.me
 
 notifications:
   slack: tkitme:YP4HX1luJf4x8QmXwqlVmnPv
