@@ -1,46 +1,24 @@
-deploy:
-  # deploy develop to the staging environment
-  - provider: script
-    on:
-      branch: dev
+language: node_js
 
-    sudo: required
+node_js:
+  - "6.9.1"
 
-    language: node_js
-    node_js:
-      - "6.9.1"
+before_script:
+  - wget https://sourceforge.net/projects/s3tools/files/s3cmd/2.0.1/s3cmd-2.0.1.tar.gz
+  - tar xzf s3cmd-2.0.1.tar.gz
+  - cd s3cmd-2.0.1
+  - sudo python setup.py install
+  - cd ..
+  - npm install -g @angular/cli
 
-    before_script:
-      - npm install -g @angular/cli
-      - sudo apt-get install -y s3cmd
-
-    script:
-      - ng build --dev --aot
-      - s3cmd sync --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} --cf-invalidate --cf-invalidate-default-index dist/* s3://devhost.tkit.me
-
-    notifications:
-      slack: tkitme:YP4HX1luJf4x8QmXwqlVmnPv
-
-
-
-  # deploy master to production
-  - provider: script
-    on:
-      branch: master
-
-    sudo: required
-
-    language: node_js
-    node_js:
-      - "6.9.1"
+branches:
+  only:
+    - dev
     
-    before_script:
-      - npm install -g @angular/cli
-      - sudo apt-get install -y s3cmd
+script:
+  - ng build --dev --aot
+  - s3cmd sync --access_key $S3_ACCESS_KEY --secret_key $S3_SECRET_KEY --cf-invalidate --cf-invalidate-default-index dist/* s3://devhost.tkit.me
 
-    script:
-      - ng build --prod --aot
-      - s3cmd sync --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} --cf-invalidate --cf-invalidate-default-index dist/* s3://host.tkit.me
+notifications:
+  slack: tkitme:YP4HX1luJf4x8QmXwqlVmnPv
 
-    notifications:
-      slack: tkitme:YP4HX1luJf4x8QmXwqlVmnPv
