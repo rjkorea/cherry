@@ -5,6 +5,15 @@ input:disabled {
     background-color: #fbfbfb;
 }
 
+textarea {
+    resize: none;
+    height: 15rem;
+}
+
+textarea {
+    padding: 0.75rem;
+}
+
 .right {
     float: right;
 }
@@ -233,7 +242,7 @@ input:disabled {
     height: 100%;
     top: 0;
     left: 0;
-    opacity: 0.7;
+    opacity: 0.5;
     z-index: 1;
 }
 
