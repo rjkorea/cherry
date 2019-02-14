@@ -128,4 +128,8 @@ export class ContentNew2Component implements OnInit {
       }
     }
   }
+
+  removeExtraImg(idx): void {
+    this.thumnails[idx] = '';
+  }
 }

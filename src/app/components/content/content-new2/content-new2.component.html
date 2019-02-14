@@ -261,7 +261,11 @@
                 <span>{{ i + 1 }}</span>
                 <i class="fa fa-plus fa-2x"></i>
                 <input type="file" name="file" (change)="setExtraImg($event, i)">
-                <div class="mini-thum" [ngStyle]="{'background': 'url(' + thum + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div>
+                <div class="mini-thum-box" [ngStyle]="{'background': 'url(' + thum + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div>
+                <ng-container *ngIf="thum">
+                  <div class="mini-thum-overlay"></div>
+                  <i class="fa fa-times mini-thum-overlay-close" (click)="removeExtraImg(i)"></i>
+                </ng-container>
               </div>
             </ng-container>
           </div>

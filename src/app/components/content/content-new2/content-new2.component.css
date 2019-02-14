@@ -209,7 +209,7 @@ input:disabled {
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 2;
 }
 
 .extra-box i {
@@ -218,12 +218,34 @@ input:disabled {
     font-size: 2.2rem;
 }
 
-.extra-box .mini-thum {
+.extra-box .mini-thum-box {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
+}
+
+.extra-box .mini-thum-overlay {
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+.extra-box .mini-thum-overlay-close {
+    position: absolute;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    top: 0;
+    right: 0;
+    opacity: 1;
+    z-index: 3;
 }
 
 .book {
