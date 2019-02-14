@@ -93,7 +93,7 @@
         </div>
         <div class="form-group">
           <label class="tds-label bold">행사 대표 이미지</label>
-          <div class="img-container hidden-md hidden-lg">
+          <div class="img-container">
             <div class="img-box thum-box">
               <ng-container *ngIf="croppedImg">
                 <img [src]="croppedImg">
@@ -103,20 +103,12 @@
                   <span class="bold">눌러서 이미지를 업로드 해주세요</span>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
                 </div>
               </ng-container>
-              <input type="file" name="file" (change)="changeMainImg($event, 'm')">
+              <input type="file" name="file" class="hidden-md hidden-lg" (change)="changeMainImg($event, 'm')">
+              <input type="file" name="file" class="hidden-xs hidden-sm" (change)="changeMainImg($event, 'pc')">
             </div>
-          </div>
-          <div class="img-container hidden-xs hidden-sm">
-            <div class="img-box thum-box">
-              <ng-container *ngIf="croppedImg">
-                <img [src]="croppedImg">
-              </ng-container>
-              <ng-container *ngIf="!croppedImg">
-                <div class="desc-box">
-                  <span class="bold">눌러서 이미지를 업로드 해주세요</span>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
-                </div>
-              </ng-container>
-              <input type="file" name="file" (change)="changeMainImg($event, 'pc')">
+            <div *ngIf="croppedImg" class="img-desc">
+              <div>파일크기: {{ croppedImgSize | fileSizeFormat: 2 }}</div>
+              <div class="tkit-coral-color">수정하기</div>
             </div>
           </div>
         </div>
@@ -138,7 +130,7 @@
                 </div>
               </ng-container>
             </div>
-            <div *ngIf="placeObj" class="place-desc">
+            <div *ngIf="placeObj" class="img-desc">
               <div>{{ placeObj?.road_address_name }} {{ placeObj?.place_name }}</div>
               <div class="tkit-coral-color hidden-md hidden-lg" (click)="openPlaceMap('m')">수정하기</div>
               <div class="tkit-coral-color hidden-xs hidden-sm" (click)="openPlaceMap('pc')">수정하기</div>

@@ -27,6 +27,7 @@ export class ContentNew2Component implements OnInit {
   isCoverPopup = false;
   typeCoverPopup = '';
   croppedImg = '';
+  croppedImgSize = 0;
   thumnails = ['', '', '', '', '', ''];
 
   placeObj: Object;
@@ -66,7 +67,8 @@ export class ContentNew2Component implements OnInit {
 
     this.popupService.nameSubject.subscribe(res => {
       if (res.name === 'cropper') {
-        this.croppedImg = res.value;
+        this.croppedImg = res.value['base64'];
+        this.croppedImgSize = res.value['file']['size'];
       } else if (res.name === 'map') {
         this.placeObj = res.value;
         this.placeX = Number.parseFloat(this.placeObj['x']);

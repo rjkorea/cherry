@@ -95,23 +95,23 @@ textarea {
     cursor: pointer;
 }
 
-.img-container .place-desc {
+.img-container .img-desc {
     padding-top: 0.75rem;
     margin-bottom: -0.75rem;
 }
 
-.img-container .place-desc {
+.img-container .img-desc {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.15rem;
 }
 
-.img-container .place-desc div:first-child {
+.img-container .img-desc div:first-child {
     flex: 1;
 }
 
-.img-container .place-desc div:last-child {
+.img-container .img-desc div:last-child {
     cursor: pointer;
 }
 

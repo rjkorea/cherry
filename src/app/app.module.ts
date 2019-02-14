@@ -98,6 +98,7 @@ import { PopupService } from './services/popup.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { DateTimeFormatPipe } from './pipes/datetime.pipe';
+import { FileSizeFormatPipe } from './pipes/file-size.pipe';
 import { TIMService } from './services/tim.service';
 import { IdComponent } from './components/login/find/id/id.component';
 import { PasswordComponent } from './components/login/find/password/password.component';
@@ -109,6 +110,7 @@ import { ModalCenterComponent } from './components/common/popup/modal-center/mod
 import { ContentCropperComponent } from './components/content/content-new2/content-cropper/content-cropper.component';
 import { ContentIsPublicComponent } from './components/content/content-new2/content-is-public/content-is-public.component';
 import { ContentPlaceMapComponent } from './components/content/content-new2/content-place-map/content-place-map.component';
+
 
 defineLocale('ko', koLocale);
 
@@ -181,6 +183,7 @@ defineLocale('ko', koLocale);
     ModalBottomComponent,
     SingleDateComponent,
     DateTimeFormatPipe,
+    FileSizeFormatPipe,
     ContentCropperComponent,
     ContentIsPublicComponent,
     ContentPlaceMapComponent
@@ -230,7 +233,8 @@ defineLocale('ko', koLocale);
     UtilService,
     QnaService,
     PopupService,
-    DateTimeFormatPipe
+    DateTimeFormatPipe,
+    FileSizeFormatPipe
   ],
   bootstrap: [AppComponent],
   entryComponents: [

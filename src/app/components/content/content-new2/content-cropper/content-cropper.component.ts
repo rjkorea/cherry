@@ -26,7 +26,7 @@ export class ContentCropperComponent implements OnInit {
   }
 
   imageCropped(e: ImageCroppedEvent): void {
-    this.popupService.setNameSubject({ name: 'cropper', value: e.base64 });
+    this.popupService.setNameSubject({ name: 'cropper', value: e });
 
     if (this.isCoverPopup) {
       this.controlCoverPopup.emit(false);
