@@ -110,6 +110,7 @@ import { ModalCenterComponent } from './components/common/popup/modal-center/mod
 import { ContentCropperComponent } from './components/content/content-new2/content-cropper/content-cropper.component';
 import { ContentIsPublicComponent } from './components/content/content-new2/content-is-public/content-is-public.component';
 import { ContentPlaceMapComponent } from './components/content/content-new2/content-place-map/content-place-map.component';
+import { ContentManageComponent } from './components/content/content-manage/content-manage.component';
 
 
 defineLocale('ko', koLocale);
@@ -186,7 +187,8 @@ defineLocale('ko', koLocale);
     FileSizeFormatPipe,
     ContentCropperComponent,
     ContentIsPublicComponent,
-    ContentPlaceMapComponent
+    ContentPlaceMapComponent,
+    ContentManageComponent
   ],
   imports: [
     BrowserModule,
