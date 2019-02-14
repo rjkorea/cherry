@@ -37,5 +37,8 @@ export const environment = {
   },
   kakao: {
     api_key: '1c9eb8b4c2d89e8f9de7d6fbc9794674'
+  },
+  google: {
+    api_key: 'AIzaSyDj_SDwfwqwGNUjky0nri6FHcmhHyeD6j4'
   }
 };

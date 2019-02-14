@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
+import { environment } from '../environments/environment';
+
 // 3rd party module
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
@@ -198,7 +200,7 @@ defineLocale('ko', koLocale);
     SharedComponentsModule,
     ImageCropperModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDj_SDwfwqwGNUjky0nri6FHcmhHyeD6j4'
+      apiKey: environment.google.api_key
     })
   ],
   providers: [
