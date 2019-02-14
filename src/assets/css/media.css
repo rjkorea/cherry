@@ -30,15 +30,15 @@
 }
 
 @media screen and (min-width : 601px) and (max-width : 840px) {
-	html { font-size: 14px; }
+	html { font-size: 13px; }
 }
 
 @media screen and (min-width : 841px) and (max-width : 1080px) {
-	html { font-size: 14px; }
+	html { font-size: 13px; }
 }
 
 @media screen and (min-width : 1081px) {
-	html { font-size: 15px; }
+	html { font-size: 14px; }
 }
 
 /* Mobile */
