@@ -17,6 +17,7 @@ import { ButtonsModule } from 'ngx-bootstrap';
 import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { SharedComponentsModule } from './components/shared/shared-components.module';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -195,7 +196,10 @@ defineLocale('ko', koLocale);
     UiSwitchModule,
     ButtonsModule.forRoot(),
     SharedComponentsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDj_SDwfwqwGNUjky0nri6FHcmhHyeD6j4'
+    })
   ],
   providers: [
     {

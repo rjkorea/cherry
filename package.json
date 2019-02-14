@@ -33,6 +33,7 @@
     "@angular/platform-server": "5.2.8",
     "@angular/router": "5.2.8",
     "@angular/upgrade": "5.2.8",
+    "@agm/core": "1.0.0-beta.2",
     "angular-tag-cloud-module": "1.4.0",
     "angular2-chartjs": "0.4.1",
     "angular2-moment": "1.0.0",
