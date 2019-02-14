@@ -14,11 +14,11 @@ export class ContentCropperComponent implements OnInit {
   imageChangedEvent: any;
 
   constructor(
-    private PopupService: PopupService
+    private popupService: PopupService
   ) { }
 
   ngOnInit() {
-    this.imageChangedEvent = this.PopupService.getData();
+    this.imageChangedEvent = this.popupService.getData();
   }
 
   emitCrop(cropper: ImageCropperComponent): void {
@@ -26,12 +26,12 @@ export class ContentCropperComponent implements OnInit {
   }
 
   imageCropped(e: ImageCroppedEvent): void {
-    this.PopupService.setEndSubject(e.base64);
+    this.popupService.setNameSubject({ name: 'cropper', value: e.base64 });
 
     if (this.isCoverPopup) {
       this.controlCoverPopup.emit(false);
     } else {
-      this.PopupService.clearPopup();
+      this.popupService.clearPopup();
     }
   }
 
@@ -45,7 +45,7 @@ export class ContentCropperComponent implements OnInit {
     if (this.isCoverPopup) {
       this.controlCoverPopup.emit(false);
     } else {
-      this.PopupService.clearPopup();
+      this.popupService.clearPopup();
     }
   }
 }

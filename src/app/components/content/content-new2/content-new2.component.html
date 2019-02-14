@@ -100,10 +100,10 @@
               </ng-container>
               <ng-container *ngIf="!croppedImg">
                 <div class="desc-box">
-                  <span class="bold">눌러서 이미지를 업로드 해주세요</span><br>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
+                  <span class="bold">눌러서 이미지를 업로드 해주세요</span>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
                 </div>
               </ng-container>
-              <input type="file" name="file" (change)="changeImage($event, 'm')">
+              <input type="file" name="file" (change)="changeMainImg($event, 'm')">
             </div>
           </div>
           <div class="img-container hidden-xs hidden-sm">
@@ -113,27 +113,36 @@
               </ng-container>
               <ng-container *ngIf="!croppedImg">
                 <div class="desc-box">
-                  <span class="bold">눌러서 이미지를 업로드 해주세요</span><br>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
+                  <span class="bold">눌러서 이미지를 업로드 해주세요</span>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
                 </div>
               </ng-container>
-              <input type="file" name="file" (change)="changeImage($event, 'pc')">
+              <input type="file" name="file" (change)="changeMainImg($event, 'pc')">
             </div>
           </div>
         </div>
         <div class="form-group">
           <label class="tds-label bold">행사 장소</label>
           <div class="img-container">
-            <div class="img-box">
-                <div class="desc-box">
-                  <span class="bold">눌러서 장소를 검색해주세요</span><br>(지도로 표시됩니다)
+            <div class="img-box place-box">
+              <ng-container *ngIf="placeObj">
+                <agm-map [latitude]="placeY" [longitude]="placeX" [zoom]="14" style="height: 15rem">
+                  <agm-marker [latitude]="placeY" [longitude]="placeX"></agm-marker>
+                </agm-map>
+              </ng-container>
+              <ng-container *ngIf="!placeObj">
+                <div class="desc-box hidden-md hidden-lg" (click)="openPlaceMap('m')">
+                  <span class="bold">눌러서 장소를 검색해주세요</span>(지도로 표시됩니다)
                 </div>
+                <div class="desc-box hidden-xs hidden-sm" (click)="openPlaceMap('pc')">
+                  <span class="bold">눌러서 장소를 검색해주세요</span>(지도로 표시됩니다)
+                </div>
+              </ng-container>
             </div>
-          </div>
-          <div class="map-container">
-            <agm-map [latitude]="33.450701" [longitude]="126.570667" [zoom]="14" style="height: 300px">
-                <agm-marker [latitude]="33.450701" [longitude]="126.570667">
-                </agm-marker>
-            </agm-map>
+            <div *ngIf="placeObj" class="place-desc">
+              <div>{{ placeObj?.road_address_name }} {{ placeObj?.place_name }}</div>
+              <div class="tkit-coral-color hidden-md hidden-lg" (click)="openPlaceMap('m')">수정하기</div>
+              <div class="tkit-coral-color hidden-xs hidden-sm" (click)="openPlaceMap('pc')">수정하기</div>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -266,7 +275,7 @@
               <div class="extra-box">
                 <span>{{ i + 1 }}</span>
                 <i class="fa fa-plus fa-2x"></i>
-                <input type="file" name="file" (change)="setExtraImg($event, i)">
+                <input type="file" name="file" (change)="changeExtraImg($event, i)">
                 <div class="mini-thum-box" [ngStyle]="{'background': 'url(' + thum + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div>
                 <ng-container *ngIf="thum">
                   <div class="mini-thum-overlay"></div>
@@ -300,4 +309,5 @@
 
 <ng-container *ngIf="isCoverPopup">
   <app-content-cropper *ngIf="typeCoverPopup === 'cropper'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-cropper>
+  <app-content-place-map *ngIf="typeCoverPopup === 'map'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-place-map>
 </ng-container>

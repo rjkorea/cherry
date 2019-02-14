@@ -13,7 +13,7 @@ export class SingleDateComponent implements OnInit {
   background = '';
 
   constructor(
-    private PopupService: PopupService
+    private popupService: PopupService
   ) { }
 
   ngOnInit() {
@@ -32,12 +32,12 @@ export class SingleDateComponent implements OnInit {
     const selected = this.singleDate['selected'];
 
     if (selected) {
-      this.PopupService.setSubject(selected);
+      this.popupService.setSubject(selected);
       this.clear();
     }
   }
 
   clear(): void {
-    this.PopupService.clearPopup();
+    this.popupService.clearPopup();
   }
 }

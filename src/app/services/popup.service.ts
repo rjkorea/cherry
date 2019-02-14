@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class PopupService {
   public subject = new Subject<any>();
-  public endSubject = new Subject<any>();
+  public nameSubject = new Subject<any>();
   public data: any;
   private factory: any;
   private content: any;
@@ -22,8 +22,8 @@ export class PopupService {
     this.subject.next(sub);
   }
 
-  setEndSubject(eSub): void {
-    this.endSubject.next(eSub);
+  setNameSubject(nSub): void {
+    this.nameSubject.next(nSub);
   }
 
   setData(data): void {

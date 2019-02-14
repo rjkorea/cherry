@@ -4,7 +4,8 @@
     <img *ngIf="isCoverPopup" src="/assets/images/close-grey.svg" (click)="controlCoverPopup.emit(false)">
   </div>
   <div class="desc demi-light">10MB 이하 / 2160 x 1080 px (2:1비율) 권장</div>
-  <div class="crop-box">
+  <div *ngIf="isCoverPopup" class="u-header-shadow"></div>
+  <div class="crop-box media-header">
     <image-cropper #cropper
       [imageChangedEvent]="imageChangedEvent"
       [maintainAspectRatio]="true"

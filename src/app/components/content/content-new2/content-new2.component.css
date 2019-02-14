@@ -91,6 +91,30 @@ textarea {
 
 }
 
+.img-container .place-box {
+    cursor: pointer;
+}
+
+.img-container .place-desc {
+    padding-top: 0.75rem;
+    margin-bottom: -0.75rem;
+}
+
+.img-container .place-desc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.15rem;
+}
+
+.img-container .place-desc div:first-child {
+    flex: 1;
+}
+
+.img-container .place-desc div:last-child {
+    cursor: pointer;
+}
+
 .img-box {
     position: relative;
     text-align: center;
@@ -110,7 +134,10 @@ textarea {
 }
 
 .desc-box {
-    padding: 4rem 0;
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .thum-box img {

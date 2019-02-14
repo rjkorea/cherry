@@ -7,6 +7,8 @@ import { ModalBottomComponent } from '../../../components/common/popup/modal-bot
 import { DateTimeFormatPipe } from '../../../pipes/datetime.pipe';
 import { ContentCropperComponent } from './content-cropper/content-cropper.component';
 import { ContentIsPublicComponent } from './content-is-public/content-is-public.component';
+import { ContentPlaceMapComponent } from './content-place-map/content-place-map.component';
+import { ObjectOrientedRenderer3 } from '@angular/core/src/render3/renderer';
 
 @Component({
   selector: 'app-content-new2',
@@ -20,13 +22,16 @@ export class ContentNew2Component implements OnInit {
   @ViewChild('pcToDate') pcToDate: ElementRef;
 
   utils = utils;
-  thumnails = ['', '', '', '', '', ''];
   maxByte40 = 40;
   limitByte = 0;
   isCoverPopup = false;
-  typeCoverPopup = 'cropper';
+  typeCoverPopup = '';
   croppedImg = '';
+  thumnails = ['', '', '', '', '', ''];
 
+  placeObj: Object;
+  placeX = 0;
+  placeY = 0;
   previewData = {
     isHidden: false,
     name: '',
@@ -59,15 +64,21 @@ export class ContentNew2Component implements OnInit {
       }
     });
 
-    this.popupService.endSubject.subscribe(res => {
-      this.croppedImg = res;
+    this.popupService.nameSubject.subscribe(res => {
+      if (res.name === 'cropper') {
+        this.croppedImg = res.value;
+      } else if (res.name === 'map') {
+        this.placeObj = res.value;
+        this.placeX = Number.parseFloat(this.placeObj['x']);
+        this.placeY = Number.parseFloat(this.placeObj['y']);
+      }
     });
   }
 
   ngOnInit() {
   }
 
-  changeImage(o, type): void {
+  changeMainImg(o, type): void {
     const file = o.srcElement.files;
 
     if (file) {
@@ -111,12 +122,21 @@ export class ContentNew2Component implements OnInit {
     }
   }
 
+  openPlaceMap(type): void {
+    if (type === 'm') {
+      this.controlCoverPopup(true, 'map');
+    } else {
+      this.popupService.setView(this.viewContainerRef);
+      this.popupService.add(ModalCenterComponent, ContentPlaceMapComponent);
+    }
+  }
+
   controlCoverPopup(isOpen: boolean, type: string): void {
     this.isCoverPopup = isOpen;
     this.typeCoverPopup = type;
   }
  
-  setExtraImg(o, idx): void {
+  changeExtraImg(o, idx): void {
     const file = o.srcElement.files[0];
 
     if (file) {

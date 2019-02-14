@@ -108,6 +108,7 @@ import { SingleDateComponent } from './components/common/calendar/single-date/si
 import { ModalCenterComponent } from './components/common/popup/modal-center/modal-center.component';
 import { ContentCropperComponent } from './components/content/content-new2/content-cropper/content-cropper.component';
 import { ContentIsPublicComponent } from './components/content/content-new2/content-is-public/content-is-public.component';
+import { ContentPlaceMapComponent } from './components/content/content-new2/content-place-map/content-place-map.component';
 
 defineLocale('ko', koLocale);
 
@@ -181,7 +182,8 @@ defineLocale('ko', koLocale);
     SingleDateComponent,
     DateTimeFormatPipe,
     ContentCropperComponent,
-    ContentIsPublicComponent
+    ContentIsPublicComponent,
+    ContentPlaceMapComponent
   ],
   imports: [
     BrowserModule,
@@ -236,7 +238,8 @@ defineLocale('ko', koLocale);
     ModalBottomComponent,
     SingleDateComponent,
     ContentCropperComponent,
-    ContentIsPublicComponent
+    ContentIsPublicComponent,
+    ContentPlaceMapComponent
   ]
 })
 export class AppModule { }
