@@ -33,8 +33,12 @@ li {
     list-style: none;
 }
 
+button {
+    outline: none !important;
+}
+
 button:focus {
-    outline: none;
+    outline: none !important;
 }
 
 button:disabled, button[disabled] {

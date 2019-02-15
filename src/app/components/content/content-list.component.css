@@ -3,3 +3,28 @@
   height: 376px;
   width: 297px;
 }
+
+.thumbnail p:last-child .btn-line {
+  width: 49%;
+  margin-bottom: 0.5rem;
+}
+
+.thumbnail .caption h3 {
+  line-height: 150%;
+}
+
+/* header */
+.title {margin-top: 2rem;}
+.title h1 {font-size:22px; font-size: 2.2rem; font-weight: 900; line-height: 1.; color: #444444; margin-bottom:10px;}
+.title p {font-size:1.3rem;}
+  
+.tab-nav-wrap {box-shadow: 0 2px 3px 0 rgba(197, 197, 197, 0.5); margin-top:2.5rem;}
+.tab-nav-wrap .list-inline {margin-left:0;}
+.tab-nav li {height:4rem; line-height:4rem; font-size:1.3rem; color:#999; font-weight: 500; margin-right:-0.4rem; width:50%; display:inline-flex; align-items:center; justify-content: center;}
+.tab-nav li span {display:inline-flex; justify-content:center; align-items:center; width:3.8rem; height:1.8rem; border-radius:2rem; background-color:#a8a8a8; color:#fff; font-size:1.2rem; margin-left:0.6rem;}
+.tab-nav li.on {color:#666; border-bottom:2px solid #62aab8;}
+.tab-nav li.on span {background-color:#62aab8;}
+.tab-nav .f-menu {cursor:pointer;}
+
+a {color: #444444; text-decoration: none; outline: none}
+a:hover, a:active {text-decoration: none; color: #444444;}

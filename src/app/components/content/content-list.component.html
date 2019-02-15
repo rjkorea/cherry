@@ -10,30 +10,38 @@
   </div>
 </div>
 
-<div *ngIf="count>=0">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="이름, 설명, 장소, 장르, 라인업, 권한" [(ngModel)]="query" name="query" (keyup.enter)="search()">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-        </span>
-      </div>
-      <br>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-1">
-      <p><a routerLink="/contents/new" class="btn btn-tkit-mint btn-lg" role="button">추가하기</a></p>
-    </div>
-  </div>
-</div>
-
 <div *ngIf="is_loading">
   <app-loader></app-loader>
 </div>
 
 <div *ngIf="!is_loading">
+  <div class="title">
+    <h1>행사관리 홈</h1>
+    <p>티킷으로 쉽고 간편하게 행사를 관리해보세요</p>
+  </div>
+
+  <div *ngIf="count>=0">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="이름, 설명, 장소, 장르, 라인업, 권한" [(ngModel)]="query" name="query" (keyup.enter)="search()">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- tab menu --->
+  <div class="tab-nav-wrap">
+    <ul class="tab-nav list-inline">
+        <li class="f-menu on">진행중인 행사 <span>13</span></li> <!-- class="on" 으로 활성화 컨트롤 -->
+        <li class="f-menu">종료된 행사 <span>1</span></li>
+    </ul>
+  </div>
+  <!-- //tab menu --->
+
   <div *ngIf="count>0">
     <div class="row">
       <div class="col-md-12">
@@ -54,9 +62,11 @@
               <p *ngIf="content.when"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm'}}</span> <span *ngIf="content.when.end">~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm'}}</span></p>
               <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> {{content.place.name}}</p>
               <p>
-                <button type="button" class="btn btn-default btn-block" [disabled]="isStaffNavbar()" (click)="goTicket(content._id)">티켓 관리</button>
-                <button type="button" class="btn btn-default btn-block" (click)="goEntrance(content._id)">입장 관리</button>
-                <button type="button" class="btn btn-default btn-block" (click)="goStats(content._id)">행사현황 보기</button>
+                <button class="btn btn-default btn-line">상세보기(수정)</button>
+                <button class="btn btn-default btn-line" [disabled]="isStaffNavbar()" (click)="goTicket(content._id)">티켓관리</button>
+                <button class="btn btn-default btn-line" (click)="ready()">스텝/셀러관리</button>
+                <button class="btn btn-default btn-line" (click)="goEntrance(content._id)">입장관리</button>
+                <button class="btn btn-block btn-tkit-mint" (click)="goStats(content._id)">행사현황 보기</button>
               </p>
             </div>
           </div>
@@ -80,7 +90,5 @@
     </div>
     <br>
   </div>
-
-
 
 </div>
