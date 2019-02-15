@@ -1,4 +1,4 @@
-<div class="media-preview hidden-xs">
+<div class="media-preview hidden-xs hidden-sm">
   <div class="scroll-box">
     <div class="main">
       <div class="title">
@@ -14,8 +14,8 @@
       <div class="img-box"><span>행사 대표 이미지가 표시되는 부분입니다</span></div>
       <div class="date"><span class="bold">날짜 : </span>
         <ng-container *ngIf="previewData.startDate || previewData.endDate; else elseDate">
-          <span *ngIf="previewData.startDate">{{ previewData.startDate }}</span>
-          <span *ngIf="previewData.endDate">{{ previewData.startDate }} - {{ previewData.endDate }}</span>
+          <span *ngIf="previewData.startDate">{{ previewData.startDate }} </span>-
+          <span *ngIf="previewData.endDate"> {{ previewData.endDate }}</span>
         </ng-container>
         <ng-template #elseDate><span>YYYY. MM. DD 12:00 - YYYY. MM. DD 22:00</span></ng-template>
       </div>
@@ -50,7 +50,7 @@
   </div>
 </div>
 
-<div class="preview-wrapper hidden-sm hidden-md hidden-lg">
+<div class="preview-wrapper hidden-md hidden-lg">
   <div class="header-title bold">
     <span>행사 미리보기</span>
     <img *ngIf="isCoverPopup" src="/assets/images/close-grey.svg" (click)="controlCoverPopup.emit(false)">
@@ -72,8 +72,8 @@
     <div class="img-box"><span>행사 대표 이미지가 표시되는 부분입니다</span></div>
     <div class="date"><span class="bold">날짜 : </span>
       <ng-container *ngIf="previewData.startDate || previewData.endDate; else elseDate">
-        <span *ngIf="previewData.startDate">{{ previewData.startDate }}</span>
-        <span *ngIf="previewData.endDate">{{ previewData.startDate }} - {{ previewData.endDate }}</span>
+        <span *ngIf="previewData.startDate">{{ previewData.startDate }} </span>-
+        <span *ngIf="previewData.endDate"> {{ previewData.endDate }}</span>
       </ng-container>
       <ng-template #elseDate><span>YYYY. MM. DD 12:00 - YYYY. MM. DD 22:00</span></ng-template>
     </div>
