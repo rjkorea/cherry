@@ -43,7 +43,7 @@
 
 .place-wrapper .p-list li {
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 1rem 0.5rem;
     font-size: 1.05rem;
     border-bottom: 1px solid #cccccc;
 }

@@ -108,9 +108,10 @@ import { ModalBottomComponent } from './components/common/popup/modal-bottom/mod
 import { SingleDateComponent } from './components/common/calendar/single-date/single-date.component';
 import { ModalCenterComponent } from './components/common/popup/modal-center/modal-center.component';
 import { ContentCropperComponent } from './components/content/content-new2/content-cropper/content-cropper.component';
-import { ContentIsPublicComponent } from './components/content/content-new2/content-is-public/content-is-public.component';
+import { ContentIsPrivateComponent } from './components/content/content-new2/content-is-private/content-is-private.component';
 import { ContentPlaceMapComponent } from './components/content/content-new2/content-place-map/content-place-map.component';
 import { ContentManageComponent } from './components/content/content-manage/content-manage.component';
+import { ContentHostInfoComponent } from './components/content/content-new2/content-host-info/content-host-info.component';
 
 
 defineLocale('ko', koLocale);
@@ -186,9 +187,10 @@ defineLocale('ko', koLocale);
     DateTimeFormatPipe,
     FileSizeFormatPipe,
     ContentCropperComponent,
-    ContentIsPublicComponent,
+    ContentIsPrivateComponent,
     ContentPlaceMapComponent,
-    ContentManageComponent
+    ContentManageComponent,
+    ContentHostInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -244,8 +246,9 @@ defineLocale('ko', koLocale);
     ModalBottomComponent,
     SingleDateComponent,
     ContentCropperComponent,
-    ContentIsPublicComponent,
-    ContentPlaceMapComponent
+    ContentIsPrivateComponent,
+    ContentPlaceMapComponent,
+    ContentHostInfoComponent
   ]
 })
 export class AppModule { }

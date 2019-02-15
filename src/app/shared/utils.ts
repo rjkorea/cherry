@@ -8,8 +8,15 @@ export const utils = {
     },
 
     getTogglePopup(name: string, elm: any): void {
-        if (name === 'isPublic') {
+        if (name === 'isPrivate') {
           elm.classList.toggle('on');
         }
+    },
+
+    getFileFromBlob(blob: Blob, name: string): File {
+        blob['lastModifiedDate'] = new Date();
+        blob['name'] = name;
+
+        return <File>blob;
     }
 };

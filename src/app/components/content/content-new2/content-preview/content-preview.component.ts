@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-content-preview',
@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ContentPreviewComponent implements OnInit {
   @Input() previewData: any;
+  @Input() isCoverPopup: boolean;
+  @Output() controlCoverPopup: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 

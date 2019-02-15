@@ -4,7 +4,7 @@
     <div class="col-sm-5 hidden-xs hidden-sm stick-left">
       <div class="header">모바일 화면 미리보기</div>
       <div class="render">
-        <span class="render-btn bold">적용하기</span>
+        <span class="render-btn bold" (click)="setPreview('pc')">적용하기</span>
         <span class="txt">버튼을 누르고 화면을 스크롤 해보세요</span>
       </div>
       <app-content-preview [previewData]="previewData"></app-content-preview>
@@ -12,28 +12,30 @@
     <div class="col-sm-1 hidden-xs hidden-sm"></div>
     <div class="col-sm-6">
 
-    <form>
+    <form [formGroup]="contentsForm">
       <div class="row">
         <div class="header">필수입력</div>
         <div class="form-group is-hidden">
           <div class="q-box">
             <span class="bold">행사 공개여부</span>
-            <span class="u-toggle-container q-mark hidden-xs hidden-sm" (click)="utils.getTogglePopup('isPublic', toggle)">
+            <span class="u-toggle-container q-mark hidden-xs hidden-sm" (click)="utils.getTogglePopup('isPrivate', toggle)">
               <img src="/assets/images/question-mark.svg">
-              <div #toggle class="u-toggle"><app-content-is-public></app-content-is-public></div>
+              <div #toggle class="u-toggle"><app-content-is-private></app-content-is-private></div>
             </span>
-            <span class="q-mark hidden-md hidden-lg" (click)="openDescriptionPopup('isPublic')">
+            <span class="q-mark hidden-md hidden-lg" (click)="openDescriptionPopup('isPrivate')">
               <img src="/assets/images/question-mark.svg">
             </span>
           </div>
           <label>
-            <input type="checkbox" class="form-control check" id="check">
+            <input type="checkbox" class="form-control check" formControlName="isPrivate">
             <span>비공개</span>
           </label>
         </div>
         <div class="form-group f-title">
           <label class="tds-label bold">행사명</label>
-          <div class="in"><input #name type="text" class="form-control tds-input" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byteName)" (change)="checkBytes(name, byteName)"></div>
+          <div class="in">
+            <input #name type="text" class="form-control tds-input" formControlName="contentsName" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byteName)" (change)="checkBytes(name, byteName)">
+          </div>
           <div class="bytes"><span #byteName>0</span> / {{ maxByte40 }} Bytes</div>
         </div>
         <div class="form-group category">
@@ -41,51 +43,51 @@
           <div class="pkg-box">
             <div class="pkg1">
               <label>
-                <input type="checkbox" class="form-control check">
+                <input type="checkbox" class="form-control check" formControlName="exhibition">
                 <span>전시</span>
               </label>
               <label>
-                <input type="checkbox" class="form-control check">
+                <input type="checkbox" class="form-control check" formControlName="coupon">
                 <span>쿠폰</span>
               </label>
             </div>
             <div class="pkg2">
               <label>
-                <input type="checkbox" class="form-control check">
+                <input type="checkbox" class="form-control check" formControlName="play">
                 <span>공연</span>
               </label>
               <label>
-                <input type="checkbox" class="form-control check">
+                <input type="checkbox" class="form-control check" formControlName="seminar">
                 <span>세미나</span>
               </label>
             </div>
             <div class="pkg3">
               <label>
-                <input type="checkbox" class="form-control check">
+                <input type="checkbox" class="form-control check" formControlName="concert">
                 <span>콘서트</span>
               </label>
               <label>
-                <input type="checkbox" class="form-control check">
+                <input type="checkbox" class="form-control check" formControlName="invitation">
                 <span>초대장</span>
               </label>
             </div>
             <div class="pkg4">
               <label>
-                <input type="checkbox" class="form-control check">
+                <input type="checkbox" class="form-control check" formControlName="festival">
                 <span>페스티벌</span>
               </label>
               <label>
-                <input type="checkbox" class="form-control check">
+                <input type="checkbox" class="form-control check" formControlName="wedding">
                 <span>청첩장</span>
               </label>
             </div>
             <div class="pkg5">
               <label>
-                <input type="checkbox" class="form-control check">
+                <input type="checkbox" class="form-control check" formControlName="club">
                 <span>클럽</span>
               </label>
               <label>
-                <input type="checkbox" class="form-control check">
+                <input type="checkbox" class="form-control check" formControlName="etc">
                 <span>기타</span>
               </label>
             </div>
@@ -103,12 +105,15 @@
                   <span class="bold">눌러서 이미지를 업로드 해주세요</span>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
                 </div>
               </ng-container>
-              <input type="file" name="file" class="hidden-md hidden-lg" (change)="changeMainImg($event, 'm')">
-              <input type="file" name="file" class="hidden-xs hidden-sm" (change)="changeMainImg($event, 'pc')">
+              <input id="mMainImg" type="file" name="file" class="hidden-md hidden-lg" (change)="changeMainImg($event, 'm')">
+              <input id="pcMainImg" type="file" name="file" class="hidden-xs hidden-sm" (change)="changeMainImg($event, 'pc')">
             </div>
             <div *ngIf="croppedImg" class="img-desc">
               <div>파일크기: {{ croppedImgSize | fileSizeFormat: 2 }}</div>
-              <div class="tkit-coral-color">수정하기</div>
+              <div class="tkit-coral-color">
+                <label class="hidden-md hidden-lg" for="mMainImg">수정하기</label>
+                <label class="hidden-xs hidden-sm" for="pcMainImg">수정하기</label>
+              </div>
             </div>
           </div>
         </div>
@@ -146,8 +151,8 @@
               <input #mFromDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('m', 'from')">
               <input #pcFromDate type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD" (click)="openCalendar('pc', 'from')">
               <img src="/assets/images/watch.svg">
-              <select class="form-control tds-input tds-select" required>
-                <option value="" hidden>12</option>
+              <select class="form-control tds-input tds-select" formControlName="fromHours" required>
+                <option value="" hidden>시</option>
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -174,8 +179,8 @@
                 <option value="23">23</option>
               </select>
               &nbsp;&nbsp;:&nbsp;&nbsp;
-              <select class="form-control tds-input tds-select" required>
-                <option value="" hidden>00</option>
+              <select class="form-control tds-input tds-select" formControlName="fromMins" required>
+                <option value="" hidden>분</option>
                 <option value="00">00</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -190,8 +195,8 @@
               <input #mToDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('m', 'to')">
               <input #pcToDate type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD" (click)="openCalendar('pc', 'to')">
               <img src="/assets/images/watch.svg">
-              <select class="form-control tds-input tds-select" required>
-                <option value="" hidden>12</option>
+              <select class="form-control tds-input tds-select" formControlName="toHours" required>
+                <option value="" hidden>시</option>
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -218,8 +223,8 @@
                 <option value="23">23</option>
               </select>
               &nbsp;&nbsp;:&nbsp;&nbsp;
-              <select class="form-control tds-input tds-select" required>
-                <option value="" hidden>00</option>
+              <select class="form-control tds-input tds-select"formControlName="toMins" required>
+                <option value="" hidden>분</option>
                 <option value="00">00</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -235,7 +240,8 @@
             <div class="bold">주최자 정보</div>
             <span class="txt">주최자 정보를 입력하지 않으면 회원가입 시 입력한 주최자(주최사) 이름/이메일 주소/핸드폰 번호(회사 연락처)로 표시됩니다</span>
           </div>
-          <div class="info-btn">입력하기</div>
+          <div class="info-btn hidden-md hidden-lg" (click)="openHostInfo('m')">입력하기</div>
+          <div class="info-btn hidden-xs hidden-sm" (click)="openHostInfo('pc')">입력하기</div>
         </div>
       </div>
 
@@ -243,27 +249,27 @@
         <div class="header">선택입력(행사 상세정보)</div>
         <div class="form-group">
           <label class="tds-label bold">행사 홈페이지</label>
-          <input type="text" class="form-control tds-input" placeholder="예) https://tkit.kr">
+          <input type="text" class="form-control tds-input" formControlName="siteUrl" placeholder="예) https://tkit.kr">
         </div>
         <div class="form-group">
           <label class="tds-label bold">행사 관련 동영상 URL</label>
-          <input type="text" class="form-control tds-input" placeholder="예) https://tkit.kr">
+          <input type="text" class="form-control tds-input" formControlName="videoUrl" placeholder="예) https://tkit.kr">
           <div class="video-txt">유튜브URL 이외 동영상URL은 링크로만 표시됩니다</div>
         </div>
         <div class="form-group">
           <label class="tds-label bold">행사 공지사항</label>
-          <textarea type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="행사 공지사항을 입력해주세요"></textarea>
-          <div class="m-textarea hidden-md hidden-lg"><input type="text" class="form-control tds-input" placeholder="행사 공지사항을 입력해주세요" disabled></div>
+          <textarea type="text" class="form-control tds-input" formControlName="notice" placeholder="행사 공지사항을 입력해주세요"></textarea>
+          <!-- <div class="m-textarea hidden-md hidden-lg"><input type="text" class="form-control tds-input" placeholder="행사 공지사항을 입력해주세요" disabled></div> -->
         </div>
         <div class="form-group">
           <label class="tds-label bold">행사 상세설명</label>
-          <textarea type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="행사 상세설명을 입력해주세요"></textarea>
-          <div class="m-textarea hidden-md hidden-lg"><input type="text" class="form-control tds-input" placeholder="행사 공지사항을 입력해주세요" disabled></div>
+          <textarea type="text" class="form-control tds-input" formControlName="description" placeholder="행사 상세설명을 입력해주세요"></textarea>
+          <!-- <div class="m-textarea hidden-md hidden-lg"><input type="text" class="form-control tds-input" placeholder="행사 공지사항을 입력해주세요" disabled></div> -->
         </div>
         <div class="form-group">
           <label class="tds-label bold">추가 이미지 <span class="default">(순서대로 업로드 됩니다)</span></label>
           <div class="extra-container">
-            <ng-container *ngFor="let thum of thumnails; let i = index">
+            <ng-container *ngFor="let thum of thumbnails; let i = index">
               <div class="extra-box">
                 <span>{{ i + 1 }}</span>
                 <i class="fa fa-plus fa-2x"></i>
@@ -280,18 +286,18 @@
         <div class="form-group book">
           <label class="bold">방명록</label>
           <label>
-            <input type="checkbox" class="form-control check">
+            <input type="checkbox" class="form-control check" formControlName="commentsPrivate">
             <span>비공개</span>
           </label>
         </div>
       </div>
       <div class="row">
         <div class="hidden-xs hidden-sm">
-          <button class="btn btn-tkit-mint btn-block btn-base">완 료</button> <!-- [disabled]="!loginForm.valid" -->
+          <button class="btn btn-tkit-mint btn-block btn-base" [disabled]="!contentsForm.valid" (click)="done()">완 료</button>
         </div>
         <div class="hidden-md hidden-lg">
-          <button class="btn btn-preview btn-base btn-short">미리보기</button>
-          <button class="btn btn-tkit-mint btn-base btn-short right">완 료</button>
+          <button class="btn btn-preview btn-base btn-short" (click)="setPreview('m')">미리보기</button>
+          <button class="btn btn-tkit-mint btn-base btn-short right" [disabled]="!contentsForm.valid">완 료</button>
         </div>
       </div>
     </form>
@@ -302,4 +308,6 @@
 <ng-container *ngIf="isCoverPopup">
   <app-content-cropper *ngIf="typeCoverPopup === 'cropper'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-cropper>
   <app-content-place-map *ngIf="typeCoverPopup === 'map'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-place-map>
+  <app-content-host-info *ngIf="typeCoverPopup === 'host'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-host-info>
+  <app-content-preview *ngIf="typeCoverPopup === 'preview'" [previewData]="previewData" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-preview>
 </ng-container>

@@ -111,7 +111,7 @@ textarea {
     flex: 1;
 }
 
-.img-container .img-desc div:last-child {
+.img-container .img-desc div:last-child label {
     cursor: pointer;
 }
 

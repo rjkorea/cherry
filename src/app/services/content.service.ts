@@ -11,6 +11,7 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 @Injectable()
 export class ContentService {
   contentUrl = `${URL}/a/content`;
+  contentUrlV2 = `${URL}/a/v2/content`;
   contentsUrl = `${URL}/a/contents`;
   options;
 
@@ -88,5 +89,15 @@ export class ContentService {
     return this.http.post(url, form, options)
       .map((response: Response) => response.json())
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public addContentV2(data: FormData): Observable<{}> {
+    const url = `${this.contentUrlV2}`;
+    const headers = new Headers({ 'Authorization': 'csk=' + localStorage.getItem('csk') });
+    const options = new RequestOptions({ headers: headers, withCredentials: true });
+
+    return this.http.post(url, data, options)
+    .map((response: Response) => response.json())
+    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 }

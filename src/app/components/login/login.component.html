@@ -20,11 +20,8 @@
           <label class="tds-label offset">아이디(이메일)</label>
           <input type="text" class="form-control tds-input" formControlName="email" placeholder="예) help@rjkorea.com">
           <div *ngIf="email.invalid && (email.dirty || email.touched)" class="tds-message-invalid">
-            <div *ngIf="email.errors.required">
-              이메일 주소 필수
-            </div>
             <div *ngIf="email.errors.email">
-              이메일 형식이 올바르지 않음
+              이메일 형식이 올바르지 않습니다
             </div>
           </div>
         </div>
@@ -32,11 +29,8 @@
           <label class="tds-label offset">패스워드</label>
           <input type="password" class="form-control tds-input" formControlName="password" placeholder="••••••••">
           <div *ngIf="password.invalid && (password.dirty || password.touched)" class="tds-message-invalid">
-            <div *ngIf="password.errors.required">
-              패스워드 필수
-            </div>
             <div *ngIf="password.errors.minlength">
-              최소 8자 이상
+              최소 8자 이상 입력하세요
             </div>
           </div>
         </div>
