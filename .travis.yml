@@ -15,11 +15,10 @@ before_script:
 branches:
   only:
     - dev
-    
+
 script:
-  - ng build --$ENV --aot
-  - s3cmd sync --access_key $S3_ACCESS_KEY --secret_key $S3_SECRET_KEY --cf-invalidate --cf-invalidate-default-index -r -P dist/* s3://$S3_BUCKET
+  - ng build --dev --aot
+  - s3cmd sync --access_key $S3_ACCESS_KEY --secret_key $S3_SECRET_KEY --cf-invalidate --cf-invalidate-default-index -r -P dist/* s3://devhost.tkit.me
 
 notifications:
   slack: tkitme:YP4HX1luJf4x8QmXwqlVmnPv
-  
