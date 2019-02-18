@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { StatsService } from '../../services/stats.service';
+import { ContentService } from '../../services/content.service';
 
 @Component({
   selector: 'app-stats',
@@ -9,6 +10,7 @@ import { StatsService } from '../../services/stats.service';
 })
 export class StatsComponent implements OnInit {
   content_oid: string;
+  content: string;
   revenue: any;
   ticket_count: any;
   daily_ticket_viral_chart: any;
@@ -16,6 +18,7 @@ export class StatsComponent implements OnInit {
   is_loading: boolean;
 
   constructor(private route: ActivatedRoute,
+              private contentService: ContentService,
               private statsService: StatsService) { }
 
   ngOnInit() {
@@ -61,10 +64,31 @@ export class StatsComponent implements OnInit {
     const params: Params = this.route.snapshot.params;
     if ('id' in params) {
       this.content_oid = params['id'];
+      this.loadContent(this.content_oid);
       this.loadStatsContent(this.content_oid);
     } else {
       this.content_oid = null;
     }
+  }
+
+  loadContent(id: string) {
+    if (id) {
+      this.is_loading = true;
+      this.contentService.getContent(id)
+        .subscribe(
+          response => {
+            this.content = response['data'];
+            this.is_loading = false;
+          },
+          error => {
+            this.is_loading = false;
+            console.log(error);
+          }
+        );
+    } else {
+      this.is_loading = false;
+    }
+
   }
 
   loadStatsContent(id: string) {
