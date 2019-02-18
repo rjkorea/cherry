@@ -321,7 +321,7 @@ export class ContentNew2Component implements OnInit {
 
     if ((param.tags.length > 0) && this.cropeedImgFile && param.place_name && param.place_x && param.place_y && param.when_start && param.when_end) {
       this.contentService.addContentV2(form).subscribe(res => {
-        this.router.navigate(['/contents/home']);
+        this.router.navigate(['/content']);
         localStorage.removeItem('temp');
       });
     } else {
