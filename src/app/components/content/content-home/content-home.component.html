@@ -20,8 +20,8 @@
                 <ul class="list-element">
                     <li class="image"><div [ngStyle]="{'background': 'url(' + o.images[0].m + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div></li>
                     <li class="tit">{{ o.name }}</li>
-                    <li class="icon add">{{ o.place.name }}</li>
-                    <li class="icon time">
+                    <li class="icon location-time"><img src="/assets/images/location.svg">{{ o.place.name }}</li>
+                    <li class="icon location-time"><img src="/assets/images/time.svg">
                       <span *ngIf="o.when.start">{{ o.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm' }}</span>
                       <span *ngIf="o.when.end"> - {{ o.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm' }}</span>
                     </li>
@@ -62,8 +62,8 @@
             <ul class="list-element">
                 <li class="image"><div [ngStyle]="{'background': 'url(' + o.images[0].m + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div></li>
                 <li class="tit">{{ o.name }}</li>
-                <li class="icon add">{{ o.place.name }}</li>
-                <li class="icon time">
+                <li class="icon location-time"><img src="/assets/images/location.svg">{{ o.place.name }}</li>
+                <li class="icon location-time"><img src="/assets/images/time.svg">
                   <span *ngIf="o.when.start">{{ o.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm' }}</span>
                   <span *ngIf="o.when.end"> - {{ o.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm' }}</span>
                 </li>
