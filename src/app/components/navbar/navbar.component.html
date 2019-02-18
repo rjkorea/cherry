@@ -24,7 +24,8 @@
     <div *ngIf="isSuperNavbar()" id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
         <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">현황</a></li>
-        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사관리 홈</a></li>
+        <li><a routerLink="/contents/new" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
         <li><a routerLink="/company" routerLinkActive="active" data-toggle="collapse">회사관리</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">유저관리 <span class="caret"></span></a>
@@ -62,7 +63,8 @@
     <div *ngIf="isAdminNavbar()" id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
         <li><a routerLink="/home" routerLinkActive="active" data-toggle="collapse">현황</a></li>
-        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사관리 홈</a></li>
+        <li><a routerLink="/contents/new" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
         <li><a routerLink="/company" routerLinkActive="active" data-toggle="collapse">회사관리</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">유저 <span class="caret"></span></a>
@@ -99,19 +101,8 @@
     <!-- host -->
     <div *ngIf="isHostNavbar()" id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
-        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">티킷 PRO (사용자분석) <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/tickets/log" data-toggle="collapse">티켓 추적하기</a></li>
-            <li><a routerLink="/tim/matrix/ticket/order" data-toggle="collapse">티켓 사용자 랭킹</a></li>
-            <li><a routerLink="/tim/matrix/ticket/type" data-toggle="collapse">티켓 종류별 랭킹</a></li>
-            <!-- <li><a routerLink="/tim/report" data-toggle="collapse">레포트</a></li> -->
-            <li><a routerLink="/tim/analytics" data-toggle="collapse">실시간 현황 보기</a></li>
-          </ul>
-        </li>
-        <li><a routerLink="/staff" routerLinkActive="active" data-toggle="collapse">스텝관리</a></li>
-        <li><a href="http://pf.kakao.com/_xdlgxcxl/chat" target="_blank">HELP</a></li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사관리 홈</a></li>
+        <li><a routerLink="/contents/new" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -149,19 +140,8 @@
     <!-- pro -->
     <div *ngIf="isProNavbar()" id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
-        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" routerLinkActive="active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">티킷 PRO (사용자분석)<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/tickets/log" data-toggle="collapse">티켓 추적하기</a></li>
-            <li><a routerLink="/tim/matrix/ticket/order" data-toggle="collapse">티켓 사용자 랭킹</a></li>
-            <li><a routerLink="/tim/matrix/ticket/type" data-toggle="collapse">티켓 종류별 랭킹</a></li>
-            <!-- <li><a routerLink="/tim/report" data-toggle="collapse">레포트</a></li> -->
-            <li><a routerLink="/tim/analytics" data-toggle="collapse">실시간 현황 보기</a></li>
-          </ul>
-        </li>
-        <li><a routerLink="/staff" routerLinkActive="active" data-toggle="collapse">스텝관리</a></li>
-        <li><a href="http://pf.kakao.com/_xdlgxcxl/chat" target="_blank">HELP</a></li>
+        <li><a routerLink="/content" routerLinkActive="active" data-toggle="collapse">행사관리 홈</a></li>
+        <li><a routerLink="/contents/new" routerLinkActive="active" data-toggle="collapse">행사만들기</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
