@@ -305,9 +305,9 @@
   </div>
 </div>
 
-<div [hidden]="!isCoverPopup">
+<div *ngIf="isCoverPopup">
   <app-content-cropper *ngIf="typeCoverPopup === 'cropper'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-cropper>
   <app-content-place-map *ngIf="typeCoverPopup === 'map'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-place-map>
-  <app-content-host-info [hidden]="typeCoverPopup !== 'host'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-host-info>
+  <app-content-host-info *ngIf="typeCoverPopup === 'host'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-host-info>
   <app-content-preview *ngIf="typeCoverPopup === 'preview'" [previewData]="previewData" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-preview>
 </div>
