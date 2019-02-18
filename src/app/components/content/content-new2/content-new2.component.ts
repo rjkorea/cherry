@@ -13,7 +13,6 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AdminService } from 'app/services/admin.service';
 import { ContentService } from 'app/services/content.service';
 import { Router } from '@angular/router';
-import { ContentPreviewComponent } from './content-preview/content-preview.component';
 
 @Component({
   selector: 'app-content-new2',
@@ -66,7 +65,7 @@ export class ContentNew2Component implements OnInit {
   placeX = 0;
   placeY = 0;
 
-  hostObj: Object;
+  hostObj = {};
   previewData = {
     name: '',
     tags: [],
@@ -76,7 +75,8 @@ export class ContentNew2Component implements OnInit {
     desc: '',
     hostName: '',
     siteUrl: '',
-    videoUrl: ''
+    videoUrl: '',
+    placeName: ''
   };
 
   companyContactInfo: Object;
@@ -202,6 +202,7 @@ export class ContentNew2Component implements OnInit {
     this.previewData.desc = this.contentsForm.get('description').value;
     this.previewData.siteUrl = this.contentsForm.get('siteUrl').value;
     this.previewData.videoUrl = this.contentsForm.get('videoUrl').value;
+    this.previewData.placeName = this.placeObj !== undefined ? this.placeObj['place_name'] : '행사 장소가 표시되는 부분입니다';
 
     if (type === 'm') {
       this.controlCoverPopup(true, 'preview');
@@ -321,6 +322,7 @@ export class ContentNew2Component implements OnInit {
     if ((param.tags.length > 0) && this.cropeedImgFile && param.place_name && param.place_x && param.place_y && param.when_start && param.when_end) {
       this.contentService.addContentV2(form).subscribe(res => {
         this.router.navigate(['/contents/home']);
+        localStorage.removeItem('temp');
       });
     } else {
       alert('필수정보를 모두 입력해주세요');

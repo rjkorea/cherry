@@ -10,11 +10,11 @@
     <div class="media-header">
       <div class="form-group">
         <label class="tds-label bold">주최자/주최사</label>
-        <input type="text" class="form-control tds-input" formControlName="hostName" placeholder="주최자/주최사 이름을 입력해주세요">
+        <input type="text" class="form-control tds-input" formControlName="hostName" placeholder="주최자/주최사 이름을 입력해주세요" [(ngModel)]="body.hostName">
       </div>
       <div class="form-group">
         <label class="tds-label bold">이메일 주소</label>
-        <input type="text" class="form-control tds-input" formControlName="hostEmail" placeholder="예) help@rjkorea.com">
+        <input type="text" class="form-control tds-input" formControlName="hostEmail" placeholder="예) help@rjkorea.com" [(ngModel)]="body.hostEmail">
         <div *ngIf="hostEmail.invalid && (hostEmail.dirty || hostEmail.touched)" class="tds-message-invalid">
           <div *ngIf="hostEmail.errors.email">
             이메일 형식이 올바르지 않습니다
@@ -23,7 +23,7 @@
       </div>
       <div class="form-group">
         <label class="tds-label bold">연락처</label>
-        <input type="tel" class="form-control tds-input" pattern="\d*" formControlName="hostTel" placeholder="번호만 입력해주세요">
+        <input type="tel" class="form-control tds-input" pattern="\d*" formControlName="hostTel" placeholder="번호만 입력해주세요" [(ngModel)]="body.hostTel">
         <div *ngIf="hostTel.invalid && (hostTel.dirty || hostTel.touched)" class="tds-message-invalid">
           숫자만 입력해주세요
         </div>

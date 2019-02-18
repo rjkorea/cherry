@@ -18,7 +18,7 @@
         <div class="row">
             <div *ngFor="let o of openContents" class="col-xs-12 col-md-4 list">
                 <ul class="list-element">
-                    <li class="image"><div [ngStyle]="{'background': 'url(' + o.images[0].m + ')', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div></li>
+                    <li class="image"><div [ngStyle]="{'background': 'url(' + o.images[0].m + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div></li>
                     <li class="tit">{{ o.name }}</li>
                     <li class="icon add">{{ o.place.name }}</li>
                     <li class="icon time">
@@ -60,7 +60,7 @@
         <div class="row">
           <div *ngFor="let o of closedContents" class="col-xs-12 col-md-4 list">
             <ul class="list-element">
-                <li class="image"><div [ngStyle]="{'background': 'url(' + o.images[0].m + ')', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div></li>
+                <li class="image"><div [ngStyle]="{'background': 'url(' + o.images[0].m + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div></li>
                 <li class="tit">{{ o.name }}</li>
                 <li class="icon add">{{ o.place.name }}</li>
                 <li class="icon time">

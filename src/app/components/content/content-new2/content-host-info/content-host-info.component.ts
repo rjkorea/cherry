@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PopupService } from 'app/services/popup.service';
 
@@ -7,7 +7,7 @@ import { PopupService } from 'app/services/popup.service';
   templateUrl: './content-host-info.component.html',
   styleUrls: ['./content-host-info.component.css']
 })
-export class ContentHostInfoComponent implements OnInit {
+export class ContentHostInfoComponent implements OnInit, OnDestroy {
   @Input() isCoverPopup: boolean;
   @Output() controlCoverPopup: EventEmitter<any> = new EventEmitter();
 
@@ -17,22 +17,32 @@ export class ContentHostInfoComponent implements OnInit {
     hostTel: new FormControl('', [Validators.required])
   });
 
+  body = {
+    hostName: '',
+    hostEmail: '',
+    hostTel: ''
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private popupService: PopupService
   ) { }
 
   ngOnInit() {
+    const previousData = JSON.parse(localStorage.getItem('temp')) || '';
+
+    if (previousData) {
+      this.body = previousData;
+    }
+  }
+
+  ngOnDestroy() {
+    localStorage.removeItem('temp');
   }
 
   done(): void {
-    const body = {
-      hostName: this.hostForm.get('hostName').value,
-      hostEmail: this.hostForm.get('hostEmail').value,
-      hostTel: this.hostForm.get('hostTel').value
-    };
-  
-    this.popupService.setNameSubject({ name: 'host', value: body });
+    this.popupService.setNameSubject({ name: 'host', value: this.body });
+    localStorage.setItem('temp', JSON.stringify(this.body));
 
     if (this.isCoverPopup) {
       this.controlCoverPopup.emit(false);

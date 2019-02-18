@@ -34,7 +34,7 @@
         <div class="form-group f-title">
           <label class="tds-label bold">행사명</label>
           <div class="in">
-            <input #name type="text" class="form-control tds-input" formControlName="contentsName" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byteName)" (change)="checkBytes(name, byteName)">
+            <input #name type="text" class="form-control tds-input" formControlName="contentsName" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byteName)">
           </div>
           <div class="bytes"><span #byteName>0</span> / {{ maxByte40 }} Bytes</div>
         </div>
@@ -297,7 +297,7 @@
         </div>
         <div class="hidden-md hidden-lg">
           <button class="btn btn-preview btn-base btn-short" (click)="setPreview('m')">미리보기</button>
-          <button class="btn btn-tkit-mint btn-base btn-short right" [disabled]="!contentsForm.valid">완 료</button>
+          <button class="btn btn-tkit-mint btn-base btn-short right" [disabled]="!contentsForm.valid" (click)="done()">완 료</button>
         </div>
       </div>
     </form>
@@ -305,9 +305,9 @@
   </div>
 </div>
 
-<ng-container *ngIf="isCoverPopup">
+<div [hidden]="!isCoverPopup">
   <app-content-cropper *ngIf="typeCoverPopup === 'cropper'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-cropper>
   <app-content-place-map *ngIf="typeCoverPopup === 'map'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-place-map>
-  <app-content-host-info *ngIf="typeCoverPopup === 'host'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-host-info>
+  <app-content-host-info [hidden]="typeCoverPopup !== 'host'" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-host-info>
   <app-content-preview *ngIf="typeCoverPopup === 'preview'" [previewData]="previewData" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-preview>
-</ng-container>
+</div>
