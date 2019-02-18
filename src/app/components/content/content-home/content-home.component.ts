@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ContentService } from 'app/services/content.service';
 import { Router } from '@angular/router';
 
@@ -8,11 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./content-home.component.css']
 })
 export class ContentHomeComponent implements OnInit {
-  openContents: Array<Object>;
-  closedContents: Array<Object>;
+  openContents = [];
+  closedContents = [];
   openCount = 0;
   closedCount = 0;
   status = 'open';
+
+  openStart = 0;
+  closedStart = 0;
 
   constructor(
     private router: Router,
@@ -20,18 +23,18 @@ export class ContentHomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getContentList('open', 0, 6);
-    this.getContentList('closed', 0, 6);
+    this.getContentList('open', 0);
+    this.getContentList('closed', 0);
   }
 
-  getContentList(status, start, size): void {
-    this.contentservice.getContentListV2(status, start, size).subscribe(res => {
+  getContentList(status, start): void {
+    this.contentservice.getContentListV2(status, start, 6).subscribe(res => {
       if (status === 'open') {
-        this.openContents = res['data'];
-        this.openCount = res['count'];
+        this.openContents.push(...res['data']);
+        this.openCount = res['count'] < 100 ? res['count'] : '99+';
       } else {
-        this.closedContents = res['data'];
-        this.closedCount = res['count'];
+        this.closedContents.push(...res['data']);
+        this.closedCount = res['count'] < 100 ? res['count'] : '99+';
       }
     });
   }
@@ -58,5 +61,21 @@ export class ContentHomeComponent implements OnInit {
 
   goDetail(content_oid: string) {
     this.router.navigate([`/content/${content_oid}`]);
-  } 
+  }
+
+  @HostListener('window:scroll', ['$scroll'])
+  onScroll() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      if (this.status === 'open') {
+        if (this.openCount >= this.openStart) {
+          this.openStart += 6;
+          this.getContentList('open', this.openStart);
+        }
+      } else {
+        if (this.closedCount >= this.closedStart)
+        this.closedStart += 6;
+        this.getContentList('closed', this.closedStart);
+      }
+    }
+  }
 }

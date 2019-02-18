@@ -102,7 +102,7 @@ const routes: Routes = [
   { path: 'content/:content_oid/group/:group_oid/tickets', component: ContentGroupTicketListComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/search', component: ContentGroupTicketSearchComponent, canActivate: [AuthGuard] },
 
-  { path: 'contents', component: ContentNew2Component },
+  { path: 'contents/create', component: ContentNew2Component },
   { path: 'contents/home', component: ContentHomeComponent, canActivate: [AuthGuard] },
 
   { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
