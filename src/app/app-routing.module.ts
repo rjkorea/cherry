@@ -61,7 +61,7 @@ import { ContentNew2Component } from './components/content/content-new2/content-
 import { ContentHomeComponent } from './components/content/content-home/content-home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'content', pathMatch: 'full' },
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
 
   { path: 'welcome', component: WelcomeComponent },
@@ -92,18 +92,18 @@ const routes: Routes = [
   { path: 'staff', component: StaffListComponent, canActivate: [AuthGuard] },
   { path: 'staff/new', component: StaffNewComponent, canActivate: [AuthGuard] },
 
-  { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
+  // { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
   { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
-  { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
-  { path: 'contents/new/:id/image', component: ContentNewImageComponent, canActivate: [AuthGuard] },
+  // { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
+  // { path: 'contents/new/:id/image', component: ContentNewImageComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/groups', component: ContentGroupListComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/:group_oid/edit', component: ContentGroupEditComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/new', component: ContentGroupNewComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/:group_oid/tickets', component: ContentGroupTicketListComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/search', component: ContentGroupTicketSearchComponent, canActivate: [AuthGuard] },
 
-  { path: 'contents/create', component: ContentNew2Component },
-  { path: 'contents/home', component: ContentHomeComponent, canActivate: [AuthGuard] },
+  { path: 'contents/new', component: ContentNew2Component, canActivate: [AuthGuard] },
+  { path: 'content', component: ContentHomeComponent, canActivate: [AuthGuard] },
 
   { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/type/:id', component: TicketTypeDetailComponent, canActivate: [AuthGuard] },
