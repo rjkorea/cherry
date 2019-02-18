@@ -163,7 +163,7 @@ export class ContentNew2Component implements OnInit {
     }
   }
 
-  openCalendar(type, when): void {
+  openCalendar(type, when, input): void {
     this.popupService.setData(when);
     this.popupService.setView(this.viewContainerRef);
 
@@ -172,6 +172,8 @@ export class ContentNew2Component implements OnInit {
     } else {
       this.popupService.add(ModalCenterComponent, SingleDateComponent);
     }
+
+    input.blur();
   }
 
   openPlaceMap(type): void {

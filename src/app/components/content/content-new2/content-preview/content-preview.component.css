@@ -89,7 +89,7 @@
 /* m */
 .preview-wrapper {
     text-align: left;
-    padding: 2rem 1.5rem;
+    padding: 2rem 0.5rem;
 }
 
 .preview-wrapper .header-title {
@@ -123,11 +123,17 @@
     margin-bottom: 1.5rem;
 }
 
-.preview-wrapper .date, .preview-wrapper .host, .preview-wrapper .place {
+.preview-wrapper .date, .preview-wrapper .host, .preview-wrapper .place, .preview-wrapper .notice, .preview-wrapper .desc {
     font-size: 1.25rem;
 }
 
+.preview-wrapper .place, .preview-wrapper .notice, .preview-wrapper .desc {
+    position: relative;
+    margin: 1rem 0;
+    padding: 1rem 0;
+}
+
 .preview-wrapper .draw {
-    width: 120%;
-    left: -10%;
+    width: 110%;
+    left: -5%;
 }

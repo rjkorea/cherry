@@ -50,6 +50,7 @@
   </div>
 </div>
 
+<!-- 모바일 -->
 <div class="preview-wrapper hidden-md hidden-lg">
   <div class="header-title bolder">
     <span>행사 미리보기</span>
@@ -91,6 +92,12 @@
   <div class="notice" *ngIf="previewData.notice">
     <div class="bold">공지사항</div>
     <p>{{ previewData.notice }}</p>
+    <div class="draw"></div>
+  </div>
+
+  <div class="desc" *ngIf="previewData.desc">
+    <div class="bold">상세설명</div>
+    <p>{{ previewData.desc }}</p>
     <div class="draw"></div>
   </div>
 </div>

@@ -13,6 +13,8 @@ export class ContentPreviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    document.scrollingElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }
 
 }
