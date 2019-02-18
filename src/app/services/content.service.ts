@@ -11,8 +11,9 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 @Injectable()
 export class ContentService {
   contentUrl = `${URL}/a/content`;
-  contentUrlV2 = `${URL}/a/v2/content`;
   contentsUrl = `${URL}/a/contents`;
+  contentUrlV2 = `${URL}/a/v2/content`;
+  contentsUrlV2 = `${URL}/a/v2/contents`;
   options;
 
   constructor(private http: Http) {
@@ -99,5 +100,12 @@ export class ContentService {
     return this.http.post(url, data, options)
     .map((response: Response) => response.json())
     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public getContentListV2(status: string, start: Number, size: Number): Observable<{}> {
+    const url = `${this.contentsUrlV2}?status=${status}&start=${start}&size=${size}`;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 }

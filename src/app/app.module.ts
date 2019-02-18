@@ -110,8 +110,8 @@ import { ModalCenterComponent } from './components/common/popup/modal-center/mod
 import { ContentCropperComponent } from './components/content/content-new2/content-cropper/content-cropper.component';
 import { ContentIsPrivateComponent } from './components/content/content-new2/content-is-private/content-is-private.component';
 import { ContentPlaceMapComponent } from './components/content/content-new2/content-place-map/content-place-map.component';
-import { ContentManageComponent } from './components/content/content-manage/content-manage.component';
 import { ContentHostInfoComponent } from './components/content/content-new2/content-host-info/content-host-info.component';
+import { ContentHomeComponent } from './components/content/content-home/content-home.component';
 
 
 defineLocale('ko', koLocale);
@@ -189,8 +189,8 @@ defineLocale('ko', koLocale);
     ContentCropperComponent,
     ContentIsPrivateComponent,
     ContentPlaceMapComponent,
-    ContentManageComponent,
-    ContentHostInfoComponent
+    ContentHostInfoComponent,
+    ContentHomeComponent
   ],
   imports: [
     BrowserModule,

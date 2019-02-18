@@ -1,0 +1,94 @@
+<div class="title">
+  <h1>행사관리 홈</h1>
+  <p>티킷으로 쉽고 간편하게 행사를 관리해보세요</p>
+</div>
+
+<!-- tab menu --->
+<div class="tab-nav-wrap">
+  <ul class="tab-nav list-inline">
+      <li [ngClass]="{'on': status === 'open'}" (click)="setStatus('open')">진행중인 행사 <span>{{ openCount }}</span></li> <!-- class="on" 으로 활성화 컨트롤 -->
+      <li [ngClass]="{'on': status === 'closed'}" (click)="setStatus('closed')">종료된 행사 <span>{{ closedCount }}</span></li>
+  </ul>
+</div>
+<!-- //tab menu --->
+
+<ng-container *ngIf="status === 'open'; else elseClosed">
+  <ng-container *ngIf="openCount > 0; else elseOpenZero">
+      <div class="list-wrap">
+        <div class="row">
+            <div *ngFor="let o of openContents" class="col-xs-12 col-md-4 list">
+                <ul class="list-element">
+                    <li class="image"><div [ngStyle]="{'background': 'url(' + o.images[0].m + ')', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div></li>
+                    <li class="tit">{{ o.name }}</li>
+                    <li class="icon add">{{ o.place.name }}</li>
+                    <li class="icon time">
+                      <span *ngIf="o.when.start">{{ o.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm' }}</span>
+                      <span *ngIf="o.when.end"> - {{ o.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm' }}</span>
+                    </li>
+                </ul>
+                <ul class="btn-wrap">
+                  <li><div class="btn btn-line" (click)="goDetail(o._id)">상세보기(수정)</div></li>
+                  <li><div class="btn btn-line" (click)="goTicket(o._id)">티켓관리</div></li>
+                  <li><div class="btn btn-line" (click)="goStaff()">스탭/셀러관리</div></li>
+                  <li><div class="btn btn-line" (click)="goEntrance(o._id)">입장관리</div></li>
+                  <li><div class="btn btn-mint" (click)="goStats(o._id)">행사현황 보기</div></li>
+                </ul>
+            </div>
+        </div>
+      </div>
+  </ng-container>
+  <ng-template #elseOpenZero>
+    <div class="list-wrap no-list">
+        <div class="row">
+            <div class="col-xs-12 col-md-4 list"> 
+                <ul class="no-events">
+                    <li class="ko">진행중인 행사가 없습니다</li>
+                    <li class="en">There's no event in progress</li>
+                </ul>
+                <ul class="btn-wrap">
+                    <li><a href="#" class="btn btn-mint">행사 만들기</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </ng-template>
+</ng-container>
+
+<ng-template #elseClosed>
+    <ng-container *ngIf="closedCount > 0; else elseClosedZero">
+      <div class="list-wrap">
+        <div class="row">
+          <div *ngFor="let o of closedContents" class="col-xs-12 col-md-4 list">
+            <ul class="list-element">
+                <li class="image"><div [ngStyle]="{'background': 'url(' + o.images[0].m + ')', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div></li>
+                <li class="tit">{{ o.name }}</li>
+                <li class="icon add">{{ o.place.name }}</li>
+                <li class="icon time">
+                  <span *ngIf="o.when.start">{{ o.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm' }}</span>
+                  <span *ngIf="o.when.end"> - {{ o.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm' }}</span>
+                </li>
+            </ul>
+            <ul class="btn-wrap">
+              <li><div class="btn btn-line" (click)="goDetail(o._id)">상세보기(수정)</div></li>
+              <li><div class="btn btn-line" (click)="goTicket(o._id)">티켓관리</div></li>
+              <li><div class="btn btn-line" (click)="goStaff()">스탭/셀러관리</div></li>
+              <li><div class="btn btn-line" (click)="goEntrance(o._id)">입장관리</div></li>
+              <li><div class="btn btn-mint" (click)="goStats(o._id)">행사현황 보기</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseClosedZero>
+        <div class="list-wrap no-list">
+          <div class="row">
+            <div class="col-xs-12 col-md-4 list"> 
+              <ul class="no-events">
+                  <li class="ko">종료된 행사가 없습니다</li>
+                  <li class="en">There are no closed events</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </ng-template>
+</ng-template>
