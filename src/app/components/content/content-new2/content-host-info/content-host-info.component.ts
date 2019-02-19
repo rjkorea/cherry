@@ -29,15 +29,22 @@ export class ContentHostInfoComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    const previousData = JSON.parse(localStorage.getItem('temp')) || '';
+    document.scrollingElement.scrollTop = 0;
+    document.body.scrollTop = 0;
 
-    if (previousData) {
-      this.body = previousData;
-    }
+    this.getHostInfoFromTemp();
   }
 
   ngOnDestroy() {
     localStorage.removeItem('temp');
+  }
+
+  getHostInfoFromTemp() {
+    const previousHostInfo = JSON.parse(localStorage.getItem('temp')) || '';
+
+    if (previousHostInfo) {
+      this.body = previousHostInfo;
+    }
   }
 
   done(): void {

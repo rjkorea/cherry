@@ -24,7 +24,7 @@
     </div>
   
     <div class="place"><span class="bold">장소 : </span>
-      <ng-container *ngIf="previewData.place; else elsePlace"><span>{{ previewData.place }}</span></ng-container>
+      <ng-container *ngIf="previewData.placeName; else elsePlace"><span>{{ previewData.placeName }}</span></ng-container>
       <ng-template #elsePlace>행사 장소가 표시되는 부분입니다</ng-template>
       <div class="img-box"><span>행사 장소가 표시되는 부분입니다 (지도)</span></div>
       <div class="draw"></div>

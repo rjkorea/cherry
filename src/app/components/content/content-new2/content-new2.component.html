@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!isCoverPopup">
+<div class="container" [hidden]="isCoverPopup">
   <div class="row bolder">행사 만들기</div>
   <div class="row">
     <div class="col-sm-5 hidden-xs hidden-sm stick-left">
@@ -18,7 +18,7 @@
         <div class="form-group is-hidden">
           <div class="q-box">
             <span class="bold">행사 공개여부</span>
-            <span class="u-toggle-container q-mark hidden-xs hidden-sm" (click)="utils.getTogglePopup('isPrivate', toggle)">
+            <span class="u-toggle-container q-mark hidden-xs hidden-sm" (mouseover)="utils.getTogglePopup('isPrivate', toggle)" (mouseout)="utils.getTogglePopup('isPrivate', toggle)">
               <img src="/assets/images/question-mark.svg">
               <div #toggle class="u-toggle"><app-content-is-private></app-content-is-private></div>
             </span>
@@ -111,8 +111,8 @@
             <div *ngIf="croppedImg" class="img-desc">
               <div>파일크기: {{ croppedImgSize | fileSizeFormat: 2 }}</div>
               <div class="tkit-coral-color">
-                <label class="hidden-md hidden-lg" for="mMainImg">수정하기</label>
-                <label class="hidden-xs hidden-sm" for="pcMainImg">수정하기</label>
+                <label class="hidden-md hidden-lg" for="mMainImg"><img src="/assets/images/edit-button.svg">수정하기</label>
+                <label class="hidden-xs hidden-sm" for="pcMainImg"><img src="/assets/images/edit-button.svg">수정하기</label>
               </div>
             </div>
           </div>
@@ -238,7 +238,7 @@
         <div class="form-group host">
           <div class="info-box">
             <div class="bold">주최자 정보</div>
-            <span class="txt">주최자 정보를 입력하지 않으면 회원가입 시 입력한 주최자(주최사) 이름/이메일 주소/핸드폰 번호(회사 연락처)로 표시됩니다</span>
+            <span class="txt">주최자 정보를 입력하지 않으면 회원가입 시 입력한 주최자(주최사) 이름/일 주소/핸드폰 번호(회사 연락처)로 표시됩니다</span>
           </div>
           <div class="info-btn hidden-md hidden-lg" (click)="openHostInfo('m')">입력하기</div>
           <div class="info-btn hidden-xs hidden-sm" (click)="openHostInfo('pc')">입력하기</div>
@@ -253,7 +253,7 @@
         </div>
         <div class="form-group">
           <label class="tds-label bold">행사 관련 동영상 URL</label>
-          <input type="text" class="form-control tds-input" formControlName="videoUrl" placeholder="예) https://tkit.kr">
+          <input type="text" class="form-control tds-input" formControlName="videoUrl" placeholder="예) https://www.youtube.com/watch">
           <div class="video-txt">유튜브URL 이외 동영상URL은 링크로만 표시됩니다</div>
         </div>
         <div class="form-group">
@@ -277,7 +277,7 @@
                 <div class="mini-thum-box" [ngStyle]="{'background': 'url(' + thum + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div>
                 <ng-container *ngIf="thum">
                   <div class="mini-thum-overlay"></div>
-                  <i class="fa fa-times mini-thum-overlay-close" (click)="removeExtraImg(i)"></i>
+                  <img class="mini-thum-overlay-close" src="/assets/images/close-white-bold.svg" (click)="removeExtraImg(i)">
                 </ng-container>
               </div>
             </ng-container>

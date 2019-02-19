@@ -24,6 +24,8 @@ export class ContentPlaceMapComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    document.scrollingElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }
 
   searchPlace(): void {

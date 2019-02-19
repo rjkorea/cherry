@@ -192,6 +192,8 @@ body {
 
 .tds-message-invalid {
   color: #ed7f81;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
 
 .empty-line {

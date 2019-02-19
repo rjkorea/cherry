@@ -19,6 +19,17 @@ input:focus {
     outline: none;
 }
 
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    appearance: none;
+    box-shadow: none;
+    resize: none;
+    outline: none;
+}
+
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
