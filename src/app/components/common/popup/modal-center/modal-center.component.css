@@ -1,0 +1,58 @@
+@charset 'utf-8';
+
+.u-modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.u-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.7;
+    background: black;
+}
+
+.u-close {
+    float: right;
+    cursor: pointer;
+    margin-top: 2rem;
+    margin-right: 0.5rem;
+    opacity: 1;
+}
+
+.u-close img {
+    width: 1.75rem;
+}
+
+.u-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.u-container {
+    text-align: center;
+    margin: auto 0;
+    padding: 0;
+}
+
+.u-content {
+    background-color: white;
+    margin: 5rem 0 2rem;
+    border-radius: 5px;
+}
+
+.pc40 {
+    width: 40%;
+}

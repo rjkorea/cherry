@@ -1,0 +1,36 @@
+.header {
+  margin-top: 49px;
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 0.94;
+  color: #444444;
+}
+
+.sub-header {
+  margin-top: 40px;
+  width: 100%;
+  height: 49px;
+  background-color: #529bae;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.79;
+  padding-top: 10px;
+  padding-bottom: 9px;
+  padding-left: 15px;
+}
+
+.term {
+  margin-top: 51px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.47;
+  color: #666666;
+}
+
+.login-button {
+  margin-top: 47px;
+  margin-bottom: 31px;
+  height: 55px;
+}

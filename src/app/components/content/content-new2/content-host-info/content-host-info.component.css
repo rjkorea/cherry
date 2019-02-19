@@ -1,0 +1,42 @@
+@charset 'utf-8';
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    appearance: none;
+    -webkit-appearance: none; 
+}
+
+.host-wrapper {
+    text-align: left;
+    padding: 2.5rem 1.5rem;
+}
+
+.host-wrapper .title {
+    display: flex;
+    font-size: 1.75rem;
+}
+
+.host-wrapper .title span {
+    flex: 1;
+}
+
+.host-wrapper .title img {
+    width: 1.75rem;
+}
+
+.host-wrapper .desc {
+    font-size: 1.05rem;
+    margin-top: 0.2rem;
+}
+
+.host-wrapper .u-header-shadow {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1rem;
+    box-shadow: 0 2px 3px 0 rgba(197, 197, 197, 0.5);
+}
+
+.host-wrapper .btn {
+    margin-top: 4rem;
+}

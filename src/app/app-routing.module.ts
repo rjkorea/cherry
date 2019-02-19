@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
 
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { TutorialComponent } from './components/tutorial/tutorial.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatrixTicketOrderComponent } from './components/tim/matrix-ticket-order.component';
@@ -11,6 +12,9 @@ import { ReportComponent } from './components/tim/report.component';
 import { AnalyticsComponent } from './components/tim/analytics.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { SignupPersonalComponent } from './components/signup/signup-personal.component';
+import { SignupBusinessComponent } from './components/signup/signup-business.component';
+import { SignupDoneComponent } from './components/signup/signup-done.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { EntranceComponent } from './components/entrance/entrance.component';
 import { EntranceTicketComponent } from './components/entrance/entrance-ticket.component';
@@ -53,12 +57,15 @@ import { QnaDetailComponent } from './components/qna/qna-detail.component';
 import { QnaNewComponent } from './components/qna/qna-new.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { ContentNew2Component } from './components/content/content-new2/content-new2.component';
+import { ContentHomeComponent } from './components/content/content-home/content-home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'content', pathMatch: 'full' },
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
 
   { path: 'welcome', component: WelcomeComponent },
+  { path: 'tutorial', component: TutorialComponent },
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/:id', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -85,15 +92,18 @@ const routes: Routes = [
   { path: 'staff', component: StaffListComponent, canActivate: [AuthGuard] },
   { path: 'staff/new', component: StaffNewComponent, canActivate: [AuthGuard] },
 
-  { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
+  // { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
   { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
-  { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
-  { path: 'contents/new/:id/image', component: ContentNewImageComponent, canActivate: [AuthGuard] },
+  // { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
+  // { path: 'contents/new/:id/image', component: ContentNewImageComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/groups', component: ContentGroupListComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/:group_oid/edit', component: ContentGroupEditComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/new', component: ContentGroupNewComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/:group_oid/tickets', component: ContentGroupTicketListComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/search', component: ContentGroupTicketSearchComponent, canActivate: [AuthGuard] },
+
+  { path: 'contents/new', component: ContentNew2Component, canActivate: [AuthGuard] },
+  { path: 'content', component: ContentHomeComponent, canActivate: [AuthGuard] },
 
   { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/type/:id', component: TicketTypeDetailComponent, canActivate: [AuthGuard] },
@@ -128,6 +138,9 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'signup/personal', component: SignupPersonalComponent },
+  { path: 'signup/business', component: SignupBusinessComponent },
+  { path: 'signup/done', component: SignupDoneComponent },
   { path: 'profile/:id', component: AdminDetailComponent, canActivate: [AuthGuard] },
   { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }

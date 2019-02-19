@@ -5,59 +5,53 @@
 <div *ngIf="!is_loading">
   <div class="row">
     <div class="col-md-6 col-sm-6">
-      <select class="form-control" [(ngModel)]="select_content" (ngModelChange)="onChangeContent()">
-        <ng-container *ngFor="let c of contents">
-          <option [ngValue]="c">{{c.name}} ({{c.company.name}})</option>
-        </ng-container>
-      </select>
+      <h3>{{content.name}}</h3>
     </div>
   </div>
-  <br>
-  <div *ngIf="select_content">
-    <div class="row">
-      <div class="col-md-4 col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">매출</h3>
-          </div>
-          <div class="panel-body">
-            <h1>{{revenue.amount | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
-          </div>
+  <div *ngIf="content_oid" class="row">
+    <div class="col-md-4 col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">매출</h3>
+        </div>
+        <div class="panel-body">
+          <h1>{{revenue.amount | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">티켓 전달횟수</h3>
-          </div>
-          <div class="panel-body">
-            <h1>{{total_viral | number: '0.0-0'}} <small>회</small></h1>
-          </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">티켓 전달횟수</h3>
+        </div>
+        <div class="panel-body">
+          <h1>{{total_viral | number: '0.0-0'}} <small>회</small></h1>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">방문객 수</h3>
-          </div>
-          <div class="panel-body">
-            <h1>{{ticket_count.use | number: '0.0-0'}} <small>명</small></h1>
-          </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">방문객 수</h3>
+        </div>
+        <div class="panel-body">
+          <h1>{{ticket_count.use | number: '0.0-0'}} <small>명</small></h1>
         </div>
       </div>
-      <div class="col-md-8 col-sm-8">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">일별 티켓 전달 (Daily Ticket Viral)</h3>
-          </div>
-          <div class="panel-body">
-            <chart [type]="daily_ticket_viral_chart.type" [data]="daily_ticket_viral_chart.data" [options]="daily_ticket_viral_chart.options"></chart>
-          </div>
+    </div>
+    <div class="col-md-8 col-sm-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">일별 티켓 전달 (Daily Ticket Viral)</h3>
+        </div>
+        <div class="panel-body">
+          <chart [type]="daily_ticket_viral_chart.type" [data]="daily_ticket_viral_chart.data" [options]="daily_ticket_viral_chart.options"></chart>
         </div>
       </div>
     </div>
   </div>
-  <div *ngIf="!select_content">
+  <div *ngIf="!content_oid" class="row">
+    <div class="col-md-4">
+    </div>
   </div>
-
 </div>

@@ -53,4 +53,14 @@ export class PlaceService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public getLocalSearchKeyword(query: string): Observable<{}> {
+    const kakao_api_key = environment.kakao.api_key;
+    const url = `https://dapi.kakao.com/v2/local/search/keyword.json?query=${query}`
+    const headers = new Headers({Authorization: `KakaoAK ${kakao_api_key}`});
+    const options = new RequestOptions({headers: headers});
+    return this.http.get(url, options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }

@@ -27,6 +27,16 @@
             <li class="list-group-item"><strong>호스트: </strong>{{type.admin.name}}</li>
             <li class="list-group-item"><strong>수정일시: </strong>{{type.updated_at | amFromUnix | amTimeAgo: true}} 전</li>
             <li class="list-group-item"><strong>생성일시: </strong>{{type.created_at | amFromUnix | amTimeAgo: true}} 전</li>
+            <li *ngIf="type.color" class="list-group-item">
+              <span *ngIf="type.color.name==='tkit-mint'" class="tkit-mint-bg tkit-mint-color">컬러샘플</span>
+              <span *ngIf="type.color.name==='tkit-coral'" class="tkit-coral-bg tkit-coral-color">컬러샘플</span>
+              <span *ngIf="type.color.name==='hangang-blue'" class="hangang-blue-bg hangang-blue-color">컬러샘플</span>
+              <span *ngIf="type.color.name==='ultra-bora'" class="ultra-bora-bg ultra-bora-color">컬러샘플</span>
+              <span *ngIf="type.color.name==='mustard-norang'" class="mustard-norang-bg mustard-norang-color">컬러샘플</span>
+            </li>
+            <li *ngIf="type.duplicated_registration" class="list-group-item">
+              <span class="label hangang-blue-bg">중복등록 허용</span>
+            </li>
           </ul>
           <div *ngIf="edit_mode" class="edit">
             <div class="input-group">

@@ -1,18 +1,50 @@
 <div class="row">
-  <div *ngIf="error_msg" class="alert alert-danger" role="alert">{{error_msg}}</div>
-  <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
-    <h2 class="page-header">로그인 <small>호스트</small></h2>
-    <form (submit)="login()">
-      <div class="form-group">
-        <label>이메일</label>
-        <input type="text" class="form-control" [(ngModel)]="model.email" name="email">
+  <div class="col-md-6 ticketistkit">
+    <img src="../../../assets/images/host-main-bg.png" class="img-responsive">
+  </div>
+  <div class="col-md-6">
+    <div class="login media-box">
+      <div class="static-menu">
+        <div>
+          <div class="description light">
+            쉽게 티켓을 만들어서<br>
+            친구에게 보내고 싶다면?
+          </div>
+          <div class="title bolder">
+            티킷 호스트
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label>패스워드</label>
-        <input type="password" class="form-control" [(ngModel)]="model.password" name="password">
+      <form [formGroup]="loginForm">
+        <div class="form-group">
+          <label class="tds-label offset">아이디(이메일)</label>
+          <input type="text" class="form-control tds-input" formControlName="email" placeholder="예) help@rjkorea.com">
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="tds-message-invalid">
+            <div *ngIf="email.errors.email">
+              이메일 형식이 올바르지 않습니다
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="tds-label offset">패스워드</label>
+          <input type="password" class="form-control tds-input" formControlName="password" placeholder="••••••••">
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="tds-message-invalid">
+            <div *ngIf="password.errors.minlength">
+              최소 8자 이상 입력하세요
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-tkit-mint btn-block login-button" (click)="login()" [disabled]="!loginForm.valid">로그인</button>
+        <div *ngIf="error_msg" class="error">
+          <div class="alert alert-danger" role="alert">{{error_msg}}</div>
+        </div>
+      </form>
+      <!-- <div class="static-find-id-password signup-link">
+        <a routerLink="/find/id">아이디 찾기</a> | <a routerLink="/find/password">비밀번호 재설정</a>
+      </div> -->
+      <div class="static-signup">
+        아직 티킷 호스트 계정이 없으신가요? <a routerLink="/signup" class="signup-link">회원가입</a>
       </div>
-      <input type="submit" class="btn btn-tkit-mint" value="로그인">
-    </form>
+    </div>
   </div>
 </div>
-<br>

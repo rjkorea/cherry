@@ -1,0 +1,77 @@
+.signup {
+  height: 100%;
+  padding: 10% 5%;
+  border-radius: 7px;
+  background-color: #ffffff;
+}
+
+.title {
+  font-size: 26px;
+  line-height: 0.92;
+  color: #444444;
+  margin-bottom: 7px;
+  text-align: center;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.3;
+  color: #444444;
+  margin-bottom: 11px;
+  text-align: center;
+}
+
+.signup-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.personal-button {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px 0 rgba(108, 108, 108, 0.5);
+  background-color: #ffffff;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.business-button {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px 0 rgba(108, 108, 108, 0.5);
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.signup-icon {
+  margin-top: 18px;
+  width: 27%;
+  height: 27%;
+}
+
+.signup-title {
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 0.92;
+  color: #444444;
+  margin-top: 11px;
+}
+
+.signup-description {
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: #444444;
+  margin-top: 3px;
+}
+
+.underbar {
+  margin: 15px 0 0;
+  border: 6px solid #62aab8;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}

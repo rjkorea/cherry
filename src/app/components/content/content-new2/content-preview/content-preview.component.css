@@ -1,0 +1,139 @@
+@charset 'utf-8';
+
+.media-preview {
+    position: relative;
+    padding: 27% 11.5%;
+}
+
+.media-preview::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url(/assets/images/phone.svg) no-repeat center top;
+    background-size: 90%;
+}
+
+.img-box {
+    padding: 4rem 0;
+    margin: 0.625rem 0;
+    font-size: 0.8125rem;
+    text-align: center;
+    color: #999999;
+    border: 1px solid #cccccc;
+}
+
+.draw {
+    position: absolute;
+    background-color: #f6f6f6;
+    left: -6%;
+    width: 106%;
+    height: 12px;
+    bottom: -0.875rem;
+}
+
+.scroll-box {
+    overflow: scroll;
+}
+
+.main {
+    position: relative;
+    padding-bottom: 0.625rem;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 0.875rem;
+}
+
+
+.main .title {
+    display: inline-block;
+    vertical-align: top;
+    width: 93.5%;
+}
+
+.main .title span {
+    display: block;
+}
+
+.main .title .tag {
+    display: inline-block;
+    font-size: 13px;
+    margin-left: -2px;
+    margin-right: 4px;
+    color: #ed7f81;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.main .title .bolder {
+    font-size: 22px;
+}
+
+.media-preview .date, .media-preview .host, .media-preview .place {
+    font-size: 0.9rem;
+}
+
+.main .host img {
+    margin-left: 0.25rem;
+}
+
+.media-preview .place, .media-preview .notice, .media-preview .desc {
+    position: relative;
+    margin-bottom: 0.875rem;
+    padding: 0.625rem 5%;
+}
+
+/* m */
+.preview-wrapper {
+    text-align: left;
+    padding: 2rem 0.5rem;
+}
+
+.preview-wrapper .header-title {
+    display: flex;
+    font-size: 2.2rem;
+}
+
+.preview-wrapper .header-title span {
+    flex: 1;
+}
+
+.preview-wrapper .header-title img {
+    width: 1.75rem;
+}
+
+.preview-wrapper .header-desc {
+    font-size: 1.05rem;
+    margin-top: 0.2rem;
+}
+
+.preview-wrapper .u-header-shadow {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1rem;
+    box-shadow: 0 2px 3px 0 rgba(197, 197, 197, 0.5);
+}
+
+.preview-wrapper .m-main {
+    padding: 2.5rem 0 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.preview-wrapper .date, .preview-wrapper .host, .preview-wrapper .place, .preview-wrapper .notice, .preview-wrapper .desc {
+    font-size: 1.25rem;
+}
+
+.preview-wrapper .place, .preview-wrapper .notice, .preview-wrapper .desc {
+    position: relative;
+    margin: 1rem 0;
+    padding: 1rem 0;
+}
+
+.preview-wrapper .draw {
+    width: 110%;
+    left: -5%;
+}

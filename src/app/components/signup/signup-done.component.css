@@ -1,0 +1,50 @@
+.box {
+  margin-top: 107px;
+  margin-bottom: 31px;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: 3px solid #ececec;
+  padding-top: 71px;
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-bottom: 60px;
+}
+
+.welcome {
+  width: 376px;
+  height: 92px;
+  object-fit: contain;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 2.11;
+  color: #444444;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.12;
+  color: #444444;
+  margin-top: -11px;
+}
+
+.jiny {
+  margin-top: 19px;
+  margin-bottom: 18px;
+  width: 186px;
+  height: 177px;
+}
+
+.login-btn {
+  height: 50px;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px 0 rgba(142, 142, 142, 0.5);
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #ffffff;
+}

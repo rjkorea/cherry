@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
+import { environment } from '../environments/environment';
+
 // 3rd party module
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
@@ -16,9 +18,12 @@ import { koLocale } from 'ngx-bootstrap/locale';
 import { ButtonsModule } from 'ngx-bootstrap';
 import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { SharedComponentsModule } from './components/shared/shared-components.module';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { TutorialComponent } from './components/tutorial/tutorial.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -28,6 +33,9 @@ import { ReportComponent } from './components/tim/report.component';
 import { AnalyticsComponent } from './components/tim/analytics.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { SignupPersonalComponent } from './components/signup/signup-personal.component';
+import { SignupBusinessComponent } from './components/signup/signup-business.component';
+import { SignupDoneComponent } from './components/signup/signup-done.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { EntranceComponent } from './components/entrance/entrance.component';
 import { EntranceTicketComponent } from './components/entrance/entrance-ticket.component';
@@ -74,7 +82,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { DashboardService } from './services/dashboard.service';
-import { StatsService } from "./services/stats.service";
+import { StatsService } from './services/stats.service';
 import { NotificationService } from './services/notification.service';
 import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
@@ -86,9 +94,25 @@ import { TicketService } from './services/ticket.service';
 import { PlaceService } from './services/place.service';
 import { UtilService } from './services/util.service';
 import { QnaService } from './services/qna.service';
+import { PopupService } from './services/popup.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
+import { DateTimeFormatPipe } from './pipes/datetime.pipe';
+import { FileSizeFormatPipe } from './pipes/file-size.pipe';
 import { TIMService } from './services/tim.service';
+import { IdComponent } from './components/login/find/id/id.component';
+import { PasswordComponent } from './components/login/find/password/password.component';
+import { ContentNew2Component } from './components/content/content-new2/content-new2.component';
+import { ContentPreviewComponent } from './components/content/content-new2/content-preview/content-preview.component';
+import { ModalBottomComponent } from './components/common/popup/modal-bottom/modal-bottom.component';
+import { SingleDateComponent } from './components/common/calendar/single-date/single-date.component';
+import { ModalCenterComponent } from './components/common/popup/modal-center/modal-center.component';
+import { ContentCropperComponent } from './components/content/content-new2/content-cropper/content-cropper.component';
+import { ContentIsPrivateComponent } from './components/content/content-new2/content-is-private/content-is-private.component';
+import { ContentPlaceMapComponent } from './components/content/content-new2/content-place-map/content-place-map.component';
+import { ContentHostInfoComponent } from './components/content/content-new2/content-host-info/content-host-info.component';
+import { ContentHomeComponent } from './components/content/content-home/content-home.component';
+
 
 defineLocale('ko', koLocale);
 
@@ -96,6 +120,7 @@ defineLocale('ko', koLocale);
   declarations: [
     AppComponent,
     NavbarComponent,
+    TutorialComponent,
     WelcomeComponent,
     LoginComponent,
     DashboardComponent,
@@ -106,6 +131,9 @@ defineLocale('ko', koLocale);
     NotificationComponent,
     PageNotFoundComponent,
     SignupComponent,
+    SignupPersonalComponent,
+    SignupBusinessComponent,
+    SignupDoneComponent,
     NotificationComponent,
     DataFilterPipe,
     EntranceComponent,
@@ -149,6 +177,20 @@ defineLocale('ko', koLocale);
     QnaNewComponent,
     StatsComponent,
     PaymentComponent,
+    IdComponent,
+    PasswordComponent,
+    ContentNew2Component,
+    ContentPreviewComponent,
+    ModalCenterComponent,
+    ModalBottomComponent,
+    SingleDateComponent,
+    DateTimeFormatPipe,
+    FileSizeFormatPipe,
+    ContentCropperComponent,
+    ContentIsPrivateComponent,
+    ContentPlaceMapComponent,
+    ContentHostInfoComponent,
+    ContentHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -164,12 +206,19 @@ defineLocale('ko', koLocale);
     ChartModule,
     UiSwitchModule,
     ButtonsModule.forRoot(),
-    SharedComponentsModule
+    SharedComponentsModule,
+    ImageCropperModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.google.api_key
+    })
   ],
   providers: [
     {
       provide: LOCALE_ID,
       useValue: 'en-US'
+    },
+    {
+      provide: OWL_DATE_TIME_LOCALE, useValue: 'ko'
     },
     AuthGuard,
     AuthService,
@@ -187,10 +236,19 @@ defineLocale('ko', koLocale);
     PlaceService,
     UtilService,
     QnaService,
-    {
-      provide: OWL_DATE_TIME_LOCALE, useValue: 'ko'
-    }
+    PopupService,
+    DateTimeFormatPipe,
+    FileSizeFormatPipe
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModalCenterComponent,
+    ModalBottomComponent,
+    SingleDateComponent,
+    ContentCropperComponent,
+    ContentIsPrivateComponent,
+    ContentPlaceMapComponent,
+    ContentHostInfoComponent
+  ]
 })
 export class AppModule { }

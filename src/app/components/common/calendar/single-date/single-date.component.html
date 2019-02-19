@@ -1,0 +1,5 @@
+<owl-date-time-inline #singleDate [pickerType]="'calendar'" (click)="onSelect()"></owl-date-time-inline>
+
+<div class="wrap-calendar-done">
+    <button #doneBtn class="btn btn-block" [ngClass]="background" (click)="getMoment()" disabled="disabled">완  료</button>
+</div>

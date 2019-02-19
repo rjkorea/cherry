@@ -1,0 +1,23 @@
+<div class="place-wrapper">
+  <div class="title bold">
+    <span>행사장소 검색</span>
+    <img *ngIf="isCoverPopup" src="/assets/images/close-grey.svg" (click)="controlCoverPopup.emit(false)">
+  </div>
+  <div class="desc demi-light">도로명, 건물명 또는 위치 중 편한 방법으로 검색하세요</div>
+  <div *ngIf="isCoverPopup" class="u-header-shadow"></div>
+
+  <form [formGroup]="searchForm">
+    <div class="media-header">
+      <div class="search">
+        <input type="text" class="form-control tds-input" placeholder="도로명, 건물명, 위치 검색" formControlName="keyword">
+      </div>
+      <div class="p-list">
+        <ul>
+          <li *ngFor="let placeObj of placeList" (click)="setPlaceMap(placeObj)">{{ placeObj.road_address_name }} {{ placeObj.place_name }}</li>
+        </ul>
+      </div>
+    </div>
+    <button class="btn btn-tkit-mint btn-block" [disabled]="!searchForm.valid" (click)="searchPlace()">검  색</button>
+  </form>
+
+</div>

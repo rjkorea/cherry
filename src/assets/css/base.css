@@ -1,0 +1,473 @@
+@charset 'utf-8';
+
+body {
+  margin: 0;
+  padding-top: 70px;
+  min-height: 100%;
+}
+
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #fff;
+}
+
+.btn-tkit-mint {
+  color: #fff;
+  background-color: #62aab8;
+  border-color: #59a2b0;
+  box-shadow: 0 2px 4px 0 rgba(142, 142, 142, 0.5)
+}
+
+.btn-tkit-coral {
+  color: #fff;
+  background-color: #d87072;
+  border-color: #ed7f81;
+}
+
+.label-tkit-mint {
+  background-color: #62aab8;
+}
+
+.label-tkit-coral {
+  background-color: #ed7f81;
+}
+
+.label-lg {
+  font-size: 100%;
+}
+
+.btn-xlg {
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+.length-check {
+  float: right;
+  color: grey;
+}
+
+.error-message {
+  color: #ed7f81;
+}
+
+.filebox {
+  display: block;
+}
+
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  display: inline-block;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-btn {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.upload-btn-name {
+  text-align: center;
+}
+
+.upload-btn-desc {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.tkit-mint-color {
+  color: #62aab8;
+}
+
+.tkit-coral-color {
+  color: #ed7f81;
+}
+
+.hangang-blue-color {
+  color: #6794ca;
+}
+
+.ultra-bora-color {
+  color: #8f6dab;
+}
+
+.mustard-norang-color {
+  color: #f6d87f;
+}
+
+.tkit-mint-bg {
+  background-color: #62aab8;
+}
+
+.tkit-coral-bg {
+  background-color: #ed7f81;
+}
+
+.hangang-blue-bg {
+  background-color: #6794ca;
+}
+
+.ultra-bora-bg {
+  background-color: #8f6dab;
+}
+
+.mustard-norang-bg {
+  background-color: #f6d87f;
+}
+
+.tds-label {
+  display: block;
+  margin-top: 30px;
+  font-size: 1.25rem;
+  color: #444444;
+}
+
+.tds-input {
+  height: 3.5rem;
+  border-radius: 3px;
+  font-size: 1.15rem;
+  color: #444444;
+  background-color: #fbfbfb;
+}
+
+.tds-input::placeholder {
+  color: #cccccc;
+}
+
+.tds-select {
+  background-image: url(/assets/images/chevron-down.svg);
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.tds-message-valid {
+  color: #62aab8;
+}
+
+.tds-message-invalid {
+  color: #ed7f81;
+}
+
+.empty-line {
+  width: 1px;
+  height: 14px;
+  background-color: #ffffff;
+  color: #ffffff;
+}
+
+.bytes {
+  text-align: right;
+  padding: 3px 5px;
+  font-size: 1.125rem;
+}
+
+.u-toggle {
+  visibility: hidden;
+  position: absolute;
+  width: 24rem;
+  padding: 1.25rem 1rem;
+  margin-top: 0.5rem;
+  box-shadow: 2px 4px 6px 0 rgba(96, 96, 96, 0.5);
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  background-color: white;
+  z-index: 1;
+}
+
+.u-toggle-container {
+  position: relative;
+}
+
+.u-toggle-container .on {
+  visibility: visible;
+}
+
+/************
+ * checkbox *
+ ************/
+ .check {
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+  padding:0;
+  cursor: pointer;
+}
+
+.check:not(:checked), .check:checked {
+  position:absolute;
+  pointer-events:none;
+  width: 12px;
+  height: 12px;
+  opacity:0;
+}
+
+.check+span{
+  position:relative;
+  cursor:pointer;
+  display:inline-block;
+  height:12px;
+  line-height:12px;
+  padding-left:16px;
+  font-size: 1.125rem;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}
+
+.check+span:before, .check:not(.check)+span:after {
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:12px;
+  height:12px;
+  z-index:0;
+  border:1px solid #979797;
+  border-radius:1px;
+  margin-top:3px;
+  -webkit-transition:.2s;
+  transition:.2s
+}
+
+.check+span:after {
+  border-radius:2px;
+}
+
+.check+span:before, .check+span:after {
+  content:'';
+  left:0;
+  position:absolute;
+  -webkit-transition:border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+  transition:border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+  z-index:1
+}
+
+.check:not(:checked)+span:before {
+  width:0;
+  height:0;
+  border:1px solid transparent;
+  left:4px;
+  top:7px;
+  -webkit-transform:rotateZ(35deg);
+  transform:rotateZ(35deg);
+  -webkit-transform-origin:100% 100%;
+  transform-origin:100% 100%;
+}
+
+.check:not(:checked)+span:after {
+  height:12px;
+  width:12px;
+  background-color:transparent;
+  border:1px solid #cccccc;
+  top:0px;
+  z-index:0;
+}
+
+.check:checked+span:before {
+  top:-2px;
+  left:1px;
+  width:4px;
+  height:8px;
+  border-top:1px solid transparent;
+  border-left:1px solid transparent;
+  border-right:1px solid #fff;
+  border-bottom:1px solid #fff;
+  -webkit-transform:rotateZ(35deg);
+  transform:rotateZ(35deg);
+  -webkit-transform-origin:100% 100%;
+  transform-origin:100% 100%;
+}
+
+.check:checked+span:after {
+  top:0;
+  width:12px;
+  height:12px;
+  border:1px solid #62aab8;
+  background-color:#62aab8;
+  z-index:0
+}
+
+.check.check.tabbed:focus+span:after {
+  border-radius:2px;
+  border-color:#cccccc;
+  background-color:#62aab8;
+}
+
+.check:checked:focus+span:after {
+  border-radius:2px;
+  background-color:#62aab8;
+  border-color:#62abb8;
+}
+
+/*****************
+ * switch-toggle *
+ *****************/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 51px;
+  height: 26px;
+}
+
+.switch input {
+  display: none;
+}
+
+.toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  border: 1px solid #cdcdcd;
+  box-shadow: inset 0 1px 3px 0 #494949;
+  border-radius: 20px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.toggle:before {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 22px;
+  background-color: #f2f2f2;
+  border: 1px solid #cdcdcd;
+  box-shadow: 0 1px 2px 0 black;
+  border-radius: 50%;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.switch input:checked + .toggle {
+  background-color: #62aab8;
+}
+
+.switch input:focus + .toggle {
+  box-shadow: 0 0 1px #62aab8;
+}
+
+.switch input:checked + .toggle:before {
+  top: 1px;
+  border: none;
+  -webkit-transform: translateX(25px);
+  -ms-transform: translateX(25px);
+  transform: translateX(25px);
+}
+
+.switch.small {
+  width: 38px;
+  height: 21px;
+}
+
+.toggle.small:before {
+  width: 16px;
+  height: 16px;
+}
+
+.switch.small input:checked + .toggle.small:before {
+  -webkit-transform: translateX(19px);
+  -ms-transform: translateX(19px);
+  transform: translateX(19px);
+}
+
+/************
+ * radiobox *
+ ************/
+.radio-check {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-check:not(:checked) + span, .radio-check:checked + span {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  padding-left: 25px;
+  transition: .28s ease;
+}
+
+.radio-check + span:before, .radio-check + span:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -2px;
+  margin: 4px;
+  width: 13px;
+  height: 13px;
+  transition: .28s ease;
+  z-index: 0;
+}
+
+.radio-check:checked + span:before {
+  border: 1px solid transparent;
+}
+
+.radio-check:not(:checked) + span:before, .radio-check:not(:checked) + span:after, .radio-check:checked + span:before, .radio-check:checked + span:after {
+  border: 1px solid #979797;
+  border-radius: 50%;
+}
+
+.radio-check:checked + span:after, .radio-check:checked + span:before {
+  border: 1px solid #62aab8;
+}
+
+.radio-check:checked + span:after {
+  transform: scale(1.02);
+}
+
+.radio-check:checked + span:after, .radio-check:checked + span:after {
+  background-color: #62aab8;
+}
+
+.radio-check:checked + span:after {
+  transform: scale(0.6);
+}

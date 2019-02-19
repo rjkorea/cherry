@@ -38,6 +38,10 @@ export class ContentListComponent implements OnInit {
     this.loadContents(this.query, this.page);
   }
 
+  ready(): void {
+    alert('준비중입니다.');
+  }
+
   loadContents(query: any, page: any) {
     this.is_loading = true;
     this.contentService.getContentList(query, (page - 1) * this.size, this.size)
@@ -66,6 +70,10 @@ export class ContentListComponent implements OnInit {
 
   goEntrance(content_oid: string) {
     this.router.navigate(['/entrance', {content_oid: content_oid}]);
+  }
+
+  goStats(content_oid: string) {
+    this.router.navigate(['/stats', content_oid ]);
   }
 
   onPrev() {

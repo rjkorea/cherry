@@ -1,0 +1,72 @@
+@charset 'utf-8';
+
+/**	02. Elements
+*************************************************** **/
+
+.font500 {font-weight:500 !important;}
+
+.btn {display:inline-block; border:1px solid transparent; border-radius:0.3rem; font-size:1.15rem; text-align:center; vertical-align:middle; padding:12px 7px; width:100%;}
+.btn-line {border:1px solid #d2d2d2;}
+.btn-mint {background-color:#62aab8; border:1px solid #51a6b7; color:#fff; box-shadow: 0 2px 4px 0 rgba(122, 122, 122, 0.5);}
+.btn.focus, .btn:focus, .btn:hover {color:inherit;}
+
+/**	03. Contents
+*************************************************** **/
+.title {padding:0 2rem; margin-top: 2rem;}
+.title h1 {font-size:22px; font-size: 2.2rem; font-weight: 900; line-height: 1.; color: #444444; margin-bottom:10px;}
+.title p {font-size:1.3rem;}
+  
+.tab-nav-wrap {position: absolute; width: 100%; left: 0; box-shadow: 0 2px 3px 0 rgba(197, 197, 197, 0.5); margin-top:1.5rem;}
+.tab-nav {margin: 0 auto;}
+.tab-nav li {height:4rem; line-height:4rem; font-size:1.3rem; color:#999; font-weight: 500; margin-right:-0.4rem; width:50%; display:inline-flex; align-items:center; justify-content: center; cursor: pointer;}
+.tab-nav li span {display:inline-flex; justify-content:center; align-items:center; width:3.8rem; height:1.8rem; border-radius:2rem; background-color:#a8a8a8; color:#fff; font-size:1.2rem; margin-left:0.6rem;}
+.tab-nav li.on {color:#666; border-bottom:2px solid #62aab8;}
+.tab-nav li.on span {background-color:#62aab8;}
+
+.list-wrap {padding:0 2rem; margin-top:10rem;}
+.list-wrap .list {margin-bottom:7rem;}
+
+.list-element {padding: 0;}
+.list-element li {font-size:1.25rem; line-height:2.2rem;}
+.list-element .image div {width: 100%; height: 14rem;}
+.list-element .image img {width: 100%;}
+.list-element .tit {font-size:1.65rem; line-height:2.4rem; margin:1rem 0; font-weight:900; color:#444; height:5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;} 
+.list-element .icon {padding-left:1.8rem; position:relative;}
+.list-element .time {letter-spacing:1px;}
+.list-element .icon:before {display:inline-block; content:""; width:1.3rem; height:1.4rem; position:absolute; left:0; top:0.5rem;}
+.list-element .add:before  {background:url(/assets/images/location.png) no-repeat center; background-size:contain; }
+.list-element .time:before {background:url(/assets/images/time.png) no-repeat center; background-size:contain; }
+
+.btn-wrap {font-size:0; padding: 0;}
+.btn-wrap li {display:inline-block; width:48.5%; margin-top:1rem;}
+.btn-wrap li:nth-child(2n) {margin-left:3%;} 
+.btn-wrap li:last-child {display:block; margin-right:0; width:100%; color:#fff;}
+
+.no-events {display:table; margin: 3rem auto; position:relative; padding: 0;}
+.no-events:before {content:""; display:inline-block; width:3.4rem; height:3.4rem; background:url(/assets/images/none.png) no-repeat; background-size:contain; position:absolute;}
+.no-events li {line-height:1.8rem; color:#666; font-size:1.3rem; margin-left:4.3rem;}
+.no-events .ko {font-weight:700;}
+
+@media (min-width: 992px) { 
+	.title {max-width:1170px; margin:3rem auto 0; padding:0;}
+	.title h1 {font-size:30px; font-size: 3rem;}
+	.title p {font-size:1.2rem;}
+	
+	.tab-nav {max-width:1170px; margin:0 auto;}
+	.tab-nav li {height:5rem; line-height:5rem; font-size:1.35rem; width:17rem;}
+	.tab-nav li + li {margin-left:2rem;}
+	.tab-nav li span {font-size:1.3rem; width:4rem; height:2rem;}
+    
+	.list-wrap {max-width:1170px; margin:12rem auto 0; padding:0;}
+	.list-element li {font-size:1.25rem; line-height:2rem;}
+	.list-element .image div {height: 12rem;}
+	.list-element .tit {font-size:1.45rem;}
+	.list-element .icon {padding-left:2rem;}
+	.list-element .icon:before {width:1.4rem; height:1.5rem;}
+    .no-list {margin: 8rem auto 0;}
+
+	.no-events {display:block;}
+	.no-events:before {content:""; display:inline-block; width:4.2rem; height:4.2rem; background:url(/assets/images/none.png) no-repeat; background-size:contain; position:absolute;}
+	.no-events li {line-height:2rem; font-size:1.45rem; margin-left:5.5rem;}
+	
+ }

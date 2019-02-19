@@ -6,22 +6,22 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-4">
-          <img *ngIf="!content.image" class="img-thumbnail" src="assets/images/no_image_icon.png">
-          <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.poster.m}}">
-          <div class="filebox">
+          <img *ngIf="!content.images" class="img-thumbnail" src="assets/images/no_image_icon.png">
+          <img *ngIf="content.images" class="img-thumbnail" src="{{content.images[0].m}}">
+          <!-- <div class="filebox">
             <label for="upload-poster">포스터 업데이트 (사이즈 정보: 674 x 960 px, 용량: 2 MB)</label>
             <input type="file" id="upload-poster" name="upload-poster" (change)="uploadPoster($event.target.files)">
           </div>
-          <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.logo.m}}">
+          <img *ngIf="content.images" class="img-thumbnail" src="{{content.images[1].m}}">
           <div class="filebox">
             <label for="upload-logo">로고 업데이트 (사이즈 정보: 360 x 120 px, 용량: 2 MB)</label>
             <input type="file" id="upload-logo" name="upload-logo" (change)="uploadLogo($event.target.files)">
           </div>
-          <img *ngIf="content.image" class="img-thumbnail" src="{{content.image.og.m}}">
+          <img *ngIf="content.images" class="img-thumbnail" src="{{content.image[2].m}}">
           <div class="filebox">
             <label for="upload-og">오픈그래프 업데이트 (사이즈 정보: 460 x 245 px, 용량: 2 MB)</label>
             <input type="file" id="upload-og" name="upload-og" (change)="uploadOg($event.target.files)">
-          </div>
+          </div> -->
         </div>
         <div class="col-md-6">
           <br />
@@ -50,10 +50,10 @@
               <pre class="list-group-item-text">{{content.desc}}</pre>
             </li>
             <li *ngIf="content.when" class="list-group-item"><strong>행사 기간 일시: </strong><span *ngIf="content.when.start">{{content.when.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</span><span *ngIf="content.when.end"> ~ {{content.when.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</span></li>
-            <li class="list-group-item"><strong>장소: </strong>{{content.place}}</li>
+            <li class="list-group-item"><strong>장소: </strong>{{content.place.name}}</li>
             <li class="list-group-item"><strong>주최사: </strong>{{content.company.name}}</li>
             <li class="list-group-item"><strong>행사 생성 호스트: </strong>{{content.admin.name}}</li>
-            <li *ngIf="content.image.extra" class="list-group-item">
+            <!-- <li *ngIf="content.image.extra" class="list-group-item">
               <h5 class="list-group-item-heading"><strong>추가 이미지</strong></h5>
               <div class="extra-image-list">
                 <div class="extra-image">
@@ -92,7 +92,7 @@
                   </div>
                 </div>
               </div>
-            </li>
+            </li> -->
             <li class="list-group-item"><strong>수정일시: </strong>{{content.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item"><strong>생성일시: </strong>{{content.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li *ngIf="content.sms" class="list-group-item">
@@ -132,7 +132,7 @@
 
             <div class="input-group">
               <span class="input-group-addon">장소</span>
-              <input type="text" class="form-control" [(ngModel)]="content.place" name="place">
+              <input type="text" class="form-control" [(ngModel)]="content.place.name" name="place">
             </div>
             <br>
             <div *ngIf="content.sms" class="input-group">
