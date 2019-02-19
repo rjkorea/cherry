@@ -51,7 +51,7 @@ export class ContentNew2Component implements OnInit {
 
   utils = utils;
   maxByte40 = 40;
-  limitByte = 0;
+  limitLength = 0;
   isCoverPopup = false;
   typeCoverPopup = '';
   cropTargetImgName = '';
@@ -149,9 +149,10 @@ export class ContentNew2Component implements OnInit {
     const byte = utils.getByteSize(input.value, 0, 0);
 
     if (byte > this.maxByte40) {
-      input.value = input.value.slice(0, this.limitByte);
+      input.value = input.value.slice(0, this.limitLength);
     } else {
-      this.limitByte = output.innerText = byte;
+      this.limitLength = input.value.length;
+      output.innerText = byte;
     }
   }
 
