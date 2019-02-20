@@ -12,7 +12,7 @@ import { ContentHostInfoComponent } from './content-host-info/content-host-info.
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AdminService } from 'app/services/admin.service';
 import { ContentService } from 'app/services/content.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-content-new2',
@@ -80,6 +80,7 @@ export class ContentNew2Component implements OnInit {
   };
 
   companyContactInfo: Object;
+  isEdit = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -88,7 +89,8 @@ export class ContentNew2Component implements OnInit {
     private dateFormat: DateTimeFormatPipe,
     private adminService: AdminService,
     private contentService: ContentService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.popupService.subject.subscribe(res => {
       const date = this.dateFormat.transform(res.getTime(), 'date');
@@ -121,6 +123,20 @@ export class ContentNew2Component implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
+    this.getEditStatus();
+  }
+
+  getEditStatus(): void {
+    const contentId = this.route.snapshot.paramMap.get('content_oid') || '';
+
+    if (contentId) {
+      this.isEdit = true;
+      this.getThisContent(contentId);
+    }
+  }
+
+  getThisContent(contentId): void {
+    // get content
   }
 
   getUserInfo(): void {

@@ -93,7 +93,7 @@ const routes: Routes = [
   { path: 'staff/new', component: StaffNewComponent, canActivate: [AuthGuard] },
 
   // { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
-  { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
+  // { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
   // { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
   // { path: 'contents/new/:id/image', component: ContentNewImageComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/groups', component: ContentGroupListComponent, canActivate: [AuthGuard] },
@@ -103,6 +103,7 @@ const routes: Routes = [
   { path: 'content/:content_oid/group/search', component: ContentGroupTicketSearchComponent, canActivate: [AuthGuard] },
 
   { path: 'contents/new', component: ContentNew2Component, canActivate: [AuthGuard] },
+  { path: 'content/:content_oid', component: ContentNew2Component, canActivate: [AuthGuard] },
   { path: 'content', component: ContentHomeComponent, canActivate: [AuthGuard] },
 
   { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
