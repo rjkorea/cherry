@@ -80,6 +80,7 @@ export class ContentNew2Component implements OnInit {
   };
 
   companyContactInfo: Object;
+  editContent: Object;
   isEdit = false;
 
   constructor(
@@ -136,7 +137,9 @@ export class ContentNew2Component implements OnInit {
   }
 
   getThisContent(contentId): void {
-    // get content
+    this.contentService.getThisContentV2(contentId).subscribe(res => {
+      this.editContent = res['data'];
+    });
   }
 
   getUserInfo(): void {
