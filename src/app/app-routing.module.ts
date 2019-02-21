@@ -104,7 +104,7 @@ const routes: Routes = [
 
   { path: 'contents/new', component: ContentNew2Component, canActivate: [AuthGuard] },
   // { path: 'content/:content_oid', component: ContentNew2Component, canActivate: [AuthGuard] },
-  { path: 'content', component: ContentHomeComponent, canActivate: [AuthGuard] },
+  { path: 'contents', component: ContentHomeComponent, canActivate: [AuthGuard] },
 
   { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/type/:id', component: TicketTypeDetailComponent, canActivate: [AuthGuard] },

@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ContentService } from 'app/services/content.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-content-home',
@@ -8,26 +8,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./content-home.component.css']
 })
 export class ContentHomeComponent implements OnInit {
+  status: string;
+
   openContents = [];
   closedContents = [];
   openCount = 0;
   closedCount = 0;
-  status = 'open';
 
   openStart = 0;
   closedStart = 0;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private contentservice: ContentService
   ) { }
 
   ngOnInit() {
-    this.getContentList('open', 0);
-    this.getContentList('closed', 0);
+    this.route.paramMap.subscribe(res => {
+      this.status = res['params']['status'];
+      this.getContentList('open', 0);
+      this.getContentList('closed', 0);
+    });
   }
 
-  getContentList(status, start): void {
+  getContentList(status, start) {
     this.contentservice.getContentListV2(status, start, 6).subscribe(res => {
       if (status === 'open') {
         this.openContents.push(...res['data']);
@@ -41,6 +46,7 @@ export class ContentHomeComponent implements OnInit {
 
   setStatus(status): void {
     this.status = status;
+    this.router.navigate(['/contents', { status: status }]);
   }
 
   goTicket(content_oid: string) {
@@ -65,7 +71,7 @@ export class ContentHomeComponent implements OnInit {
 
   @HostListener('window:scroll', ['$scroll'])
   onScroll() {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
       if (this.status === 'open') {
         if (this.openCount >= this.openStart) {
           this.openStart += 6;

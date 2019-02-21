@@ -35,17 +35,17 @@ export class LoginComponent implements OnInit {
       .subscribe(
         response => {
           if (this.authService.getRole() === 'staff') {
-            this.router.navigate(['/content']);
+            this.router.navigate(['/contents']);
           } else if (this.authService.getRole() === 'super') {
             this.router.navigate(['/home']);
           } else if (this.authService.getRole() === 'admin') {
             this.router.navigate(['/home']);
           } else if (this.authService.getRole() === 'host') {
-            this.router.navigate(['/content']);
+            this.router.navigate(['/contents']);
           } else if (this.authService.getRole() === 'pro') {
-            this.router.navigate(['/content']);
+            this.router.navigate(['/contents']);
           } else {
-            this.router.navigate(['/content']);
+            this.router.navigate(['/contents']);
           }
         },
         error => {
