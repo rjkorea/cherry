@@ -124,7 +124,7 @@ export class ContentNew2Component implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
-    this.getEditStatus();
+    // this.getEditStatus();
   }
 
   getEditStatus(): void {
