@@ -108,4 +108,11 @@ export class ContentService {
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
+
+  public getThisContentV2(id: string): Observable<{}> {
+    const url = `${this.contentUrlV2}/${id}`;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 }

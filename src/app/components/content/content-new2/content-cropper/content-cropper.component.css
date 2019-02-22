@@ -45,3 +45,7 @@
     height: 1rem;
     box-shadow: 0 2px 3px 0 rgba(197, 197, 197, 0.5);
 }
+
+.m-hide-wrap {
+    margin-top: -2.5rem;
+}

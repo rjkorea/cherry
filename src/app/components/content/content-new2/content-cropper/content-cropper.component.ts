@@ -18,6 +18,9 @@ export class ContentCropperComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    document.scrollingElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     this.imageChangedEvent = this.popupService.getData();
   }
 

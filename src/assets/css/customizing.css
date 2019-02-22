@@ -71,6 +71,10 @@
 }
 
 /* bootstrap */
+.form-control {
+    box-shadow: none;
+}
+
 .form-control:focus {
     border-color: #62aab8;
     outline: none;

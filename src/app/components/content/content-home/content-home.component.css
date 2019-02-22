@@ -12,7 +12,7 @@
 
 /**	03. Contents
 *************************************************** **/
-.title {padding:0 2rem; margin-top: 2rem;}
+.title {margin-top: 2rem;}
 .title h1 {font-size:22px; font-size: 2.2rem; font-weight: 900; line-height: 1.; color: #444444; margin-bottom:10px;}
 .title p {font-size:1.3rem;}
   
@@ -23,7 +23,7 @@
 .tab-nav li.on {color:#666; border-bottom:2px solid #62aab8;}
 .tab-nav li.on span {background-color:#62aab8;}
 
-.list-wrap {padding:0 2rem; margin-top:10rem;}
+.list-wrap {margin-top:10rem;}
 .list-wrap .list {margin-bottom:7rem;}
 
 .list-element {padding: 0;}
@@ -31,9 +31,8 @@
 .list-element .image div {width: 100%; height: 14rem;}
 .list-element .image img {width: 100%;}
 .list-element .tit {font-size:1.65rem; line-height:2.4rem; margin:1rem 0; font-weight:900; color:#444; height:5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;} 
-.list-element .icon {padding-left:1.8rem; position:relative;}
-.list-element .time {letter-spacing:1px;}
-.list-element .icon:before {display:inline-block; content:""; width:1.3rem; height:1.4rem; position:absolute; left:0; top:0.5rem;}
+.list-element .icon {padding-left:1.5rem; position:relative;}
+.list-element .icon:before {display:inline-block; content:""; width:1rem; height:1.2rem; position:absolute; left:0; top:0.5rem;}
 .list-element .add:before  {background:url(/assets/images/location.png) no-repeat center; background-size:contain; }
 .list-element .time:before {background:url(/assets/images/time.png) no-repeat center; background-size:contain; }
 
@@ -61,8 +60,6 @@
 	.list-element li {font-size:1.25rem; line-height:2rem;}
 	.list-element .image div {height: 12rem;}
 	.list-element .tit {font-size:1.45rem;}
-	.list-element .icon {padding-left:2rem;}
-	.list-element .icon:before {width:1.4rem; height:1.5rem;}
     .no-list {margin: 8rem auto 0;}
 
 	.no-events {display:block;}

@@ -12,7 +12,7 @@ import { ContentHostInfoComponent } from './content-host-info/content-host-info.
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AdminService } from 'app/services/admin.service';
 import { ContentService } from 'app/services/content.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-content-new2',
@@ -51,7 +51,7 @@ export class ContentNew2Component implements OnInit {
 
   utils = utils;
   maxByte40 = 40;
-  limitByte = 0;
+  limitLength = 0;
   isCoverPopup = false;
   typeCoverPopup = '';
   cropTargetImgName = '';
@@ -80,6 +80,8 @@ export class ContentNew2Component implements OnInit {
   };
 
   companyContactInfo: Object;
+  editContent: Object;
+  isEdit = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -88,7 +90,8 @@ export class ContentNew2Component implements OnInit {
     private dateFormat: DateTimeFormatPipe,
     private adminService: AdminService,
     private contentService: ContentService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.popupService.subject.subscribe(res => {
       const date = this.dateFormat.transform(res.getTime(), 'date');
@@ -121,6 +124,22 @@ export class ContentNew2Component implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
+    // this.getEditStatus();
+  }
+
+  getEditStatus(): void {
+    const contentId = this.route.snapshot.paramMap.get('content_oid') || '';
+
+    if (contentId) {
+      this.isEdit = true;
+      this.getThisContent(contentId);
+    }
+  }
+
+  getThisContent(contentId): void {
+    this.contentService.getThisContentV2(contentId).subscribe(res => {
+      this.editContent = res['data'];
+    });
   }
 
   getUserInfo(): void {
@@ -149,9 +168,10 @@ export class ContentNew2Component implements OnInit {
     const byte = utils.getByteSize(input.value, 0, 0);
 
     if (byte > this.maxByte40) {
-      input.value = input.value.slice(0, this.limitByte);
+      input.value = input.value.slice(0, this.limitLength);
     } else {
-      this.limitByte = output.innerText = byte;
+      this.limitLength = input.value.length;
+      output.innerText = byte;
     }
   }
 
@@ -322,8 +342,8 @@ export class ContentNew2Component implements OnInit {
     form.append('comments_private', param.comments_private)
 
     if ((param.tags.length > 0) && this.cropeedImgFile && param.place_name && param.place_x && param.place_y && param.when_start && param.when_end) {
-      this.contentService.addContentV2(form).subscribe(res => {
-        this.router.navigate(['/content']);
+      this.contentService.addContentV2(form).subscribe(() => {
+        this.router.navigate(['/contents', { status: 'open' }]);
         localStorage.removeItem('temp');
       });
     } else {

@@ -35,6 +35,7 @@
     height: 15rem;
     margin: 1.5rem 0;
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .place-wrapper .p-list ul {
@@ -50,4 +51,8 @@
 
 .place-wrapper .p-list li:hover {
     background-color: #fbfbfb;
+}
+
+.m-hide-wrap {
+    margin-top: -2.5rem;
 }

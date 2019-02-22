@@ -61,7 +61,7 @@ import { ContentNew2Component } from './components/content/content-new2/content-
 import { ContentHomeComponent } from './components/content/content-home/content-home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'content', pathMatch: 'full' },
+  { path: '', redirectTo: 'contents', pathMatch: 'full' },
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
 
   { path: 'welcome', component: WelcomeComponent },
@@ -103,7 +103,8 @@ const routes: Routes = [
   { path: 'content/:content_oid/group/search', component: ContentGroupTicketSearchComponent, canActivate: [AuthGuard] },
 
   { path: 'contents/new', component: ContentNew2Component, canActivate: [AuthGuard] },
-  { path: 'content', component: ContentHomeComponent, canActivate: [AuthGuard] },
+  // { path: 'content/:content_oid', component: ContentNew2Component, canActivate: [AuthGuard] },
+  { path: 'contents', component: ContentHomeComponent, canActivate: [AuthGuard] },
 
   { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/type/:id', component: TicketTypeDetailComponent, canActivate: [AuthGuard] },

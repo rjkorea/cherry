@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { StatsService } from '../../services/stats.service';
 import { ContentService } from '../../services/content.service';
 
@@ -64,31 +64,10 @@ export class StatsComponent implements OnInit {
     const params: Params = this.route.snapshot.params;
     if ('id' in params) {
       this.content_oid = params['id'];
-      this.loadContent(this.content_oid);
       this.loadStatsContent(this.content_oid);
     } else {
       this.content_oid = null;
     }
-  }
-
-  loadContent(id: string) {
-    if (id) {
-      this.is_loading = true;
-      this.contentService.getContent(id)
-        .subscribe(
-          response => {
-            this.content = response['data'];
-            this.is_loading = false;
-          },
-          error => {
-            this.is_loading = false;
-            console.log(error);
-          }
-        );
-    } else {
-      this.is_loading = false;
-    }
-
   }
 
   loadStatsContent(id: string) {
@@ -97,6 +76,7 @@ export class StatsComponent implements OnInit {
       this.statsService.getStatsContent(id)
         .subscribe(
           response => {
+            this.content = response['data']['content'];
             this.total_viral = response['data']['total_viral'];
             this.revenue = response['data']['revenue'];
             this.ticket_count = response['data']['ticket_count'];
