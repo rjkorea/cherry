@@ -26,7 +26,7 @@ export class ContentHomeComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(res => {
-      this.status = res['params']['status'];
+      this.status = res['params']['status'] || 'open';
       this.getContentList('open', 0);
       this.getContentList('closed', 0);
     });

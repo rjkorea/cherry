@@ -61,7 +61,7 @@ import { ContentNew2Component } from './components/content/content-new2/content-
 import { ContentHomeComponent } from './components/content/content-home/content-home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'content', pathMatch: 'full' },
+  { path: '', redirectTo: 'contents', pathMatch: 'full' },
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
 
   { path: 'welcome', component: WelcomeComponent },
