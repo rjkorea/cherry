@@ -293,11 +293,11 @@
       </div>
       <div class="row">
         <div class="hidden-xs hidden-sm">
-          <button class="btn btn-tkit-mint btn-block btn-base" [disabled]="!contentsForm.valid" (click)="done()">완 료</button>
+          <button class="btn btn-tkit-mint btn-block btn-base" [disabled]="!contentsForm.valid || doneFlag" (click)="done()">완 료</button>
         </div>
         <div class="hidden-md hidden-lg">
           <button class="btn btn-preview btn-base btn-short" (click)="setPreview('m')">미리보기</button>
-          <button class="btn btn-tkit-mint btn-base btn-short right" [disabled]="!contentsForm.valid" (click)="done()">완 료</button>
+          <button class="btn btn-tkit-mint btn-base btn-short right" [disabled]="!contentsForm.valid || doneFlag" (click)="done()">완 료</button>
         </div>
       </div>
     </form>

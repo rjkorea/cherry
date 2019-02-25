@@ -20,11 +20,13 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./content-new2.component.css']
 })
 export class ContentNew2Component implements OnInit {
+  @ViewChild('doneBtn') doneBtn: ElementRef;
   @ViewChild('mFromDate') mFromDate: ElementRef;
   @ViewChild('pcFromDate') pcFromDate: ElementRef;
   @ViewChild('mToDate') mToDate: ElementRef;
   @ViewChild('pcToDate') pcToDate: ElementRef;
 
+  doneFlag = false;
   contentsForm = this.formBuilder.group({
     isPrivate: new FormControl(''),
     contentsName: new FormControl('', [Validators.required]),
@@ -58,7 +60,7 @@ export class ContentNew2Component implements OnInit {
   croppedImg = '';
   croppedImgSize = 0;
   cropeedImgFile = '';
-  thumbnails = ['', '', '', '', '', ''];
+  thumbnails = [''];
   thumbnailFiles = ['', '', '', '', '', ''];
 
   placeObj: Object;
@@ -343,6 +345,7 @@ export class ContentNew2Component implements OnInit {
 
     if ((param.tags.length > 0) && this.cropeedImgFile && param.place_name && param.place_x && param.place_y && param.when_start && param.when_end) {
       this.contentService.addContentV2(form).subscribe(() => {
+        alert('저장되었습니다.');
         this.router.navigate(['/contents', { status: 'open' }]);
         localStorage.removeItem('temp');
       });

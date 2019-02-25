@@ -25,11 +25,7 @@ export class ContentHomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(res => {
-      this.status = res['params']['status'] || 'open';
-      this.getContentList('open', 0);
-      this.getContentList('closed', 0);
-    });
+    this.getInitData();
   }
 
   getContentList(status, start) {
@@ -41,6 +37,17 @@ export class ContentHomeComponent implements OnInit {
         this.closedContents.push(...res['data']);
         this.closedCount = res['count'] < 100 ? res['count'] : '99+';
       }
+    });
+  }
+
+  getInitData(): void {
+    this.route.paramMap.subscribe(res => {
+      this.status = res['params']['status'] || 'open';
+
+      this.openContents = [];
+      this.closedContents = [];
+      this.getContentList('open', 0);
+      this.getContentList('closed', 0);
     });
   }
 

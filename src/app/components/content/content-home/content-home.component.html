@@ -12,7 +12,7 @@
 </div>
 <!-- //tab menu --->
 
-<ng-container *ngIf="status === 'open'; else elseClosed">
+<div [hidden]="status !== 'open'">
   <ng-container *ngIf="openCount > 0; else elseOpenZero">
       <div class="list-wrap">
         <div class="row">
@@ -52,9 +52,9 @@
         </div>
     </div>
   </ng-template>
-</ng-container>
+</div>
 
-<ng-template #elseClosed>
+<div [hidden]="status !== 'closed'">
     <ng-container *ngIf="closedCount > 0; else elseClosedZero">
       <div class="list-wrap">
         <div class="row">
@@ -91,4 +91,4 @@
           </div>
         </div>
     </ng-template>
-</ng-template>
+  </div>
