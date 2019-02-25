@@ -267,7 +267,7 @@
           <!-- <div class="m-textarea hidden-md hidden-lg"><input type="text" class="form-control tds-input" placeholder="행사 공지사항을 입력해주세요" disabled></div> -->
         </div>
         <div class="form-group">
-          <label class="tds-label bold">추가 이미지 <span class="default">(순서대로 업로드 됩니다)</span></label>
+          <label class="tds-label bold">추가 이미지 <span class="default">(최대 6장, 순서대로 업로드 됩니다)</span></label>
           <div class="extra-container">
             <ng-container *ngFor="let thum of thumbnails; let i = index">
               <div class="extra-box">
@@ -277,6 +277,7 @@
                 <div class="mini-thum-box" [ngStyle]="{'background': 'url(' + thum + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div>
                 <ng-container *ngIf="thum">
                   <div class="mini-thum-overlay"></div>
+                  <span *ngIf="isEdit">수정하기</span>
                   <img class="mini-thum-overlay-close" src="/assets/images/close-white-bold.png" (click)="removeExtraImg(i)">
                 </ng-container>
               </div>
@@ -293,11 +294,11 @@
       </div>
       <div class="row">
         <div class="hidden-xs hidden-sm">
-          <button class="btn btn-tkit-mint btn-block btn-base" [disabled]="!contentsForm.valid || doneFlag" (click)="done()">완 료</button>
+          <button class="btn btn-tkit-mint btn-block btn-base" [disabled]="!contentsForm.valid" (click)="done()">완 료</button>
         </div>
         <div class="hidden-md hidden-lg">
           <button class="btn btn-preview btn-base btn-short" (click)="setPreview('m')">미리보기</button>
-          <button class="btn btn-tkit-mint btn-base btn-short right" [disabled]="!contentsForm.valid || doneFlag" (click)="done()">완 료</button>
+          <button class="btn btn-tkit-mint btn-base btn-short right" [disabled]="!contentsForm.valid" (click)="done()">완 료</button>
         </div>
       </div>
     </form>

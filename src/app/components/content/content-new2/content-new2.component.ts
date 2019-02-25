@@ -20,13 +20,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./content-new2.component.css']
 })
 export class ContentNew2Component implements OnInit {
-  @ViewChild('doneBtn') doneBtn: ElementRef;
   @ViewChild('mFromDate') mFromDate: ElementRef;
   @ViewChild('pcFromDate') pcFromDate: ElementRef;
   @ViewChild('mToDate') mToDate: ElementRef;
   @ViewChild('pcToDate') pcToDate: ElementRef;
 
-  doneFlag = false;
   contentsForm = this.formBuilder.group({
     isPrivate: new FormControl(''),
     contentsName: new FormControl('', [Validators.required]),
@@ -61,7 +59,8 @@ export class ContentNew2Component implements OnInit {
   croppedImgSize = 0;
   cropeedImgFile = '';
   thumbnails = [''];
-  thumbnailFiles = ['', '', '', '', '', ''];
+  thumbnailFiles = [];
+  isThumbEnd = false;
 
   placeObj: Object;
   placeX = 0;
@@ -141,6 +140,7 @@ export class ContentNew2Component implements OnInit {
   getThisContent(contentId): void {
     this.contentService.getThisContentV2(contentId).subscribe(res => {
       this.editContent = res['data'];
+      console.log(res);
     });
   }
 
@@ -242,19 +242,31 @@ export class ContentNew2Component implements OnInit {
     const file = o.srcElement.files[0];
 
     if (file) {
-      const reader = new FileReader();
+      if (file['type'].indexOf('image') !== -1) {
+        const reader = new FileReader();
 
-      this.thumbnailFiles.push(file);
-
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.thumbnails[idx] = reader.result.toString();
+        this.thumbnailFiles.push(file);
+  
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.thumbnails[idx] = reader.result.toString();
+          if (idx < 5) this.thumbnails.push('');
+        }
+      } else {
+        alert('이미지는 JPEG, PNG, JPG 형식만 가능합니다.');
       }
     }
   }
 
   removeExtraImg(idx): void {
-    this.thumbnails[idx] = '';
+    this.thumbnails.splice(idx, 1);
+    this.thumbnailFiles.splice(idx, 1);
+
+    if (this.thumbnails.length === 5) {
+      let flag = true;
+      this.thumbnails.forEach(thum => { flag = (thum !== '') });
+      if (flag) this.thumbnails.push('');
+    }
   }
 
   parseTags(): Array<string> {
@@ -308,9 +320,9 @@ export class ContentNew2Component implements OnInit {
       place_y: this.placeObj !== undefined ? this.placeY : 0,
       when_start: this.dateFormat.transform(this.parseWhen('start').getTime(), 'apiDate'),
       when_end: this.dateFormat.transform(this.parseWhen('end').getTime(), 'apiDate'),
-      host_name: this.hostObj !== undefined ? this.hostObj['hostName'] : this.companyContactInfo['name'],
-      host_email: this.hostObj !== undefined ? this.hostObj['hostEmail'] : this.companyContactInfo['email'],
-      host_tel: this.hostObj !== undefined ? this.hostObj['hostTel'] : this.companyContactInfo['tel'],
+      host_name: this.hostObj['hostName'] || this.companyContactInfo['name'],
+      host_email: this.hostObj['hostEmail'] || this.companyContactInfo['email'],
+      host_tel: this.hostObj['hostTel'] || this.companyContactInfo['mobile_number'],
       site_url: this.contentsForm.get('siteUrl').value || '',
       video_url: this.contentsForm.get('videoUrl').value || '',
       notice: this.contentsForm.get('notice').value || '',
@@ -344,7 +356,7 @@ export class ContentNew2Component implements OnInit {
     form.append('comments_private', param.comments_private)
 
     if ((param.tags.length > 0) && this.cropeedImgFile && param.place_name && param.place_x && param.place_y && param.when_start && param.when_end) {
-      this.contentService.addContentV2(form).subscribe(() => {
+      this.contentService.createContentV2(form).subscribe(() => {
         alert('저장되었습니다.');
         this.router.navigate(['/contents', { status: 'open' }]);
         localStorage.removeItem('temp');
