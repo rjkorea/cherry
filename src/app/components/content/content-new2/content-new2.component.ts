@@ -116,7 +116,7 @@ export class ContentNew2Component implements OnInit {
         this.croppedImg = res.value['base64'];
         this.croppedImgSize = res.value['file']['size'];
         this.croppedImgFile = res.value['file'];
-        if (this.isEdit) this.updateThisMainImg('main');
+        if (this.isEdit) this.updateThisImages('main', this.croppedImgFile);
 
       } else if (res.name === 'map') {
         this.placeObj = res.value;
@@ -175,6 +175,9 @@ export class ContentNew2Component implements OnInit {
         this.thumbnails.pop();
         this.thumbnails.push(img.m);
         this.thumbnails.push('');
+
+        // just mark length in edit mode
+        this.thumbnailFiles.push(img.m);
       }
     });
 
@@ -199,17 +202,28 @@ export class ContentNew2Component implements OnInit {
     this.setPreview('');
   }
 
-  updateThisMainImg(type): void {
+  updateThisImages(type, file): void {
     if (type === 'main') {
-      let form = new FormData();
-      form.append('image', this.croppedImgFile, this.cropTargetImgName);
+      const form = new FormData();
+      form.append('image', file, this.cropTargetImgName);
 
       this.contentService.updateMainImg(this.contentId, form).subscribe(() => {
         alert('대표 이미지가 수정되었습니다.');
       });
     } else {
+      const form = new FormData();
+      form.append('image', file, file.name);
 
+      this.contentService.updateExtraImg(this.contentId, form).subscribe(() => {
+        alert('추가 이미지가 수정되었습니다.');
+      });
     }
+  }
+
+  deleteThisExtraImg(idx): void {
+    this.contentService.deleteExtraImg(this.contentId, idx).subscribe(() => {
+      alert('추가 이미지가 삭제되었습니다');
+    });
   }
 
   getUserInfo(): void {
@@ -316,14 +330,15 @@ export class ContentNew2Component implements OnInit {
     if (file) {
       if (file['type'].indexOf('image') !== -1) {
         const reader = new FileReader();
-
         this.thumbnailFiles.push(file);
-  
+
+        if (this.isEdit) this.updateThisImages('extra', file);
+
         reader.readAsDataURL(file);
         reader.onload = () => {
           this.thumbnails[idx] = reader.result.toString();
           if (idx < 5) this.thumbnails.push('');
-        }
+        } 
       } else {
         alert('이미지는 JPEG, PNG, JPG 형식만 가능합니다.');
       }
@@ -339,6 +354,8 @@ export class ContentNew2Component implements OnInit {
       this.thumbnails.forEach(thum => { flag = (thum !== '') });
       if (flag) this.thumbnails.push('');
     }
+
+    if (this.isEdit) this.deleteThisExtraImg(idx + 1);
   }
 
   parseTags(flag, key): Array<string | boolean> {
