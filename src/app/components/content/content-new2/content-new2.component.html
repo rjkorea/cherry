@@ -34,9 +34,9 @@
         <div class="form-group f-title">
           <label class="tds-label bold">행사명</label>
           <div class="in">
-            <input #name type="text" class="form-control tds-input" formControlName="contentsName" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byteName)">
+            <input #name type="text" class="form-control tds-input" formControlName="contentsName" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byte)">
           </div>
-          <div class="bytes"><span #byteName>0</span> / {{ maxByte40 }} Bytes</div>
+          <div class="bytes"><span #byte>0</span> / {{ maxByte40 }} Bytes</div>
         </div>
         <div class="form-group category">
           <label class="tds-label bold">카테고리 <span class="default">(중복선택 가능)</span></label>
@@ -137,8 +137,8 @@
             </div>
             <div *ngIf="placeObj" class="img-desc">
               <div>{{ placeObj?.road_address_name }} {{ placeObj?.place_name }}</div>
-              <div class="tkit-coral-color hidden-md hidden-lg" (click)="openPlaceMap('m')">수정하기</div>
-              <div class="tkit-coral-color hidden-xs hidden-sm" (click)="openPlaceMap('pc')">수정하기</div>
+              <div class="tkit-coral-color hidden-md hidden-lg" (click)="openPlaceMap('m')"><img src="/assets/images/edit-button.svg">수정하기</div>
+              <div class="tkit-coral-color hidden-xs hidden-sm" (click)="openPlaceMap('pc')"><img src="/assets/images/edit-button.svg">수정하기</div>
             </div>
           </div>
         </div>
@@ -148,8 +148,8 @@
             <div class="time-box">
               <label>시작</label>
               <img src="/assets/images/calendar.svg">
-              <input #mFromDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('m', 'from', mFromDate)">
-              <input #pcFromDate type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD" (click)="openCalendar('pc', 'from', pcFromDate)">
+              <input #mFromDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" formControlName="mFromDate" (click)="openCalendar('m', 'from', mFromDate)">
+              <input #pcFromDate type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD" formControlName="pcFromDate" (click)="openCalendar('pc', 'from', pcFromDate)">
               <img src="/assets/images/watch.svg">
               <select class="form-control tds-input tds-select" formControlName="fromHours" required>
                 <option value="" hidden>시</option>
@@ -192,8 +192,8 @@
             <div class="time-box">
               <label>종료</label>
               <img src="/assets/images/calendar.svg">
-              <input #mToDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" (click)="openCalendar('m', 'to', mToDate)">
-              <input #pcToDate type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD" (click)="openCalendar('pc', 'to', pcToDate)">
+              <input #mToDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" formControlName="mToDate" (click)="openCalendar('m', 'to', mToDate)">
+              <input #pcToDate type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD" formControlName="pcToDate" (click)="openCalendar('pc', 'to', pcToDate)">
               <img src="/assets/images/watch.svg">
               <select class="form-control tds-input tds-select" formControlName="toHours" required>
                 <option value="" hidden>시</option>
@@ -273,11 +273,11 @@
               <div class="extra-box">
                 <span>{{ i + 1 }}</span>
                 <i class="fa fa-plus fa-2x"></i>
-                <input type="file" name="file" (change)="changeExtraImg($event, i)">
+                <input id="extraFile" type="file" name="file" (change)="changeExtraImg($event, i)">
                 <div class="mini-thum-box" [ngStyle]="{'background': 'url(' + thum + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div>
                 <ng-container *ngIf="thum">
                   <div class="mini-thum-overlay"></div>
-                  <span *ngIf="isEdit">수정하기</span>
+                  <label *ngIf="isEdit" class="mini-thum-txt" for="extraFile">수정하기</label>
                   <img class="mini-thum-overlay-close" src="/assets/images/close-white-bold.png" (click)="removeExtraImg(i)">
                 </ng-container>
               </div>

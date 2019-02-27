@@ -110,11 +110,11 @@ textarea {
     flex: 1;
 }
 
-.img-container .img-desc div:last-child label {
+.img-container .img-desc div:last-child {
     cursor: pointer;
 }
 
-.img-container .img-desc div:last-child label img {
+.img-container .img-desc div:last-child img {
     width: 1rem;
     margin: 0 0.25rem 0.2rem 0;
 }
@@ -287,6 +287,17 @@ textarea {
     top: 0;
     right: 0;
     opacity: 1;
+    z-index: 3;
+}
+
+.extra-box .mini-thum-txt {
+    position: absolute;
+    color: white;
+    cursor: pointer;
+    padding: 0.6rem;
+    font-size: 1.15rem;
+    top: 0;
+    left: 0;
     z-index: 3;
 }
 

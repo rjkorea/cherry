@@ -13,6 +13,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AdminService } from 'app/services/admin.service';
 import { ContentService } from 'app/services/content.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PlaceDetailComponent } from 'app/components/place/place-detail.component';
 
 @Component({
   selector: 'app-content-new2',
@@ -20,10 +21,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./content-new2.component.css']
 })
 export class ContentNew2Component implements OnInit {
-  @ViewChild('mFromDate') mFromDate: ElementRef;
-  @ViewChild('pcFromDate') pcFromDate: ElementRef;
-  @ViewChild('mToDate') mToDate: ElementRef;
-  @ViewChild('pcToDate') pcToDate: ElementRef;
+  @ViewChild('name') name: ElementRef;
+  @ViewChild('byte') byte: ElementRef;
 
   contentsForm = this.formBuilder.group({
     isPrivate: new FormControl(''),
@@ -32,6 +31,10 @@ export class ContentNew2Component implements OnInit {
     fromMins: new FormControl('', [Validators.required]),
     toHours: new FormControl('', [Validators.required]),
     toMins: new FormControl('', [Validators.required]),
+    mFromDate: new FormControl(''),
+    pcFromDate: new FormControl(''),
+    mToDate: new FormControl(''),
+    pcToDate: new FormControl(''),
     exhibition: new FormControl(''),
     coupon: new FormControl(''),
     play: new FormControl(''),
@@ -57,7 +60,7 @@ export class ContentNew2Component implements OnInit {
   cropTargetImgName = '';
   croppedImg = '';
   croppedImgSize = 0;
-  cropeedImgFile = '';
+  croppedImgFile = '';
   thumbnails = [''];
   thumbnailFiles = [];
   isThumbEnd = false;
@@ -82,6 +85,7 @@ export class ContentNew2Component implements OnInit {
 
   companyContactInfo: Object;
   editContent: Object;
+  contentId: string;
   isEdit = false;
 
   constructor(
@@ -99,20 +103,19 @@ export class ContentNew2Component implements OnInit {
       const type = this.popupService.getData();
 
       if (type === 'from') {
-        this.mFromDate.nativeElement.value = date;
-        this.pcFromDate.nativeElement.value = date;
+        this.contentsForm.controls['mFromDate'].setValue(date);
+        this.contentsForm.controls['pcFromDate'].setValue(date);
       } else {
-        this.mToDate.nativeElement.value = date;
-        this.pcToDate.nativeElement.value = date;
+        this.contentsForm.controls['mToDate'].setValue(date);
+        this.contentsForm.controls['pcToDate'].setValue(date);
       }
     });
 
     this.popupService.nameSubject.subscribe(res => {
       if (res.name === 'cropper') {
-
         this.croppedImg = res.value['base64'];
         this.croppedImgSize = res.value['file']['size'];
-        this.cropeedImgFile = res.value['file'];
+        this.croppedImgFile = res.value['file'];
       } else if (res.name === 'map') {
         this.placeObj = res.value;
         this.placeX = Number.parseFloat(this.placeObj['x']);
@@ -125,7 +128,7 @@ export class ContentNew2Component implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
-    // this.getEditStatus();
+    this.getEditStatus();
   }
 
   getEditStatus(): void {
@@ -133,6 +136,7 @@ export class ContentNew2Component implements OnInit {
 
     if (contentId) {
       this.isEdit = true;
+      this.contentId = contentId;
       this.getThisContent(contentId);
     }
   }
@@ -140,8 +144,55 @@ export class ContentNew2Component implements OnInit {
   getThisContent(contentId): void {
     this.contentService.getThisContentV2(contentId).subscribe(res => {
       this.editContent = res['data'];
-      console.log(res);
+      this.setThisContent(res['data']);
     });
+  }
+
+  setThisContent(data): void {
+    for (const key of data.tags) this.parseTags('split', key);
+
+    if (data.when.hasOwnProperty('end')) {
+      this.contentsForm.controls['mToDate'].setValue(this.dateFormat.transform(data.when.end * 1000, 'date'));
+      this.contentsForm.controls['pcToDate'].setValue(this.dateFormat.transform(data.when.end * 1000, 'date'));
+    }
+
+    if (data.place.x && data.place.y) {
+      this.placeObj = { place_name: data.place.name, place_url: data.place.url, x: data.place.x, y: data.place.y };
+      this.placeX = parseFloat(data.place.x);
+      this.placeY = parseFloat(data.place.y);
+    }
+
+    if (data.host.host_name) {
+      this.hostObj = { hostName: data.host.host_name || '', hostEmail: data.host.host_email || '', hostTel: data.host.host_tel || '' };
+      localStorage.setItem('temp', JSON.stringify(this.hostObj));
+    }
+
+    data.images.filter((img, i) => {
+      if (i !== 0 && img.m !== null) {
+        this.thumbnails.pop();
+        this.thumbnails.push(img.m);
+        this.thumbnails.push('');
+      }
+    });
+
+    this.contentsForm.controls['isPrivate'].setValue(data.is_private);
+    this.contentsForm.controls['contentsName'].setValue(data.name);
+    this.contentsForm.controls['fromHours'].setValue(this.dateFormat.transform(data.when.start * 1000, 'hours'));
+    this.contentsForm.controls['fromMins'].setValue(this.dateFormat.transform(data.when.start * 1000, 'mins'));
+    this.contentsForm.controls['toHours'].setValue(this.dateFormat.transform(data.when.end * 1000, 'hours'));
+    this.contentsForm.controls['toMins'].setValue(this.dateFormat.transform(data.when.end * 1000, 'mins'));
+    this.contentsForm.controls['mFromDate'].setValue(this.dateFormat.transform(data.when.start * 1000, 'date'));
+    this.contentsForm.controls['pcFromDate'].setValue(this.dateFormat.transform(data.when.start * 1000, 'date'));
+    this.contentsForm.controls['siteUrl'].setValue(data.site_url);
+    this.contentsForm.controls['videoUrl'].setValue(data.video_url);
+    this.contentsForm.controls['notice'].setValue(data.notice.message);
+    this.contentsForm.controls['description'].setValue(data.desc);
+    this.contentsForm.controls['commentsPrivate'].setValue(data.comments.is_private);
+    this.croppedImg = data.images[0].m;
+    this.croppedImgSize = data.images[0].size || 0;
+
+    this.checkBytes(this.name.nativeElement, this.byte.nativeElement);
+    this.setPreview('');
   }
 
   getUserInfo(): void {
@@ -221,7 +272,7 @@ export class ContentNew2Component implements OnInit {
     this.previewData.startDate = this.dateFormat.transform(this.parseWhen('start').getTime(), 'datetime');
     this.previewData.endDate = this.dateFormat.transform(this.parseWhen('end').getTime(), 'datetime');
     this.previewData.hostName = this.hostObj ? this.hostObj['hostName'] : this.companyContactInfo['name'];
-    this.previewData.tags = this.parseTags();
+    this.previewData.tags = this.parseTags('combine', '');
     this.previewData.notice = this.contentsForm.get('notice').value;
     this.previewData.desc = this.contentsForm.get('description').value;
     this.previewData.siteUrl = this.contentsForm.get('siteUrl').value;
@@ -269,19 +320,32 @@ export class ContentNew2Component implements OnInit {
     }
   }
 
-  parseTags(): Array<string> {
+  parseTags(flag, key): Array<string | boolean> {
     let tags = [];
 
-    if (this.contentsForm.get('exhibition').value === true) tags.push('전시');
-    if (this.contentsForm.get('coupon').value === true) tags.push('쿠폰');
-    if (this.contentsForm.get('play').value === true) tags.push('공연');
-    if (this.contentsForm.get('seminar').value === true) tags.push('세미나');
-    if (this.contentsForm.get('concert').value === true) tags.push('콘서트');
-    if (this.contentsForm.get('invitation').value === true) tags.push('초대장');
-    if (this.contentsForm.get('festival').value === true) tags.push('페스티벌');
-    if (this.contentsForm.get('wedding').value === true) tags.push('청첩장');
-    if (this.contentsForm.get('club').value === true) tags.push('클럽');
-    if (this.contentsForm.get('etc').value === true) tags.push('기타');
+    if (flag === 'combine') {
+      if (this.contentsForm.get('exhibition').value === true) tags.push('전시');
+      if (this.contentsForm.get('coupon').value === true) tags.push('쿠폰');
+      if (this.contentsForm.get('play').value === true) tags.push('공연');
+      if (this.contentsForm.get('seminar').value === true) tags.push('세미나');
+      if (this.contentsForm.get('concert').value === true) tags.push('콘서트');
+      if (this.contentsForm.get('invitation').value === true) tags.push('초대장');
+      if (this.contentsForm.get('festival').value === true) tags.push('페스티벌');
+      if (this.contentsForm.get('wedding').value === true) tags.push('청첩장');
+      if (this.contentsForm.get('club').value === true) tags.push('클럽');
+      if (this.contentsForm.get('etc').value === true) tags.push('기타');
+    } else {
+      if (key === '전시') this.contentsForm.controls['exhibition'].setValue(true);
+      if (key === '쿠폰') this.contentsForm.controls['coupon'].setValue(true);
+      if (key === '공연') this.contentsForm.controls['play'].setValue(true);
+      if (key === '세미나') this.contentsForm.controls['seminar'].setValue(true);
+      if (key === '콘서트') this.contentsForm.controls['concert'].setValue(true);
+      if (key === '초대장') this.contentsForm.controls['invitation'].setValue(true);
+      if (key === '페스티벌') this.contentsForm.controls['festival'].setValue(true);
+      if (key === '청첩장') this.contentsForm.controls['wedding'].setValue(true);
+      if (key === '클럽') this.contentsForm.controls['club'].setValue(true);
+      if (key === '기타') this.contentsForm.controls['etc'].setValue(true);
+    }
 
     return tags;
   }
@@ -290,11 +354,11 @@ export class ContentNew2Component implements OnInit {
     let date: Date;
 
     if (when === 'start') {
-      date = new Date(this.mFromDate.nativeElement.value || this.pcFromDate.nativeElement.value);
+      date = new Date(this.contentsForm.get('mFromDate').value || this.contentsForm.get('pcFromDate').value);
       date.setHours(this.contentsForm.get('fromHours').value);
       date.setMinutes(this.contentsForm.get('fromMins').value);
     } else {
-      date = new Date(this.mToDate.nativeElement.value || this.pcToDate.nativeElement.value);
+      date = new Date(this.contentsForm.get('mToDate').value || this.contentsForm.get('pcToDate').value);
       date.setHours(this.contentsForm.get('toHours').value);
       date.setMinutes(this.contentsForm.get('toMins').value);
     }
@@ -307,7 +371,7 @@ export class ContentNew2Component implements OnInit {
     const param = {
       is_private: this.contentsForm.get('isPrivate').value || false,
       name: this.contentsForm.get('contentsName').value,
-      tags: this.parseTags(),
+      tags: this.parseTags('combine', ''),
       images_1: this.thumbnailFiles[0] || '',
       images_2: this.thumbnailFiles[1] || '',
       images_3: this.thumbnailFiles[2] || '',
@@ -327,13 +391,13 @@ export class ContentNew2Component implements OnInit {
       video_url: this.contentsForm.get('videoUrl').value || '',
       notice: this.contentsForm.get('notice').value || '',
       desc: this.contentsForm.get('description').value || '',
-      comments_private: this.contentsForm.get('commentsPrivate').value || ''
+      comments_private: this.contentsForm.get('commentsPrivate').value || false
     };
 
     form.append('is_private', param.is_private);
     form.append('name', param.name);
     form.append('tags', JSON.stringify(param.tags));
-    form.append('images_0', this.cropeedImgFile, this.cropTargetImgName);
+    form.append('images_0', this.croppedImgFile, this.cropTargetImgName);
     form.append('images_1', param.images_1)
     form.append('images_2', param.images_2)
     form.append('images_3', param.images_3)
@@ -355,12 +419,21 @@ export class ContentNew2Component implements OnInit {
     form.append('desc', param.desc),
     form.append('comments_private', param.comments_private)
 
-    if ((param.tags.length > 0) && this.cropeedImgFile && param.place_name && param.place_x && param.place_y && param.when_start && param.when_end) {
-      this.contentService.createContentV2(form).subscribe(() => {
-        alert('저장되었습니다.');
-        this.router.navigate(['/contents', { status: 'open' }]);
-        localStorage.removeItem('temp');
-      });
+    if ((param.tags.length > 0) && this.croppedImg && param.place_name && param.place_x && param.place_y && param.when_start && param.when_end) {
+      if (this.isEdit) {
+        for (let i = 1; i <= 6; i++) delete param[`images_${i}`];
+        this.contentService.updateThisContentV2(this.contentId, param).subscribe(() => {
+          alert('수정되었습니다.');
+          this.router.navigate(['/contents', { status: 'open' }]);
+          localStorage.removeItem('temp');
+        });
+      } else {
+        this.contentService.createContentV2(form).subscribe(() => {
+          alert('저장되었습니다.');
+          this.router.navigate(['/contents', { status: 'open' }]);
+          localStorage.removeItem('temp');
+        });
+      }
     } else {
       alert('필수정보를 모두 입력해주세요');
     }

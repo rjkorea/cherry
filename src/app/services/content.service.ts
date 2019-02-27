@@ -117,6 +117,14 @@ export class ContentService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public updateThisContentV2(id: string, obj: object): Observable<{}> {
+    const url = `${this.contentUrlV2}/${id}`;
+
+    return this.http.put(url, obj, this.options)
+    .map((response: Response) => response.json())
+    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
   public updateMainImg(id: string, img: FormData): Observable<{}> {
     const url = `${this.contentUrlV2}/${id}/image/main`;
     return this.http.put(url, img, this.options)
