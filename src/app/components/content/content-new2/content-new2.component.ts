@@ -116,10 +116,13 @@ export class ContentNew2Component implements OnInit {
         this.croppedImg = res.value['base64'];
         this.croppedImgSize = res.value['file']['size'];
         this.croppedImgFile = res.value['file'];
+        if (this.isEdit) this.updateThisMainImg('main');
+
       } else if (res.name === 'map') {
         this.placeObj = res.value;
         this.placeX = Number.parseFloat(this.placeObj['x']);
         this.placeY = Number.parseFloat(this.placeObj['y']);
+
       } else if(res.name === 'host') {
         this.hostObj = res.value;
       }
@@ -175,6 +178,7 @@ export class ContentNew2Component implements OnInit {
       }
     });
 
+
     this.contentsForm.controls['isPrivate'].setValue(data.is_private);
     this.contentsForm.controls['contentsName'].setValue(data.name);
     this.contentsForm.controls['fromHours'].setValue(this.dateFormat.transform(data.when.start * 1000, 'hours'));
@@ -193,6 +197,19 @@ export class ContentNew2Component implements OnInit {
 
     this.checkBytes(this.name.nativeElement, this.byte.nativeElement);
     this.setPreview('');
+  }
+
+  updateThisMainImg(type): void {
+    if (type === 'main') {
+      let form = new FormData();
+      form.append('image', this.croppedImgFile, this.cropTargetImgName);
+
+      this.contentService.updateMainImg(this.contentId, form).subscribe(() => {
+        alert('대표 이미지가 수정되었습니다.');
+      });
+    } else {
+
+    }
   }
 
   getUserInfo(): void {
@@ -289,6 +306,10 @@ export class ContentNew2Component implements OnInit {
     this.typeCoverPopup = type;
   }
  
+  initFileInput(input): void {
+    input.value = '';
+  }
+
   changeExtraImg(o, idx): void {
     const file = o.srcElement.files[0];
 

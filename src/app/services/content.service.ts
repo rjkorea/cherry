@@ -125,16 +125,22 @@ export class ContentService {
     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public updateMainImg(id: string, img: FormData): Observable<{}> {
+  public updateMainImg(id: string, data: FormData): Observable<{}> {
     const url = `${this.contentUrlV2}/${id}/image/main`;
-    return this.http.put(url, img, this.options)
+    const headers = new Headers({ 'Authorization': 'csk=' + localStorage.getItem('csk') });
+    const options = new RequestOptions({ headers: headers, withCredentials: true });
+
+    return this.http.put(url, data, options)
       .map((response: Response) => response.json())
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
   public updateExtraImg(id: string, img: FormData): Observable<{}> {
     const url = `${this.contentUrlV2}/${id}/image/extra`;
-    return this.http.put(url, img, this.options)
+    const headers = new Headers({ 'Authorization': 'csk=' + localStorage.getItem('csk') });
+    const options = new RequestOptions({ headers: headers, withCredentials: true });
+
+    return this.http.put(url, img, options)
       .map((response: Response) => response.json())
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }

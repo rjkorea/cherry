@@ -105,8 +105,8 @@
                   <span class="bold">눌러서 이미지를 업로드 해주세요</span>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
                 </div>
               </ng-container>
-              <input id="mMainImg" type="file" name="file" class="hidden-md hidden-lg" (change)="changeMainImg($event, 'm')">
-              <input id="pcMainImg" type="file" name="file" class="hidden-xs hidden-sm" (change)="changeMainImg($event, 'pc')">
+              <input #mMainImg id="mMainImg" type="file" name="file" class="hidden-md hidden-lg" (change)="changeMainImg($event, 'm')" (click)="initFileInput(mMainImg)">
+              <input #pcMainImg id="pcMainImg" type="file" name="file" class="hidden-xs hidden-sm" (change)="changeMainImg($event, 'pc')" (click)="initFileInput(pcMainImg)">
             </div>
             <div *ngIf="croppedImg" class="img-desc">
               <div>파일크기: {{ croppedImgSize | fileSizeFormat: 2 }}</div>
@@ -273,7 +273,7 @@
               <div class="extra-box">
                 <span>{{ i + 1 }}</span>
                 <i class="fa fa-plus fa-2x"></i>
-                <input id="extraFile" type="file" name="file" (change)="changeExtraImg($event, i)">
+                <input #extraFile id="extraFile" type="file" name="file" (change)="changeExtraImg($event, i)" (click)="initFileInput(extraFile)">
                 <div class="mini-thum-box" [ngStyle]="{'background': 'url(' + thum + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': 'center'}"></div>
                 <ng-container *ngIf="thum">
                   <div class="mini-thum-overlay"></div>
