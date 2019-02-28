@@ -432,31 +432,6 @@ export class ContentNew2Component implements OnInit {
       comments_private: this.contentsForm.get('commentsPrivate').value || false
     };
 
-    form.append('is_private', param.is_private);
-    form.append('name', param.name);
-    form.append('tags', JSON.stringify(param.tags));
-    form.append('images_0', this.croppedImgFile, this.cropTargetImgName);
-    form.append('images_1', param.images_1)
-    form.append('images_2', param.images_2)
-    form.append('images_3', param.images_3)
-    form.append('images_4', param.images_4)
-    form.append('images_5', param.images_5)
-    form.append('images_6', param.images_6)
-    form.append('place_name', param.place_name)
-    form.append('place_url', param.place_url)
-    form.append('place_x', param.place_x.toString());
-    form.append('place_y', param.place_y.toString());
-    form.append('when_start', param.when_start);
-    form.append('when_end', param.when_end);
-    form.append('host_name', param.host_name),
-    form.append('host_email', param.host_email),
-    form.append('host_tel', param.host_tel),
-    form.append('site_url', param.site_url),
-    form.append('video_url', param.video_url),
-    form.append('notice', param.notice),
-    form.append('desc', param.desc),
-    form.append('comments_private', param.comments_private)
-
     if ((param.tags.length > 0) && this.croppedImg && param.place_name && param.place_x && param.place_y && param.when_start && param.when_end) {
       if (this.isEdit) {
         for (let i = 1; i <= 6; i++) delete param[`images_${i}`];
@@ -466,6 +441,31 @@ export class ContentNew2Component implements OnInit {
           localStorage.removeItem('temp');
         });
       } else {
+        form.append('is_private', param.is_private);
+        form.append('name', param.name);
+        form.append('tags', JSON.stringify(param.tags));
+        form.append('images_0', this.croppedImgFile, this.cropTargetImgName);
+        form.append('images_1', param.images_1);
+        form.append('images_2', param.images_2);
+        form.append('images_3', param.images_3);
+        form.append('images_4', param.images_4);
+        form.append('images_5', param.images_5);
+        form.append('images_6', param.images_6);
+        form.append('place_name', param.place_name);
+        form.append('place_url', param.place_url);
+        form.append('place_x', param.place_x.toString());
+        form.append('place_y', param.place_y.toString());
+        form.append('when_start', param.when_start);
+        form.append('when_end', param.when_end);
+        form.append('host_name', param.host_name);
+        form.append('host_email', param.host_email);
+        form.append('host_tel', param.host_tel);
+        form.append('site_url', param.site_url);
+        form.append('video_url', param.video_url);
+        form.append('notice', param.notice);
+        form.append('desc', param.desc);
+        form.append('comments_private', param.comments_private);
+
         this.contentService.createContentV2(form).subscribe(() => {
           alert('저장되었습니다.');
           this.router.navigate(['/contents', { status: 'open' }]);

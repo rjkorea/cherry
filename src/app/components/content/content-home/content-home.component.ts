@@ -46,6 +46,7 @@ export class ContentHomeComponent implements OnInit {
 
       this.openContents = [];
       this.closedContents = [];
+      this.openCount = this.openStart = this.closedCount = this.closedStart = 0;
       this.getContentList('open', 0);
       this.getContentList('closed', 0);
     });
@@ -85,9 +86,10 @@ export class ContentHomeComponent implements OnInit {
           this.getContentList('open', this.openStart);
         }
       } else {
-        if (this.closedCount >= this.closedStart)
-        this.closedStart += 6;
-        this.getContentList('closed', this.closedStart);
+        if (this.closedCount >= this.closedStart) {
+          this.closedStart += 6;
+          this.getContentList('closed', this.closedStart);
+        }
       }
     }
   }

@@ -137,8 +137,10 @@
             </div>
             <div *ngIf="placeObj" class="img-desc">
               <div>{{ placeObj?.road_address_name }} {{ placeObj?.place_name }}</div>
-              <div class="tkit-coral-color hidden-md hidden-lg" (click)="openPlaceMap('m')"><img src="/assets/images/edit-button.png">수정하기</div>
-              <div class="tkit-coral-color hidden-xs hidden-sm" (click)="openPlaceMap('pc')"><img src="/assets/images/edit-button.png">수정하기</div>
+              <div class="tkit-coral-color">
+                <label class="hidden-md hidden-lg" (click)="openPlaceMap('m')"><img src="/assets/images/edit-button.png">수정하기</label>
+                <label class="hidden-xs hidden-sm" (click)="openPlaceMap('pc')"><img src="/assets/images/edit-button.png">수정하기</label>  
+              </div>
             </div>
           </div>
         </div>
