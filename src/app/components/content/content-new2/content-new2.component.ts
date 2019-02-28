@@ -214,21 +214,21 @@ export class ContentNew2Component implements OnInit, OnDestroy {
       form.append('image', file, this.cropTargetImgName);
 
       this.contentService.updateMainImg(this.contentId, form).subscribe(() => {
-        alert('대표 이미지가 수정되었습니다.');
+        // alert('대표 이미지가 수정되었습니다.');
       });
     } else {
       const form = new FormData();
       form.append('image', file, file.name);
 
       this.contentService.updateExtraImg(this.contentId, form).subscribe(() => {
-        alert('추가 이미지가 수정되었습니다.');
+        // alert('이미지를 추가했습니다.');
       });
     }
   }
 
   deleteThisExtraImg(idx): void {
     this.contentService.deleteExtraImg(this.contentId, idx).subscribe(() => {
-      alert('추가 이미지가 삭제되었습니다');
+      // alert('이미지가 삭제되었습니다.');
     });
   }
 
@@ -252,6 +252,40 @@ export class ContentNew2Component implements OnInit, OnDestroy {
         this.popupService.add(ModalCenterComponent, ContentCropperComponent);
       }
     }
+  }
+
+  changeExtraImg(o, idx): void {
+    const file = o.srcElement.files[0];
+
+    if (file) {
+      if (file['type'].indexOf('image') !== -1) {
+        const reader = new FileReader();
+        this.thumbnailFiles.push(file);
+
+        if (this.isEdit) this.updateThisImages('extra', file);
+
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.thumbnails[idx] = reader.result.toString();
+          if (idx < 5) this.thumbnails.push('');
+        } 
+      } else {
+        alert('이미지는 JPEG, PNG, JPG 형식만 가능합니다.');
+      }
+    }
+  }
+
+  removeExtraImg(idx): void {
+    this.thumbnails.splice(idx, 1);
+    this.thumbnailFiles.splice(idx, 1);
+
+    if (this.thumbnails.length === 5) {
+      let flag = true;
+      this.thumbnails.forEach(thum => { flag = (thum !== '') });
+      if (flag) this.thumbnails.push('');
+    }
+
+    if (this.isEdit) this.deleteThisExtraImg(idx + 1);
   }
 
   checkBytes(input, output): void {
@@ -328,40 +362,6 @@ export class ContentNew2Component implements OnInit, OnDestroy {
  
   initFileInput(input): void {
     input.value = '';
-  }
-
-  changeExtraImg(o, idx): void {
-    const file = o.srcElement.files[0];
-
-    if (file) {
-      if (file['type'].indexOf('image') !== -1) {
-        const reader = new FileReader();
-        this.thumbnailFiles.push(file);
-
-        if (this.isEdit) this.updateThisImages('extra', file);
-
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          this.thumbnails[idx] = reader.result.toString();
-          if (idx < 5) this.thumbnails.push('');
-        } 
-      } else {
-        alert('이미지는 JPEG, PNG, JPG 형식만 가능합니다.');
-      }
-    }
-  }
-
-  removeExtraImg(idx): void {
-    this.thumbnails.splice(idx, 1);
-    this.thumbnailFiles.splice(idx, 1);
-
-    if (this.thumbnails.length === 5) {
-      let flag = true;
-      this.thumbnails.forEach(thum => { flag = (thum !== '') });
-      if (flag) this.thumbnails.push('');
-    }
-
-    if (this.isEdit) this.deleteThisExtraImg(idx + 1);
   }
 
   parseTags(flag, key): Array<string | boolean> {
@@ -442,7 +442,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
       if (this.isEdit) {
         for (let i = 1; i <= 6; i++) delete param[`images_${i}`];
         this.contentService.updateThisContentV2(this.contentId, param).subscribe(() => {
-          alert('수정되었습니다.');
+          // alert('수정되었습니다.');
           this.router.navigate(['/contents', { status: 'open' }]);
           localStorage.removeItem('temp');
         });
