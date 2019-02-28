@@ -89,6 +89,8 @@ export class ContentNew2Component implements OnInit, OnDestroy {
   contentId: string;
   isEdit = false;
 
+  is_loading = true;
+
   constructor(
     private formBuilder: FormBuilder,
     private popupService: PopupService,
@@ -151,9 +153,14 @@ export class ContentNew2Component implements OnInit, OnDestroy {
   }
 
   getThisContent(contentId): void {
+    this.is_loading = true;
     this.contentService.getThisContentV2(contentId).subscribe(res => {
+      this.is_loading = false;
       this.editContent = res['data'];
       this.setThisContent(res['data']);
+    }, err => {
+      console.log(err);
+      this.is_loading = false;
     });
   }
 
@@ -209,32 +216,49 @@ export class ContentNew2Component implements OnInit, OnDestroy {
   }
 
   updateThisImages(type, file): void {
+    this.is_loading = true;
+
     if (type === 'main') {
       const form = new FormData();
       form.append('image', file, this.cropTargetImgName);
 
       this.contentService.updateMainImg(this.contentId, form).subscribe(() => {
-        // alert('대표 이미지가 수정되었습니다.');
+        this.is_loading = false;
+      }, err => {
+        console.log(err);
+        this.is_loading = false;
       });
     } else {
       const form = new FormData();
       form.append('image', file, file.name);
 
       this.contentService.updateExtraImg(this.contentId, form).subscribe(() => {
-        // alert('이미지를 추가했습니다.');
+        this.is_loading = false;
+      }, err => {
+        console.log(err);
+        this.is_loading = false;
       });
     }
   }
 
   deleteThisExtraImg(idx): void {
+    this.is_loading = true;
     this.contentService.deleteExtraImg(this.contentId, idx).subscribe(() => {
-      // alert('이미지가 삭제되었습니다.');
+      this.is_loading = false;
+    }, err => {
+      console.log(err);
+      this.is_loading = false;
     });
   }
 
   getUserInfo(): void {
+    this.is_loading = true;
     this.adminService.getAdmin(localStorage.getItem('_id')).subscribe(res => {
       this.companyContactInfo = res['data']['company']['contact'];
+      this.is_loading = false;
+    }, err => {
+      console.log(err);
+      this.is_loading = false;
     });
   }
 
@@ -439,12 +463,18 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     };
 
     if ((param.tags.length > 0) && this.croppedImg && param.place_name && param.place_x && param.place_y && param.when_start && param.when_end) {
+      this.is_loading = true;
+
       if (this.isEdit) {
         for (let i = 1; i <= 6; i++) delete param[`images_${i}`];
+
         this.contentService.updateThisContentV2(this.contentId, param).subscribe(() => {
-          // alert('수정되었습니다.');
+          this.is_loading = false;
           this.router.navigate(['/contents', { status: 'open' }]);
           localStorage.removeItem('temp');
+        }, err => {
+          console.log(err);
+          this.is_loading = false;
         });
       } else {
         form.append('is_private', param.is_private);
@@ -473,9 +503,12 @@ export class ContentNew2Component implements OnInit, OnDestroy {
         form.append('comments_private', param.comments_private);
 
         this.contentService.createContentV2(form).subscribe(() => {
-          alert('저장되었습니다.');
+          this.is_loading = false;
           this.router.navigate(['/contents', { status: 'open' }]);
           localStorage.removeItem('temp');
+        }, err => {
+          console.log(err);
+          this.is_loading = false;
         });
       }
     } else {
