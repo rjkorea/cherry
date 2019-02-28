@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,9 @@ export class AppComponent implements OnInit {
   vendor: any;
   vendorSub: any;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router
+    ) { }
 
   ngOnInit() {
     window.addEventListener('offline', function (e) {
