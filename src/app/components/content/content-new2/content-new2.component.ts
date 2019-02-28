@@ -174,7 +174,7 @@ export class ContentNew2Component implements OnInit {
       if (i !== 0 && img.m !== null) {
         this.thumbnails.pop();
         this.thumbnails.push(img.m);
-        this.thumbnails.push('');
+        if (this.thumbnails.length < 6) this.thumbnails.push('');
 
         // just mark length in edit mode
         this.thumbnailFiles.push(img.m);
