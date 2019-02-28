@@ -1,5 +1,6 @@
 <div class="container" [hidden]="isCoverPopup">
-  <div class="row bolder">행사 만들기</div>
+  <div *ngIf="!isEdit" class="row bolder">행사 만들기</div>
+  <div *ngIf="isEdit" class="row bolder">행사 수정하기</div>
   <div class="row">
     <div class="col-sm-5 hidden-xs hidden-sm stick-left">
       <div class="header">모바일 화면 미리보기</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { utils } from '../../../shared/utils';
 import { PopupService } from '../../../services/popup.service';
 import { SingleDateComponent } from '../../../components/common/calendar/single-date/single-date.component';
@@ -14,13 +14,14 @@ import { AdminService } from 'app/services/admin.service';
 import { ContentService } from 'app/services/content.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlaceDetailComponent } from 'app/components/place/place-detail.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-content-new2',
   templateUrl: './content-new2.component.html',
   styleUrls: ['./content-new2.component.css']
 })
-export class ContentNew2Component implements OnInit {
+export class ContentNew2Component implements OnInit, OnDestroy {
   @ViewChild('name') name: ElementRef;
   @ViewChild('byte') byte: ElementRef;
 
@@ -132,6 +133,11 @@ export class ContentNew2Component implements OnInit {
   ngOnInit() {
     this.getUserInfo();
     this.getEditStatus();
+  }
+
+  ngOnDestroy() {
+    this.popupService.clearSubject();
+    this.popupService.clearNameSubject();
   }
 
   getEditStatus(): void {
