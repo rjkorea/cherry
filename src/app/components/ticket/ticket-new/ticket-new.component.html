@@ -1,0 +1,40 @@
+<ng-template [ngIf]="is_loading">
+  <app-loader></app-loader>
+</ng-template>
+
+<div class="container" [hidden]="isCoverPopup">
+  <div class="row bolder">티켓 만들기</div>
+  <div class="row">
+    <div class="col-sm-5 hidden-xs hidden-sm stick-left">
+      <div class="header">모바일 화면 미리보기</div>
+      <div class="render">
+        <span class="render-btn bold" (click)="setPreview('pc')">적용하기</span>
+        <span class="txt">버튼을 누르고 화면을 스크롤 해보세요</span>
+      </div>
+      <!-- <app-content-preview [previewData]="previewData"></app-content-preview> -->
+    </div>
+    <div class="col-sm-1 hidden-xs hidden-sm"></div>
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="header">티켓 정보 입력</div>
+      </div>
+      <app-ticket-box></app-ticket-box>
+      <div class="row">
+        <div class="add-desc-box">
+          <div class="diagonal-left">티켓을 추가하려면<span><span class="bold">유료</span> 또는 <span class="bold">무료티켓</span> 버튼을 눌러주세요</span></div>
+          <div class="diagonal-right">
+            <label class="light-label">티켓 타입</label>
+            <label class="bold-label"><span class="bold">0</span> / {{ maxTickets10 }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-tkit-mint btn-block btn-base" [disabled]="!contentsForm.valid" (click)="done()">완 료</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isCoverPopup">
+  <app-content-preview *ngIf="typeCoverPopup === 'preview'" [previewData]="previewData" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-preview>
+</div>

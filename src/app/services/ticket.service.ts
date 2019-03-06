@@ -21,6 +21,9 @@ export class TicketService {
   logUrl = `${URL}/a/ticket/log`;
   options;
 
+  typeUrlV2 = `${URL}/a/v2/ticket/type`;
+  typesUrlV2 = `${URL}/a/v2/ticket/types`;
+
   constructor(private http: Http) {
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});
     this.options = new RequestOptions({headers: headers, withCredentials: true});
@@ -157,4 +160,11 @@ export class TicketService {
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  // V2
+  public getTypeListV2(content_oid: string, start: Number, size: Number): Observable<{}> {
+    const url = `${this.typesUrlV2}?start=${start}&size=${size}&content_oid=${content_oid}`;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 }
