@@ -9,9 +9,12 @@ input:disabled {
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(68, 68, 68, 0.5);
     border-radius: 2px;
-    padding: 2.5rem 2rem;
     margin-top: 2rem;
     margin-bottom: 4rem;
+}
+
+.ticket-box .ticket-inner-box {
+    padding: 2.5rem 2rem;
 }
 
 .ticket-box::before {
@@ -22,6 +25,7 @@ input:disabled {
     width: 100%;
     height: 1.25rem;
     left: 0;
+    right: 0;
     top: 0;
 }
 
@@ -34,13 +38,13 @@ input:disabled {
 }
 
 .ticket-box .delete-btn img {
-    width: 1.15rem;
     cursor: pointer;
+    width: 1.15rem;
 }
 
 .ticket-box .delete-btn span {
-    margin-left: 0.15rem;
     cursor: pointer;
+    margin-left: 0.15rem;
 }
 
 .right {

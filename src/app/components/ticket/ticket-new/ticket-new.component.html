@@ -11,21 +11,26 @@
         <span class="render-btn bold" (click)="setPreview('pc')">적용하기</span>
         <span class="txt">버튼을 누르고 화면을 스크롤 해보세요</span>
       </div>
-      <!-- <app-content-preview [previewData]="previewData"></app-content-preview> -->
+      <!-- <app-ticket-preview [previewData]="previewData"></app-ticket-preview> -->
     </div>
     <div class="col-sm-1 hidden-xs hidden-sm"></div>
     <div class="col-sm-6">
-      <div class="row">
+      <div class="row hidden-xs hidden-sm">
         <div class="header">티켓 정보 입력</div>
       </div>
-      <app-ticket-box></app-ticket-box>
+      <div #ticketBoxs></div>
+      <!-- <app-ticket-box></app-ticket-box> -->
       <div class="row">
         <div class="add-desc-box">
           <div class="diagonal-left">티켓을 추가하려면<span><span class="bold">유료</span> 또는 <span class="bold">무료티켓</span> 버튼을 눌러주세요</span></div>
           <div class="diagonal-right">
             <label class="light-label">티켓 타입</label>
-            <label class="bold-label"><span class="bold">0</span> / {{ maxTickets10 }}</label>
+            <label class="bold-label"><span class="bold">{{ popupService.dynamicContentCount }}</span> / {{ maxTickets10 }}</label>
           </div>
+        </div>
+        <div class="type-btns">
+          <button (click)="getTicketBox('pay')" [disabled]="isMaxTickets"><img src="/assets/images/add-circle.svg"><span>유료티켓</span></button>
+          <button (click)="getTicketBox('free')" [disabled]="isMaxTickets"><img src="/assets/images/add-circle.svg"><span>무료티켓</span></button>
         </div>
       </div>
       <div class="row">

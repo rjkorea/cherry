@@ -40,6 +40,7 @@ input:disabled {
     display: flex;
     height: 6.5rem;
     font-size: 1.2rem;
+    margin-top: 2rem;
 }
 
 .add-desc-box .diagonal-left {
@@ -60,8 +61,8 @@ input:disabled {
     height: 0;
     top: 0;
     right: 0;
-    border-bottom: 6.5rem solid white;
-    border-left: 2.5rem solid transparent;
+    border-bottom: 6.53rem solid white;
+    border-left: 2.45rem solid transparent;
 }
 
 .add-desc-box .diagonal-right {
@@ -81,8 +82,8 @@ input:disabled {
     width: 0;
     height: 0;
     top: 0;
-    left: -2.5rem;
-    border-bottom: 6.5rem solid #f8f8f8;
+    left: -2.45rem;
+    border-bottom: 6.53rem solid #f8f8f8;
     border-left: 2.5rem solid transparent;
 }
 
@@ -96,6 +97,38 @@ input:disabled {
     font-size: 1.65rem;
     font-weight: 300;
     color: #444444;
+}
+
+.type-btns {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    color: #62aab8;
+    font-size: 1.15rem;
+    margin: 1.5rem 0 3rem;
+}
+
+.type-btns button {
+    flex: 0.5;
+    padding: 1.1rem 0;
+    border: 2px solid;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.type-btns button:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+    color: #62aab8;
+}
+
+.type-btns button:first-child {
+    margin-right: 2rem;
+}
+
+.type-btns img {
+    width: 1.2rem;
+    margin-right: 0.2rem;
 }
 
 .btn-base {
