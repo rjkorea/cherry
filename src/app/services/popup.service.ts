@@ -47,4 +47,14 @@ export class PopupService {
   clearPopup = (): void => {
     this.content.clear();
   }
+
+  clearSubject(): void {
+    this.subject.unsubscribe();
+    this.subject = new Subject<any>();
+  }
+
+  clearNameSubject(): void {
+    this.nameSubject.unsubscribe();
+    this.nameSubject = new Subject<any>();
+  }
 }

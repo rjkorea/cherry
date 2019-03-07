@@ -92,7 +92,8 @@ export class ContentService {
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public addContentV2(data: FormData): Observable<{}> {
+  // V2
+  public createContentV2(data: FormData): Observable<{}> {
     const url = `${this.contentUrlV2}`;
     const headers = new Headers({ 'Authorization': 'csk=' + localStorage.getItem('csk') });
     const options = new RequestOptions({ headers: headers, withCredentials: true });
@@ -114,5 +115,40 @@ export class ContentService {
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public updateThisContentV2(id: string, obj: object): Observable<{}> {
+    const url = `${this.contentUrlV2}/${id}`;
+
+    return this.http.put(url, obj, this.options)
+    .map((response: Response) => response.json())
+    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public updateMainImg(id: string, data: FormData): Observable<{}> {
+    const url = `${this.contentUrlV2}/${id}/image/main`;
+    const headers = new Headers({ 'Authorization': 'csk=' + localStorage.getItem('csk') });
+    const options = new RequestOptions({ headers: headers, withCredentials: true });
+
+    return this.http.put(url, data, options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public updateExtraImg(id: string, img: FormData): Observable<{}> {
+    const url = `${this.contentUrlV2}/${id}/image/extra`;
+    const headers = new Headers({ 'Authorization': 'csk=' + localStorage.getItem('csk') });
+    const options = new RequestOptions({ headers: headers, withCredentials: true });
+
+    return this.http.put(url, img, options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public deleteExtraImg(id: string, idx: number): Observable<{}> {
+    const url = `${this.contentUrlV2}/${id}/image/extra/${idx}`;
+    return this.http.delete(url, this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 }
