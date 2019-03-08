@@ -11,10 +11,10 @@ import { TicketBoxComponent } from '../ticket-box/ticket-box.component';
 })
 export class TicketNewComponent implements OnInit {
   @ViewChild('ticketBoxs', { read: ViewContainerRef }) ticketBoxs: ViewContainerRef;
+  @ViewChild(TicketBoxComponent) ticket: TicketBoxComponent
 
   contentId: string;
   maxTickets10: number = 10;
-  isMaxTickets: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,9 +28,7 @@ export class TicketNewComponent implements OnInit {
 
   getTicketBox(type): void {
     if (this.maxTickets10 > this.popupService.dynamicContentCount) {
-      this.popupService.addDynamicContainer(this.ticketBoxs, TicketBoxComponent);
-    } else {
-      this.isMaxTickets = true;
+      this.popupService.addDynamicContainer(this.ticketBoxs, TicketBoxComponent, { ticketType: type });
     }
   }
 }

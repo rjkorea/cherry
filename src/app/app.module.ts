@@ -116,6 +116,7 @@ import { TicketNewComponent } from './components/ticket/ticket-new/ticket-new.co
 import { TicketHomeComponent } from './components/ticket/ticket-home/ticket-home.component';
 import { TicketBoxComponent } from './components/ticket/ticket-box/ticket-box.component';
 import { TicketPreviewComponent } from './components/ticket/ticket-new/ticket-preview/ticket-preview.component';
+import { TicketSpreadComponent } from './components/ticket/ticket-box/ticket-spread/ticket-spread.component';
 
 
 defineLocale('ko', koLocale);
@@ -198,7 +199,8 @@ defineLocale('ko', koLocale);
     TicketNewComponent,
     TicketHomeComponent,
     TicketBoxComponent,
-    TicketPreviewComponent
+    TicketPreviewComponent,
+    TicketSpreadComponent
   ],
   imports: [
     BrowserModule,
@@ -257,7 +259,8 @@ defineLocale('ko', koLocale);
     ContentIsPrivateComponent,
     ContentPlaceMapComponent,
     ContentHostInfoComponent,
-    TicketBoxComponent
+    TicketBoxComponent,
+    TicketSpreadComponent
   ]
 })
 export class AppModule { }

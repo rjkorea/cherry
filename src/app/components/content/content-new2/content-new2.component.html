@@ -23,7 +23,7 @@
         <div class="form-group is-hidden">
           <div class="q-box">
             <span class="bold">행사 공개여부</span>
-            <span class="u-toggle-container q-mark hidden-xs hidden-sm" (mouseover)="utils.getTogglePopup('isPrivate', toggle)" (mouseout)="utils.getTogglePopup('isPrivate', toggle)">
+            <span class="u-toggle-container q-mark hidden-xs hidden-sm" (mouseover)="utils.getTogglePopup(toggle)" (mouseout)="utils.getTogglePopup(toggle)">
               <img src="/assets/images/question-mark.svg">
               <div #toggle class="u-toggle"><app-content-is-private></app-content-is-private></div>
             </span>

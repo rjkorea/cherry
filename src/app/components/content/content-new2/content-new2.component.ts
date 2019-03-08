@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { utils } from '../../../shared/utils';
+import { utilModule } from '../../../shared/utils';
 import { PopupService } from '../../../services/popup.service';
 import { SingleDateComponent } from '../../../components/common/calendar/single-date/single-date.component';
 import { ModalCenterComponent } from '../../../components/common/popup/modal-center/modal-center.component';
@@ -53,7 +53,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     commentsPrivate: new FormControl('')
   });
 
-  utils = utils;
+  utils = utilModule;
   maxByte40 = 40;
   limitLength = 0;
   isCoverPopup = false;
@@ -313,7 +313,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
   }
 
   checkBytes(input, output): void {
-    const byte = utils.getByteSize(input.value, 0, 0);
+    const byte = this.utils.getByteSize(input.value, 0, 0);
 
     if (byte > this.maxByte40) {
       input.value = input.value.slice(0, this.limitLength);

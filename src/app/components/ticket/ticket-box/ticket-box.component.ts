@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PopupService } from 'app/services/popup.service';
+import { utilModule } from '../../../shared/utils';
+import { ModalCenterComponent } from '../../common/popup/modal-center/modal-center.component';
+import { TicketSpreadComponent } from './ticket-spread/ticket-spread.component';
 
 @Component({
   selector: 'app-ticket-box',
@@ -8,7 +11,9 @@ import { PopupService } from 'app/services/popup.service';
   styleUrls: ['./ticket-box.component.css']
 })
 export class TicketBoxComponent implements OnInit {
+  utils = utilModule;
   box: any;
+  parentData: Object;
   maxByte40: number = 40;
 
   ticketForm = this.formBuilder.group({
@@ -41,7 +46,8 @@ export class TicketBoxComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private viewContainerRef: ViewContainerRef
   ) { }
 
   ngOnInit() {
@@ -50,5 +56,13 @@ export class TicketBoxComponent implements OnInit {
   deleteTicket(): void {
     this.popupService.dynamicContentCount--;
     this.box.destroy();
+  }
+
+  openDescriptionPopup(name): void {
+    this.popupService.setView(this.viewContainerRef);
+
+    if (name === 'spread') {
+      this.popupService.add(ModalCenterComponent, TicketSpreadComponent);
+    }
   }
 }

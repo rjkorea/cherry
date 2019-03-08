@@ -98,5 +98,6 @@ input:disabled {
 }
 
 .count-box div {
+    flex: 1;
     margin-right: 1rem;
 }

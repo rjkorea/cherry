@@ -45,13 +45,14 @@ export class PopupService {
     this.content.insert(view.hostView) as EmbeddedViewRef<any>;
   }
 
-  addDynamicContainer(container: ViewContainerRef, component: any): void {
+  addDynamicContainer(container: ViewContainerRef, component: any, data: Object): void {
     this.dynamicContentCount++;
 
     const factory = this.factory.resolveComponentFactory(component);
     const view = container.createComponent(factory);
 
     view.instance['box'] = view;
+    view.instance['parentData'] = data;
   }
 
   clearPopup = (): void => {

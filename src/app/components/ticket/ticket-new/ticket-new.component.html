@@ -29,8 +29,8 @@
           </div>
         </div>
         <div class="type-btns">
-          <button (click)="getTicketBox('pay')" [disabled]="isMaxTickets"><img src="/assets/images/add-circle.svg"><span>유료티켓</span></button>
-          <button (click)="getTicketBox('free')" [disabled]="isMaxTickets"><img src="/assets/images/add-circle.svg"><span>무료티켓</span></button>
+          <button (click)="getTicketBox('pay')" [disabled]="popupService.dynamicContentCount >= maxTickets10"><img src="/assets/images/add-circle.svg"><span>유료티켓</span></button>
+          <button (click)="getTicketBox('free')" [disabled]="popupService.dynamicContentCount >= maxTickets10"><img src="/assets/images/add-circle.svg"><span>무료티켓</span></button>
         </div>
       </div>
       <div class="row">
