@@ -14,7 +14,11 @@ import { AdminService } from 'app/services/admin.service';
 import { ContentService } from 'app/services/content.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlaceDetailComponent } from 'app/components/place/place-detail.component';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import { Select, Action, Store } from '@ngxs/store';
+import { contentState } from 'app/states/content/content.state';
+import { HostInfo } from 'app/models/host-info.model';
+import { updateHostInfo, updateContent } from 'app/states/content/content.actions';
 
 @Component({
   selector: 'app-content-new2',
@@ -70,7 +74,6 @@ export class ContentNew2Component implements OnInit, OnDestroy {
   placeX = 0;
   placeY = 0;
 
-  hostObj = {};
   previewData = {
     name: '',
     tags: [],
@@ -91,6 +94,9 @@ export class ContentNew2Component implements OnInit, OnDestroy {
 
   is_loading = true;
 
+  @Select(contentState.hostInfo)
+  hostObj: Observable<HostInfo>;
+
   constructor(
     private formBuilder: FormBuilder,
     private popupService: PopupService,
@@ -99,7 +105,8 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     private adminService: AdminService,
     private contentService: ContentService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store
   ) {
     this.popupService.subject.subscribe(res => {
       const date = this.dateFormat.transform(res.getTime(), 'date');
@@ -127,12 +134,15 @@ export class ContentNew2Component implements OnInit, OnDestroy {
         this.placeY = Number.parseFloat(this.placeObj['y']);
 
       } else if(res.name === 'host') {
-        this.hostObj = res.value;
+        this.store.dispatch(new updateHostInfo(res.value));
       }
     });
   }
 
   ngOnInit() {
+    this.hostObj.subscribe(res => {
+      console.log(res)
+    })
     this.getUserInfo();
     this.getEditStatus();
   }
@@ -179,8 +189,9 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     }
 
     if (data.host.host_name) {
-      this.hostObj = { hostName: data.host.host_name || '', hostEmail: data.host.host_email || '', hostTel: data.host.host_tel || '' };
-      localStorage.setItem('temp', JSON.stringify(this.hostObj));
+      this.store.dispatch(new updateHostInfo(data.host));
+      // this.hostObj = { hostName: data.host.host_name || '', hostEmail: data.host.host_email || '', hostTel: data.host.host_tel || '' };
+      // localStorage.setItem('temp', JSON.stringify(this.hostObj));
     }
 
     data.images.filter((img, i) => {

@@ -21,6 +21,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "1.0.0-beta.2",
     "@angular/animations": "5.2.8",
     "@angular/common": "5.2.8",
     "@angular/compiler": "5.2.8",
@@ -33,7 +34,7 @@
     "@angular/platform-server": "5.2.8",
     "@angular/router": "5.2.8",
     "@angular/upgrade": "5.2.8",
-    "@agm/core": "1.0.0-beta.2",
+    "@ngxs/store": "^2.1.0-beta.9",
     "angular-tag-cloud-module": "1.4.0",
     "angular2-chartjs": "0.4.1",
     "angular2-moment": "1.0.0",

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { NgxsModule } from '@ngxs/store';
 
 import { environment } from '../environments/environment';
 
@@ -112,6 +113,7 @@ import { ContentIsPrivateComponent } from './components/content/content-new2/con
 import { ContentPlaceMapComponent } from './components/content/content-new2/content-place-map/content-place-map.component';
 import { ContentHostInfoComponent } from './components/content/content-new2/content-host-info/content-host-info.component';
 import { ContentHomeComponent } from './components/content/content-home/content-home.component';
+import { contentState } from './states/content/content.state';
 
 
 defineLocale('ko', koLocale);
@@ -210,7 +212,10 @@ defineLocale('ko', koLocale);
     ImageCropperModule,
     AgmCoreModule.forRoot({
       apiKey: environment.google.api_key
-    })
+    }),
+    NgxsModule.forRoot([
+      contentState
+    ])
   ],
   providers: [
     {

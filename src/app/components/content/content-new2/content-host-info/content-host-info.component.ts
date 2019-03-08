@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PopupService } from 'app/services/popup.service';
+import { Select } from '@ngxs/store';
+import { contentState } from 'app/states/content/content.state';
+import { Observable } from 'rxjs';
+import { HostInfo } from 'app/models/host-info.model';
 
 @Component({
   selector: 'app-content-host-info',
@@ -17,11 +21,8 @@ export class ContentHostInfoComponent implements OnInit, OnDestroy {
     hostTel: new FormControl('', [Validators.required])
   });
 
-  body = {
-    hostName: '',
-    hostEmail: '',
-    hostTel: ''
-  }
+  @Select(contentState.hostInfo)
+  body$: Observable<HostInfo>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,10 +30,13 @@ export class ContentHostInfoComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.body$.subscribe(res => {
+      console.log(res);
+    })
     document.scrollingElement.scrollTop = 0;
     document.body.scrollTop = 0;
 
-    this.getHostInfoFromTemp();
+    // this.getHostInfoFromTemp();
   }
 
   ngOnDestroy() {
@@ -43,13 +47,13 @@ export class ContentHostInfoComponent implements OnInit, OnDestroy {
     const previousHostInfo = JSON.parse(localStorage.getItem('temp')) || '';
 
     if (previousHostInfo) {
-      this.body = previousHostInfo;
+      this.body$ = previousHostInfo;
     }
   }
 
   done(): void {
-    this.popupService.setNameSubject({ name: 'host', value: this.body });
-    localStorage.setItem('temp', JSON.stringify(this.body));
+    this.popupService.setNameSubject({ name: 'host', value: this.body$ });
+    localStorage.setItem('temp', JSON.stringify(this.body$));
 
     if (this.isCoverPopup) {
       this.controlCoverPopup.emit(false);

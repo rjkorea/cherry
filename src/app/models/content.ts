@@ -1,12 +1,20 @@
 export class Content {
-    _id: string;
-    short_id: string;
     name: string;
+    tags: Array<string>;
+    startDate: string;
+    endDate: string;
+    notice: string;
     desc: string;
-    enabled: boolean;
-    image: object;
-    when: object;
-    place: string;
-    updated_at: number;
-    created_at: number;
+    hostName: string;
+    hostEmail: string;
+    hostTel: string;
+    siteUrl: string;
+    videoUrl: string;
+    placeName: string;
+    images_1: File;
+    images_2: File;
+    images_3: File;
+    images_4: File;
+    images_5: File;
+    images_6: File;
 }
