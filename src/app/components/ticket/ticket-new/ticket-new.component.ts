@@ -11,10 +11,10 @@ import { TicketBoxComponent } from '../ticket-box/ticket-box.component';
 })
 export class TicketNewComponent implements OnInit {
   @ViewChild('ticketBoxs', { read: ViewContainerRef }) ticketBoxs: ViewContainerRef;
-  @ViewChild(TicketBoxComponent) ticket: TicketBoxComponent
 
   contentId: string;
   maxTickets10: number = 10;
+  createdTickets: Array<Object> = [];
 
   constructor(
     private route: ActivatedRoute,

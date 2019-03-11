@@ -6,14 +6,14 @@
         <div class="form-group f-title">
           <label class="tds-label bold">티켓 이름</label>
           <div class="in">
-            <input #name type="text" class="form-control tds-input" formControlName="contentsName" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byte)">
+            <input #name type="text" class="form-control tds-input" formControlName="ticketName" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byte)">
           </div>
           <div class="bytes"><span #byte>0</span> / {{ maxByte40 }} Bytes</div>
         </div>
         <div class="form-group f-title">
           <label class="tds-label bold">티켓 설명</label>
           <div class="in">
-            <input #name type="text" class="form-control tds-input" formControlName="contentsName" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byte02)">
+            <input #desc type="text" class="form-control tds-input" formControlName="ticketDesc" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(desc, byte02)">
           </div>
           <div class="bytes"><span #byte02>0</span> / {{ maxByte40 }} Bytes</div>
         </div>
@@ -114,12 +114,18 @@
           <ng-container *ngIf="parentData?.ticketType === 'pay'">
             <div>
               <label class="tds-label bold">가격</label>
-              <input class="form-control tds-input">
+              <div class="form-control tds-input tds-input-box">
+                <label for="ticketPrice">&#8361;</label>
+                <input type="text" id="ticketPrice" formControlName="ticketPrice">
+              </div>
             </div>
           </ng-container>
-          <div class="">
+          <div class="ticket-count-box">
             <label class="tds-label bold">티켓수량</label>
-            <input class="form-control tds-input">
+            <div class="form-control tds-input tds-input-box">
+              <input id="ticketCount" type="text" formControlName="ticketCount">
+              <label for="ticketCount">장</label>
+            </div>
           </div>
           <div class="">
             <label class="tds-label">
@@ -132,7 +138,11 @@
                 <img src="/assets/images/question-mark.svg">
               </span>
             </label>
-            <input class="form-control tds-input">
+            <div *ngIf="!isSpread" class="spread-btn" (click)="clickUseSpread()">사용하기</div>
+            <div *ngIf="isSpread" class="form-control tds-input tds-input-box">
+              <input id="ticketSpread" type="text" formControlName="ticketSpread">
+              <label for="ticketSpread">장</label>
+            </div>
           </div>
         </div>
         <div class="form-group is-hidden"></div>

@@ -4,6 +4,9 @@ import { PopupService } from 'app/services/popup.service';
 import { utilModule } from '../../../shared/utils';
 import { ModalCenterComponent } from '../../common/popup/modal-center/modal-center.component';
 import { TicketSpreadComponent } from './ticket-spread/ticket-spread.component';
+import { DateTimeFormatPipe } from 'app/pipes/datetime.pipe';
+import { ModalBottomComponent } from 'app/components/common/popup/modal-bottom/modal-bottom.component';
+import { SingleDateComponent } from 'app/components/common/calendar/single-date/single-date.component';
 
 @Component({
   selector: 'app-ticket-box',
@@ -15,10 +18,12 @@ export class TicketBoxComponent implements OnInit {
   box: any;
   parentData: Object;
   maxByte40: number = 40;
+  limitLength: number = 0;
+  isSpread: boolean = false;
 
   ticketForm = this.formBuilder.group({
-    isPrivate: new FormControl(''),
-    contentsName: new FormControl('', [Validators.required]),
+    ticketName: new FormControl('', [Validators.required]),
+    ticketDesc: new FormControl('', [Validators.required]),
     fromHours: new FormControl('', [Validators.required]),
     fromMins: new FormControl('', [Validators.required]),
     toHours: new FormControl('', [Validators.required]),
@@ -27,30 +32,60 @@ export class TicketBoxComponent implements OnInit {
     pcFromDate: new FormControl(''),
     mToDate: new FormControl(''),
     pcToDate: new FormControl(''),
-    exhibition: new FormControl(''),
-    coupon: new FormControl(''),
-    play: new FormControl(''),
-    seminar: new FormControl(''),
-    concert: new FormControl(''),
-    invitation: new FormControl(''),
-    festival: new FormControl(''),
-    wedding: new FormControl(''),
-    club: new FormControl(''),
-    etc: new FormControl(''),
-    siteUrl: new FormControl(''),
-    videoUrl: new FormControl(''),
-    notice: new FormControl(''),
-    description: new FormControl(''),
-    commentsPrivate: new FormControl('')
+    ticketPrice: new FormControl(''),
+    ticketCount: new FormControl(''),
+    ticketSpread: new FormControl('')
   });
 
   constructor(
     private formBuilder: FormBuilder,
     private popupService: PopupService,
-    private viewContainerRef: ViewContainerRef
-  ) { }
+    private viewContainerRef: ViewContainerRef,
+    private dateFormat: DateTimeFormatPipe,
+  ) {
+    this.popupService.subject.subscribe(res => {
+      const date = this.dateFormat.transform(res.getTime(), 'date');
+      const type = this.popupService.getData();
+
+      if (type === 'from') {
+        this.ticketForm.controls['mFromDate'].setValue(date);
+        this.ticketForm.controls['pcFromDate'].setValue(date);
+      } else {
+        this.ticketForm.controls['mToDate'].setValue(date);
+        this.ticketForm.controls['pcToDate'].setValue(date);
+      }
+    });
+  }
 
   ngOnInit() {
+  }
+
+  checkBytes(input, output): void {
+    const byte = this.utils.getByteSize(input.value, 0, 0);
+
+    if (byte > this.maxByte40) {
+      input.value = input.value.slice(0, this.limitLength);
+    } else {
+      this.limitLength = input.value.length;
+      output.innerText = byte;
+    }
+  }
+
+  openCalendar(type, when, input): void {
+    this.popupService.setData(when);
+    this.popupService.setView(this.viewContainerRef);
+
+    if (type === 'm') {
+      this.popupService.add(ModalBottomComponent, SingleDateComponent);
+    } else {
+      this.popupService.add(ModalCenterComponent, SingleDateComponent);
+    }
+
+    input.blur();
+  }
+
+  clickUseSpread() {
+    this.isSpread = true;
   }
 
   deleteTicket(): void {
