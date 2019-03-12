@@ -7,6 +7,7 @@ export class PopupService {
   public nameSubject = new Subject<any>();
   public data: any;
   public dynamicContentCount: number = 0;
+  public dynamicContents = [];
   private factory: any;
   private content: any;
 
@@ -45,14 +46,17 @@ export class PopupService {
     this.content.insert(view.hostView) as EmbeddedViewRef<any>;
   }
 
-  addDynamicContainer(container: ViewContainerRef, component: any, data: Object): void {
+  addDynamicContainer(container: ViewContainerRef, component: any, data: Object) {
     this.dynamicContentCount++;
 
     const factory = this.factory.resolveComponentFactory(component);
     const view = container.createComponent(factory);
 
     view.instance['box'] = view;
+    view.instance['boxIndex'] = this.dynamicContentCount - 1;
     view.instance['parentData'] = data;
+
+    return view;
   }
 
   clearPopup = (): void => {

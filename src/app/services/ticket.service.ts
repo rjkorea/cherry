@@ -10,6 +10,7 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 
 @Injectable()
 export class TicketService {
+  public ticketColors = ['tkit-mint', 'tkit-coral', 'hangang-blue', 'ultra-bora', 'mustard-norang'];
   typeUrl = `${URL}/a/ticket/type`;
   typesUrl = `${URL}/a/ticket/types`;
   orderUrl = `${URL}/a/ticket/order`;
@@ -164,6 +165,13 @@ export class TicketService {
   public getTypeListV2(content_oid: string, start: Number, size: Number): Observable<{}> {
     const url = `${this.typesUrlV2}?start=${start}&size=${size}&content_oid=${content_oid}`;
     return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public createTicketTypeV2(param: Object): Observable<{}> {
+    const url = `${this.typeUrlV2}`;
+    return this.http.post(url, param, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }

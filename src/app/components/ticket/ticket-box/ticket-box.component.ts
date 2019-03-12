@@ -16,6 +16,7 @@ import { SingleDateComponent } from 'app/components/common/calendar/single-date/
 export class TicketBoxComponent implements OnInit {
   utils = utilModule;
   box: any;
+  boxIndex: number;
   parentData: Object;
   maxByte40: number = 40;
   limitLength: number = 0;
@@ -90,6 +91,7 @@ export class TicketBoxComponent implements OnInit {
 
   deleteTicket(): void {
     this.popupService.dynamicContentCount--;
+    this.popupService.dynamicContents = this.popupService.dynamicContents.slice(this.boxIndex, 1);
     this.box.destroy();
   }
 
