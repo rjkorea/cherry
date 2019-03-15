@@ -1,0 +1,100 @@
+.media-preview {
+    position: relative;
+    padding: 27% 11.5%;
+}
+
+.media-preview::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url(/assets/images/phone.svg) no-repeat center top;
+    background-size: 90%;
+}
+
+
+.scroll-box {
+    overflow: scroll;
+}
+
+.scroll-box ul {
+    padding: 0;
+}
+
+.scroll-box ul li {
+    width: 90%;
+    margin: auto auto 1rem auto;
+}
+
+.tickets .ticket {
+    position: relative;
+    height: 100%;
+    padding: 0.8rem 0.8rem 0.8rem 1.5rem;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(173, 173, 173, 0.5);
+    background-color: white;
+}
+
+.color-type {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 100%;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.info .name, .desc {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 160%;
+}
+
+.info .t-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.desc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.extra {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 0.1rem solid #dddddd;
+}
+
+.extra div {
+    display: inline-block;
+}
+
+.extra div:first-child {
+    width: 60%;
+}
+
+.extra label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 300;
+    margin-bottom: 0.2rem;
+}
+
+.extra .time {
+    color: #ed7f81;
+    font-weight: 400;
+}
+.extra .time img {
+    width: 0.95rem;
+    margin-right: 0.35rem;
+}
+
+.extra .price {
+    font-size: 0.95rem;
+    font-weight: 400;
+}

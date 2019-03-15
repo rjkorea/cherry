@@ -4,6 +4,7 @@ import { TicketService } from 'app/services/ticket.service';
 import { PopupService } from 'app/services/popup.service';
 import { TicketBoxComponent } from '../ticket-box/ticket-box.component';
 import { DateTimeFormatPipe } from 'app/pipes/datetime.pipe';
+import { ContentService } from 'app/services/content.service';
 
 @Component({
   selector: 'app-ticket-new',
@@ -14,12 +15,18 @@ export class TicketNewComponent implements OnInit {
   @ViewChild('ticketBoxs', { read: ViewContainerRef }) ticketBoxs: ViewContainerRef;
 
   contentId: string;
+  contentName: string;
   maxTickets10: number = 10;
+  isCoverPopup: boolean = false;
+  typeCoverPopup: string = '';
   saveTickets = [];
+
   is_loading = false;
+  previewData = [];
 
   constructor(
     private route: ActivatedRoute,
+    private contentService: ContentService,
     private ticketService: TicketService,
     private popupService: PopupService,
     private dateFormat: DateTimeFormatPipe
@@ -27,12 +34,51 @@ export class TicketNewComponent implements OnInit {
 
   ngOnInit() {
     this.contentId = this.route.snapshot.paramMap.get('content_oid') || '';
+    this.contentService.getThisContentV2(this.contentId).subscribe(res => {
+      this.contentName = res['data']['name'];
+    })
   }
 
   getTicketBox(type): void {
     if (this.maxTickets10 > this.popupService.dynamicContentCount) {
       const component = this.popupService.addDynamicContainer(this.ticketBoxs, TicketBoxComponent, { ticketType: type });
       this.popupService.dynamicContents.push(component.instance);
+    }
+  }
+
+  controlCoverPopup(isOpen: boolean, type: string): void {
+    this.isCoverPopup = isOpen;
+    this.typeCoverPopup = type;
+  }
+
+  setPreview(type): void {
+    const ticketObjs = this.popupService.dynamicContents;
+    let colorCount = 0;
+
+    for (let i = 0; i < ticketObjs.length; i++) {
+      const fromDate = ticketObjs[i]['ticketForm'].get('mFromDate').value || ticketObjs[i]['ticketForm'].get('pcFromDate').value;
+      const toDate = ticketObjs[i]['ticketForm'].get('mToDate').value || ticketObjs[i]['ticketForm'].get('pcToDate').value;
+      const fromHours = ticketObjs[i]['ticketForm'].get('fromHours').value;
+      const toHours = ticketObjs[i]['ticketForm'].get('toHours').value;
+      const fromMins = ticketObjs[i]['ticketForm'].get('fromMins').value;
+      const toMins = ticketObjs[i]['ticketForm'].get('toMins').value;
+      const price = ticketObjs[i]['parentData']['ticketType'] === 'free' ? 0 : ticketObjs[i]['ticketForm'].get('ticketPrice').value;
+
+      this.previewData[i] = {
+        contentName: this.contentName,
+        name: ticketObjs[i]['ticketForm'].get('ticketName').value,
+        desc: ticketObjs[i]['ticketForm'].get('ticketDesc').value,
+        sales_date: {
+          start: this.dateFormat.transform(this.parseDate(fromDate, fromHours, fromMins).getTime(), 'apiDate'),
+          end: this.dateFormat.transform(this.parseDate(toDate, toHours, toMins).getTime(), 'apiDate')
+        },
+        price: Number.parseInt(price),
+        color: this.ticketService.ticketColors[i < 5 ? i : colorCount++]
+      };
+    }
+
+    if (type === 'm') {
+      this.controlCoverPopup(true, 'preview');
     }
   }
 
@@ -74,10 +120,10 @@ export class TicketNewComponent implements OnInit {
             start: this.dateFormat.transform(this.parseDate(fromDate, fromHours, fromMins).getTime(), 'apiDate'),
             end: this.dateFormat.transform(this.parseDate(toDate, toHours, toMins).getTime(), 'apiDate')
           },
-          price: price,
+          price: Number.parseInt(price),
           fpfg: {
-            limit: limit,
-            spread: spread
+            limit: Number.parseInt(limit),
+            spread: Number.parseInt(spread)
           },
           color: this.ticketService.ticketColors[i]
         });

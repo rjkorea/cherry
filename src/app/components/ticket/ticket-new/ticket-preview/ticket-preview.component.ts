@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ticket-preview',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ticket-preview.component.css']
 })
 export class TicketPreviewComponent implements OnInit {
+  @Input() previewData: any;
 
   constructor() { }
 
