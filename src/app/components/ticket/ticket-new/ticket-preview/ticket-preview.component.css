@@ -19,13 +19,13 @@
     overflow: scroll;
 }
 
-.scroll-box ul {
+.tickets {
     padding: 0;
 }
 
-.scroll-box ul li {
+.tickets li {
     width: 90%;
-    margin: auto auto 1rem auto;
+    margin: auto auto 1rem auto;  
 }
 
 .tickets .ticket {
@@ -97,4 +97,44 @@
 .extra .price {
     font-size: 0.95rem;
     font-weight: 400;
+}
+
+/* m */
+.preview-wrapper {
+    text-align: left;
+    padding: 0 0.5rem 2rem;
+}
+
+.preview-wrapper .header-title {
+    display: flex;
+    font-size: 2.2rem;
+}
+
+.preview-wrapper .header-title span {
+    flex: 1;
+}
+
+.preview-wrapper .header-title img {
+    width: 1.75rem;
+}
+
+.preview-wrapper .header-desc {
+    font-size: 1.05rem;
+    margin-top: 0.2rem;
+}
+
+.preview-wrapper .u-header-shadow {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1rem;
+    box-shadow: 0 2px 3px 0 rgba(197, 197, 197, 0.5);
+}
+
+.preview-wrapper .tickets {
+    margin-top: 2.5rem;
+}
+
+.preview-wrapper .tickets li {
+    width: 100%;
 }

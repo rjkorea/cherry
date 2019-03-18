@@ -3,7 +3,9 @@
 </ng-template>
 
 <div class="container" [hidden]="isCoverPopup">
-  <div class="row bolder">티켓 만들기</div>
+  <div class="row bold">티켓 만들기</div>
+  <div class="row c-name hidden-xs hidden-sm pad-btm">{{ contentName }}</div>
+  <div class="row c-name hidden-md hidden-lg">{{ contentName }}</div>
   <div class="row">
     <div class="col-sm-5 hidden-xs hidden-sm stick-left">
       <div class="header">모바일 화면 미리보기</div>
@@ -19,27 +21,43 @@
         <div class="header">티켓 정보 입력</div>
       </div>
       <div #ticketBoxs></div>
-      <!-- <app-ticket-box></app-ticket-box> -->
       <div class="row">
-        <div class="add-desc-box">
+        <div class="add-desc-box hidden-xs hidden-sm">
           <div class="diagonal-left">티켓을 추가하려면<span><span class="bold">유료</span> 또는 <span class="bold">무료티켓</span> 버튼을 눌러주세요</span></div>
           <div class="diagonal-right">
             <label class="light-label">티켓 타입</label>
             <label class="bold-label"><span class="bold">{{ popupService.dynamicContentCount }}</span> / {{ maxTickets10 }}</label>
           </div>
         </div>
-        <div class="type-btns">
+        <div class="add-desc-box hidden-md hidden-lg m-desc">
+          <div class="diagonal-left">티켓을 추가하려면<span><span class="bold">유료</span> 또는 <span class="bold">무료티켓</span> 버튼을 눌러주세요</span></div>
+          <div class="diagonal-right">
+            <label class="light-label">티켓 타입</label>
+            <label class="bold-label"><span class="bold">{{ popupService.dynamicContentCount }}</span> / {{ maxTickets10 }}</label>
+          </div>
+        </div>
+        <div class="type-btns hidden-xs hidden-sm">
+          <button (click)="getTicketBox('pay')" [disabled]="popupService.dynamicContentCount >= maxTickets10"><img src="/assets/images/add-circle.svg"><span>유료티켓</span></button>
+          <button (click)="getTicketBox('free')" [disabled]="popupService.dynamicContentCount >= maxTickets10"><img src="/assets/images/add-circle.svg"><span>무료티켓</span></button>
+        </div>
+        <div class="type-btns hidden-md hidden-lg m-adds">
           <button (click)="getTicketBox('pay')" [disabled]="popupService.dynamicContentCount >= maxTickets10"><img src="/assets/images/add-circle.svg"><span>유료티켓</span></button>
           <button (click)="getTicketBox('free')" [disabled]="popupService.dynamicContentCount >= maxTickets10"><img src="/assets/images/add-circle.svg"><span>무료티켓</span></button>
         </div>
       </div>
       <div class="row">
-        <button class="btn btn-tkit-mint btn-block btn-base" (click)="done()">완 료</button>
+        <div class="hidden-xs hidden-sm">
+          <button class="btn btn-tkit-mint btn-block btn-base" (click)="done()">완 료</button>
+        </div>
+        <div class="hidden-md hidden-lg">
+          <button class="btn btn-preview btn-base btn-short" (click)="setPreview('m')">미리보기</button>
+          <button class="btn btn-tkit-mint btn-base btn-short right" (click)="done()">완 료</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div *ngIf="isCoverPopup">
-  <app-content-preview *ngIf="typeCoverPopup === 'preview'" [previewData]="previewData" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-content-preview>
+  <app-ticket-preview *ngIf="typeCoverPopup === 'preview'" [previewData]="previewData" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-ticket-preview>
 </div>

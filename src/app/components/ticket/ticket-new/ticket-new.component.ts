@@ -69,12 +69,16 @@ export class TicketNewComponent implements OnInit {
         name: ticketObjs[i]['ticketForm'].get('ticketName').value,
         desc: ticketObjs[i]['ticketForm'].get('ticketDesc').value,
         sales_date: {
-          start: this.dateFormat.transform(this.parseDate(fromDate, fromHours, fromMins).getTime(), 'apiDate'),
-          end: this.dateFormat.transform(this.parseDate(toDate, toHours, toMins).getTime(), 'apiDate')
+          start: this.dateFormat.transform(this.parseDate(fromDate, fromHours, fromMins).getTime(), 'datetime'),
+          end: this.dateFormat.transform(this.parseDate(toDate, toHours, toMins).getTime(), 'datetime')
         },
         price: Number.parseInt(price),
         color: this.ticketService.ticketColors[i < 5 ? i : colorCount++]
       };
+    }
+
+    if (this.previewData.length > ticketObjs.length) {
+      this.previewData.splice(ticketObjs.length, this.previewData.length);
     }
 
     if (type === 'm') {
@@ -155,6 +159,10 @@ export class TicketNewComponent implements OnInit {
       }, err => {
         console.log(err);
         this.is_loading = false;
+
+        if (err['error']['message'].indexOf('invalid fpfg (spread more than limit)') !== -1) {
+          alert('스프레드는 티켓수량보다 많아야 합니다');
+        }
       });
     } else {
       this.is_loading = false;
