@@ -132,7 +132,7 @@ input:disabled {
 }
 
 .type-btns button:first-child {
-    margin-right: 2rem;
+    margin-right: 1rem;
 }
 
 .type-btns img {
@@ -165,4 +165,16 @@ input:disabled {
 
 .m-adds {
     margin-top: 10rem;
+}
+
+.m-btns {
+    display: flex;
+}
+
+.m-btns button {
+    flex: 0.5;
+}
+
+.m-btns button:first-child {
+    margin-right: 1rem;
 }

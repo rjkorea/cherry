@@ -55,6 +55,8 @@ export class TicketNewComponent implements OnInit {
     const ticketObjs = this.popupService.dynamicContents;
     let colorCount = 0;
 
+    this.previewData = [];
+
     for (let i = 0; i < ticketObjs.length; i++) {
       const fromDate = ticketObjs[i]['ticketForm'].get('mFromDate').value || ticketObjs[i]['ticketForm'].get('pcFromDate').value;
       const toDate = ticketObjs[i]['ticketForm'].get('mToDate').value || ticketObjs[i]['ticketForm'].get('pcToDate').value;
@@ -75,10 +77,6 @@ export class TicketNewComponent implements OnInit {
         price: Number.parseInt(price),
         color: this.ticketService.ticketColors[i < 5 ? i : colorCount++]
       };
-    }
-
-    if (this.previewData.length > ticketObjs.length) {
-      this.previewData.splice(ticketObjs.length, this.previewData.length);
     }
 
     if (type === 'm') {
