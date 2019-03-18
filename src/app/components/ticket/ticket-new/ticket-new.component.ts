@@ -158,8 +158,10 @@ export class TicketNewComponent implements OnInit {
         console.log(err);
         this.is_loading = false;
 
-        if (err['error']['message'].indexOf('invalid fpfg (spread more than limit)') !== -1) {
-          alert('스프레드는 티켓수량보다 많아야 합니다');
+        if (err['error']['code'] === 1) {
+          alert('스프레드는 티켓수량보다 많아야 합니다.');
+        } else if (err['errpr']['code'] === 3) {
+          alert('해당 컨텐츠가 만들 수 있는 티켓 수량(10개)을 초과했습니다.')
         }
       });
     } else {

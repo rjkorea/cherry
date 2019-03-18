@@ -89,7 +89,8 @@
             <div>
               <label>티켓가격</label>
               <label class="price">
-                <span>{{ ticket.price | currency: 'KRW': 'symbol': '1.0-0' }}</span>
+                <span *ngIf="price > 0">{{ ticket.price | currency: 'KRW': 'symbol': '1.0-0' }}</span>
+                <span *ngIf="price <= 0">FREE</span>
               </label>
             </div>
           </div>

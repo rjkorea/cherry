@@ -91,7 +91,7 @@ export class TicketBoxComponent implements OnInit {
 
   deleteTicket(): void {
     this.popupService.dynamicContentCount--;
-    this.popupService.dynamicContents = this.popupService.dynamicContents.splice(this.boxIndex, 1);
+    this.popupService.dynamicContents.splice(this.boxIndex, 1);
     this.box.destroy();
   }
 
