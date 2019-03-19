@@ -116,14 +116,14 @@
               <label class="tds-label bold">가격</label>
               <div class="form-control tds-input tds-input-box">
                 <label for="ticketPrice">&#8361;</label>
-                <input type="text" id="ticketPrice" formControlName="ticketPrice">
+                <input type="number" pattern="\d*" id="ticketPrice" maxLength="9" formControlName="ticketPrice">
               </div>
             </div>
           </ng-container>
           <div class="ticket-count-box">
             <label class="tds-label bold">티켓수량</label>
             <div class="form-control tds-input tds-input-box">
-              <input id="ticketCount" type="text" formControlName="ticketCount">
+              <input id="ticketCount" type="number" pattern="\d*" maxLength="6" formControlName="ticketCount">
               <label for="ticketCount">장</label>
             </div>
           </div>
@@ -140,7 +140,7 @@
             </label>
             <div *ngIf="!isSpread" class="spread-btn" (click)="clickUseSpread()">사용하기</div>
             <div *ngIf="isSpread" class="form-control tds-input tds-input-box">
-              <input id="ticketSpread" type="text" formControlName="ticketSpread">
+              <input id="ticketSpread" type="number" pattern="\d*" maxLength="6" formControlName="ticketSpread">
               <label for="ticketSpread">장</label>
             </div>
           </div>
