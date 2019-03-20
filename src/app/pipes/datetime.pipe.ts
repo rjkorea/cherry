@@ -10,7 +10,6 @@ export class DateTimeFormatPipe extends DatePipe implements PipeTransform {
   private readonly TIME_FORMAT = 'mm : ss';
   private readonly HOURS_FORMAT = 'HH';
   private readonly MINS_FORMAT = 'mm';
-  private readonly API_DATE_FORMAT = 'yyyy-MM-ddTHH:mm:ss';
 
   transform(timestamp: number, condition: string): any {
     let formatted: any;
@@ -22,7 +21,7 @@ export class DateTimeFormatPipe extends DatePipe implements PipeTransform {
       case 'hours': formatted = super.transform(timestamp, this.HOURS_FORMAT); break;
       case 'mins': formatted = super.transform(timestamp, this.MINS_FORMAT); break;
       case 'unix0': formatted = new Date(timestamp).setHours(0, 0, 0, 0); break;
-      case 'apiDate': formatted = super.transform(timestamp, this.API_DATE_FORMAT); break;
+      case 'apiDate': const date = new Date(timestamp); formatted = `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}-${date.getUTCDate()}T${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`; break;
       default: formatted = super.transform(timestamp, this.DATE_FORMAT); break;
     }
 
