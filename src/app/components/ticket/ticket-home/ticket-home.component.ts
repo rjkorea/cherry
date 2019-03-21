@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketService } from 'app/services/ticket.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-home',
@@ -14,6 +14,7 @@ export class TicketHomeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private ticketService: TicketService
   ) { }
 
@@ -25,7 +26,10 @@ export class TicketHomeComponent implements OnInit {
   getTicketList(start): void {
     this.ticketService.getTypeListV2(this.contentId, start, 10).subscribe(res => {
       this.tickets = [...res['data']];
-      console.log(this.tickets);
     });
+  }
+
+  createTickets(): void {
+    this.router.navigate([`${this.router.url}/new`, {previous: this.tickets.length}]);
   }
 }

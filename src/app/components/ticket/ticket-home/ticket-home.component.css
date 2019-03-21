@@ -25,6 +25,11 @@ ul {
     margin-bottom: 10px;
 }
 
+.ticket-btn * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .list-wrap {
     margin: 2.5rem 0;
 }

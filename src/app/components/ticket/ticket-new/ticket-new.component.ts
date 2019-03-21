@@ -20,6 +20,7 @@ export class TicketNewComponent implements OnInit {
   isCoverPopup: boolean = false;
   typeCoverPopup: string = '';
   saveTickets = [];
+  previousTicketCnt = 0;
 
   is_loading = false;
   previewData = [];
@@ -37,7 +38,9 @@ export class TicketNewComponent implements OnInit {
     this.contentId = this.route.snapshot.paramMap.get('content_oid') || '';
     this.contentService.getThisContentV2(this.contentId).subscribe(res => {
       this.contentName = res['data']['name'];
-    })
+    });
+
+    this.previousTicketCnt = this.route.snapshot.params['previous'] || 0;
   }
 
   getTicketBox(type): void {
@@ -54,7 +57,8 @@ export class TicketNewComponent implements OnInit {
 
   setPreview(type): void {
     const ticketObjs = this.popupService.dynamicContents;
-    let colorCount = 0;
+    let colorCount = this.previousTicketCnt;
+    let overColorCount = 0;
 
     this.previewData = [];
 
@@ -76,7 +80,7 @@ export class TicketNewComponent implements OnInit {
           end: this.dateFormat.transform(this.parseDate(toDate, toHours, toMins).getTime(), 'datetime')
         },
         price: Number.parseInt(price),
-        color: this.ticketService.ticketColors[i < 5 ? i : colorCount++]
+        color: this.ticketService.ticketColors[colorCount < 5 ? colorCount++ : overColorCount++]
       };
     }
 
@@ -99,6 +103,8 @@ export class TicketNewComponent implements OnInit {
     const ticketObjs = this.popupService.dynamicContents;
     let saveTickets: Array<any> = [];
     let canSave: boolean = true;
+    let colorCount = this.previousTicketCnt;
+    let overColorCount = 0;
 
     for (let i = 0; i < ticketObjs.length; i++) {
       const fromDate = ticketObjs[i]['ticketForm'].get('mFromDate').value || ticketObjs[i]['ticketForm'].get('pcFromDate').value;
@@ -128,7 +134,7 @@ export class TicketNewComponent implements OnInit {
             limit: Number.parseInt(limit),
             spread: Number.parseInt(spread)
           },
-          color: this.ticketService.ticketColors[i]
+          color: this.ticketService.ticketColors[colorCount < 5 ? colorCount++ : overColorCount++]
         });
 
       } else {
@@ -154,6 +160,8 @@ export class TicketNewComponent implements OnInit {
 
       this.ticketService.createTicketTypeV2(paramObj).subscribe(() => {
         this.is_loading = false;
+        this.popupService.dynamicContentCount = 0;
+        this.popupService.dynamicContents = [];
         this.router.navigate([`ticket/types/${this.contentId}`]);
       }, err => {
         console.log(err);

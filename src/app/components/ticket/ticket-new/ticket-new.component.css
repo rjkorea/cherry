@@ -9,8 +9,8 @@ input:disabled {
     float: right;
 }
 
-.row.bold {
-    font-size: 2.4rem;
+.row.bolder {
+    font-size: 2.625rem;
 }
 
 .pad-btm {
