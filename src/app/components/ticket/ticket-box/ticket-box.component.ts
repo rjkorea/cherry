@@ -17,7 +17,7 @@ export class TicketBoxComponent implements OnInit {
   utils = utilModule;
   box: any;
   boxIndex: number;
-  parentData: Object;
+  parentData: any;
   maxByte40: number = 40;
   limitLength: number = 0;
   isSpread: boolean = false;

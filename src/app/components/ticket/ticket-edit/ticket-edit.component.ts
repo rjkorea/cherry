@@ -10,9 +10,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./ticket-edit.component.css']
 })
 export class TicketEditComponent implements OnInit {
+  isCoverPopup: boolean = false;
   contentName: string;
   typeId: string;
-  ticket: Object;
+  ticket: any;
 
   constructor(
     private route: ActivatedRoute,

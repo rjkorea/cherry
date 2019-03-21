@@ -36,6 +36,10 @@ export class PopupService {
     return this.data;
   }
 
+  getDynamicContentCount() {
+    return this.dynamicContentCount;
+  }
+
   add(container, component): void {
     const factory = this.factory.resolveComponentFactory(container);
     const view = factory.create(this.content.parentInjector);
@@ -58,6 +62,7 @@ export class PopupService {
 
     return view;
   }
+
 
   clearPopup = (): void => {
     this.content.clear();

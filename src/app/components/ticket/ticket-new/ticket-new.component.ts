@@ -17,6 +17,7 @@ export class TicketNewComponent implements OnInit {
   contentId: string;
   contentName: string;
   maxTickets10: number = 10;
+  dynamicContentCount = this.popupService.dynamicContentCount;
   isCoverPopup: boolean = false;
   typeCoverPopup: string = '';
   saveTickets = [];
