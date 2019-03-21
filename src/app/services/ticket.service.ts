@@ -169,6 +169,13 @@ export class TicketService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public getTypeInfoV2(type_oid: string): Observable<{}> {
+    const url = `${this.typeUrlV2}/${type_oid}`;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
   public createTicketTypeV2(param: Object): Observable<{}> {
     const url = `${this.typeUrlV2}`;
     return this.http.post(url, param, this.options)

@@ -117,6 +117,7 @@ import { TicketHomeComponent } from './components/ticket/ticket-home/ticket-home
 import { TicketBoxComponent } from './components/ticket/ticket-box/ticket-box.component';
 import { TicketPreviewComponent } from './components/ticket/ticket-new/ticket-preview/ticket-preview.component';
 import { TicketSpreadComponent } from './components/ticket/ticket-box/ticket-spread/ticket-spread.component';
+import { TicketEditComponent } from './components/ticket/ticket-edit/ticket-edit.component';
 
 
 defineLocale('ko', koLocale);
@@ -200,7 +201,8 @@ defineLocale('ko', koLocale);
     TicketHomeComponent,
     TicketBoxComponent,
     TicketPreviewComponent,
-    TicketSpreadComponent
+    TicketSpreadComponent,
+    TicketEditComponent
   ],
   imports: [
     BrowserModule,

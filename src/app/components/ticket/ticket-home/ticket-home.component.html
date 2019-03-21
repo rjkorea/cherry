@@ -1,6 +1,6 @@
 <div class="title">
   <h1 class="bolder">티켓관리</h1>
-  <p>Ultra Music Festival KOREA 2019</p>
+  <p>{{ contentName }}</p>
 </div>
 <div class="ticket-btn" (click)="createTickets()">
   <img src="/assets/images/add-circle.svg">
@@ -41,7 +41,7 @@
         </ul>
       </div>
       <div class="btns">
-        <button class="btn btn-block">수정하기</button>
+        <button class="btn btn-block" (click)="editTicket(ticket._id)">수정하기</button>
         <button class="btn btn-block">전송내역</button>
         <button class="btn btn-block">전송하기</button>
       </div>

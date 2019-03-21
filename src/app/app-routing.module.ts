@@ -61,6 +61,7 @@ import { ContentNew2Component } from './components/content/content-new2/content-
 import { ContentHomeComponent } from './components/content/content-home/content-home.component';
 import { TicketHomeComponent } from './components/ticket/ticket-home/ticket-home.component';
 import { TicketNewComponent } from './components/ticket/ticket-new/ticket-new.component';
+import { TicketEditComponent } from './components/ticket/ticket-edit/ticket-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'contents', pathMatch: 'full' },
@@ -151,6 +152,7 @@ const routes: Routes = [
   // V2 ticket
   { path: 'ticket/types/:content_oid', component: TicketHomeComponent, canActivate: [AuthGuard] },
   { path: 'ticket/types/:content_oid/new', component: TicketNewComponent, canActivate: [AuthGuard] },
+  { path: 'ticket/type/:type_oid/edit', component: TicketEditComponent, canActivate: [AuthGuard] },
 
   { path: '**', component: PageNotFoundComponent }
 

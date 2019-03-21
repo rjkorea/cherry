@@ -6,12 +6,16 @@ ul {
     padding: 0;
 }
 
-.bold + .gray {
+.bold.gray {
     color: #666666;
 }
 
 .right {
     float: right;
+}
+
+.title .bolder {
+    font-size: 2.625rem;
 }
 
 .ticket-btn {
