@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class TicketHomeComponent implements OnInit {
   contentId: string;
   start: number = 0;
+  tickets: Array<any> = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +24,8 @@ export class TicketHomeComponent implements OnInit {
 
   getTicketList(start): void {
     this.ticketService.getTypeListV2(this.contentId, start, 10).subscribe(res => {
-      console.log(res);
-    })
+      this.tickets = [...res['data']];
+      console.log(this.tickets);
+    });
   }
 }

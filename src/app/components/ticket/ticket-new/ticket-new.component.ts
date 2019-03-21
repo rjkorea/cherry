@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TicketService } from 'app/services/ticket.service';
 import { PopupService } from 'app/services/popup.service';
 import { TicketBoxComponent } from '../ticket-box/ticket-box.component';
@@ -25,6 +25,7 @@ export class TicketNewComponent implements OnInit {
   previewData = [];
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private contentService: ContentService,
     private ticketService: TicketService,
@@ -153,7 +154,7 @@ export class TicketNewComponent implements OnInit {
 
       this.ticketService.createTicketTypeV2(paramObj).subscribe(() => {
         this.is_loading = false;
-        // manage ticket으로 이동
+        this.router.navigate([`ticket/types/${this.contentId}`]);
       }, err => {
         console.log(err);
         this.is_loading = false;

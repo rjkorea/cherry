@@ -1,3 +1,53 @@
-<p>
-  ticket-home works!
-</p>
+<div class="title">
+  <h1 class="bolder">티켓관리</h1>
+  <p>Ultra Music Festival KOREA 2019</p>
+</div>
+<div class="ticket-btn">
+  <img src="/assets/images/add-circle.svg">
+  <span>새 티켓타입 만들기</span>
+</div>
+<div class="hidden-md hidden-lg m-type">
+  <label>티켓타입</label>
+  <div>
+    <span class="bold gray">{{ tickets.length }}</span>
+    <span class="light"> / </span>
+    <span>10</span>
+  </div>
+</div>
+<div class="hidden-xs hidden-sm"><p>생성된 티켓 타입 : <span class="bold gray">{{ tickets.length }} / 10</span></p></div>
+
+<div class="list-wrap">
+  <div class="row">
+    <div class="col-xs-12 col-md-4 list" *ngFor="let ticket of tickets; let i = index">
+      <div class="list-element">
+        <div class="ticket-color" [ngStyle]="{'background-color': ticket.color === 'tkit-mint' ? '#62aab8' : (ticket.color === 'tkit-coral' ? '#ed7f81' : (ticket.color === 'hangang-blue' ? '#6794ca' : (ticket.color === 'ultra-bora' ? '#8f6dab' : (ticket.color === 'mustard-norang' ? '#f6d87f' : '')))) }"></div>
+        <ul class="first-desc">
+          <li>판매수량 : {{ ticket.sales.count.toLocaleString() }} / <span class="bold">{{ ticket.sales.limit.toLocaleString() }}</span></li>
+          <li class="bold name">{{ ticket.name }}</li>
+          <li class="demi-light desc" *ngIf="ticket.desc.enabled">{{ ticket.desc.value }}</li>
+        </ul>
+        <ul class="second-desc">
+          <li class="demi-light">
+            <span>등록 유효기간</span>
+            <span class="right">티켓가격</span>
+          </li>
+          <li class="bold">
+            <span>{{ ticket.sales_date.end | amFromUnix | amDateFormat:'YYYY.MM.DD HH:mm' }} 까지</span>
+            <ng-container *ngIf="ticket.price > 0; else elseFree;">
+              <span class="right">{{ ticket.price | currency: 'KRW': 'symbol': '1.0-0' }}</span>
+            </ng-container>
+            <ng-template #elseFree><span class="right">FREE TICKET</span></ng-template>
+          </li>
+        </ul>
+      </div>
+      <div class="btns">
+        <button class="btn btn-block">수정하기</button>
+        <button class="btn btn-block">전송내역</button>
+        <button class="btn btn-block">전송하기</button>
+      </div>
+      <div *ngIf="i === 0" class="notice">
+        <img src="/assets/images/megaphone.svg"><span class="tkit-coral-color">&nbsp;[전송하기]&nbsp;</span><span>버튼을 누르고 친구에게 티켓을 전송해보세요</span>
+      </div>
+    </div>
+  </div>
+</div>

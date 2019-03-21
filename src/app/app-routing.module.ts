@@ -106,7 +106,7 @@ const routes: Routes = [
 
   { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/type/:id', component: TicketTypeDetailComponent, canActivate: [AuthGuard] },
-  { path: 'ticket/types/new', component: TicketTypeNewComponent, canActivate: [AuthGuard] },
+  // { path: 'ticket/types/new', component: TicketTypeNewComponent, canActivate: [AuthGuard] },
 
   { path: 'ticket/order', component: TicketOrderListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/order/:id', component: TicketOrderDetailComponent, canActivate: [AuthGuard] },
@@ -150,8 +150,7 @@ const routes: Routes = [
   
   // V2 ticket
   { path: 'ticket/types/:content_oid', component: TicketHomeComponent, canActivate: [AuthGuard] },
-  // { path: 'ticket/types/new', component: TicketNewComponent, canActivate: [AuthGuard] },
-  { path: 'test/:content_oid', component: TicketNewComponent, canActivate: [AuthGuard] },
+  { path: 'ticket/types/:content_oid/new', component: TicketNewComponent, canActivate: [AuthGuard] },
 
   { path: '**', component: PageNotFoundComponent }
 
