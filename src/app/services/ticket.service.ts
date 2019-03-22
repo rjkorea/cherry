@@ -24,6 +24,7 @@ export class TicketService {
 
   typeUrlV2 = `${URL}/a/v2/ticket/type`;
   typesUrlV2 = `${URL}/a/v2/ticket/types`;
+  orderUrlV2 = `${URL}/a/v2/ticket/order`;
 
   constructor(private http: Http) {
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});
@@ -50,6 +51,13 @@ export class TicketService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public getTypeInfo(id: string): Observable<{}> {
+    const url = `${this.typeUrlV2}/${id}/info`;
+    return this.http.get(url, this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
   public updateType(id: string, data: any): Observable<{}> {
     const url = `${this.typeUrl}/${id}`;
     return this.http.put(url, JSON.stringify(data), this.options)
@@ -59,6 +67,12 @@ export class TicketService {
 
   public addOrder(data: any): Observable<{}> {
     return this.http.post(this.orderUrl, JSON.stringify(data), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public addOrderV2(data: any): Observable<{}> {
+    return this.http.post(this.orderUrlV2, JSON.stringify(data), this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
