@@ -105,10 +105,6 @@ const routes: Routes = [
   { path: 'content/:content_oid/group/:group_oid/tickets', component: ContentGroupTicketListComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/search', component: ContentGroupTicketSearchComponent, canActivate: [AuthGuard] },
 
-  { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
-  { path: 'ticket/type/:id', component: TicketTypeDetailComponent, canActivate: [AuthGuard] },
-  // { path: 'ticket/types/new', component: TicketTypeNewComponent, canActivate: [AuthGuard] },
-
   { path: 'ticket/order', component: TicketOrderListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/order/:id', component: TicketOrderDetailComponent, canActivate: [AuthGuard] },
   { path: 'ticket/orders/new', component: TicketOrderNewComponent, canActivate: [AuthGuard] },
@@ -150,7 +146,7 @@ const routes: Routes = [
   { path: 'contents', component: ContentHomeComponent, canActivate: [AuthGuard] },
   
   // V2 ticket
-  { path: 'ticket/types/:content_oid', component: TicketHomeComponent, canActivate: [AuthGuard] },
+  { path: 'ticket/type/:content_oid', component: TicketHomeComponent, canActivate: [AuthGuard] },
   { path: 'ticket/types/:content_oid/new', component: TicketNewComponent, canActivate: [AuthGuard] },
   { path: 'ticket/type/:type_oid/edit', component: TicketEditComponent, canActivate: [AuthGuard] },
 

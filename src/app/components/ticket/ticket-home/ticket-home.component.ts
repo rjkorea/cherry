@@ -40,7 +40,7 @@ export class TicketHomeComponent implements OnInit {
   }
 
   createTickets(): void {
-    this.router.navigate([`${this.router.url}/new`, {previous: this.tickets.length}]);
+    this.router.navigate([`${this.router.url}s/new`, {previous: this.tickets.length}]);
   }
 
   editTicket(id): void {

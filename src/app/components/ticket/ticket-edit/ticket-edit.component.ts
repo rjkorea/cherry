@@ -117,6 +117,10 @@ export class TicketEditComponent implements OnInit {
       }, err => {
         this.is_loading = false;
         console.log(err);
+
+        if (err['error']['code'] === 3) {
+          alert('스프레드는 [티켓수량/이미 전달된 티켓수량/이미 판매된 티켓수량]보다 많아야 합니다.');
+        }
       });
     } else {
       this.is_loading = false;
