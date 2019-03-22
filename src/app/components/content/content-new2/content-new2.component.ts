@@ -194,7 +194,6 @@ export class ContentNew2Component implements OnInit, OnDestroy {
       }
     });
 
-console.log(this.contentsForm.controls['mFromDate']);
     this.contentsForm.controls['isPrivate'].setValue(data.is_private);
     this.contentsForm.controls['contentsName'].setValue(data.name);
     this.contentsForm.controls['fromHours'].setValue(this.dateFormat.transform(data.when.start * 1000, 'hours'));
@@ -451,7 +450,7 @@ console.log(this.contentsForm.controls['mFromDate']);
       place_x: this.placeObj !== undefined ? this.placeX : 0,
       place_y: this.placeObj !== undefined ? this.placeY : 0,
       when_start: this.dateFormat.transform(this.parseWhen('start').getTime(), 'apiDate'),
-      when_end: this.dateFormat.transform(this.parseWhen('start').getTime(), 'apiDate'),
+      when_end: this.dateFormat.transform(this.parseWhen('end').getTime(), 'apiDate'),
       host_name: this.hostObj['hostName'] || this.companyContactInfo['name'],
       host_email: this.hostObj['hostEmail'] || this.companyContactInfo['email'],
       host_tel: this.hostObj['hostTel'] || this.companyContactInfo['mobile_number'],
@@ -502,14 +501,14 @@ console.log(this.contentsForm.controls['mFromDate']);
         form.append('desc', param.desc);
         form.append('comments_private', param.comments_private);
 
-        // this.contentService.createContentV2(form).subscribe(() => {
-        //   this.is_loading = false;
-        //   this.router.navigate(['/contents', { status: 'open' }]);
-        //   localStorage.removeItem('temp');
-        // }, err => {
-        //   console.log(err);
-        //   this.is_loading = false;
-        // });
+        this.contentService.createContentV2(form).subscribe(() => {
+          this.is_loading = false;
+          this.router.navigate(['/contents', { status: 'open' }]);
+          localStorage.removeItem('temp');
+        }, err => {
+          console.log(err);
+          this.is_loading = false;
+        });
       }
     } else {
       alert('필수정보를 모두 입력해주세요');
