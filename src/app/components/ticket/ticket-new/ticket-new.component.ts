@@ -17,7 +17,6 @@ export class TicketNewComponent implements OnInit {
   contentId: string;
   contentName: string;
   maxTickets10: number = 10;
-  dynamicContentCount = this.popupService.dynamicContentCount;
   isCoverPopup: boolean = false;
   typeCoverPopup: string = '';
   saveTickets = [];
@@ -27,11 +26,11 @@ export class TicketNewComponent implements OnInit {
   previewData = [];
 
   constructor(
+    public popupService: PopupService,
     private router: Router,
     private route: ActivatedRoute,
     private contentService: ContentService,
     private ticketService: TicketService,
-    private popupService: PopupService,
     private dateFormat: DateTimeFormatPipe
   ) { }
 

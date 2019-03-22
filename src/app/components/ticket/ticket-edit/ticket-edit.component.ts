@@ -11,9 +11,9 @@ import { Observable } from 'rxjs';
 })
 export class TicketEditComponent implements OnInit {
   isCoverPopup: boolean = false;
+  type: any;
   contentName: string;
   typeId: string;
-  ticket: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,8 +28,8 @@ export class TicketEditComponent implements OnInit {
 
   getInfoSequence(): void {
     const callInfos = this.ticketService.getTypeInfoV2(this.typeId).switchMap(res => {
-      this.ticket = res['data'];
-      return this.contentService.getContent(this.ticket['content_oid']);
+      this.type = res['data'];
+      return this.contentService.getContent(this.type['content_oid']);
     }, (ticketData, contentData) => [ticketData, contentData]);
 
 
