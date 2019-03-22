@@ -1,6 +1,6 @@
 <div class="title">
   <h1 class="bolder">티켓관리</h1>
-  <p>{{ contentName }}</p>
+  <p class="light">{{ contentName }}</p>
 </div>
 <div class="ticket-btn" (click)="createTickets()">
   <img src="/assets/images/add-circle.png">
@@ -14,7 +14,7 @@
     <span>10</span>
   </div>
 </div>
-<div class="hidden-xs hidden-sm"><p>생성된 티켓 타입 : <span class="bold gray">{{ tickets.length }} / 10</span></p></div>
+<div class="hidden-xs hidden-sm type"><p>생성된 티켓 타입 : <span class="bold gray">{{ tickets.length }} / 10</span></p></div>
 
 <div class="list-wrap">
   <div class="row">

@@ -1,6 +1,5 @@
 p {
     font-size: 1.15rem;
-    color: #888888;
 }
 
 ul {
@@ -37,6 +36,28 @@ ul {
 .ticket-btn * {
     display: inline-block;
     vertical-align: middle;
+}
+
+.type p {
+    color: #888888;
+}
+
+.m-type {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+    width: 40%;
+    margin-bottom: 0.5rem;
+}
+
+.m-type label {
+    color: #a1a1a1;
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+.m-type div {
+    font-size: 1.6rem;
 }
 
 .list-wrap {
@@ -130,22 +151,4 @@ ul {
 
 .notice img {
     width: 1.15rem;
-}
-
-.m-type {
-    display: inline-block;
-    vertical-align: middle;
-    text-align: right;
-    width: 40%;
-    margin-bottom: 0.5rem;
-}
-
-.m-type label {
-    color: #a1a1a1;
-    font-size: 1.05rem;
-    margin: 0;
-}
-
-.m-type div {
-    font-size: 1.6rem;
 }

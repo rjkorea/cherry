@@ -115,7 +115,7 @@ import { ContentHomeComponent } from './components/content/content-home/content-
 import { TicketNewComponent } from './components/ticket/ticket-new/ticket-new.component';
 import { TicketHomeComponent } from './components/ticket/ticket-home/ticket-home.component';
 import { TicketBoxComponent } from './components/ticket/ticket-box/ticket-box.component';
-import { TicketPreviewComponent } from './components/ticket/ticket-new/ticket-preview/ticket-preview.component';
+import { TicketPreviewComponent } from './components/ticket/ticket-preview/ticket-preview.component';
 import { TicketSpreadComponent } from './components/ticket/ticket-box/ticket-spread/ticket-spread.component';
 import { TicketEditComponent } from './components/ticket/ticket-edit/ticket-edit.component';
 

@@ -1,9 +1,17 @@
-.title .bolder {
+.right {
+    float: right;
+}
+
+.row.bolder {
     font-size: 2.625rem;
 }
 
 .title p {
     font-size: 1.25rem;
+}
+
+.ticket-name {
+    margin-bottom: 1rem;
 }
 
 .ticket-name .tkit-coral-color {
@@ -15,4 +23,41 @@
 
 .ticket-name .name {
     font-size: 1.25rem;
+}
+
+.header {
+    font-size: 1.25rem;
+    padding: 0.625rem 1.0625rem;
+    color: white;
+    background-image: linear-gradient(to right, #529bae, #62aab8);
+}
+
+.render {
+    font-size: 1.0625rem;
+    margin: 2.25rem 0;
+    text-align: center;
+}
+
+.render-btn {
+    margin-right: 0.425rem;
+    padding: 0.425rem 0.9375rem;
+    border-radius: 3px;
+    border: 1px solid #62aab8;
+    color: #62aab8;
+    cursor: pointer;
+}
+
+.btn-base {
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+}
+
+.btn-short {
+    width: 49%;
+}
+
+.btn-preview {
+    color: #62aab8;
+    border: 1px solid #62aab8;
+    background-color: white;
 }

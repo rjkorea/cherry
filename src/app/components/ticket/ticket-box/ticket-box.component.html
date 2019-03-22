@@ -1,20 +1,21 @@
+
 <form [formGroup]="ticketForm">
   <div class="row ticket-box">
     <div class="ticket-inner-box">
-      <div class="delete-btn"><img src="/assets/images/delete.png" (click)="deleteTicket()"><span (click)="deleteTicket()">삭제하기</span></div>
+      <div *ngIf="!isEdit" class="delete-btn"><img src="/assets/images/delete.png" (click)="deleteTicket()"><span (click)="deleteTicket()">삭제하기</span></div>
       <div class="form-group f-title">
         <label class="tds-label bold">티켓 이름</label>
         <div class="in">
-          <input #name type="text" class="form-control tds-input" formControlName="ticketName" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byte)">
+          <input #name type="text" class="form-control tds-input" formControlName="ticketName" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byte, 40)">
         </div>
         <div class="bytes"><span #byte>0</span> / {{ maxByte40 }} Bytes</div>
       </div>
       <div class="form-group f-title">
         <label class="tds-label bold">티켓 설명</label>
         <div class="in">
-          <input #desc type="text" class="form-control tds-input" formControlName="ticketDesc" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(desc, byte02)">
+          <input #desc type="text" class="form-control tds-input" formControlName="ticketDesc" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(desc, byte02, 60)">
         </div>
-        <div class="bytes"><span #byte02>0</span> / {{ maxByte40 }} Bytes</div>
+        <div class="bytes"><span #byte02>0</span> / {{ maxByte60 }} Bytes</div>
       </div>
       <div class="form-group">
         <label class="tds-label bold">티켓 오픈기간</label>
@@ -111,13 +112,25 @@
       </div>
       <div class="form-group count-box">
         <ng-container *ngIf="parentData?.ticketType === 'pay'">
-          <div>
-            <label class="tds-label bold">가격</label>
-            <div class="form-control tds-input tds-input-box">
-              <label for="ticketPrice">&#8361;</label>
-              <input type="number" pattern="\d*" id="ticketPrice" maxLength="9" formControlName="ticketPrice">
+          <ng-container *ngIf="!isEdit; else elseEdit">
+            <div>
+              <label class="tds-label bold">가격</label>
+              <div class="form-control tds-input tds-input-box">
+                <label for="ticketPrice">&#8361;</label>
+                <input type="number" pattern="\d*" id="ticketPrice" maxLength="9" formControlName="ticketPrice">
+              </div>
             </div>
-          </div>
+          </ng-container>
+          <ng-template #elseEdit>
+            <div class="no-edit-price">
+              <label class="tds-label bold">가격</label>
+              <div class="form-control tds-input tds-input-box">
+                <label for="ticketPrice">&#8361;</label>
+                <input type="number" pattern="\d*" id="ticketPrice" maxLength="9" formControlName="ticketPrice" disabled>
+              </div>
+              <div class="tkit-coral-color edit-price">가격은 수정할 수 없습니다</div>
+            </div>
+          </ng-template>
         </ng-container>
         <div class="ticket-count-box">
           <label class="tds-label bold">티켓수량</label>

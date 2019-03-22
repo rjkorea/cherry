@@ -182,4 +182,11 @@ export class TicketService {
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
+
+  public updateTicketTypeV2(type_oid: string, param: Object): Observable<{}> {
+    const url = `${this.typeUrlV2}/${type_oid}`;
+    return this.http.put(url, param, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 }
