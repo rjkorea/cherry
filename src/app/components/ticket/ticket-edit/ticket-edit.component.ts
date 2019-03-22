@@ -15,9 +15,9 @@ export class TicketEditComponent implements OnInit {
 
   isCoverPopup: boolean = false;
   typeCoverPopup: string = '';
-  ticket: Object = {};
-  content: Object = {};
-  sequence$: Observable<Object>;
+  ticket: any;
+  content: any;
+  sequence$: Observable<any>;
   typeId: string;
 
   previewData = [];
