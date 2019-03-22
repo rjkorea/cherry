@@ -2,21 +2,6 @@
   <app-loader></app-loader>
 </ng-template>
 
-<!--<div class="row">
-  <div class="col-md-6">
-    <ng-template [ngIf]="checkRole()">
-      <br>
-      <div class="form-group">
-        <select class="form-control" name="content" [(ngModel)]="content_oid" (ngModelChange)="changeContent()">
-          <ng-container *ngFor="let c of contents">
-            <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
-          </ng-container>
-        </select>
-      </div>
-    </ng-template>
-  </div>
-</div>-->
-
 <div *ngIf="!is_loading">
   <div *ngIf="count">
     <div class="row">
@@ -24,7 +9,6 @@
         <ol class="breadcrumb">
           <li><a [routerLink]="['/ticket/type']">{{tickets[0].content.name}} {{tickets[0].ticket_type.name}}</a></li>
           <li><a [routerLink]="['/ticket/order', {ticket_type_oid: tickets[0].ticket_type._id}]">{{tickets[0].ticket_order.receiver.name}} {{tickets[0].ticket_order.qty}}장</a></li>
-          <!--<li class="active">Orders</li>-->
         </ol>
         <h3>티켓 <span class="badge">{{count}}</span></h3>
       </div>
@@ -33,7 +17,6 @@
           <table class="table table-striped">
             <tr>
               <th>수정일시</th>
-              <th>시리얼넘버</th>
               <th>티켓상태</th>
               <th>받은사람</th>
               <th>핸드폰번호</th>
@@ -43,7 +26,6 @@
             </tr>
             <tr *ngFor="let t of tickets">
               <td><a [routerLink]="['/ticket', t._id]">{{t.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD hh:mm:ss'}}</a></td>
-              <td><span *ngIf="t.serial_number">{{t.serial_number}}</span></td>
               <td>
                 <span *ngIf="t.status === 'pend'" class="label label-default">전송준비</span>
                 <span *ngIf="t.status === 'send'" class="label label-warning">전송중</span>
@@ -53,7 +35,7 @@
                 <span *ngIf="t.status === 'cancel'" class="label label-danger">취소</span>
               </td>
               <td><span *ngIf="t.receive_user"><a [routerLink]="['/user', t.receive_user._id]">{{t.receive_user.name}}</a></span></td>
-              <td><span *ngIf="t.receive_user">{{t.receive_user.mobile_number}}</span></td>
+              <td><span *ngIf="t.receive_user">{{t.receive_user.mobile.country_code}} {{t.receive_user.mobile.number}}</span></td>
               <td><span *ngIf="t.receive_user && t.receive_user.gender">{{t.receive_user.gender}}</span></td>
               <td>
                 <button *ngIf="t.status === 'register' || t.status === 'send'" type="button" class="btn btn-default btn-sm" (click)="onSmsModal(t)" data-toggle="modal" data-target="#send-modal">
