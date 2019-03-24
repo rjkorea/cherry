@@ -39,11 +39,20 @@ export class TicketHomeComponent implements OnInit {
     });
   }
 
-  createTickets(): void {
-    this.router.navigate([`${this.router.url}s/new`, {previous: this.tickets.length}]);
+  createTickets(id: string): void {
+    this.router.navigate([`ticket/types/${id}/new`, {previous: this.tickets.length}]);
   }
 
-  editTicket(id): void {
+  editTicket(id: string): void {
     this.router.navigate([`ticket/type/${id}/edit`]);
   }
+
+  getOrders(id: string): void {
+    this.router.navigate([`ticket/order`, {ticket_type_oid: id}]);
+  }
+
+  createOrder(id: string): void {
+    this.router.navigate([`ticket/orders/new`, {ticket_type_oid: id}]);
+  }
+
 }

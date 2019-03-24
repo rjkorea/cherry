@@ -95,7 +95,7 @@ export class TicketOrderNewComponent implements OnInit {
       .subscribe(
         response => {
           alert('티켓전송을 성공 하였습니다.');
-          this.router.navigate(['/ticket/order', {ticket_type_oid: this.order.ticket_type_oid}]);
+          this.router.navigate(['/ticket/type', this.type['content']['_id']]);
         },
         error => {
           alert('티켓전송을 실패 하였습니다.');

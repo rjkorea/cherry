@@ -113,12 +113,12 @@ export class TicketEditComponent implements OnInit {
     if (param.name || param.desc || param.sales_date.start || param.sales_date.end || param.fpfg.limit) {
       this.ticketService.updateTicketTypeV2(this.typeId, param).subscribe(res => {
         this.is_loading = false;
-        this.router.navigate([`ticket/types/${this.content['_id']}`]);
+        this.router.navigate([`ticket/type/${this.content['_id']}`]);
       }, err => {
         this.is_loading = false;
         console.log(err);
 
-        if (err['error']['code'] === 3) {
+        if (err['error']['code'] === 1) {
           alert('스프레드는 [티켓수량/이미 전달된 티켓수량/이미 판매된 티켓수량]보다 많아야 합니다.');
         }
       });

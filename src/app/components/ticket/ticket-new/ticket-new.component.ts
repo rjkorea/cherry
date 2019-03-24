@@ -162,7 +162,7 @@ export class TicketNewComponent implements OnInit {
         this.is_loading = false;
         this.popupService.dynamicContentCount = 0;
         this.popupService.dynamicContents = [];
-        this.router.navigate([`ticket/types/${this.contentId}`]);
+        this.router.navigate([`ticket/type/${this.contentId}`]);
       }, err => {
         console.log(err);
         this.is_loading = false;

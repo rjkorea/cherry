@@ -2,7 +2,7 @@
   <h1 class="bolder">티켓관리</h1>
   <p class="light">{{ contentName }}</p>
 </div>
-<div class="ticket-btn" (click)="createTickets()">
+<div class="ticket-btn" (click)="createTickets(contentId)">
   <img src="/assets/images/add-circle.png">
   <span>새 티켓타입 만들기</span>
 </div>
@@ -42,8 +42,8 @@
       </div>
       <div class="btns">
         <button class="btn btn-block" (click)="editTicket(ticket._id)">수정하기</button>
-        <button class="btn btn-block">전송내역</button>
-        <button class="btn btn-block">전송하기</button>
+        <button class="btn btn-block" (click)="getOrders(ticket._id)">전송내역</button>
+        <button class="btn btn-block" (click)="createOrder(ticket._id)">전송하기</button>
       </div>
       <div *ngIf="i === 0" class="notice">
         <img src="/assets/images/megaphone.png"><span class="tkit-coral-color">&nbsp;[전송하기]&nbsp;</span><span>버튼을 누르고 친구에게 티켓을 전송해보세요</span>
