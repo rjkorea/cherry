@@ -10,6 +10,7 @@ const URL = `${environment.api.protocol}://${environment.api.host}:${environment
 
 @Injectable()
 export class TicketService {
+  public ticketColors = ['tkit-mint', 'tkit-coral', 'hangang-blue', 'ultra-bora', 'mustard-norang'];
   typeUrl = `${URL}/a/ticket/type`;
   typesUrl = `${URL}/a/ticket/types`;
   orderUrl = `${URL}/a/ticket/order`;
@@ -20,6 +21,10 @@ export class TicketService {
   logsUrl = `${URL}/a/tickets/logs`;
   logUrl = `${URL}/a/ticket/log`;
   options;
+
+  typeUrlV2 = `${URL}/a/v2/ticket/type`;
+  typesUrlV2 = `${URL}/a/v2/ticket/types`;
+  orderUrlV2 = `${URL}/a/v2/ticket/order`;
 
   constructor(private http: Http) {
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});
@@ -46,6 +51,13 @@ export class TicketService {
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public getTypeInfo(id: string): Observable<{}> {
+    const url = `${this.typeUrlV2}/${id}/info`;
+    return this.http.get(url, this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
   public updateType(id: string, data: any): Observable<{}> {
     const url = `${this.typeUrl}/${id}`;
     return this.http.put(url, JSON.stringify(data), this.options)
@@ -55,6 +67,12 @@ export class TicketService {
 
   public addOrder(data: any): Observable<{}> {
     return this.http.post(this.orderUrl, JSON.stringify(data), this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public addOrderV2(data: any): Observable<{}> {
+    return this.http.post(this.orderUrlV2, JSON.stringify(data), this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
@@ -157,4 +175,32 @@ export class TicketService {
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  // V2
+  public getTypeListV2(content_oid: string, start: Number, size: Number): Observable<{}> {
+    const url = `${this.typesUrlV2}?start=${start}&size=${size}&content_oid=${content_oid}`;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public getTypeInfoV2(type_oid: string): Observable<{}> {
+    const url = `${this.typeUrlV2}/${type_oid}`;
+    return this.http.get(url, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public createTicketTypeV2(param: Object): Observable<{}> {
+    const url = `${this.typeUrlV2}`;
+    return this.http.post(url, param, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  public updateTicketTypeV2(type_oid: string, param: Object): Observable<{}> {
+    const url = `${this.typeUrlV2}/${type_oid}`;
+    return this.http.put(url, param, this.options)
+                    .map((response: Response) => response.json())
+                    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 }

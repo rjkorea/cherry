@@ -58,7 +58,7 @@ export class ContentHomeComponent implements OnInit {
   }
 
   goTicket(content_oid: string) {
-    this.router.navigate(['/ticket', 'type', {content_oid: content_oid}]);
+    this.router.navigate([`/ticket/type/${content_oid}`]);
   }
 
   goEntrance(content_oid: string) {

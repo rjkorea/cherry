@@ -1,0 +1,128 @@
+<div class="media-preview hidden-xs hidden-sm">
+  <div class="scroll-box">
+    <ul class="tickets">
+
+      <ng-container *ngIf="previewData.length > 0; else elsePreview">
+        <li *ngFor="let ticket of previewData">
+          <div class="ticket">
+            <div class="color-type" [ngStyle]="{'background-color': ticket.color === 'tkit-mint' ? '#62aab8' : (ticket.color === 'tkit-coral' ? '#ed7f81' : (ticket.color === 'hangang-blue' ? '#6794ca' : (ticket.color === 'ultra-bora' ? '#8f6dab' : (ticket.color === 'mustard-norang' ? '#f6d87f' : '')))) }"></div>
+            <div class="info">
+              <div class="name">{{ ticket.contentName }}</div>
+              <div class="t-name">{{ ticket.name }}</div>
+              <div class="desc">
+                <span *ngIf="ticket.desc">{{ ticket.desc }}</span>
+              </div>
+            </div>
+            <div class="extra">
+              <div>
+                <label>등록 유효기간</label>
+                <label class="time"><img src="/assets/images/timer.png"><span>{{ ticket.sales_date.end }}</span></label>
+              </div>
+              <div>
+                <label>티켓가격</label>
+                <label class="price">
+                  <span>{{ ticket.price | currency: 'KRW': 'symbol': '1.0-0' }}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ng-container>
+      <ng-template #elsePreview>
+        <li>
+          <div class="ticket">
+              <div class="color-type" [ngStyle]="{'background-color': '#62aab8'}"></div>
+              <div class="info">
+                <div class="name">행사이름이 들어가는 부분입니다</div>
+                <div class="t-name">티켓이름이 들어가는 부분입니다</div>
+                <div class="desc">
+                  <span>[티켓 예시] 티켓을 만들고 위 적용하기 버튼을 눌러보세요</span>
+                </div>
+              </div>
+              <div class="extra">
+                <div>
+                  <label>등록 유효기간</label>
+                  <label class="time"><img src="/assets/images/timer.png"><span>2019.12.29 18:00</span></label>
+                </div>
+                <div>
+                  <label>티켓가격</label>
+                  <label class="price">
+                    <span>{{ 20000 | currency: 'KRW': 'symbol': '1.0-0' }}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+        </li>
+      </ng-template>
+
+    </ul>
+  </div>
+</div>
+
+<!-- 모바일 -->
+<div class="preview-wrapper hidden-md hidden-lg">
+  <div class="header-title bolder">
+    <span>티켓 미리보기</span>
+    <img *ngIf="isCoverPopup" src="/assets/images/close-grey.svg" (click)="controlCoverPopup.emit(false)">
+  </div>
+  <div class="header-desc demi-light">생성한 티켓을 미리보기로 확인해보세요</div>
+  <div *ngIf="isCoverPopup" class="u-header-shadow"></div>
+
+  <ul class="tickets">
+
+    <ng-container *ngIf="previewData.length > 0; else elseMPreview">
+      <li *ngFor="let ticket of previewData">
+        <div class="ticket">
+          <div class="color-type" [ngStyle]="{'background-color': ticket.color === 'tkit-mint' ? '#62aab8' : (ticket.color === 'tkit-coral' ? '#ed7f81' : (ticket.color === 'hangang-blue' ? '#6794ca' : (ticket.color === 'ultra-bora' ? '#8f6dab' : (ticket.color === 'mustard-norang' ? '#f6d87f' : '')))) }"></div>
+          <div class="info">
+            <div class="name">{{ ticket.contentName }}</div>
+            <div class="t-name">{{ ticket.name }}</div>
+            <div class="desc">
+              <span *ngIf="ticket.desc">{{ ticket.desc }}</span>
+            </div>
+          </div>
+          <div class="extra">
+            <div>
+              <label>등록 유효기간</label>
+              <label class="time"><img src="/assets/images/timer.png"><span>{{ ticket.sales_date.end }}</span></label>
+            </div>
+            <div>
+              <label>티켓가격</label>
+              <label class="price">
+                <span *ngIf="price > 0">{{ ticket.price | currency: 'KRW': 'symbol': '1.0-0' }}</span>
+                <span *ngIf="price <= 0">FREE</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ng-container>
+    <ng-template #elseMPreview>
+      <li>
+        <div class="ticket">
+            <div class="color-type" [ngStyle]="{'background-color': '#62aab8'}"></div>
+            <div class="info">
+              <div class="name">행사이름이 들어가는 부분입니다</div>
+              <div class="t-name">티켓이름이 들어가는 부분입니다</div>
+              <div class="desc">
+                <span>[티켓 예시] 티켓을 만들고 위 적용하기 버튼을 눌러보세요</span>
+              </div>
+            </div>
+            <div class="extra">
+              <div>
+                <label>등록 유효기간</label>
+                <label class="time"><img src="/assets/images/timer.png"><span>2019.12.29 18:00</span></label>
+              </div>
+              <div>
+                <label>티켓가격</label>
+                <label class="price">
+                  <span>{{ 20000 | currency: 'KRW': 'symbol': '1.0-0' }}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+      </li>
+    </ng-template>
+
+  </ul>
+</div>

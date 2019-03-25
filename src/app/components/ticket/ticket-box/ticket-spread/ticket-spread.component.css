@@ -1,0 +1,57 @@
+@charset 'utf-8';
+
+.title {
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.title .bold {
+    font-size: 1.15rem;
+    margin-bottom: 0.2rem;
+}
+
+.desc {
+    font-size: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.effection {
+    font-size: 1rem;
+    padding: 1rem 0 0.5rem;
+}
+
+.m-title {
+    position: relative;
+    padding: 2rem 0 1rem;
+    font-size: 1.25rem;
+}
+
+.m-title::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1rem;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #62aab8;
+}
+
+.m-title img {
+    width: 4rem;
+    margin-bottom: 0.5rem;
+}
+
+.m-desc {
+    text-align: left;
+    font-size: 1rem;
+    padding: 1rem 2rem 2rem;
+}
+
+.m-effection {
+    font-size: 1rem;
+    padding: 1rem 0 2rem;
+}

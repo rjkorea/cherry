@@ -25,7 +25,6 @@ export class TicketOrderDetailComponent implements OnInit {
       .subscribe(
         response => {
           this.order = response['data'];
-          console.log(this.order);
         },
         error => {
           console.log(error);

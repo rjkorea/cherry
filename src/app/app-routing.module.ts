@@ -59,6 +59,9 @@ import { StatsComponent } from './components/stats/stats.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { ContentNew2Component } from './components/content/content-new2/content-new2.component';
 import { ContentHomeComponent } from './components/content/content-home/content-home.component';
+import { TicketHomeComponent } from './components/ticket/ticket-home/ticket-home.component';
+import { TicketNewComponent } from './components/ticket/ticket-new/ticket-new.component';
+import { TicketEditComponent } from './components/ticket/ticket-edit/ticket-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'contents', pathMatch: 'full' },
@@ -102,14 +105,6 @@ const routes: Routes = [
   { path: 'content/:content_oid/group/:group_oid/tickets', component: ContentGroupTicketListComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/search', component: ContentGroupTicketSearchComponent, canActivate: [AuthGuard] },
 
-  { path: 'contents/new', component: ContentNew2Component, canActivate: [AuthGuard] },
-  { path: 'content/:content_oid', component: ContentNew2Component, canActivate: [AuthGuard] },
-  { path: 'contents', component: ContentHomeComponent, canActivate: [AuthGuard] },
-
-  { path: 'ticket/type', component: TicketTypeListComponent, canActivate: [AuthGuard] },
-  { path: 'ticket/type/:id', component: TicketTypeDetailComponent, canActivate: [AuthGuard] },
-  { path: 'ticket/types/new', component: TicketTypeNewComponent, canActivate: [AuthGuard] },
-
   { path: 'ticket/order', component: TicketOrderListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/order/:id', component: TicketOrderDetailComponent, canActivate: [AuthGuard] },
   { path: 'ticket/orders/new', component: TicketOrderNewComponent, canActivate: [AuthGuard] },
@@ -144,6 +139,17 @@ const routes: Routes = [
   { path: 'signup/done', component: SignupDoneComponent },
   { path: 'profile/:id', component: AdminDetailComponent, canActivate: [AuthGuard] },
   { path: 'notification', component: NotificationComponent, canActivate: [AuthGuard] },
+
+  // V2 contents
+  { path: 'contents/new', component: ContentNew2Component, canActivate: [AuthGuard] },
+  { path: 'content/:content_oid', component: ContentNew2Component, canActivate: [AuthGuard] },
+  { path: 'contents', component: ContentHomeComponent, canActivate: [AuthGuard] },
+  
+  // V2 ticket
+  { path: 'ticket/type/:content_oid', component: TicketHomeComponent, canActivate: [AuthGuard] },
+  { path: 'ticket/types/:content_oid/new', component: TicketNewComponent, canActivate: [AuthGuard] },
+  { path: 'ticket/type/:type_oid/edit', component: TicketEditComponent, canActivate: [AuthGuard] },
+
   { path: '**', component: PageNotFoundComponent }
 
 ];

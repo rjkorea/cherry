@@ -1,29 +1,35 @@
 <div class="col-md-6">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">티켓 전송하기 ({{type.content.name}} / {{type.name}} / {{type.desc.value}})</h3>
+      <h3 *ngIf="type" class="panel-title">티켓 전송하기 ({{type.content.name}} / {{type.name}} / {{type.desc.value}})</h3>
     </div>
     <div class="panel-body">
       <form>
         <div class="form-group">
           <label for="qty">티켓 전송 수량 (필수)</label>
           <input type="number" class="form-control" [(ngModel)]="order.qty" name="qty">
+          <span *ngIf="type_info && type_info.spread" class="length-check tkit-mint-color">전송가능 수량: {{type_info.spread - type_info.ticket_count}}</span>
+          <span *ngIf="type_info && !type_info.spread" class="length-check tkit-mint-color">전송가능 수량: 무제한</span>
         </div>
         <div class="form-group">
           <label for="receiver-name">티켓 받는사람 이름 (필수)</label>
-          <input type="text" class="form-control" [(ngModel)]="order.receiver.name" name="receiver-name" placeholder="실명을 입력해주세요.">
+          <input type="text" class="form-control" [(ngModel)]="order.name" name="receiver-name" placeholder="실명을 입력해주세요.">
         </div>
         <div class="form-group">
-          <label class="sr-only" for="receive-country-code">국가코드</label>
-          <select class="form-control" name="receive-country-code" [(ngModel)]="country_code">
+          <label for="receive-country-code">국가코드</label>
+          <select class="form-control" name="receive-country-code" [(ngModel)]="order.mobile.country_code">
             <ng-container *ngFor="let c of countries">
               <option [ngValue]="c.code">{{c.name}} (+{{c.code}})</option>
             </ng-container>
           </select>
         </div>
         <div class="form-group">
-          <label class="sr-only" for="receiver-mobile-number">핸드폰번호</label>
-          <input type="tel" class="form-control" name="receiver-mobile-number" [(ngModel)]="mobile_number" placeholder="핸드폰번호 ('-'을 제외하고 입력해주세요)">
+          <label for="receiver-mobile-number">핸드폰번호</label>
+          <input type="tel" class="form-control" name="receiver-mobile-number" [(ngModel)]="order.mobile.number" placeholder="핸드폰번호 ('-'을 제외하고 입력해주세요)">
+        </div>
+        <div class="form-group">
+          <label for="sms">SMS 내용입력</label>
+          <textarea type="text" class="form-control" name="sms" [(ngModel)]="order.sms" placeholder="전송할 SMS 메세지를 입력해주세요."></textarea>
         </div>
         <button type="button" class="btn btn-tkit-mint" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
       </form>

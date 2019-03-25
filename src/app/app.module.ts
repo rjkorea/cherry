@@ -112,6 +112,12 @@ import { ContentIsPrivateComponent } from './components/content/content-new2/con
 import { ContentPlaceMapComponent } from './components/content/content-new2/content-place-map/content-place-map.component';
 import { ContentHostInfoComponent } from './components/content/content-new2/content-host-info/content-host-info.component';
 import { ContentHomeComponent } from './components/content/content-home/content-home.component';
+import { TicketNewComponent } from './components/ticket/ticket-new/ticket-new.component';
+import { TicketHomeComponent } from './components/ticket/ticket-home/ticket-home.component';
+import { TicketBoxComponent } from './components/ticket/ticket-box/ticket-box.component';
+import { TicketPreviewComponent } from './components/ticket/ticket-preview/ticket-preview.component';
+import { TicketSpreadComponent } from './components/ticket/ticket-box/ticket-spread/ticket-spread.component';
+import { TicketEditComponent } from './components/ticket/ticket-edit/ticket-edit.component';
 
 
 defineLocale('ko', koLocale);
@@ -190,7 +196,13 @@ defineLocale('ko', koLocale);
     ContentIsPrivateComponent,
     ContentPlaceMapComponent,
     ContentHostInfoComponent,
-    ContentHomeComponent
+    ContentHomeComponent,
+    TicketNewComponent,
+    TicketHomeComponent,
+    TicketBoxComponent,
+    TicketPreviewComponent,
+    TicketSpreadComponent,
+    TicketEditComponent
   ],
   imports: [
     BrowserModule,
@@ -248,7 +260,9 @@ defineLocale('ko', koLocale);
     ContentCropperComponent,
     ContentIsPrivateComponent,
     ContentPlaceMapComponent,
-    ContentHostInfoComponent
+    ContentHostInfoComponent,
+    TicketBoxComponent,
+    TicketSpreadComponent
   ]
 })
 export class AppModule { }

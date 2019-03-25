@@ -1,0 +1,163 @@
+
+<form [formGroup]="ticketForm">
+  <div class="row ticket-box">
+    <div class="ticket-inner-box">
+      <div *ngIf="!isEdit" class="delete-btn"><img src="/assets/images/delete.png" (click)="deleteTicket()"><span (click)="deleteTicket()">삭제하기</span></div>
+      <div class="form-group f-title">
+        <label class="tds-label bold">티켓 이름</label>
+        <div class="in">
+          <input #name type="text" class="form-control tds-input" formControlName="ticketName" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(name, byte, 40)">
+        </div>
+        <div class="bytes"><span #byte>0</span> / {{ maxByte40 }} Bytes</div>
+      </div>
+      <div class="form-group f-title">
+        <label class="tds-label bold">티켓 설명</label>
+        <div class="in">
+          <input #desc type="text" class="form-control tds-input" formControlName="ticketDesc" placeholder="예) 티킷 페스티벌 2022" (keyup)="checkBytes(desc, byte02, 60)">
+        </div>
+        <div class="bytes"><span #byte02>0</span> / {{ maxByte60 }} Bytes</div>
+      </div>
+      <div class="form-group">
+        <label class="tds-label bold">티켓 오픈기간</label>
+        <div class="calendar-box">
+          <div class="time-box">
+            <label>시작</label>
+            <img src="/assets/images/calendar.svg">
+            <input #mFromDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" formControlName="mFromDate" (click)="openCalendar('m', 'from', mFromDate)">
+            <input #pcFromDate type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD" formControlName="pcFromDate" (click)="openCalendar('pc', 'from', pcFromDate)">
+            <img src="/assets/images/watch.svg">
+            <select class="form-control tds-input tds-select" formControlName="fromHours" required>
+              <option value="" hidden>시</option>
+              <option value="00">00</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+            </select>
+            &nbsp;&nbsp;:&nbsp;&nbsp;
+            <select class="form-control tds-input tds-select" formControlName="fromMins" required>
+              <option value="" hidden>분</option>
+              <option value="00">00</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+          <div class="time-box">
+            <label>종료</label>
+            <img src="/assets/images/calendar.svg">
+            <input #mToDate type="text" class="form-control tds-input hidden-md hidden-lg" placeholder="YYYY-MM-DD" formControlName="mToDate" (click)="openCalendar('m', 'to', mToDate)">
+            <input #pcToDate type="text" class="form-control tds-input hidden-xs hidden-sm" placeholder="YYYY-MM-DD" formControlName="pcToDate" (click)="openCalendar('pc', 'to', pcToDate)">
+            <img src="/assets/images/watch.svg">
+            <select class="form-control tds-input tds-select" formControlName="toHours" required>
+              <option value="" hidden>시</option>
+              <option value="00">00</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+            </select>
+            &nbsp;&nbsp;:&nbsp;&nbsp;
+            <select class="form-control tds-input tds-select" formControlName="toMins" required>
+              <option value="" hidden>분</option>
+              <option value="00">00</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group count-box">
+        <ng-container *ngIf="parentData?.ticketType === 'pay'">
+          <ng-container *ngIf="!isEdit; else elseEdit">
+            <div>
+              <label class="tds-label bold">가격</label>
+              <div class="form-control tds-input tds-input-box">
+                <label for="ticketPrice">&#8361;</label>
+                <input type="number" pattern="\d*" id="ticketPrice" maxLength="9" formControlName="ticketPrice">
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #elseEdit>
+            <div class="no-edit-price">
+              <label class="tds-label bold">가격</label>
+              <div class="form-control tds-input tds-input-box">
+                <label for="ticketPrice">&#8361;</label>
+                <input type="number" pattern="\d*" id="ticketPrice" maxLength="9" formControlName="ticketPrice" disabled>
+              </div>
+              <div class="tkit-coral-color edit-price">가격은 수정할 수 없습니다</div>
+            </div>
+          </ng-template>
+        </ng-container>
+        <div class="ticket-count-box">
+          <label class="tds-label bold">티켓수량</label>
+          <div class="form-control tds-input tds-input-box">
+            <input id="ticketCount" type="number" pattern="\d*" maxLength="6" formControlName="ticketCount">
+            <label for="ticketCount">장</label>
+          </div>
+        </div>
+        <div class="">
+          <label class="tds-label">
+            <span class="bold">스프레드</span>
+            <span class="u-toggle-container q-mark hidden-xs hidden-sm" (mouseover)="utils.getTogglePopup(toggle)" (mouseout)="utils.getTogglePopup(toggle)">
+              <img src="/assets/images/question-mark.svg">
+              <div #toggle class="u-toggle"><app-ticket-spread></app-ticket-spread></div>
+            </span>
+            <span class="q-mark hidden-md hidden-lg" (click)="openDescriptionPopup('spread')">
+              <img src="/assets/images/question-mark.svg">
+            </span>
+          </label>
+          <div *ngIf="!isSpread" class="spread-btn" (click)="clickUseSpread()">사용하기</div>
+          <div *ngIf="isSpread" class="form-control tds-input tds-input-box">
+            <input id="ticketSpread" type="number" pattern="\d*" maxLength="6" formControlName="ticketSpread">
+            <label for="ticketSpread">장</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group is-hidden"></div>
+    </div>
+  </div>
+</form>

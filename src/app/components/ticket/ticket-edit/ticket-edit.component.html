@@ -1,0 +1,44 @@
+<ng-template [ngIf]="is_loading">
+  <app-loader></app-loader>
+</ng-template>
+
+<div class="container" [hidden]="isCoverPopup">
+  <div class="row title">
+    <h1 class="bolder">티켓 수정하기</h1>
+    <p class="light">{{ content.name }}</p>
+  </div>
+  <div class="row ticket-name">
+    <span class="tkit-coral-color">Ticket</span>
+    <span class="name">&nbsp;{{ ticket.name }}</span>
+  </div>
+  <div class="row">
+    <div class="col-sm-5 hidden-xs hidden-sm stick-left">
+      <div class="header">모바일 화면 미리보기</div>
+      <div class="render">
+        <span class="render-btn bold" (click)="setPreview('pc')">적용하기</span>
+        <span class="txt">버튼을 누르고 화면을 스크롤 해보세요</span>
+      </div>
+      <app-ticket-preview [previewData]="previewData"></app-ticket-preview>
+    </div>
+    <div class="col-sm-1 hidden-xs hidden-sm"></div>
+    <div class="col-sm-6">
+      <div class="row hidden-xs hidden-sm">
+        <div class="header">티켓 정보 입력</div>
+      </div>
+      <div><app-ticket-box #ticketBox isEdit="true" [editData]="sequence$"></app-ticket-box></div>
+      <div class="row">
+        <div class="hidden-xs hidden-sm">
+          <button class="btn btn-tkit-mint btn-block btn-base" (click)="done()">완 료</button>
+        </div>
+        <div class="hidden-md hidden-lg m-btns">
+          <button class="btn btn-preview btn-base btn-short" (click)="setPreview('m')">미리보기</button>
+          <button class="btn btn-tkit-mint btn-base btn-short right" (click)="done()">완 료</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isCoverPopup">
+  <app-ticket-preview *ngIf="typeCoverPopup === 'preview'" [previewData]="previewData" [isCoverPopup]="isCoverPopup" (controlCoverPopup)="controlCoverPopup($event)"></app-ticket-preview>
+</div>
