@@ -15,10 +15,10 @@ export class TicketEditComponent implements OnInit {
 
   isCoverPopup: boolean = false;
   typeCoverPopup: string = '';
-  ticket: any;
-  content: any;
+  ticket: any = {};
+  content: any = {};
   sequence$: Observable<any>;
-  typeId: string;
+  typeId: string = '';
 
   previewData = [];
   is_loading = false;
