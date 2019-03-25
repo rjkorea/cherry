@@ -41,9 +41,12 @@ export class TicketNewComponent implements OnInit, OnDestroy {
     });
 
     this.previousTicketCnt = this.route.snapshot.params['previous'] || 0;
+    this.popupService.dynamicContentCount = this.previousTicketCnt;
   }
   ngOnDestroy() {
     localStorage.removeItem('temp_from_date');
+    this.popupService.dynamicContentCount = 0;
+    this.popupService.dynamicContents = [];
   }
 
   getTicketBox(type): void {
