@@ -1,5 +1,5 @@
 p {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
 }
 
 ul {
@@ -72,7 +72,7 @@ ul {
     position: relative;
     border-radius: 2px;
     box-shadow: 0 2px 4px 0 rgba(79, 79, 79, 0.5);
-    padding: 2rem 1rem 1rem;
+    padding: 2rem 1.5rem 1rem;
     font-size: 1.1rem;
 }
 
@@ -98,7 +98,7 @@ ul {
 }
 
 .list-element .first-desc .name {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-bottom: 0.1rem;
 }
 
