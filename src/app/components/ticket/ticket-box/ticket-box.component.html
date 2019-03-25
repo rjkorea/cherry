@@ -110,6 +110,7 @@
           </div>
         </div>
       </div>
+
       <div class="form-group count-box">
         <ng-container *ngIf="parentData?.ticketType === 'pay'">
           <ng-container *ngIf="!isEdit; else elseEdit">
@@ -135,7 +136,7 @@
         <div class="ticket-count-box">
           <label class="tds-label bold">티켓수량</label>
           <div class="form-control tds-input tds-input-box">
-            <input id="ticketCount" type="number" pattern="\d*" maxLength="6" formControlName="ticketCount">
+            <input id="ticketCount" type="number" pattern="\d*" maxLength="6" min="0" formControlName="ticketCount">
             <label for="ticketCount">장</label>
           </div>
         </div>
@@ -157,6 +158,7 @@
           </div>
         </div>
       </div>
+
       <div class="form-group is-hidden"></div>
     </div>
   </div>

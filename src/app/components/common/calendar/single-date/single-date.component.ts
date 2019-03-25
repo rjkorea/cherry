@@ -10,29 +10,36 @@ export class SingleDateComponent implements OnInit {
   @ViewChild('singleDate') singleDate: ElementRef;
   @ViewChild('doneBtn') doneBtn: ElementRef;
 
-  background = '';
+  type: string;
+  limitDate: Date = new Date();
+  selectedDate: Date = new Date();
 
   constructor(
     private popupService: PopupService
   ) { }
 
   ngOnInit() {
-  }
-
-  onSelect(): void {
-    const selected = this.singleDate['selected'];
-
-    if (selected) {
-      this.background = 'btn-tkit-mint';
-      this.doneBtn.nativeElement['disabled'] = false;
-    }
+    this.type = this.popupService.getData();
+    this.getMoment();
   }
 
   getMoment(): void {
-    const selected = this.singleDate['selected'];
+    if (this.type === 'from') {
+      this.limitDate = new Date();
+    } else {
+      const date = localStorage.getItem('temp_from_date');
+      this.selectedDate = date !== null || undefined ? new Date(date) : new Date();
+      this.limitDate = this.selectedDate;
+    }
+  }
 
-    if (selected) {
-      this.popupService.setSubject(selected);
+  setMoment(): void {
+    this.selectedDate = this.singleDate['selected'];
+
+    if (this.type === 'from') localStorage.setItem('temp_from_date', this.selectedDate.toString());
+
+    if (this.selectedDate) {
+      this.popupService.setSubject(this.selectedDate);
       this.clear();
     }
   }

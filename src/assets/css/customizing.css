@@ -7,10 +7,12 @@
 
 /* calendar (owl) */
 .owl-dt-container {
+    padding: 1rem;
     font-size: 1.5rem;
     background: #fff;
     pointer-events: auto;
     box-shadow: none;
+    overflow: hidden;
     z-index: 1000;
 }
 
@@ -60,7 +62,7 @@
 }
 
 .owl-dt-calendar-control {
-    padding: 2rem;
+    padding: 1rem;
     justify-content: center;
 }
 
@@ -68,6 +70,18 @@
     flex: 0.5;
     font-weight: 600;
     padding-left: 0.75rem;
+}
+
+.owl-dt-container-row {
+    border-bottom: none;
+}
+
+.owl-dt-container-buttons {
+    display: none;
+}
+
+.owl-dt-control-arrow-button[disabled] {
+    box-shadow: none;
 }
 
 /* bootstrap */
