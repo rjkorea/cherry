@@ -152,3 +152,7 @@ ul {
 .notice img {
     width: 1.15rem;
 }
+
+.pc-notice {
+    margin: 1rem 0 -4rem;
+}
