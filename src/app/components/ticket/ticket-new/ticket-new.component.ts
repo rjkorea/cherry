@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TicketService } from 'app/services/ticket.service';
 import { PopupService } from 'app/services/popup.service';
@@ -11,7 +11,7 @@ import { ContentService } from 'app/services/content.service';
   templateUrl: './ticket-new.component.html',
   styleUrls: ['./ticket-new.component.css']
 })
-export class TicketNewComponent implements OnInit {
+export class TicketNewComponent implements OnInit, OnDestroy {
   @ViewChild('ticketBoxs', { read: ViewContainerRef }) ticketBoxs: ViewContainerRef;
 
   contentId: string;
@@ -41,6 +41,12 @@ export class TicketNewComponent implements OnInit {
     });
 
     this.previousTicketCnt = this.route.snapshot.params['previous'] || 0;
+    this.popupService.dynamicContentCount = this.previousTicketCnt;
+  }
+  ngOnDestroy() {
+    localStorage.removeItem('temp_from_date');
+    this.popupService.dynamicContentCount = 0;
+    this.popupService.dynamicContents = [];
   }
 
   getTicketBox(type): void {
@@ -119,7 +125,7 @@ export class TicketNewComponent implements OnInit {
       const limit = ticketObjs[i]['ticketForm'].get('ticketCount').value;
       const spread = ticketObjs[i]['ticketForm'].get('ticketSpread').value;
 
-      if (name && desc && price >= 0 && limit && fromDate && toDate && fromHours && toHours && fromMins && toMins) {
+      if (name && desc && price >= 0 && limit > 0 && fromDate && toDate && fromHours && toHours && fromMins && toMins) {
         canSave = true;
 
         saveTickets.push({
@@ -159,6 +165,7 @@ export class TicketNewComponent implements OnInit {
       paramObj['ticket_types'] = ticketTypes;
 
       this.ticketService.createTicketTypeV2(paramObj).subscribe(() => {
+        localStorage.removeItem('temp_from_date');
         this.is_loading = false;
         this.popupService.dynamicContentCount = 0;
         this.popupService.dynamicContents = [];
