@@ -26,8 +26,8 @@
               </div>
               <div class="col-md-4">
                 <h4><a [routerLink]="['/user', user._id]">{{user.name}}</a></h4>
-                <p *ngIf="user.mobile_number">
-                  <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{user.mobile_number}}
+                <p *ngIf="user.mobile">
+                  <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>+{{user.mobile.country_code}} {{user.mobile.number}}
                 </p>
                 <p *ngIf="user.email">
                   <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{user.email}}
