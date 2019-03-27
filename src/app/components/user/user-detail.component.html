@@ -21,7 +21,7 @@
             <li class="list-group-item"><strong>아이디: </strong>{{user._id}}</li>
             <li class="list-group-item"><strong>이름: </strong>{{user.name}}</li>
             <li class="list-group-item"><strong>이메일: </strong>{{user.email}}</li>
-            <li class="list-group-item"><strong>핸드폰 번호: </strong>{{user.mobile_number}}</li>
+            <li class="list-group-item"><strong>핸드폰 번호: </strong>+{{user.mobile.country_code}} {{user.mobile.number}}</li>
             <li class="list-group-item"><strong>생년월일: </strong>{{user.birthday}}</li>
             <li class="list-group-item"><strong>성별: </strong>{{user.gender}}</li>
             <li class="list-group-item"><strong>수정일시: </strong>{{user.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>

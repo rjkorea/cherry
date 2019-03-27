@@ -28,7 +28,7 @@
                 <tr *ngFor="let user of ticket.history_send_users">
                   <td><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></td>
                   <td>{{user.name}}</td>
-                  <td>{{user.mobile_number}}</td>
+                  <td>+{{user.mobile.country_code}} {{user.mobile.number}}</td>
                 </tr>
               </table>
             </div>
