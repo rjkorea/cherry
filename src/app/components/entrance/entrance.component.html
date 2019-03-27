@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<div *ngIf="mode=='tablet'" class="panel panel-default">
+<div *ngIf="mode=='ticket'" class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">{{user.name}}가(이) 소유한 티켓
       <span class="badge">{{tickets_count}}</span>
@@ -30,16 +30,13 @@
         <div *ngFor="let ticket of tickets">
           <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-              <img *ngIf="ticket.content.image" src="{{ticket.content.image.logo.m}}">
-              <img *ngIf="!ticket.content.image" src="assets/images/no_image_icon.png">
               <div class="caption">
                 <h4>
-                  <a [routerLink]="['ticket', ticket._id]">{{ticket.content.name}}</a>
+                  <a [routerLink]="['/entrance/ticket', ticket._id]">{{ticket.ticket_type.name}}</a>
                 </h4>
-                <h5>{{ticket.ticket_type.name}}</h5>
                 <h5>{{ticket.ticket_type.desc.value}}</h5>
-                <h5 *ngIf="!ticket.send_user">보낸사람: 호스트</h5>
-                <h5 *ngIf="ticket.send_user">보낸사람: {{ticket.send_user.name}}</h5>
+                <h5 *ngIf="ticket.price>0">티켓가격 ₩ {{ticket.price | number: '0.0-0'}}</h5>
+                <h5 *ngIf="ticket.price===0" class="tkit-mint-color">FREE TICKET</h5>
                 <p>
                   <span *ngIf="ticket.status=='pend'" class="label label-default">전송준비</span>
                   <span *ngIf="ticket.status=='send'" class="label label-warning">전송중</span>
@@ -70,60 +67,49 @@
   </div>
 </div>
 
-
-<div *ngIf="mode=='search'" class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">유저 <span class="badge">{{users_count | number: '0.0-0'}}</span></h3>
-  </div>
-  <div class="panel-body">
-    <div *ngIf="users_count">
-      <div class="row">
-        <div class="col-md-12">
-          <div *ngFor="let user of users">
-            <div class="row">
-              <div class="col-md-2">
-                <img *ngIf="!user.image" class="img-thumbnail" src="assets/images/user.png">
-                <img *ngIf="user.image" class="img-thumbnail" src="{{user.image.profile.m}}">
+<div class="row">
+  <div class="col-md-6">
+    <div *ngIf="mode=='search'" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">유저 <span class="badge">{{users_count | number: '0.0-0'}}</span></h3>
+      </div>
+      <div class="panel-body">
+        <div *ngIf="users_count">
+          <div class="row">
+            <!-- <div class="col-md-6"> -->
+              <div *ngFor="let user of users">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img *ngIf="!user.image" class="img-thumbnail" src="assets/images/user.png">
+                    <img *ngIf="user.image" class="img-thumbnail" src="{{user.image.profile.m}}">
+                  </div>
+                  <div class="col-md-8">
+                    <h4><a (click)="getTickets(content_oid, user._id)">{{user.name}}</a></h4>
+                    <p *ngIf="user.mobile">
+                      <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> +{{user.mobile.country_code}} {{user.mobile.number}}
+                    </p>
+                    <p *ngIf="user.email">
+                      <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{user.email}}
+                    </p>
+                    <p *ngIf="user.birthday">
+                      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{user.birthday}}
+                    </p>
+                    <p *ngIf="user.gender">
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{user.gender}}
+                    </p>
+                  </div>
+                </div>
+                <hr />
               </div>
-              <div class="col-md-4">
-                <h4><a (click)="onTablet(content_oid, user._id)">{{user.name}}</a></h4>
-                <p *ngIf="user.mobile_number">
-                  <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{user.mobile_number}}
-                </p>
-                <p *ngIf="user.email">
-                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{user.email}}
-                </p>
-                <p *ngIf="user.birthday">
-                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{user.birthday}}
-                </p>
-                <p *ngIf="user.gender">
-                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{user.gender}}
-                </p>
-              </div>
-              <div class="col-md-3">
-                <span *ngIf="user.enabled" class="label label-success">활성화</span>
-                <span *ngIf="!user.enabled" class="label label-danger">비활성화</span>
-              </div>
-              <div class="col-md-3">
-                <span class="label label-default">{{user._id}}</span>
-                <span class="label label-primary">{{user.role}}</span>
-              </div>
-            </div>
-            <hr />
+            <!-- </div> -->
           </div>
         </div>
-      </div>
-    </div>
-
-    <div *ngIf="!!!users_count">
-      <div class="row">
-        <div class="col-md-12">
+        <div *ngIf="!!!users_count">
           <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
           <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
+          <hr />
         </div>
       </div>
-      <hr />
     </div>
-
   </div>
 </div>

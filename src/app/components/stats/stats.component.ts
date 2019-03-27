@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { StatsService } from '../../services/stats.service';
 import { ContentService } from '../../services/content.service';
 
@@ -18,6 +18,7 @@ export class StatsComponent implements OnInit {
   is_loading: boolean;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private contentService: ContentService,
               private statsService: StatsService) { }
 
@@ -96,7 +97,26 @@ export class StatsComponent implements OnInit {
     } else {
       this.is_loading = false;
     }
+  }
 
+  goTicketTrack() {
+    this.router.navigate(['/tickets/log', {page: 1, content_oid: this.content_oid}]);
+  }
+
+  goSellerRank() {
+    this.router.navigate(['/tim/matrix/ticket/order', { sort: 'register', content_oid: this.content_oid }]);
+  }
+
+  goTicketTypeRank() {
+    this.router.navigate(['/tim/matrix/ticket/type', { sort: 'register', content_oid: this.content_oid }]);
+  }
+
+  goContentReport() {
+    this.router.navigate(['/tim/report', this.content_oid ]);
+  }
+
+  goContetRealtimeStats() {
+    this.router.navigate(['/tim/analytics', this.content_oid ]);
   }
 
 }

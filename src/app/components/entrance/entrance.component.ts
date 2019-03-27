@@ -3,7 +3,6 @@ import { UserService } from '../../services/user.service';
 import { TicketService } from '../../services/ticket.service';
 import { ContentService } from '../../services/content.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { WebSocketService } from '../../services/websocket.service';
 
 @Component({
   selector: 'app-entrance',
@@ -26,13 +25,12 @@ export class EntranceComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private ticketService: TicketService,
     private contentService: ContentService,
-    private route: ActivatedRoute,
-    private websocketService: WebSocketService) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.query = '';
-    this.mode = 'idle'; //idle, tablet, user search
-    this.user = 'Noname';
+    this.mode = 'idle'; //idle, search, user
+    this.user = '';
     this.tickets = [];
     this.tickets_count = 0;
     this.content_oid = '';
@@ -42,7 +40,6 @@ export class EntranceComponent implements OnInit, OnDestroy {
       this.content_oid = params['content_oid'];
     }
     this.loadContent(this.content_oid);
-    // this.initWebSocket();
   }
 
   ngOnDestroy() {
@@ -61,29 +58,6 @@ export class EntranceComponent implements OnInit, OnDestroy {
       );
   }
 
-  initWebSocket() {
-    this.websocketService.getInstance().subscribe(
-      response => {
-        if (localStorage.getItem('tablet_code') === response['tablet_code'] && this.content_oid === response['content_oid']) {
-          this.onTablet(response['content_oid'], response['auth_user_oid'], response['mobile_number']);
-        } else {
-          console.log('아이패드의 컨텐츠 설정을 확인해주세요');
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
-  onEnter(event) {
-    console.log(event);
-  }
-
-  onCancel(event) {
-    console.log(event);
-  }
-
   onSearch() {
     this.userService.getUserList(this.query, 0, 100)
       .subscribe(
@@ -98,12 +72,12 @@ export class EntranceComponent implements OnInit, OnDestroy {
     this.mode = 'search'
   }
 
-  onTablet(content_oid: string, auth_user_oid: string, mobile_number: string) {
+  getTickets(content_oid: string, user_oid: string) {
     this.user = '';
     this.tickets = null;
     this.tickets_count = 0;
-    if (auth_user_oid) {
-      this.userService.getUser(auth_user_oid)
+    if (user_oid) {
+      this.userService.getUser(user_oid)
         .subscribe(
           response => {
             this.user = response['data'];
@@ -114,7 +88,7 @@ export class EntranceComponent implements OnInit, OnDestroy {
           }
         );
     }
-    this.mode = 'tablet';
+    this.mode = 'ticket';
   }
 
   getNetworkTickets() {
