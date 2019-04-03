@@ -8,6 +8,7 @@ import { DateTimeFormatPipe } from 'app/pipes/datetime.pipe';
 import { ModalBottomComponent } from 'app/components/common/popup/modal-bottom/modal-bottom.component';
 import { SingleDateComponent } from 'app/components/common/calendar/single-date/single-date.component';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-box',
@@ -30,6 +31,7 @@ export class TicketBoxComponent implements OnInit, OnChanges {
   maxByte40: number = 40;
   maxByte60: number = 60;
   limitLength: number = 0;
+  previousTicketCnt: number = 0;
   isSpread: boolean = false;
 
   ticketForm = this.formBuilder.group({
@@ -53,6 +55,7 @@ export class TicketBoxComponent implements OnInit, OnChanges {
     private popupService: PopupService,
     private viewContainerRef: ViewContainerRef,
     private dateFormat: DateTimeFormatPipe,
+    private route: ActivatedRoute
   ) {
     this.popupService.subject.subscribe(res => {
       const date = this.dateFormat.transform(res.getTime(), 'date');
@@ -69,6 +72,7 @@ export class TicketBoxComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.previousTicketCnt = this.route.snapshot.params['previous'] || 0;
   }
 
   ngOnChanges() {
@@ -140,7 +144,7 @@ export class TicketBoxComponent implements OnInit, OnChanges {
 
   deleteTicket(): void {
     this.popupService.dynamicContentCount--;
-    this.popupService.dynamicContents.splice(this.boxIndex, 1);
+    this.popupService.dynamicContents[this.boxIndex] = null;
     this.box.destroy();
   }
 
