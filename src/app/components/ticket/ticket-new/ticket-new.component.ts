@@ -45,6 +45,7 @@ export class TicketNewComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     localStorage.removeItem('temp_from_date');
+    this.popupService.dynamicBoxCount = 0;
     this.popupService.dynamicContentCount = 0;
     this.popupService.dynamicContents = [];
   }
@@ -169,6 +170,7 @@ export class TicketNewComponent implements OnInit, OnDestroy {
       this.ticketService.createTicketTypeV2(paramObj).subscribe(() => {
         localStorage.removeItem('temp_from_date');
         this.is_loading = false;
+        this.popupService.dynamicBoxCount = 0;
         this.popupService.dynamicContentCount = 0;
         this.popupService.dynamicContents = [];
         this.router.navigate([`ticket/type/${this.contentId}`]);
