@@ -20,7 +20,7 @@
 
 <div *ngIf="mode=='ticket'" class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">{{user.name}}가(이) 소유한 티켓
+    <h3 class="panel-title">{{user.last_name}}{{user.name}}가(이) 소유한 티켓
       <span class="badge">{{tickets_count}}</span>
     </h3>
   </div>
@@ -84,7 +84,7 @@
                     <img *ngIf="user.image" class="img-thumbnail" src="{{user.image.profile.m}}">
                   </div>
                   <div class="col-md-8">
-                    <h4><a (click)="getTickets(content_oid, user._id)">{{user.name}}</a></h4>
+                    <h4><a (click)="getTickets(content_oid, user._id)">{{user.last_name}}{{user.name}}</a></h4>
                     <p *ngIf="user.mobile">
                       <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> +{{user.mobile.country_code}} {{user.mobile.number}}
                     </p>

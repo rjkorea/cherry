@@ -25,7 +25,7 @@
                 <img *ngIf="user.image" class="img-thumbnail" src="{{user.image.profile.m}}">
               </div>
               <div class="col-md-4">
-                <h4><a [routerLink]="['/user', user._id]">{{user.name}}</a></h4>
+                <h4><a [routerLink]="['/user', user._id]">{{user.last_name}}{{user.name}}</a></h4>
                 <p *ngIf="user.mobile">
                   <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>+{{user.mobile.country_code}} {{user.mobile.number}}
                 </p>
@@ -38,14 +38,6 @@
                 <p *ngIf="user.gender">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{user.gender}}
                 </p>
-              </div>
-              <div class="col-md-3">
-                <span *ngIf="user.enabled" class="label label-success">활성화</span>
-                <span *ngIf="!user.enabled" class="label label-danger">비활성화</span>
-              </div>
-              <div class="col-md-3">
-                <span class="label label-default">{{user._id}}</span>
-                <span class="label label-primary">{{user.role}}</span>
               </div>
             </div>
             <hr />
