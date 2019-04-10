@@ -178,8 +178,8 @@ export class ContentNew2Component implements OnInit, OnDestroy {
       this.placeY = parseFloat(data.place.y);
     }
 
-    if (data.host.host_name) {
-      this.hostObj = { hostName: data.host.host_name || '', hostEmail: data.host.host_email || '', hostTel: data.host.host_tel || '' };
+    if (data.host.name) {
+      this.hostObj = { hostName: data.host.name || '', hostEmail: data.host.email || '', hostTel: data.host.tel || '' };
       localStorage.setItem('temp', JSON.stringify(this.hostObj));
     }
 
@@ -291,7 +291,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
         reader.onload = () => {
           this.thumbnails[idx] = reader.result.toString();
           if (idx < 5) this.thumbnails.push('');
-        } 
+        }
       } else {
         alert('이미지는 JPEG, PNG, JPG 형식만 가능합니다.');
       }
@@ -382,7 +382,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     this.isCoverPopup = isOpen;
     this.typeCoverPopup = type;
   }
- 
+
   initFileInput(input): void {
     input.value = '';
   }
