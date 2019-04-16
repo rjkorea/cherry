@@ -142,7 +142,8 @@ export class TicketNewComponent implements OnInit, OnDestroy {
           price: Number.parseInt(price),
           fpfg: {
             limit: Number.parseInt(limit),
-            spread: Number.parseInt(spread)
+            spread: Number.parseInt(spread),
+            now: 0
           },
           color: this.ticketService.ticketColors[colorCount < 5 ? colorCount++ : overColorCount++]
         });
