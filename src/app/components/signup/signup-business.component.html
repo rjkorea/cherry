@@ -51,7 +51,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label class="tds-label">국가코드(나라)</label>
-            <select class="form-control tds-input" formControlName="mobile_country_code">
+            <select class="form-control tds-input tds-select" formControlName="mobile_country_code">
               <option *ngFor="let cc of country_codes" [ngValue]="cc">+{{cc.code}}({{cc.name}})</option>
             </select>
           </div>
@@ -196,7 +196,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label class="tds-label">입금은행</label>
-            <select class="form-control tds-input" formControlName="bank_name">
+            <select class="form-control tds-input tds-select" formControlName="bank_name">
               <option *ngFor="let b of banks" [ngValue]="b">{{b}}</option>
             </select>
           </div>
@@ -214,7 +214,10 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group term">
-            <input type="checkbox" formControlName="is_term"> 서비스 이용약관 및 개인정보 취급방침에 동의함(필수)
+            <label>
+              <input type="checkbox" class="form-control check" formControlName="is_term">
+              <span>&nbsp;서비스 이용약관 및 개인정보 취급방침에 동의함(필수)</span>
+            </label>
           </div>
         </div>
       </div>
