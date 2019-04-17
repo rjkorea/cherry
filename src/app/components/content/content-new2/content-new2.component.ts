@@ -13,8 +13,6 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AdminService } from 'app/services/admin.service';
 import { ContentService } from 'app/services/content.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PlaceDetailComponent } from 'app/components/place/place-detail.component';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-content-new2',
