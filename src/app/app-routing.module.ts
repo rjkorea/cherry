@@ -49,9 +49,6 @@ import { TicketDetailComponent } from './components/ticket/ticket-detail.compone
 import { TicketRegisterComponent } from './components/ticket/ticket-register.component';
 import { TicketLogListComponent } from './components/ticket/log-list.component';
 import { TicketLogDetailComponent } from './components/ticket/log-detail.component';
-import { PlaceListComponent } from './components/place/place-list.component';
-import { PlaceDetailComponent } from './components/place/place-detail.component';
-import { PlaceNewComponent } from './components/place/place-new.component';
 import { QnaListComponent } from './components/qna/qna-list.component';
 import { QnaDetailComponent } from './components/qna/qna-detail.component';
 import { QnaNewComponent } from './components/qna/qna-new.component';
@@ -119,10 +116,6 @@ const routes: Routes = [
   { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
   { path: 'entrance/ticket/:id', component: EntranceTicketComponent, canActivate: [AuthGuard]},
 
-  { path: 'place', component: PlaceListComponent, canActivate: [AuthGuard] },
-  { path: 'place/:id', component: PlaceDetailComponent, canActivate: [AuthGuard] },
-  { path: 'places/new/:area', component: PlaceNewComponent, canActivate: [AuthGuard] },
-
   { path: 'qna', component: QnaListComponent, canActivate: [AuthGuard] },
   { path: 'qna/:id', component: QnaDetailComponent, canActivate: [AuthGuard]},
   { path: 'qnas/new', component: QnaNewComponent, canActivate: [AuthGuard]},
@@ -144,7 +137,7 @@ const routes: Routes = [
   { path: 'contents/new', component: ContentNew2Component, canActivate: [AuthGuard] },
   { path: 'content/:content_oid', component: ContentNew2Component, canActivate: [AuthGuard] },
   { path: 'contents', component: ContentHomeComponent, canActivate: [AuthGuard] },
-  
+
   // V2 ticket
   { path: 'ticket/type/:content_oid', component: TicketHomeComponent, canActivate: [AuthGuard] },
   { path: 'ticket/types/:content_oid/new', component: TicketNewComponent, canActivate: [AuthGuard] },

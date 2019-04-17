@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
 import { CompanyService } from '../../services/company.service';
-import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-company-detail',
   templateUrl: './company-detail.component.html',
   styleUrls: ['./company-detail.component.css'],
-  providers: [NotificationsService]
+  providers: []
 })
 export class CompanyDetailComponent implements OnInit {
   company: any;
@@ -16,11 +15,10 @@ export class CompanyDetailComponent implements OnInit {
   edit_mode: boolean;
 
   constructor(private route: ActivatedRoute,
-              private companyService: CompanyService,
-              private simpleNotificationsService: NotificationsService) { }
+              private companyService: CompanyService) { }
 
   ngOnInit() {
-    let params: Params = this.route.snapshot.params;
+    const params: Params = this.route.snapshot.params;
     this.notification_options = {
       timeOut: 3000,
       showProgressBar: true,
@@ -39,11 +37,6 @@ export class CompanyDetailComponent implements OnInit {
           this.company = response['data'];
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
@@ -70,11 +63,6 @@ export class CompanyDetailComponent implements OnInit {
           this.edit_mode = false;
         },
         error => {
-          this.simpleNotificationsService.error(
-            'Error',
-            error['message'],
-            this.notification_options
-          );
           console.log(error);
         }
       );
