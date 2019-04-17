@@ -153,4 +153,8 @@ export class TicketOrderNewComponent implements OnInit {
     return !(this.order.qty && this.order.name && this.order.mobile.country_code && this.order.mobile.number && this.order.sms);
   }
 
+  checkRole() {
+    return this.authService.getRole();
+  }
+
 }
