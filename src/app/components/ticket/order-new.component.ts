@@ -19,6 +19,7 @@ export class TicketOrderNewComponent implements OnInit {
   type: any;
   type_info: any;
   parsed_csv: any;
+  is_loading: boolean;
 
   constructor(private ticketService: TicketService,
               private utilService: UtilService,
@@ -31,6 +32,7 @@ export class TicketOrderNewComponent implements OnInit {
     if ('ticket_type_oid' in params) {
       this.ticket_type_oid = params['ticket_type_oid'];
     }
+    this.is_loading = false;
     this.order = {
       ticket_type_oid: this.ticket_type_oid,
       qty: 1,
@@ -94,6 +96,11 @@ export class TicketOrderNewComponent implements OnInit {
   }
 
   onSubmit() {
+    if (!this.order.mobile.number.startsWith('010')) {
+      alert('핸드폰번호는 010부터 입력해주세요.');
+      return;
+    }
+    this.is_loading = true;
     this.ticketService.addOrderV2(this.order)
       .subscribe(
         response => {
@@ -101,8 +108,13 @@ export class TicketOrderNewComponent implements OnInit {
           this.router.navigate(['/ticket/type', this.type['content']['_id']]);
         },
         error => {
-          alert('티켓전송을 실패 하였습니다.');
+          let message = '티켓전송을 실패 하였습니다.';
+          if (error.error.code === 1) {
+            message = '시스템에서 티켓발송 최대수량은 10,000매 입니다.';
+          }
+          alert(message);
           console.log(error);
+          this.is_loading = false;
         }
       );
   }

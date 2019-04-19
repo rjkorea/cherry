@@ -31,7 +31,8 @@
           <label for="sms">SMS 내용입력</label>
           <textarea type="text" class="form-control" name="sms" [(ngModel)]="order.sms" placeholder="전송할 SMS 메세지를 입력해주세요."></textarea>
         </div>
-        <button type="button" class="btn btn-tkit-mint" [disabled]="disabledSubmit()" (click)="onSubmit()">전송하기</button>
+        <button *ngIf="is_loading" type="button" class="btn btn-tkit-mint" [disabled]="true">로딩중</button>
+        <button *ngIf="!is_loading" type="button" class="btn btn-tkit-mint" [disabled]="disabledSubmit()" (click)="onSubmit()">전송하기</button>
       </form>
     </div>
   </div>
