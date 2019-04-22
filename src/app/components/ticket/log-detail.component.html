@@ -8,7 +8,7 @@
         <div class="panel-body">
           <ul *ngIf="log.send_user.name" class="list-group">
             <li class="list-group-item list-group-item-info"><strong>보낸사람</strong></li>
-            <li class="list-group-item"><strong>이름: </strong>{{log.send_user.name}}</li>
+            <li class="list-group-item"><strong>이름: </strong>{{log.send_user.last_name}} {{log.send_user.name}}</li>
             <li class="list-group-item"><strong>핸드폰번호: </strong>{{log.send_user.mobile.number}}</li>
           </ul>
           <ul *ngIf="!log.send_user.name" class="list-group">
@@ -18,7 +18,7 @@
           </ul>
           <ul *ngIf="log.receive_user.name" class="list-group">
             <li class="list-group-item list-group-item-info"><strong>받은사람</strong></li>
-            <li class="list-group-item"><strong>이름: </strong>{{log.receive_user.name}}</li>
+            <li class="list-group-item"><strong>이름: </strong>{{log.receive_user.last_name}} {{log.receive_user.name}}</li>
             <li class="list-group-item"><strong>핸드폰번호: </strong>{{log.receive_user.mobile.number}}</li>
           </ul>
           <ul *ngIf="!log.receive_user.name" class="list-group">
@@ -51,7 +51,7 @@
                     <span *ngIf="ticket.status === 'use'" class="label label-info">입장완료</span>
                     <span *ngIf="ticket.status === 'cancel'" class="label label-danger">취소</span>
                   </td>
-                  <td>{{ticket.receive_user.name}}</td>
+                  <td>{{ticket.receive_user.last_name}} {{ticket.receive_user.name}}</td>
                 </tr>
               </table>
             </div>
