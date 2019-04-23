@@ -89,8 +89,11 @@ export class SignupPersonalComponent implements OnInit {
           this.router.navigate(['/signup/done']);
         },
         error => {
-          alert(error);
-          console.log(error);
+          if (error['message'] === '400: duplicated email') {
+            alert('이미 입력하신 이메일로 회원가입이 완료되어 있습니다.')
+          } else {
+            alert(error['message']);
+          }
         }
       );
   }

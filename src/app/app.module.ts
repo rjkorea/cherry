@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 
 // 3rd party module
-import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MomentModule } from 'angular2-moment';
 import { ChartModule } from 'angular2-chartjs';
 import { UiSwitchModule } from 'ng2-ui-switch';
@@ -70,9 +69,6 @@ import { TicketDetailComponent } from './components/ticket/ticket-detail.compone
 import { TicketRegisterComponent } from './components/ticket/ticket-register.component';
 import { TicketLogListComponent } from './components/ticket/log-list.component';
 import { TicketLogDetailComponent } from './components/ticket/log-detail.component';
-import { PlaceListComponent } from './components/place/place-list.component';
-import { PlaceDetailComponent } from './components/place/place-detail.component';
-import { PlaceNewComponent } from './components/place/place-new.component';
 import { QnaListComponent } from './components/qna/qna-list.component';
 import { QnaDetailComponent } from './components/qna/qna-detail.component';
 import { QnaNewComponent } from './components/qna/qna-new.component';
@@ -175,9 +171,6 @@ defineLocale('ko', koLocale);
     TicketRegisterComponent,
     TicketLogListComponent,
     TicketLogDetailComponent,
-    PlaceListComponent,
-    PlaceDetailComponent,
-    PlaceNewComponent,
     QnaListComponent,
     QnaDetailComponent,
     QnaNewComponent,
@@ -213,7 +206,6 @@ defineLocale('ko', koLocale);
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    SimpleNotificationsModule,
     MomentModule,
     ChartModule,
     UiSwitchModule,

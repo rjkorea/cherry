@@ -7,7 +7,7 @@
       <form>
         <div class="form-group">
           <label for="qty">티켓 전송 수량 (필수)</label>
-          <input type="number" class="form-control" [(ngModel)]="order.qty" name="qty">
+          <input type="number" class="form-control" [(ngModel)]="order.qty" name="qty" min="1">
           <span *ngIf="type_info && type_info.spread" class="length-check tkit-mint-color">전송가능 수량: {{type_info.spread - type_info.ticket_count}}</span>
           <span *ngIf="type_info && !type_info.spread" class="length-check tkit-mint-color">전송가능 수량: 무제한</span>
         </div>
@@ -31,8 +31,53 @@
           <label for="sms">SMS 내용입력</label>
           <textarea type="text" class="form-control" name="sms" [(ngModel)]="order.sms" placeholder="전송할 SMS 메세지를 입력해주세요."></textarea>
         </div>
-        <button type="button" class="btn btn-tkit-mint" [disabled]="disabledSubmit()" (click)="onSubmit()">만들기</button>
+        <button *ngIf="is_loading" type="button" class="btn btn-tkit-mint" [disabled]="true">로딩중</button>
+        <button *ngIf="!is_loading" type="button" class="btn btn-tkit-mint" [disabled]="disabledSubmit()" (click)="onSubmit()">전송하기</button>
       </form>
+    </div>
+  </div>
+</div>
+<div *ngIf="checkRole() === 'super'">
+  <div class="col-md-3">
+    <div class="upload-btn-wrapper">
+      <div class="upload-btn">
+        <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
+        <h4 class="upload-btn-name">엑셀(CSV파일)로 전송하기</h4>
+      </div>
+      <input type="file" accept=".csv" (change)="sendCSV($event.target.files)">
+    </div>
+  </div>
+  <div class="col-md-3">
+    <ul *ngIf="parsed_csv?.file.name" class="list-group">
+      <li class="list-group-item"><strong>파일이름: </strong>{{parsed_csv.file.name}}</li>
+      <li class="list-group-item"><strong>파일타입: </strong>{{parsed_csv.file.type}}</li>
+      <li class="list-group-item"><strong>파일사이즈: </strong>{{parsed_csv.file.size}} 바이트</li>
+      <li class="list-group-item"><strong>컬럼명: </strong>{{parsed_csv.headers}}</li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <h5>티켓전송 대상자 리스트
+      <span class="badge">{{parsed_csv?.count | number:'0.0-0'}}명</span>
+    </h5>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tr>
+          <th></th>
+          <th>이름</th>
+          <th>핸드폰번호</th>
+        </tr>
+        <tr *ngFor="let d of parsed_csv?.data; index as i">
+          <td>
+            <span>{{i+1}}</span>
+          </td>
+          <td>
+            <span>{{d.name}}</span>
+          </td>
+          <td>
+            <span>{{d.mobile_number}}</span>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>

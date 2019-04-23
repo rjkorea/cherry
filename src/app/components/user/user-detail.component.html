@@ -19,7 +19,7 @@
           <br>
           <ul *ngIf="!edit_mode" class="list-group">
             <li class="list-group-item"><strong>아이디: </strong>{{user._id}}</li>
-            <li class="list-group-item"><strong>이름: </strong>{{user.name}}</li>
+            <li class="list-group-item"><strong>이름: </strong>{{user.last_name}}{{user.name}}</li>
             <li class="list-group-item"><strong>이메일: </strong>{{user.email}}</li>
             <li class="list-group-item"><strong>핸드폰 번호: </strong>+{{user.mobile.country_code}} {{user.mobile.number}}</li>
             <li class="list-group-item"><strong>생년월일: </strong>{{user.birthday}}</li>
@@ -44,7 +44,7 @@
             <br>
             <div class="input-group">
               <span class="input-group-addon">핸드폰 번호</span>
-              <input type="tel" class="form-control" [(ngModel)]="user.mobile_number" name="mobile_number">
+              <input type="tel" class="form-control" [(ngModel)]="user.mobile.number" name="mobile.number">
             </div>
             <br>
             <div class="input-group">

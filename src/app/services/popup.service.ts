@@ -6,6 +6,7 @@ export class PopupService {
   public subject = new Subject<any>();
   public nameSubject = new Subject<any>();
   public data: any;
+  public dynamicBoxCount: number = 0;
   public dynamicContentCount: number = 0;
   public dynamicContents = [];
   private factory: any;
@@ -57,7 +58,7 @@ export class PopupService {
     const view = container.createComponent(factory);
 
     view.instance['box'] = view;
-    view.instance['boxIndex'] = this.dynamicContentCount - 1;
+    view.instance['boxIndex'] = this.dynamicBoxCount++;
     view.instance['parentData'] = data;
 
     return view;

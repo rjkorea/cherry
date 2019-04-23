@@ -45,6 +45,7 @@ export class TicketNewComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     localStorage.removeItem('temp_from_date');
+    this.popupService.dynamicBoxCount = 0;
     this.popupService.dynamicContentCount = 0;
     this.popupService.dynamicContents = [];
   }
@@ -62,8 +63,10 @@ export class TicketNewComponent implements OnInit, OnDestroy {
   }
 
   setPreview(type): void {
-    const ticketObjs = this.popupService.dynamicContents;
-    let colorCount = this.previousTicketCnt;
+    const ticketObjs = this.popupService.dynamicContents.filter((obj) => { return obj !== null });
+
+    // 생성된 티켓 갯수에서 컬러개수를 빼 생성될 컬러 인덱스를 구함
+    let colorCount = (this.previousTicketCnt >= 5 ? this.previousTicketCnt - 5 : this.previousTicketCnt);
     let overColorCount = 0;
 
     this.previewData = [];
@@ -88,6 +91,7 @@ export class TicketNewComponent implements OnInit, OnDestroy {
         price: Number.parseInt(price),
         color: this.ticketService.ticketColors[colorCount < 5 ? colorCount++ : overColorCount++]
       };
+      console.log(this.previewData[i].color)
     }
 
     if (type === 'm') {
@@ -106,7 +110,7 @@ export class TicketNewComponent implements OnInit, OnDestroy {
   }
 
   setTicketTypes() {
-    const ticketObjs = this.popupService.dynamicContents;
+    const ticketObjs = this.popupService.dynamicContents.filter((obj) => { return obj !== null });
     let saveTickets: Array<any> = [];
     let canSave: boolean = true;
     let colorCount = this.previousTicketCnt;
@@ -138,11 +142,11 @@ export class TicketNewComponent implements OnInit, OnDestroy {
           price: Number.parseInt(price),
           fpfg: {
             limit: Number.parseInt(limit),
-            spread: Number.parseInt(spread)
+            spread: Number.parseInt(spread),
+            now: 0
           },
           color: this.ticketService.ticketColors[colorCount < 5 ? colorCount++ : overColorCount++]
         });
-
       } else {
         this.is_loading = false;;
         canSave = false;
@@ -167,6 +171,7 @@ export class TicketNewComponent implements OnInit, OnDestroy {
       this.ticketService.createTicketTypeV2(paramObj).subscribe(() => {
         localStorage.removeItem('temp_from_date');
         this.is_loading = false;
+        this.popupService.dynamicBoxCount = 0;
         this.popupService.dynamicContentCount = 0;
         this.popupService.dynamicContents = [];
         this.router.navigate([`ticket/type/${this.contentId}`]);
