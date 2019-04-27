@@ -43,10 +43,7 @@ export class AnalyticsComponent implements OnInit {
       cancel: 0
     };
     this.total_forward = 0;
-    this.revenue = {
-      'cash': 0,
-      'creditcard': 0
-    };
+    this.revenue = 0;
     this.ticket_chart = {
       type: 'pie',
       data: {
