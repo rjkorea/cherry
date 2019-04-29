@@ -35,10 +35,7 @@ export class ReportComponent implements OnInit {
     ];
     this.total_forward = 0;
     this.total_visit = 0;
-    this.total_revenue = {
-      cash: 0,
-      creditcard: 0
-    };
+    this.total_revenue = 0;
     this.commission = 1.0;
 
     this.loadContents();
