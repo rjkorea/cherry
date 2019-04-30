@@ -11,10 +11,10 @@
   <div>
     <span class="bold gray">{{ tickets.length }}</span>
     <span class="light"> / </span>
-    <span>10</span>
+    <span>{{ maxTickets }}</span>
   </div>
 </div>
-<div class="hidden-xs hidden-sm type"><p>생성된 티켓 타입 : <span class="bold gray">{{ tickets.length }} / 10</span></p></div>
+<div class="hidden-xs hidden-sm type"><p>생성된 티켓 타입 : <span class="bold gray">{{ tickets.length }} / {{ maxTickets }}</span></p></div>
 
 <div class="list-wrap">
   <div class="row">

@@ -12,6 +12,7 @@ export class TicketHomeComponent implements OnInit {
   contentId: string;
   contentName: string;
   start: number = 0;
+  maxTickets: number = 50;
   tickets: Array<any> = [];
 
   constructor(
@@ -24,11 +25,11 @@ export class TicketHomeComponent implements OnInit {
   ngOnInit() {
     this.contentId = this.route.snapshot.paramMap.get('content_oid') || '';
     this.getContentInfo();
-    this.getTicketList(0);
+    this.getTicketList(this.start, this.maxTickets);
   }
 
-  getTicketList(start): void {
-    this.ticketService.getTypeListV2(this.contentId, start, 10).subscribe(res => {
+  getTicketList(start, size): void {
+    this.ticketService.getTypeListV2(this.contentId, start, size).subscribe(res => {
       this.tickets = [...res['data']];
     });
   }

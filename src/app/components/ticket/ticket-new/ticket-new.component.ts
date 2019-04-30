@@ -16,7 +16,7 @@ export class TicketNewComponent implements OnInit, OnDestroy {
 
   contentId: string;
   contentName: string;
-  maxTickets10: number = 10;
+  maxTickets: number = 50;
   isCoverPopup: boolean = false;
   typeCoverPopup: string = '';
   saveTickets = [];
@@ -51,7 +51,7 @@ export class TicketNewComponent implements OnInit, OnDestroy {
   }
 
   getTicketBox(type): void {
-    if (this.maxTickets10 > this.popupService.dynamicContentCount) {
+    if (this.maxTickets > this.popupService.dynamicContentCount) {
       const component = this.popupService.addDynamicContainer(this.ticketBoxs, TicketBoxComponent, { ticketType: type });
       this.popupService.dynamicContents.push(component.instance);
     }
@@ -91,7 +91,6 @@ export class TicketNewComponent implements OnInit, OnDestroy {
         price: Number.parseInt(price),
         color: this.ticketService.ticketColors[colorCount < 5 ? colorCount++ : overColorCount++]
       };
-      console.log(this.previewData[i].color)
     }
 
     if (type === 'm') {
