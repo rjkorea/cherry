@@ -38,7 +38,7 @@
             <h3 class="panel-title">매출</h3>
           </div>
           <div class="panel-body">
-            <h1>{{total_revenue.cash+total_revenue.creditcard | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
+            <h1>{{total_revenue | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
             <h3 class="panel-title">티킷 수수료 {{(commission*100) | number: '0.0-0'}}%</h3>
           </div>
           <div class="panel-body">
-            <h1>{{(total_revenue.cash+total_revenue.creditcard)*commission | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
+            <h1>{{total_revenue*commission | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
             <h3 class="panel-title">예상 정산 금액</h3>
           </div>
           <div class="panel-body">
-            <h1>{{(total_revenue.cash+total_revenue.creditcard)-(total_revenue.cash+total_revenue.creditcard)*commission | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
+            <h1>{{total_revenue*commission | currency: 'KRW': true: '0.0-0'}} <small>원</small></h1>
           </div>
         </div>
       </div>

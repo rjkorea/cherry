@@ -44,7 +44,7 @@
         <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
         <h4 class="upload-btn-name">엑셀(CSV파일)로 전송하기</h4>
       </div>
-      <input type="file" accept=".csv" (change)="sendCSV($event.target.files)">
+      <input type="file" accept=".csv" (change)="loadCSV($event.target.files)">
     </div>
   </div>
   <div class="col-md-3">
@@ -65,6 +65,7 @@
           <th></th>
           <th>이름</th>
           <th>핸드폰번호</th>
+          <th>티켓수량</th>
         </tr>
         <tr *ngFor="let d of parsed_csv?.data; index as i">
           <td>
@@ -75,6 +76,9 @@
           </td>
           <td>
             <span>{{d.mobile_number}}</span>
+          </td>
+          <td>
+            <span>{{d.qty}}</span>
           </td>
         </tr>
       </table>

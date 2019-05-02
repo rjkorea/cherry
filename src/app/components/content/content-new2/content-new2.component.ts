@@ -48,6 +48,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     videoUrl: new FormControl(''),
     notice: new FormControl(''),
     description: new FormControl(''),
+    staffAuthCode: new FormControl('', [Validators.pattern('[0-9]{4}'), Validators.minLength(4), Validators.maxLength(4)]),
     commentsPrivate: new FormControl('')
   });
 
@@ -204,6 +205,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     this.contentsForm.controls['videoUrl'].setValue(data.video_url);
     this.contentsForm.controls['notice'].setValue(data.notice.message);
     this.contentsForm.controls['description'].setValue(data.desc);
+    this.contentsForm.controls['staffAuthCode'].setValue(data.staff_auth_code),
     this.contentsForm.controls['commentsPrivate'].setValue(data.comments.is_private);
     this.croppedImg = data.images[0].m;
     this.croppedImgSize = data.images[0].size || 0;
@@ -456,6 +458,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
       video_url: this.contentsForm.get('videoUrl').value || '',
       notice: this.contentsForm.get('notice').value || '',
       desc: this.contentsForm.get('description').value || '',
+      staff_auth_code: this.contentsForm.get('staffAuthCode').value || '',
       comments_private: this.contentsForm.get('commentsPrivate').value || false
     };
 
@@ -532,5 +535,6 @@ export class ContentNew2Component implements OnInit, OnDestroy {
   get videoUrl() { return this.contentsForm.get('videoUrl'); }
   get notice() { return this.contentsForm.get('notice'); }
   get description() { return this.contentsForm.get('description'); }
+  get staffAuthCode() { return this.contentsForm.get('staffAuthCode'); }
   get commentsPrivate() { return this.contentsForm.get('commentsPrivate'); }
 }
