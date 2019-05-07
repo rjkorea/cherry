@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">티켓 추적 상세 <span *ngIf="log.action === 'send'" class="label label-warning">전송중</span> <span class="time">{{log.created_at | amFromUnix | amTimeAgo: true}} ago</span></h3>
+          <h3 class="panel-title">티켓 추적 상세 <span *ngIf="log.action === 'send'" class="label label-warning">전송완료</span> <span class="time">{{log.created_at | amFromUnix | amTimeAgo: true}} ago</span></h3>
         </div>
         <div class="panel-body">
           <ul *ngIf="log.send_user.name" class="list-group">
@@ -45,7 +45,7 @@
                   </td>
                   <td>
                     <span *ngIf="ticket.status === 'pend'" class="label label-default">전송준비</span>
-                    <span *ngIf="ticket.status === 'send'" class="label label-warning">전송중</span>
+                    <span *ngIf="ticket.status === 'send'" class="label label-warning">전송완료</span>
                     <span *ngIf="ticket.status === 'register'" class="label label-success">등록완료</span>
                     <span *ngIf="ticket.status === 'pay'" class="label label-primary">결제완료</span>
                     <span *ngIf="ticket.status === 'use'" class="label label-info">입장완료</span>
