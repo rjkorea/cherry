@@ -1,0 +1,63 @@
+<div *ngIf="checkRole() === 'super' || checkRole() === 'admin'; else notSuper">
+  <div class="col-md-6">
+    <div>
+      <h3>엑셀파일(CSV) 형식은 아래 사항과 준수해주세요.</h3>
+      <ul>
+        <li><span>1. 파일의 확장자는 .csv로 작성하여 주세요. (예, umf_2020_invitation.csv)</span></li>
+        <li><span>2. 컬럼명은 name, mobile_number, qty 순으로 작성하여 주세요.</span></li>
+        <li><span>3. 전화번호는 010부터 작성하여 주세요. (예, 01033337777)</span></li>
+        <li><span>4. 전송가능한 유저의 수는 최대 1,000명 입니다.</span></li>
+      </ul>
+    </div>
+    <div class="upload-btn-wrapper">
+      <div class="upload-btn">
+        <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
+        <h4 class="upload-btn-name">엑셀(CSV파일)로 전송하기</h4>
+      </div>
+      <input type="file" accept=".csv" (change)="loadCSV($event.target.files)">
+    </div>
+    <div>
+      <ul *ngIf="parsed_csv?.file.name" class="list-group">
+        <li class="list-group-item list-group-item-success"><strong>파일정보</strong></li>
+        <li class="list-group-item"><strong>파일이름: </strong>{{parsed_csv.file.name}}</li>
+        <li class="list-group-item"><strong>파일타입: </strong>{{parsed_csv.file.type}}</li>
+        <li class="list-group-item"><strong>파일사이즈: </strong>{{parsed_csv.file.size}} 바이트</li>
+        <li class="list-group-item"><strong>컬럼명: </strong>{{parsed_csv.headers}}</li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="parsed_csv?.count" class="col-md-6">
+    <h5>티켓전송 대상자 리스트
+      <span class="badge">{{parsed_csv?.count | number:'0.0-0'}}명</span>
+    </h5>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tr>
+          <th></th>
+          <th>이름</th>
+          <th>핸드폰번호</th>
+          <th>티켓수량</th>
+        </tr>
+        <tr *ngFor="let d of parsed_csv?.data; index as i">
+          <td>
+            <span>{{i+1}}</span>
+          </td>
+          <td>
+            <span>{{d.name}}</span>
+          </td>
+          <td>
+            <span>{{d.mobile_number}}</span>
+          </td>
+          <td>
+            <span>{{d.qty}}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <button *ngIf="!is_uploading" type="button" class="btn btn-tkit-mint" (click)="uploadCsv()">전송하기</button>
+    <button *ngIf="is_uploading" type="button" class="btn" [disabled]=true>전송중</button>
+  </div>
+</div>
+<ng-template #notSuper>
+  only admin user
+</ng-template>
