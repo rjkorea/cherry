@@ -47,7 +47,7 @@ textarea {
 .is-hidden {
     display: flex;
     font-size: 1.25rem;
-    margin: 2.25rem 0; 
+    margin: 2.25rem 0;
 }
 
 .q-box{
@@ -326,4 +326,19 @@ textarea {
     color: #62aab8;
     border: 1px solid #62aab8;
     background-color: white;
+}
+
+.hidden_copy {
+	position: fixed;
+}
+
+.hidden_copy input {
+  border-color: transparent;
+  color: transparent;
+  background-color: transparent;
+}
+
+#copy_link {
+  display: flex;
+  font-size: 1.25rem;
 }

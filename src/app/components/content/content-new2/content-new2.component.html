@@ -305,6 +305,10 @@
             <span>비공개</span>
           </label>
         </div>
+        <div class="form-group">
+          <div class="hidden_copy"><input #urlInput type="text" contentEditable="true" readonly></div>
+          <div id="copy_link" class="bold" (click)="copyUrl(urlInput)">공유 링크 복사하기&nbsp;<span class="glyphicon glyphicon-copy" aria-hidden="true"></span></div>
+        </div>
       </div>
       <div class="row">
         <div class="hidden-xs hidden-sm">
