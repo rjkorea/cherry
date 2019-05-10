@@ -13,6 +13,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AdminService } from 'app/services/admin.service';
 import { ContentService } from 'app/services/content.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-content-new2',
@@ -431,6 +432,27 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     }
 
     return date;
+  }
+
+  copyUrl(input): void {
+    input.value = `${environment.app.protocol}://${environment.app.host}:${environment.app.port}/in/${this.editContent['short_id']}`;;
+
+    if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+      const range = document.createRange();
+      const selection = window.getSelection();
+
+      range.selectNodeContents(input);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      input.setSelectionRange(0, input.value.length);
+    } else {
+      input.select();
+    }
+
+    document.execCommand('copy');
+    input.setSelectionRange(0, 0);
+
+    alert('클립보드로 URL이 복사되었습니다.');
   }
 
   done(): void {

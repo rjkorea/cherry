@@ -49,6 +49,7 @@ import { TicketDetailComponent } from './components/ticket/ticket-detail.compone
 import { TicketRegisterComponent } from './components/ticket/ticket-register.component';
 import { TicketLogListComponent } from './components/ticket/log-list.component';
 import { TicketLogDetailComponent } from './components/ticket/log-detail.component';
+import { TicketLoadCsvComponent } from './components/ticket/ticket-load-csv/ticket-load-csv.component';
 import { QnaListComponent } from './components/qna/qna-list.component';
 import { QnaDetailComponent } from './components/qna/qna-detail.component';
 import { QnaNewComponent } from './components/qna/qna-new.component';
@@ -92,10 +93,6 @@ const routes: Routes = [
   { path: 'staff', component: StaffListComponent, canActivate: [AuthGuard] },
   { path: 'staff/new', component: StaffNewComponent, canActivate: [AuthGuard] },
 
-  // { path: 'content', component: ContentListComponent, canActivate: [AuthGuard] },
-  // { path: 'content/:id', component: ContentDetailComponent, canActivate: [AuthGuard] },
-  // { path: 'contents/new', component: ContentNewComponent, canActivate: [AuthGuard] },
-  // { path: 'contents/new/:id/image', component: ContentNewImageComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/groups', component: ContentGroupListComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/:group_oid/edit', component: ContentGroupEditComponent, canActivate: [AuthGuard] },
   { path: 'content/:content_oid/group/new', component: ContentGroupNewComponent, canActivate: [AuthGuard] },
@@ -105,6 +102,7 @@ const routes: Routes = [
   { path: 'ticket/order', component: TicketOrderListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/order/:id', component: TicketOrderDetailComponent, canActivate: [AuthGuard] },
   { path: 'ticket/orders/new', component: TicketOrderNewComponent, canActivate: [AuthGuard] },
+  { path: 'ticket/orders/load/csv', component: TicketLoadCsvComponent, canActivate: [AuthGuard] },
 
   { path: 'ticket', component: TicketListComponent, canActivate: [AuthGuard] },
   { path: 'ticket/:id', component: TicketDetailComponent, canActivate: [AuthGuard] },

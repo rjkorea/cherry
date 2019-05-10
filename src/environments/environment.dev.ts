@@ -2,9 +2,9 @@ export const environment = {
   production: true,
   debug: false,
   app: {
-    protocol: 'http',
+    protocol: 'https',
     host: 'devi.tkit.me',
-    port: 80
+    port: 443
   },
   api: {
     protocol: 'https',

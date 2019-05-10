@@ -69,6 +69,7 @@ import { TicketDetailComponent } from './components/ticket/ticket-detail.compone
 import { TicketRegisterComponent } from './components/ticket/ticket-register.component';
 import { TicketLogListComponent } from './components/ticket/log-list.component';
 import { TicketLogDetailComponent } from './components/ticket/log-detail.component';
+import { TicketLoadCsvComponent } from './components/ticket/ticket-load-csv/ticket-load-csv.component';
 import { QnaListComponent } from './components/qna/qna-list.component';
 import { QnaDetailComponent } from './components/qna/qna-detail.component';
 import { QnaNewComponent } from './components/qna/qna-new.component';
@@ -171,6 +172,7 @@ defineLocale('ko', koLocale);
     TicketRegisterComponent,
     TicketLogListComponent,
     TicketLogDetailComponent,
+    TicketLoadCsvComponent,
     QnaListComponent,
     QnaDetailComponent,
     QnaNewComponent,

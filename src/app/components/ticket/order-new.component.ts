@@ -119,47 +119,8 @@ export class TicketOrderNewComponent implements OnInit {
       );
   }
 
-  loadCSV(files: FileList) {
-    this.parsed_csv = {
-      file: {
-        name: '',
-        size: '',
-        type: ''
-      },
-      headers: ['name', 'mobile_number'],
-      data: [],
-      count: 0
-    };
-    const file: File = files.item(0);
-    this.parsed_csv.file.name = file.name;
-    this.parsed_csv.file.size = file.size;
-    this.parsed_csv.file.type = file.type;
-    const reader: FileReader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = (e) => {
-      const data: string = reader.result as string;
-      const splitted = data.split('\n');
-      this.parsed_csv['headers'] = splitted[0].trim().split(',');
-      if (this.parsed_csv['headers'][0] === 'name' && this.parsed_csv['headers'][1] === 'mobile_number' && this.parsed_csv['headers'][2] === 'qty') {
-        splitted.shift();
-        splitted.forEach(element => {
-          const line = element.trim().split(',');
-          this.parsed_csv['data'].push(
-            {
-              name: line[0].trim(),
-              mobile_number: line[1].trim().replace('.', '').replace(/\s/g, '').replace('-', ''),
-              qty: line[2]
-            }
-          );
-        });
-        this.parsed_csv.count = this.parsed_csv.data.length;
-        if (this.parsed_csv.count > 1000) {
-          alert(`티켓 최대전송 대상자수는 1,000명 입니다. 현재 전송자수 ${this.parsed_csv.count}명`)
-        }
-      } else {
-        alert(`CSV 파일의 컬럼명이 유효(name, mobile_number, qty)하지 않습니다. (현재파일의 컬럼명: ${this.parsed_csv['headers'][0]}, ${this.parsed_csv['headers'][1]}, ${this.parsed_csv['headers'][2]})`);
-      }
-    }
+  goLoadCsv() {
+    this.router.navigate(['/ticket/orders/load/csv', {ticket_type_oid: this.ticket_type_oid}]);
   }
 
   disabledSubmit() {

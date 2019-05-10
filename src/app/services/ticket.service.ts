@@ -203,4 +203,12 @@ export class TicketService {
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
+
+  public createTicketOrderCsvV2(param: Object): Observable<{}> {
+    const url = `${this.orderUrlV2}/csv`;
+    return this.http.post(url, param, this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }
