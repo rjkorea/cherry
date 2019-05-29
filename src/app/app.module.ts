@@ -92,6 +92,7 @@ import { PlaceService } from './services/place.service';
 import { UtilService } from './services/util.service';
 import { QnaService } from './services/qna.service';
 import { PopupService } from './services/popup.service';
+import { RfidService } from './services/rfid.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { DateTimeFormatPipe } from './pipes/datetime.pipe';
@@ -243,6 +244,7 @@ defineLocale('ko', koLocale);
     UtilService,
     QnaService,
     PopupService,
+    RfidService,
     DateTimeFormatPipe,
     FileSizeFormatPipe
   ],
