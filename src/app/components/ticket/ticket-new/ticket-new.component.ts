@@ -16,7 +16,7 @@ export class TicketNewComponent implements OnInit, OnDestroy {
 
   contentId: string;
   contentName: string;
-  maxTickets: number = 50;
+  maxTickets: number = 200;
   isCoverPopup: boolean = false;
   typeCoverPopup: string = '';
   saveTickets = [];

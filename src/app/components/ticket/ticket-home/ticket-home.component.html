@@ -22,7 +22,7 @@
       <div class="list-element">
         <div class="ticket-color" [ngStyle]="{'background-color': ticket.color === 'tkit-mint' ? '#62aab8' : (ticket.color === 'tkit-coral' ? '#ed7f81' : (ticket.color === 'hangang-blue' ? '#6794ca' : (ticket.color === 'ultra-bora' ? '#8f6dab' : (ticket.color === 'mustard-norang' ? '#f6d87f' : '')))) }"></div>
         <ul class="first-desc">
-          <li>등록수량 : {{ ticket.sales.count.toLocaleString() }} / <span class="bold">{{ ticket.sales.limit.toLocaleString() }}</span></li>
+          <li>등록수량 : {{ ticket.fpfg.now.toLocaleString() }} / <span class="bold">{{ ticket.fpfg.limit.toLocaleString() }}</span></li>
           <li class="bold name">{{ ticket.name }}</li>
           <li class="demi-light desc" *ngIf="ticket.desc.enabled">{{ ticket.desc.value }}</li>
         </ul>

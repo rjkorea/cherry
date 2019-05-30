@@ -12,7 +12,7 @@ export class TicketHomeComponent implements OnInit {
   contentId: string;
   contentName: string;
   start: number = 0;
-  maxTickets: number = 50;
+  maxTickets: number = 200;
   tickets: Array<any> = [];
 
   constructor(
