@@ -32,10 +32,10 @@ export class ContentHomeComponent implements OnInit {
     this.contentservice.getContentListV2(status, start, 6).subscribe(res => {
       if (status === 'open') {
         this.openContents.push(...res['data']);
-        this.openCount = res['count'] < 100 ? res['count'] : '99+';
+        this.openCount = res['count'];
       } else {
         this.closedContents.push(...res['data']);
-        this.closedCount = res['count'] < 100 ? res['count'] : '99+';
+        this.closedCount = res['count'];
       }
     });
   }
