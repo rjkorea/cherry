@@ -4,3 +4,22 @@
 /*  -ms-ime-mode:inactive;*/
 /*  ime-mode:inactive;*/
 /*}*/
+.input-empty{
+  width: 20%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.input-empty::-ms-input-placeholder { color: rgba(133, 133, 133, 0.55); }
+.input-empty::-webkit-input-placeholder { color:  rgba(133, 133, 133, 0.55); }
+.input-empty::-moz-placeholder { color:  rgba(133, 133, 133, 0.55); }
+.warn{
+  margin-left: 10px;
+  color : rgba(221, 90, 85, 0.87);
+}

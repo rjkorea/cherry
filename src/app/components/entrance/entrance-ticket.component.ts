@@ -15,6 +15,8 @@ export class EntranceTicketComponent implements OnInit, AfterContentInit {
   methods: string[];
   user_form: any;
   band_uid: string;
+  gender: string;
+  birthday: string;
   disabled_banduid: boolean;
   is_loading: boolean;
   ENG_KEY = 'rRseEfaqQtTdwWczxvgkoiOjpuPhynbml';
@@ -36,12 +38,16 @@ export class EntranceTicketComponent implements OnInit, AfterContentInit {
     this.is_loading = false;
     const params: Params = this.route.snapshot.params;
     this.loadTicket(params['id']);
-    this._banduidElement.nativeElement.focus();
+    if (this._banduidElement) {
+      this._banduidElement.nativeElement.focus();
+    }
   }
 
   ngAfterContentInit() {
     setTimeout(() => {
-      this._banduidElement.nativeElement.focus();
+      if (this._banduidElement) {
+        this._banduidElement.nativeElement.focus();
+      }
     }, 800);
 
   }
@@ -51,7 +57,7 @@ export class EntranceTicketComponent implements OnInit, AfterContentInit {
       .subscribe(
         response => {
           this.ticket = response['data'];
-          console.log(this.ticket);
+
         },
         error => {
           console.log(error);
@@ -72,14 +78,24 @@ export class EntranceTicketComponent implements OnInit, AfterContentInit {
   }
 
   syncRfidUmfkorea() {
+    const {gender, birthday} = this.ticket['receive_user'];
+
     this.is_loading = true;
+    if (!gender || !birthday) {
+      if (!this.gender || !this.birthday) {
+        alert('성별 혹은 태어난 년도 네자리를 넣어주세요.');
+        this.is_loading = false;
+        return;
+      }
+    }
+
     const payload = {
       uid: this.korTypeToEng(this.band_uid),
       user: {
         name: this.ticket['receive_user']['name'],
         mobile: this.ticket['receive_user']['mobile'],
-        gender: this.ticket['receive_user']['gender'],
-        birthday: this.ticket['receive_user']['birthday']
+        gender: this.ticket['receive_user']['gender'] ? gender : this.gender,
+        birthday: this.ticket['receive_user']['birthday'] ? birthday : this.birthday
       },
       ticket: {
         _id: this.ticket['_id'],
@@ -168,7 +184,7 @@ export class EntranceTicketComponent implements OnInit, AfterContentInit {
       }
       if (arrKeyIndex[3] != -1) {
         if (arrKeyIndex[3] == 2) {					// ㄳ
-          arrKeyIndex[3] = 0
+          arrKeyIndex[3] = 0;
           arrKeyIndex[4] = 9;
         } else if (arrKeyIndex[3] == 4) {			// ㄵ
           arrKeyIndex[3] = 2;
