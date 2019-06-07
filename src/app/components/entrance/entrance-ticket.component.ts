@@ -84,15 +84,23 @@ export class EntranceTicketComponent implements OnInit, AfterContentInit {
     if (!gender || !birthday) {
       if (!this.gender || !this.birthday) {
         alert('성별 혹은 태어난 년도 네자리를 넣어주세요.');
+        this.band_uid = '';
         this.is_loading = false;
+        this.disabled_banduid = false;
         return;
       }
     }
-
+    let name: string;
+    if ('last_name' in this.ticket['receive_user']) {
+      name = this.ticket['receive_user']['last_name'] + this.ticket['receive_user']['name'];
+    } else {
+      name = this.ticket['receive_user']['name'];
+    }
     const payload = {
       uid: this.korTypeToEng(this.band_uid),
       user: {
-        name: this.ticket['receive_user']['name'],
+        _id: this.ticket['receive_user']['_id'],
+        name: name,
         mobile: this.ticket['receive_user']['mobile'],
         gender: this.ticket['receive_user']['gender'] ? gender : this.gender,
         birthday: this.ticket['receive_user']['birthday'] ? birthday : this.birthday
@@ -115,6 +123,11 @@ export class EntranceTicketComponent implements OnInit, AfterContentInit {
           alert('유효하지 않은 밴드입니다');
           this.disabled_banduid = false;
           this.band_uid = '';
+          setTimeout(() => {
+            if (this._banduidElement) {
+              this._banduidElement.nativeElement.focus();
+            }
+          }, 800);
           console.log(error);
         }
       );

@@ -11,22 +11,15 @@
               <h4>{{ticket.ticket_type.name}} / {{ticket.ticket_type.desc.value}} / ₩ {{ticket.price | number: '0.0-0'}}</h4>
               <ul *ngIf="ticket.receive_user" class="list-group">
                 <li class="list-group-item list-group-item-success"><strong>소유자</strong></li>
-                <li class="list-group-item"><strong>이름: </strong>{{ticket.receive_user.name}}</li>
+                <li class="list-group-item"><strong>이름: </strong>{{ticket.receive_user.last_name}}{{ticket.receive_user.name}}</li>
+                <li class="list-group-item"><strong>핸드폰 번호: </strong>+({{ticket.receive_user.mobile.country_code}}) {{ticket.receive_user.mobile.number}}</li>
                 <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>생년월일: </strong>{{ticket.receive_user.birthday}}</li>
                 <li *ngIf="ticket.content.is_rfid && !ticket.receive_user.birthday" class="list-group-item"><strong>생년월일: </strong><input type=tel class="input-empty" [(ngModel)]="birthday"  placeholder="ex) 1990"  pattern="\d*" [maxLength]="4"> <label class="warn">생년월일을 넣어주세요!</label></li>
-                <li class="list-group-item"><strong>핸드폰 번호: </strong>+{{ticket.receive_user.mobile.country_code}} {{ticket.receive_user.mobile.number}}</li>
-                <li class="list-group-item"><strong>이메일: </strong>{{ticket.receive_user.email}}</li>
                 <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender}}</li>
                 <li *ngIf="ticket.content.is_rfid && !ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong><select class="input-empty" [(ngModel)]="gender" >
-                  <option>
-                    male
-                  </option>
-                  <option>
-                    female
-                  </option>
-                  <option>
-                    others
-                  </option>
+                  <option value="male">남자</option>
+                  <option value="female">여자</option>
+                  <option value="others">정해지지 않음</option>
                 </select>  <label class="warn">성별을 넣어주세요!</label></li>
               </ul>
             </div>
