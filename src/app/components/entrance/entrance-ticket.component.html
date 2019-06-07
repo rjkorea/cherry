@@ -49,7 +49,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="band-uid">밴드를 RFID 리더기에 터치 해주세요</label>
-                  <input #banduid type="password" class="form-control" [disabled]="disabled_banduid" [(ngModel)]="band_uid" name="band-uid" (keyup)="touchBand($event)" autofocus>
+                  <input #banduid type="password" class="form-control" [disabled]="disabled_banduid" [(ngModel)]="band_uid" name="band-uid" (keyup)="touchBand($event)" [autofocus]="true">
                   <span *ngIf="is_loading"><img src="../../../assets/images/loading.svg">처리중입니다</span>
                 </div>
               </div>
