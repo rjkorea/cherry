@@ -18,6 +18,15 @@
   </div>
 </div>
 
+<div *ngIf="mode=='idle' && staff_notice" class="row">
+  <div class="col-md-6">
+    <h4>공지사항</h4>
+    <div>
+      <pre>{{staff_notice}}</pre>
+    </div>
+  </div>
+</div>
+
 <div *ngIf="mode=='ticket'" class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">{{user.last_name}}{{user.name}}가(이) 소유한 티켓
