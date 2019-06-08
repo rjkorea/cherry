@@ -13,8 +13,8 @@
                 <li class="list-group-item list-group-item-success"><strong>소유자</strong></li>
                 <li class="list-group-item"><strong>이름: </strong>{{ticket.receive_user.last_name}}{{ticket.receive_user.name}}</li>
                 <li class="list-group-item"><strong>핸드폰 번호: </strong>+({{ticket.receive_user.mobile.country_code}}) {{ticket.receive_user.mobile.number}}</li>
-                <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>생년월일: </strong>{{ticket.receive_user.birthday}}</li>
-                <li *ngIf="ticket.content.is_rfid && !ticket.receive_user.birthday" class="list-group-item"><strong>생년월일: </strong><input type=tel class="input-empty" [(ngModel)]="birthday"  placeholder="ex) 1990"  pattern="\d*" [maxLength]="4"> <label class="warn">생년월일을 넣어주세요!</label></li>
+                <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>출생년도: </strong>{{ticket.receive_user.birthday}}</li>
+                <li *ngIf="ticket.content.is_rfid && !ticket.receive_user.birthday" class="list-group-item"><strong>출생년도: </strong><input type=tel class="input-empty" [(ngModel)]="birthday"  placeholder="ex) 1990"  pattern="\d*" [maxLength]="4"> <label class="warn">출생년도 4자리를 넣어주세요!</label></li>
                 <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender}}</li>
                 <li *ngIf="ticket.content.is_rfid && !ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong><select class="input-empty" [(ngModel)]="gender" >
                   <option value="male">남자</option>
