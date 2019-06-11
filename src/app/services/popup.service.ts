@@ -1,13 +1,13 @@
-import { Injectable, Inject, ComponentFactoryResolver, EmbeddedViewRef, ElementRef, ViewContainerRef, ComponentRef } from '@angular/core';
-import { Subject } from 'rxjs';
+import {ComponentFactoryResolver, EmbeddedViewRef, Inject, Injectable, ViewContainerRef} from '@angular/core';
+import {Subject} from 'rxjs';
 
 @Injectable()
 export class PopupService {
   public subject = new Subject<any>();
   public nameSubject = new Subject<any>();
   public data: any;
-  public dynamicBoxCount: number = 0;
-  public dynamicContentCount: number = 0;
+  public dynamicBoxCount = 0;
+  public dynamicContentCount = 0;
   public dynamicContents = [];
   private factory: any;
   private content: any;
@@ -37,9 +37,9 @@ export class PopupService {
     return this.data;
   }
 
-  getDynamicContentCount() {
-    return this.dynamicContentCount;
-  }
+  // getDynamicContentCount() {
+  //   return this.dynamicContentCount;
+  // }
 
   add(container, component): void {
     const factory = this.factory.resolveComponentFactory(container);
@@ -67,7 +67,7 @@ export class PopupService {
 
   clearPopup = (): void => {
     this.content.clear();
-  }
+  };
 
   clearSubject(): void {
     this.subject.unsubscribe();

@@ -1,5 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { PopupService } from '../../../../services/popup.service';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {PopupService} from '../../../../services/popup.service';
+interface CalenderData {
+  when: string,
+  contentDate: {
+    start: number,
+    end: number
+  }
+}
 
 @Component({
   selector: 'app-single-date',
@@ -10,13 +17,21 @@ export class SingleDateComponent implements OnInit {
   @ViewChild('singleDate') singleDate: ElementRef;
   @ViewChild('doneBtn') doneBtn: ElementRef;
 
-  type: string;
-  limitDate: Date = new Date();
-  selectedDate: Date = new Date();
+  type: CalenderData = {
+    when: '',
+    contentDate: {
+      start: 0,
+      end: 0
+    }
+  };
+  minDate: any;
+  maxDate: any;
+  selectedDate: any;
 
   constructor(
-    private popupService: PopupService
-  ) { }
+    private popupService: PopupService,
+  ) {
+  }
 
   ngOnInit() {
     this.type = this.popupService.getData();
@@ -24,19 +39,23 @@ export class SingleDateComponent implements OnInit {
   }
 
   getMoment(): void {
-    if (this.type === 'from') {
-      this.limitDate = new Date();
+    if (this.type.when === 'from') {
+      this.minDate = new Date(this.type.contentDate.start * 1000);
+      this.maxDate = new Date(this.type.contentDate.end * 1000);
+      this.selectedDate = this.minDate;
     } else {
       const date = localStorage.getItem('temp_from_date');
-      this.selectedDate = date !== null || undefined ? new Date(date) : new Date();
-      this.limitDate = this.selectedDate;
+      this.selectedDate = date !== null || !undefined ? new Date(date) : this.minDate;
+      this.maxDate = new Date(this.type.contentDate.end * 1000);
+      this.minDate = this.selectedDate;
     }
   }
 
   setMoment(): void {
     this.selectedDate = this.singleDate['selected'];
-
-    if (this.type === 'from') localStorage.setItem('temp_from_date', this.selectedDate.toString());
+    if (this.type.when === 'from') {
+      localStorage.setItem('temp_from_date', this.selectedDate.toString());
+    }
 
     if (this.selectedDate) {
       this.popupService.setSubject(this.selectedDate);
