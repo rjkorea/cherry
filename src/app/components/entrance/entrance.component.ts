@@ -20,6 +20,7 @@ export class EntranceComponent implements OnInit, OnDestroy {
   content_oid: string;
   content_name: string;
   query: string;
+  staff_notice: string;
 
   constructor(
     private userService: UserService,
@@ -51,6 +52,9 @@ export class EntranceComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           this.content_name = response['data']['name'];
+          if ('staff_notice' in response['data']) {
+            this.staff_notice = response['data']['staff_notice'];
+          }
         },
         error => {
           console.log(error);
