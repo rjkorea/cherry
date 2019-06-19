@@ -298,6 +298,13 @@
               숫자 4자리를 입력해주세요
           </div>
         </div>
+        <div class="form-group">
+          <label class="tds-label bold">밴딩수령장소 <span class="default">(옵션)</span></label>
+          <input type="text" class="form-control tds-input" formControlName="bandPlace" placeholder="예) EXCHANGE 부스">
+          <div *ngIf="bandPlace.invalid && (bandPlace.dirty || bandPlace.touched)" class="tds-message-invalid">
+              숫자 4자리를 입력해주세요
+          </div>
+        </div>
         <div class="form-group book">
           <label class="bold">방명록</label>
           <label>

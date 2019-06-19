@@ -50,6 +50,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     notice: new FormControl(''),
     description: new FormControl(''),
     staffAuthCode: new FormControl('', [Validators.pattern('[0-9]{4}'), Validators.minLength(4), Validators.maxLength(4)]),
+    bandPlace: new FormControl(''),
     commentsPrivate: new FormControl('')
   });
 
@@ -207,6 +208,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     this.contentsForm.controls['notice'].setValue(data.notice.message);
     this.contentsForm.controls['description'].setValue(data.desc);
     this.contentsForm.controls['staffAuthCode'].setValue(data.staff_auth_code),
+    this.contentsForm.controls['bandPlace'].setValue(data.band_place),
     this.contentsForm.controls['commentsPrivate'].setValue(data.comments.is_private);
     this.croppedImg = data.images[0].m;
     this.croppedImgSize = data.images[0].size || 0;
@@ -481,6 +483,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
       notice: this.contentsForm.get('notice').value || '',
       desc: this.contentsForm.get('description').value || '',
       staff_auth_code: this.contentsForm.get('staffAuthCode').value || '',
+      band_place: this.contentsForm.get('bandPlace').value || '',
       comments_private: this.contentsForm.get('commentsPrivate').value || false
     };
 
@@ -558,5 +561,6 @@ export class ContentNew2Component implements OnInit, OnDestroy {
   get notice() { return this.contentsForm.get('notice'); }
   get description() { return this.contentsForm.get('description'); }
   get staffAuthCode() { return this.contentsForm.get('staffAuthCode'); }
+  get bandPlace() { return this.contentsForm.get('bandPlace'); }
   get commentsPrivate() { return this.contentsForm.get('commentsPrivate'); }
 }
