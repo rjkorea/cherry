@@ -49,6 +49,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     videoUrl: new FormControl(''),
     notice: new FormControl(''),
     description: new FormControl(''),
+    sms: new FormControl(''),
     staffAuthCode: new FormControl('', [Validators.pattern('[0-9]{4}'), Validators.minLength(4), Validators.maxLength(4)]),
     bandPlace: new FormControl(''),
     commentsPrivate: new FormControl('')
@@ -207,6 +208,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     this.contentsForm.controls['videoUrl'].setValue(data.video_url);
     this.contentsForm.controls['notice'].setValue(data.notice.message);
     this.contentsForm.controls['description'].setValue(data.desc);
+    this.contentsForm.controls['sms'].setValue(data.sms.message);
     this.contentsForm.controls['staffAuthCode'].setValue(data.staff_auth_code),
     this.contentsForm.controls['bandPlace'].setValue(data.band_place),
     this.contentsForm.controls['commentsPrivate'].setValue(data.comments.is_private);
@@ -482,6 +484,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
       video_url: this.contentsForm.get('videoUrl').value || '',
       notice: this.contentsForm.get('notice').value || '',
       desc: this.contentsForm.get('description').value || '',
+      sms: this.contentsForm.get('sms').value || '',
       staff_auth_code: this.contentsForm.get('staffAuthCode').value || '',
       band_place: this.contentsForm.get('bandPlace').value || '',
       comments_private: this.contentsForm.get('commentsPrivate').value || false
@@ -560,6 +563,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
   get videoUrl() { return this.contentsForm.get('videoUrl'); }
   get notice() { return this.contentsForm.get('notice'); }
   get description() { return this.contentsForm.get('description'); }
+  get sms() { return this.contentsForm.get('sms'); }
   get staffAuthCode() { return this.contentsForm.get('staffAuthCode'); }
   get bandPlace() { return this.contentsForm.get('bandPlace'); }
   get commentsPrivate() { return this.contentsForm.get('commentsPrivate'); }
