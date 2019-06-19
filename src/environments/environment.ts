@@ -16,8 +16,8 @@ export const environment = {
   },
   api: {
     protocol: 'http',
-    // host: 'localhost',
-    host: '192.168.35.183',
+    host: 'localhost',
+    // host: '192.168.35.183',
     // host: '172.16.6.19',
     // host: '172.30.1.20',
     port: 5100
