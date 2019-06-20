@@ -107,7 +107,9 @@ export class TicketEditComponent implements OnInit {
       fpfg: {
         limit: this.ticketBox['ticketForm'].get('ticketCount').value,
         spread: this.ticketBox['ticketForm'].get('ticketSpread').value
-      }
+      },
+      duplicated_registration: this.ticketBox['ticketForm'].get('duplicatedRegistration').value,
+      disabled_send: this.ticketBox['ticketForm'].get('disabledSend').value
     };
 
     this.is_loading = true;

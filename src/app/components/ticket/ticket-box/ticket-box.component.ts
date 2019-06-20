@@ -46,7 +46,9 @@ export class TicketBoxComponent implements OnInit, OnChanges {
     pcToDate: new FormControl(''),
     ticketPrice: new FormControl(''),
     ticketCount: new FormControl(''),
-    ticketSpread: new FormControl('')
+    ticketSpread: new FormControl(''),
+    duplicatedRegistration: new FormControl(''),
+    disabledSend: new FormControl('')
   });
 
   constructor(
@@ -107,6 +109,8 @@ export class TicketBoxComponent implements OnInit, OnChanges {
     this.ticketForm.controls['toMins'].setValue(this.dateFormat.transform(data['sales_date']['end'] * 1000, 'mins'));
     this.ticketForm.controls['mFromDate'].setValue(this.dateFormat.transform(data['sales_date']['start'] * 1000, 'date'));
     this.ticketForm.controls['pcFromDate'].setValue(this.dateFormat.transform(data['sales_date']['start'] * 1000, 'date'));
+    this.ticketForm.controls['duplicatedRegistration'].setValue(data['duplicated_registration']);
+    this.ticketForm.controls['disabledSend'].setValue(data['disabled_send']);
 
     this.checkBytes(this.nameInput.nativeElement, this.byteInput.nativeElement, 40);
     this.checkBytes(this.descInput.nativeElement, this.byte02Input.nativeElement, 60);
