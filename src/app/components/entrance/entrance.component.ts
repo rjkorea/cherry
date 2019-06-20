@@ -21,6 +21,7 @@ export class EntranceComponent implements OnInit, OnDestroy {
   content_name: string;
   query: string;
   staff_notice: string;
+  is_loading: boolean;
 
   constructor(
     private userService: UserService,
@@ -31,6 +32,7 @@ export class EntranceComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.query = '';
     this.mode = 'idle'; //idle, search, user
+    this.is_loading = false;
     this.user = '';
     this.tickets = [];
     this.tickets_count = 0;
@@ -63,17 +65,22 @@ export class EntranceComponent implements OnInit, OnDestroy {
   }
 
   onSearch() {
+    this.is_loading = true;
+    this.mode = 'idle';
     this.userService.getUserList(this.query, 0, 100)
       .subscribe(
         response => {
           this.users_count = response['count'];
           this.users = response['data'];
+          this.is_loading = false;
+          this.mode = 'search'
         },
         error => {
           console.log(error);
+          this.is_loading = false;
         }
       );
-    this.mode = 'search'
+
   }
 
   getTickets(content_oid: string, user_oid: string) {
@@ -92,15 +99,17 @@ export class EntranceComponent implements OnInit, OnDestroy {
           }
         );
     }
-    this.mode = 'ticket';
   }
 
   getNetworkTickets() {
+    this.is_loading = true;
     this.ticketService.getTicketEntranceListByUser(this.content_oid, this.user['_id'], 0, 100)
       .subscribe(
         response => {
           this.tickets = response['data'];
           this.tickets_count = response['count'];
+          this.is_loading = false;
+          this.mode = 'ticket';
         },
         error => {
           console.log(error);
