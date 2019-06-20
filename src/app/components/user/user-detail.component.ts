@@ -57,7 +57,9 @@ export class UserDetailComponent implements OnInit {
       mobile_number: this.user.mobile_number,
       birthday: this.user.birthday,
       gender: this.user.gender,
-      enabled: this.user.enabled
+      enabled: this.user.enabled,
+      area: this.user.area,
+      memo: this.user.memo
     };
     this.userService.updateUser(this.user._id, this.user_form)
       .subscribe(
