@@ -38,6 +38,8 @@ import { SignupDoneComponent } from './components/signup/signup-done.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { EntranceComponent } from './components/entrance/entrance.component';
 import { EntranceTicketComponent } from './components/entrance/entrance-ticket.component';
+import { CsComponent } from './components/cs/cs.component';
+import { CsTicketsComponent } from './components/cs/tickets.component';
 import { CompanyListComponent } from './components/company/company-list.component';
 import { CompanyDetailComponent } from './components/company/company-detail.component';
 import { CompanyNewComponent } from './components/company/company-new.component';
@@ -85,6 +87,7 @@ import { WebSocketService } from './services/websocket.service';
 import { AdminService } from './services/admin.service';
 import { UserService } from './services/user.service';
 import { ContentService } from './services/content.service';
+import { CsService } from './services/cs.service';
 import { GroupService } from './services/group.service';
 import { CompanyService } from './services/company.service';
 import { TicketService } from './services/ticket.service';
@@ -142,6 +145,8 @@ defineLocale('ko', koLocale);
     DataFilterPipe,
     EntranceComponent,
     EntranceTicketComponent,
+    CsComponent,
+    CsTicketsComponent,
     CompanyListComponent,
     CompanyDetailComponent,
     CompanyNewComponent,
@@ -238,6 +243,7 @@ defineLocale('ko', koLocale);
     UserService,
     ContentService,
     GroupService,
+    CsService,
     CompanyService,
     TicketService,
     PlaceService,

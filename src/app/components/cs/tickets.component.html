@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-md-6">
+    <h3>CS 센터</h3>
+    <h4>관련 티켓 리스트</h4>
+  </div>
+</div>
+
+<div *ngIf="is_loading"><img src="../../../assets/images/loading.svg">검색중입니다</div>
+
+<div *ngIf="!is_loading" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{user.last_name}}{{user.name}}(와)과 연관된 티켓 리스트
+      <span class="badge">{{tickets_count | number: '0.0-0'}}</span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div *ngIf="tickets_count">
+      <div class="row">
+        <div *ngFor="let ticket of tickets">
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <div class="caption">
+                <h5>[{{ticket.content.name}}]</h5>
+                <h4>
+                  <a [routerLink]="['/entrance/ticket', ticket._id]">{{ticket.ticket_type.name}}</a>
+                </h4>
+                <h5>{{ticket.ticket_type.desc.value}}</h5>
+                <h5 *ngIf="ticket.price>0" class="bold">티켓가격 ₩ {{ticket.price | number: '0.0-0'}}</h5>
+                <h5 *ngIf="ticket.price===0" class="tkit-mint-color">FREE TICKET</h5>
+                <p>
+                  <span *ngIf="ticket.status=='pend'" class="label label-default">전송준비</span>
+                  <span *ngIf="ticket.status=='send'" class="label label-warning">전송중</span>
+                  <span *ngIf="ticket.status=='register'" class="label label-success">등록완료</span>
+                  <span *ngIf="ticket.status=='use'" class="label label-info">입장완료</span>
+                  <span *ngIf="ticket.status=='pay'" class="label label-primary">결제완료</span>
+                  <span *ngIf="ticket.status=='cancel'" class="label label-danger">취소</span>
+                </p>
+                <p>
+                  <span *ngIf="ticket.history_send_user_oids" class="label ultra-bora-bg">전송한적 있는 티켓</span>
+                  <span *ngIf="!ticket.history_send_user_oids" class="label hangang-blue-bg">소유하고 있는 티켓</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!!!tickets_count">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          </h1>
+          <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
+        </div>
+      </div>
+      <hr />
+    </div>
+
+  </div>
+</div>

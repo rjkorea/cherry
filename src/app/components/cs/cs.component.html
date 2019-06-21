@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-md-6">
+    <h3>CS 센터</h3>
+    <h4>유저 검색</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="name, mobile number, email, birthday" [(ngModel)]="query" name="query" (keyup.enter)="onSearch()">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="onSearch()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
+    </div>
+    <br>
+  </div>
+</div>
+
+<div *ngIf="is_loading"><img src="../../../assets/images/loading.svg">검색중입니다</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div *ngIf="mode=='search'" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">유저 <span class="badge">{{users_count | number: '0.0-0'}}</span></h3>
+      </div>
+      <div class="panel-body">
+        <div *ngIf="users_count">
+          <div class="row">
+            <!-- <div class="col-md-6"> -->
+              <div *ngFor="let user of users">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img *ngIf="!user.image" class="img-thumbnail" src="assets/images/user.png">
+                    <img *ngIf="user.image" class="img-thumbnail" src="{{user.image.profile.m}}">
+                  </div>
+                  <div class="col-md-8">
+                    <h4><a (click)="goUserTickets(user._id)">{{user.last_name}}{{user.name}}</a></h4>
+                    <p *ngIf="user.mobile">
+                      <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> +({{user.mobile.country_code}}) {{user.mobile.number}}
+                    </p>
+                    <p *ngIf="user.email">
+                      <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{user.email}}
+                    </p>
+                    <p *ngIf="user.birthday">
+                      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{user.birthday}}
+                    </p>
+                    <p *ngIf="user.gender">
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{user.gender}}
+                    </p>
+                  </div>
+                </div>
+                <hr />
+              </div>
+            <!-- </div> -->
+          </div>
+        </div>
+        <div *ngIf="!!!users_count">
+          <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
+          <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
