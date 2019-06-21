@@ -14,7 +14,7 @@
     </h3>
   </div>
   <div class="panel-body">
-    <div *ngIf="tickets_count">
+    <div *ngIf="count">
       <div class="row">
         <div *ngFor="let ticket of tickets">
           <div class="col-sm-6 col-md-4">
@@ -36,17 +36,24 @@
                   <span *ngIf="ticket.status=='cancel'" class="label label-danger">취소</span>
                 </p>
                 <p>
-                  <span *ngIf="ticket.history_send_user_oids" class="label ultra-bora-bg">전송한적 있는 티켓</span>
                   <span *ngIf="!ticket.history_send_user_oids" class="label hangang-blue-bg">소유하고 있는 티켓</span>
+                  <span *ngIf="ticket.history_send_user_oids" class="label ultra-bora-bg">전송한적 있는 티켓</span>
+                  <span *ngIf="ticket.history_send_user_oids" class="label ultra-bora-bg">소유자는 {{ticket.receive_user.last_name}}{{ticket.receive_user.name}} +({{ticket.receive_user.mobile.country_code}}) {{ticket.receive_user.mobile.number}}</span>
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <nav aria-label="...">
+        <ul class="pager">
+          <li *ngIf="page!=1"><a (click)="onPrev()">이전</a></li>
+          <li *ngIf="page*size<count"><a (click)="onNext()">다음</a></li>
+        </ul>
+      </nav>
     </div>
 
-    <div *ngIf="!!!tickets_count">
+    <div *ngIf="count===0">
       <div class="row">
         <div class="col-md-12">
           <h1 class="text-center">

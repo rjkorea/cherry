@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { CsService } from '../../services/cs.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -9,10 +9,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./tickets.component.css'],
   providers: []
 })
-export class CsTicketsComponent implements OnInit, OnDestroy {
+export class CsTicketsComponent implements OnInit {
   user: any;
+  user_oid: string;
   tickets: Array<any>;
-  tickets_count: number;
+  count: number;
+  page: number;
+  size: number;
   query: string;
   is_loading: boolean;
 
@@ -25,12 +28,13 @@ export class CsTicketsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.is_loading = false;
     this.tickets = [];
-    this.tickets_count = 0;
+    this.count = 0;
+    this.page = 1;
+    this.size = 12;
     const params: Params = this.route.snapshot.params;
-    this.getUser(params['id'])
+    this.user_oid = params['id'];
+    this.getUser(this.user_oid);
   }
-
-  ngOnDestroy() {}
 
   getUser(user_oid: string) {
     this.is_loading = true;
@@ -38,20 +42,22 @@ export class CsTicketsComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           this.user = response['data'];
-          this.getTickets(user_oid);
+          this.getTickets(this.user_oid, this.page);
         },
         error => {
           console.log(error);
+          this.router.navigate(['/404']);
         }
       );
   }
 
-  getTickets(user_oid: string) {
-    this.csService.getUserTickets(0, 200, user_oid)
+  getTickets(user_oid: string, page: number) {
+    this.is_loading = true;
+    this.csService.getUserTickets(user_oid, (page - 1) * this.size, this.size)
       .subscribe(
         response => {
           this.tickets = response['data'];
-          this.tickets_count = response['count'];
+          this.count = response['count'];
           this.is_loading = false;
         },
         error => {
@@ -59,5 +65,20 @@ export class CsTicketsComponent implements OnInit, OnDestroy {
         }
       );
   }
+
+  onPrev() {
+    const page = this.page - 1;
+    this.page = page;
+    this.router.navigate(['/cs/user', this.user_oid, 'tickets', {page: page}]);
+    this.getTickets(this.user_oid, page);
+  }
+
+  onNext() {
+    const page = this.page + 1;
+    this.page = page;
+    this.router.navigate(['/cs/user', this.user_oid, 'tickets', {page: page}]);
+    this.getTickets(this.user_oid, page);
+  }
+
 
 }

@@ -18,7 +18,7 @@ export class CsService {
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
-  public getUserTickets(start: Number, size: Number, user_oid: string): Observable<{}> {
+  public getUserTickets(user_oid: string, start: Number, size: Number): Observable<{}> {
     const url = `${this.csUrl}?start=${start}&size=${size}&user_oid=${user_oid}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
