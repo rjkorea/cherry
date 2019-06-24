@@ -1,0 +1,61 @@
+<div *ngIf="ticket">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{ticket.content.name}}</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>{{ticket.ticket_type.name}} / {{ticket.ticket_type.desc.value}} / ₩ {{ticket.price | number: '0.0-0'}}</h4>
+              <ul *ngIf="ticket.history_send_users" class="list-group">
+                <li class="list-group-item list-group-item-info">
+                  <strong>티켓 전송 히스토리</strong>
+                  <span class="badge badge-primary">{{ticket.history_send_users.length}} 번 전송</span>
+                </li>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <tr>
+                      <th></th>
+                      <th>이름</th>
+                      <th>핸드폰번호</th>
+                    </tr>
+                    <tr *ngFor="let user of ticket.history_send_users">
+                      <td>
+                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                      </td>
+                      <td>
+                        <a [routerLink]="['/cs/user', user._id, 'tickets']">{{user.last_name}}{{user.name}}</a>
+                      </td>
+                      <td>+({{user.mobile.country_code}}) {{user.mobile.number}}</td>
+                    </tr>
+                  </table>
+                  <hr />
+                </div>
+              </ul>
+              <p>
+                <span *ngIf="ticket.status=='pend'" class="label label-default">전송준비</span>
+                <span *ngIf="ticket.status=='send'" class="label label-warning">전송중</span>
+                <span *ngIf="ticket.status=='register'" class="label label-success">등록완료</span>
+                <span *ngIf="ticket.status=='use'" class="label label-info">입장완료</span>
+                <span *ngIf="ticket.status=='pay'" class="label label-primary">결제완료</span>
+                <span *ngIf="ticket.status=='cancel'" class="label label-danger">취소</span>
+              </p>
+              <ul *ngIf="ticket.receive_user" class="list-group">
+                <li class="list-group-item list-group-item-success"><strong>소유자</strong></li>
+                <li class="list-group-item">
+                  <strong>이름: </strong><a [routerLink]="['/cs/user', ticket.receive_user._id, 'tickets']">{{ticket.receive_user.last_name}}{{ticket.receive_user.name}}</a>
+                </li>
+                <li class="list-group-item"><strong>핸드폰 번호: </strong>+({{ticket.receive_user.mobile.country_code}}) {{ticket.receive_user.mobile.number}}</li>
+                <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>출생년도: </strong>{{ticket.receive_user.birthday}}</li>
+                <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender}}</li>
+                <li *ngIf="ticket.receive_user.memo" class="list-group-item"><strong>CS메모: </strong>{{ticket.receive_user.memo}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

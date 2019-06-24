@@ -20,6 +20,7 @@ import { EntranceComponent } from './components/entrance/entrance.component';
 import { EntranceTicketComponent } from './components/entrance/entrance-ticket.component';
 import { CsComponent } from './components/cs/cs.component';
 import { CsTicketsComponent } from './components/cs/tickets.component';
+import { CsTicketDetailComponent } from './components/cs/ticket-detail.component';
 import { CompanyListComponent } from './components/company/company-list.component';
 import { CompanyDetailComponent } from './components/company/company-detail.component';
 import { CompanyNewComponent } from './components/company/company-new.component';
@@ -111,6 +112,7 @@ const routes: Routes = [
 
   { path: 'cs', component: CsComponent, canActivate: [AuthGuard] },
   { path: 'cs/user/:id/tickets', component: CsTicketsComponent, canActivate: [AuthGuard] },
+  { path: 'cs/ticket/:id', component: CsTicketDetailComponent, canActivate: [AuthGuard] },
 
   { path: 'qna', component: QnaListComponent, canActivate: [AuthGuard] },
   { path: 'qna/:id', component: QnaDetailComponent, canActivate: [AuthGuard]},
