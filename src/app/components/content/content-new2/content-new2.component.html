@@ -292,6 +292,10 @@
           </div>
         </div>
         <div class="form-group">
+          <label class="tds-label bold">티켓 구매하기 링크</label>
+          <input type="text" class="form-control tds-input" formControlName="purchaseUrl" placeholder="예) https://www.tkit.kr/product/rapbeat-01">
+        </div>
+        <div class="form-group">
           <label class="tds-label bold">STAFF 인증코드 <span class="default">(숫자 4자리)</span></label>
           <input type="text" class="form-control tds-input" formControlName="staffAuthCode" placeholder="예) 7178">
           <div *ngIf="staffAuthCode.invalid && (staffAuthCode.dirty || staffAuthCode.touched)" class="tds-message-invalid">
