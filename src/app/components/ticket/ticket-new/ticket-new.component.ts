@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {TicketService} from 'app/services/ticket.service';
-import {PopupService} from 'app/services/popup.service';
-import {TicketBoxComponent} from '../ticket-box/ticket-box.component';
-import {DateTimeFormatPipe} from 'app/pipes/datetime.pipe';
-import {ContentService} from 'app/services/content.service';
+import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TicketService } from 'app/services/ticket.service';
+import { PopupService } from 'app/services/popup.service';
+import { TicketBoxComponent } from '../ticket-box/ticket-box.component';
+import { DateTimeFormatPipe } from 'app/pipes/datetime.pipe';
+import { ContentService } from 'app/services/content.service';
 
 @Component({
   selector: 'app-ticket-new',
@@ -12,19 +12,16 @@ import {ContentService} from 'app/services/content.service';
   styleUrls: ['./ticket-new.component.css']
 })
 export class TicketNewComponent implements OnInit, OnDestroy {
-  @ViewChild('ticketBoxs', {read: ViewContainerRef}) ticketBoxs: ViewContainerRef;
+  @ViewChild('ticketBoxs', { read: ViewContainerRef }) ticketBoxs: ViewContainerRef;
 
   contentId: string;
   contentName: string;
-  contentWhen: {
-    end: number,
-    start: number
-  };
-  maxTickets = 200;
-  isCoverPopup = false;
-  typeCoverPopup = '';
-  // saveTickets = [];
+  maxTickets: number = 200;
+  isCoverPopup: boolean = false;
+  typeCoverPopup: string = '';
+  saveTickets = [];
   previousTicketCnt = 0;
+
   is_loading = false;
   previewData = [];
 
@@ -35,19 +32,17 @@ export class TicketNewComponent implements OnInit, OnDestroy {
     private contentService: ContentService,
     private ticketService: TicketService,
     private dateFormat: DateTimeFormatPipe
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
     this.contentId = this.route.snapshot.paramMap.get('content_oid') || '';
     this.contentService.getThisContentV2(this.contentId).subscribe(res => {
       this.contentName = res['data']['name'];
-      this.contentWhen = res['data']['when'];
     });
+
     this.previousTicketCnt = this.route.snapshot.params['previous'] || 0;
     this.popupService.dynamicContentCount = this.previousTicketCnt;
   }
-
   ngOnDestroy() {
     localStorage.removeItem('temp_from_date');
     this.popupService.dynamicBoxCount = 0;
@@ -56,12 +51,8 @@ export class TicketNewComponent implements OnInit, OnDestroy {
   }
 
   getTicketBox(type): void {
-    console.log(this.contentWhen)
     if (this.maxTickets > this.popupService.dynamicContentCount) {
-      const component = this.popupService.addDynamicContainer(this.ticketBoxs, TicketBoxComponent, {
-        ticketType: type,
-        contentDate: this.contentWhen,
-      });
+      const component = this.popupService.addDynamicContainer(this.ticketBoxs, TicketBoxComponent, { ticketType: type });
       this.popupService.dynamicContents.push(component.instance);
     }
   }
@@ -72,9 +63,7 @@ export class TicketNewComponent implements OnInit, OnDestroy {
   }
 
   setPreview(type): void {
-    const ticketObjs = this.popupService.dynamicContents.filter((obj) => {
-      return obj !== null
-    });
+    const ticketObjs = this.popupService.dynamicContents.filter((obj) => { return obj !== null });
 
     // 생성된 티켓 갯수에서 컬러개수를 빼 생성될 컬러 인덱스를 구함
     let colorCount = (this.previousTicketCnt >= 5 ? this.previousTicketCnt - 5 : this.previousTicketCnt);
@@ -109,22 +98,20 @@ export class TicketNewComponent implements OnInit, OnDestroy {
     }
   }
 
-  parseDate(dates, hours, minutes): Date {
+  parseDate(dates, hours, mins): Date {
     let date: Date;
 
     date = new Date(dates);
     date.setHours(hours);
-    date.setMinutes(minutes);
+    date.setMinutes(mins);
 
     return date;
   }
 
   setTicketTypes() {
-    const ticketObjs = this.popupService.dynamicContents.filter((obj) => {
-      return obj !== null
-    });
-    const saveTickets: Array<any> = [];
-    let canSave = true;
+    const ticketObjs = this.popupService.dynamicContents.filter((obj) => { return obj !== null });
+    let saveTickets: Array<any> = [];
+    let canSave: boolean = true;
     let colorCount = this.previousTicketCnt;
     let overColorCount = 0;
 
@@ -140,6 +127,8 @@ export class TicketNewComponent implements OnInit, OnDestroy {
       const price = ticketObjs[i]['parentData']['ticketType'] === 'free' ? 0 : ticketObjs[i]['ticketForm'].get('ticketPrice').value;
       const limit = ticketObjs[i]['ticketForm'].get('ticketCount').value;
       const spread = ticketObjs[i]['ticketForm'].get('ticketSpread').value;
+      const duplicatedRegistration = ticketObjs[i]['ticketForm'].get('duplicatedRegistration').value;
+      const disabledSend = ticketObjs[i]['ticketForm'].get('disabledSend').value;
 
       if (name && desc && price >= 0 && limit > 0 && fromDate && toDate && fromHours && toHours && fromMins && toMins) {
         canSave = true;
@@ -157,10 +146,12 @@ export class TicketNewComponent implements OnInit, OnDestroy {
             spread: Number.parseInt(spread),
             now: 0
           },
+          duplicated_registration: duplicatedRegistration,
+          disabled_send: disabledSend,
           color: this.ticketService.ticketColors[colorCount < 5 ? colorCount++ : overColorCount++]
         });
       } else {
-        this.is_loading = false;
+        this.is_loading = false;;
         canSave = false;
         break;
       }
@@ -174,7 +165,7 @@ export class TicketNewComponent implements OnInit, OnDestroy {
 
   done() {
     const ticketTypes = this.setTicketTypes();
-    const paramObj: Object = {content_oid: this.contentId};
+    let paramObj: Object = { content_oid: this.contentId };
     this.is_loading = true;
 
     if (ticketTypes.length > 0) {

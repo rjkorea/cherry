@@ -1,14 +1,14 @@
-import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {FormBuilder, FormControl, Validators} from '@angular/forms';
-import {PopupService} from 'app/services/popup.service';
-import {utilModule} from '../../../shared/utils';
-import {ModalCenterComponent} from '../../common/popup/modal-center/modal-center.component';
-import {TicketSpreadComponent} from './ticket-spread/ticket-spread.component';
-import {DateTimeFormatPipe} from 'app/pipes/datetime.pipe';
-import {ModalBottomComponent} from 'app/components/common/popup/modal-bottom/modal-bottom.component';
-import {SingleDateComponent} from 'app/components/common/calendar/single-date/single-date.component';
-import {Observable} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef, Input, OnChanges } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { PopupService } from 'app/services/popup.service';
+import { utilModule } from '../../../shared/utils';
+import { ModalCenterComponent } from '../../common/popup/modal-center/modal-center.component';
+import { TicketSpreadComponent } from './ticket-spread/ticket-spread.component';
+import { DateTimeFormatPipe } from 'app/pipes/datetime.pipe';
+import { ModalBottomComponent } from 'app/components/common/popup/modal-bottom/modal-bottom.component';
+import { SingleDateComponent } from 'app/components/common/calendar/single-date/single-date.component';
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-box',
@@ -28,11 +28,12 @@ export class TicketBoxComponent implements OnInit, OnChanges {
   box: any;
   boxIndex: number;
   parentData: any;
-  maxByte40 = 40;
-  maxByte60 = 60;
-  limitLength = 0;
-  previousTicketCnt = 0;
-  isSpread = false;
+  maxByte40: number = 40;
+  maxByte60: number = 60;
+  limitLength: number = 0;
+  previousTicketCnt: number = 0;
+  isSpread: boolean = false;
+
   ticketForm = this.formBuilder.group({
     ticketName: new FormControl('', [Validators.required]),
     ticketDesc: new FormControl('', [Validators.required]),
@@ -61,7 +62,8 @@ export class TicketBoxComponent implements OnInit, OnChanges {
     this.popupService.subject.subscribe(res => {
       const date = this.dateFormat.transform(res.getTime(), 'date');
       const type = this.popupService.getData();
-      if (type['when'] === 'from') {
+
+      if (type === 'from') {
         this.ticketForm.controls['mFromDate'].setValue(date);
         this.ticketForm.controls['pcFromDate'].setValue(date);
       } else {
@@ -76,18 +78,16 @@ export class TicketBoxComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (this.isEdit) {
-      this.getThisTicket();
-    }
+    if (this.isEdit) this.getThisTicket();
   }
 
   getThisTicket() {
     this.editData.subscribe(res => {
-      this.setThisTicket(res[0]['data'], res[1]['data']);
+      this.setThisTicket(res[0]['data']);
     });
   }
 
-  setThisTicket(data: Object, eventData: Object): void {
+  setThisTicket(data: Object): void {
     if (data['sales_date'].hasOwnProperty('end')) {
       this.ticketForm.controls['mToDate'].setValue(this.dateFormat.transform(data['sales_date']['end'] * 1000, 'date'));
       this.ticketForm.controls['pcToDate'].setValue(this.dateFormat.transform(data['sales_date']['end'] * 1000, 'date'));
@@ -97,7 +97,8 @@ export class TicketBoxComponent implements OnInit, OnChanges {
       this.isSpread = true;
       this.ticketForm.controls['ticketSpread'].setValue(data['fpfg']['spread']);
     }
-    this.parentData = {ticketType: data['price'] > 0 ? 'pay' : 'free', contentDate: eventData['when']};
+
+    this.parentData = { ticketType: data['price'] > 0 ? 'pay' : 'free' };
 
     this.ticketForm.controls['ticketName'].setValue(data['name']);
     this.ticketForm.controls['ticketDesc'].setValue(data['desc']['value']);
@@ -129,7 +130,7 @@ export class TicketBoxComponent implements OnInit, OnChanges {
   }
 
   openCalendar(type, when, input): void {
-    this.popupService.setData({when: when, contentDate: this.parentData.contentDate});
+    this.popupService.setData(when);
     this.popupService.setView(this.viewContainerRef);
 
     if (type === 'm') {
