@@ -49,7 +49,10 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     videoUrl: new FormControl(''),
     notice: new FormControl(''),
     description: new FormControl(''),
+    sms: new FormControl(''),
+    purchaseUrl: new FormControl(''),
     staffAuthCode: new FormControl('', [Validators.pattern('[0-9]{4}'), Validators.minLength(4), Validators.maxLength(4)]),
+    bandPlace: new FormControl(''),
     commentsPrivate: new FormControl('')
   });
 
@@ -206,7 +209,10 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     this.contentsForm.controls['videoUrl'].setValue(data.video_url);
     this.contentsForm.controls['notice'].setValue(data.notice.message);
     this.contentsForm.controls['description'].setValue(data.desc);
+    this.contentsForm.controls['sms'].setValue(data.sms.message);
+    this.contentsForm.controls['purchaseUrl'].setValue(data.purchase_url);
     this.contentsForm.controls['staffAuthCode'].setValue(data.staff_auth_code),
+    this.contentsForm.controls['bandPlace'].setValue(data.band_place),
     this.contentsForm.controls['commentsPrivate'].setValue(data.comments.is_private);
     this.croppedImg = data.images[0].m;
     this.croppedImgSize = data.images[0].size || 0;
@@ -480,7 +486,10 @@ export class ContentNew2Component implements OnInit, OnDestroy {
       video_url: this.contentsForm.get('videoUrl').value || '',
       notice: this.contentsForm.get('notice').value || '',
       desc: this.contentsForm.get('description').value || '',
+      sms: this.contentsForm.get('sms').value || '',
+      purchase_url: this.contentsForm.get('purchaseUrl').value || '',
       staff_auth_code: this.contentsForm.get('staffAuthCode').value || '',
+      band_place: this.contentsForm.get('bandPlace').value || '',
       comments_private: this.contentsForm.get('commentsPrivate').value || false
     };
 
@@ -521,6 +530,7 @@ export class ContentNew2Component implements OnInit, OnDestroy {
         form.append('site_url', param.site_url);
         form.append('video_url', param.video_url);
         form.append('notice', param.notice);
+        form.append('purchase_url', param.purchase_url);
         form.append('desc', param.desc);
         form.append('comments_private', param.comments_private);
 
@@ -557,6 +567,9 @@ export class ContentNew2Component implements OnInit, OnDestroy {
   get videoUrl() { return this.contentsForm.get('videoUrl'); }
   get notice() { return this.contentsForm.get('notice'); }
   get description() { return this.contentsForm.get('description'); }
+  get sms() { return this.contentsForm.get('sms'); }
+  get purchaseUrl() { return this.contentsForm.get('purchaseUrl'); }
   get staffAuthCode() { return this.contentsForm.get('staffAuthCode'); }
+  get bandPlace() { return this.contentsForm.get('bandPlace'); }
   get commentsPrivate() { return this.contentsForm.get('commentsPrivate'); }
 }

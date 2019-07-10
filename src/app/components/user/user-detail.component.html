@@ -20,12 +20,15 @@
           <ul *ngIf="!edit_mode" class="list-group">
             <li class="list-group-item"><strong>아이디: </strong>{{user._id}}</li>
             <li class="list-group-item"><strong>이름: </strong>{{user.last_name}}{{user.name}}</li>
-            <li class="list-group-item"><strong>이메일: </strong>{{user.email}}</li>
             <li class="list-group-item"><strong>핸드폰 번호: </strong>+{{user.mobile.country_code}} {{user.mobile.number}}</li>
             <li class="list-group-item"><strong>생년월일: </strong>{{user.birthday}}</li>
             <li class="list-group-item"><strong>성별: </strong>{{user.gender}}</li>
+            <li class="list-group-item"><strong>이메일: </strong>{{user.email}}</li>
+            <li class="list-group-item"><strong>지역: </strong>{{user.area}}
             <li class="list-group-item"><strong>수정일시: </strong>{{user.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item"><strong>생성일시: </strong>{{user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>CS메모: </strong>{{user.memo}}
+            </li>
           </ul>
           <div *ngIf="edit_mode" class="edit">
             <div class="input-group">
@@ -35,11 +38,6 @@
             <div class="input-group">
               <span class="input-group-addon">이름</span>
               <input type="text" class="form-control" [(ngModel)]="user.name" name="name">
-            </div>
-            <br>
-            <div class="input-group">
-              <span class="input-group-addon">이메일</span>
-              <input type="text" class="form-control" [(ngModel)]="user.email" name="email">
             </div>
             <br>
             <div class="input-group">
@@ -55,6 +53,21 @@
             <div class="input-group">
               <span class="input-group-addon">성별</span>
               <input type="text" class="form-control" [(ngModel)]="user.gender" name="gender">
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon">이메일</span>
+              <input type="text" class="form-control" [(ngModel)]="user.email" name="email">
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon">지역</span>
+              <input type="text" class="form-control" [(ngModel)]="user.area" name="area">
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon">CS메모</span>
+              <input type="text" class="form-control" [(ngModel)]="user.memo" name="memo">
             </div>
             <br>
           </div>

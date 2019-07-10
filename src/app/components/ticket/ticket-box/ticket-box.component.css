@@ -152,3 +152,15 @@ input:disabled {
     font-size: 0.77rem;
     margin-top: 0.35rem;
 }
+
+.check-list {
+    margin: 1.5rem 0;
+}
+
+.check-list label:first-child {
+    font-size: 1.25rem;
+}
+
+.check-list label:last-child {
+    float: right;
+}

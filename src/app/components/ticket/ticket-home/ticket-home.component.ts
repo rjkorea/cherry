@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TicketService } from 'app/services/ticket.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from 'app/services/content.service';
+import { AuthService } from 'app/services/auth.service';
 
 @Component({
   selector: 'app-ticket-home',
@@ -19,7 +20,8 @@ export class TicketHomeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private ticketService: TicketService,
-    private contentService: ContentService
+    private contentService: ContentService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,21 @@ export class TicketHomeComponent implements OnInit {
     this.router.navigate([`ticket/types/${id}/new`, {previous: this.tickets.length}]);
   }
 
+
+  duplicateTicket(id: string): void {
+    this.ticketService.duplicateTicketType(id)
+      .subscribe(
+        response => {
+          window.location.reload();
+        },
+        error => {
+          alert(error.message);
+          console.log(error);
+        }
+      );
+    // this.router.navigate([`ticket/types/${id}/duplicate`, { previous: this.tickets.length }]);
+  }
+
   editTicket(id: string): void {
     this.router.navigate([`ticket/type/${id}/edit`]);
   }
@@ -54,6 +71,10 @@ export class TicketHomeComponent implements OnInit {
 
   createOrder(id: string): void {
     this.router.navigate([`ticket/orders/new`, {ticket_type_oid: id}]);
+  }
+
+  checkRole() {
+    return this.authService.getRole();
   }
 
 }

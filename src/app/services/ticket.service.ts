@@ -58,6 +58,13 @@ export class TicketService {
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  public duplicateTicketType(id: string): Observable<{}> {
+    const url = `${this.typeUrlV2}/${id}/duplicate`;
+    return this.http.put(url, {}, this.options)
+      .map((response: Response) => response.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
   public updateType(id: string, data: any): Observable<{}> {
     const url = `${this.typeUrl}/${id}`;
     return this.http.put(url, JSON.stringify(data), this.options)

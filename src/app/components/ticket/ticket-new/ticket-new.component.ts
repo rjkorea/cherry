@@ -127,6 +127,8 @@ export class TicketNewComponent implements OnInit, OnDestroy {
       const price = ticketObjs[i]['parentData']['ticketType'] === 'free' ? 0 : ticketObjs[i]['ticketForm'].get('ticketPrice').value;
       const limit = ticketObjs[i]['ticketForm'].get('ticketCount').value;
       const spread = ticketObjs[i]['ticketForm'].get('ticketSpread').value;
+      const duplicatedRegistration = ticketObjs[i]['ticketForm'].get('duplicatedRegistration').value;
+      const disabledSend = ticketObjs[i]['ticketForm'].get('disabledSend').value;
 
       if (name && desc && price >= 0 && limit > 0 && fromDate && toDate && fromHours && toHours && fromMins && toMins) {
         canSave = true;
@@ -144,6 +146,8 @@ export class TicketNewComponent implements OnInit, OnDestroy {
             spread: Number.parseInt(spread),
             now: 0
           },
+          duplicated_registration: duplicatedRegistration,
+          disabled_send: disabledSend,
           color: this.ticketService.ticketColors[colorCount < 5 ? colorCount++ : overColorCount++]
         });
       } else {

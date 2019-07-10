@@ -18,6 +18,8 @@
   </div>
 </div>
 
+<div *ngIf="is_loading"><img src="../../../assets/images/loading.svg">검색중입니다</div>
+
 <div *ngIf="mode=='idle' && staff_notice" class="row">
   <div class="col-md-6">
     <h4>공지사항</h4>

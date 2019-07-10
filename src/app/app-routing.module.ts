@@ -18,6 +18,9 @@ import { SignupDoneComponent } from './components/signup/signup-done.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { EntranceComponent } from './components/entrance/entrance.component';
 import { EntranceTicketComponent } from './components/entrance/entrance-ticket.component';
+import { CsComponent } from './components/cs/cs.component';
+import { CsTicketsComponent } from './components/cs/tickets.component';
+import { CsTicketDetailComponent } from './components/cs/ticket-detail.component';
 import { CompanyListComponent } from './components/company/company-list.component';
 import { CompanyDetailComponent } from './components/company/company-detail.component';
 import { CompanyNewComponent } from './components/company/company-new.component';
@@ -29,18 +32,11 @@ import { AdminNewComponent } from './components/admin/admin-new.component';
 import { AdminPasswordComponent } from './components/admin/admin-password.component';
 import { StaffListComponent } from './components/staff/staff-list.component';
 import { StaffNewComponent } from './components/staff/staff-new.component';
-import { ContentListComponent } from './components/content/content-list.component';
-import { ContentDetailComponent } from './components/content/content-detail.component';
-import { ContentNewComponent } from './components/content/content-new.component';
-import { ContentNewImageComponent } from './components/content/content-new-image.component';
 import { ContentGroupListComponent } from './components/content/content-group-list.component';
 import { ContentGroupEditComponent } from './components/content/content-group-edit.component';
 import { ContentGroupNewComponent } from './components/content/content-group-new.component';
 import { ContentGroupTicketListComponent } from './components/content/content-group-ticket-list.component';
 import { ContentGroupTicketSearchComponent } from './components/content/content-group-ticket-search.component';
-import { TicketTypeListComponent } from './components/ticket/type-list.component';
-import { TicketTypeDetailComponent } from './components/ticket/type-detail.component';
-import { TicketTypeNewComponent } from './components/ticket/type-new.component';
 import { TicketOrderListComponent } from './components/ticket/order-list.component';
 import { TicketOrderDetailComponent } from './components/ticket/order-detail.component';
 import { TicketOrderNewComponent } from './components/ticket/order-new.component';
@@ -114,6 +110,10 @@ const routes: Routes = [
   { path: 'entrance', component: EntranceComponent, canActivate: [AuthGuard] },
   { path: 'entrance/ticket/:id', component: EntranceTicketComponent, canActivate: [AuthGuard]},
 
+  { path: 'cs', component: CsComponent, canActivate: [AuthGuard] },
+  { path: 'cs/user/:id/tickets', component: CsTicketsComponent, canActivate: [AuthGuard] },
+  { path: 'cs/ticket/:id', component: CsTicketDetailComponent, canActivate: [AuthGuard] },
+
   { path: 'qna', component: QnaListComponent, canActivate: [AuthGuard] },
   { path: 'qna/:id', component: QnaDetailComponent, canActivate: [AuthGuard]},
   { path: 'qnas/new', component: QnaNewComponent, canActivate: [AuthGuard]},
@@ -141,6 +141,7 @@ const routes: Routes = [
   { path: 'ticket/types/:content_oid/new', component: TicketNewComponent, canActivate: [AuthGuard] },
   { path: 'ticket/type/:type_oid/edit', component: TicketEditComponent, canActivate: [AuthGuard] },
 
+  { path: '404', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent }
 
 ];

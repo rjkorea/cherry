@@ -42,6 +42,7 @@
       </div>
       <div class="btns">
         <button class="btn btn-block" (click)="editTicket(ticket._id)">수정하기</button>
+        <button *ngIf="checkRole() === 'super' || checkRole() === 'admin'" class="btn btn-block" (click)="duplicateTicket(ticket._id)">복제하기</button>
         <button class="btn btn-block" (click)="getOrders(ticket._id)">전송내역</button>
         <button class="btn btn-block" (click)="createOrder(ticket._id)">전송하기</button>
       </div>
