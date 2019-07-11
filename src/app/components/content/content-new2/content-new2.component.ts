@@ -461,6 +461,17 @@ export class ContentNew2Component implements OnInit, OnDestroy {
     alert('클립보드로 URL이 복사되었습니다.');
   }
 
+  getYoutubeEmbedLink(url: string): string {
+    const u = new URL(url);
+    if (u.hostname === 'www.youtube.com' || u.hostname === 'youtube.com') {
+      return `https://www.youtube.com/embed/${u.searchParams.get('v')}`;
+    } else if (u.hostname === 'youtu.be') {
+      return `https://www.youtube.com/embed${u.pathname}`;
+    } else {
+      return '';
+    }
+  }
+
   done(): void {
     const form = new FormData();
     const param = {

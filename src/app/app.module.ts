@@ -101,6 +101,8 @@ import { RfidService } from './services/rfid.service';
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { DateTimeFormatPipe } from './pipes/datetime.pipe';
 import { FileSizeFormatPipe } from './pipes/file-size.pipe';
+import { SafePipe } from './pipes/safe.pipe';
+
 import { TIMService } from './services/tim.service';
 import { IdComponent } from './components/login/find/id/id.component';
 import { PasswordComponent } from './components/login/find/password/password.component';
@@ -205,7 +207,8 @@ defineLocale('ko', koLocale);
     TicketBoxComponent,
     TicketPreviewComponent,
     TicketSpreadComponent,
-    TicketEditComponent
+    TicketEditComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
