@@ -126,6 +126,10 @@ export class TicketOrderListComponent implements OnInit {
       );
   }
 
+  onSearch(query: string) {
+    this.loadOrders(this.ticket_type_oid, query, 1);
+  }
+
   onNew() {
     this.router.navigate(['/ticket/orders/new', {ticket_type_oid: this.ticket_type_oid}]);
   }

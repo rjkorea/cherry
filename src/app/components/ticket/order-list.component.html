@@ -16,6 +16,15 @@
       <div class="col-md-2">
         <button type="button" class="btn btn-tkit-mint btn-lg" (click)="onNew()">티켓 전송하기</button>
       </div>
+      <div class="col-md-6 col-md-offset-4">
+        <div class="input-group search-box">
+          <input type="text" class="form-control" placeholder="name, mobile number" [(ngModel)]="query" name="query"
+            (keyup.enter)="onSearch(query)">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" (click)="onSearch()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          </span>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-4">
@@ -34,7 +43,7 @@
               <td>
                 <button class="btn btn-default btn-sm" type="button" (click)="onTicket(o._id)">
                   티켓
-                  <span class="badge">{{o.qty | number: '0.0-0'}}</span>
+                  <span class="badge">{{o.active_ticket_count | number: '0.0-0'}} / {{o.qty | number: '0.0-0'}}</span>
                 </button>
               </td>
               <td><a [routerLink]="['/ticket/order', o._id]">{{o.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</a></td>
