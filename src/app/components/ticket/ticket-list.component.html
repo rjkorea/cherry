@@ -51,7 +51,7 @@
                       </div>
                       <div class="modal-body">
                         <p *ngIf="selected_ticket"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{selected_ticket.receive_user.name}}</p>
-                        <p *ngIf="selected_ticket"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{selected_ticket.receive_user.mobile_number}}</p>
+                        <p *ngIf="selected_ticket"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> (+{{selected_ticket.receive_user.mobile.country_code}}) {{selected_ticket.receive_user.mobile.number}}</p>
                         <div *ngIf="selected_ticket" class="form-group">
                           <textarea type="text" class="form-control" rows="9" [(ngModel)]="sms_message"></textarea>
                         </div>
@@ -66,7 +66,7 @@
                 </div>
               </td>
               <td>
-                <button *ngIf="t.status === 'register' || t.status === 'send'" type="button" class="btn btn-danger btn-sm" (click)="onCancelModal(t)" data-toggle="modal" data-target="#cancel-modal">
+                <button *ngIf="(t.status === 'register' || t.status === 'send') && t.price==0" type="button" class="btn btn-danger btn-sm" (click)="onCancelModal(t)" data-toggle="modal" data-target="#cancel-modal">
                   <span class="glyphicon glyphicon-trash" aria-hidden="true"> 티켓취소</span>
                 </button>
                 <!-- Cancel Modal -->
