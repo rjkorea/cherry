@@ -369,7 +369,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadContents() {
-    this.contentService.getContentList('', 0, 100).subscribe(
+    this.contentService.getContentList('', 0, 200).subscribe(
       response => {
         this.contents = this.contents.concat(response['data']);
       },
