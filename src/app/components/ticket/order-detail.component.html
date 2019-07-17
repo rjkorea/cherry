@@ -10,21 +10,23 @@
           <ul class="list-group">
             <li *ngIf="order.parent_oid" class="list-group-item"><strong>부모 아이디: </strong>{{order.parent_oid}}</li>
             <li class="list-group-item"><strong>아이디: </strong>{{order._id}}</li>
-            <li class="list-group-item"><strong>수량: </strong>{{order.qty | number: '0.0-0'}}</li>
+            <li class="list-group-item"><strong>수량: </strong>{{order.qty | number: '0.0-0'}} 매</li>
             <li class="list-group-item"><strong>전송일시: </strong>{{order.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
           <ul class="list-group">
             <li class="list-group-item list-group-item-info"><strong>티켓타입</strong></li>
             <li class="list-group-item"><strong>이름: </strong>{{order.ticket_type.name}}</li>
             <li class="list-group-item"><strong>설명: </strong>{{order.ticket_type.desc.value}}</li>
-            <li class="list-group-item"><strong>가격: </strong>{{order.ticket_type.price | number: '0.0-0'}}</li>
+            <li class="list-group-item"><strong>가격: </strong>{{order.ticket_type.price | number: '0.0-0'}} 원</li>
             <li class="list-group-item"><strong>유효기간: </strong>{{order.ticket_type.sales_date.start | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}} ~ {{order.ticket_type.sales_date.end | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
           </ul>
           <ul class="list-group">
             <li class="list-group-item list-group-item-info"><strong>받는사람</strong></li>
             <li class="list-group-item"><strong>이름: </strong>{{order.receiver.name}}</li>
-            <li class="list-group-item"><strong>핸드폰 국가코드: </strong>{{order.receiver.mobile.country_code}}</li>
-            <li class="list-group-item"><strong>핸드폰 번호: </strong>{{order.receiver.mobile.number}}</li>
+            <li class="list-group-item"><strong>핸드폰 번호: </strong>
+              <span *ngIf="authService.getRole()==='host'">(+{{order.receiver.mobile.country_code}}) {{order.receiver.mobile.number | mobileNumberMask}}</span>
+              <span *ngIf="authService.getRole()!=='host'">(+{{order.receiver.mobile.country_code}}) {{order.receiver.mobile.number}}</span>
+            </li>
           </ul>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
+import { AuthService } from '../../services/auth.service';
 
 enum State {
   Init, Loading, Done
@@ -25,6 +26,7 @@ export class TicketOrderListComponent implements OnInit {
   ticket_order_type: string;
 
   constructor(private ticketService: TicketService,
+              private authService: AuthService,
               private route: ActivatedRoute,
               private router: Router) { }
 

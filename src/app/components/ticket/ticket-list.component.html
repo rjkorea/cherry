@@ -53,10 +53,25 @@
               <span *ngIf="t.status === 'use'" class="label label-info">입장완료</span>
               <span *ngIf="t.status === 'cancel'" class="label label-danger">취소</span>
             </td>
-            <td><span *ngIf="t.send_user"><a [routerLink]="['/user', t.send_user._id]">{{t.send_user.last_name}}{{t.send_user.name}}</a></span></td>
-            <td><span *ngIf="t.receive_user"><a [routerLink]="['/user', t.receive_user._id]">{{t.receive_user.last_name}}{{t.receive_user.name}}</a></span></td>
-            <td><span *ngIf="t.receive_user">(+{{t.receive_user.mobile.country_code}}) {{t.receive_user.mobile.number}}</span></td>
-            <td><span *ngIf="t.receive_user && t.receive_user.gender">{{t.receive_user.gender}}</span></td>
+            <td>
+              <span *ngIf="t.send_user">
+                <span *ngIf="authService.getRole()==='host'">{{t.send_user.last_name}}{{t.send_user.name}}</span>
+                <span *ngIf="authService.getRole()!=='host'"><a [routerLink]="['/user', t.send_user._id]">{{t.send_user.last_name}}{{t.send_user.name}}</a></span>
+              </span>
+            </td>
+            <td>
+              <span *ngIf="t.receive_user">
+                <span *ngIf="authService.getRole()==='host'">{{t.receive_user.last_name}}{{t.receive_user.name}}</span>
+                <span *ngIf="authService.getRole()!=='host'"><a [routerLink]="['/user', t.receive_user._id]">{{t.receive_user.last_name}}{{t.receive_user.name}}</a></span>
+              </span>
+            </td>
+            <td>
+              <span *ngIf="t.receive_user">
+                <span *ngIf="authService.getRole()==='host'">(+{{t.receive_user.mobile.country_code}}) {{t.receive_user.mobile.number | mobileNumberMask}}</span>
+                <span *ngIf="authService.getRole()!=='host'">(+{{t.receive_user.mobile.country_code}}) {{t.receive_user.mobile.number}}</span>
+              </span>
+            </td>
+            <td><span *ngIf="t.receive_user && t.receive_user.gender">{{t.receive_user.gender | gender}}</span></td>
             <td>
               <button *ngIf="(t.status === 'register' || t.status === 'send') && t.price==0" type="button" class="btn btn-danger btn-sm" (click)="onCancelModal(t)" data-toggle="modal" data-target="#cancel-modal">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"> 티켓취소</span>
@@ -73,7 +88,7 @@
                       <h5>티켓 취소 시 행사 입장이 불가해 집니다</h5>
                       <h5>정말 티켓을 취소 하시겠습니까?</h5>
                       <p *ngIf="t.receive_user">{{t.receive_user.last_name}}{{t.receive_user.name}}</p>
-                      <p *ngIf="t.receive_user">(+{{t.receive_user.mobile.country_code}}) {{t.receive_user.mobile.number}}</p>
+                      <p *ngIf="t.receive_user">(+{{t.receive_user.mobile.country_code}}) {{t.receive_user.mobile.number | mobileNumberMask}}</p>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onCancel(selected_ticket._id)">취소</button>

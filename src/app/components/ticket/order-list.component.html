@@ -51,7 +51,10 @@
             </td>
             <td><a [routerLink]="['/ticket/order', o._id]">{{o.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</a></td>
             <td>{{o.receiver.name}}</td>
-            <td>(+{{o.receiver.mobile.country_code}}) {{o.receiver.mobile.number}}</td>
+            <td>
+              <span *ngIf="authService.getRole()==='host'">(+{{o.receiver.mobile.country_code}}) {{o.receiver.mobile.number | mobileNumberMask}}</span>
+              <span *ngIf="authService.getRole()!=='host'">(+{{o.receiver.mobile.country_code}}) {{o.receiver.mobile.number}}</span>
+            </td>
           </tr>
         </table>
       </div>
