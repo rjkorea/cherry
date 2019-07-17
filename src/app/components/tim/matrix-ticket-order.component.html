@@ -46,7 +46,7 @@
             <tr *ngFor="let tos of ticket_orders_stats; let i = index">
               <td>{{i+1}}</td>
               <td>{{tos.ticket_order.receiver.name}}</td>
-              <td>{{tos.ticket_type.name}} ({{tos.ticket_type.desc.value}})</td>
+              <td class="text-truncate">{{tos.ticket_type.name}} ({{tos.ticket_type.desc.value}})</td>
               <td><span class="label label-warning">{{tos.send | number: '0.0-0'}}</span></td>
               <td><span class="badge badge-success">{{tos.register | number: '0.0-0'}}</span></td>
               <td><span class="badge badge-primary">{{tos.pay | number: '0.0-0'}}</span></td>

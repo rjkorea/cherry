@@ -44,7 +44,7 @@
             </tr>
             <tr *ngFor="let tts of ticket_types_stats; let i = index">
               <td>{{i+1}}</td>
-              <td>{{tts.ticket_type.name}} ({{tts.ticket_type.desc.value}})</td>
+              <td class="text-truncate">{{tts.ticket_type.name}} ({{tts.ticket_type.desc.value}})</td>
               <td><span class="label label-warning">{{tts.send | number: '0.0-0'}}</span></td>
               <td><span class="badge badge-success">{{tts.register | number: '0.0-0'}}</span></td>
               <td><span class="badge badge-primary">{{tts.pay | number: '0.0-0'}}</span></td>
