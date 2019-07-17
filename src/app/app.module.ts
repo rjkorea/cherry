@@ -102,6 +102,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { DateTimeFormatPipe } from './pipes/datetime.pipe';
 import { FileSizeFormatPipe } from './pipes/file-size.pipe';
 import { SafePipe } from './pipes/safe.pipe';
+import { MobileNumberMaskPipe } from './pipes/mobile-number-mask.pipe';
+import { GenderPipe } from './pipes/gender.pipe';
 
 import { TIMService } from './services/tim.service';
 import { IdComponent } from './components/login/find/id/id.component';
@@ -122,6 +124,7 @@ import { TicketBoxComponent } from './components/ticket/ticket-box/ticket-box.co
 import { TicketPreviewComponent } from './components/ticket/ticket-preview/ticket-preview.component';
 import { TicketSpreadComponent } from './components/ticket/ticket-box/ticket-spread/ticket-spread.component';
 import { TicketEditComponent } from './components/ticket/ticket-edit/ticket-edit.component';
+
 
 
 defineLocale('ko', koLocale);
@@ -208,7 +211,9 @@ defineLocale('ko', koLocale);
     TicketPreviewComponent,
     TicketSpreadComponent,
     TicketEditComponent,
-    SafePipe
+    SafePipe,
+    MobileNumberMaskPipe,
+    GenderPipe
   ],
   imports: [
     BrowserModule,
