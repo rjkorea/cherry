@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-ticket-detail',
@@ -15,10 +16,11 @@ export class TicketDetailComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
+              private authService: AuthService,
               private ticketService: TicketService) { }
 
   ngOnInit() {
-    let params: Params = this.route.snapshot.params;
+    const params: Params = this.route.snapshot.params;
     this.loadTicket(params['id']);
   }
 

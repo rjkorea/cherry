@@ -1,7 +1,7 @@
 <div *ngIf="checkRole() === 'super' || checkRole() === 'admin'; else notSuper">
   <div class="col-md-6">
     <div>
-      <h3>엑셀파일(CSV) 형식은 아래 사항과 준수해주세요.</h3>
+      <h3>엑셀파일(CSV) 형식은 아래 사항을 준수해주세요.</h3>
       <ul>
         <li><span>1. 파일의 확장자는 .csv로 작성하여 주세요. (예, umf_2020_invitation.csv)</span></li>
         <li><span>2. 컬럼명은 name, mobile_number, qty 순으로 작성하여 주세요.</span></li>
@@ -55,6 +55,12 @@
           </td>
         </tr>
       </table>
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" class="form-control check" [checked]="send_kakaotalk" (change)="send_kakaotalk = !send_kakaotalk">
+        <span>&nbsp;카카오 알림톡 보내기</span>
+      </label>
     </div>
     <button *ngIf="!is_uploading" type="button" class="btn btn-tkit-mint" (click)="uploadCsv()">전송하기</button>
     <button *ngIf="is_uploading" type="button" class="btn" [disabled]=true>전송중</button>

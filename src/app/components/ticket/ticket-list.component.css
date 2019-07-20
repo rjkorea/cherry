@@ -1,0 +1,12 @@
+.filter {
+  opacity: 1.0;
+}
+
+.search-no-result {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 400px;
+  align-items: center;
+  font-size: x-large;
+}

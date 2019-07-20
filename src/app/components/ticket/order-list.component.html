@@ -1,77 +1,100 @@
-<ng-template [ngIf]="is_loading">
+<ng-template [ngIf]="state===StateEnum.Init">
+  <app-skeleton></app-skeleton>
+</ng-template>
+
+<ng-template [ngIf]="state===StateEnum.Loading">
   <app-loader></app-loader>
 </ng-template>
 
-<ng-template [ngIf]="!is_loading">
-  <div *ngIf="count>0">
-    <div class="row">
-      <div class="col-md-12">
-        <ol class="breadcrumb">
-          <li><a [routerLink]="['/ticket/type', {content_oid: type.content._id}]">{{type.content.name}}</a></li>
-          <li class="active">{{type.name}}</li>
-        </ol>
-      </div>
+<ng-template [ngIf]="state===StateEnum.Done && count>=0">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a [routerLink]="['/ticket/type', type.content._id]">{{type.content.name}}</a></li>
+        <li class="active">{{type.name}} ({{type.desc.value}}) [₩ {{type.price | number: '0.0-0'}}]</li>
+      </ol>
     </div>
-    <div class="row">
-      <div class="col-md-2">
-        <button type="button" class="btn btn-tkit-mint btn-lg" (click)="onNew()">티켓 전송하기</button>
-      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <button type="button" class="btn btn-tkit-mint btn-lg" (click)="onNew()">티켓 전송하기</button>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <h3>티켓전송 <span class="badge">{{count | number: '0.0-0'}}</span></h3>
-      </div>
-      <div class="col-md-12">
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <tr>
-              <th>티켓수량</th>
-              <th>전송일시</th>
-              <th>받는사람 이름</th>
-              <th>받는사람 핸드폰번호</th>
-            </tr>
-            <tr *ngFor="let o of orders">
-              <td>
-                <button class="btn btn-default btn-sm" type="button" (click)="onTicket(o._id)">
-                  티켓
-                  <span class="badge">{{o.qty | number: '0.0-0'}}</span>
-                </button>
-              </td>
-              <td><a [routerLink]="['/ticket/order', o._id]">{{o.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</a></td>
-              <td>{{o.receiver.name}}</td>
-              <td>{{o.receiver.mobile.country_code}} {{o.receiver.mobile.number}}</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <nav aria-label="...">
-            <ul class="pager">
-              <li *ngIf="page!=1"><a (click)="onPrev()">이전</a></li>
-              <li *ngIf="page*size<count"><a (click)="onNext()">다음</a></li>
-            </ul>
-          </nav>
-        </div>
+    <div class="col-md-6 col-md-offset-4">
+      <div class="input-group search-box">
+        <input type="text" class="form-control" placeholder="name, mobile number" [(ngModel)]="query" name="query"
+          (keyup.enter)="onSearch(query)">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" (click)="onSearch(query)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        </span>
       </div>
     </div>
   </div>
-
-  <div *ngIf="count==0">
+  <div *ngIf="count>0" class="row">
+    <div class="col-md-4">
+      <h3>티켓전송 <span class="badge">{{count | number: '0.0-0'}}</span></h3>
+    </div>
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <tr>
+            <th>전환티켓 / 티켓수량</th>
+            <th>전송일시</th>
+            <th>받는사람 이름</th>
+            <th>받는사람 핸드폰번호</th>
+          </tr>
+          <tr *ngFor="let o of orders">
+            <td>
+              <button class="btn btn-default btn-sm" type="button" (click)="onTicket(o._id)">
+                티켓
+                <span class="badge">{{o.active_ticket_count | number: '0.0-0'}} / {{o.qty | number: '0.0-0'}}</span>
+              </button>
+            </td>
+            <td><a [routerLink]="['/ticket/order', o._id]">{{o.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</a></td>
+            <td>{{o.receiver.name}}</td>
+            <td>
+              <span *ngIf="authService.getRole()==='host'">(+{{o.receiver.mobile.country_code}}) {{o.receiver.mobile.number | mobileNumberMask}}</span>
+              <span *ngIf="authService.getRole()!=='host'">(+{{o.receiver.mobile.country_code}}) {{o.receiver.mobile.number}}</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        {{count | number: '0.0-0'}}개 중 {{((page-1)*size)+1}} - {{((page-1)*size)+orders.length}}
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-12">
-        <ol class="breadcrumb">
-          <li><a [routerLink]="['/ticket/type', {content_oid: type.content._id}]">{{type.content.name}}</a></li>
-          <li class="active">{{type.name}}</li>
-        </ol>
+        <nav aria-label="...">
+          <ul class="pager">
+            <li *ngIf="page!=1"><a (click)="onFirstPage()">처음</a></li>
+            <li *ngIf="page!=1"><a (click)="onPrevPage()">이전</a></li>
+            <li *ngIf="page*size<count"><a (click)="onNextPage()">다음</a></li>
+            <li *ngIf="page*size<count"><a (click)="onEndPage()">마지막</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
-    <div class="row">
-      <div class="jumbotron">
-        <h2>빠르게 티켓을 전송하여 여러분의 행사를 홍보하세요</h2>
-        <p>The efficient way to success your events</p>
-        <button type="button" class="btn btn-tkit-mint btn-lg" (click)="onNew()">티켓 전송 시작하기</button>
-      </div>
-    </div>
+  </div>
+  <div *ngIf="count==0" class="row search-no-result">
+    검색결과가 존재하지 않습니다
   </div>
 </ng-template>
+
+<!-- TODO: 전송내역이 없을 경우와 검색결과의 내용이 없는경우 화면을 나눠서 처리해야 한다 -->
+<!-- <ng-template [ngIf]="state===StateEnum.Done && count==0">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a [routerLink]="['/ticket/type', type.content._id]">{{type.content.name}}</a></li>
+        <li class="active">{{type.name}} ({{type.desc.value}}) [₩ {{type.price | number: '0.0-0'}}]</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="jumbotron">
+      <h2>빠르게 티켓을 전송하여 여러분의 행사를 홍보하세요</h2>
+      <p>The efficient way to success your events</p>
+      <button type="button" class="btn btn-tkit-mint btn-lg" (click)="onNew()">티켓 전송 시작하기</button>
+    </div>
+  </div>
+</ng-template> -->

@@ -13,6 +13,7 @@ export class TicketLoadCsvComponent implements OnInit {
   ticket_type_oid: string;
   data: any;
   is_uploading: boolean;
+  send_kakaotalk: boolean;
 
   constructor(
     private ticketService: TicketService,
@@ -23,6 +24,7 @@ export class TicketLoadCsvComponent implements OnInit {
 
   ngOnInit() {
     this.is_uploading = false;
+    this.send_kakaotalk = true;
     const params: Params = this.route.snapshot.params;
     if ('ticket_type_oid' in params) {
       this.ticket_type_oid = params['ticket_type_oid'];
@@ -89,7 +91,8 @@ export class TicketLoadCsvComponent implements OnInit {
     this.is_uploading = true;
     this.data = {
       ticket_type_oid: this.ticket_type_oid,
-      users: this.parsed_csv.data
+      users: this.parsed_csv.data,
+      send_kakaotalk: this.send_kakaotalk
     }
     this.ticketService.createTicketOrderCsvV2(this.data)
       .subscribe(

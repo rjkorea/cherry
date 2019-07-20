@@ -20,11 +20,11 @@
           <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
               <div class="caption">
-                <h5>[{{ticket.content.name}}]</h5>
-                <h4>
+                <h5 class="text-truncate">[{{ticket.content.name}}]</h5>
+                <h4 class="text-truncate">
                   <a [routerLink]="['/cs/ticket', ticket._id]">{{ticket.ticket_type.name}}</a>
                 </h4>
-                <h5>{{ticket.ticket_type.desc.value}}</h5>
+                <h5 class="text-truncate">{{ticket.ticket_type.desc.value}}</h5>
                 <h5 *ngIf="ticket.price>0" class="bold">티켓가격 ₩ {{ticket.price | number: '0.0-0'}}</h5>
                 <h5 *ngIf="ticket.price===0" class="tkit-mint-color">FREE TICKET</h5>
                 <p>
