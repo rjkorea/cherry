@@ -49,7 +49,7 @@
                 </li>
                 <li class="list-group-item"><strong>핸드폰 번호: </strong>+({{ticket.receive_user.mobile.country_code}}) {{ticket.receive_user.mobile.number}}</li>
                 <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>출생년도: </strong>{{ticket.receive_user.birthday}}</li>
-                <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender}}</li>
+                <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender | gender}}</li>
                 <li *ngIf="ticket.receive_user.memo" class="list-group-item"><strong>CS메모: </strong>{{ticket.receive_user.memo}}</li>
               </ul>
             </div>

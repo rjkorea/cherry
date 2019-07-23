@@ -36,9 +36,9 @@
                   <span *ngIf="ticket.status=='cancel'" class="label label-danger">취소</span>
                 </p>
                 <p>
-                  <span *ngIf="!ticket.history_send_user_oids" class="label hangang-blue-bg">소유하고 있는 티켓</span>
-                  <span *ngIf="ticket.history_send_user_oids" class="label ultra-bora-bg">전송한적 있는 티켓</span>
-                  <span *ngIf="ticket.history_send_user_oids" class="label ultra-bora-bg">소유자는 {{ticket.receive_user.last_name}}{{ticket.receive_user.name}} +({{ticket.receive_user.mobile.country_code}}) {{ticket.receive_user.mobile.number}}</span>
+                  <span *ngIf="isUserTicket(ticket.receive_user._id)" class="label hangang-blue-bg">소유하고 있는 티켓</span>
+                  <span *ngIf="!isUserTicket(ticket.receive_user._id)" class="label ultra-bora-bg">전송한적 있는 티켓</span>
+                  <span *ngIf="!isUserTicket(ticket.receive_user._id)" class="label ultra-bora-bg">소유자는 {{ticket.receive_user.last_name}}{{ticket.receive_user.name}} +({{ticket.receive_user.mobile.country_code}}) {{ticket.receive_user.mobile.number}}</span>
                 </p>
               </div>
             </div>

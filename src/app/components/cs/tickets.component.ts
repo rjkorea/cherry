@@ -32,6 +32,9 @@ export class CsTicketsComponent implements OnInit {
     this.page = 1;
     this.size = 12;
     const params: Params = this.route.snapshot.params;
+    if ('page' in params) {
+      this.page = params['page'];
+    }
     this.user_oid = params['id'];
     this.getUser(this.user_oid);
   }
@@ -64,6 +67,10 @@ export class CsTicketsComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  isUserTicket(user_oid: string) {
+    return user_oid === this.user['_id'];
   }
 
   onPrev() {
