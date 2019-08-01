@@ -19,8 +19,7 @@
     <div class="col-md-6">
       <div class="filter">
         <span class="label label-warning" [style.opacity]="filters.send ? 1 : 0.3" (click)="onFilter('send')">전송중</span>
-        <span class="label label-success" [style.opacity]="filters.register ? 1 : 0.3"
-          (click)="onFilter('register')">등록완료</span>
+        <span class="label label-success" [style.opacity]="filters.register ? 1 : 0.3" (click)="onFilter('register')">등록완료</span>
         <span class="label label-primary" [style.opacity]="filters.pay ? 1 : 0.3" (click)="onFilter('pay')">결제완료</span>
         <span class="label label-info" [style.opacity]="filters.use ? 1 : 0.3" (click)="onFilter('use')">입장완료</span>
         <span class="label label-danger" [style.opacity]="filters.cancel ? 1 : 0.3" (click)="onFilter('cancel')">취소</span>

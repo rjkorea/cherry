@@ -97,6 +97,7 @@ import { UtilService } from './services/util.service';
 import { QnaService } from './services/qna.service';
 import { PopupService } from './services/popup.service';
 import { RfidService } from './services/rfid.service';
+import { TargetService } from './services/target.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { DateTimeFormatPipe } from './pipes/datetime.pipe';
@@ -124,7 +125,8 @@ import { TicketBoxComponent } from './components/ticket/ticket-box/ticket-box.co
 import { TicketPreviewComponent } from './components/ticket/ticket-preview/ticket-preview.component';
 import { TicketSpreadComponent } from './components/ticket/ticket-box/ticket-spread/ticket-spread.component';
 import { TicketEditComponent } from './components/ticket/ticket-edit/ticket-edit.component';
-
+import { TargetNewComponent } from './components/target/target-new.component';
+import { TargetComponent } from './components/target/target.component';
 
 
 defineLocale('ko', koLocale);
@@ -213,7 +215,9 @@ defineLocale('ko', koLocale);
     TicketEditComponent,
     SafePipe,
     MobileNumberMaskPipe,
-    GenderPipe
+    GenderPipe,
+    TargetNewComponent,
+    TargetComponent
   ],
   imports: [
     BrowserModule,
@@ -261,6 +265,7 @@ defineLocale('ko', koLocale);
     QnaService,
     PopupService,
     RfidService,
+    TargetService,
     DateTimeFormatPipe,
     FileSizeFormatPipe
   ],
