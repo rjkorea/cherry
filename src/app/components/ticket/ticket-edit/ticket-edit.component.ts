@@ -107,8 +107,9 @@ export class TicketEditComponent implements OnInit {
         spread : this.ticketBox['ticketForm'].get('ticketSpread').value
       },
       duplicated_registration: this.ticketBox['ticketForm'].get('duplicatedRegistration').value,
-      disabled_send: this.ticketBox['ticketForm'].get('disabledSend').value
-
+      disabled_send: this.ticketBox['ticketForm'].get('disabledSend').value,
+      show_price: this.ticketBox['ticketForm'].get('showPrice').value,
+      enabled_desc: this.ticketBox['ticketForm'].get('enabledDesc').value
     };
 
     this.is_loading = true;

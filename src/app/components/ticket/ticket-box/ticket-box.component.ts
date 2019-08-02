@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PopupService } from 'app/services/popup.service';
+import { AuthService } from 'app/services/auth.service';
 import { utilModule } from '../../../shared/utils';
 import { ModalCenterComponent } from '../../common/popup/modal-center/modal-center.component';
 import { TicketSpreadComponent } from './ticket-spread/ticket-spread.component';
@@ -49,11 +50,14 @@ export class TicketBoxComponent implements OnInit, OnChanges {
     ticketCount: new FormControl(''),
     ticketSpread: new FormControl(''),
     duplicatedRegistration: new FormControl(''),
-    disabledSend: new FormControl('')
+    disabledSend: new FormControl(''),
+    showPrice: new FormControl(''),
+    enabledDesc: new FormControl(''),
   });
 
   constructor(
     private formBuilder: FormBuilder,
+    private authService: AuthService,
     private popupService: PopupService,
     private viewContainerRef: ViewContainerRef,
     private dateFormat: DateTimeFormatPipe,
@@ -112,6 +116,8 @@ export class TicketBoxComponent implements OnInit, OnChanges {
     this.ticketForm.controls['pcFromDate'].setValue(this.dateFormat.transform(data['sales_date']['start'] * 1000, 'date'));
     this.ticketForm.controls['duplicatedRegistration'].setValue(data['duplicated_registration']);
     this.ticketForm.controls['disabledSend'].setValue(data['disabled_send']);
+    this.ticketForm.controls['showPrice'].setValue(data['show_price']);
+    this.ticketForm.controls['enabledDesc'].setValue(data['desc']['enabled']);
 
     this.checkBytes(this.nameInput.nativeElement, this.byteInput.nativeElement, 40);
     this.checkBytes(this.descInput.nativeElement, this.byte02Input.nativeElement, 60);
