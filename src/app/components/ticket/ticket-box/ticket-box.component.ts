@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PopupService } from 'app/services/popup.service';
-import { AuthService } from 'app/services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { utilModule } from '../../../shared/utils';
 import { ModalCenterComponent } from '../../common/popup/modal-center/modal-center.component';
 import { TicketSpreadComponent } from './ticket-spread/ticket-spread.component';
@@ -57,7 +57,7 @@ export class TicketBoxComponent implements OnInit, OnChanges {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    public authService: AuthService,
     private popupService: PopupService,
     private viewContainerRef: ViewContainerRef,
     private dateFormat: DateTimeFormatPipe,
