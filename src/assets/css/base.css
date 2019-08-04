@@ -27,6 +27,12 @@ body {
   border-color: #ed7f81;
 }
 
+.btn-tkit-mustard-norang {
+  color: #fff;
+  background-color: #f6d87f;
+  border-color: #f6d87f;
+}
+
 .label-tkit-mint {
   background-color: #62aab8;
 }

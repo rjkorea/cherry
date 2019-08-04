@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">티켓을 소지하고 있는 유저들을 타겟한다</h3>
+      </div>
+      <div class="panel-body">
+        <h4>Step 1. 행사선택</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="TKIT 행사 검색" autocomplete="off" [(ngModel)]="query" name="query" (keyup.enter)="onSearch()">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" (click)="onSearch()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+              </span>
+            </div>
+            <br>
+          </div>
+        </div>
+        <div *ngIf="state===StateEnum.Init" class="row">
+          <div class="col-md-12">
+            <app-skeleton></app-skeleton>
+          </div>
+        </div>
+        <div *ngIf="state===StateEnum.Loading" class="row">
+          <div class="col-md-12">
+            <app-loader></app-loader>
+          </div>
+        </div>
+        <div *ngIf="state===StateEnum.Done" class="row">
+          <div *ngFor="let content of contents">
+            <div class="col-md-3" (click)="setContent(content._id)">
+              <div class="content-box" [ngStyle]="{'background-color': content._id === content_oid ? '#f5f5f5' : 'white'}">
+                <img src="{{content.images[0].m}}" alt="...">
+                <h5 class="text-truncate">{{content.name}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4 *ngIf="content_oid">Step 2. 티켓권종 선택</h4>
+        <div class="row" *ngIf="content_oid">
+          <div *ngIf="ticket_types.length > 0" class="col-md-6 select-option">
+            <span (click)="onAllTicketType()"><u>모두선택</u></span>&nbsp;&nbsp;<span (click)="onClearTicketType()"><u>지우기</u></span>
+          </div>
+          <div *ngIf="ticket_types.length === 0" class="col-md-6 select-option">
+            <h5>티켓권종이 존재하지 않습니다</h5>
+          </div>
+        </div>
+        <div class="row" *ngIf="content_oid">
+          <div *ngFor="let ticket_type of ticket_types; let i = index;">
+            <div class="col-md-4">
+              <div *ngIf="ticket_type.color==='tkit-mint'" class="color-bar tkit-mint-bg" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'"></div>
+              <div *ngIf="ticket_type.color==='tkit-coral'" class="color-bar tkit-coral-bg" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'"></div>
+              <div *ngIf="ticket_type.color==='ultra-bora'" class="color-bar hangang-blue-bg" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'"></div>
+              <div *ngIf="ticket_type.color==='hangang-blue'" class="color-bar ultra-bora-bg" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'"></div>
+              <div *ngIf="ticket_type.color==='mustard-norang'" class="color-bar mustard-norang-bg" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'"></div>
+              <div class="ticket-type-box" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'" (click)="onTicketTypes(i)">
+                <div class="caption">
+                  <h4 class="text-truncate">{{ticket_type.name}}</h4>
+                  <h5 class="text-truncate">{{ticket_type.desc.value}}</h5>
+                  <h5 *ngIf="ticket_type.price>0" class="bold">티켓가격 ₩ {{ticket_type.price | number: '0.0-0'}}</h5>
+                  <h5 *ngIf="ticket_type.price===0" class="tkit-mint-color">FREE TICKET</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4 *ngIf="content_oid">Step 3. 티켓상태 선택</h4>
+        <div *ngIf="content_oid" class="row">
+          <div class="col-md-6">
+            <div class="filter">
+              <span class="label label-warning" [style.opacity]="filters.send ? 1 : 0.3" (click)="onFilter('send')">전송중</span>
+              <span class="label label-success" [style.opacity]="filters.register ? 1 : 0.3" (click)="onFilter('register')">등록완료</span>
+              <span class="label label-primary" [style.opacity]="filters.pay ? 1 : 0.3" (click)="onFilter('pay')">결제완료</span>
+              <span class="label label-info" [style.opacity]="filters.use ? 1 : 0.3" (click)="onFilter('use')">입장완료</span>
+              <span class="label label-danger" [style.opacity]="filters.cancel ? 1 : 0.3" (click)="onFilter('cancel')">취소</span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="content_oid" class="row">
+          <div class="col-md-6">
+            <button *ngIf="!is_analyze" class="btn btn-tkit-mint btn-block analyze-btn" (click)="onAnalyze()">분  석</button>
+            <button *ngIf="is_analyze" class="btn btn-tkit-mint btn-block analyze-btn" [disabled]="true">분석중...</button>
+            <div *ngIf="is_analyze" class="progress progress-margin">
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                <span class="sr-only">100% Complete</span>
+              </div>
+            </div>
+            <h3 *ngIf="target_count != null">총 {{target_count | number: '0.0-0'}}명이 타겟 되었습니다</h3>
+          </div>
+        </div>
+        <div *ngIf="target_count>0">
+          <h4>Step 4. 푸시 종류 선택</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-tkit-mint sms-btn">문자 메세지</button>
+              <button class="btn btn-tkit-mustard-norang kakaotalk-btn">카카오 알림톡 (준비중)</button>
+              <div class="form-group">
+                <textarea type="text" class="form-control" rows="2" [(ngModel)]="sms.title" placeholder="제목을 입력해주세요."></textarea>
+                <textarea type="text" class="form-control" rows="13" [(ngModel)]="sms.message" placeholder="내용을 입력해주세요."></textarea>
+                <button *ngIf="!is_send" class="btn btn-tkit-mint btn-block" (click)="onSend()">타겟된 {{target_count | number: '0.0-0'}}명의 유저에게 전송하기</button>
+                <button *ngIf="is_send" class="btn btn-tkit-mint btn-block" [disabled]="true">전송중...</button>
+                <div *ngIf="is_send" class="progress progress-margin">
+                  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,7 +24,7 @@
         <ul class="first-desc">
           <li>등록수량 : {{ ticket.fpfg.now.toLocaleString() }} / <span class="bold">{{ ticket.fpfg.limit.toLocaleString() }}</span></li>
           <li class="bold name">{{ ticket.name }}</li>
-          <li class="demi-light desc" *ngIf="ticket.desc.enabled">{{ ticket.desc.value }}</li>
+          <li class="demi-light desc">{{ ticket.desc.value }}</li>
         </ul>
         <ul class="second-desc">
           <li class="demi-light">

@@ -1,0 +1,98 @@
+<ng-template [ngIf]="state===StateEnum.Init">
+  <app-skeleton></app-skeleton>
+</ng-template>
+
+<ng-template [ngIf]="state===StateEnum.Loading">
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template [ngIf]="state===StateEnum.Done && count>=0">
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-tkit-mint btn-lg" (click)="onNew()">티켓을 소지하고 있는 유저들을 타겟한다</button>
+    </div>
+  </div>
+  <div *ngIf="count>0" class="row">
+    <div class="col-md-4">
+      <h3>타겟팅 히스토리 <span class="badge">{{count | number: '0.0-0'}}</span></h3>
+    </div>
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <tr>
+            <th>전송일시</th>
+            <th>전송한 사람</th>
+            <th>행사이름</th>
+            <th>티켓타입</th>
+            <th>티켓상태</th>
+            <th>전송타입</th>
+            <th>타겟명수</th>
+            <th>전송성공</th>
+            <th>전송실패</th>
+            <th>전송내용</th>
+          </tr>
+          <tr *ngFor="let t of targets">
+            <td>{{t.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
+            <td>{{t.admin.last_name}}{{t.admin.name}}</td>
+            <td class="text-truncate">{{t.content.name}}</td>
+            <td class="text-truncate">{{t.ticket_type.name}} 외</td>
+            <td>
+              <div *ngFor="let s of t.status">
+                <span *ngIf="s==='send'" class="label label-warning">전송중</span>
+                <span *ngIf="s==='register'" class="label label-success">등록완료</span>
+                <span *ngIf="s==='pay'" class="label label-primary">결제완료</span>
+                <span *ngIf="s==='use'" class="label label-info">입장완료</span>
+                <span *ngIf="s==='cancel'" class="label label-danger">취소</span>
+              </div>
+            </td>
+            <td>
+              <span *ngIf="t.type==='lms'">문자메세지</span>
+              <span *ngIf="t.type==='kakaotalk'">카카오알림톡</span>
+            </td>
+            <td>{{t.count | number: '0.0-0'}} 명</td>
+            <td>{{t.success_count | number: '0.0-0'}} 명</td>
+            <td>{{(t.count - t.success_count) | number: '0.0-0'}} 명</td>
+            <td class="text-truncate">{{t.sms.title}}</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        {{count | number: '0.0-0'}}개 중 {{((page-1)*size)+1}} - {{((page-1)*size)+targets.length}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <nav aria-label="...">
+          <ul class="pager">
+            <li *ngIf="page!=1"><a (click)="onFirstPage()">처음</a></li>
+            <li *ngIf="page!=1"><a (click)="onPrevPage()">이전</a></li>
+            <li *ngIf="page*size<count"><a (click)="onNextPage()">다음</a></li>
+            <li *ngIf="page*size<count"><a (click)="onEndPage()">마지막</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="count==0" class="row search-no-result">
+    검색결과가 존재하지 않습니다
+  </div>
+</ng-template>
+
+<!-- TODO: 전송내역이 없을 경우와 검색결과의 내용이 없는경우 화면을 나눠서 처리해야 한다 -->
+<!-- <ng-template [ngIf]="state===StateEnum.Done && count==0">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a [routerLink]="['/ticket/type', type.content._id]">{{type.content.name}}</a></li>
+        <li class="active">{{type.name}} ({{type.desc.value}}) [₩ {{type.price | number: '0.0-0'}}]</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="jumbotron">
+      <h2>빠르게 티켓을 전송하여 여러분의 행사를 홍보하세요</h2>
+      <p>The efficient way to success your events</p>
+      <button type="button" class="btn btn-tkit-mint btn-lg" (click)="onNew()">티켓 전송 시작하기</button>
+    </div>
+  </div>
+</ng-template> -->
