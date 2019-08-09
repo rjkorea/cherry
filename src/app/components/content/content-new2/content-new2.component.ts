@@ -92,6 +92,8 @@ export class ContentNew2Component implements OnInit, OnDestroy {
   contentId: string;
   isEdit = false;
 
+  popup: any;
+
   is_loading = true;
 
   constructor(
@@ -136,6 +138,10 @@ export class ContentNew2Component implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.popup = {
+      title: '',
+      message: ''
+    };
     this.getUserInfo();
     this.getEditStatus();
   }
@@ -270,8 +276,11 @@ export class ContentNew2Component implements OnInit, OnDestroy {
 
   changeMainImg(o, type): void {
     const file = o.srcElement.files;
-
     if (file.length > 0) {
+      if (file[0].size > 2000000) {
+        alert('업로드 이미지는 2MB 이하만 업로드 가능합니다');
+        return;
+      }
       this.popupService.setData(o);
       this.cropTargetImgName = file[0].name;
 
@@ -286,6 +295,10 @@ export class ContentNew2Component implements OnInit, OnDestroy {
 
   changeExtraImg(o, idx): void {
     const file = o.srcElement.files[0];
+    if (file.size > 2000000) {
+      alert('업로드 이미지는 2MB 이하만 업로드 가능합니다');
+      return;
+    }
 
     if (file) {
       if (file['type'].indexOf('image') !== -1) {
