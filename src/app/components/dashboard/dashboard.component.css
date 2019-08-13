@@ -37,3 +37,17 @@
 .glyphicon-minus {
   color: grey;
 }
+
+.suggest-list {
+  position: absolute;
+  padding: 10px;
+  background: white;
+  border: 1px solid black;
+  z-index: 1000;
+  margin: 0;
+}
+
+.suggest-content {
+  cursor: pointer;
+  margin: 2px 0;
+}

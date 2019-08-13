@@ -4,16 +4,18 @@
     <span>행사 대표 이미지 자르기</span>
     <img *ngIf="isCoverPopup" src="/assets/images/close-grey.svg" (click)="controlCoverPopup.emit(false)">
   </div>
-  <div class="desc demi-light">10MB 이하 / 2160 x 1080 px (2:1비율) 권장</div>
+  <div class="desc demi-light">2MB 이하 / 2:1비율 권장</div>
   <div *ngIf="isCoverPopup" class="u-header-shadow"></div>
   <div class="crop-box media-header">
     <image-cropper #cropper
       [imageChangedEvent]="imageChangedEvent"
       [maintainAspectRatio]="true"
+      [resizeToWidth]="600"
       [onlyScaleDown]="true"
       [autoCrop]="false"
       [aspectRatio]="2 / 1"
-      [cropperMinWidth]="300"
+      [cropperMinWidth]="600"
+      [imageQuality]="92"
       (imageCropped)="imageCropped($event)"
       (imageLoaded)="imageLoaded()"
       (loadImageFailed)="loadImageFailed()"

@@ -107,7 +107,7 @@
               </ng-container>
               <ng-container *ngIf="!croppedImg">
                 <div class="desc-box">
-                  <span class="bold">눌러서 이미지를 업로드 해주세요</span>권장 이미지 사이즈 10MB 이하<br>2160 x 1080 px (2:1 비율)
+                  <span class="bold">눌러서 이미지를 업로드 해주세요</span>권장 이미지 사이즈 2MB 이하<br>2:1 비율
                 </div>
               </ng-container>
               <input #mMainImg id="mMainImg" type="file" name="file" class="hidden-md hidden-lg" (change)="changeMainImg($event, 'm')" (click)="initFileInput(mMainImg)">

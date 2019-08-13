@@ -3,16 +3,19 @@
 </div>
 <div *ngIf="!is_loading">
   <div class="row">
-    <div class="col-md-6 col-sm-6">
-      <select class="form-control" [(ngModel)]="content_oid" (ngModelChange)="changeContent()">
-        <ng-container *ngFor="let c of contents">
-          <option [ngValue]="c._id">{{c.name}} ({{c.company.name}})</option>
-        </ng-container>
-      </select>
+    <div class="col-md-6">
+      <div class="input">
+        <input type="text" class="form-control" placeholder="TKIT 행사 검색" autocomplete="off" [(ngModel)]="query" name="query" (focus)="onFocus()" (keyup)="search_term$.next($event.target.value)">
+      </div>
+      <div *ngIf="is_list" class="suggest-list">
+        <div *ngIf="contents.length === 0">추천 행사가 없습니다 (적절한 검색 키워드를 입력해주세요)</div>
+        <div *ngFor="let c of contents">
+          <div class="suggest-content" (click)="onClick(c)">{{c.name}} ({{c.company.name}})</div>
+        </div>
+      </div>
     </div>
   </div>
   <br>
-
   <ng-template [ngIf]="!content_oid && (authService.getRole()==='super' || authService.getRole()==='admin')">
     <div class="row">
       <div class="col-md-3 col-sm-3">
@@ -79,6 +82,22 @@
       <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
+            <h3 class="panel-title">최근 7일 신규 사용자 (Daily New Users)
+              <span *ngIf="last_7days_new_users_growth_rate>0" class="glyphicon glyphicon-arrow-up"></span>
+              <span *ngIf="last_7days_new_users_growth_rate===0" class="glyphicon glyphicon-minus"></span>
+              <span *ngIf="last_7days_new_users_growth_rate<0" class="glyphicon glyphicon-arrow-down"></span>
+              {{last_7days_new_users_growth_rate | number: '0.0-0'}} <small>%</small>
+              <span class="glyphicon glyphicon-info-sign" (click)="onInfoAlert('어제 성장률')"></span>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="last_7days_new_users_chart.type" [data]="last_7days_new_users_chart.data" [options]="last_7days_new_users_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
             <h3 class="panel-title">월별 티켓 바이럴 (Monthly Ticket Viral)
               <span *ngIf="monthly_ticket_viral_growth_rate>0" class="glyphicon glyphicon-arrow-up"></span>
               <span *ngIf="monthly_ticket_viral_growth_rate===0" class="glyphicon glyphicon-minus"></span>
@@ -119,22 +138,14 @@
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-md-6 col-sm-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">전체 티켓현황</h3>
-          </div>
-          <div class="panel-body">
-            <chart [type]="ticket_count_chart.type" [data]="ticket_count_chart.data" [options]="ticket_count_chart.options"></chart>
-          </div>
-        </div>
-      </div>
-    </div>
   </ng-template>
 
   <ng-template [ngIf]="content_oid">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>{{content.name}}</h3>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-4 col-sm-4">
         <div class="panel panel-default">

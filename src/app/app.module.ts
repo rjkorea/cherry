@@ -127,6 +127,7 @@ import { TicketSpreadComponent } from './components/ticket/ticket-box/ticket-spr
 import { TicketEditComponent } from './components/ticket/ticket-edit/ticket-edit.component';
 import { TargetNewComponent } from './components/target/target-new.component';
 import { TargetComponent } from './components/target/target.component';
+import { PopupComponent } from './components/popup/popup.component';
 
 
 defineLocale('ko', koLocale);
@@ -217,7 +218,8 @@ defineLocale('ko', koLocale);
     MobileNumberMaskPipe,
     GenderPipe,
     TargetNewComponent,
-    TargetComponent
+    TargetComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

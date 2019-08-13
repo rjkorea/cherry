@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { DashboardService } from '../../services/dashboard.service';
 import { AuthService } from '../../services/auth.service';
 import { ContentService } from '../../services/content.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +13,7 @@ import { ContentService } from '../../services/content.service';
 export class DashboardComponent implements OnInit {
   contents: any;
   content_oid: string;
+  content: any;
 
   total_ticket_count: any;
   total_ticket: any;
@@ -25,6 +27,8 @@ export class DashboardComponent implements OnInit {
   monthly_ticket_viral_growth_rate: number;
   monthly_active_users_chart: any;
   monthly_active_users_growth_rate: number;
+  last_7days_new_users_chart: any;
+  last_7days_new_users_growth_rate: number;
 
   ticket_count: any;
   revenue: any;
@@ -33,23 +37,26 @@ export class DashboardComponent implements OnInit {
 
   is_loading: boolean;
 
+  search_term$ = new Subject<string>();
+  is_list: boolean;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private dashboardService: DashboardService,
     private authService: AuthService,
     private contentService: ContentService
-  ) {}
+  ) {
+    this.contentService.search(this.search_term$)
+      .subscribe(response => {
+        this.contents = response['data'];
+      });
+  }
 
   ngOnInit() {
     this.is_loading = true;
-    this.contents = [
-      {
-        _id: '',
-        name: '컨텐츠',
-        company: { name: '회사 이름' }
-      }
-    ];
+    this.is_list = false;
+    this.contents = [];
     this.total_ticket_count = 0;
     this.ticket_count = {
       pend: 0,
@@ -143,6 +150,60 @@ export class DashboardComponent implements OnInit {
               '#59A2B0',
               '#59A2B0',
               '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#59A2B0',
+              '#D87072'
+            ],
+            borderWidth: 1.5
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          yAxes: [
+            {
+              gridLines: {
+                offsetGridLines: true
+              },
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ],
+          xAxes: [
+            {
+              gridLines: {
+                offsetGridLines: true
+              }
+            }
+          ]
+        }
+      }
+    };
+    this.last_7days_new_users_chart = {
+      type: 'bar',
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'DNU',
+            data: [],
+            backgroundColor: [
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#62AAB8',
+              '#ED7F81'
+            ],
+            borderColor: [
               '#59A2B0',
               '#59A2B0',
               '#59A2B0',
@@ -287,6 +348,7 @@ export class DashboardComponent implements OnInit {
     const params: Params = this.route.snapshot.params;
     if ('id' in params) {
       this.content_oid = params['id'];
+      this.getContent(this.content_oid);
       this.loadDashboardContent(params['id']);
     } else {
       this.loadDashboard();
@@ -298,14 +360,6 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getDashboard().subscribe(
       response => {
         this.total_ticket_count = response['data']['total_ticket_count'];
-        this.ticket_count_chart['data']['datasets'][0]['data'] = [
-          response['data']['ticket_count']['pend'],
-          response['data']['ticket_count']['send'],
-          response['data']['ticket_count']['register'],
-          response['data']['ticket_count']['pay'],
-          response['data']['ticket_count']['use'],
-          response['data']['ticket_count']['cancel']
-        ];
         this.total_company_count = response['data']['total_company_count'];
         this.total_user_count = response['data']['total_user_count'];
         this.total_content_count = response['data']['total_content_count'];
@@ -315,27 +369,22 @@ export class DashboardComponent implements OnInit {
         ];
         response['data']['monthly_new_users'].forEach(element => {
           this.monthly_new_users_chart['data']['labels'].push(element['_id']);
-          this.monthly_new_users_chart['data']['datasets'][0]['data'].push(
-            element['count']
-          );
+          this.monthly_new_users_chart['data']['datasets'][0]['data'].push(element['count']);
         });
         this.monthly_new_users_growth_rate = ((this.monthly_new_users_chart.data.datasets[0].data[10] - this.monthly_new_users_chart.data.datasets[0].data[9]) / this.monthly_new_users_chart.data.datasets[0].data[9]) * 100;
+        response['data']['last_7days_new_users'].forEach(element => {
+          this.last_7days_new_users_chart['data']['labels'].push(element['_id']);
+          this.last_7days_new_users_chart['data']['datasets'][0]['data'].push(element['count']);
+        });
+        this.last_7days_new_users_growth_rate = ((this.last_7days_new_users_chart.data.datasets[0].data[5] - this.last_7days_new_users_chart.data.datasets[0].data[4]) / this.last_7days_new_users_chart.data.datasets[0].data[4]) * 100;
         response['data']['monthly_ticket_viral'].forEach(element => {
-          this.monthly_ticket_viral_chart['data']['labels'].push(
-            element['_id']
-          );
-          this.monthly_ticket_viral_chart['data']['datasets'][0]['data'].push(
-            element['count']
-          );
+          this.monthly_ticket_viral_chart['data']['labels'].push(element['_id']);
+          this.monthly_ticket_viral_chart['data']['datasets'][0]['data'].push(element['count']);
         });
         this.monthly_ticket_viral_growth_rate = ((this.monthly_ticket_viral_chart.data.datasets[0].data[10] - this.monthly_ticket_viral_chart.data.datasets[0].data[9]) / this.monthly_ticket_viral_chart.data.datasets[0].data[9]) * 100;
         response['data']['monthly_active_users'].forEach(element => {
-          this.monthly_active_users_chart['data']['labels'].push(
-            element['_id']
-          );
-          this.monthly_active_users_chart['data']['datasets'][0]['data'].push(
-            element['count']
-          );
+          this.monthly_active_users_chart['data']['labels'].push(element['_id']);
+          this.monthly_active_users_chart['data']['datasets'][0]['data'].push(element['count']);
         });
         this.monthly_active_users_growth_rate = ((this.monthly_active_users_chart.data.datasets[0].data[10] - this.monthly_active_users_chart.data.datasets[0].data[9]) / this.monthly_active_users_chart.data.datasets[0].data[9]) * 100;
         this.is_loading = false;
@@ -368,8 +417,19 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  getContent(id: string) {
+    this.contentService.getContent(id).subscribe(
+      response => {
+        this.content = response['data'];
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
   loadContents() {
-    this.contentService.getContentList('', 0, 200).subscribe(
+    this.contentService.getContentList('', 0, 20).subscribe(
       response => {
         this.contents = this.contents.concat(response['data']);
       },
@@ -379,17 +439,19 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  changeContent() {
-    if (this.content_oid) {
-      this.router.navigate(['/dashboard', this.content_oid]);
-      this.loadDashboardContent(this.content_oid);
-    } else {
-      this.router.navigate(['/dashboard', this.content_oid]);
-      this.loadDashboard();
-    }
-  }
-
   onInfoAlert(msg: string) {
     alert(msg);
   }
+
+  onFocus() {
+    this.is_list = !this.is_list;
+  }
+
+  onClick(content: any) {
+    this.router.navigate(['/dashboard', content['_id']]);
+    this.getContent(content['_id']);
+    this.loadDashboardContent(content['_id']);
+    this.is_list = false;
+  }
+
 }
