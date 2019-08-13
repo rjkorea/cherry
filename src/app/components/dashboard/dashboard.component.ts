@@ -449,6 +449,7 @@ export class DashboardComponent implements OnInit {
 
   onClick(content: any) {
     this.router.navigate(['/dashboard', content['_id']]);
+    this.getContent(content['_id']);
     this.loadDashboardContent(content['_id']);
     this.is_list = false;
   }
