@@ -5,6 +5,9 @@ import { environment } from '../../environments/environment';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 const URL = `${environment.api.protocol}://${environment.api.host}:${environment.api.port}`;
 
@@ -19,6 +22,12 @@ export class ContentService {
   constructor(private http: Http) {
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'csk=' + localStorage.getItem('csk')});
     this.options = new RequestOptions({headers: headers, withCredentials: true});
+  }
+
+  search(terms: Observable<string>) {
+    return terms.debounceTime(400)
+                .distinctUntilChanged()
+                .switchMap(term => this.getContentList(term, 0, 20));
   }
 
   public addContent(data: any): Observable<{}> {
