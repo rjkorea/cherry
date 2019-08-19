@@ -31,11 +31,11 @@
       <div class="col-md-3 col-sm-3">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">전체 티켓</h3>
+            <h3 class="panel-title">전체 누적 입장객</h3>
           </div>
           <div class="panel-body">
             <h1>
-              {{total_ticket_count | number: '0.0-0'}} <small>장</small>
+              {{total_ticket_use_count | number: '0.0-0'}} <small>명</small>
             </h1>
           </div>
         </div>
@@ -53,10 +53,10 @@
       <div class="col-md-3 col-sm-3">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">전체 회사</h3>
+            <h3 class="panel-title">전체 호스트</h3>
           </div>
           <div class="panel-body">
-            <h1>{{total_company_count | number: '0.0-0'}} <small>사</small></h1>
+            <h1>{{total_host_count | number: '0.0-0'}} <small>명</small></h1>
           </div>
         </div>
       </div>
@@ -134,6 +134,16 @@
           </div>
           <div class="panel-body">
             <chart [type]="total_gender_chart.type" [data]="total_gender_chart.data" [options]="total_gender_chart.options"></chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">행사 랭킹 (사용된 티켓 기준)</h3>
+          </div>
+          <div class="panel-body">
+            <chart [type]="ticket_use_rank_chart.type" [data]="ticket_use_rank_chart.data" [options]="ticket_use_rank_chart.options"></chart>
           </div>
         </div>
       </div>
