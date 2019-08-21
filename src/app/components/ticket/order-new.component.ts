@@ -101,7 +101,7 @@ export class TicketOrderNewComponent implements OnInit {
       return;
     }
     this.is_loading = true;
-    this.order['mobile']['number'] = this.order['mobile']['number'].trim();
+    this.order['mobile']['number'] = this.order['mobile']['number'].trim().replace(/\./g, '').replace(/\s/g, '').replace(/-/g, '');
     this.ticketService.addOrderV2(this.order)
       .subscribe(
         response => {

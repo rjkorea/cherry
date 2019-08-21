@@ -68,7 +68,7 @@ export class TicketLoadCsvComponent implements OnInit {
             this.parsed_csv['data'].push(
               {
                 name: line[0].trim(),
-                mobile_number: line[1].trim().replace('.', '').replace(/\s/g, '').replace('-', ''),
+                mobile_number: line[1].trim().replace(/\./g, '').replace(/\s/g, '').replace(/-/g, ''),
                 qty: Number(line[2])
               }
             );
