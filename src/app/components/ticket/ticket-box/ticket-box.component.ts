@@ -36,6 +36,7 @@ export class TicketBoxComponent implements OnInit, OnChanges {
   isSpread: boolean = false;
 
   ticketForm = this.formBuilder.group({
+    type: new FormControl(''),
     ticketName: new FormControl('', [Validators.required]),
     ticketDesc: new FormControl('', [Validators.required]),
     fromHours: new FormControl('', [Validators.required]),
@@ -49,6 +50,7 @@ export class TicketBoxComponent implements OnInit, OnChanges {
     ticketPrice: new FormControl(''),
     ticketCount: new FormControl(''),
     ticketSpread: new FormControl(''),
+    isCoupon: new FormControl(''),
     duplicatedRegistration: new FormControl(''),
     disabledSend: new FormControl(''),
     showPrice: new FormControl(''),
@@ -102,8 +104,15 @@ export class TicketBoxComponent implements OnInit, OnChanges {
       this.ticketForm.controls['ticketSpread'].setValue(data['fpfg']['spread']);
     }
 
+    if (data['type'] === 'coupon') {
+      this.ticketForm.controls['isCoupon'].setValue(true);
+    } else {
+      this.ticketForm.controls['isCoupon'].setValue(false);
+    }
+
     this.parentData = { ticketType: data['price'] > 0 ? 'pay' : 'free' };
 
+    this.ticketForm.controls['type'].setValue(data['type']);
     this.ticketForm.controls['ticketName'].setValue(data['name']);
     this.ticketForm.controls['ticketDesc'].setValue(data['desc']['value']);
     this.ticketForm.controls['ticketPrice'].setValue(data['price']);
