@@ -41,6 +41,7 @@ export class TicketOrderNewComponent implements OnInit {
         country_code: DEFAULT_COUNTRY_CODE,
         number: ''
       },
+      commission: '',
       sms: ''
     };
     this.countries = [
@@ -102,6 +103,9 @@ export class TicketOrderNewComponent implements OnInit {
     }
     this.is_loading = true;
     this.order['mobile']['number'] = this.order['mobile']['number'].trim().replace(/\./g, '').replace(/\s/g, '').replace(/-/g, '');
+    if (this.order.commission === '') {
+      delete this.order.commission;
+    }
     this.ticketService.addOrderV2(this.order)
       .subscribe(
         response => {

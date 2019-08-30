@@ -38,9 +38,11 @@
         <table class="table table-striped">
           <tr>
             <th>전환티켓 / 티켓수량</th>
+            <th>타입</th>
             <th>전송일시</th>
             <th>받는사람 이름</th>
             <th>받는사람 핸드폰번호</th>
+            <th>커미션</th>
           </tr>
           <tr *ngFor="let o of orders">
             <td>
@@ -49,11 +51,19 @@
                 <span class="badge">{{o.active_ticket_count | number: '0.0-0'}} / {{o.qty | number: '0.0-0'}}</span>
               </button>
             </td>
+            <td>
+              <span *ngIf="o.type==='network'">티켓</span>
+              <span *ngIf="o.type==='coupon'">쿠폰</span>
+            </td>
             <td><a [routerLink]="['/ticket/order', o._id]">{{o.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</a></td>
             <td>{{o.receiver.name}}</td>
             <td>
               <span *ngIf="authService.getRole()==='host'">(+{{o.receiver.mobile.country_code}}) {{o.receiver.mobile.number | mobileNumberMask}}</span>
               <span *ngIf="authService.getRole()!=='host'">(+{{o.receiver.mobile.country_code}}) {{o.receiver.mobile.number}}</span>
+            </td>
+            <td>
+              <span *ngIf="o.commission">{{o.commission | currency: 'KRW': 'symbol': '1.0-0'}}</span>
+              <span *ngIf="!o.commission">없음</span>
             </td>
           </tr>
         </table>
