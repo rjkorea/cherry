@@ -112,8 +112,14 @@ export class ContentService {
     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  public getContentListV2(status: string, start: Number, size: Number): Observable<{}> {
-    const url = `${this.contentsUrlV2}?status=${status}&start=${start}&size=${size}`;
+  searchV2(terms: Observable<string>, status: string, tags: string, start: Number, size: Number) {
+    return terms.debounceTime(400)
+                .distinctUntilChanged()
+                .switchMap(term => this.getContentListV2(status, term, tags, start, size));
+  }
+
+  public getContentListV2(status: string, query: string, tags: string, start: Number, size: Number): Observable<{}> {
+    const url = `${this.contentsUrlV2}?status=${status}&q=${query}&tags=${tags}&start=${start}&size=${size}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
