@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-md-6">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="name, mobile number, email, birthday" [(ngModel)]="query" name="query" (keyup.enter)="onSearch()">
+      <input type="text" class="form-control" placeholder="name, mobile number, email, birthday" [(ngModel)]="query" name="query" (keyup.enter)="onSearch()" autocomplete="off">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" (click)="onSearch()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
       </span>
@@ -28,7 +28,6 @@
     </div>
   </div>
 </div>
-
 <div *ngIf="mode=='ticket'" class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">{{user.last_name}}{{user.name}}가(이) 소유한 티켓
@@ -39,30 +38,30 @@
     <div *ngIf="tickets_count">
       <div class="row">
         <div *ngFor="let ticket of tickets">
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <div class="caption">
-                <h4>
-                  <a [routerLink]="['/entrance/ticket', ticket._id]">{{ticket.ticket_type.name}}</a>
-                </h4>
-                <h5>{{ticket.ticket_type.desc.value}}</h5>
-                <h5 *ngIf="ticket.price>0">티켓가격 ₩ {{ticket.price | number: '0.0-0'}}</h5>
-                <h5 *ngIf="ticket.price===0" class="tkit-mint-color">FREE TICKET</h5>
-                <p>
-                  <span *ngIf="ticket.status=='pend'" class="label label-default">전송준비</span>
-                  <span *ngIf="ticket.status=='send'" class="label label-warning">전송중</span>
-                  <span *ngIf="ticket.status=='register'" class="label label-success">등록완료</span>
-                  <span *ngIf="ticket.status=='use'" class="label label-info">입장완료</span>
-                  <span *ngIf="ticket.status=='pay'" class="label label-primary">결제완료</span>
-                  <span *ngIf="ticket.status=='cancel'" class="label label-danger">취소</span>
-                </p>
+          <div class="col-sm-6 col-md-4" (click)="goEntranceTicket(ticket._id)">
+            <div *ngIf="ticket.ticket_type.color==='tkit-mint'" class="color-bar tkit-mint-bg"></div>
+            <div *ngIf="ticket.ticket_type.color==='tkit-coral'" class="color-bar tkit-coral-bg"></div>
+            <div *ngIf="ticket.ticket_type.color==='ultra-bora'" class="color-bar hangang-blue-bg"></div>
+            <div *ngIf="ticket.ticket_type.color==='hangang-blue'" class="color-bar ultra-bora-bg"></div>
+            <div *ngIf="ticket.ticket_type.color==='mustard-norang'" class="color-bar mustard-norang-bg"></div>
+            <div class="ticket-type-box">
+              <h4 class="text-truncate">{{ticket.ticket_type.name}}</h4>
+              <h5 class="text-truncate">{{ticket.ticket_type.desc.value}}</h5>
+              <h5 *ngIf="ticket.price>0" class="bold">티켓가격 ₩ {{ticket.ticket_type.price | number: '0.0-0'}}</h5>
+              <h5 *ngIf="ticket.price===0" class="tkit-mint-color">FREE TICKET</h5>
+              <div class="status">
+                <span *ngIf="ticket.status=='pend'" class="label label-default">전송준비</span>
+                <span *ngIf="ticket.status=='send'" class="label label-warning">전송중</span>
+                <span *ngIf="ticket.status=='register'" class="label label-success">등록완료</span>
+                <span *ngIf="ticket.status=='use'" class="label label-info">입장완료</span>
+                <span *ngIf="ticket.status=='pay'" class="label label-primary">결제완료</span>
+                <span *ngIf="ticket.status=='cancel'" class="label label-danger">취소</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <div *ngIf="!!!tickets_count">
       <div class="row">
         <div class="col-md-12">
@@ -74,51 +73,40 @@
       </div>
       <hr />
     </div>
-
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-6">
-    <div *ngIf="mode=='search'" class="panel panel-default">
+    <div *ngIf="mode==='search'" class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">유저 <span class="badge">{{users_count | number: '0.0-0'}}</span></h3>
       </div>
       <div class="panel-body">
-        <div *ngIf="users_count">
-          <div class="row">
-            <!-- <div class="col-md-6"> -->
-              <div *ngFor="let user of users">
-                <div class="row">
-                  <div class="col-md-4">
-                    <img *ngIf="!user.image" class="img-thumbnail" src="assets/images/user.png">
-                    <img *ngIf="user.image" class="img-thumbnail" src="{{user.image.profile.m}}">
-                  </div>
-                  <div class="col-md-8">
-                    <h4><a (click)="getTickets(content_oid, user._id)">{{user.last_name}}{{user.name}}</a></h4>
-                    <p *ngIf="user.mobile">
-                      <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> +{{user.mobile.country_code}} {{user.mobile.number}}
-                    </p>
-                    <p *ngIf="user.email">
-                      <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{user.email}}
-                    </p>
-                    <p *ngIf="user.birthday">
-                      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{user.birthday}}
-                    </p>
-                    <p *ngIf="user.gender">
-                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{user.gender}}
-                    </p>
-                  </div>
-                </div>
-                <hr />
-              </div>
-            <!-- </div> -->
+        <div *ngFor="let user of users" class="user-box" (click)="getUser(user._id)">
+          <div class="profile-img">
+            <img *ngIf="!user.image" class="img-thumbnail" src="assets/images/user.png">
+            <img *ngIf="user.image" class="img-thumbnail" src="{{user.image.profile.m}}">
+          </div>
+          <div class="user-data">
+            <h4>{{user.last_name}}{{user.name}}</h4>
+            <p *ngIf="user.mobile">
+              <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> +({{user.mobile.country_code}}) {{user.mobile.number}}
+            </p>
+            <p *ngIf="user.email">
+              <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{user.email}}
+            </p>
+            <p *ngIf="user.birthday">
+              <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{user.birthday}}
+            </p>
+            <p *ngIf="user.gender">
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{user.gender | gender}}
+            </p>
           </div>
         </div>
-        <div *ngIf="!!!users_count">
+        <div *ngIf="users_count===0">
           <h1 class="text-center"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></h1>
           <h4 class="text-center">검색결과가 존재하지 않습니다.</h4>
-          <hr />
         </div>
       </div>
     </div>

@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { TicketService } from '../../services/ticket.service';
 import { ContentService } from '../../services/content.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-entrance',
@@ -27,6 +28,7 @@ export class EntranceComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private ticketService: TicketService,
     private contentService: ContentService,
+    private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -83,38 +85,35 @@ export class EntranceComponent implements OnInit, OnDestroy {
 
   }
 
-  getTickets(content_oid: string, user_oid: string) {
-    this.user = '';
-    this.tickets = null;
-    this.tickets_count = 0;
-    if (user_oid) {
-      this.userService.getUser(user_oid)
-        .subscribe(
-          response => {
-            this.user = response['data'];
-            this.getNetworkTickets();
-          },
-          error => {
-            console.log(error);
-          }
-        );
-    }
+  getUser(user_oid: string) {
+    this.userService.getUser(user_oid).subscribe(
+      response => {
+        this.user = response['data'];
+        this.getNetworkTickets();
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   getNetworkTickets() {
     this.is_loading = true;
-    this.ticketService.getTicketEntranceListByUser(this.content_oid, this.user['_id'], 0, 100)
-      .subscribe(
-        response => {
-          this.tickets = response['data'];
-          this.tickets_count = response['count'];
-          this.is_loading = false;
-          this.mode = 'ticket';
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    this.ticketService.getTicketEntranceListByUser(this.content_oid, this.user['_id'], 0, 100).subscribe(
+      response => {
+        this.tickets = response['data'];
+        this.tickets_count = response['count'];
+        this.is_loading = false;
+        this.mode = 'ticket';
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  goEntranceTicket(ticket_oid: string) {
+    this.router.navigate(['/entrance/ticket', ticket_oid]);
   }
 
 }
