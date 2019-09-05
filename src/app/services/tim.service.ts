@@ -18,8 +18,8 @@ export class TIMService {
     this.options = new RequestOptions({headers: headers, withCredentials: true});
   }
 
-  public getMatrixTicketOrderContent(content_oid: string, start: Number, size: Number, sort: string): Observable<{}> {
-    const url = `${this.timUrl}/matrix/ticket/order/${content_oid}?start=${start}&size=${size}&sort=${sort}`;
+  public getMatrixTicketOrderContent(content_oid: string, ticket_type_oids: string, start: Number, size: Number, sort: string): Observable<{}> {
+    const url = `${this.timUrl}/matrix/ticket/order/${content_oid}?start=${start}&ticket_type_oids=${ticket_type_oids}&size=${size}&sort=${sort}`;
     return this.http.get(url, this.options)
                     .map((response: Response) => response.json())
                     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
