@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {TicketService} from '../../services/ticket.service';
+import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Params } from '@angular/router';
+import { TicketService } from '../../services/ticket.service';
 
 @Component({
   selector: 'app-cs-ticket-detail',
@@ -13,7 +14,7 @@ export class CsTicketDetailComponent implements OnInit {
   is_loading: boolean;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
+              private location: Location,
               private ticketService: TicketService) {
   }
 
@@ -33,6 +34,14 @@ export class CsTicketDetailComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  onCancel(ticket_oid: string) {
+    this.ticketService.cancelTicket(ticket_oid).subscribe(
+      response => {
+        this.location.back();
+      }
+    )
   }
 
 }

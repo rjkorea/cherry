@@ -22,6 +22,7 @@ export class CsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.is_loading = false;
+    this.users_count = 0;
     const params: Params = this.route.snapshot.params;
     if ('query' in params) {
       this.query = params['query'];
@@ -53,6 +54,5 @@ export class CsComponent implements OnInit, OnDestroy {
   goUserTickets(user_oid: string) {
     this.router.navigate(['/cs/user', user_oid, 'tickets']);
   }
-
 
 }
