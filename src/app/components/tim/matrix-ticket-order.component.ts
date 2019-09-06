@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { TIMService } from '../../services/tim.service';
 import { ContentService } from '../../services/content.service';
 import { TicketService } from '../../services/ticket.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-tim-matrix-ticket-order',
@@ -27,6 +28,7 @@ export class MatrixTicketOrderComponent implements OnInit {
               private router: Router,
               private timService: TIMService,
               private ticketService: TicketService,
+              private authService: AuthService,
               private contentService: ContentService) { }
 
   ngOnInit() {

@@ -16,7 +16,7 @@
   <ng-template [ngIf]="!content_oid">
     <div class="row">
       <div class="col-md-12 col-sm-12">
-        <h3>티킷 PRO 티켓 사용자 랭킹입니다. 컨텐츠를 선택해주세요.</h3>
+        <h3>티킷 PRO 셀러랭킹입니다. 컨텐츠를 선택해주세요.</h3>
       </div>
     </div>
   </ng-template>
@@ -74,6 +74,7 @@
             <tr>
               <th>랭킹</th>
               <th>셀러</th>
+              <th></th>
               <th>티켓</th>
               <th (click)="onSort('send')"><span *ngIf="sort=='send'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 전송중</th>
               <th (click)="onSort('register')"><span *ngIf="sort=='register'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 등록완료</th>
@@ -84,7 +85,11 @@
             </tr>
             <tr *ngFor="let tos of ticket_orders_stats; let i = index">
               <td>{{((page-1)*size)+i+1}}</td>
-              <td>{{tos.ticket_order.receiver.name}}</td>
+              <td>
+                <span *ngIf="authService.getRole()==='super' || authService.getRole()==='admin'"><a [routerLink]="['/user', tos.ticket_order.user_oid]">{{tos.ticket_order.receiver.name}}</a></span>
+                <span *ngIf="authService.getRole()==='host'">{{tos.ticket_order.receiver.name}}</span>
+              </td>
+              <td>{{tos.user?.memo}}</td>
               <td class="text-truncate">{{tos.ticket_type.name}} ({{tos.ticket_type.desc.value}})</td>
               <td><span class="label label-warning">{{tos.send | number: '0.0-0'}}</span></td>
               <td><span class="badge badge-success">{{tos.register | number: '0.0-0'}}</span></td>
