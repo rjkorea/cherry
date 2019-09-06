@@ -33,16 +33,17 @@ export class ContentHomeComponent implements OnInit {
 
   ngOnInit() {
     this.select_tags = [
-      { name: '페스티벌', enabled: true },
-      { name: '클럽', enabled: true },
-      { name: '전시', enabled: true },
-      { name: '공연', enabled: true },
-      { name: '콘서트', enabled: true },
-      { name: '쿠폰', enabled: true },
-      { name: '세미나', enabled: true },
-      { name: '초대장', enabled: true },
-      { name: '청첩장', enabled: true },
-      { name: '기타', enabled: true }
+      { name: '전체', enabled: true },
+      { name: '페스티벌', enabled: false },
+      { name: '클럽', enabled: false },
+      { name: '전시', enabled: false },
+      { name: '공연', enabled: false },
+      { name: '콘서트', enabled: false },
+      { name: '쿠폰', enabled: false },
+      { name: '세미나', enabled: false },
+      { name: '초대장', enabled: false },
+      { name: '청첩장', enabled: false },
+      { name: '기타', enabled: false }
     ];
     this.getInitData();
     this.contentservice.searchV2(this.search_term$, this.status, this.tags.join(), 0, 20).subscribe(
@@ -64,7 +65,6 @@ export class ContentHomeComponent implements OnInit {
 
   getInitData(): void {
     this.route.paramMap.subscribe(res => {
-      console.log(res);
       this.status = res['params']['status'] || 'open';
       this.query = res['params']['query'] || '';
       this.openContents = [];
@@ -129,7 +129,14 @@ export class ContentHomeComponent implements OnInit {
   }
 
   onFilterTags(index: number) {
-    this.select_tags[index]['enabled'] = !this.select_tags[index]['enabled'];
+    // this.select_tags[index]['enabled'] = !this.select_tags[index]['enabled'];
+    for (const i in this.select_tags) {
+      if (Number(i) === index) {
+        this.select_tags[i]['enabled'] = true;
+      } else {
+        this.select_tags[i]['enabled'] = false;
+      }
+    }
     this.applyTags();
     this.router.navigate(['/contents', { status: this.status, query: this.query, tags: this.tags.join() }]);
   }
