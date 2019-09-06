@@ -73,6 +73,10 @@ export class CsTicketsComponent implements OnInit {
     return user_oid === this.user['_id'];
   }
 
+  goTicket(ticket_oid: string) {
+    this.router.navigate(['/cs/ticket', ticket_oid]);
+  }
+
   onPrev() {
     const page = this.page - 1;
     this.page = page;

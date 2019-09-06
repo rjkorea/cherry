@@ -12,6 +12,7 @@
             <li class="list-group-item"><strong>아이디: </strong>{{order._id}}</li>
             <li class="list-group-item"><strong>수량: </strong>{{order.qty | number: '0.0-0'}} 매</li>
             <li class="list-group-item"><strong>전송일시: </strong>{{order.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
+            <li class="list-group-item"><strong>커미션: </strong>{{order.commission | currency: 'KRW': 'symbol': '1.0-0'}}</li>
           </ul>
           <ul class="list-group">
             <li class="list-group-item list-group-item-info"><strong>티켓타입</strong></li>

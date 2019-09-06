@@ -15,9 +15,9 @@ export class DashboardComponent implements OnInit {
   content_oid: string;
   content: any;
 
-  total_ticket_count: any;
+  total_ticket_use_count: any;
   total_ticket: any;
-  total_company_count: number;
+  total_host_count: number;
   total_user_count: number;
   total_content_count: number;
   total_gender_chart: any;
@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
   monthly_active_users_growth_rate: number;
   last_7days_new_users_chart: any;
   last_7days_new_users_growth_rate: number;
+  ticket_use_rank_chart: any;
 
   ticket_count: any;
   revenue: any;
@@ -57,7 +58,7 @@ export class DashboardComponent implements OnInit {
     this.is_loading = true;
     this.is_list = false;
     this.contents = [];
-    this.total_ticket_count = 0;
+    this.total_ticket_use_count = 0;
     this.ticket_count = {
       pend: 0,
       send: 0,
@@ -344,6 +345,67 @@ export class DashboardComponent implements OnInit {
       }
     };
 
+    this.ticket_use_rank_chart = {
+      type: 'horizontalBar',
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'Used Ticket',
+            data: [],
+            backgroundColor: [
+              '#6794CA',
+              '#6794CA',
+              '#6794CA',
+              '#6794CA',
+              '#6794CA',
+              '#6794CA',
+              '#6794CA',
+              '#6794CA',
+              '#6794CA',
+              '#6794CA'
+            ],
+            borderColor: [
+              '#1E90FF',
+              '#1E90FF',
+              '#1E90FF',
+              '#1E90FF',
+              '#1E90FF',
+              '#1E90FF',
+              '#1E90FF',
+              '#1E90FF',
+              '#1E90FF',
+              '#1E90FF'
+            ],
+            borderWidth: 1.5
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          yAxes: [
+            {
+              gridLines: {
+                offsetGridLines: true
+              },
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ],
+          xAxes: [
+            {
+              gridLines: {
+                offsetGridLines: true
+              }
+            }
+          ]
+        }
+      }
+    };
+
     this.loadContents();
     const params: Params = this.route.snapshot.params;
     if ('id' in params) {
@@ -359,8 +421,8 @@ export class DashboardComponent implements OnInit {
     this.is_loading = true;
     this.dashboardService.getDashboard().subscribe(
       response => {
-        this.total_ticket_count = response['data']['total_ticket_count'];
-        this.total_company_count = response['data']['total_company_count'];
+        this.total_ticket_use_count = response['data']['total_ticket_use_count'];
+        this.total_host_count = response['data']['total_host_count'];
         this.total_user_count = response['data']['total_user_count'];
         this.total_content_count = response['data']['total_content_count'];
         this.total_gender_chart['data']['datasets'][0]['data'] = [
@@ -387,6 +449,10 @@ export class DashboardComponent implements OnInit {
           this.monthly_active_users_chart['data']['datasets'][0]['data'].push(element['count']);
         });
         this.monthly_active_users_growth_rate = ((this.monthly_active_users_chart.data.datasets[0].data[10] - this.monthly_active_users_chart.data.datasets[0].data[9]) / this.monthly_active_users_chart.data.datasets[0].data[9]) * 100;
+        response['data']['ticket_use_rank'].forEach(element => {
+          this.ticket_use_rank_chart['data']['labels'].push(element['content']);
+          this.ticket_use_rank_chart['data']['datasets'][0]['data'].push(element['use_count']);
+        });
         this.is_loading = false;
       },
       error => {

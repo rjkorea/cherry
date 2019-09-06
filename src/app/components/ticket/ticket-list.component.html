@@ -57,6 +57,7 @@
                 <span *ngIf="authService.getRole()==='host'">{{t.send_user.last_name}}{{t.send_user.name}}</span>
                 <span *ngIf="authService.getRole()!=='host'"><a [routerLink]="['/user', t.send_user._id]">{{t.send_user.last_name}}{{t.send_user.name}}</a></span>
               </span>
+              <span *ngIf="!t.send_user">호스트</span>
             </td>
             <td>
               <span *ngIf="t.receive_user">

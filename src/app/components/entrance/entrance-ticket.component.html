@@ -15,7 +15,7 @@
                 <li class="list-group-item"><strong>핸드폰 번호: </strong>+({{ticket.receive_user.mobile.country_code}}) {{ticket.receive_user.mobile.number}}</li>
                 <li *ngIf="ticket.receive_user.birthday" class="list-group-item"><strong>출생년도: </strong>{{ticket.receive_user.birthday}}</li>
                 <li *ngIf="ticket.content.is_rfid && !ticket.receive_user.birthday" class="list-group-item"><strong>출생년도: </strong><input type=tel class="input-empty" [(ngModel)]="birthday"  placeholder="ex) 1990"  pattern="\d*" [maxLength]="4"> <label class="warn">출생년도 4자리를 넣어주세요!</label></li>
-                <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender}}</li>
+                <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender | gender}}</li>
                 <li *ngIf="ticket.receive_user.memo" class="list-group-item"><strong>CS메모: </strong>{{ticket.receive_user.memo}}</li>
                 <li *ngIf="ticket.content.is_rfid && !ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong><select class="input-empty" [(ngModel)]="gender" >
                   <option value="male">남자</option>
@@ -23,6 +23,14 @@
                   <option value="others">정해지지 않음</option>
                 </select>  <label class="warn">성별을 넣어주세요!</label></li>
               </ul>
+              <p>
+                <span *ngIf="ticket.status=='pend'" class="label label-default">전송준비</span>
+                <span *ngIf="ticket.status=='send'" class="label label-warning">전송중</span>
+                <span *ngIf="ticket.status=='register'" class="label label-success">등록완료</span>
+                <span *ngIf="ticket.status=='use'" class="label label-info">입장완료</span>
+                <span *ngIf="ticket.status=='pay'" class="label label-primary">결제완료</span>
+                <span *ngIf="ticket.status=='cancel'" class="label label-danger">취소</span>
+              </p>
             </div>
             <div class="col-md-6">
               <ul *ngIf="ticket.history_send_users" class="list-group">
@@ -63,7 +71,8 @@
           </div>
           <div *ngIf="!ticket.content.is_rfid" class="row">
             <div class="col-md-6">
-              <button type="button" class="btn btn-default" (click)="onDoneEntrance()">입장완료</button>
+              <button *ngIf="ticket.status==='register' || ticket.status==='pay'" type="button" class="btn btn-default" (click)="onDoneEntrance()">입장완료</button>
+              <button *ngIf="ticket.status==='send' || ticket.status==='use' || ticket.status==='cancel'" type="button" class="btn btn-default" [disabled]="true">입장완료</button>
             </div>
           </div>
         </div>

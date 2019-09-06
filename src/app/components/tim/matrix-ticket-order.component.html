@@ -16,7 +16,7 @@
   <ng-template [ngIf]="!content_oid">
     <div class="row">
       <div class="col-md-12 col-sm-12">
-        <h3>티킷 PRO 티켓 사용자 랭킹입니다. 컨텐츠를 선택해주세요.</h3>
+        <h3>티킷 PRO 셀러랭킹입니다. 컨텐츠를 선택해주세요.</h3>
       </div>
     </div>
   </ng-template>
@@ -24,10 +24,49 @@
   <ng-template [ngIf]="content_oid">
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-11">
         <h3>티켓 셀러 랭킹
-          <span class="badge"></span>
+          <span class="badge">{{count | number: '0.0-0'}}</span>
         </h3>
+      </div>
+      <div class="col-md-1">
+        <!-- Filter Button trigger modal -->
+        <button type="button" class="btn btn-default filter-button" aria-label="Left Align" data-toggle="modal" data-target="#filter-modal" (click)="onFilterModal()">
+          <span class="glyphicon glyphicon-filter" aria-hidden="true">필터</span>
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">필터</h4>
+              </div>
+              <div class="modal-body">
+                <h5>티켓타입</h5>
+                <div class="row">
+                  <div *ngFor="let ticket_type of ticket_types; let i = index;" class="col-md-4">
+                    <div *ngIf="ticket_type.color==='tkit-mint'" class="modal-color-bar tkit-mint-bg" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'"></div>
+                    <div *ngIf="ticket_type.color==='tkit-coral'" class="modal-color-bar tkit-coral-bg" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'"></div>
+                    <div *ngIf="ticket_type.color==='ultra-bora'" class="modal-color-bar hangang-blue-bg" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'"></div>
+                    <div *ngIf="ticket_type.color==='hangang-blue'" class="modal-color-bar ultra-bora-bg" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'"></div>
+                    <div *ngIf="ticket_type.color==='mustard-norang'" class="modal-color-bar mustard-norang-bg" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'"></div>
+                    <div class="modal-ticket-type-box" [style.opacity]="select_ticket_types[i].enabled ? '1' : '0.3'" (click)="onTicketTypes(i)">
+                      <h4 class="modal-text-truncate">{{ticket_type.name}}</h4>
+                      <h5 class="modal-text-truncate">{{ticket_type.desc.value}}</h5>
+                      <h5 *ngIf="ticket_type.price>0" class="bold">티켓가격 ₩ {{ticket_type.price | number: '0.0-0'}}</h5>
+                      <h5 *ngIf="ticket_type.price===0" class="tkit-mint-color">FREE TICKET</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-tkit-mint" data-dismiss="modal" (click)="onApplyFilter()">적용</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-md-12 col-sm-12">
         <div class="table-responsive">
@@ -35,6 +74,7 @@
             <tr>
               <th>랭킹</th>
               <th>셀러</th>
+              <th></th>
               <th>티켓</th>
               <th (click)="onSort('send')"><span *ngIf="sort=='send'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 전송중</th>
               <th (click)="onSort('register')"><span *ngIf="sort=='register'" class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span> 등록완료</th>
@@ -44,8 +84,12 @@
               <th>전환율(등록+결제+입장)</th>
             </tr>
             <tr *ngFor="let tos of ticket_orders_stats; let i = index">
-              <td>{{i+1}}</td>
-              <td>{{tos.ticket_order.receiver.name}}</td>
+              <td>{{((page-1)*size)+i+1}}</td>
+              <td>
+                <span *ngIf="authService.getRole()==='super' || authService.getRole()==='admin'"><a [routerLink]="['/user', tos.ticket_order.user_oid]">{{tos.ticket_order.receiver.name}}</a></span>
+                <span *ngIf="authService.getRole()==='host'">{{tos.ticket_order.receiver.name}}</span>
+              </td>
+              <td>{{tos.user?.memo}}</td>
               <td class="text-truncate">{{tos.ticket_type.name}} ({{tos.ticket_type.desc.value}})</td>
               <td><span class="label label-warning">{{tos.send | number: '0.0-0'}}</span></td>
               <td><span class="badge badge-success">{{tos.register | number: '0.0-0'}}</span></td>
@@ -61,8 +105,24 @@
             </tr>
           </table>
         </div>
+        <div>
+          {{count | number: '0.0-0'}}개 중 {{((page-1)*size)+1}} - {{((page-1)*size)+ticket_orders_stats.length}}
+        </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <nav aria-label="...">
+          <ul class="pager">
+            <li *ngIf="page!=1"><a (click)="onFirstPage()">처음</a></li>
+            <li *ngIf="page!=1"><a (click)="onPrevPage()">이전</a></li>
+            <li *ngIf="page*size<count"><a (click)="onNextPage()">다음</a></li>
+            <li *ngIf="page*size<count"><a (click)="onEndPage()">마지막</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
   </ng-template>
 
 </div>

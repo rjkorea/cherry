@@ -3,6 +3,25 @@
   <p class="light">티킷으로 쉽고 간편하게 행사를 관리해보세요</p>
 </div>
 
+<!-- search box -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="input">
+      <input type="text" class="form-control" placeholder="TKIT 행사 검색" autocomplete="off" [(ngModel)]="query" name="query" (keyup)="onSearch($event.target.value)">
+    </div>
+  </div>
+</div>
+
+<!-- tags filter -->
+<div class="row filters">
+  <div *ngFor="let t of select_tags; let i = index;" class="col-md-2 col-xs-6 filter-padding">
+    <div class="filter" [style.opacity]="t.enabled ? '1' : '0.3'" (click)="onFilterTags(i)">
+      <span *ngIf="t.enabled" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+       {{t.name}}
+    </div>
+  </div>
+</div>
+
 <!-- tab menu --->
 <div class="tab-nav-wrap">
   <ul class="tab-nav list-inline">

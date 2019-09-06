@@ -28,6 +28,10 @@
           <input type="tel" class="form-control" name="receiver-mobile-number" [(ngModel)]="order.mobile.number" placeholder="핸드폰번호 ('-'을 제외하고 입력해주세요)">
         </div>
         <div class="form-group">
+          <label for="commission">커미션 (셀러설정)</label>
+          <input type="number" class="form-control" name="commission" [(ngModel)]="order.commission" min="0" placeholder="4000">
+        </div>
+        <div class="form-group">
           <label for="sms">SMS 내용입력</label>
           <textarea type="text" class="form-control" name="sms" [(ngModel)]="order.sms" placeholder="전송할 SMS 메세지를 입력해주세요."></textarea>
         </div>

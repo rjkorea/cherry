@@ -32,3 +32,36 @@
   text-overflow: ellipsis;
   max-width: 200px;
 }
+
+.modal-color-bar {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  width: 100%;
+  height: 10px;
+  box-shadow: 0 2px 0 0 rgba(79, 79, 79, 0.5);
+}
+
+.modal-ticket-type-box {
+  display: block;
+  padding: 20px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(79, 79, 79, 0.5);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  -webkit-transition: border .2s ease-in-out;
+  transition: border .2s ease-in-out;
+  cursor: pointer;
+}
+
+.modal-text-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.filter-button {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

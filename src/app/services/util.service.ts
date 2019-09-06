@@ -50,6 +50,7 @@ export class UtilService {
 
   getBanks() {
     return [
+      '카카오뱅크',
       '국민은행',
       '우리은행',
       '기업은행',

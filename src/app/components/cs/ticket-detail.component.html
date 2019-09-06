@@ -52,6 +52,42 @@
                 <li *ngIf="ticket.receive_user.gender" class="list-group-item"><strong>성별: </strong>{{ticket.receive_user.gender | gender}}</li>
                 <li *ngIf="ticket.receive_user.memo" class="list-group-item"><strong>CS메모: </strong>{{ticket.receive_user.memo}}</li>
               </ul>
+              <button *ngIf="ticket.status === 'register' || ticket.status === 'send' || ticket.status === 'pay'" type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancel-modal">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"> 티켓취소</span>
+              </button>
+              <!-- Cancel Modal -->
+              <div class="modal fade" id="cancel-modal" tabindex="-1" role="dialog" aria-labelledby="cancel-modal-label">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="disable-modal-label">티켓 취소</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div *ngIf="ticket.ticket_type.color==='tkit-mint'" class="modal-color-bar tkit-mint-bg"></div>
+                      <div *ngIf="ticket.ticket_type.color==='tkit-coral'" class="modal-color-bar tkit-coral-bg"></div>
+                      <div *ngIf="ticket.ticket_type.color==='ultra-bora'" class="modal-color-bar hangang-blue-bg"></div>
+                      <div *ngIf="ticket.ticket_type.color==='hangang-blue'" class="modal-color-bar ultra-bora-bg"></div>
+                      <div *ngIf="ticket.ticket_type.color==='mustard-norang'" class="modal-color-bar mustard-norang-bg"></div>
+                      <div class="modal-ticket-type-box">
+                        <h3 class="modal-text-truncate">{{ticket.content.name}}</h3>
+                        <h4 class="modal-text-truncate">{{ticket.ticket_type.name}}</h4>
+                        <h5 class="modal-text-truncate">{{ticket.ticket_type.desc.value}}</h5>
+                        <h5 *ngIf="ticket.ticket_type.price>0" class="bold">티켓가격 ₩ {{ticket.ticket_type.price | number: '0.0-0'}}</h5>
+                        <h5 *ngIf="ticket.ticket_type.price===0" class="tkit-mint-color">FREE TICKET</h5>
+                      </div>
+                      <h5>티켓 취소 시 행사 입장이 불가해 집니다</h5>
+                      <h5>정말 티켓을 취소 하시겠습니까?</h5>
+                      <p *ngIf="ticket.receive_user">{{ticket.receive_user.name}}</p>
+                      <p *ngIf="ticket.receive_user">(+{{ticket.receive_user.mobile.country_code}}) {{ticket.receive_user.mobile.number}}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onCancel(ticket._id)">네</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

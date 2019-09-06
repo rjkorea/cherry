@@ -5,7 +5,7 @@
 <div *ngIf="!is_loading">
   <div class="row">
     <div class="col-md-6 col-sm-6">
-      <h3>{{content}}</h3>
+      <h3 class="header-margin">{{content}}</h3>
     </div>
   </div>
   <div *ngIf="content_oid" class="row">
@@ -50,11 +50,10 @@
       </div>
     </div>
     <div class="col-md-4 col-sm-4">
-      <button type="button" class="btn btn-block btn-tkit-mint" (click)="goTicketTrack()">티켓 추적하기</button>
-      <button type="button" class="btn btn-block btn-tkit-mint" (click)="goSellerRank()">티켓 셀러 랭킹</button>
-      <button type="button" class="btn btn-block btn-tkit-mint" (click)="goTicketTypeRank()">티켓 종류별 랭킹</button>
-      <button type="button" class="btn btn-block btn-tkit-mint" (click)="goContentReport()">행사 레포트</button>
-      <button type="button" class="btn btn-block btn-tkit-mint" (click)="goContetRealtimeStats()">행사 실시간 현황보기</button>
+      <button type="button" class="btn btn-block btn-tkit-mint button-margin" (click)="goTicketTrack()">티켓 추적하기</button>
+      <button type="button" class="btn btn-block btn-tkit-mint button-margin" (click)="goSellerRank()">티켓 셀러 랭킹</button>
+      <button type="button" class="btn btn-block btn-tkit-mint button-margin" (click)="goTicketTypeRank()">티켓 종류별 랭킹</button>
+      <button type="button" class="btn btn-block btn-tkit-mint button-margin" (click)="goContetRealtimeStats()">행사 실시간 현황보기</button>
     </div>
   </div>
   <div *ngIf="!content_oid" class="row">

@@ -127,11 +127,16 @@ export class TicketNewComponent implements OnInit, OnDestroy {
       const price = ticketObjs[i]['parentData']['ticketType'] === 'free' ? 0 : ticketObjs[i]['ticketForm'].get('ticketPrice').value;
       const limit = ticketObjs[i]['ticketForm'].get('ticketCount').value;
       const spread = ticketObjs[i]['ticketForm'].get('ticketSpread').value;
+      let type = 'network';
+      if (ticketObjs[i]['ticketForm'].get('isCoupon').value) {
+        type = 'coupon';
+      }
 
       if (name && desc && price >= 0 && limit > 0 && fromDate && toDate && fromHours && toHours && fromMins && toMins) {
         canSave = true;
 
         saveTickets.push({
+          type: type,
           name: name,
           desc: desc,
           sales_date: {
