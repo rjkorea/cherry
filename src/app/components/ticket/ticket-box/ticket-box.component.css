@@ -17,6 +17,12 @@ input:disabled {
     padding: 2.5rem 2rem;
 }
 
+.ticket-box .ticket-inner-box .static-coupon-desc {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ed7f81;
+}
+
 .ticket-box::before {
     position: absolute;
     background-color: #62aab8;
