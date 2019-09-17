@@ -27,7 +27,7 @@
               <h3 class="text-truncate">{{ticket.content.name}}</h3>
               <h4 class="text-truncate">{{ticket.ticket_type.name}}</h4>
               <h5 class="text-truncate">{{ticket.ticket_type.desc.value}}</h5>
-              <h5 *ngIf="ticket.price>0" class="bold">티켓가격 ₩ {{ticket.ticket_type.price | number: '0.0-0'}}</h5>
+              <h5 *ngIf="ticket.price>0" class="bold">티켓가격 ₩ {{ticket.price | number: '0.0-0'}}</h5>
               <h5 *ngIf="ticket.price===0" class="tkit-mint-color">FREE TICKET</h5>
               <div class="status">
                 <span *ngIf="ticket.status=='pend'" class="label label-default">전송준비</span>
