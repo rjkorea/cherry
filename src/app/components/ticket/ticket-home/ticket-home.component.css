@@ -93,6 +93,19 @@ ul {
     height: 7.5rem;
 }
 
+.list-element .first-desc .metadata {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list-element .first-desc .metadata .coupon-badge {
+  background-color: #fbfbfb;
+  padding: 6px 16px;
+  color: #666666;
+  border-radius: 13px;
+}
+
 .list-element .first-desc li:first-child {
     flex: 1;
 }

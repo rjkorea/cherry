@@ -22,7 +22,10 @@
       <div class="list-element">
         <div class="ticket-color" [ngStyle]="{'background-color': ticket.color === 'tkit-mint' ? '#62aab8' : (ticket.color === 'tkit-coral' ? '#ed7f81' : (ticket.color === 'hangang-blue' ? '#6794ca' : (ticket.color === 'ultra-bora' ? '#8f6dab' : (ticket.color === 'mustard-norang' ? '#f6d87f' : '')))) }"></div>
         <ul class="first-desc">
-          <li>등록수량 : {{ ticket.fpfg.now.toLocaleString() }} / <span class="bold">{{ ticket.fpfg.limit.toLocaleString() }}</span></li>
+          <li class="metadata">
+            <span>등록수량 : {{ ticket.fpfg.now.toLocaleString() }} / <span class="bold">{{ ticket.fpfg.limit.toLocaleString() }}</span></span>
+            <span *ngIf="ticket.type === 'coupon'" class="coupon-badge">쿠폰</span>
+          </li>
           <li class="bold name">{{ ticket.name }}</li>
           <li class="demi-light desc">{{ ticket.desc.value }}</li>
         </ul>
