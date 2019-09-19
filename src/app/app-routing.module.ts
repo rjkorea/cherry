@@ -23,6 +23,7 @@ import { CsTicketsComponent } from './components/cs/tickets.component';
 import { CsTicketDetailComponent } from './components/cs/ticket-detail.component';
 import { TargetComponent } from './components/target/target.component';
 import { TargetNewComponent } from './components/target/target-new.component';
+import { SellerStatsComponent } from './components/seller/seller-stats/seller-stats.component';
 import { CompanyListComponent } from './components/company/company-list.component';
 import { CompanyDetailComponent } from './components/company/company-detail.component';
 import { CompanyNewComponent } from './components/company/company-new.component';
@@ -118,6 +119,8 @@ const routes: Routes = [
 
   { path: 'target', component: TargetComponent, canActivate: [AuthGuard] },
   { path: 'target/new', component: TargetNewComponent, canActivate: [AuthGuard] },
+
+  { path: 'seller/stats/:id', component: SellerStatsComponent, canActivate: [AuthGuard] },
 
   { path: 'qna', component: QnaListComponent, canActivate: [AuthGuard] },
   { path: 'qna/:id', component: QnaDetailComponent, canActivate: [AuthGuard]},

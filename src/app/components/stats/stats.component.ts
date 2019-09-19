@@ -119,4 +119,8 @@ export class StatsComponent implements OnInit {
     this.router.navigate(['/tim/analytics', this.content_oid ]);
   }
 
+  goSellerStats() {
+    this.router.navigate(['/seller/stats', this.content_oid ]);
+  }
+
 }

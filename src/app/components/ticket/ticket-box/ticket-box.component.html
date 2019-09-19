@@ -3,7 +3,7 @@
   <div class="row ticket-box">
     <div class="ticket-inner-box">
       <div *ngIf="!isEdit" class="delete-btn"><img src="/assets/images/delete.png" (click)="deleteTicket()"><span (click)="deleteTicket()">삭제하기</span></div>
-      <div *ngIf="isEdit && ticketForm.get('type').value==='coupon'" class="bold">쿠폰으로 설정된 티켓입니다</div>
+      <div *ngIf="isEdit && ticketForm.get('type').value==='coupon'" class="static-coupon-desc">쿠폰으로 설정된 티켓입니다</div>
       <div *ngIf="!isEdit" class="form-group check-list">
         <label class="bold">쿠폰</label>
         <label>
