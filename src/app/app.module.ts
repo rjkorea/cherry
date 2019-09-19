@@ -98,6 +98,7 @@ import { QnaService } from './services/qna.service';
 import { PopupService } from './services/popup.service';
 import { RfidService } from './services/rfid.service';
 import { TargetService } from './services/target.service';
+import { SellerService } from './services/seller.service';
 
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { DateTimeFormatPipe } from './pipes/datetime.pipe';
@@ -128,6 +129,7 @@ import { TicketEditComponent } from './components/ticket/ticket-edit/ticket-edit
 import { TargetNewComponent } from './components/target/target-new.component';
 import { TargetComponent } from './components/target/target.component';
 import { PopupComponent } from './components/popup/popup.component';
+import { SellerStatsComponent } from './components/seller/seller-stats/seller-stats.component';
 
 
 defineLocale('ko', koLocale);
@@ -219,7 +221,8 @@ defineLocale('ko', koLocale);
     GenderPipe,
     TargetNewComponent,
     TargetComponent,
-    PopupComponent
+    PopupComponent,
+    SellerStatsComponent
   ],
   imports: [
     BrowserModule,
@@ -260,6 +263,7 @@ defineLocale('ko', koLocale);
     ContentService,
     GroupService,
     CsService,
+    SellerService,
     CompanyService,
     TicketService,
     PlaceService,
