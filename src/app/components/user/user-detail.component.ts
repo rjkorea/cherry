@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,6 +15,7 @@ export class UserDetailComponent implements OnInit {
   edit_mode: boolean;
 
   constructor(private route: ActivatedRoute,
+              private authService: AuthService,
               private userService: UserService) { }
 
   ngOnInit() {

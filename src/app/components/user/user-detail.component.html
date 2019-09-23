@@ -27,8 +27,9 @@
             <li class="list-group-item"><strong>지역: </strong>{{user.area}}
             <li class="list-group-item"><strong>수정일시: </strong>{{user.updated_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
             <li class="list-group-item"><strong>생성일시: </strong>{{user.created_at | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</li>
-            <li class="list-group-item"><strong>CS메모: </strong>{{user.memo}}
-            </li>
+            <li class="list-group-item"><strong>CS메모: </strong>{{user.memo}}</li>
+            <li *ngIf="authService.getRole() === 'super' || authService.getRole() === 'admin'" class="list-group-item"><strong>주만등록번호: </strong>{{user?.resident_registration_number}}</li>
+            <li *ngIf="authService.getRole() === 'super' || authService.getRole() === 'admin'" class="list-group-item"><strong>은행계좌: </strong>{{user?.bank?.name}} {{user?.bank?.account_number}}</li>
           </ul>
           <div *ngIf="edit_mode" class="edit">
             <div class="input-group">
