@@ -71,8 +71,27 @@
           </div>
           <div *ngIf="!ticket.content.is_rfid" class="row">
             <div class="col-md-6">
-              <button *ngIf="ticket.status==='register' || ticket.status==='pay'" type="button" class="btn btn-default" (click)="onDoneEntrance()">입장완료</button>
-              <button *ngIf="ticket.status==='send' || ticket.status==='use' || ticket.status==='cancel'" type="button" class="btn btn-default" [disabled]="true">입장완료</button>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#popup-modal">입장완료</button>
+              <!-- Popup Modal -->
+              <div class="modal fade" id="popup-modal" tabindex="-1" role="dialog" aria-labelledby="popup-modal-label">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="disable-modal-label">입장 처리</h4>
+                    </div>
+                    <div class="modal-body">
+                      <h5>입장처리 하시겠습니까?</h5>
+                      <p *ngIf="ticket.receive_user">{{ticket.receive_user.name}}</p>
+                      <p *ngIf="ticket.receive_user">(+{{ticket.receive_user.mobile.country_code}}) {{ticket.receive_user.mobile.number}}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+                      <button type="button" class="btn btn-tkit-mint" data-dismiss="modal" (click)="onDoneEntrance()">네</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
